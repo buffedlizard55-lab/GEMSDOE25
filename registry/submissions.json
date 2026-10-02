@@ -217,7 +217,7 @@
    "title": "Format fallback: same predictions, zeros outside the footprint",
    "summary": "Identical prediction values inside the owner-mirror template footprint; 0.0 instead of NaN outside. Local format checks only; organizer acceptance is unverified.",
    "expected_range": "same as primary",
-   "note": "GEMSDOE25 D2.8 zeros-outside | format-validated; unscored; not holdout-promoted vs 0.152003389 | id e56ea318af89 | no sl",
+   "note": "GEMSDOE25 D2.8 zeros | format fallback; unscored; not holdout-promoted vs 0.152003389 | id e56ea318af89 | no slot",
    "parent": "primary",
    "transform": "outside=zero",
    "slot_approved": false,
