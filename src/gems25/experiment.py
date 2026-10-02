@@ -1,0 +1,163 @@
+"""Hide-and-recover cell execution shared by the factorial, confirmation and candidate stages."""
+
+from __future__ import annotations
+
+import json
+import time
+from dataclasses import dataclass, field
+from pathlib import Path
+
+import numpy as np
+from scipy.ndimage import binary_erosion, distance_transform_edt
+from sklearn.ensemble import HistGradientBoostingClassifier
+from sklearn.metrics import roc_auc_score
+
+from .families import FAMILIES, family_columns
+from .features import build_catalogue_features
+from .holdout import Draw, Holdout
+from .metric import dti_binary
+from .thinning import dot_thin, ridge_nms, select_top_positive
+
+HGB_PARAMS = dict(
+    max_iter=100, learning_rate=0.12, max_leaf_nodes=31, min_samples_leaf=50,
+    l2_regularization=1.0, class_weight={0: 1, 1: 5}, early_stopping=False,
+)
+N_NEG = 300_000
+BUDGET = 0.0245
+DOT_MIN_DIST = 1.5
+DOMAIN_ERODE = 12
+
+
+@dataclass
+class Context:
+    foot: np.ndarray
+    labels: np.ndarray
+    static: np.ndarray  # (n_static, n_foot) memmap
+    static_names: list
+    fi: np.ndarray = field(init=False)
+    holdout: Holdout = field(init=False)
+    scale: dict = field(init=False)
+
+    def __post_init__(self):
+        self.fi = np.flatnonzero(self.foot.ravel())
+        self.holdout = Holdout(self.foot, self.labels, 0.20)
+        self.e_names = family_columns("E")
+        self.all_names = list(self.static_names) + list(self.e_names)
+        self.col = {n: i for i, n in enumerate(self.all_names)}
+        rng = np.random.default_rng(1)
+        sub = np.sort(rng.choice(self.fi.size, 200_000, replace=False))
+        self.scale = {}
+        for n in self.static_names:
+            v = np.asarray(self.static[self.static_names.index(n), sub])
+            v = v[np.isfinite(v)]
+            lo, hi = (np.percentile(v, 1), np.percentile(v, 99)) if v.size else (0.0, 1.0)
+            self.scale[n] = (float(lo), float(hi if hi > lo else lo + 1.0))
+
+    def vec(self, mask: np.ndarray) -> np.ndarray:
+        """Footprint-vector indices where ``mask`` is true."""
+        return np.flatnonzero(mask.ravel()[self.fi])
+
+    def columns(self, letters: str) -> list[int]:
+        cols = []
+        for L in letters:
+            cols += [self.col[n] for n in family_columns(L)]
+        return cols
+
+
+class Cell:
+    """Everything shared by all runs of one (fold, draw): features, training sample, test matrix."""
+
+    def __init__(self, ctx: Context, fold: int, seed: int):
+        self.ctx, self.fold, self.seed = ctx, fold, seed
+        t0 = time.time()
+        self.draw: Draw = ctx.holdout.draw(fold, seed)
+        d = self.draw
+        self.E = build_catalogue_features(d.visible, ctx.fi)
+        rng = np.random.default_rng(777 + 31 * fold + seed)
+        pos = ctx.vec(d.hidden_train)
+        near = distance_transform_edt(~d.hidden_train) <= 1.5
+        cand = ctx.vec(d.train_region & ~ctx.labels & ~near)
+        neg = rng.choice(cand, size=min(N_NEG, cand.size), replace=False)
+        self.train_idx = np.sort(np.concatenate([pos, neg]))
+        self.y = np.isin(self.train_idx, pos).astype(np.int8)
+        ns = ctx.static.shape[0]
+        self.Xtr = np.empty((self.train_idx.size, ns + self.E.shape[0]), np.float32)
+        self.Xtr[:, :ns] = np.asarray(ctx.static[:, self.train_idx]).T
+        self.Xtr[:, ns:] = self.E[:, self.train_idx].T
+        self.q = ctx.vec(d.quadrant)
+        self.Xq = np.empty((self.q.size, ns + self.E.shape[0]), np.float32)
+        self.Xq[:, :ns] = np.asarray(ctx.static[:, self.q]).T
+        self.Xq[:, ns:] = self.E[:, self.q].T
+        sl = d.bbox
+        self.sl = sl
+        self.domain = binary_erosion(d.quadrant, iterations=DOMAIN_ERODE)
+        self.dom_c = self.domain[sl]
+        self.truth_c = (d.hidden_test & self.domain)[sl]
+        self.known_c = d.visible[sl]
+        self.near_vis = distance_transform_edt(~self.known_c) <= 3
+        self.K = int(round(BUDGET * self.dom_c.sum()))
+        # AUC evaluation index sets (positions inside the quadrant vector)
+        dq = self.domain.ravel()[ctx.fi][self.q]
+        hq = (d.hidden_test & self.domain).ravel()[ctx.fi][self.q]
+        cq = ctx.labels.ravel()[ctx.fi][self.q]
+        self.auc_pos = np.flatnonzero(hq)
+        neg_pool = np.flatnonzero(dq & ~cq)
+        self.auc_neg = np.random.default_rng(5).choice(neg_pool, size=min(150_000, neg_pool.size), replace=False)
+        self._grid = np.zeros(ctx.foot.shape, np.float32)
+        self.prep_seconds = time.time() - t0
+
+    # -------------------------------------------------------------------------------------
+    def emit(self, score_q: np.ndarray, dotted: bool = True, min_dist: float = DOT_MIN_DIST, k: int | None = None):
+        """Ridge NMS -> drop known -> top-K -> (dot thinning). Returns (binary crop, raw top-K crop)."""
+        g = self._grid
+        g[:] = 0
+        g.ravel()[self.ctx.fi[self.q]] = np.nan_to_num(score_q, nan=0.0).astype(np.float32)
+        s = g[self.sl]
+        r = ridge_nms(s, self.dom_c, 1.0)
+        sc = np.where(r & ~self.known_c, s, 0.0)
+        top = select_top_positive(sc, self.dom_c, self.K if k is None else k)
+        return (dot_thin(top, min_dist) if dotted else top), top
+
+    def evaluate(self, emitted_c: np.ndarray) -> dict:
+        r = dti_binary(emitted_c, self.truth_c, valid=self.dom_c, known=self.known_c)
+        n = int(emitted_c.sum())
+        hug = float((emitted_c & self.near_vis).sum() / max(n, 1))
+        return dict(dti=r["dti"], coverage=r["coverage"], tp=r["tp"], fp=r["fp"], n_truth=r["n_truth"], emitted=n, hug=hug)
+
+    def auc(self, score_q: np.ndarray) -> float:
+        if self.auc_pos.size == 0:
+            return float("nan")
+        idx = np.concatenate([self.auc_pos, self.auc_neg])
+        y = np.concatenate([np.ones(self.auc_pos.size), np.zeros(self.auc_neg.size)])
+        return float(roc_auc_score(y, np.nan_to_num(score_q[idx], nan=0.0)))
+
+    # -------------------------------------------------------------------------------------
+    def fit_predict(self, cols: list[int], seed: int = 0, params: dict | None = None):
+        t = time.time()
+        m = HistGradientBoostingClassifier(random_state=seed, **(params or HGB_PARAMS))
+        m.fit(self.Xtr[:, cols], self.y)
+        t_fit = time.time() - t
+        t = time.time()
+        p = m.predict_proba(np.ascontiguousarray(self.Xq[:, cols]))[:, 1].astype(np.float32)
+        return p, dict(fit_s=t_fit, predict_s=time.time() - t)
+
+    def unsupervised(self, names: list[str]) -> np.ndarray:
+        """Mean of percentile-scaled raw features over the quadrant (NaN-aware): leak-free physics ridge."""
+        ctx = self.ctx
+        acc = np.zeros(self.q.size, np.float32)
+        cnt = np.zeros(self.q.size, np.float32)
+        for n in names:
+            lo, hi = ctx.scale[n]
+            v = np.clip((self.Xq[:, ctx.col[n]] - lo) / (hi - lo), 0, 1)
+            ok = np.isfinite(v)
+            acc[ok] += v[ok]
+            cnt[ok] += 1
+        return np.where(cnt > 0, acc / np.maximum(cnt, 1), 0.0).astype(np.float32)
+
+
+def load_context(work: Path) -> Context:
+    foot = np.load(work / "bands" / "_footprint.npy")
+    lab = np.load(work / "bands" / "_labels.npy")
+    st = np.load(work / "static_ABCD.npy", mmap_mode="r")
+    names = json.loads((work / "static_ABCD.npy.names.json").read_text())
+    return Context(foot, lab, st, names)
