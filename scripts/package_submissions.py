@@ -101,6 +101,12 @@ def main() -> None:
         cid,
         scored="no slot",
     )
+    zero_note = make_note(
+        "D2.8 zeros",
+        "format fallback; unscored; not holdout-promoted vs 0.152003389",
+        cid,
+        scored="no slot",
+    )
     (OUT / f"checks-{tif.stem}.json").write_text(json.dumps(dict(chk, note=note), indent=1) + "\n")
     files = [
         dict(id="primary", role="primary", file=tif.name, path=f"docs/downloads/{tif.name}", bytes=tif.stat().st_size, sha256=chk["sha256"],
@@ -122,7 +128,7 @@ def main() -> None:
              content_id=cid, positive_pixels=chk0["positive_pixels"], format_ok=chk0["ok_to_upload"], checks=chk0["checks"], receipt=f"checks-{tif.stem}.json",
              outside="zero", status="format fallback; unscored; not slot-approved", title="Format fallback: same predictions, zeros outside the footprint",
              summary="Identical prediction values inside the owner-mirror template footprint; 0.0 instead of NaN outside. Local format checks only; organizer acceptance is unverified.",
-             expected_range="same as primary", note=note.replace("D2.8 |", "D2.8 zeros-outside |", 1)[:120], parent="primary", transform="outside=zero",
+             expected_range="same as primary", note=zero_note, parent="primary", transform="outside=zero",
              slot_approved=False, do_not_resubmit=False),
     ]
     if a.exploratory_receipt:

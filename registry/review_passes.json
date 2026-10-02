@@ -98,7 +98,8 @@
     "Found an unregistered, still-tracked BDE+X1\u2013X3 GeoTIFF whose proxy score only equalled the current 0.152003389 comparator; removed the stale downloadable artifact and added an integrity test requiring every shipped TIF to be registered and every current item to remain not slot-approved.",
     "Closed the optional exploratory-package bypass: packaging now fails closed unless a receipt records a passed fresh confirmation above the current holdout best and binds the gate to the exact TIFF SHA-256; added tests for missing, failed, tied, mismatched, non-finite and malformed receipts.",
     "Made the generated submission note itself state 'not holdout-promoted vs 0.152003389 | no slot' within the 120-character limit.",
-    "Final edge review found the directed-tip feature could mutate its caller's boolean catalogue and accept fractional chunk sizes/indices through coercion; copied inputs, required integer indices/positive integer chunks, and added regressions."
+    "Final edge review found the directed-tip feature could mutate its caller's boolean catalogue and accept fractional chunk sizes/indices through coercion; copied inputs, required integer indices/positive integer chunks, and added regressions.",
+    "Post-deployment guide review caught the zeros-outside fallback's comment being truncated mid-word at the 120-character cap; now generate it with the same bounded note builder and test both primary/fallback notes for complete holdout/no-slot wording."
    ],
    "open_limitations": [
     "GDR probe/paleo and USGS heat-flow binaries remain unavailable from this sandbox; source-page listings are not data validation.",

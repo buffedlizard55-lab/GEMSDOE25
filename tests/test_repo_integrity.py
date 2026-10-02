@@ -41,7 +41,10 @@ def test_shipped_downloads_match_registry_hashes_and_are_small():
     assert any(s["role"] == "primary" for s in subs)
     assert not any(s.get("slot_approved", False) for s in subs)
     primary = next(s for s in subs if s["role"] == "primary")
-    assert "not holdout-promoted vs 0.152003389" in primary["note"] and "no slot" in primary["note"]
+    fallback = next(s for s in subs if s["role"] == "fallback")
+    for item in (primary, fallback):
+        assert "not holdout-promoted vs 0.152003389" in item["note"] and "no slot" in item["note"]
+        assert len(item["note"]) <= 120
     registered_tifs = {s["file"] for s in subs}
     shipped_tifs = {p.name for p in (ROOT / "docs" / "downloads").glob("*.tif")}
     assert shipped_tifs == registered_tifs, "unregistered GeoTIFF in docs/downloads can be downloaded directly"
