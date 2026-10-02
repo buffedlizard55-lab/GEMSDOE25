@@ -95,7 +95,7 @@ def main() -> None:
     def home(prefix: str) -> str:
         hero = """<div class="hero"><h1>Download the file. Know exactly what it is.</h1>
 <p class="lead">One click gets the submission GeoTIFF. It is a <b>valid, unique, unscored candidate</b>: single band, float32, values in [0, 1], NaN only
-outside the organizers' footprint. The previous site's file failed with <i>"Predicted values must be in range [0, 1]"</i> because 45 % of the official footprint was NaN; that
+outside the organizers' footprint. The previous site's file failed with <i>"Predicted values must be in range [0, 1]"</i>; the data show why (45 % of the official footprint was NaN, which fails any range test — the cause is inferred, DrivenData's validator is not public). That
 is fixed and verified against the organizers' template.</p></div>"""
         cards = dl_card(primary, prefix)
         alt = "".join(f"""<div class="card"><b>{e(o['title'])}</b> {badge(o['status'], 'ok' if o['status']=='scored' else 'warn')}
@@ -140,7 +140,7 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
 <li><b>Note (optional):</b> paste the note above. It is {len(primary['note'])} characters; the form says "A short comment to help you or your team tell submissions apart later".</li>
 <li><b>Submit</b>, wait for the score, then record it for the ledger: <code>python scripts/record_live_score.py --file {e(primary['content_id'])} --score 0.xxxx</code> and re-run <code>python scripts/build_site.py</code>.</li></ol>
 <h2>What was verified about this exact file</h2>
-<table><thead><tr><th>Check</th><th>Result</th><th>Detail</th></tr></thead><tbody>{''.join(f"<tr><td>{e(k)}</td><td>{badge('pass' if v['pass_'] else 'FAIL', 'ok' if v['pass_'] else 'bad')}</td><td class='small'>{e(v['detail'])}</td></tr>" for k, v in primary['checks'].items())}</tbody></table>
+<table><thead><tr><th>Check</th><th>Result</th><th>Detail</th></tr></thead><tbody>{''.join(f"<tr><td>{e(k)}</td><td>{badge('pass', 'ok') if v['pass_'] else (badge('FAIL', 'bad') if v['hard'] else badge('informational', 'info'))}</td><td class='small'>{e(v['detail'])}</td></tr>" for k, v in primary['checks'].items())}</tbody></table>
 <p class="small">Independent plain-rasterio check (<code>src/gems25/submission.py::check_file</code>) against the pinned organizer template (sha256 prefix 2176d08e…). Receipt: <a href="downloads/{primary['receipt']}">{primary['receipt']}</a>.</p>
 <div class="callout"><b>If the portal says "Predicted values must be in range [0, 1]"</b><ol><li>Make sure you uploaded <i>this</i> file (name and SHA-256 above), not the old <code>gems25-factorial-best-v1-*.tif</code>.</li>
 <li>That earlier file had 2,344,929 NaN pixels <i>inside</i> the 5,167,373-pixel footprint (see <code>evidence/old_gems25_tif_forensics.json</code>); this one has 0.</li>

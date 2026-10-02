@@ -70,3 +70,28 @@ candidate trace.
 ## Deferred (named, not ranked)
 * **Drainage-offset / knickpoint concordance** (raw 10 m / 1 m 3DEP) — high cost, needs byte-verified coverage; carried over from GEMSDOE24 (H24-6).
 * **Scarp cross-profile template on raw 1 m DEM** — highest ceiling, needs CI over 706 tiles; the mirror stores only per-100 m descriptors, which cannot support profile templates.
+
+---
+## Addendum (written AFTER the runs; the register above is unchanged since its commit)
+
+### Validation outcomes on the spatially blocked hide-and-recover holdout (frozen gate; details in `07_findings_2026-10-02.md`)
+| ID | Outcome (draws 0,1, base BDE) | Status |
+|---|---|---|
+| **H26-0** score-ordered dotting | +0.0037 vs score-blind `dot_thin` at equal pixel count, 4/4 folds, t = 8.5 (3 d.f.) | **passes the gate** — the top-ranked candidate is validated; it needs a *continuous* surface, so it is used by the exploratory file, not by the binary H19-5 file |
+| H26-2 strike compatibility | +0.0015, 2/4 folds | fails alone |
+| H26-1 oriented cross-scarp radiometric contrast | +0.0006, 2/4 folds | fails alone |
+| H26-3 concealed joint step | +0.0003, 2/4 folds | fails alone |
+| H26-1+2+3 together | +0.0050, 4/4 folds, t = 1.97 (weak) | passes the gate jointly (confirmation: see `07_*`) |
+| H26-4 dilation-tendency prior | not run | **not validatable here**: needs the USGS shapefile (free, 27 MB, obtainable) but `sciencebase.gov` is unreachable from this sandbox; not proposed for a slot |
+
+### Continuity with the previous GEMSDOE25 session's list (README @ 9b01f27)
+* its #1 "calibrated factorial ensemble" → executed (the 2^(5−1) design, E/B active);
+* its #2 "strike-compatibility prior" → this register's H26-2 (tested, fails alone);
+* its #3 "scarp cross-profile template (1 m 3DEP)" → still deferred: needs raw tiles on a networked runner;
+* its #4 "map-scale correction corridor (INGENIOUS MAPSCALE)" → not tested: needs a per-pixel map-scale raster from GDR 1391 Qfaults (CI fetch);
+* its #5 "concealed basin-margin step" → this register's H26-3 (tested, fails alone).
+
+### Untested strategy ideas recorded for the next session (not hypotheses about geology)
+* **H26-7 consensus-ordered dotting** — keep H19-5's *candidate set* (live-validated detections) but choose the dots inside each neighbourhood by an independent out-of-fold surface. Equal pixel count, so no credit/false-positive trade-off is introduced; if the surface is uninformative within H19-5's neighbourhoods it is a no-regret re-selection. Needs the full-footprint score vector from `build_candidate.py --keep-scores`; protocol: paired vs `dot_thin` and vs random-score dotting at equal N.
+* **Consensus pruning** (drop dots a second detector rejects) needs a strongly informative second detector: `evidence/emission_model.json → consensus_pruning_break_even` shows the dropped dots must carry < ~52 % of the average credit per pixel.
+* **Phase-2 aware final choice** (INFERENCE): the final round re-scores against labels expanded by expert review of *all* submissions, so crisp, expert-verifiable lineaments may be worth more there than the Phase-1 optimum; this cannot be tested before the experts act.

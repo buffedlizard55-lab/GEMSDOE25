@@ -65,9 +65,10 @@ def main() -> None:
              content_id=cid, positive_pixels=chk["positive_pixels"], format_ok=chk["ok_to_upload"], checks=chk["checks"], receipt=f"checks-{tif.stem}.json",
              status="unscored candidate", title="Recommended next upload: dotted H19-5, wider spacing (D2.8)",
              summary=("The 0.1922 detector (H19-5) thinned by deterministic Poisson-disk dotting to 44,090 pixels — 73 % of the pixels of the 0.2477 file, 36 % of H19-5. "
-                      f"Calibrated emission model: {m['model_dti']:.3f} (band {m['model_dti_low']:.3f}–{m['model_dti_high']:.3f}); a model, not a score."),
+                      f"Calibrated emission model: {m['model_dti']:.3f} (band {m['model_dti_low']:.3f}–{m['model_dti_high']:.3f}); a model, not a score. "
+                      "Honest provenance: byte-identical to the group's unscored GEMSDOE24 alternate, re-hosted here because it is the best evidence-supported next upload — not new detection work."),
              expected_range=f"{m['model_dti_low']:.3f}–{m['model_dti_high']:.3f}", note=note,
-             parent="H19-5 (owner-reported 0.1922); pixel-identical to the group's unscored GEMSDOE24 alternate e56ea318af89; re-written here with this repo's writer",
+             parent="H19-5 (owner-reported 0.1922); byte-identical (same SHA-256) to the group's unscored GEMSDOE24 alternate e56ea318af89, which this repo's writer reproduces exactly",
              transform="dot_thin(H19-5, min_dist 2.4) == dot_thin(H19-5, 2.8) (integer lattice)",
              paired_harness_gate_vs_d1_5=gate,
              gate_summary=("emission model band lies above 0.2477; paired hide-and-recover diagnostic vs the 0.2477 file (leak-inflated, same mask family): "
