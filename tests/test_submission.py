@@ -75,8 +75,8 @@ def test_checker_passes_good_files_both_conventions(template, tmp_path):
     for outside in ("nan", "zero"):
         out = write_submission(pred, t, tmp_path / f"{outside}.tif", outside=outside)
         r = check_file(out, t)
-        # the synthetic template is not the pinned organizer grid, only that one check may fail
-        assert set(r["hard_failures"]) <= {"template_is_the_pinned_organizer_grid"}, r["hard_failures"]
+        # the synthetic template is not the expected competition grid, only that one check may fail
+        assert set(r["hard_failures"]) <= {"template_matches_expected_grid_and_footprint"}, r["hard_failures"]
         assert r["positive_pixels"] == 10
 
 

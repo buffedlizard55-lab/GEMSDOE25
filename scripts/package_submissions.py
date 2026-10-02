@@ -48,7 +48,7 @@ def main() -> None:
     cid = content_id(pred, foot, lab)
     assert cid == "e56ea318af89", cid  # reproduces the group's content id for the alternate
     OUT.mkdir(parents=True, exist_ok=True)
-    fname = make_filename("dotted-h19-5-d2-4", a.date, cid, "nan")
+    fname = make_filename("dotted-h19-5-d2-8", a.date, cid, "nan")
     tif = write_submission(pred, tmpl, OUT / fname, outside="nan")
     zero = write_submission(pred, tmpl, OUT / fname.replace("-nan.tif", "-zeros.tif"), outside="zero")
     chk, chk0 = check_file(tif, tmpl), check_file(zero, tmpl)
@@ -63,7 +63,7 @@ def main() -> None:
     files = [
         dict(id="primary", role="primary", file=tif.name, path=f"docs/downloads/{tif.name}", bytes=tif.stat().st_size, sha256=chk["sha256"],
              content_id=cid, positive_pixels=chk["positive_pixels"], format_ok=chk["ok_to_upload"], checks=chk["checks"], receipt=f"checks-{tif.stem}.json",
-             status="unscored candidate", title="Recommended next upload: dotted H19-5, wider spacing (D2.8)",
+             outside="nan", status="unscored candidate", title="Recommended next upload: dotted H19-5, wider spacing (D2.8)",
              summary=("The 0.1922 detector (H19-5) thinned by deterministic Poisson-disk dotting to 44,090 pixels — 73 % of the pixels of the 0.2477 file, 36 % of H19-5. "
                       f"Calibrated emission model: {m['model_dti']:.3f} (band {m['model_dti_low']:.3f}–{m['model_dti_high']:.3f}); a model, not a score. "
                       "Honest provenance: byte-identical to the group's unscored GEMSDOE24 alternate, re-hosted here because it is the best evidence-supported next upload — not new detection work."),
@@ -77,7 +77,7 @@ def main() -> None:
              do_not_resubmit=False),
         dict(id="primary-zeros", role="fallback", file=zero.name, path=f"docs/downloads/{zero.name}", bytes=zero.stat().st_size, sha256=chk0["sha256"],
              content_id=cid, positive_pixels=chk0["positive_pixels"], format_ok=chk0["ok_to_upload"], checks=chk0["checks"], receipt=f"checks-{tif.stem}.json",
-             status="fallback (same predictions)", title="Fallback: same predictions, zeros outside the footprint",
+             outside="zero", status="fallback (same predictions)", title="Fallback: same predictions, zeros outside the footprint",
              summary="Identical values inside the footprint; 0.0 instead of NaN outside it. Use only if the NaN-outside file is rejected (earlier files with either convention were scored by the portal).",
              expected_range="same as primary", note=note.replace("D2.8 |", "D2.8 zeros-outside |", 1)[:120], parent="primary", transform="outside=zero",
              do_not_resubmit=False),
@@ -87,7 +87,7 @@ def main() -> None:
         files.append(dict(
             id="exploratory", role="alternate", file=r["file"], path=r["path"], bytes=r["bytes"], sha256=r["sha256"], content_id=r["content_id"],
             positive_pixels=r["positive_pixels"], format_ok=r["format_ok"], checks=r["checks"], receipt=Path(a.exploratory_receipt).name,
-            status="unscored exploratory candidate", title="Exploratory: new factorial-evidence surface (separate slot, owner decision)",
+            outside="nan", status="unscored exploratory candidate", title="Exploratory: new factorial-evidence surface (separate slot, owner decision)",
             summary=r.get("summary", ""), expected_range="no live calibration", note=r["note"],
             parent=f"trained here: families {r['build']['base']} + {r['build']['extras'] or 'no add-ons'}, {r['build']['draws']} hide-and-recover draws",
             transform=f"ridge NMS -> top {100 * r['build']['kfrac']:.2f} % -> {r['build']['variant']}", gate_summary=r.get("gate_summary", ""), do_not_resubmit=False))

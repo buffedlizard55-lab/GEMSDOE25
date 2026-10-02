@@ -67,7 +67,7 @@ def dl_card(s: dict, prefix: str, big: bool = True) -> str:
     return f"""<section class="dl"><h2>{e(s['title'])}</h2>
 <p>{e(s['summary'])}</p>
 <div class="row"><a class="btn" href="{href}" download>↓ Download {e(s['file'])}</a></div>
-<div class="row">{badge(status, kind)}{badge(chk, 'ok' if s.get('format_ok') else 'bad')}{badge('float32 · [0,1] · NaN outside footprint', 'info')}{badge(f"{s['positive_pixels']:,} px emitted", 'info')}</div>
+<div class="row">{badge(status, kind)}{badge(chk, 'ok' if s.get('format_ok') else 'bad')}{badge('float32 · [0,1] · ' + ('zeros outside footprint' if s.get('outside') == 'zero' else 'NaN outside footprint'), 'info')}{badge(f"{s['positive_pixels']:,} px emitted", 'info')}</div>
 <p class="small">{fmt_bytes(s['bytes'])} · unique content id <code>{s['content_id']}</code> · SHA-256 <code>{s['sha256'][:16]}…</code> · <a href="{prefix}executive-summary.html">exact upload steps</a></p>
 <p style="margin:10px 0 2px"><b>Note to paste in DrivenData's "Note (optional)" field</b> <button class="btn alt small" data-copy="{nid}">Copy note</button></p>
 <div class="note"><code id="{nid}">{e(s['note'])}</code></div></section>"""
@@ -141,7 +141,7 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
 <li><b>Submit</b>, wait for the score, then record it for the ledger: <code>python scripts/record_live_score.py --file {e(primary['content_id'])} --score 0.xxxx</code> and re-run <code>python scripts/build_site.py</code>.</li></ol>
 <h2>What was verified about this exact file</h2>
 <table><thead><tr><th>Check</th><th>Result</th><th>Detail</th></tr></thead><tbody>{''.join(f"<tr><td>{e(k)}</td><td>{badge('pass', 'ok') if v['pass_'] else (badge('FAIL', 'bad') if v['hard'] else badge('informational', 'info'))}</td><td class='small'>{e(v['detail'])}</td></tr>" for k, v in primary['checks'].items())}</tbody></table>
-<p class="small">Independent plain-rasterio check (<code>src/gems25/submission.py::check_file</code>) against the pinned organizer template (sha256 prefix 2176d08e…). Receipt: <a href="downloads/{primary['receipt']}">{primary['receipt']}</a>.</p>
+<p class="small">Independent plain-rasterio check (<code>src/gems25/submission.py::check_file</code>) against the pinned template (the owner's mirror of the organizers' sample_submission.tif, sha256 prefix 2176d08e…; its footprint equals that of the portal-accepted 0.2477 file). Receipt: <a href="downloads/{primary['receipt']}">{primary['receipt']}</a>.</p>
 <div class="callout"><b>If the portal says "Predicted values must be in range [0, 1]"</b><ol><li>Make sure you uploaded <i>this</i> file (name and SHA-256 above), not the old <code>gems25-factorial-best-v1-*.tif</code>.</li>
 <li>That earlier file had 2,344,929 NaN pixels <i>inside</i> the 5,167,373-pixel footprint (see <code>evidence/old_gems25_tif_forensics.json</code>); this one has 0.</li>
 <li>Try the zeros-outside fallback below (earlier files with either convention were scored by the portal). If it still fails, email <a href="mailto:info@drivendata.org">info@drivendata.org</a> with the exact message; do not re-upload repeatedly.</li></ol></div>
@@ -151,7 +151,7 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
 <li>Generative-AI use is allowed but must be described in the narrative (<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">§3.2</a>); a draft is in <code>AI_DISCLOSURE.md</code>.</li>
 <li>Known USGS/INGENIOUS pixels are masked and pixel-exact; predictions on them do not matter (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4">staff</a>).</li>
 <li>Deadline wording differs between the page (11:59 p.m. UTC, 3 Dec 2026) and the rules (5:00 p.m. ET): confirm with <a href="mailto:gemsprize@nlr.gov">gemsprize@nlr.gov</a>.</li></ul>
-<div class="callout info"><b>Slot discipline.</b> Do not spend a slot on a file that has not beaten the current comparable hide-and-recover best, unless you consciously accept the declared exception ({e(primary.get('gate_summary','see Research'))}). A holdout win is necessary, not sufficient.</div>"""
+<div class="callout info"><b>Slot discipline.</b> Gate status for this file: {e(primary.get('gate_summary', 'see Research'))}. {'The frozen gate is passed; an exception is not needed.' if (primary.get('paired_harness_gate_vs_d1_5') or {}).get('passed') else 'The frozen gate is NOT passed: upload only if you consciously accept a declared exception.'} A holdout win is necessary, not sufficient (live scores are the only real validation, 3 per week).</div>"""
 
     # ------------------------------------------------------------------ research page
     effs = fac["effects_dti"]

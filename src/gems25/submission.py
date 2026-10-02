@@ -105,7 +105,7 @@ def check_file(path: Path | str, template_path: Path | str) -> dict:
         tcrs is not None and tcrs.to_epsg() == EXPECTED["epsg"] and tshape == EXPECTED["shape"]
         and tuple(ttr)[:6] == EXPECTED["transform"] and int(foot.sum()) == EXPECTED["footprint_pixels"]
     )
-    add("template_is_the_pinned_organizer_grid", tmpl_ok, f"{tshape}, footprint {int(foot.sum()):,} px")
+    add("template_matches_expected_grid_and_footprint", tmpl_ok, f"{tshape}, footprint {int(foot.sum()):,} px")
     add("single_band", count == 1, f"count={count}")
     add("dtype_float32", dtypes == ("float32",), f"dtypes={dtypes}")
     add("crs_epsg_32611", crs is not None and crs.to_epsg() == 32611 and crs == tcrs, str(crs.to_epsg() if crs else None))

@@ -5,15 +5,15 @@
   {
    "id": "primary",
    "role": "primary",
-   "file": "gems25-dotted-h19-5-d2-4-20261002-e56ea318af89-nan.tif",
-   "path": "docs/downloads/gems25-dotted-h19-5-d2-4-20261002-e56ea318af89-nan.tif",
+   "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
    "bytes": 1603424,
    "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
    "content_id": "e56ea318af89",
    "positive_pixels": 44090,
    "format_ok": true,
    "checks": {
-    "template_is_the_pinned_organizer_grid": {
+    "template_matches_expected_grid_and_footprint": {
      "pass_": true,
      "detail": "(3730, 3292), footprint 5,167,373 px",
      "hard": true
@@ -94,7 +94,8 @@
      "hard": false
     }
    },
-   "receipt": "checks-gems25-dotted-h19-5-d2-4-20261002-e56ea318af89-nan.json",
+   "receipt": "checks-gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.json",
+   "outside": "nan",
    "status": "unscored candidate",
    "title": "Recommended next upload: dotted H19-5, wider spacing (D2.8)",
    "summary": "The 0.1922 detector (H19-5) thinned by deterministic Poisson-disk dotting to 44,090 pixels \u2014 73 % of the pixels of the 0.2477 file, 36 % of H19-5. Calibrated emission model: 0.255 (band 0.250\u20130.261); a model, not a score. Honest provenance: byte-identical to the group's unscored GEMSDOE24 alternate, re-hosted here because it is the best evidence-supported next upload \u2014 not new detection work.",
@@ -120,15 +121,15 @@
   {
    "id": "primary-zeros",
    "role": "fallback",
-   "file": "gems25-dotted-h19-5-d2-4-20261002-e56ea318af89-zeros.tif",
-   "path": "docs/downloads/gems25-dotted-h19-5-d2-4-20261002-e56ea318af89-zeros.tif",
+   "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+   "path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
    "bytes": 836982,
    "sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
    "content_id": "e56ea318af89",
    "positive_pixels": 44090,
    "format_ok": true,
    "checks": {
-    "template_is_the_pinned_organizer_grid": {
+    "template_matches_expected_grid_and_footprint": {
      "pass_": true,
      "detail": "(3730, 3292), footprint 5,167,373 px",
      "hard": true
@@ -209,7 +210,8 @@
      "hard": false
     }
    },
-   "receipt": "checks-gems25-dotted-h19-5-d2-4-20261002-e56ea318af89-nan.json",
+   "receipt": "checks-gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.json",
+   "outside": "zero",
    "status": "fallback (same predictions)",
    "title": "Fallback: same predictions, zeros outside the footprint",
    "summary": "Identical values inside the footprint; 0.0 instead of NaN outside it. Use only if the NaN-outside file is rejected (earlier files with either convention were scored by the portal).",

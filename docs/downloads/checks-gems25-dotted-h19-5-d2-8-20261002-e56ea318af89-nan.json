@@ -1,5 +1,5 @@
 {
- "file": "gems25-dotted-h19-5-d2-4-20261002-e56ea318af89-nan.tif",
+ "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
  "bytes": 1603424,
  "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
  "ok_to_upload": true,
@@ -8,7 +8,7 @@
  "positive_pixels": 44090,
  "footprint_pixels": 5167373,
  "checks": {
-  "template_is_the_pinned_organizer_grid": {
+  "template_matches_expected_grid_and_footprint": {
    "pass_": true,
    "detail": "(3730, 3292), footprint 5,167,373 px",
    "hard": true
