@@ -141,7 +141,7 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
 {dl_card(primary, '')}
 <h2>Steps</h2><ol class="steps">
 <li><b>Download</b> <code>{e(primary['file'])}</code> with the green button above. Optional: check <code>sha256sum</code> starts with <code>{primary['sha256'][:16]}</code>.</li>
-<li><b>Open the competition and sign in</b> — <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition page</a>, then click <b>Submit</b> in the sidebar and <b>Make new submission</b> (wording from the competition page; the form is the "New submission" form you described).</li>
+<li><b>Open the competition and sign in</b> — <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition page</a>, then click <b>Submit</b> in the sidebar and <b>Make new submission</b> (wording from the competition page; this opens the "New submission" form).</li>
 <li><b>File to submit:</b> choose the <code>.tif</code>. The form says: "You can submit a single-band GeoTIFF (.tif) file, or a .zip file containing a single GeoTIFF ... It must match the submission format's CRS, shape, and geotransform." This page offers the plain <code>.tif</code>.</li>
 <li><b>Note (optional):</b> paste the note above. It is {len(primary['note'])} characters; the form says "A short comment to help you or your team tell submissions apart later".</li>
 <li><b>Submit</b>, wait for the score, then record it for the ledger: <code>python scripts/record_live_score.py --file {e(primary['content_id'])} --score 0.xxxx</code> and re-run <code>python scripts/build_site.py</code>.</li></ol>

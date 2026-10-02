@@ -11,7 +11,7 @@
 <div class="note"><code id="note-primary">GEMSDOE25 D2.8 | H19-5 Poisson-disk dots, 44,090 px; model 0.255 | id e56ea318af89 | not yet live-scored</code></div></section>
 <h2>Steps</h2><ol class="steps">
 <li><b>Download</b> <code>gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</code> with the green button above. Optional: check <code>sha256sum</code> starts with <code>91eae1ca42ec845e</code>.</li>
-<li><b>Open the competition and sign in</b> — <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition page</a>, then click <b>Submit</b> in the sidebar and <b>Make new submission</b> (wording from the competition page; the form is the "New submission" form you described).</li>
+<li><b>Open the competition and sign in</b> — <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition page</a>, then click <b>Submit</b> in the sidebar and <b>Make new submission</b> (wording from the competition page; this opens the "New submission" form).</li>
 <li><b>File to submit:</b> choose the <code>.tif</code>. The form says: "You can submit a single-band GeoTIFF (.tif) file, or a .zip file containing a single GeoTIFF ... It must match the submission format's CRS, shape, and geotransform." This page offers the plain <code>.tif</code>.</li>
 <li><b>Note (optional):</b> paste the note above. It is 104 characters; the form says "A short comment to help you or your team tell submissions apart later".</li>
 <li><b>Submit</b>, wait for the score, then record it for the ledger: <code>python scripts/record_live_score.py --file e56ea318af89 --score 0.xxxx</code> and re-run <code>python scripts/build_site.py</code>.</li></ol>
@@ -35,6 +35,6 @@
 <li>Deadline wording differs between the page (11:59 p.m. UTC, 3 Dec 2026) and the rules (5:00 p.m. ET): confirm with <a href="mailto:gemsprize@nlr.gov">gemsprize@nlr.gov</a>.</li></ul>
 <div class="callout info"><b>Slot discipline.</b> Gate status for this file: emission model band lies above 0.2477; paired hide-and-recover diagnostic vs the 0.2477 file (leak-inflated, same mask family): +0.0042 mean, 4/4 folds, worst fold +0.0017 -&gt; passes the frozen gate. The frozen gate is passed; an exception is not needed. A holdout win is necessary, not sufficient (live scores are the only real validation, 3 per week).</div></main>
 <footer><div class="wrap">Core values: <b>Maximize P(Win)</b> · <b>Own the Outcome</b>. Source: <a href="https://github.com/buffedlizard55-lab/GEMSDOE25">github.com/buffedlizard55-lab/GEMSDOE25</a> ·
-built 2026-10-02 20:29 UTC from <code>registry/</code> and <code>evidence/</code> by <code>scripts/build_site.py</code>.
+built 2026-10-02 20:33 UTC from <code>registry/</code> and <code>evidence/</code> by <code>scripts/build_site.py</code>.
 No score here is promised; owner-reported scores are not DrivenData receipts. This site never contacts drivendata.org.</div></footer>
 <script src="assets/app.js"></script></body></html>

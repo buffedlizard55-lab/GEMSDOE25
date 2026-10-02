@@ -90,11 +90,12 @@ def main() -> None:
         p = probe(s, src["url"])
         items.append(dict(kind="source", title=src["title"], url=src["url"], verified_in_repo=src["verified"], **p))
     for title, sid in SCIENCEBASE.items():
-        url = f"https://www.sciencebase.gov/catalog/item/{sid}?format=json&fields=title,lastUpdated,dateCreated"
+        url = f"https://www.sciencebase.gov/catalog/item/{sid}?format=json"
         try:
-            j = s.get(url, timeout=20).json()
+            j = s.get(url, timeout=30).json()
+            last = (j.get("provenance") or {}).get("lastUpdated") or j.get("lastUpdated") or "not provided"
             items.append(dict(kind="sciencebase", title=title, url=f"https://www.sciencebase.gov/catalog/item/{sid}", status="ok",
-                              detail=f"lastUpdated {j.get('lastUpdated')}"))
+                              detail=f"lastUpdated {last}"))
         except Exception as e:  # noqa: BLE001
             items.append(dict(kind="sciencebase", title=title, url=f"https://www.sciencebase.gov/catalog/item/{sid}", status="unreachable", detail=type(e).__name__))
     for name in SIBLINGS:

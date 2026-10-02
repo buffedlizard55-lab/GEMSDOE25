@@ -1,62 +1,76 @@
 {
-  "schema_version": 1,
-  "date_utc": "2026-10-02",
-  "method": "Three passes as requested. Each pass builds on the previous one; the findings below are the real defects/gaps found and what was done.",
-  "pass_1_implement_and_verify": {
-    "scope": "Review repo; reproduce and explain the portal error; restore data autonomously; run the pre-registered designed factorial; study why 0.2477 won; rank and validate hypotheses; build verified downloads, executive guide, site, registries, feed and CI.",
-    "done": [
-      "Reviewed the old GEMSDOE25 tree and the owner's sibling repos (GEMSDOE24 evidence); found the invented-footprint file (IR-25-NAN-FOOTPRINT/-OVER-EMISSION/-FAKE-PIPELINE/-DTI-KERNEL).",
-      "Data placement solved: scripts/restore_data.py restores 419 MB raster + labels + template + external layers from the owner's public repos with SHA-256 pins (end-to-end run from an empty directory: 20 s).",
-      "Pre-registered (04, 05) then executed 2^(5-1) Resolution V factorial (16 runs x 8 cells, 31 min) and add-on / emission tests; confirmation replicate with fresh draws.",
-      "Forensics of the scored rasters: 0.2477 file == dot_thin(H19-5, 1.5) pixel-for-pixel; lattice and live pair give |G| 12.5k / 12.8k; out-of-sample check on the H25/H28 pair.",
-      "Strict writer/checker reproduces the portal-accepted 0.2477 file's pixels and raster profile; primary file is byte-identical (SHA-256) to the group's unscored alternate.",
-      "Site (root index.html + 3 sub-pages), README with the verbatim brief, AGENTS.md, AI_DISCLOSURE.md, registries, ToS-compliant feed script + workflows."
-    ]
+ "schema_version": 1,
+ "date_utc": "2026-10-02",
+ "method": "Three passes as requested. Each pass builds on the previous one; the findings below are the real defects/gaps found and what was done.",
+ "pass_1_implement_and_verify": {
+  "scope": "Review repo; reproduce and explain the portal error; restore data autonomously; run the pre-registered designed factorial; study why 0.2477 won; rank and validate hypotheses; build verified downloads, executive guide, site, registries, feed and CI.",
+  "done": [
+   "Reviewed the old GEMSDOE25 tree and the owner's sibling repos (GEMSDOE24 evidence); found the invented-footprint file (IR-25-NAN-FOOTPRINT/-OVER-EMISSION/-FAKE-PIPELINE/-DTI-KERNEL).",
+   "Data placement solved: scripts/restore_data.py restores 419 MB raster + labels + template + external layers from the owner's public repos with SHA-256 pins (end-to-end run from an empty directory: 20 s).",
+   "Pre-registered (04, 05) then executed 2^(5-1) Resolution V factorial (16 runs x 8 cells, 31 min) and add-on / emission tests; confirmation replicate with fresh draws.",
+   "Forensics of the scored rasters: 0.2477 file == dot_thin(H19-5, 1.5) pixel-for-pixel; lattice and live pair give |G| 12.5k / 12.8k; out-of-sample check on the H25/H28 pair.",
+   "Strict writer/checker reproduces the portal-accepted 0.2477 file's pixels and raster profile; primary file is byte-identical (SHA-256) to the group's unscored alternate.",
+   "Site (root index.html + 3 sub-pages), README with the verbatim brief, AGENTS.md, AI_DISCLOSURE.md, registries, ToS-compliant feed script + workflows."
+  ]
+ },
+ "pass_2_bugs_assumptions_edge_cases": {
+  "found_and_fixed": [
+   "ruff found an f-string with nested same-type quotes that is a SyntaxError on Python 3.11 (this sandbox's version) in scripts/build_site.py: fixed (twice, the second time in code added later).",
+   "A claim of 'Spearman 1.000' between the training tc band and GeoDAWN TC was a rounding of 0.9999: corrected in registry and docstring.",
+   "'byte-for-byte' was used where only mask equality had been verified: reworded to 'pixel-for-pixel', then 'byte-identical' used only after the full SHA-256 of the re-written D2.8 file matched the group's file.",
+   "The verbatim brief file had abbreviated the second (identical) copy of the results list: restored in full so the README copy really is verbatim.",
+   "Executive page showed an informational check ('strict whole-array check fails for any NaN') as a red FAIL, mislabelled the zeros fallback as 'NaN outside', and implied a declared exception was needed although the gate passed: all fixed, plus provenance wording ('pinned organizer grid' -> expected grid/footprint of the owner's mirror).",
+   "File name said d2-4 while note and site said D2.8 (same pixel set): renamed to d2-8 to match the group's naming.",
+   "Preview server initially served the whole repo including .git: restarted on a site-only directory.",
+   "Plain requests cannot reach api.github.com from the sandbox: feed script falls back to the authenticated gh CLI so the committed seed feed is real data.",
+   "Old broken TIFs were still in docs/downloads: removed, with a regression test that they are neither shipped nor linked.",
+   "Experiments are deterministic: two logged cells re-run from scratch reproduced DTI to 1e-9.",
+   "Hidden-components design checked for leakage (collar, whole-component hiding, visible-only catalogue features, labels never used for GDR points) and covered by tests."
+  ],
+  "known_residual_risks": [
+   "Hide-and-recover is a catalogue-gap proxy; the harness scores the H19 family ~2.7x lower than live while reproducing the blind lattice within ~5 % (IR-25-PROXY-LIMITS).",
+   "Family E very likely flatters the proxy; the +ALL add-on gain is weakly supported (t = 1.97, 3 d.f.).",
+   "The dotting model's out-of-sample error is -0.017, larger than the predicted +0.008 gain of D2.8 over D1.5."
+  ]
+ },
+ "pass_3_recheck_against_the_original_brief": {
+  "method": "Re-read the brief line by line (README, 'Owner brief (verbatim)') and mapped each requirement to an artefact.",
+  "mapping": {
+   "easy one-click TIF, obvious at the start of the site": "index.html hero card; README download box; docs/executive-summary.html",
+   "fix 'Predicted values must be in range [0, 1]'": "root cause + fix + reproduction test (evidence/old_gems25_tif_forensics.json, src/gems25/submission.py, tests/test_submission.py)",
+   "unique name and short note": "content-addressed file name and a <=120-character note per file (registry/submissions.json)",
+   "executive-summary subpage": "docs/executive-summary.html",
+   "replace OFAT with fractional factorial across the five families, hide-and-recover holdout": "src/gems25/factorial.py + scripts/run_factorial.py; evidence/factorial/; knowledge/04",
+   "rank which families matter alone / in combination / inert": "frozen classification rule applied mechanically (E, B alone; none in combination; A, C, D inert)",
+   "why/how 0.2477 and can we beat it; leaderboard 0.3195": "evidence/why_0_2477.json, evidence/emission_model*.json, knowledge/07, site Research page",
+   "3-5 untried hypotheses with layers, signature, missing-fault rationale, difference, ranking, validation, external data check": "knowledge/03 (+ addendum with outcomes); H26-4 obtainability checked (not downloadable here)",
+   "line-by-line verification from official sources with links; flag irregularities": "registry/sources.json (20 sources, verification status), registry/irregularities.json (20 items), docs/sources.html",
+   "deep research stored for other projects; overlooked data": "knowledge/06 digest and section 4 'overlooked or under-used sources'",
+   "prompt in README, read every session; core values": "README (verbatim brief + core values), AGENTS.md",
+   "current feed without manual checking": "scripts/check_sources.py + .github/workflows/feed.yml (never touches drivendata.org); docs/data/feed.json",
+   "limitations / access needed": "README 'Limitations and what is needed'",
+   "data-placement blocker": "scripts/restore_data.py (SHA-256 pinned), verified end to end",
+   "site with clean UI": "root index.html + docs/*.html + docs/assets",
+   "multiple passes; PR and merge": "this file; the PR is opened from the fixed session branch into main and its status is reported in the PR and the final message (not asserted in this file)"
   },
-  "pass_2_bugs_assumptions_edge_cases": {
-    "found_and_fixed": [
-      "ruff found an f-string with nested same-type quotes that is a SyntaxError on Python 3.11 (this sandbox's version) in scripts/build_site.py: fixed (twice, the second time in code added later).",
-      "A claim of 'Spearman 1.000' between the training tc band and GeoDAWN TC was a rounding of 0.9999: corrected in registry and docstring.",
-      "'byte-for-byte' was used where only mask equality had been verified: reworded to 'pixel-for-pixel', then 'byte-identical' used only after the full SHA-256 of the re-written D2.8 file matched the group's file.",
-      "The verbatim brief file had abbreviated the second (identical) copy of the results list: restored in full so the README copy really is verbatim.",
-      "Executive page showed an informational check ('strict whole-array check fails for any NaN') as a red FAIL, mislabelled the zeros fallback as 'NaN outside', and implied a declared exception was needed although the gate passed: all fixed, plus provenance wording ('pinned organizer grid' -> expected grid/footprint of the owner's mirror).",
-      "File name said d2-4 while note and site said D2.8 (same pixel set): renamed to d2-8 to match the group's naming.",
-      "Preview server initially served the whole repo including .git: restarted on a site-only directory.",
-      "Plain requests cannot reach api.github.com from the sandbox: feed script falls back to the authenticated gh CLI so the committed seed feed is real data.",
-      "Old broken TIFs were still in docs/downloads: removed, with a regression test that they are neither shipped nor linked.",
-      "Experiments are deterministic: two logged cells re-run from scratch reproduced DTI to 1e-9.",
-      "Hidden-components design checked for leakage (collar, whole-component hiding, visible-only catalogue features, labels never used for GDR points) and covered by tests."
-    ],
-    "known_residual_risks": [
-      "Hide-and-recover is a catalogue-gap proxy; the harness scores the H19 family ~2.7x lower than live while reproducing the blind lattice within ~5 % (IR-25-PROXY-LIMITS).",
-      "Family E very likely flatters the proxy; the +ALL add-on gain is weakly supported (t = 1.97, 3 d.f.).",
-      "The dotting model's out-of-sample error is -0.017, larger than the predicted +0.008 gain of D2.8 over D1.5."
-    ]
-  },
-  "pass_3_recheck_against_the_original_brief": {
-    "method": "Re-read the brief line by line (README, 'Owner brief (verbatim)') and mapped each requirement to an artefact.",
-    "mapping": {
-      "easy one-click TIF, obvious at the start of the site": "index.html hero card; README download box; docs/executive-summary.html",
-      "fix 'Predicted values must be in range [0, 1]'": "root cause + fix + reproduction test (evidence/old_gems25_tif_forensics.json, src/gems25/submission.py, tests/test_submission.py)",
-      "unique name and short note": "content-addressed file name and a <=120-character note per file (registry/submissions.json)",
-      "executive-summary subpage": "docs/executive-summary.html",
-      "replace OFAT with fractional factorial across the five families, hide-and-recover holdout": "src/gems25/factorial.py + scripts/run_factorial.py; evidence/factorial/; knowledge/04",
-      "rank which families matter alone / in combination / inert": "frozen classification rule applied mechanically (E, B alone; none in combination; A, C, D inert)",
-      "why/how 0.2477 and can we beat it; leaderboard 0.3195": "evidence/why_0_2477.json, evidence/emission_model*.json, knowledge/07, site Research page",
-      "3-5 untried hypotheses with layers, signature, missing-fault rationale, difference, ranking, validation, external data check": "knowledge/03 (+ addendum with outcomes); H26-4 obtainability checked (not downloadable here)",
-      "line-by-line verification from official sources with links; flag irregularities": "registry/sources.json (20 sources, verification status), registry/irregularities.json (19 items), docs/sources.html",
-      "deep research stored for other projects; overlooked data": "knowledge/06 digest and section 4 'overlooked or under-used sources'",
-      "prompt in README, read every session; core values": "README (verbatim brief + core values), AGENTS.md",
-      "current feed without manual checking": "scripts/check_sources.py + .github/workflows/feed.yml (never touches drivendata.org); docs/data/feed.json",
-      "limitations / access needed": "README 'Limitations and what is needed'",
-      "data-placement blocker": "scripts/restore_data.py (SHA-256 pinned), verified end to end",
-      "site with clean UI": "root index.html + docs/*.html + docs/assets",
-      "multiple passes; PR and merge": "this file; the PR is opened from the fixed session branch into main and its status is reported in the PR and the final message (not asserted in this file)"
-    },
-    "gaps_found_and_closed": [
-      "Dropbox links in the brief: one share page was opened (name only); the rest unreachable -> recorded as unverified with exact wording, not claimed.",
-      "GeoDAWN licence line absent from the page text read -> flagged IR-25-LICENSE-GEODAWN instead of repeating 'CC0'.",
-      "Terms-of-Use scope (also bars manual monitoring without consent) -> flagged IR-25-TOU for the owner."
-    ]
-  }
+  "gaps_found_and_closed": [
+   "Dropbox links in the brief: one share page was opened (name only); the rest unreachable -> recorded as unverified with exact wording, not claimed.",
+   "GeoDAWN licence line absent from the page text read -> flagged IR-25-LICENSE-GEODAWN instead of repeating 'CC0'.",
+   "Terms-of-Use scope (also bars manual monitoring without consent) -> flagged IR-25-TOU for the owner."
+  ]
+ },
+ "post_merge_verification": {
+  "pr": "https://github.com/buffedlizard55-lab/GEMSDOE25/pull/2 merged into main as 9fae6ca7ef00ea2004afcbe12a52b4261f411efa (2026-10-02T20:31:35Z)",
+  "checks": [
+   "CI (pytest + ruff) green on the PR head and on main after the merge",
+   "GitHub Pages build for main reported 'built'; the public root page and the executive-summary page were fetched and show the new site",
+   "the three shipped GeoTIFFs stored on main were hashed via the GitHub API and match registry/submissions.json exactly",
+   "the source-feed workflow ran on main, contacted only non-DrivenData hosts and skipped the 8 DrivenData sources by policy"
+  ],
+  "not_verified": [
+   "the TIF bytes as served by the Pages edge (github.io is unreachable from the sandbox shell)",
+   "a scheduled (cron) feed run",
+   "any DrivenData upload (the owner uploads)"
+  ]
+ }
 }
