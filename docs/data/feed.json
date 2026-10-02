@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-02T20:31:59Z",
+ "generated_utc": "2026-10-02T20:35:25Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use). 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"4906fd741576e11f54afcfb0a05d63b3\""
+   "detail": "HTTP 200; ETag: W/\"4c7a5c370879f093834cf5b54a321bed\""
   },
   {
    "kind": "source",
@@ -137,7 +137,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"196efbcece9d288a5e8bd299f1b19644\""
+   "detail": "HTTP 200; ETag: W/\"9c19ddde819d56ddbdf397151da0562b\""
   },
   {
    "kind": "source",
@@ -145,7 +145,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"9d1aba43c9895d616494e781ad4ac917\""
+   "detail": "HTTP 200; ETag: W/\"97967da415f95e767c2bad71e895abbe\""
   },
   {
    "kind": "source",
@@ -168,14 +168,14 @@
    "title": "GeoDAWN release",
    "url": "https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7",
    "status": "ok",
-   "detail": "lastUpdated None"
+   "detail": "lastUpdated 2025-02-28T23:02:25Z"
   },
   {
    "kind": "sciencebase",
    "title": "Slip/dilation tendency release",
    "url": "https://www.sciencebase.gov/catalog/item/6296974dd34ec53d276bb33d",
    "status": "ok",
-   "detail": "lastUpdated None"
+   "detail": "lastUpdated 2026-04-24T15:15:49Z"
   },
   {
    "kind": "sibling-repo",
