@@ -100,11 +100,13 @@ is fixed and verified against the organizers' template.</p></div>"""
 <div class="stat"><b>+{snap['gap_to_rank5']:.3f}</b><span>needed to reach rank #5 ({snap['top10'][4]['best_public_dti']:.4f}); +{snap['gap_to_rank1']:.3f} (+{100*snap['relative_gain_needed_for_rank1']:.0f} %) for #1</span></div>
 <div class="stat"><b>{primary['expected_range'] if primary.get('expected_range') else 'n/a'}</b><span>model expectation for the primary file — a model, not a score</span></div></div>"""
         r = why["relations"]
+        px15 = next(v["positive_px"] for k, v in why["rasters"].items() if "d1-5" in k)
+        px195 = next(v["positive_px"] for k, v in why["rasters"].items() if "h19-5" in k and "dotted" not in k and "d1-5" not in k and "d2-8" not in k)
         lc = why["lattice_calibration"]
         imp = why["implied_by_live_scores"]
         whyb = f"""<h2>Why the 0.2477 file scored best</h2>
 <div class="card"><ol>
-<li><b>It is exactly <code>dot_thin(H19-5, 1.5)</code></b> — byte-for-byte a deterministic subset of the 0.1922 file: {int(0.4959*121131):,} of 121,131 pixels kept ({100*r['pixel_retention_d1_5']:.1f} %), none on a catalogue pixel, zero NaN inside the footprint. Same detections, half the false-positive mass.</li>
+<li><b>It is exactly <code>dot_thin(H19-5, 1.5)</code></b> — pixel-for-pixel a deterministic subset of the 0.1922 file: {px15:,} of {px195:,} pixels kept ({100*r['pixel_retention_d1_5']:.1f} %), none on a catalogue pixel, zero NaN inside the footprint. Same detections, half the false-positive mass.</li>
 <li><b>The metric rewards that.</b> DTI = TP<sub>w</sub> / (0.2·(TP<sub>w</sub>+FP<sub>w</sub>) + 0.8·|G|). Thinning keeps ≈{100*r['geometric_credit_retention_d1_5']:.0f} % of the credit (geometric estimate) while removing ≈{100*(1-r['pixel_retention_d1_5']):.0f} % of the emitted pixels.</li>
 <li><b>Two independent live-score readings agree on the hidden-truth size:</b> the blind lattice (0.0904) gives |G| ≈ {lc['truth_px_in_footprint']:,.0f} px; the H19-5 → dotted pair implies ≈ {imp['implied_truth_px_if_92pct_of_h19_5_px_are_fp']:,.0f} px (2 % apart). At that density each emitted pixel must earn ≥ {imp['break_even_ratio_at_0_2477']:.3f} credit per unit of false-positive mass to pay for itself.</li></ol>
 <p class="small">Details, tables and caveats on the <a href="{prefix}research.html">Research</a> page. Evidence: <code>evidence/why_0_2477.json</code>.</p></div>"""

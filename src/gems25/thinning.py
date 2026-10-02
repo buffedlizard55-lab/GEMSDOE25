@@ -3,7 +3,7 @@
 ``dot_thin`` keeps a *geodesic Poisson-disk subset* of a binary emission: nothing is added, no label or
 score is read, and the traversal is fully deterministic (BFS from the lowest raster index of every
 8-connected component). The algorithm reproduces the transform used for the group's 0.2477 submission
-(verified byte-for-byte in ``tests/test_group_reproduction.py`` when the sibling rasters are present).
+(verified pixel-for-pixel in ``tests/test_group_reproduction.py`` when the sibling rasters are present).
 """
 
 from __future__ import annotations

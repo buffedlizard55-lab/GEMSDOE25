@@ -150,7 +150,7 @@
    "id": "IR-25-DOTTED-IDENTITY",
    "severity": "info",
    "status": "verified",
-   "issue": "The 0.2477 file is byte-for-byte dot_thin(H19-5, 1.5): 60,069 of 121,131 pixels, a strict subset, zero NaN inside the footprint, no emission on catalogue pixels. The unscored alternate equals dot_thin(H19-5, 2.4) (44,090 px).",
+   "issue": "The 0.2477 file is pixel-for-pixel dot_thin(H19-5, 1.5) (mask equality): 60,069 of 121,131 pixels, a strict subset, zero NaN inside the footprint, no emission on catalogue pixels. The unscored alternate equals dot_thin(H19-5, 2.4) (44,090 px).",
    "evidence": "evidence/why_0_2477.json; tests/test_group_reproduction.py",
    "resolution_or_action": "Re-uploading either file's *parent* or the scored file gives no new information."
   }

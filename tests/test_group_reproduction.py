@@ -34,3 +34,23 @@ def test_alternate_is_dot_thin_2_4_and_integer_lattice_makes_2_4_equal_2_8():
     h, a = mask(H195), mask(D28)
     assert a.sum() == 44_090
     assert np.array_equal(dot_thin(h, 2.4), a) and np.array_equal(dot_thin(h, 2.8), a)
+
+
+def test_writer_reproduces_the_portal_accepted_file_profile_and_pixels(tmp_path):
+    """The raster written by gems25 equals the accepted/scored 0.2477 file in every pixel and every profile field."""
+    from gems25.submission import check_file, write_submission
+
+    tmpl = data_dir() / "sample_submission.tif"
+    if not tmpl.exists():
+        pytest.skip("template not restored")
+    with rasterio.open(D15) as s:
+        ref, prof_ref, tags_ref = s.read(1), s.profile, s.tags()
+    pred = np.nan_to_num(ref, nan=0.0)
+    out = write_submission(pred, tmpl, tmp_path / "re.tif", outside="nan")
+    with rasterio.open(out) as s:
+        got, prof = s.read(1), s.profile
+    assert np.array_equal(np.isnan(got), np.isnan(ref)) and np.array_equal(np.nan_to_num(got), np.nan_to_num(ref))
+    for k in ("driver", "dtype", "width", "height", "count", "crs", "transform", "compress", "blockxsize", "blockysize", "tiled", "interleave"):
+        assert prof[k] == prof_ref[k], (k, prof[k], prof_ref[k])
+    assert np.isnan(prof["nodata"]) and np.isnan(prof_ref["nodata"])
+    assert check_file(out, tmpl)["ok_to_upload"] and check_file(D15, tmpl)["ok_to_upload"]
