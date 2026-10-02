@@ -1,37 +1,21 @@
-# Byte-compiled / optimized / DLL files
+# Python
 __pycache__/
 *.py[cod]
-*$py.class
-
-# Virtual environments
 .venv/
 venv/
-env/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
 
-# IDE
+# Large / regenerable inputs live outside Git (restore with scripts/restore_data.py)
+data/*
+!data/.gitkeep
+*.partial
+*.assembling
+
+# Editor / OS
 .vscode/
 .idea/
-*.swp
-
-# Data (too large for GitHub)
-data/*.tif
-data/*.zip
-!data/.gitkeep
-
-# OS
 .DS_Store
 Thumbs.db
-
-# Jupyter
 .ipynb_checkpoints/
-
-# Large output files
-*.zip
-!docs/downloads/*.zip
-
-# Unselected files
-Unselected\ files/
-
-# Reference solution (separate repo)
-reference_solution/
-reference_solution/

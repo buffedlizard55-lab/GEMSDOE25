@@ -1,0 +1,19 @@
+{
+ "primary_D2.8": {
+  "share_of_exploratory_within_3px_of_it": 0.34672447805359197,
+  "share_of_it_within_3px_of_exploratory": 0.3749376275799501,
+  "exact_overlap_px": 1302
+ },
+ "H19-5": {
+  "share_of_exploratory_within_3px_of_it": 0.38019891500904157,
+  "share_of_it_within_3px_of_exploratory": 0.39122933022925593,
+  "exact_overlap_px": 3579
+ },
+ "exploratory": {
+  "px": 48664,
+  "on_catalogue_px": 0,
+  "share_within_3px_of_catalogue": 0.08044961367746178,
+  "primary_share_within_3px_of_catalogue": 0.19521433431617147,
+  "random_footprint_share_within_3px": 0.07516197858171682
+ }
+}

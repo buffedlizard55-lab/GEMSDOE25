@@ -1,0 +1,19 @@
+{
+ "pair": "H25 solid (owner 0.1280) -> H28 dotted (owner 0.1839)",
+ "n_solid": 174232,
+ "n_dotted": 69281,
+ "geometric_retention": 0.7154798654117909,
+ "assumed_fp_mass_per_px": 0.900818043566607,
+ "truth_px_used": 12503.077035165228,
+ "credit_per_truth_solid": 0.4348904108647082,
+ "predicted_dotted_dti": 0.16723939309018424,
+ "owner_reported_dotted_dti": 0.1839,
+ "error": -0.016660606909815773,
+ "sensitivity": {
+  "fp_per_px_x0.8": 0.15983779001280946,
+  "fp_per_px_x0.9": 0.16375893411063389,
+  "fp_per_px_x1.0": 0.1672393930901843,
+  "fp_per_px_x1.1": 0.17034950523438433
+ },
+ "reading": "Out-of-sample: only the dotting mechanism (credit retention, false-positive mass proportional to pixels) is tested; the FP mass per pixel is carried over from H19-5."
+}

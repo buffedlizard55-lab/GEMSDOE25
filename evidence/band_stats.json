@@ -1,0 +1,211 @@
+{
+ "mag_anom": {
+  "band": 1,
+  "name": "mag_anom",
+  "nodata_inside": 3060,
+  "finite_outside": 2159,
+  "min": -1052.0047607421875,
+  "p01": -288.56201171875,
+  "median": -57.68180465698242,
+  "p99": 311.9136047363281,
+  "max": 2109.447509765625
+ },
+ "rtp": {
+  "band": 2,
+  "name": "rtp",
+  "nodata_inside": 3060,
+  "finite_outside": 2159,
+  "min": -2786.299560546875,
+  "p01": -458.7529602050781,
+  "median": -137.21595764160156,
+  "p99": 395.73101806640625,
+  "max": 4508.76025390625
+ },
+ "tmi_hg": {
+  "band": 3,
+  "name": "tmi_hg",
+  "nodata_inside": 3060,
+  "finite_outside": 2159,
+  "min": 0.0,
+  "p01": 0.6582970023155212,
+  "median": 13.154104232788086,
+  "p99": 189.2279510498047,
+  "max": 2200.4365234375
+ },
+ "geod_2ndinv": {
+  "band": 4,
+  "name": "geod_2ndinv",
+  "nodata_inside": 3060,
+  "finite_outside": 2159,
+  "min": 0.0,
+  "p01": 1.7410213947296143,
+  "median": 19.90778923034668,
+  "p99": 57.773651123046875,
+  "max": 87.45342254638672
+ },
+ "iso_grav_anom_slope": {
+  "band": 5,
+  "name": "iso_grav_anom_slope",
+  "nodata_inside": 3060,
+  "finite_outside": 2159,
+  "min": 0.0,
+  "p01": 0.015831179916858673,
+  "median": 0.10217875242233276,
+  "p99": 0.3678494095802307,
+  "max": 0.6517290472984314
+ },
+ "tc": {
+  "band": 6,
+  "name": "tc",
+  "nodata_inside": 3072,
+  "finite_outside": 2159,
+  "min": 0.0,
+  "p01": 7.645995140075684,
+  "median": 18.481590270996094,
+  "p99": 29.100452423095703,
+  "max": 88.56654357910156
+ },
+ "geod_shearrate": {
+  "band": 7,
+  "name": "geod_shearrate",
+  "nodata_inside": 3060,
+  "finite_outside": 2159,
+  "min": 0.0,
+  "p01": 0.0,
+  "median": 9.699999809265137,
+  "p99": 38.5,
+  "max": 54.400001525878906
+ },
+ "geod_dilaterate": {
+  "band": 8,
+  "name": "geod_dilaterate",
+  "nodata_inside": 3060,
+  "finite_outside": 2159,
+  "min": -16.5,
+  "p01": -9.5,
+  "median": 5.5,
+  "p99": 27.0,
+  "max": 34.52448272705078
+ },
+ "tmi_vg": {
+  "band": 9,
+  "name": "tmi_vg",
+  "nodata_inside": 3060,
+  "finite_outside": 2159,
+  "min": -7.650597095489502,
+  "p01": -0.6922199726104736,
+  "median": -0.008992992341518402,
+  "p99": 0.7935372591018677,
+  "max": 20.510923385620117
+ },
+ "deq_n100a15": {
+  "band": 10,
+  "name": "deq_n100a15",
+  "nodata_inside": 3060,
+  "finite_outside": 2159,
+  "min": 0.0,
+  "p01": 118.30000305175781,
+  "median": 622.7929077148438,
+  "p99": 50237.19921875,
+  "max": 4962515.0
+ },
+ "iso_grav_anom_vg": {
+  "band": 11,
+  "name": "iso_grav_anom_vg",
+  "nodata_inside": 3060,
+  "finite_outside": 2159,
+  "min": -18.164581298828125,
+  "p01": -4.330517292022705,
+  "median": -0.07199160754680634,
+  "p99": 4.242436408996582,
+  "max": 12.578903198242188
+ },
+ "det_elev": {
+  "band": 12,
+  "name": "det_elev",
+  "nodata_inside": 3060,
+  "finite_outside": 2159,
+  "min": -589.9837036132812,
+  "p01": -466.8299865722656,
+  "median": -75.56580352783203,
+  "p99": 707.4248657226562,
+  "max": 1469.9127197265625
+ },
+ "iso_grav_anom": {
+  "band": 13,
+  "name": "iso_grav_anom",
+  "nodata_inside": 3060,
+  "finite_outside": 2159,
+  "min": -45.75756072998047,
+  "p01": -32.76560592651367,
+  "median": -7.260871887207031,
+  "p99": 12.89549732208252,
+  "max": 24.232954025268555
+ },
+ "tmi": {
+  "band": 14,
+  "name": "tmi",
+  "nodata_inside": 3060,
+  "finite_outside": 2159,
+  "min": -2178.27783203125,
+  "p01": -429.7847900390625,
+  "median": -124.8101806640625,
+  "p99": 354.68511962890625,
+  "max": 4506.14111328125
+ },
+ "depth_to_base_surf": {
+  "band": 15,
+  "name": "depth_to_base_surf",
+  "nodata_inside": 3060,
+  "finite_outside": 2159,
+  "min": -14.837310791015625,
+  "p01": 1.206982970237732,
+  "median": 316.3511047363281,
+  "p99": 3416.077392578125,
+  "max": 7135.306640625
+ },
+ "ieq_n100a15": {
+  "band": 16,
+  "name": "ieq_n100a15",
+  "nodata_inside": 3060,
+  "finite_outside": 2159,
+  "min": 0.0,
+  "p01": 263.6000061035156,
+  "median": 755.5397338867188,
+  "p99": 5082.49365234375,
+  "max": 7869.5
+ },
+ "cond_surf": {
+  "band": 17,
+  "name": "cond_surf",
+  "nodata_inside": 3060,
+  "finite_outside": 2159,
+  "min": 0.0,
+  "p01": 1.1678259372711182,
+  "median": 2.8857157230377197,
+  "p99": 4.488641262054443,
+  "max": 4.969292640686035
+ },
+ "iso_grav_anom_hg": {
+  "band": 18,
+  "name": "iso_grav_anom_hg",
+  "nodata_inside": 3060,
+  "finite_outside": 2159,
+  "min": -15.441243171691895,
+  "p01": -5.133356094360352,
+  "median": 0.03745325282216072,
+  "p99": 5.404924392700195,
+  "max": 12.856057167053223
+ },
+ "det_elev_slope": {
+  "band": 19,
+  "name": "det_elev_slope",
+  "nodata_inside": 3060,
+  "finite_outside": 2159,
+  "min": 0.0,
+  "p01": 0.06981068849563599,
+  "median": 3.7486684322357178,
+  "p99": 32.722599029541016,
+  "max": 62.64591598510742
+ }
+}

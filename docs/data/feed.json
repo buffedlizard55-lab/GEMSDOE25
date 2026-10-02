@@ -1,0 +1,356 @@
+{
+ "generated_utc": "2026-10-02T19:27:13Z",
+ "generator": "scripts/check_sources.py",
+ "policy": "Never requests drivendata.org (Terms of Use). 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
+ "items": [
+  {
+   "kind": "source",
+   "title": "GEMS Prize Challenge \u2014 competition page",
+   "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/",
+   "verified_in_repo": true,
+   "status": "not fetched (Terms of Use)",
+   "detail": "DrivenData host: human-read snapshot only"
+  },
+  {
+   "kind": "source",
+   "title": "Problem description (page 967)",
+   "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+   "verified_in_repo": true,
+   "status": "not fetched (Terms of Use)",
+   "detail": "DrivenData host: human-read snapshot only"
+  },
+  {
+   "kind": "source",
+   "title": "About page (page 968)",
+   "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/",
+   "verified_in_repo": true,
+   "status": "not fetched (Terms of Use)",
+   "detail": "DrivenData host: human-read snapshot only"
+  },
+  {
+   "kind": "source",
+   "title": "Leaderboard",
+   "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+   "verified_in_repo": true,
+   "status": "not fetched (Terms of Use)",
+   "detail": "DrivenData host: human-read snapshot only"
+  },
+  {
+   "kind": "source",
+   "title": "Official rules (NLR 96647)",
+   "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+   "verified_in_repo": true,
+   "status": "unreachable",
+   "detail": "SSLError"
+  },
+  {
+   "kind": "source",
+   "title": "Staff: known faults masked; pixel-exact; new truth may lie within 300 m",
+   "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4",
+   "verified_in_repo": true,
+   "status": "not fetched (Terms of Use)",
+   "detail": "DrivenData host: human-read snapshot only"
+  },
+  {
+   "kind": "source",
+   "title": "Staff: public/private scores pool all subset pixels into one Tversky index",
+   "url": "https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550",
+   "verified_in_repo": true,
+   "status": "not fetched (Terms of Use)",
+   "detail": "DrivenData host: human-read snapshot only"
+  },
+  {
+   "kind": "source",
+   "title": "Thread: how were the new test faults identified?",
+   "url": "https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527",
+   "verified_in_repo": false,
+   "status": "not fetched (Terms of Use)",
+   "detail": "DrivenData host: human-read snapshot only"
+  },
+  {
+   "kind": "source",
+   "title": "DrivenData Terms of Use",
+   "url": "https://www.drivendata.org/termsofuse/",
+   "verified_in_repo": true,
+   "status": "not fetched (Terms of Use)",
+   "detail": "DrivenData host: human-read snapshot only"
+  },
+  {
+   "kind": "source",
+   "title": "DrivenData reference solution (U-Net, MC-CV)",
+   "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
+   "verified_in_repo": true,
+   "status": "unreachable",
+   "detail": "SSLError"
+  },
+  {
+   "kind": "source",
+   "title": "INGENIOUS - Great Basin Regional Dataset Compilation (GDR 1391)",
+   "url": "https://gdr.openei.org/submissions/1391",
+   "verified_in_repo": true,
+   "status": "unreachable",
+   "detail": "SSLError"
+  },
+  {
+   "kind": "source",
+   "title": "GeoDAWN airborne magnetic and radiometric surveys (USGS)",
+   "url": "https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7",
+   "verified_in_repo": true,
+   "status": "unreachable",
+   "detail": "SSLError"
+  },
+  {
+   "kind": "source",
+   "title": "USGS 3D Elevation Program",
+   "url": "https://www.usgs.gov/3d-elevation-program",
+   "verified_in_repo": true,
+   "status": "unreachable",
+   "detail": "SSLError"
+  },
+  {
+   "kind": "source",
+   "title": "Slip & dilation tendency, Quaternary faults, Great Basin (Siler 2022)",
+   "url": "https://www.sciencebase.gov/catalog/item/6296974dd34ec53d276bb33d",
+   "verified_in_repo": true,
+   "status": "unreachable",
+   "detail": "SSLError"
+  },
+  {
+   "kind": "source",
+   "title": "Faulds & Hinz (2015) Favorable tectonic and structural settings of geothermal systems in the Great Basin",
+   "url": "https://www.osti.gov/servlets/purl/1724082",
+   "verified_in_repo": true,
+   "status": "unreachable",
+   "detail": "SSLError"
+  },
+  {
+   "kind": "source",
+   "title": "Hermant, Kiersnowski & Bellanger (2025) Using deep learning to map Quaternary faults in Western USA",
+   "url": "https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Hermant.pdf",
+   "verified_in_repo": true,
+   "status": "unreachable",
+   "detail": "SSLError"
+  },
+  {
+   "kind": "source",
+   "title": "Owner mirror of training_features.tif (5 parts)",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
+   "verified_in_repo": true,
+   "status": "unreachable",
+   "detail": "SSLError"
+  },
+  {
+   "kind": "source",
+   "title": "Owner mirror: labels, template, external layers, scored rasters (GEMSDOE24 @ 07345ea)",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+   "verified_in_repo": true,
+   "status": "unreachable",
+   "detail": "SSLError"
+  },
+  {
+   "kind": "source",
+   "title": "Dropbox links supplied in the brief (GEMS_96647.pdf, example_submission.tif, existing_faults.tif, gems-geodawn-numerical-features.tif, DEM-links PDF)",
+   "url": "https://www.dropbox.com/scl/fi/6rgvnuady818ol8yqgis4/example_submission.tif?rlkey=kbykilvau066xuogoosbf4cq8&st=8junzdyw&dl=0",
+   "verified_in_repo": false,
+   "status": "unreachable",
+   "detail": "SSLError"
+  },
+  {
+   "kind": "source",
+   "title": "INGENIOUS project site",
+   "url": "https://gbcge.org/current-projects/ingenious/",
+   "verified_in_repo": false,
+   "status": "unreachable",
+   "detail": "SSLError"
+  },
+  {
+   "kind": "sciencebase",
+   "title": "GeoDAWN release",
+   "url": "https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7",
+   "status": "unreachable",
+   "detail": "SSLError"
+  },
+  {
+   "kind": "sciencebase",
+   "title": "Slip/dilation tendency release",
+   "url": "https://www.sciencebase.gov/catalog/item/6296974dd34ec53d276bb33d",
+   "status": "unreachable",
+   "detail": "SSLError"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "5GEMSDOE",
+   "url": "https://github.com/buffedlizard55-lab/5GEMSDOE",
+   "status": "ok",
+   "detail": "pushed_at 2026-09-28T14:04:33Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "6GEMSDOE",
+   "url": "https://github.com/buffedlizard55-lab/6GEMSDOE",
+   "status": "ok",
+   "detail": "pushed_at 2026-09-26T04:28:31Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "7GEMSDOE",
+   "url": "https://github.com/buffedlizard55-lab/7GEMSDOE",
+   "status": "ok",
+   "detail": "pushed_at 2026-09-27T01:12:04Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "8GEMSDOE",
+   "url": "https://github.com/buffedlizard55-lab/8GEMSDOE",
+   "status": "ok",
+   "detail": "pushed_at 2026-09-26T23:21:37Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "11GEMSDOE",
+   "url": "https://github.com/buffedlizard55-lab/11GEMSDOE",
+   "status": "ok",
+   "detail": "pushed_at 2026-09-27T04:49:15Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "12GEMSDOE",
+   "url": "https://github.com/buffedlizard55-lab/12GEMSDOE",
+   "status": "ok",
+   "detail": "pushed_at 2026-10-02T11:05:53Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "13GEMSDOE",
+   "url": "https://github.com/buffedlizard55-lab/13GEMSDOE",
+   "status": "ok",
+   "detail": "pushed_at 2026-10-01T14:04:52Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "14GEMSDOE",
+   "url": "https://github.com/buffedlizard55-lab/14GEMSDOE",
+   "status": "ok",
+   "detail": "pushed_at 2026-09-29T18:14:11Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "15GEMSDOE",
+   "url": "https://github.com/buffedlizard55-lab/15GEMSDOE",
+   "status": "ok",
+   "detail": "pushed_at 2026-09-29T15:46:55Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "16GEMSDOE",
+   "url": "https://github.com/buffedlizard55-lab/16GEMSDOE",
+   "status": "ok",
+   "detail": "pushed_at 2026-09-30T11:23:31Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "17GEMSDOE",
+   "url": "https://github.com/buffedlizard55-lab/17GEMSDOE",
+   "status": "ok",
+   "detail": "pushed_at 2026-09-30T05:10:00Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "18GEMSDOE",
+   "url": "https://github.com/buffedlizard55-lab/18GEMSDOE",
+   "status": "ok",
+   "detail": "pushed_at 2026-09-30T21:33:47Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "19GEMSDOE",
+   "url": "https://github.com/buffedlizard55-lab/19GEMSDOE",
+   "status": "ok",
+   "detail": "pushed_at 2026-09-30T21:55:24Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "20GEMSDOE",
+   "url": "https://github.com/buffedlizard55-lab/20GEMSDOE",
+   "status": "ok",
+   "detail": "pushed_at 2026-10-01T14:15:34Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "GEMSDOE",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE",
+   "status": "ok",
+   "detail": "pushed_at 2026-09-28T14:01:24Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "GEMSDOE2",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE2",
+   "status": "ok",
+   "detail": "pushed_at 2026-09-28T13:53:21Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "GEMSDOE3",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE3",
+   "status": "ok",
+   "detail": "pushed_at 2026-09-25T17:36:01Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "GEMSDOE4",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE4",
+   "status": "ok",
+   "detail": "pushed_at 2026-09-28T14:02:08Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "GEMSDOE9",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE9",
+   "status": "ok",
+   "detail": "pushed_at 2026-09-27T05:06:19Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "GEMSDOE10",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE10",
+   "status": "ok",
+   "detail": "pushed_at 2026-09-28T02:23:47Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "GEMSDOE21",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE21",
+   "status": "ok",
+   "detail": "pushed_at 2026-10-01T14:09:14Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "GEMSDOE22",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE22",
+   "status": "ok",
+   "detail": "pushed_at 2026-10-02T10:13:51Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "GEMSDOE23",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE23",
+   "status": "ok",
+   "detail": "pushed_at 2026-10-02T19:22:07Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "GEMSDOE24",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE24",
+   "status": "ok",
+   "detail": "pushed_at 2026-10-02T17:46:35Z"
+  },
+  {
+   "kind": "human-snapshot",
+   "title": "DrivenData leaderboard (human-read snapshot)",
+   "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+   "status": "snapshot 2026-10-02 (0 d old)",
+   "detail": "#1 DARD 0.3195; update with scripts/record_live_score.py after reading it yourself"
+  }
+ ]
+}
