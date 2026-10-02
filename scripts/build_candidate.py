@@ -38,7 +38,9 @@ def main() -> None:
     ap.add_argument("--draws", type=int, default=3)
     ap.add_argument("--slug", required=True)
     ap.add_argument("--tag", required=True, help="short id in the note, e.g. F-BE")
-    ap.add_argument("--summary", required=True)
+    ap.add_argument("--summary", required=True, help="very short text for the DrivenData note")
+    ap.add_argument("--long-summary", default="", help="prose shown on the site")
+    ap.add_argument("--gate-summary", default="", help="pre-registered gate outcome shown on the site")
     ap.add_argument("--out", default=str(ROOT / "docs" / "downloads"))
     ap.add_argument("--keep-scores", default=None, help="save the final float score vector (.npy) here")
     a = ap.parse_args()
@@ -102,6 +104,7 @@ def main() -> None:
     note = make_note(a.tag, a.summary, cid)
     rec = dict(file=tif.name, path=f"docs/downloads/{tif.name}", bytes=tif.stat().st_size, sha256=chk["sha256"], content_id=cid,
                positive_pixels=int(em.sum()), format_ok=chk["ok_to_upload"], checks=chk["checks"], note=note,
+               summary=a.long_summary, gate_summary=a.gate_summary,
                fallback=dict(file=zero.name, sha256=chk0["sha256"], bytes=zero.stat().st_size, format_ok=chk0["ok_to_upload"], positive_pixels=chk0["positive_pixels"]),
                build=dict(base=a.base, extras=a.extras, kfrac=a.kfrac, variant=a.variant, draws=a.draws, seconds=round(time.time() - t0), utc=dt.datetime.now(dt.timezone.utc).isoformat()))
     (out / f"checks-{tif.stem}.json").write_text(json.dumps(rec, indent=1) + "\n")

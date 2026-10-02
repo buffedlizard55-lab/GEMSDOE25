@@ -85,6 +85,7 @@ def main() -> None:
     conf = opt("evidence/addons_confirm/results.json")
     emu = opt("evidence/emission_model.json")
     oos = opt("evidence/emission_model_oos_check.json")
+    ext = opt("evidence/addons/emk_extension.json")
     href = opt("evidence/harness_references.json")
     primary = next(s for s in subs if s["role"] == "primary")
     others = [s for s in subs if s["role"] != "primary"]
@@ -129,7 +130,12 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
 <p class="small">All {len(irr)} items with evidence and actions: <a href="{prefix}sources.html#irregularities">Sources &amp; audit</a>.</p>"""
         feed = f"""<h2>Source feed</h2><div id="feed" data-base="{prefix}"><p class="small">Loading <code>data/feed.json</code> …</p></div>
 <p class="small">The feed never requests drivendata.org (Terms of Use). Leaderboard rows are human-read snapshots.</p>"""
-        return hero + cards + (f"<h3>Also available</h3>{alt}" if alt else "") + stats + whyb + facb + flagb + feed
+        expl = next((o for o in others if o["role"] == "alternate"), None)
+        plan = ('<div class="callout info"><b>Suggested order for the 3 weekly slots.</b> '
+                '1) the primary file above; ' + ('2) the exploratory surface (<code>' + e(expl["file"]) + '</code>) only after you have recorded the primary\'s score, so the emission model can be re-fitted; 3) keep one slot in reserve.'
+                                                 if expl else '2) record its score, then decide; keep a slot in reserve.')
+                + ' Record scores with <code>scripts/record_live_score.py</code>. Nothing here uploads for you.</div>')
+        return hero + cards + (f"<h3>Also available</h3>{alt}" if alt else "") + plan + stats + whyb + facb + flagb + feed
 
     exec_body = f"""<div class="hero"><h1>How to submit — exact steps</h1><p class="lead">Five clicks. Nothing here uploads for you: the owner submits (DrivenData's Terms of Use forbid automation).</p></div>
 {dl_card(primary, '')}
@@ -169,6 +175,12 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
     emk = ""
     if add:
         emk = "<table><thead><tr><th>Variant</th><th class='num'>Budget</th><th class='num'>Emitted px</th><th class='num'>Coverage</th><th class='num'>DTI</th></tr></thead><tbody>" + "".join(f"<tr><td>{r['variant']}</td><td class='num'>{100*r['kfrac']:.2f}%</td><td class='num'>{r['emitted']:.0f}</td><td class='num'>{r['coverage']:.3f}</td><td class='num'>{r['dti']:.4f}</td></tr>" for r in add['EMK']) + "</tbody></table>"
+    ext_html = ""
+    if ext:
+        ext_html = ("<p><b>Post-hoc extension (Addendum A, exploratory, not gated)</b> — base <code>" + e(ext["base"]) + "</code> + add-on columns, K beyond the frozen grid; the optimum lies <i>inside</i> the extended grid:</p>"
+                    "<table><thead><tr><th>Variant</th><th class='num'>Budget</th><th class='num'>Emitted px / cell</th><th class='num'>Coverage</th><th class='num'>DTI</th></tr></thead><tbody>"
+                    + "".join(f"<tr><td>{r['variant']}</td><td class='num'>{100 * r['kfrac']:.2f}%</td><td class='num'>{r['emitted']:.0f}</td><td class='num'>{r['coverage']:.3f}</td><td class='num'>{r['dti']:.4f}</td></tr>" for r in ext["table"])
+                    + f"</tbody></table><p class='small'>Best: {ext['best']['variant']} at {100 * ext['best']['kfrac']:.1f} % → {ext['best']['dti']:.4f}.</p>")
     emu_html = ""
     if emu:
         emu_html = "<table><thead><tr><th>min-dist</th><th class='num'>px</th><th class='num'>credit retention (geometric)</th><th class='num'>model DTI</th></tr></thead><tbody>" + "".join(f"<tr><td>{r['min_dist']}</td><td class='num'>{r['px']:,}</td><td class='num'>{r['retention']:.3f}</td><td class='num'>{r['model_dti']:.4f}</td></tr>" for r in emu['curve']) + f"</tbody></table><p class='small'>{e(emu['caveat'])}</p>"
@@ -225,7 +237,8 @@ Response: exact sparse-regime DTI of a fixed emission (ridge NMS → top 2.45 % 
 <h3>Classification (pre-registered rule)</h3><table><thead><tr><th>Factor</th><th>Family</th><th>Class</th><th class="num">Main effect</th><th class="num">Folds +</th></tr></thead><tbody>{''.join(f"<tr><td>{k}</td><td>{e(v['label'])}</td><td>{badge(v['classification'], {'matters alone':'ok','matters in combination':'info','inert':'warn','harmful':'bad'}[v['classification']])}</td><td class='num'>{v['main_effect']:+.4f}</td><td class='num'>{v['folds_positive']}/4</td></tr>" for k, v in fac['classification'].items())}</tbody></table>
 <h2>2 · Add-on hypotheses and emission (pre-registered, paired)</h2>
 {addon_tbl(add, 'Cells = draws 0,1')}{addon_tbl(conf, 'Confirmation replicate (fresh draws 2,3)')}
-<h3>Budget / dotting sweep on the base surface (draws 0,1)</h3>{emk}
+<p class="small"><code>CFG_*</code> rows (confirmation only) are whole family sets compared with the base: <code>CFG_BE</code> is the factorial's predicted-best corner (predicted 0.145, observed in this table), <code>CFG_ABCDE</code> all five families, <code>CFG_E</code> catalogue geometry alone.</p>
+<h3>Budget / dotting sweep on the base surface (draws 0,1)</h3>{emk}{ext_html}
 <h2>3 · Why 0.2477 — the emission model</h2>{emu_html}{oos_html}{req_html}{href_html}
 <h2>4 · Hypotheses register</h2><p class="small">Verbatim register (written before the add-on runs): <code>knowledge/03_hypotheses_ranked_2026-10-02.md</code>.</p>
 <details><summary>Show the register</summary><pre style="white-space:pre-wrap;font-size:.85rem">{e(hyp)}</pre></details>

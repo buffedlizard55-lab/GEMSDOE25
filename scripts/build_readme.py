@@ -28,6 +28,7 @@ def main() -> None:
     why = J("evidence/why_0_2477.json")
     emu = J("evidence/emission_model.json")
     add = opt("evidence/addons/results.json")
+    conf = opt("evidence/addons_confirm/results.json")
     irr = J("registry/irregularities.json")["issues"]
     best = max(a["score"] for a in ls["artifacts"] if a["score"] is not None)
     brief = (ROOT / "knowledge" / "owner_brief_verbatim.txt").read_text().rstrip()
@@ -80,6 +81,32 @@ def main() -> None:
         em = add["EM0_equal_N"]
         A(f"| EM-0 score-ordered dots vs `dot_thin` (equal N≈{em['n_eq_mean']:.0f}) | {em['sapd']:.4f} vs {em['dot_thin']:.4f} | {em['gate_sapd_vs_dot_thin']['mean_gain']:+.4f} | {em['gate_sapd_vs_dot_thin']['folds_positive']}/4 | {'pass' if em['gate_sapd_vs_dot_thin']['passed'] else 'fail'} |")
         A("")
+    if conf:
+        A("## Confirmation replicate (fresh draws 2,3; pre-registered)\n")
+        A("| Arm | mean DTI | Δ vs BDE | folds + | gate |")
+        A("|---|---|---|---|---|")
+        A(f"| BASE `{conf['base']}` | {conf['BASE']['mean_dti']:.4f} | — | — | — |")
+        for k, v in conf["arms"].items():
+            g = v["gate_vs_base"]
+            A(f"| {k} | {v['mean_dti']:.4f} | {g['mean_gain']:+.4f} | {g['folds_positive']}/4 | {'pass' if g['passed'] else 'fail'} |")
+        em = conf["EM0_equal_N"]
+        A(f"| EM-0 score-ordered dots vs `dot_thin` | {em['sapd']:.4f} vs {em['dot_thin']:.4f} | {em['gate_sapd_vs_dot_thin']['mean_gain']:+.4f} | {em['gate_sapd_vs_dot_thin']['folds_positive']}/4 | {'pass' if em['gate_sapd_vs_dot_thin']['passed'] else 'fail'} |")
+        A("\n`CFG_*` rows are whole family sets (e.g. `CFG_BE` = the factorial's predicted-best corner, which did not replicate its predicted 0.145).\n")
+    A("## Score ledger — top owner-reported results (not DrivenData receipts; full ledger in `registry/live_scores.json`)\n")
+    A("| Project | Submission | Score | Note |")
+    A("|---|---|---|---|")
+    for a_ in sorted((x for x in ls["artifacts"] if x["score"] is not None), key=lambda x: -x["score"])[:10]:
+        A(f"| {a_['project']} | `{a_['label']}` | {a_['score']:.4f} | {a_['note']} |")
+    A("")
+    A("## Hypotheses not yet tried (ranked; layers, signatures and rationale in `knowledge/03_hypotheses_ranked_2026-10-02.md`)\n")
+    A("| Rank | ID | Idea | Validation on the blocked holdout |")
+    A("|---|---|---|---|")
+    A("| 1 | H26-0 | score-aware Poisson-disk dotting + marginal-ratio budget | **passes** (+0.0037 vs score-blind dotting at equal N, 4/4 folds, replicated +0.0034) |")
+    A("| 2 | H26-2 | strike-compatibility prior (DEM line orientation × visible-catalogue strike) | alone: fail on draws 0,1 (+0.0015, 2/4), small pass on fresh draws 2,3 (+0.0033, 3/4); jointly passes both |")
+    A("| 3 | H26-1 | oriented cross-scarp radiometric contrast (K, Th/K, U/K × DEM normal) | alone: fail on draws 0,1 (+0.0006, 2/4), small pass on draws 2,3 (+0.0026, 4/4); jointly passes both |")
+    A("| 4 | H26-3 | concealed joint step (gravity ∧ magnetic ridge, basement-depth step) | alone: fail on draws 0,1 (+0.0003, 2/4), small pass on draws 2,3 (+0.0032, 4/4); jointly passes both |")
+    A("| 5 | H26-4 | dilation-tendency-weighted orientation prior (USGS 10.5066/P9YL58W6) | **not validatable here** — free 27 MB shapefile, obtainable, but `sciencebase.gov` is unreachable from this sandbox |")
+    A("")
     A("## Flagged for review (full list with evidence: [`registry/irregularities.json`](registry/irregularities.json))\n")
     for i in irr:
         if i["severity"] in ("critical", "high"):
@@ -100,7 +127,21 @@ def main() -> None:
     A("## Standing session charter\n")
     A("Read this README **and the verbatim brief below** at the start of every session, then `AGENTS.md`. First commands: `git fetch origin`, compare with the session branch, `gh pr list --state open`. Pre-register before running. No weekly slot without passing the gate or an explicit owner exception. Never automate drivendata.org. Review in three passes. Unknown stays unknown.\n")
     A("## Reproduce\n")
-    A("```bash\npython -m venv .venv && .venv/bin/pip install -r requirements.txt\n.venv/bin/python scripts/restore_data.py --group all          # SHA-256-pinned inputs from the owner's public repos -> data/ (ignored by Git)\n.venv/bin/python scripts/build_features.py && .venv/bin/python scripts/build_addons.py\n.venv/bin/python scripts/run_factorial.py && .venv/bin/python scripts/analyze_factorial.py\n.venv/bin/python scripts/run_addons.py && .venv/bin/python scripts/analyze_addons.py\n.venv/bin/python scripts/analyze_scored_rasters.py && .venv/bin/python scripts/emission_model.py\n.venv/bin/python scripts/build_candidate.py --help             # train on the full catalogue, emit, verify, package\n.venv/bin/python scripts/build_site.py && .venv/bin/python scripts/build_readme.py\n.venv/bin/python -m pytest -q\n```\n")
+    A("```bash\npython -m venv .venv && .venv/bin/pip install -r requirements.txt\n"
+      ".venv/bin/python scripts/restore_data.py --group all          # SHA-256-pinned inputs from the owner's public repos -> data/ (ignored by Git); same as: bash scripts/download_competition_data.sh\n"
+      ".venv/bin/python scripts/build_features.py && .venv/bin/python scripts/build_addons.py\n"
+      "# pre-registered experiments (knowledge/04, 05)\n"
+      ".venv/bin/python scripts/run_factorial.py && .venv/bin/python scripts/analyze_factorial.py            # ~30 min on 2 CPUs\n"
+      ".venv/bin/python scripts/run_addons.py && .venv/bin/python scripts/analyze_addons.py                  # draws 0,1\n"
+      ".venv/bin/python scripts/run_addons.py --out evidence/addons_confirm --draws 2 3 --extra-configs ABCDE BE E && .venv/bin/python scripts/analyze_addons.py --dir evidence/addons_confirm\n"
+      ".venv/bin/python scripts/run_emk_extension.py --base BDE --extras X1_K X1_ThK X1_UK X2_compat X2_compat_coh X3_gm X3_gd   # post hoc (Addendum A)\n"
+      "# forensics and emission model\n"
+      ".venv/bin/python scripts/analyze_scored_rasters.py && .venv/bin/python scripts/emission_model.py && .venv/bin/python scripts/validate_emission_model.py && .venv/bin/python scripts/harness_references.py\n"
+      "# files, site, README\n"
+      ".venv/bin/python scripts/build_candidate.py --help            # train on the full catalogue, emit, verify (exploratory surface)\n"
+      ".venv/bin/python scripts/package_submissions.py --exploratory-receipt docs/downloads/checks-<file>.json\n"
+      ".venv/bin/python scripts/build_data_dictionary.py && .venv/bin/python scripts/build_site.py && .venv/bin/python scripts/build_readme.py\n"
+      ".venv/bin/python -m pytest -q && .venv/bin/python -m ruff check src scripts tests\n```\n")
     A("Set `GEMS_DATA_DIR` / `GEMS_WORK_DIR` to keep the 419 MB raster and the ~1.5 GB feature cache outside the checkout.\n")
     A("## Repository map\n")
     A("| Path | Role |\n|---|---|\n| `src/gems25/` | metric (official DTI + brute-force twin), hide-and-recover holdout, thinning/NMS, families & features, factorial engine, experiment cells, strict submission writer/checker |\n| `scripts/` | restore, build, run, analyse, package, site, README, feed, score recorder |\n| `registry/` | sources (with verification status), irregularities, score ledger, data pins, shipped submissions |\n| `evidence/` | machine-readable results and forensics |\n| `knowledge/` | pre-registrations, ranked hypotheses, verified research digest, the brief |\n| `docs/`, `index.html` | GitHub Pages site (root `index.html` is the landing page; Pages builds from `main:/`) |\n| `tests/` | unit, parity, integrity and reproduction tests |\n")

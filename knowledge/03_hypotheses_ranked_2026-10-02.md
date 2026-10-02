@@ -78,10 +78,10 @@ candidate trace.
 | ID | Outcome (draws 0,1, base BDE) | Status |
 |---|---|---|
 | **H26-0** score-ordered dotting | +0.0037 vs score-blind `dot_thin` at equal pixel count, 4/4 folds, t = 8.5 (3 d.f.) | **passes the gate** — the top-ranked candidate is validated; it needs a *continuous* surface, so it is used by the exploratory file, not by the binary H19-5 file |
-| H26-2 strike compatibility | +0.0015, 2/4 folds | fails alone |
-| H26-1 oriented cross-scarp radiometric contrast | +0.0006, 2/4 folds | fails alone |
-| H26-3 concealed joint step | +0.0003, 2/4 folds | fails alone |
-| H26-1+2+3 together | +0.0050, 4/4 folds, t = 1.97 (weak) | passes the gate jointly (confirmation: see `07_*`) |
+| H26-2 strike compatibility | +0.0015, 2/4 folds (confirmation draws 2,3: +0.0033, 3/4) | fails alone on draws 0,1; small pass on fresh draws |
+| H26-1 oriented cross-scarp radiometric contrast | +0.0006, 2/4 folds (draws 2,3: +0.0026, 4/4) | fails alone on draws 0,1; small pass on fresh draws |
+| H26-3 concealed joint step | +0.0003, 2/4 folds (draws 2,3: +0.0032, 4/4) | fails alone on draws 0,1; small pass on fresh draws |
+| H26-1+2+3 together | +0.0050, 4/4 folds, t = 1.97 (weak); confirmation draws 2,3: +0.0038, 4/4, t = 5.2 | **passes the gate in both replicates** — the only arm that did |
 | H26-4 dilation-tendency prior | not run | **not validatable here**: needs the USGS shapefile (free, 27 MB, obtainable) but `sciencebase.gov` is unreachable from this sandbox; not proposed for a slot |
 
 ### Continuity with the previous GEMSDOE25 session's list (README @ 9b01f27)

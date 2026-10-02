@@ -12,6 +12,7 @@
 * Unique content id `e56ea318af89` · SHA-256 `91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8` · 44,090 emitted pixels · status: **unscored candidate**.
 * **Note to paste** in DrivenData's *Note (optional)* field: `GEMSDOE25 D2.8 | H19-5 Poisson-disk dots, 44,090 px; model 0.255 | id e56ea318af89 | not yet live-scored`
 * Also: [`gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif`](docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif) — Fallback: same predictions, zeros outside the footprint (fallback (same predictions); 44,090 px).
+* Also: [`gems25-factorial-bde-x123-sapd2-4-20261002-5e4b5a98d2c7-nan.tif`](docs/downloads/gems25-factorial-bde-x123-sapd2-4-20261002-5e4b5a98d2c7-nan.tif) — Exploratory: new factorial-evidence surface (separate slot, owner decision) (unscored exploratory candidate; 48,664 px).
 * Step-by-step upload guide: [`docs/executive-summary.html`](https://buffedlizard55-lab.github.io/GEMSDOE25/docs/executive-summary.html).
 
 ## Where things stand
@@ -45,6 +46,47 @@ Top interactions: `BC` -0.0050, `BD` -0.0049, `AC` +0.0045, `BE` -0.0043. Full t
 | +X2 | 0.1375 | +0.0015 | 2/4 | fail |
 | +X3 | 0.1362 | +0.0003 | 2/4 | fail |
 | EM-0 score-ordered dots vs `dot_thin` (equal N≈12391) | 0.1382 vs 0.1345 | +0.0037 | 4/4 | pass |
+
+## Confirmation replicate (fresh draws 2,3; pre-registered)
+
+| Arm | mean DTI | Δ vs BDE | folds + | gate |
+|---|---|---|---|---|
+| BASE `BDE` | 0.1305 | — | — | — |
+| +ALL | 0.1343 | +0.0038 | 4/4 | pass |
+| +X1 | 0.1331 | +0.0026 | 4/4 | pass |
+| +X2 | 0.1338 | +0.0033 | 3/4 | pass |
+| +X3 | 0.1338 | +0.0032 | 4/4 | pass |
+| CFG_ABCDE | 0.1279 | -0.0027 | 2/4 | fail |
+| CFG_BE | 0.1332 | +0.0027 | 3/4 | pass |
+| CFG_E | 0.1098 | -0.0207 | 0/4 | fail |
+| EM-0 score-ordered dots vs `dot_thin` | 0.1329 vs 0.1294 | +0.0034 | 4/4 | pass |
+
+`CFG_*` rows are whole family sets (e.g. `CFG_BE` = the factorial's predicted-best corner, which did not replicate its predicted 0.145).
+
+## Score ledger — top owner-reported results (not DrivenData receipts; full ledger in `registry/live_scores.json`)
+
+| Project | Submission | Score | Note |
+|---|---|---|---|
+| GEMSDOE24 | `h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan` | 0.2477 | group best; = dot_thin(H19-5, 1.5), 60,069 px; leaderboard row wbg1 0.2477 (#16) matches by value |
+| 19GEMSDOE | `h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan` | 0.1922 | parent of the 0.2477 file |
+| 19GEMSDOE | `h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan` | 0.1894 |  |
+| GEMSDOE21 | `h19-4-reference-20260930-691e4dfa` | 0.1894 | re-host of h19-4 (same content id 691e4dfa) |
+| 20GEMSDOE | `h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-20260930-be0e8f6b-nan` | 0.1890 |  |
+| 16GEMSDOE | `h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan` | 0.1855 |  |
+| GEMSDOE10 | `h28-dotted-ridge-20260928T020256236880Z-6452ae1d00` | 0.1839 | dotted version of the surface above: +44 % |
+| GEMSDOE | `gems-submission-20260925T001403Z-7f00890a` | 0.1563 |  |
+| 5GEMSDOE | `gems-submission-20260926T175114Z-7f00890a` | 0.1563 | same content id 7f00890a as the GEMSDOE entry |
+| 8GEMSDOE | `Hedge-v2_submission` | 0.1563 | = ens12 off-catalogue pixels + all catalogue pixels; equal score shows masked known pixels do not matter |
+
+## Hypotheses not yet tried (ranked; layers, signatures and rationale in `knowledge/03_hypotheses_ranked_2026-10-02.md`)
+
+| Rank | ID | Idea | Validation on the blocked holdout |
+|---|---|---|---|
+| 1 | H26-0 | score-aware Poisson-disk dotting + marginal-ratio budget | **passes** (+0.0037 vs score-blind dotting at equal N, 4/4 folds, replicated +0.0034) |
+| 2 | H26-2 | strike-compatibility prior (DEM line orientation × visible-catalogue strike) | alone: fail on draws 0,1 (+0.0015, 2/4), small pass on fresh draws 2,3 (+0.0033, 3/4); jointly passes both |
+| 3 | H26-1 | oriented cross-scarp radiometric contrast (K, Th/K, U/K × DEM normal) | alone: fail on draws 0,1 (+0.0006, 2/4), small pass on draws 2,3 (+0.0026, 4/4); jointly passes both |
+| 4 | H26-3 | concealed joint step (gravity ∧ magnetic ridge, basement-depth step) | alone: fail on draws 0,1 (+0.0003, 2/4), small pass on draws 2,3 (+0.0032, 4/4); jointly passes both |
+| 5 | H26-4 | dilation-tendency-weighted orientation prior (USGS 10.5066/P9YL58W6) | **not validatable here** — free 27 MB shapefile, obtainable, but `sciencebase.gov` is unreachable from this sandbox |
 
 ## Flagged for review (full list with evidence: [`registry/irregularities.json`](registry/irregularities.json))
 
@@ -81,14 +123,20 @@ Read this README **and the verbatim brief below** at the start of every session,
 
 ```bash
 python -m venv .venv && .venv/bin/pip install -r requirements.txt
-.venv/bin/python scripts/restore_data.py --group all          # SHA-256-pinned inputs from the owner's public repos -> data/ (ignored by Git)
+.venv/bin/python scripts/restore_data.py --group all          # SHA-256-pinned inputs from the owner's public repos -> data/ (ignored by Git); same as: bash scripts/download_competition_data.sh
 .venv/bin/python scripts/build_features.py && .venv/bin/python scripts/build_addons.py
-.venv/bin/python scripts/run_factorial.py && .venv/bin/python scripts/analyze_factorial.py
-.venv/bin/python scripts/run_addons.py && .venv/bin/python scripts/analyze_addons.py
-.venv/bin/python scripts/analyze_scored_rasters.py && .venv/bin/python scripts/emission_model.py
-.venv/bin/python scripts/build_candidate.py --help             # train on the full catalogue, emit, verify, package
-.venv/bin/python scripts/build_site.py && .venv/bin/python scripts/build_readme.py
-.venv/bin/python -m pytest -q
+# pre-registered experiments (knowledge/04, 05)
+.venv/bin/python scripts/run_factorial.py && .venv/bin/python scripts/analyze_factorial.py            # ~30 min on 2 CPUs
+.venv/bin/python scripts/run_addons.py && .venv/bin/python scripts/analyze_addons.py                  # draws 0,1
+.venv/bin/python scripts/run_addons.py --out evidence/addons_confirm --draws 2 3 --extra-configs ABCDE BE E && .venv/bin/python scripts/analyze_addons.py --dir evidence/addons_confirm
+.venv/bin/python scripts/run_emk_extension.py --base BDE --extras X1_K X1_ThK X1_UK X2_compat X2_compat_coh X3_gm X3_gd   # post hoc (Addendum A)
+# forensics and emission model
+.venv/bin/python scripts/analyze_scored_rasters.py && .venv/bin/python scripts/emission_model.py && .venv/bin/python scripts/validate_emission_model.py && .venv/bin/python scripts/harness_references.py
+# files, site, README
+.venv/bin/python scripts/build_candidate.py --help            # train on the full catalogue, emit, verify (exploratory surface)
+.venv/bin/python scripts/package_submissions.py --exploratory-receipt docs/downloads/checks-<file>.json
+.venv/bin/python scripts/build_data_dictionary.py && .venv/bin/python scripts/build_site.py && .venv/bin/python scripts/build_readme.py
+.venv/bin/python -m pytest -q && .venv/bin/python -m ruff check src scripts tests
 ```
 
 Set `GEMS_DATA_DIR` / `GEMS_WORK_DIR` to keep the 419 MB raster and the ~1.5 GB feature cache outside the checkout.

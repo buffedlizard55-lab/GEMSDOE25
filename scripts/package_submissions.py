@@ -84,11 +84,17 @@ def main() -> None:
     ]
     if a.exploratory_receipt:
         r = json.loads(Path(a.exploratory_receipt).read_text())
+        ov = ROOT / "evidence" / "exploratory_overlap.json"
+        overlap_text = ""
+        if ov.exists():
+            o = json.loads(ov.read_text())
+            overlap_text = (f" Independence: only {100 * o['primary_D2.8']['share_of_exploratory_within_3px_of_it']:.0f} % of its dots lie within 3 px of the primary's; "
+                            f"{100 * o['exploratory']['share_within_3px_of_catalogue']:.1f} % lie within 3 px of known faults (random baseline {100 * o['exploratory']['random_footprint_share_within_3px']:.1f} %, H19 dots {100 * o['exploratory']['primary_share_within_3px_of_catalogue']:.1f} %).")
         files.append(dict(
             id="exploratory", role="alternate", file=r["file"], path=r["path"], bytes=r["bytes"], sha256=r["sha256"], content_id=r["content_id"],
             positive_pixels=r["positive_pixels"], format_ok=r["format_ok"], checks=r["checks"], receipt=Path(a.exploratory_receipt).name,
             outside="nan", status="unscored exploratory candidate", title="Exploratory: new factorial-evidence surface (separate slot, owner decision)",
-            summary=r.get("summary", ""), expected_range="no live calibration", note=r["note"],
+            summary=(r.get("summary", "") + overlap_text), expected_range="no live calibration", note=r["note"],
             parent=f"trained here: families {r['build']['base']} + {r['build']['extras'] or 'no add-ons'}, {r['build']['draws']} hide-and-recover draws",
             transform=f"ridge NMS -> top {100 * r['build']['kfrac']:.2f} % -> {r['build']['variant']}", gate_summary=r.get("gate_summary", ""), do_not_resubmit=False))
         zf = OUT / r["fallback"]["file"]

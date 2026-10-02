@@ -113,3 +113,10 @@ def test_the_invented_footprint_files_are_not_shipped_or_linked():
         for name in bad:
             # mentions are allowed only as warnings ("not this file"), never as a link target
             assert f'href="docs/downloads/{name}"' not in text and f'href="downloads/{name}"' not in text and f"(docs/downloads/{name})" not in text
+
+
+def test_shipped_files_are_not_duplicates_of_already_scored_files():
+    # content ids of rasters that already have an owner-reported score (re-uploading them gives no information)
+    already_scored = {"989f59505db1": "dotted H19-5 d1.5 (0.2477)", "80d47e1ab2ee": "H19-5 (0.1922)"}
+    for s in J("registry/submissions.json")["files"]:
+        assert s["content_id"] not in already_scored, (s["file"], already_scored.get(s["content_id"]))

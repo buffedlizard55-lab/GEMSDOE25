@@ -1,0 +1,118 @@
+{
+ "file": "gems25-factorial-bde-x123-sapd2-4-20261002-5e4b5a98d2c7-nan.tif",
+ "path": "docs/downloads/gems25-factorial-bde-x123-sapd2-4-20261002-5e4b5a98d2c7-nan.tif",
+ "bytes": 1612026,
+ "sha256": "68845d62f3899ca2f37ff3ccad06670fe9211913a7aac9efc41d217306365392",
+ "content_id": "5e4b5a98d2c7",
+ "positive_pixels": 48664,
+ "format_ok": true,
+ "checks": {
+  "template_matches_expected_grid_and_footprint": {
+   "pass_": true,
+   "detail": "(3730, 3292), footprint 5,167,373 px",
+   "hard": true
+  },
+  "single_band": {
+   "pass_": true,
+   "detail": "count=1",
+   "hard": true
+  },
+  "dtype_float32": {
+   "pass_": true,
+   "detail": "dtypes=('float32',)",
+   "hard": true
+  },
+  "crs_epsg_32611": {
+   "pass_": true,
+   "detail": "32611",
+   "hard": true
+  },
+  "shape_matches_template": {
+   "pass_": true,
+   "detail": "(3730, 3292) vs (3730, 3292)",
+   "hard": true
+  },
+  "geotransform_matches_template": {
+   "pass_": true,
+   "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+   "hard": true
+  },
+  "footprint_all_finite": {
+   "pass_": true,
+   "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+   "hard": true
+  },
+  "footprint_values_in_0_1": {
+   "pass_": true,
+   "detail": "min=0.0 max=1.0",
+   "hard": true
+  },
+  "outside_footprint_is_nan_official": {
+   "pass_": true,
+   "detail": "7,111,787/7,111,787 NaN",
+   "hard": false
+  },
+  "outside_footprint_is_nan_or_zero": {
+   "pass_": true,
+   "detail": "NaN (official) or 0 (fallback) outside",
+   "hard": true
+  },
+  "nan_mask_identical_to_template": {
+   "pass_": true,
+   "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+   "hard": true
+  },
+  "nodata_tag": {
+   "pass_": true,
+   "detail": "nodata=nan",
+   "hard": false
+  },
+  "variant_nan_aware_whole_array": {
+   "pass_": true,
+   "detail": "np.nanmin/np.nanmax over the whole array",
+   "hard": true
+  },
+  "variant_masked_read": {
+   "pass_": true,
+   "detail": "rasterio masked read",
+   "hard": true
+  },
+  "variant_strict_whole_array_no_nan": {
+   "pass_": false,
+   "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including the organizers' own template outside the footprint",
+   "hard": false
+  },
+  "profile_matches_template": {
+   "pass_": true,
+   "detail": "compress=lzw (template lzw)",
+   "hard": false
+  }
+ },
+ "note": "GEMSDOE25 F-BDE+X | B+D+E trees +X1-3, score-ordered 2.4px dots | id 5e4b5a98d2c7 | not yet live-scored",
+ "summary": "New surface trained on the full catalogue (3 hide-and-recover draws averaged): families B (DEM/scarp + LiDAR descriptors), D (radiometrics, conductivity, GDR springs/wells) and E (visible-catalogue geometry) plus the three conjunction features X1-X3; ridge NMS, top 3.5 %, score-ordered 2.4 px dots. No live calibration exists for this file: in the proxy it earns about twice the random-dots reference, but the proxy scores the H19 family ~2.7x lower than live, so it is exploratory and may well score below 0.2477.",
+ "gate_summary": "frozen add-on gate passed in both replicates (+0.0050 draws 0,1; +0.0038 draws 2,3); emission K=3.5 % chosen post hoc (Addendum A); proxy DTI ~0.152 on draws 0,1; proxy evidence only",
+ "fallback": {
+  "file": "gems25-factorial-bde-x123-sapd2-4-20261002-5e4b5a98d2c7-zeros.tif",
+  "sha256": "b2f00aafbc094fdccd1803b828a1f14a2198e31e81f478dd7e2c11dbc923fd8c",
+  "bytes": 846144,
+  "format_ok": true,
+  "positive_pixels": 48664
+ },
+ "build": {
+  "base": "BDE",
+  "extras": [
+   "X1_K",
+   "X1_ThK",
+   "X1_UK",
+   "X2_compat",
+   "X2_compat_coh",
+   "X3_gm",
+   "X3_gd"
+  ],
+  "kfrac": 0.035,
+  "variant": "sapd2.4",
+  "draws": 3,
+  "seconds": 112,
+  "utc": "2026-10-02T20:27:00.575359+00:00"
+ }
+}
