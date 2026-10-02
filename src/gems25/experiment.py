@@ -16,7 +16,7 @@ from .families import FAMILIES, family_columns
 from .features import build_catalogue_features
 from .holdout import Draw, Holdout
 from .metric import dti_binary
-from .thinning import dot_thin, ridge_nms, select_top_positive
+from .thinning import dot_thin, ridge_nms, score_ordered_dots, select_top_positive
 
 HGB_PARAMS = dict(
     max_iter=100, learning_rate=0.12, max_leaf_nodes=31, min_samples_leaf=50,
@@ -34,6 +34,7 @@ class Context:
     labels: np.ndarray
     static: np.ndarray  # (n_static, n_foot) memmap
     static_names: list
+    addon: np.ndarray | None = None  # (5, n_foot) memmap from features.build_addons (optional)
     fi: np.ndarray = field(init=False)
     holdout: Holdout = field(init=False)
     scale: dict = field(init=False)
@@ -42,7 +43,8 @@ class Context:
         self.fi = np.flatnonzero(self.foot.ravel())
         self.holdout = Holdout(self.foot, self.labels, 0.20)
         self.e_names = family_columns("E")
-        self.all_names = list(self.static_names) + list(self.e_names)
+        self.extra_names = ["X1_K", "X1_ThK", "X1_UK", "X2_compat", "X2_compat_coh", "X3_gm", "X3_gd"]
+        self.all_names = list(self.static_names) + list(self.e_names) + list(self.extra_names)
         self.col = {n: i for i, n in enumerate(self.all_names)}
         rng = np.random.default_rng(1)
         sub = np.sort(rng.choice(self.fi.size, 200_000, replace=False))
@@ -63,12 +65,19 @@ class Context:
             cols += [self.col[n] for n in family_columns(L)]
         return cols
 
+    def named(self, names: list[str]) -> list[int]:
+        return [self.col[n] for n in names]
+
+    def nscale(self, name: str, v: np.ndarray) -> np.ndarray:
+        lo, hi = self.scale[name]
+        return np.clip((v - lo) / (hi - lo), 0, 1)
+
 
 class Cell:
     """Everything shared by all runs of one (fold, draw): features, training sample, test matrix."""
 
-    def __init__(self, ctx: Context, fold: int, seed: int):
-        self.ctx, self.fold, self.seed = ctx, fold, seed
+    def __init__(self, ctx: Context, fold: int, seed: int, extras: bool = False):
+        self.ctx, self.fold, self.seed, self.extras = ctx, fold, seed, extras
         t0 = time.time()
         self.draw: Draw = ctx.holdout.draw(fold, seed)
         d = self.draw
@@ -81,13 +90,9 @@ class Cell:
         self.train_idx = np.sort(np.concatenate([pos, neg]))
         self.y = np.isin(self.train_idx, pos).astype(np.int8)
         ns = ctx.static.shape[0]
-        self.Xtr = np.empty((self.train_idx.size, ns + self.E.shape[0]), np.float32)
-        self.Xtr[:, :ns] = np.asarray(ctx.static[:, self.train_idx]).T
-        self.Xtr[:, ns:] = self.E[:, self.train_idx].T
         self.q = ctx.vec(d.quadrant)
-        self.Xq = np.empty((self.q.size, ns + self.E.shape[0]), np.float32)
-        self.Xq[:, :ns] = np.asarray(ctx.static[:, self.q]).T
-        self.Xq[:, ns:] = self.E[:, self.q].T
+        self.Xtr = self._gather(self.train_idx)
+        self.Xq = self._gather(self.q)
         sl = d.bbox
         self.sl = sl
         self.domain = binary_erosion(d.quadrant, iterations=DOMAIN_ERODE)
@@ -106,6 +111,9 @@ class Cell:
         self._grid = np.zeros(ctx.foot.shape, np.float32)
         self.prep_seconds = time.time() - t0
 
+    def _gather(self, idx: np.ndarray) -> np.ndarray:
+        return gather_columns(self.ctx, self.E, idx, self.extras)
+
     # -------------------------------------------------------------------------------------
     def emit(self, score_q: np.ndarray, dotted: bool = True, min_dist: float = DOT_MIN_DIST, k: int | None = None):
         """Ridge NMS -> drop known -> top-K -> (dot thinning). Returns (binary crop, raw top-K crop)."""
@@ -117,6 +125,16 @@ class Cell:
         sc = np.where(r & ~self.known_c, s, 0.0)
         top = select_top_positive(sc, self.dom_c, self.K if k is None else k)
         return (dot_thin(top, min_dist) if dotted else top), top
+
+    def candidates(self, score_q: np.ndarray, k: int | None = None):
+        """(score crop, top-K ridge candidates) before any dotting."""
+        g = self._grid
+        g[:] = 0
+        g.ravel()[self.ctx.fi[self.q]] = np.nan_to_num(score_q, nan=0.0).astype(np.float32)
+        s = g[self.sl].copy()
+        r = ridge_nms(s, self.dom_c, 1.0)
+        sc = np.where(r & ~self.known_c, s, 0.0)
+        return s, select_top_positive(sc, self.dom_c, self.K if k is None else k)
 
     def evaluate(self, emitted_c: np.ndarray) -> dict:
         r = dti_binary(emitted_c, self.truth_c, valid=self.dom_c, known=self.known_c)
@@ -155,9 +173,36 @@ class Cell:
         return np.where(cnt > 0, acc / np.maximum(cnt, 1), 0.0).astype(np.float32)
 
 
+def gather_columns(ctx: "Context", E: np.ndarray, idx: np.ndarray, extras: bool = False) -> np.ndarray:
+    """Static + catalogue (E) (+ add-on) columns for footprint-vector indices ``idx`` (one code path for all stages)."""
+    ns, ne = ctx.static.shape[0], E.shape[0]
+    n_extra = len(ctx.extra_names) if extras else 0
+    X = np.empty((idx.size, ns + ne + n_extra), np.float32)
+    X[:, :ns] = np.asarray(ctx.static[:, idx]).T
+    X[:, ns : ns + ne] = E[:, idx].T
+    if extras:
+        if ctx.addon is None:
+            raise ValueError("add-on columns requested but the add-on memmap is not loaded")
+        a = np.asarray(ctx.addon[:, idx]).T  # X1_K, X1_ThK, X1_UK, S_dem_c2, S_dem_s2
+        j = ns + ne
+        X[:, j : j + 3] = a[:, :3]
+        e = ns  # E column offsets: dist, cos2, sin2, dens5, dens20, dens50, coh20
+        compat = a[:, 3] * X[:, e + 1] + a[:, 4] * X[:, e + 2]
+        X[:, j + 3] = compat
+        X[:, j + 4] = compat * X[:, e + 6]
+        gh = ctx.nscale("A_grav_hg_ridge", X[:, ctx.col["A_grav_hg_ridge"]])
+        mh = ctx.nscale("A_mag_hg_ridge", X[:, ctx.col["A_mag_hg_ridge"]])
+        db = ctx.nscale("D_depth_base_grad", X[:, ctx.col["D_depth_base_grad"]])
+        X[:, j + 5] = gh * mh
+        X[:, j + 6] = gh * db
+    return X
+
+
 def load_context(work: Path) -> Context:
     foot = np.load(work / "bands" / "_footprint.npy")
     lab = np.load(work / "bands" / "_labels.npy")
     st = np.load(work / "static_ABCD.npy", mmap_mode="r")
     names = json.loads((work / "static_ABCD.npy.names.json").read_text())
-    return Context(foot, lab, st, names)
+    ad = work / "addons.npy"
+    addon = np.load(ad, mmap_mode="r") if ad.exists() else None
+    return Context(foot, lab, st, names, addon)

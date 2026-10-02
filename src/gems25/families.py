@@ -9,7 +9,7 @@ D  thermal / geochemical       radiometrics (tc, K, Th, U and ratios), conductiv
 E  catalogue geometry          distance / orientation / density of the VISIBLE known faults only
 
 Assignment decisions that are *mine* (flagged in ``registry/irregularities.json``):
-* ``tc`` is placed in D: its values match the official USGS GeoDAWN radiometric total count (Spearman 1.000)
+* ``tc`` is placed in D: its values match the official USGS GeoDAWN radiometric total count (Spearman 0.9999)
   although the raster's embedded description calls it a magnetic tilt/curvature derivative.
 * ``cond_surf`` / ``depth_to_base_surf`` (MT conductance model) are placed in D as fluid / clay-alteration
   proxies; the brief names no family for them.

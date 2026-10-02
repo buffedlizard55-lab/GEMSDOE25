@@ -1,0 +1,96 @@
+{
+ "inputs": {
+  "score_h19_5_owner_reported": 0.1922,
+  "score_d1_5_owner_reported": 0.2477,
+  "n_h19_5": 121131,
+  "n_d1_5": 60069,
+  "retention_d1_5": 0.8531275643256233
+ },
+ "solved": {
+  "credit_per_truth": 0.5087919503368923,
+  "fp_mass_per_truth": 8.72721092002971
+ },
+ "curve": [
+  {
+   "min_dist": 1.0,
+   "px": 121131,
+   "retention": 1.0,
+   "model_dti": 0.1922,
+   "model_dti_low": 0.1829416137816884,
+   "model_dti_high": 0.19220000000000004
+  },
+  {
+   "min_dist": 1.5,
+   "px": 60069,
+   "retention": 0.8531275643256233,
+   "model_dti": 0.24769999999999998,
+   "model_dti_low": 0.24769999999999998,
+   "model_dti_high": 0.2477
+  },
+  {
+   "min_dist": 2.0,
+   "px": 60069,
+   "retention": 0.8531275643256233,
+   "model_dti": 0.24769999999999998,
+   "model_dti_low": 0.24769999999999998,
+   "model_dti_high": 0.2477
+  },
+  {
+   "min_dist": 2.4,
+   "px": 44090,
+   "retention": 0.7588759346162787,
+   "model_dti": 0.2552727882328585,
+   "model_dti_low": 0.25002945809247196,
+   "model_dti_high": 0.2613299747091814
+  },
+  {
+   "min_dist": 3.0,
+   "px": 41333,
+   "retention": 0.7341053465134845,
+   "model_dti": 0.25403603833125293,
+   "model_dti_low": 0.24776856192179106,
+   "model_dti_high": 0.26134276191443345
+  },
+  {
+   "min_dist": 3.5,
+   "px": 34817,
+   "retention": 0.6602453793221117,
+   "model_dti": 0.2454027501314833,
+   "model_dti_low": 0.23673387151508196,
+   "model_dti_high": 0.2557539467882025
+  },
+  {
+   "min_dist": 4.0,
+   "px": 31930,
+   "retention": 0.6207231867477934,
+   "model_dti": 0.23866727028344692,
+   "model_dti_low": 0.2290006863383621,
+   "model_dti_high": 0.25034732540951976
+  },
+  {
+   "min_dist": 5.0,
+   "px": 26192,
+   "retention": 0.5294835901773332,
+   "model_dti": 0.21879174603841198,
+   "model_dti_low": 0.20746114792570883,
+   "model_dti_high": 0.23284747195872496
+  }
+ ],
+ "best_by_model": {
+  "min_dist": 2.4,
+  "px": 44090,
+  "retention": 0.7588759346162787,
+  "model_dti": 0.2552727882328585,
+  "model_dti_low": 0.25002945809247196,
+  "model_dti_high": 0.2613299747091814
+ },
+ "d2_8": {
+  "min_dist": 2.4,
+  "px": 44090,
+  "retention": 0.7588759346162787,
+  "model_dti": 0.2552727882328585,
+  "model_dti_low": 0.25002945809247196,
+  "model_dti_high": 0.2613299747091814
+ },
+ "caveat": "First-order model with two fitted parameters and the two live scores as its only anchors; the shape of the curve in d is an extrapolation. The retention is geometric (truth assumed uniform near H19-5's detections). The band varies retention by +/-5 %. Not a leaderboard result."
+}

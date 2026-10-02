@@ -267,3 +267,55 @@ def build_catalogue_features(visible: np.ndarray, footprint_idx: np.ndarray) -> 
     for i, g in enumerate(feats):
         out[i] = np.asarray(g, np.float32).ravel()[footprint_idx]
     return out
+
+
+# ----------------------------------------------------------------------------------------------
+# add-on static columns for the pre-registered hypothesis tests (H26-1, H26-2)
+# ----------------------------------------------------------------------------------------------
+ADDON_NAMES = ["X1_K", "X1_ThK", "X1_UK", "S_dem_c2", "S_dem_s2"]
+
+
+def build_addons(band_dir: Path, footprint: np.ndarray, external_dir: Path, out_path: Path, sep_px: float = 3.0) -> list[str]:
+    """H26-1: |v(x+3n) - v(x-3n)| of K, Th/K, U/K across the 100 m DEM gradient normal ``n``.
+
+    H26-2 ingredient: doubled-angle components of the DEM *line* direction (perpendicular to the gradient), same
+    convention as the visible-catalogue orientation in :func:`build_catalogue_features` (x = column, y = row).
+    """
+    from scipy.ndimage import map_coordinates
+
+    foot = np.asarray(footprint, bool)
+    fi = np.flatnonzero(foot.ravel())
+    z = nearest_fill(np.load(band_dir / "12_det_elev.npy"))
+    zs = gaussian_filter(z, 1.5)
+    gy, gx = np.gradient(zs)
+    jxx, jyy, jxy = gaussian_filter(gx * gx, 2.0), gaussian_filter(gy * gy, 2.0), gaussian_filter(gx * gy, 2.0)
+    phi2 = np.arctan2(2 * jxy, jxx - jyy)  # doubled gradient angle
+    phi = 0.5 * phi2
+    nx, ny = np.cos(phi).astype(np.float32), np.sin(phi).astype(np.float32)
+    c2, s2 = (-np.cos(phi2)).astype(np.float32), (-np.sin(phi2)).astype(np.float32)
+    del gx, gy, jxx, jyy, jxy, zs, z
+    with rasterio.open(external_dir / "geodawn_rad_u8.tif") as s:
+        k = s.read(1)
+    with rasterio.open(external_dir / "geodawn_extensions_u8.tif") as s:
+        thk, uk = s.read(1), s.read(2)
+    fields = {"X1_K": k, "X1_ThK": thk, "X1_UK": uk}
+    H, W = foot.shape
+    mm = np.lib.format.open_memmap(out_path, mode="w+", dtype=np.float32, shape=(len(ADDON_NAMES), fi.size))
+    for j, nm in enumerate(ADDON_NAMES):
+        if nm in fields:
+            f = nearest_fill(np.where(fields[nm] > 0, fields[nm].astype(np.float32), np.nan))
+            res = np.empty((H, W), np.float32)
+            for r0 in range(0, H, 400):
+                r1 = min(H, r0 + 400)
+                rows, cols = np.mgrid[r0:r1, 0:W].astype(np.float32)
+                plus = map_coordinates(f, [rows + sep_px * ny[r0:r1], cols + sep_px * nx[r0:r1]], order=1, mode="nearest")
+                minus = map_coordinates(f, [rows - sep_px * ny[r0:r1], cols - sep_px * nx[r0:r1]], order=1, mode="nearest")
+                res[r0:r1] = np.abs(plus - minus)
+            mm[j] = uniform_filter(res, 3).ravel()[fi]
+        elif nm == "S_dem_c2":
+            mm[j] = c2.ravel()[fi]
+        elif nm == "S_dem_s2":
+            mm[j] = s2.ravel()[fi]
+    mm.flush()
+    Path(str(out_path) + ".names.json").write_text(json.dumps(ADDON_NAMES))
+    return ADDON_NAMES

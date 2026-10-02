@@ -22,3 +22,16 @@ A pass means "worth a slot-level discussion", never "will score higher". Failed 
 
 ## Not claimed
 No add-on is promoted on a single draw; no arm is re-tuned after seeing outcomes; if an arm fails it stays failed in the record.
+
+## Primary-download rule (added before any candidate was built)
+The site's first-screen file is chosen by **evidence rank**, not by novelty:
+1. *Live-calibrated* evidence outranks proxy-only evidence. An emission-only variant of the already-scored H19-5 has two live scores behind its
+   model (`evidence/emission_model.json`, calibrated on 0.1922 and 0.2477, cross-checked by the blind-lattice density), so a variant whose model
+   band lies entirely above 0.2477 is eligible to be PRIMARY.
+2. A *new surface* (trained here) has no live calibration; it can pass the hide-and-recover gate but cannot be shown to beat 0.2477 live.
+   It is shipped as the clearly labelled **exploratory candidate** (own slot, owner decision), never as the primary by default.
+3. If no emission-only variant qualifies, the exploratory candidate becomes PRIMARY only if it passes the gate against BASE *and* its harness
+   DTI exceeds the same-harness diagnostics of the dotted H19-5 (which are leak-inflated, so this is a high bar).
+4. A byte-identical copy of a file that already scored is never primary (re-upload gives no information).
+Every shipped file keeps a content-addressed name (`gems25.submission.content_id`, verified to reproduce the group's IDs 989f59505db1 and e56ea318af89)
+and its provenance (parent file, transform) in `registry/submissions.json`.

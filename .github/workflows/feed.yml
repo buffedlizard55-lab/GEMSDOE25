@@ -1,0 +1,29 @@
+name: source-feed
+# Refreshes docs/data/feed.json. NEVER requests drivendata.org (Terms of Use) - see scripts/check_sources.py and tests.
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["scripts/check_sources.py", "registry/sources.json", "registry/live_scores.json"]
+permissions:
+  contents: write
+jobs:
+  feed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests
+      - run: python scripts/check_sources.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: commit refreshed feed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/feed.json
+          git diff --cached --quiet || (git commit -m "chore(feed): refresh source feed [skip ci]" && git push)

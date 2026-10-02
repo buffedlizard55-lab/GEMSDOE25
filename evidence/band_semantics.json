@@ -1,0 +1,36 @@
+{
+ "spearman_tc_vs_GeoDAWN_K": 0.8855586002531759,
+ "spearman_tc_vs_GeoDAWN_Th": 0.9128701151154516,
+ "spearman_tc_vs_GeoDAWN_U": 0.7168073379713907,
+ "spearman_tc_vs_GeoDAWN_TC": 0.9998663353426731,
+ "tc_stats_inside_footprint": {
+  "min": 2.9534237384796143,
+  "p01": 7.722299575805664,
+  "median": 18.481700897216797,
+  "p99": 29.100452423095703,
+  "max": 88.56654357910156
+ },
+ "nodata_inside_footprint_px": 3061,
+ "finite_outside_footprint_px": 1540,
+ "band_order": [
+  "mag_anom",
+  "rtp",
+  "tmi_hg",
+  "geod_2ndinv",
+  "iso_grav_anom_slope",
+  "tc",
+  "geod_shearrate",
+  "geod_dilaterate",
+  "tmi_vg",
+  "deq_n100a15",
+  "iso_grav_anom_vg",
+  "det_elev",
+  "iso_grav_anom",
+  "tmi",
+  "depth_to_base_surf",
+  "ieq_n100a15",
+  "cond_surf",
+  "iso_grav_anom_hg",
+  "det_elev_slope"
+ ]
+}

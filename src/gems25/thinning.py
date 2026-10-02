@@ -134,3 +134,38 @@ def neighbour_profile(mask: np.ndarray) -> dict:
         components=int(n),
         mean_component_pixels=float(npx / n) if n else 0.0,
     )
+
+
+def score_ordered_dots(score: np.ndarray, candidates: np.ndarray, min_dist: float, max_keep: int | None = None) -> np.ndarray:
+    """Score-aware Poisson-disk dotting (H26-0): visit candidates by descending score and keep a pixel only if
+    no already-kept pixel lies within ``min_dist`` (Euclidean, px). Deterministic (ties broken by raster index).
+
+    Unlike :func:`dot_thin` (score-blind, anchored at each component's first raster pixel) the highest-scoring
+    pixel of every neighbourhood survives. ``max_keep`` truncates to the best ``max_keep`` kept pixels.
+    """
+    candidates = np.asarray(candidates, bool)
+    score = np.asarray(score)
+    if min_dist <= 1.0:
+        out = candidates.copy()
+    else:
+        H, W = candidates.shape
+        ids = np.flatnonzero(candidates.ravel())
+        order = np.lexsort((ids, -np.nan_to_num(score.ravel()[ids], nan=0.0)))
+        ids = ids[order]
+        r = int(np.ceil(min_dist))
+        yy, xx = np.mgrid[-r : r + 1, -r : r + 1]
+        disc = (yy * yy + xx * xx) < min_dist * min_dist
+        blocked = np.zeros((H + 2 * r, W + 2 * r), bool)
+        out = np.zeros((H, W), bool)
+        for i in ids.tolist():
+            y, x = divmod(i, W)
+            if blocked[y + r, x + r]:
+                continue
+            out[y, x] = True
+            blocked[y : y + 2 * r + 1, x : x + 2 * r + 1] |= disc
+    if max_keep is not None and out.sum() > max_keep:
+        ids = np.flatnonzero(out.ravel())
+        keep = ids[np.lexsort((ids, -np.nan_to_num(score.ravel()[ids], nan=0.0)))[:max_keep]]
+        out = np.zeros_like(out)
+        out.ravel()[keep] = True
+    return out

@@ -1,0 +1,38 @@
+{
+ "nan": {
+  "file": "docs/downloads/gems25-factorial-best-v1-nan.tif @ 9b01f27",
+  "sha256": "fbef100fbadc57ec1c663d523101114ba312d81518ffd8fd21229d91dacf3835",
+  "ok_to_upload": false,
+  "hard_failures": [
+   "footprint_all_finite",
+   "outside_footprint_is_nan_or_zero",
+   "nan_mask_identical_to_template"
+  ],
+  "nan_inside_official_footprint": 2344929,
+  "footprint_pixels": 5167373,
+  "finite_outside_official_footprint": 2832257,
+  "positives_total": 1249834,
+  "positives_inside_footprint": 624029,
+  "positives_outside_footprint": 625805,
+  "share_footprint_positive": 0.12076329694024411,
+  "strict_whole_array_range_check": false,
+  "interpretation": "NaN fails any 0<=x<=1 test; the portal message 'Predicted values must be in range [0, 1]' is explained by NaN inside the official footprint (nan variant). The allfinite variant passes the range test but emits ~12% of the footprint (~12x the dotted file's pixel count) and half of its positives lie outside the footprint."
+ },
+ "allfinite": {
+  "file": "docs/downloads/gems25-factorial-best-v1-allfinite.tif @ 9b01f27",
+  "sha256": "1f729e73c8ff1d23b1bafe0bc6474198294863a40efd025a25152d4b22cf2325",
+  "ok_to_upload": false,
+  "hard_failures": [
+   "outside_footprint_is_nan_or_zero"
+  ],
+  "nan_inside_official_footprint": 0,
+  "footprint_pixels": 5167373,
+  "finite_outside_official_footprint": 7111787,
+  "positives_total": 1249834,
+  "positives_inside_footprint": 624029,
+  "positives_outside_footprint": 625805,
+  "share_footprint_positive": 0.12076329694024411,
+  "strict_whole_array_range_check": true,
+  "interpretation": "NaN fails any 0<=x<=1 test; the portal message 'Predicted values must be in range [0, 1]' is explained by NaN inside the official footprint (nan variant). The allfinite variant passes the range test but emits ~12% of the footprint (~12x the dotted file's pixel count) and half of its positives lie outside the footprint."
+ }
+}
