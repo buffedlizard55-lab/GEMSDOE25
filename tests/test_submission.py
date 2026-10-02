@@ -40,7 +40,7 @@ def test_writer_refuses_nan_inside_footprint_the_original_bug(template, tmp_path
     t, foot = template
     pred = np.zeros(foot.shape, np.float32)
     pred[~foot] = np.nan
-    pred[20, 20] = np.nan  # NaN inside the official footprint -> would trigger the portal error
+    pred[20, 20] = np.nan  # NaN inside the template footprint is rejected by the local checker
     with pytest.raises(ValueError, match="NaN/Inf"):
         write_submission(pred, t, tmp_path / "bad.tif")
 
@@ -55,7 +55,7 @@ def test_writer_refuses_out_of_range(template, tmp_path):
 
 def test_checker_flags_the_exact_failure_mode_of_the_first_gems25_file(template, tmp_path):
     t, foot = template
-    # reproduce the bad file: a shifted/invented footprint -> NaN inside the official footprint
+    # Reproduce the bad file locally: an invented footprint leaves NaN inside the owner-mirror template footprint.
     fake = np.zeros(foot.shape, np.float32)
     fake[:, :20] = np.nan
     bad = tmp_path / "invented-footprint.tif"

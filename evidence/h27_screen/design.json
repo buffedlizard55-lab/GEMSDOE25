@@ -1,0 +1,83 @@
+{
+ "hypothesis": "H27-1",
+ "stage": "screen",
+ "preregistration": "knowledge/09_preregistered_hypotheses_2026-10-02.md",
+ "draws": [
+  4,
+  5
+ ],
+ "spatial_folds": [
+  "NW",
+  "NE",
+  "SW",
+  "SE"
+ ],
+ "design_seed": 20261003,
+ "canonical_matrix": [
+  {
+   "arm": "BASE",
+   "T": -1,
+   "S": -1
+  },
+  {
+   "arm": "T",
+   "T": 1,
+   "S": -1
+  },
+  {
+   "arm": "S",
+   "T": -1,
+   "S": 1
+  },
+  {
+   "arm": "TS",
+   "T": 1,
+   "S": 1
+  }
+ ],
+ "row_order_zero_based": [
+  3,
+  1,
+  0,
+  2
+ ],
+ "randomized_matrix": [
+  {
+   "arm": "TS",
+   "T": 1,
+   "S": 1
+  },
+  {
+   "arm": "T",
+   "T": 1,
+   "S": -1
+  },
+  {
+   "arm": "BASE",
+   "T": -1,
+   "S": -1
+  },
+  {
+   "arm": "S",
+   "T": -1,
+   "S": 1
+  }
+ ],
+ "historical_holdout_best": 0.15200338908786984,
+ "fixed_model_families": "BDE",
+ "fixed_addons": [
+  "X1_K",
+  "X1_ThK",
+  "X1_UK",
+  "X2_compat",
+  "X2_compat_coh",
+  "X3_gm",
+  "X3_gd"
+ ],
+ "emission": {
+  "method": "score_ordered_dots",
+  "kfrac": 0.035,
+  "min_dist_px": 2.4
+ },
+ "notes": "Rows are fit in the saved randomized order within every fold/draw; same HGB seed and common hide draw across rows."
+}

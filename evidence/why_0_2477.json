@@ -1,8 +1,9 @@
 {
+ "score_claims_warning": "All competition DTI values below are user/owner-reported and unverified; file analysis verifies local pixels only.",
  "rasters": {
   "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif": {
    "score": 0.1922,
-   "score_source": "OWNER; leaderboard row smrtdoog5 0.1922 (#28)",
+   "score_source": "user/owner-reported; unverified (not an organizer receipt); claim 0.1922",
    "positive_px": 121131,
    "share_of_footprint": 0.023441504996833014,
    "on_catalogue_px": 0,
@@ -30,7 +31,7 @@
   },
   "gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif": {
    "score": 0.1894,
-   "score_source": "OWNER; leaderboard row SDCF9 0.1894 (#30)",
+   "score_source": "user/owner-reported; unverified (not an organizer receipt); claim 0.1894",
    "positive_px": 123779,
    "share_of_footprint": 0.023953951069527978,
    "on_catalogue_px": 0,
@@ -58,7 +59,7 @@
   },
   "gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif": {
    "score": 0.1855,
-   "score_source": "OWNER; leaderboard row extradr19 0.1855 (#33)",
+   "score_source": "user/owner-reported; unverified (not an organizer receipt); claim 0.1855",
    "positive_px": 123939,
    "share_of_footprint": 0.023984914578452147,
    "on_catalogue_px": 0,
@@ -86,7 +87,7 @@
   },
   "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif": {
    "score": 0.2477,
-   "score_source": "OWNER; leaderboard row wbg1 0.2477 (#16)",
+   "score_source": "user/owner-reported; unverified (not an organizer receipt); claim 0.2477",
    "positive_px": 60069,
    "share_of_footprint": 0.0116246688597862,
    "on_catalogue_px": 0,
@@ -114,7 +115,7 @@
   },
   "gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif": {
    "score": null,
-   "score_source": "unscored",
+   "score_source": "unscored claim",
    "positive_px": 44090,
    "share_of_footprint": 0.00853238192791579,
    "on_catalogue_px": 0,
@@ -142,7 +143,7 @@
   },
   "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif": {
    "score": 0.0904,
-   "score_source": "OWNER (blind lattice probe)",
+   "score_source": "user/owner-reported; unverified (not an organizer receipt); blind lattice claim 0.0904",
    "positive_px": 206895,
    "share_of_footprint": 0.04003871986790967,
    "on_catalogue_px": 2391,
@@ -170,7 +171,7 @@
   },
   "8GEMSDOE_Hedge-v2_submission.tif": {
    "score": 0.1563,
-   "score_source": "OWNER; leaderboard row smashi34 0.1563 (#41)",
+   "score_source": "user/owner-reported; unverified (not an organizer receipt); claim 0.1563",
    "positive_px": 227507,
    "share_of_footprint": 0.04402759390506549,
    "on_catalogue_px": 60988,
@@ -198,7 +199,7 @@
   },
   "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif": {
    "score": 0.128,
-   "score_source": "OWNER",
+   "score_source": "user/owner-reported; unverified (not an organizer receipt); claim 0.1280",
    "positive_px": 174232,
    "share_of_footprint": 0.03371771304297174,
    "on_catalogue_px": 12866,
@@ -226,7 +227,7 @@
   },
   "gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif": {
    "score": 0.1839,
-   "score_source": "OWNER",
+   "score_source": "user/owner-reported; unverified (not an organizer receipt); claim 0.1839",
    "positive_px": 69281,
    "share_of_footprint": 0.01340739288609512,
    "on_catalogue_px": 4045,
@@ -254,7 +255,7 @@
   },
   "gemsdoe-ens12-adopted-7f00890a.tif": {
    "score": 0.1563,
-   "score_source": "OWNER",
+   "score_source": "user/owner-reported; unverified (not an organizer receipt); claim 0.1563",
    "positive_px": 172974,
    "share_of_footprint": 0.03347426245405547,
    "on_catalogue_px": 6455,
@@ -282,7 +283,7 @@
   },
   "gemsdoe9-PLACEHOLDER-2314b599.tif": {
    "score": 0.0107,
-   "score_source": "OWNER",
+   "score_source": "user/owner-reported; unverified (not an organizer receipt); claim 0.0107",
    "positive_px": 147684,
    "share_of_footprint": 0.028580092824729317,
    "on_catalogue_px": 2074,
@@ -329,7 +330,12 @@
   "truth_px_in_footprint": 12503.077035165228,
   "as_pct_of_catalogue": 0.20500880558741438
  },
- "implied_by_live_scores": {
+ "conditional_on_reported_scores": {
+  "status": "model inversion conditional on unverified user/owner-reported DTI claims",
+  "score_claims": [
+   0.1922,
+   0.2477
+  ],
   "retention_used": 0.8531275643256233,
   "credit_per_truth": 0.5087919503368923,
   "fp_mass_per_truth": 8.72721092002971,

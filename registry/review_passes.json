@@ -9,7 +9,7 @@
    "Data placement solved: scripts/restore_data.py restores 419 MB raster + labels + template + external layers from the owner's public repos with SHA-256 pins (end-to-end run from an empty directory: 20 s).",
    "Pre-registered (04, 05) then executed 2^(5-1) Resolution V factorial (16 runs x 8 cells, 31 min) and add-on / emission tests; confirmation replicate with fresh draws.",
    "Forensics of the scored rasters: 0.2477 file == dot_thin(H19-5, 1.5) pixel-for-pixel; lattice and live pair give |G| 12.5k / 12.8k; out-of-sample check on the H25/H28 pair.",
-   "Strict writer/checker reproduces the portal-accepted 0.2477 file's pixels and raster profile; primary file is byte-identical (SHA-256) to the group's unscored alternate.",
+   "Local writer/checker reproduces the owner-mirrored 0.2477-labelled raster's pixels and profile; the D2.8 file is byte-identical to an owner-mirrored unscored alternate. Neither file's organizer acceptance or score was verified.",
    "Site (root index.html + 3 sub-pages), README with the verbatim brief, AGENTS.md, AI_DISCLOSURE.md, registries, ToS-compliant feed script + workflows."
   ]
  },
@@ -72,5 +72,63 @@
    "a scheduled (cron) feed run",
    "any DrivenData upload (the owner uploads)"
   ]
+ },
+ "current_turn_review": {
+  "date_utc": "2026-10-02",
+  "pass_1_implementation_and_verification": {
+   "done": [
+    "Reviewed current feature families and ranked four fresh, repository-distinct geology hypotheses in knowledge/09 before implementing H27-1; documented official pages and direct-binary limitations.",
+    "Implemented visible-catalogue directed endpoint continuation, cross-scale DEM/LiDAR scarp support, an explicit T\u00d7S feature, a randomized 2\u00b2 runner, and contrast/gate analysis.",
+    "Ran the frozen H27 screen on draws 4,5 across four spatial folds (32 complete cells). Results: T +0.008120, S -0.000196, T\u00d7S -0.001622; combined TS DTI 0.151064 vs historical holdout best 0.152003389.",
+    "Paired TS-vs-base criteria passed (+0.007924; 4/4 folds; worst +0.002447; hug-share +0.0123), but the required absolute comparator failed. Per preregistration, no confirmation was run, no H27 TIFF was packaged, and no slot was used.",
+    "Updated generated README/site, score/source/evidence records and the executive guide to distinguish format validation from holdout/slot eligibility.",
+    "Re-audited score provenance: local pixel identity for the 0.2477-labelled raster is reproducible, but 0.2477 and 0.3195 remain user/owner-provided, unverified claims; updated the analysis generator, conditional model, evidence JSON, registries and site wording so no owner mirror is presented as organizer evidence.",
+    "Regenerated the submission package, site and README. The primary D2.8 GeoTIFF passes all hard local format checks against the owner-mirror template; its note now explicitly says it is not holdout-promoted and no slot is approved.",
+    "Refreshed the source feed after redirect-policy hardening: 49 items, 24 reachable; DrivenData remains excluded from automatic requests."
+   ]
+  },
+  "pass_2_bug_edge_case_review": {
+   "found_and_fixed": [
+    "Source-feed redirect review found requests could auto-follow redirects in the HEAD-to-GET fallback, ScienceBase JSON and GitHub API paths. Added a shared manual redirect policy and regression tests proving a DrivenData redirect target is not requested.",
+    "README called already-run H26 hypotheses \u201cnot yet tried\u201d; changed to historical outcomes and added the current H27 register/results.",
+    "Site previously suggested spending weekly slots on unvalidated D2.8/exploratory files and treated a shared-mask diagnostic as a holdout gate. Removed the slot suggestion; both available surfaces are explicitly not slot-approved until a specific candidate beats 0.152003389 under the frozen holdout rule.",
+    "Existing score ledger implied that user-provided 0.2477 and 0.3195 were independently verified. Marked them unverified, corrected the leaderboard source record, and separated local pixel-identity verification from competition-score verification.",
+    "Added tests for directed endpoint behavior, edge-clipped traces, empty catalogues, 2\u00b2 contrasts, strict promotion gating, and redirect chains.",
+    "Found stale 'portal accepted/live score' wording and organizer-template attribution in historical evidence/tests; corrected it to distinguish local file identity and owner-mirror checks from unverified organizer score/file identity.",
+    "Found an unregistered, still-tracked BDE+X1\u2013X3 GeoTIFF whose proxy score only equalled the current 0.152003389 comparator; removed the stale downloadable artifact and added an integrity test requiring every shipped TIF to be registered and every current item to remain not slot-approved.",
+    "Closed the optional exploratory-package bypass: packaging now fails closed unless a receipt records a passed fresh confirmation above the current holdout best and binds the gate to the exact TIFF SHA-256; added tests for missing, failed, tied, mismatched, non-finite and malformed receipts.",
+    "Made the generated submission note itself state 'not holdout-promoted vs 0.152003389 | no slot' within the 120-character limit.",
+    "Final edge review found the directed-tip feature could mutate its caller's boolean catalogue and accept fractional chunk sizes/indices through coercion; copied inputs, required integer indices/positive integer chunks, and added regressions."
+   ],
+   "open_limitations": [
+    "GDR probe/paleo and USGS heat-flow binaries remain unavailable from this sandbox; source-page listings are not data validation.",
+    "The H27 T-only screen arm exceeded the historical comparator, but it was not the preregistered combined promotion arm and has no independent confirmation; no post-hoc promotion is allowed.",
+    "The competition DTI claims and owner-mirror data authenticity remain unverified.",
+    "The owner-mirrored competition template/data are not organizer-authenticated; local GeoTIFF checks establish internal format consistency only.",
+    "No organizer score receipt/page was accessed; the 0.2477 and 0.3195 claims and all other owner-reported DTI anchors remain unverified."
+   ]
+  },
+  "pass_3_final_request_review": {
+   "mapping": {
+    "fractional factorial and paired interactions": "Frozen 2^(5-1) family design and prior results remain; new H27 screen estimates T, S and T\u00d7S contrasts on spatial folds.",
+    "0.2477 and 0.3195 claims": "Local pixel identity is reproducible; scores remain unverified because no organizer page/receipt was accessed.",
+    "valid download, site and upload guide": "The D2.8 file remains format-checked (receipt retained), downloadable prominently with a unique note; site warns it is not slot-approved.",
+    "ranked novel hypotheses and free official data": "Four hypotheses are ranked with layers, physical signature, missing-fault rationale, differences, planning \u0394DTI/cost; official source pages and failed direct-binary retrieval are recorded.",
+    "holdout promotion rule": "Current 0.152003389 proxy comparator and absolute-plus-paired gate are explicit; H27 combined candidate fails absolute gate, confirmation/TIFF/slot are withheld.",
+    "research base, README charter, feed": "knowledge/09 and review pass log updated; README generator/source links updated; feed redirect paths hardened and tests added.",
+    "remaining limitations": "No verified live score, no external binary/schema/license validation for H27-2/3/4, no H27 TIFF, no new weekly submission.",
+    "0.2477 result and 0.3195 leaderboard claim": "Local mask identity for the 0.2477-labelled mirror is verified; competition result, participant/rank, and 0.3195 claim remain unverified. `evidence/score_claim_audit.json` records the provenance and limits.",
+    "submission GeoTIFF, prominent download, unique comment and executive guide": "D2.8 remains downloadable with SHA-256/format receipt, a unique <=120-character note and guide; all claims are explicitly conditional and the file is not slot-approved.",
+    "weekly slot discipline": "Current candidate must beat 0.152003389 and pass exact-file audit; H27-1 TS fails absolute gate, no confirmation/TIFF/slot. Exploratory packaging now fails closed absent confirmed holdout receipt bound to exact file SHA.",
+    "three cumulative passes and final verification": "Review receipt records source/provenance corrections, package edge-case hardening, full request mapping, feed/site/README regeneration, 65 passing tests, Ruff and JSON/diff integrity checks."
+   }
+  },
+  "verification": {
+   "pytest": "65 passed (2026-10-02)",
+   "ruff": "ruff check src scripts tests passed",
+   "repository_integrity": "git diff --check and JSON parse checks passed; all packaged TIFs match registry hashes; site links are covered by pytest",
+   "source_feed": "49 items, 24 reachable; regenerated 2026-10-02; no DrivenData requests",
+   "README_and_site": "regenerated after the final policy and source-provenance wording edits"
+  }
  }
 }

@@ -1,4 +1,4 @@
-"""Byte-level reproduction of the 0.2477 file from its H19-5 parent (needs the restored scored rasters)."""
+"""Local pixel-identity checks for owner-mirrored rasters carrying user/owner-reported score labels."""
 
 from pathlib import Path
 
@@ -23,7 +23,7 @@ def mask(p: Path) -> np.ndarray:
         return np.nan_to_num(s.read(1), nan=0.0) > 0
 
 
-def test_scored_file_is_exactly_dot_thin_of_h19_5():
+def test_reported_0_2477_mask_is_exactly_dot_thin_of_h19_5():
     h, d = mask(H195), mask(D15)
     assert h.sum() == 121_131 and d.sum() == 60_069
     assert (d & ~h).sum() == 0
@@ -36,8 +36,8 @@ def test_alternate_is_dot_thin_2_4_and_integer_lattice_makes_2_4_equal_2_8():
     assert np.array_equal(dot_thin(h, 2.4), a) and np.array_equal(dot_thin(h, 2.8), a)
 
 
-def test_writer_reproduces_the_portal_accepted_file_profile_and_pixels(tmp_path):
-    """The raster written by gems25 equals the accepted/scored 0.2477 file in every pixel and every profile field."""
+def test_writer_reproduces_the_owner_mirror_profile_and_pixels(tmp_path):
+    """The writer reproduces the local 0.2477-labelled raster's pixels/profile; no portal status is inferred."""
     from gems25.submission import check_file, write_submission
 
     tmpl = data_dir() / "sample_submission.tif"

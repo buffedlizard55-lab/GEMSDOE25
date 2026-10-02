@@ -1,0 +1,23 @@
+{
+ "generated_utc": "2026-10-02",
+ "policy": "The competition page/leaderboard was not accessed in this session; no automated monitoring was performed. Reported values remain claims unless a user supplies an organizer receipt.",
+ "claims": [
+  {
+   "id": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+   "reported_dti": 0.2477,
+   "claim_source": "user-provided task context; owner-maintained sibling page describes the raster as unscored and reports its H19-5 parent at 0.1922",
+   "organizer_verification": "not verified; no official receipt or leaderboard page was accessed",
+   "local_validation": "The restored raster mask is exactly dot_thin(H19-5, 1.5); tests/test_group_reproduction.py checks pixel identity. This does not validate a competition score or submission identity.",
+   "status": "unverified score claim"
+  },
+  {
+   "id": "reported-leaderboard-#1",
+   "reported_dti": 0.3195,
+   "claim_source": "user-provided task context / owner-maintained leaderboard snapshot",
+   "organizer_verification": "not verified; no official receipt or leaderboard page was accessed",
+   "local_validation": "None; the score, participant, rank and submission count remain unverified.",
+   "status": "unverified score claim"
+  }
+ ],
+ "safe_next_step": "If the owner independently has an organizer receipt, add its non-sensitive result metadata manually. Do not automate or monitor DrivenData."
+}

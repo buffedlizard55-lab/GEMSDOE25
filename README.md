@@ -4,23 +4,22 @@
 
 **Competition:** [DOE GEMS Prize, DrivenData #306](https://www.drivendata.org/competitions/306/competition-doe-gems/) · **Live site:** <https://buffedlizard55-lab.github.io/GEMSDOE25/> · **Weekly limit:** 3 submissions · **Ends:** 3 Dec 2026 (page: 11:59 p.m. UTC; rules: 5:00 p.m. ET — see IR-25-DEADLINE)
 
-## ⬇ Download the submission file
+## ⬇ Download the format-validated GeoTIFF (not slot-approved)
 
-**[↓ `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif`](docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif)** — The 0.1922 detector (H19-5) thinned by deterministic Poisson-disk dotting to 44,090 pixels — 73 % of the pixels of the 0.2477 file, 36 % of H19-5. Calibrated emission model: 0.255 (band 0.250–0.261); a model, not a score. Honest provenance: byte-identical to the group's unscored GEMSDOE24 alternate, re-hosted here because it is the best evidence-supported next upload — not new detection work.
+**[↓ `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif`](docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif)** — The owner-mirrored H19-5 raster thinned by deterministic Poisson-disk dotting to 44,090 pixels — 73 % of the pixels of the 0.2477-labelled mirror, 36 % of H19-5. Conditional emission-model estimate: 0.255 (band 0.250–0.261), using unverified user/owner-reported score claims. This file is byte-identical to an owner-mirrored unscored alternate. It has not demonstrated a win over the current 0.152003389 spatially blocked holdout best and is not slot-approved.
 
-* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, NaN outside (verified against the organizers' template; independent check receipt: `docs/downloads/checks-gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.json`).
-* Unique content id `e56ea318af89` · SHA-256 `91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8` · 44,090 emitted pixels · status: **unscored candidate**.
-* **Note to paste** in DrivenData's *Note (optional)* field: `GEMSDOE25 D2.8 | H19-5 Poisson-disk dots, 44,090 px; model 0.255 | id e56ea318af89 | not yet live-scored`
-* Also: [`gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif`](docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif) — Fallback: same predictions, zeros outside the footprint (fallback (same predictions); 44,090 px).
-* Also: [`gems25-factorial-bde-x123-sapd2-4-20261002-5e4b5a98d2c7-nan.tif`](docs/downloads/gems25-factorial-bde-x123-sapd2-4-20261002-5e4b5a98d2c7-nan.tif) — Exploratory: new factorial-evidence surface (separate slot, owner decision) (unscored exploratory candidate; 48,664 px).
+* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, NaN outside (verified against the pinned owner-mirror template, not organizer-authenticated; independent check receipt: `docs/downloads/checks-gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.json`).
+* Unique content id `e56ea318af89` · SHA-256 `91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8` · 44,090 emitted pixels · status: **format-validated; unscored; not slot-approved**.
+* **Note to paste** in DrivenData's *Note (optional)* field: `GEMSDOE25 D2.8 | format-validated; unscored; not holdout-promoted vs 0.152003389 | id e56ea318af89 | no slot`
+* Format fallback (format troubleshooting only; not slot-approved): [`gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif`](docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif) — Format fallback: same predictions, zeros outside the footprint (format fallback; unscored; not slot-approved; 44,090 px).
 * Step-by-step upload guide: [`docs/executive-summary.html`](https://buffedlizard55-lab.github.io/GEMSDOE25/docs/executive-summary.html).
 
 ## Where things stand
 
-* Leaderboard snapshot (2026-10-02, human-read): **#1 DARD 0.3195**; rank #5 0.2941. Group best (owner-reported) **0.2477** = rank #16 (`wbg1`, by equal value). Gap: +0.046 to rank #5, +0.072 (+29 %) to #1.
-* **Root cause of the portal error** (`Predicted values must be in range [0, 1]`): the previous GEMSDOE25 file used an invented footprint — 2,344,929 of the 5,167,373 official footprint pixels were NaN (NaN fails every range test) and it emitted 1,249,834 positive pixels. Fixed and tested (`evidence/old_gems25_tif_forensics.json`, `src/gems25/submission.py`). The cause is inferred from the data; the portal validator is not public.
-* **Why 0.2477:** the file is *exactly* `dot_thin(H19-5, 1.5)` — a pixel-identical deterministic subset (49.6 % of H19-5's pixels, none on a catalogue pixel). Same detections, half the false-positive mass; geometric credit retention ≈ 0.85. Two live-score readings agree on |G| ≈ 12.5–12.8 k px.
-* **Can we beat 0.2477?** The calibrated emission model gives **0.2553** (band 0.2500–0.2613) for the denser-thinned `dot_thin(H19-5, 2.4)` (44,090 px) — a model, not a score. Beating **0.3195** needs new information or a much better detector; nothing in this repository demonstrates that.
+* **Unverified leaderboard claims** (reported 2026-10-02; no organizer page or receipt was accessed): #1 DARD 0.3195; reported rank #5 0.2941. The group-best claim is **0.2477**; the previously reported rank #16/account association is not authenticated. These are not independently verified scores; apparent gaps to ranks #5/#1 are arithmetic on supplied claims only.
+* **Root cause of the reported portal error** (`Predicted values must be in range [0, 1]`): the previous GEMSDOE25 file used an invented footprint — 2,344,929 of the 5,167,373 owner-mirror template-footprint pixels were NaN (NaN fails every range test) and it emitted 1,249,834 positive pixels. Fixed and tested (`evidence/old_gems25_tif_forensics.json`, `src/gems25/submission.py`). The cause is inferred from the data; the portal validator is not public.
+* **Local audit of the reported 0.2477 raster (score unverified):** it is *exactly* `dot_thin(H19-5, 1.5)` — a pixel-identical deterministic subset (49.6 % of H19-5's pixels, none on a catalogue pixel). This verifies the raster transformation, not the claimed competition DTI. No organizer receipt/page was accessed; the claimed 0.2477 and 0.3195 remain unverified.
+* **Model-only calibration:** if the supplied 0.2477 score claim is correct, the emission model predicts **0.2553** (band 0.2500–0.2613) for `dot_thin(H19-5, 2.4)` (44,090 px). This is an extrapolation on owner/user-provided score anchors, not independent evidence or a score; no comparison to the unverified 0.3195 claim is established.
 
 ## Designed factorial experiment (replaces one-factor-at-a-time)
 
@@ -63,11 +62,11 @@ Top interactions: `BC` -0.0050, `BD` -0.0049, `AC` +0.0045, `BE` -0.0043. Full t
 
 `CFG_*` rows are whole family sets (e.g. `CFG_BE` = the factorial's predicted-best corner, which did not replicate its predicted 0.145).
 
-## Score ledger — top owner-reported results (not DrivenData receipts; full ledger in `registry/live_scores.json`)
+## Score ledger — user/owner-reported claims (not organizer-verified; full ledger in `registry/live_scores.json`)
 
 | Project | Submission | Score | Note |
 |---|---|---|---|
-| GEMSDOE24 | `h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan` | 0.2477 | group best; = dot_thin(H19-5, 1.5), 60,069 px; leaderboard row wbg1 0.2477 (#16) matches by value |
+| GEMSDOE24 | `h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan` | 0.2477 | reported score 0.2477; local mask identity is verified, leaderboard/receipt association is not |
 | 19GEMSDOE | `h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan` | 0.1922 | parent of the 0.2477 file |
 | 19GEMSDOE | `h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan` | 0.1894 |  |
 | GEMSDOE21 | `h19-4-reference-20260930-691e4dfa` | 0.1894 | re-host of h19-4 (same content id 691e4dfa) |
@@ -78,19 +77,30 @@ Top interactions: `BC` -0.0050, `BD` -0.0049, `AC` +0.0045, `BE` -0.0043. Full t
 | 5GEMSDOE | `gems-submission-20260926T175114Z-7f00890a` | 0.1563 | same content id 7f00890a as the GEMSDOE entry |
 | 8GEMSDOE | `Hedge-v2_submission` | 0.1563 | = ens12 off-catalogue pixels + all catalogue pixels; equal score shows masked known pixels do not matter |
 
-## Hypotheses not yet tried (ranked; layers, signatures and rationale in `knowledge/03_hypotheses_ranked_2026-10-02.md`)
+## Prior H26 register — outcomes (ranked before its runs; not a list of untried work)
 
-| Rank | ID | Idea | Validation on the blocked holdout |
+| Rank | ID | Idea | Recorded outcome |
 |---|---|---|---|
 | 1 | H26-0 | score-aware Poisson-disk dotting + marginal-ratio budget | **passes** (+0.0037 vs score-blind dotting at equal N, 4/4 folds, replicated +0.0034) |
 | 2 | H26-2 | strike-compatibility prior (DEM line orientation × visible-catalogue strike) | alone: fail on draws 0,1 (+0.0015, 2/4), small pass on fresh draws 2,3 (+0.0033, 3/4); jointly passes both |
 | 3 | H26-1 | oriented cross-scarp radiometric contrast (K, Th/K, U/K × DEM normal) | alone: fail on draws 0,1 (+0.0006, 2/4), small pass on draws 2,3 (+0.0026, 4/4); jointly passes both |
 | 4 | H26-3 | concealed joint step (gravity ∧ magnetic ridge, basement-depth step) | alone: fail on draws 0,1 (+0.0003, 2/4), small pass on draws 2,3 (+0.0032, 4/4); jointly passes both |
-| 5 | H26-4 | dilation-tendency-weighted orientation prior (USGS 10.5066/P9YL58W6) | **not validatable here** — free 27 MB shapefile, obtainable, but `sciencebase.gov` is unreachable from this sandbox |
+| 5 | H26-4 | dilation-tendency-weighted orientation prior (USGS 10.5066/P9YL58W6) | page-listed shapefile; direct access failed, bytes/licence not verified |
+
+## Current ranked geological candidates (H27; full layers, signatures, costs and preregistration in `knowledge/09_preregistered_hypotheses_2026-10-02.md`)
+
+| Rank | ID | Idea | Expected proxy ΔDTI (planning bracket) | Status |
+|---|---|---|---|---|
+| 1 | H27-1 | directed visible-fault-tip continuation × multi-scale DEM/LiDAR scarp | +0.001 to +0.010 | TS DTI 0.151064; screen failed; stop, no slot |
+| 2 | H27-2 | residualized GDR 2 m temperature probes | 0 to +0.010 | blocked: binary/schema/coverage not fetched |
+| 3 | H27-3 | paleo-geothermal deposits away from visible traces | 0 to +0.005 | blocked: binary/schema/coverage not fetched |
+| 4 | H27-4 | USGS heat-flow residual × structural/scarp support | 0 to +0.005 | blocked: binary, residual definition and licence not verified |
+
+These ΔDTI ranges are planning judgments, not estimates. No weekly slot is eligible unless the tested candidate beats the 0.152003389 holdout comparator and also passes paired confirmation; the site never uploads automatically.
 
 ## Flagged for review (full list with evidence: [`registry/irregularities.json`](registry/irregularities.json))
 
-* **IR-25-NAN-FOOTPRINT** (critical, fixed) — The first GEMSDOE25 'recommended' submission (gems25-factorial-best-v1-nan.tif, sha256 fbef100f...) used an invented footprint: 2,344,929 of the 5,167,373 official in-footprint pixels are NaN and 2,832,257 pixels outside the footprint are finite. NaN fails eve…
+* **IR-25-NAN-FOOTPRINT** (critical, fixed) — The first GEMSDOE25 'recommended' submission (gems25-factorial-best-v1-nan.tif, sha256 fbef100f...) used an invented footprint: 2,344,929 of the 5,167,373 pixels in the pinned owner-mirror template footprint are NaN and 2,832,257 pixels outside it are finite. …
 * **IR-25-OVER-EMISSION** (critical, fixed) — The same file emitted 1,249,834 positive pixels (624,029 inside the footprint = 12.1 % of it; 625,805 outside it), roughly 10x the 2.34 % budget of H19-5 and 21x the dotted file's 60,069 pixels. At the measured truth density the false-positive term would swamp…
 * **IR-25-FAKE-PIPELINE** (high, fixed) — Previous scripts were non-functional or misleading: generate_submission.py wrote synthetic diagonal stripes inside an elliptical made-up footprint; ridge_detector.py was a toy; factorial_design.py never ran (no data); the README listed src/feature_families.py,…
 * **IR-25-DTI-KERNEL** (high, fixed) — The old scripts/dti_metric.py used kernel 1 - d/(R+0.5) with R = 3 px (support 3.5 px). The official kernel is max(1 - d/R, 0) with R = 300 m = 3 px.
@@ -101,23 +111,23 @@ Top interactions: `BC` -0.0050, `BD` -0.0049, `AC` +0.0045, `BE` -0.0043. Full t
 
 ## Limitations and what is needed
 
-1. **No DrivenData login** → the original competition files, live leaderboard and uploads are out of reach; every competition raster here is an owner mirror (hash-pinned, not authenticated). DrivenData's Terms of Use forbid automatic access, so scores are *typed by the owner* (`scripts/record_live_score.py`).
-2. **Network:** the sandbox reaches github.com and PyPI (plus an HTML page-fetch tool); `sciencebase.gov`, `gdr.openei.org`, `dropbox.com`, `docs.nlr.gov` are unreachable from code, so raw 3DEP tiles, the slip/dilation-tendency shapefile and heat-flow rasters need a networked runner (GitHub Actions).
-3. **Compute:** 2 CPUs / 4 GB RAM, no GPU → boosted trees, not the reference U-Net; no raw 1 m DEM processing.
-4. **The proxy is not the truth:** the hide-and-recover holdout hides catalogue components; proxy-vs-live correlation measured by the group was weak (Spearman +0.33, n = 24, n.s.). Live scores (3 per week) are the only real validation.
-5. **Hidden labels, public/private split and the portal validator are undisclosed.**
+1. **No competition credentials or organizer receipts.** Every competition raster is an owner mirror (hash-pinned, not organizer-authenticated). The 0.2477 result and 0.3195 leader are user-provided, unverified claims; no competition/leaderboard page was accessed. Do not automate or monitor DrivenData.
+2. **External binaries are blocked here:** GDR 1391 lists the 2 m probe and paleo-geothermal files under CC BY 4.0, but direct downloads failed; the USGS heat-flow ZIP is page-listed, but its bytes and licence were not verified. H27-2/3/4 require a networked runner and source/coverage checks before use.
+3. **Compute:** 2 CPUs / 4 GB RAM, no GPU → boosted trees, not the reference U-Net; no raw 1 m DEM processing. The H27 screen ran in about 14 minutes after the feature cache was built.
+4. **The proxy is not the truth:** the hide-and-recover holdout hides catalogue components; proxy-vs-live correlation in the group's prior record was weak (Spearman +0.33, n = 24, n.s.). Holdout wins are necessary, not sufficient.
+5. **Hidden labels, public/private split, source authenticity, score claims and the portal validator remain undisclosed/unverified.**
 
 ## Next work (order matters)
 
-1. **Owner:** upload the primary file once; record the score (`python scripts/record_live_score.py --file e56ea318af89 --score 0.xxxx`); the emission model then has three live anchors and is re-fit.
-2. Run the exploratory surface in a *separate* slot only after step 1; record it.
-3. Add a networked fetch workflow for the USGS slip/dilation-tendency shapefile (H26-4), GDR heat-flow rasters and Qfaults v2; extend the factorial with H26-1/2/3 as *factors* (2^(7−3), Resolution IV) instead of testing them one at a time.
-4. Rebuild the LiDAR descriptors from raw 3DEP tiles on CI and implement scarp cross-profile templates (highest ceiling).
-5. Owner decisions listed in IR-25-SCORE-IDENTITY, IR-25-TOU, IR-25-PUBLIC-DATA, IR-25-DEADLINE.
+1. H27-1 failed the absolute holdout-comparator gate on draws 4,5. Stop per preregistration; do not run confirmation or spend a slot. A T-only follow-up is unconfirmed and would need its own preregistration and fresh holdout validation.
+2. On a networked runner, retrieve the official GDR probe/paleo files and USGS heat-flow ZIP; verify checksums, schema, coverage, residual definitions and licence before preregistering any new test.
+3. Keep the D2.8 file format-validated but unscored/not slot-approved. Only package and consider a specific candidate after it beats the 0.152003389 spatial holdout best under a prespecified paired test and (when specified) fresh-draw confirmation.
+4. If organizer verification of 0.2477/0.3195 is needed, use an independently supplied non-sensitive receipt; this repository will not fetch or monitor DrivenData.
+5. Owner decisions remain in IR-25-SCORE-IDENTITY, IR-25-TOU, IR-25-PUBLIC-DATA, IR-25-DEADLINE, and IR-27-EXTERNAL-DATA-ACCESS.
 
 ## Standing session charter
 
-Read this README **and the verbatim brief below** at the start of every session, then `AGENTS.md`. First commands: `git fetch origin`, compare with the session branch, `gh pr list --state open`. Pre-register before running. No weekly slot without passing the gate or an explicit owner exception. Never automate drivendata.org. Review in three passes. Unknown stays unknown.
+Read this README **and the verbatim brief below** at the start of every session, then `AGENTS.md`. First commands: `git fetch origin`, compare with the session branch, `gh pr list --state open`. Pre-register before running. No weekly slot unless that specific candidate beats the current holdout best and passes the exact-file audit; no exception is authorized here. Never automate drivendata.org. Review in three passes. Unknown stays unknown.
 
 ## Reproduce
 
@@ -130,6 +140,10 @@ python -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python scripts/run_addons.py && .venv/bin/python scripts/analyze_addons.py                  # draws 0,1
 .venv/bin/python scripts/run_addons.py --out evidence/addons_confirm --draws 2 3 --extra-configs ABCDE BE E && .venv/bin/python scripts/analyze_addons.py --dir evidence/addons_confirm
 .venv/bin/python scripts/run_emk_extension.py --base BDE --extras X1_K X1_ThK X1_UK X2_compat X2_compat_coh X3_gm X3_gd   # post hoc (Addendum A)
+# H27-1 frozen 2x2 screen (knowledge/09); confirmation is permitted only if screen gate passes
+.venv/bin/python scripts/run_h27.py --stage screen && .venv/bin/python scripts/analyze_h27.py --dir evidence/h27_screen
+# if and only if the screen's absolute + paired gates pass:
+.venv/bin/python scripts/run_h27.py --stage confirm && .venv/bin/python scripts/analyze_h27.py --dir evidence/h27_confirm
 # forensics and emission model
 .venv/bin/python scripts/analyze_scored_rasters.py && .venv/bin/python scripts/emission_model.py && .venv/bin/python scripts/validate_emission_model.py && .venv/bin/python scripts/harness_references.py
 # files, site, README

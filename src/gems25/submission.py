@@ -4,10 +4,11 @@ Official format (https://www.drivendata.org/competitions/306/competition-doe-gem
 same CRS (EPSG:32611), resolution (100 m) and bounds as the training data, "data outside the bounds is null
 or nan", one ``float32`` layer with values between 0 and 1.
 
-Root cause of the user's portal error "Predicted values must be in range [0, 1]" (first GEMSDOE25 file):
-that file used an invented footprint, so 2,344,929 of the 5,167,373 *official* footprint pixels were NaN
-(and 2.83 M pixels outside it were finite). NaN fails every ``0 <= x <= 1`` test. The writer below takes the
-footprint from the organizers' template raster and refuses anything that is not finite in [0, 1] there.
+The reported portal error "Predicted values must be in range [0, 1]" on the first GEMSDOE25 file is
+consistent with NaNs inside the owner-mirrored template footprint: 2,344,929 of its 5,167,373 template
+pixels were NaN and 2.83 M pixels outside were finite. NaN fails every ``0 <= x <= 1`` test. The writer below
+takes the footprint from the pinned owner-mirror template and refuses anything not finite in [0, 1] there.
+This establishes consistency with the reported error, not organizer authentication of the mirrored template or validator.
 """
 
 from __future__ import annotations
@@ -46,8 +47,8 @@ def write_submission(pred, template_path, out_path, *, outside: str = "nan") -> 
     """Write ``pred`` with the template's own raster profile.
 
     Inside the template footprint the prediction must be finite and within [0, 1] (nothing is silently
-    clipped or filled). Outside it the pixels are NaN (official convention) or 0.0 (``outside='zero'``,
-    a separately-labelled fallback; the portal accepted both for earlier files).
+    clipped or filled). Outside it the pixels are NaN or 0.0 (``outside='zero'``, a separately-labelled
+    fallback). Both conventions can be checked locally; no organizer acceptance of either file is asserted.
     """
     if outside not in ("nan", "zero"):
         raise ValueError("outside must be 'nan' or 'zero'")
@@ -57,7 +58,7 @@ def write_submission(pred, template_path, out_path, *, outside: str = "nan") -> 
         raise ValueError(f"prediction shape {pred.shape} != template {footprint.shape}")
     v = pred[footprint]
     if not np.isfinite(v).all():
-        raise ValueError(f"{int((~np.isfinite(v)).sum())} NaN/Inf pixels inside the official footprint")
+        raise ValueError(f"{int((~np.isfinite(v)).sum())} NaN/Inf pixels inside the template footprint")
     if (v < 0).any() or (v > 1).any():
         raise ValueError("predictions inside the footprint must lie in [0, 1]")
     arr = np.where(footprint, pred, np.float32(np.nan) if outside == "nan" else np.float32(0.0)).astype(np.float32)
@@ -130,7 +131,7 @@ def check_file(path: Path | str, template_path: Path | str) -> dict:
     add("variant_nan_aware_whole_array", bool(np.nanmin(arr) >= 0 and np.nanmax(arr) <= 1), "np.nanmin/np.nanmax over the whole array")
     add("variant_masked_read", bool(masked.compressed().min() >= 0 and masked.compressed().max() <= 1), "rasterio masked read")
     add("variant_strict_whole_array_no_nan", bool(((arr >= 0) & (arr <= 1)).all()),
-        "((a>=0)&(a<=1)).all(): False for ANY NaN, including the organizers' own template outside the footprint", hard=False)
+        "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint", hard=False)
     same_profile = all(prof.get(k) == tprof.get(k) or (k == "nodata" and nodata is not None and np.isnan(nodata))
                        for k in ("driver", "dtype", "width", "height", "transform"))
     add("profile_matches_template", same_profile, f"compress={prof.get('compress')} (template {tprof.get('compress')})", hard=False)

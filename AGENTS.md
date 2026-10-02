@@ -12,9 +12,9 @@
    (`tests/test_repo_integrity.py` enforces that the feed script contains no DrivenData host.)
 4. **Pre-register before you run** (commit the document first): design, response, analysis rule, gate. Do not tune on outcomes; a failed
    arm stays failed. Experiments are *designed* (fractional factorial), not one-factor-at-a-time hunches.
-5. **No weekly slot unless the candidate beats the current comparable hide-and-recover best and passes the exact-file audit**, or the owner
-   explicitly accepts a declared exception recorded in `registry/submissions.json`. Format-green is not gate-green. A holdout win is
-   necessary, not sufficient (proxy-vs-live Spearman measured +0.33, n.s., on 24 artefacts by GEMSDOE24).
+5. **No weekly slot unless the specific candidate beats the current comparable hide-and-recover best and passes the exact-file audit.**
+   No exception is authorized in this project brief. Format-green is not gate-green. A holdout win is necessary, not sufficient
+   (proxy-vs-live Spearman measured +0.33, n.s., on 24 artefacts by GEMSDOE24).
 6. **Evidence classes stay separate:** OFFICIAL (read at the cited page), OWNER-reported score, COMPUTED (script + JSON named), INFERENCE
    (assumptions stated). Unknown stays unknown. Dates, hashes and links are recorded in `registry/`.
 7. **A renamed reference is not new work.** Every shipped TIF has a unique, content-addressed name, a short DrivenData note and a

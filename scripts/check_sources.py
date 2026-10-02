@@ -7,7 +7,7 @@ human-read snapshots stored in ``registry/live_scores.json``; here they appear o
 
 What it checks automatically (when the network allows; the dev sandbox blocks most hosts, CI does not):
   * HTTP status / Last-Modified / Content-Length of every non-DrivenData source in ``registry/sources.json``
-  * USGS ScienceBase JSON API ``lastUpdated`` for the GeoDAWN and slip/dilation-tendency items
+  * USGS ScienceBase JSON API ``lastUpdated`` for GeoDAWN, slip/dilation-tendency and Great Basin heat-flow items
   * GitHub API ``pushed_at`` of the owner's sibling GEMSDOE repositories (activity feed)
 """
 
@@ -18,13 +18,14 @@ import json
 import os
 import sys
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import urljoin, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 BLOCKED_SUFFIXES = ("drivendata.org",)
 SCIENCEBASE = {
     "GeoDAWN release": "657e1d85d34e23d3533209f7",
     "Slip/dilation tendency release": "6296974dd34ec53d276bb33d",
+    "Great Basin heat-flow release": "6297d2fad34ec53d276c5b28",
 }
 SIBLINGS = [f"{n}GEMSDOE" for n in (5, 6, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)] + [
     "GEMSDOE", "GEMSDOE2", "GEMSDOE3", "GEMSDOE4", "GEMSDOE9", "GEMSDOE10", "GEMSDOE21", "GEMSDOE22", "GEMSDOE23", "GEMSDOE24",
@@ -34,6 +35,32 @@ SIBLINGS = [f"{n}GEMSDOE" for n in (5, 6, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 
 def is_blocked(url: str) -> bool:
     host = (urlparse(url).hostname or "").lower()
     return any(host == s or host.endswith("." + s) for s in BLOCKED_SUFFIXES)
+
+
+class BlockedRedirect(RuntimeError):
+    """A safe source redirected to a host that this feed is forbidden to contact."""
+
+
+def safe_request(session, method: str, url: str, **kwargs):
+    """Send one request at a time; manually follow only safe redirects, never requests' automatic chain."""
+    if "allow_redirects" in kwargs:
+        raise ValueError("safe_request owns the redirect policy")
+    current = url
+    for _ in range(6):
+        if is_blocked(current):
+            raise BlockedRedirect(current)
+        response = session.request(method, current, allow_redirects=False, **kwargs)
+        if response.status_code not in (301, 302, 303, 307, 308):
+            return response
+        location = response.headers.get("Location", "")
+        if not location:
+            return response
+        target = urljoin(current, location)
+        response.close()
+        if is_blocked(target):
+            raise BlockedRedirect(target)
+        current = target
+    raise RuntimeError("redirect limit exceeded")
 
 
 def gh_api_json(path: str):
@@ -56,23 +83,24 @@ def now() -> str:
 def probe(session, url: str) -> dict:
     if is_blocked(url):
         return dict(status="not fetched (Terms of Use)", detail="DrivenData host: human-read snapshot only")
+    response = None
     try:
-        r = session.head(url, timeout=20, allow_redirects=False)
-        if r.status_code in (301, 302, 303, 307, 308):
-            loc = r.headers.get("Location", "")
-            if is_blocked(loc):
-                return dict(status="redirect to DrivenData not followed", detail=loc)
-            r = session.head(loc, timeout=20, allow_redirects=False) if loc.startswith("http") else r
-        if r.status_code in (405, 403):
-            r = session.get(url, timeout=20, stream=True)
-            r.close()
-        d = [f"HTTP {r.status_code}"]
+        response = safe_request(session, "HEAD", url, timeout=20)
+        if response.status_code in (405, 403):
+            response.close()
+            response = safe_request(session, "GET", url, timeout=20, stream=True)
+        d = [f"HTTP {response.status_code}"]
         for h in ("Last-Modified", "Content-Length", "ETag"):
-            if h in r.headers:
-                d.append(f"{h}: {r.headers[h]}")
-        return dict(status="ok" if r.status_code < 400 else f"HTTP {r.status_code}", detail="; ".join(d))
+            if h in response.headers:
+                d.append(f"{h}: {response.headers[h]}")
+        return dict(status="ok" if response.status_code < 400 else f"HTTP {response.status_code}", detail="; ".join(d))
+    except BlockedRedirect as e:
+        return dict(status="redirect to DrivenData not followed", detail=str(e))
     except Exception as e:  # noqa: BLE001 - network failure is data, not an error
         return dict(status="unreachable", detail=type(e).__name__)
+    finally:
+        if response is not None:
+            response.close()
 
 
 def main() -> None:
@@ -91,32 +119,51 @@ def main() -> None:
         items.append(dict(kind="source", title=src["title"], url=src["url"], verified_in_repo=src["verified"], **p))
     for title, sid in SCIENCEBASE.items():
         url = f"https://www.sciencebase.gov/catalog/item/{sid}?format=json"
+        response = None
         try:
-            j = s.get(url, timeout=30).json()
+            response = safe_request(s, "GET", url, timeout=30)
+            if response.status_code >= 400:
+                raise RuntimeError(f"HTTP {response.status_code}")
+            j = response.json()
             last = (j.get("provenance") or {}).get("lastUpdated") or j.get("lastUpdated") or "not provided"
             items.append(dict(kind="sciencebase", title=title, url=f"https://www.sciencebase.gov/catalog/item/{sid}", status="ok",
                               detail=f"lastUpdated {last}"))
+        except BlockedRedirect as e:
+            items.append(dict(kind="sciencebase", title=title, url=f"https://www.sciencebase.gov/catalog/item/{sid}",
+                              status="redirect to DrivenData not followed", detail=str(e)))
         except Exception as e:  # noqa: BLE001
             items.append(dict(kind="sciencebase", title=title, url=f"https://www.sciencebase.gov/catalog/item/{sid}", status="unreachable", detail=type(e).__name__))
+        finally:
+            if response is not None:
+                response.close()
     for name in SIBLINGS:
         url = f"https://api.github.com/repos/buffedlizard55-lab/{name}"
+        response = None
         try:
             try:
-                r = gh.get(url, timeout=20)
-                j, ok, code = r.json(), r.ok, r.status_code
+                response = safe_request(gh, "GET", url, timeout=20)
+                j, ok, code = response.json(), response.status_code < 400, response.status_code
+            except BlockedRedirect:
+                raise
             except Exception:  # noqa: BLE001 - fall back to the gh CLI
                 j, ok, code = gh_api_json(f"repos/buffedlizard55-lab/{name}"), True, 200
             items.append(dict(kind="sibling-repo", title=name, url=f"https://github.com/buffedlizard55-lab/{name}", status="ok" if ok else f"HTTP {code}",
                               detail=f"pushed_at {j.get('pushed_at')}"))
+        except BlockedRedirect as e:
+            items.append(dict(kind="sibling-repo", title=name, url=f"https://github.com/buffedlizard55-lab/{name}",
+                              status="redirect to DrivenData not followed", detail=str(e)))
         except Exception as e:  # noqa: BLE001
             items.append(dict(kind="sibling-repo", title=name, url=f"https://github.com/buffedlizard55-lab/{name}", status="unreachable", detail=type(e).__name__))
+        finally:
+            if response is not None:
+                response.close()
     ls = json.loads((ROOT / "registry" / "live_scores.json").read_text())
     snap = ls["leaderboard_snapshot"]
-    age = (dt.datetime.now(dt.timezone.utc).date() - dt.date.fromisoformat(snap["read_utc"])).days
-    items.append(dict(kind="human-snapshot", title="DrivenData leaderboard (human-read snapshot)", url=snap["source"], status=f"snapshot {snap['read_utc']} ({age} d old)",
-                      detail=f"#1 {snap['top10'][0]['participant']} {snap['top10'][0]['best_public_dti']}; update with scripts/record_live_score.py after reading it yourself"))
+    items.append(dict(kind="human-snapshot", title="DrivenData leaderboard (user-provided, unverified claim)", url=snap["source"],
+                      status=f"{snap['status']} · reported {snap['reported_utc']}",
+                      detail=f"claimed #1 {snap['top10'][0]['participant']} {snap['top10'][0]['best_public_dti']}; no organizer page/receipt was accessed"))
     feed = dict(generated_utc=now(), generator="scripts/check_sources.py",
-                policy="Never requests drivendata.org (Terms of Use). 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
+                policy="Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
                 items=items)
     out = ROOT / "docs" / "data" / "feed.json"
     out.parent.mkdir(parents=True, exist_ok=True)

@@ -6,9 +6,9 @@
    "id": "IR-25-NAN-FOOTPRINT",
    "severity": "critical",
    "status": "fixed",
-   "issue": "The first GEMSDOE25 'recommended' submission (gems25-factorial-best-v1-nan.tif, sha256 fbef100f...) used an invented footprint: 2,344,929 of the 5,167,373 official in-footprint pixels are NaN and 2,832,257 pixels outside the footprint are finite. NaN fails every 0<=x<=1 test, which explains the portal message 'Predicted values must be in range [0, 1]'.",
-   "evidence": "evidence/old_gems25_tif_forensics.json (recomputed from git history, commit 9b01f27, against the pinned organizer template)",
-   "resolution_or_action": "File removed. src/gems25/submission.py takes the footprint from the template raster, refuses NaN inside it, and check_file() reproduces the failure (tests/test_submission.py). Cause is *inferred from the data*, not confirmed by DrivenData; the portal's own validator is not public."
+   "issue": "The first GEMSDOE25 'recommended' submission (gems25-factorial-best-v1-nan.tif, sha256 fbef100f...) used an invented footprint: 2,344,929 of the 5,167,373 pixels in the pinned owner-mirror template footprint are NaN and 2,832,257 pixels outside it are finite. NaN fails every 0<=x<=1 test, consistent with the user-reported portal message 'Predicted values must be in range [0, 1]'.",
+   "evidence": "evidence/old_gems25_tif_forensics.json (recomputed from git history, commit 9b01f27, against the pinned owner-mirror template; not organizer-authenticated)",
+   "resolution_or_action": "File removed. src/gems25/submission.py takes the footprint from the template mirror, refuses NaN inside it, and check_file() reproduces the local failure (tests/test_submission.py). Cause is an inference from mirrored data, not confirmed by DrivenData; neither the template nor portal validator is organizer-authenticated here."
   },
   {
    "id": "IR-25-OVER-EMISSION",
@@ -86,9 +86,9 @@
    "id": "IR-25-SCORE-IDENTITY",
    "severity": "medium",
    "status": "open",
-   "issue": "Scores are owner-reported from the task statement; leaderboard rows are matched to files only by equal 4-decimal value (wbg1 0.2477, smrtdoog5 0.1922, SDCF9 0.1894, extradr19 0.1855, smashi34 0.1563). Several accounts appear associated with one group; the rules allow three submissions per week per entity and one final submission per entity (\u00a73.2/3.4).",
-   "evidence": "registry/live_scores.json; https://docs.nlr.gov/docs/fy26osti/96647.pdf",
-   "resolution_or_action": "No inference about ownership is made. Owner should confirm that multi-account use complies with the rules (Appendix A.3 on teams/single-entity awards was not read)."
+   "issue": "All competition DTI values and leaderboard/account associations in this record are user/owner-reported claims. The 0.2477 file-to-score association, 0.3195 leader claim, and previously described leaderboard rows are not independently verified: no organizer leaderboard page or receipt was accessed. File identity cannot be established by matching rounded values or owner-hosted pages.",
+   "evidence": "registry/live_scores.json (claims explicitly unverified); owner-hosted project pages are not organizer records; official organizer receipt/page not accessed.",
+   "resolution_or_action": "Do not use these values as live-score evidence, promotion evidence, or account-identity evidence. No inference about account ownership is made. Apply the current no-slot-without-a-specific holdout win policy; seek only a user-provided organizer receipt for score authentication, without automated DrivenData access."
   },
   {
    "id": "IR-25-TOU",
@@ -150,9 +150,9 @@
    "id": "IR-25-DOTTED-IDENTITY",
    "severity": "info",
    "status": "verified",
-   "issue": "The 0.2477 file is pixel-for-pixel dot_thin(H19-5, 1.5) (mask equality): 60,069 of 121,131 pixels, a strict subset, zero NaN inside the footprint, no emission on catalogue pixels. The unscored alternate equals dot_thin(H19-5, 2.4) (44,090 px).",
-   "evidence": "evidence/why_0_2477.json; tests/test_group_reproduction.py",
-   "resolution_or_action": "Re-uploading either file's *parent* or the scored file gives no new information."
+   "issue": "The local owner-mirrored raster labelled 0.2477 is pixel-for-pixel dot_thin(H19-5, 1.5): 60,069 of 121,131 pixels, a strict subset, zero NaN inside the owner-mirror template footprint, no emission on a catalogue pixel. This verifies only a transformation between local mirrors, not organizer file identity or its score. The local unscored alternate equals dot_thin(H19-5, 2.4) (44,090 px). The 0.2477 score and 0.3195 leaderboard claim remain unverified.",
+   "evidence": "evidence/why_0_2477.json; tests/test_group_reproduction.py; registry/live_scores.json",
+   "resolution_or_action": "Describe only local mask/pixel identity as verified; do not describe either reported DTI as independently verified. Re-uploading a parent or file is not evidence of a score. A user-provided organizer receipt is needed to authenticate a score without automated site access."
   },
   {
    "id": "IR-25-FEED-SCHEDULE",
