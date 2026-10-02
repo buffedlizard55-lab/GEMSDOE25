@@ -44,7 +44,7 @@ def test_writer_reproduces_the_portal_accepted_file_profile_and_pixels(tmp_path)
     if not tmpl.exists():
         pytest.skip("template not restored")
     with rasterio.open(D15) as s:
-        ref, prof_ref, tags_ref = s.read(1), s.profile, s.tags()
+        ref, prof_ref = s.read(1), s.profile
     pred = np.nan_to_num(ref, nan=0.0)
     out = write_submission(pred, tmpl, tmp_path / "re.tif", outside="nan")
     with rasterio.open(out) as s:

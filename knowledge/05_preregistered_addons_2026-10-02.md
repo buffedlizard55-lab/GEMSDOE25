@@ -35,3 +35,9 @@ The site's first-screen file is chosen by **evidence rank**, not by novelty:
 4. A byte-identical copy of a file that already scored is never primary (re-upload gives no information).
 Every shipped file keeps a content-addressed name (`gems25.submission.content_id`, verified to reproduce the group's IDs 989f59505db1 and e56ea318af89)
 and its provenance (parent file, transform) in `registry/submissions.json`.
+
+## Addendum A (written AFTER the draws-0,1 add-on results were seen; labelled post hoc / exploratory, never gated)
+Observation: in the frozen EM-K sweep the best variant (score-ordered dots, 2.4 px) sat at the **upper edge** of the K grid (2.45 %), and every dotted variant was still
+rising there (solid emission already peaked at 1.5 %). The frozen grid therefore cannot locate the optimum. Extension, run once, same cells (draws 0,1), same base:
+K ∈ {3.5 %, 5 %, 7.5 %} × {dot1.5, sapd1.5, sapd2.4}. It informs only the emission parameters of the *exploratory* candidate; it is reported as post hoc and
+carries no gate. The primary file (a transform of the already-scored H19-5) is unaffected.

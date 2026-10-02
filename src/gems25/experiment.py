@@ -12,11 +12,11 @@ from scipy.ndimage import binary_erosion, distance_transform_edt
 from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.metrics import roc_auc_score
 
-from .families import FAMILIES, family_columns
+from .families import family_columns
 from .features import build_catalogue_features
 from .holdout import Draw, Holdout
 from .metric import dti_binary
-from .thinning import dot_thin, ridge_nms, score_ordered_dots, select_top_positive
+from .thinning import dot_thin, ridge_nms, select_top_positive
 
 HGB_PARAMS = dict(
     max_iter=100, learning_rate=0.12, max_leaf_nodes=31, min_samples_leaf=50,
@@ -89,7 +89,6 @@ class Cell:
         neg = rng.choice(cand, size=min(N_NEG, cand.size), replace=False)
         self.train_idx = np.sort(np.concatenate([pos, neg]))
         self.y = np.isin(self.train_idx, pos).astype(np.int8)
-        ns = ctx.static.shape[0]
         self.q = ctx.vec(d.quadrant)
         self.Xtr = self._gather(self.train_idx)
         self.Xq = self._gather(self.q)

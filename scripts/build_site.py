@@ -50,6 +50,10 @@ No score here is promised; owner-reported scores are not DrivenData receipts. Th
 <script src="{prefix}assets/app.js"></script></body></html>"""
 
 
+def score_fmt(x):
+    return "" if x is None else f"{x:.4f}"
+
+
 def badge(txt, kind):
     return f'<span class="badge b-{kind}">{e(txt)}</span>'
 
@@ -80,6 +84,8 @@ def main() -> None:
     add = opt("evidence/addons/results.json")
     conf = opt("evidence/addons_confirm/results.json")
     emu = opt("evidence/emission_model.json")
+    oos = opt("evidence/emission_model_oos_check.json")
+    href = opt("evidence/harness_references.json")
     primary = next(s for s in subs if s["role"] == "primary")
     others = [s for s in subs if s["role"] != "primary"]
     snap = ls["leaderboard_snapshot"]
@@ -87,7 +93,7 @@ def main() -> None:
     best = max(a["score"] for a in ls["artifacts"] if a["score"] is not None)
 
     def home(prefix: str) -> str:
-        hero = f"""<div class="hero"><h1>Download the file. Know exactly what it is.</h1>
+        hero = """<div class="hero"><h1>Download the file. Know exactly what it is.</h1>
 <p class="lead">One click gets the submission GeoTIFF. It is a <b>valid, unique, unscored candidate</b>: single band, float32, values in [0, 1], NaN only
 outside the organizers' footprint. The previous site's file failed with <i>"Predicted values must be in range [0, 1]"</i> because 45 % of the official footprint was NaN; that
 is fixed and verified against the organizers' template.</p></div>"""
@@ -129,8 +135,8 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
 {dl_card(primary, '')}
 <h2>Steps</h2><ol class="steps">
 <li><b>Download</b> <code>{e(primary['file'])}</code> with the green button above. Optional: check <code>sha256sum</code> starts with <code>{primary['sha256'][:16]}</code>.</li>
-<li><b>Sign in</b> at <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData → GEMS → Submissions</a> and click <i>Make new submission</i> ("New submission" form).</li>
-<li><b>File to submit:</b> choose the <code>.tif</code>. (A <code>.zip</code> containing exactly one GeoTIFF is also accepted by the form; this page offers the plain <code>.tif</code>.)</li>
+<li><b>Open the competition and sign in</b> — <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition page</a>, then click <b>Submit</b> in the sidebar and <b>Make new submission</b> (wording from the competition page; the form is the "New submission" form you described).</li>
+<li><b>File to submit:</b> choose the <code>.tif</code>. The form says: "You can submit a single-band GeoTIFF (.tif) file, or a .zip file containing a single GeoTIFF ... It must match the submission format's CRS, shape, and geotransform." This page offers the plain <code>.tif</code>.</li>
 <li><b>Note (optional):</b> paste the note above. It is {len(primary['note'])} characters; the form says "A short comment to help you or your team tell submissions apart later".</li>
 <li><b>Submit</b>, wait for the score, then record it for the ledger: <code>python scripts/record_live_score.py --file {e(primary['content_id'])} --score 0.xxxx</code> and re-run <code>python scripts/build_site.py</code>.</li></ol>
 <h2>What was verified about this exact file</h2>
@@ -152,7 +158,6 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
     er = "".join(f"<tr><td>{k}</td><td class='num'>{v:+.4f}</td><td class='num'>{effs['folds'][k]['se']:.4f}</td><td class='num'>{effs['folds'][k]['blocks_positive']}/4</td><td>{'<b>yes</b>' if abs(v) > effs['lenth']['me'] else ''}</td></tr>" for k, v in sorted(effs['effects'].items(), key=lambda t: -abs(t[1])))
     rr = "".join(f"<tr><td>{r['row']}</td><td class='mono'>{r['families']}</td><td class='num'>{r['dti_mean']:.4f}</td><td class='num'>{r['auc_mean']:.3f}</td><td class='num'>{r['hug_mean']:.2f}</td><td class='num'>{r['emitted_mean']:.0f}</td></tr>" for r in sorted(fac['runs'], key=lambda r: -r['dti_mean']))
     refs = "".join(f"<tr><td>{k}</td><td class='num'>{v['dti_mean']:.4f}</td><td class='num'>{v['auc_mean']:.3f}</td><td class='num'>{v['hug_mean']:.2f}</td></tr>" for k, v in fac['references_same_harness'].items())
-    inter = "".join(f"<tr><td>{k}</td><td class='num'>{v:+.4f}</td></tr>" for k, v in fac['ranked_interactions'][:6])
     def addon_tbl(a, label):
         if not a:
             return f"<p class='small'>{label}: not run.</p>"
@@ -167,6 +172,45 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
     emu_html = ""
     if emu:
         emu_html = "<table><thead><tr><th>min-dist</th><th class='num'>px</th><th class='num'>credit retention (geometric)</th><th class='num'>model DTI</th></tr></thead><tbody>" + "".join(f"<tr><td>{r['min_dist']}</td><td class='num'>{r['px']:,}</td><td class='num'>{r['retention']:.3f}</td><td class='num'>{r['model_dti']:.4f}</td></tr>" for r in emu['curve']) + f"</tbody></table><p class='small'>{e(emu['caveat'])}</p>"
+    oos_html = ""
+    if oos:
+        oos_html = (f"<div class='card'><b>Out-of-sample check (pair not used for calibration):</b> solid H25 (owner-reported 0.1280) → dotted H28 (owner-reported 0.1839). "
+                    f"Model prediction <b>{oos['predicted_dotted_dti']:.4f}</b> vs reported <b>{oos['owner_reported_dotted_dti']:.4f}</b> (error {oos['error']:+.4f}). "
+                    "The model under-predicts the dotting gain here, so the expected +0.008 for D2.8 is smaller than the model's own error: the sign is likely, not certain.</div>")
+    req_html = ""
+    if emu and emu.get("requirements"):
+        rq = emu["requirements"]
+        base_cpp = rq["dotted_h19_5_d1_5_has"]["credit_per_emitted_px"]
+        req_html = ("<h3>What would a higher score require? (same calibration)</h3><table><thead><tr><th>Target</th><th class='num'>Emitted px</th><th class='num'>Credit needed (share of |G|)</th>"
+                    "<th class='num'>Credit per emitted px</th><th class='num'>× the 0.2477 file</th></tr></thead><tbody>"
+                    + "".join(f"<tr><td>{e(r['label'])}</td><td class='num'>{r['emitted_px']:,}</td><td class='num'>{r['credit_fraction_required']:.3f}</td><td class='num'>{r['credit_per_emitted_px']:.3f}</td><td class='num'>{r['credit_per_emitted_px'] / base_cpp:.2f}</td></tr>" for r in rq["table"])
+                    + f"</tbody></table><p class='small'>The 0.2477 file earns {base_cpp:.3f} credit per emitted pixel ({rq['dotted_h19_5_d1_5_has']['credit_fraction']:.3f} of |G| ≈ {rq['truth_px_used']:,.0f} px with {rq['dotted_h19_5_d1_5_has']['emitted_px']:,} pixels). "
+                    f"Each emitted pixel carries ≈{rq['fp_mass_per_emitted_px']:.2f} of false-positive mass.</p>")
+        cp = emu.get("consensus_pruning_break_even")
+        if cp:
+            req_html += ("<h3>Consensus pruning (drop dots a second detector disagrees with): break-even</h3><table><thead><tr><th class='num'>Dropped share of pixels</th><th class='num'>Max share of credit they may carry</th></tr></thead><tbody>"
+                         + "".join(f"<tr><td class='num'>{100 * r['dropped_fraction_of_pixels']:.0f} %</td><td class='num'>{100 * r['max_credit_share_of_dropped']:.1f} %</td></tr>" for r in cp["rows"])
+                         + "</tbody></table><p class='small'>Pruning pays only if the dropped dots earn well under the average credit per pixel; a second detector must therefore be strongly informative <i>within</i> the first one's detections.</p>")
+    href_html = ""
+    if href:
+        import re as _re
+
+        def live_of(name):
+            m = _re.search(r"\(([0-9.]+)\)", name)
+            return float(m.group(1)) if m else None
+
+        rows_ = ""
+        for k, v in href.items():
+            lv = live_of(k)
+            live_txt = "" if lv is None else f"{lv:.4f}"
+            ratio_txt = "" if lv is None else f"{lv / v['mean_dti']:.2f}"
+            rows_ += (f"<tr><td>{e(k)}</td><td class='num'>{v['mean_dti']:.4f}</td><td class='num'>{live_txt}</td>"
+                      f"<td class='num'>{ratio_txt}</td><td class='num'>{v['hug']:.2f}</td><td class='num'>{v['emitted']:.0f}</td></tr>")
+        href_html = ("<h3>The proxy against live scores (diagnostic only)</h3><table><thead><tr><th>Group raster (owner-reported live score)</th><th class='num'>Harness DTI</th><th class='num'>Live (owner-reported)</th>"
+                     "<th class='num'>Live / harness</th><th class='num'>Hug</th><th class='num'>Emitted px / cell</th></tr></thead><tbody>" + rows_
+                     + "</tbody></table><p class='small'>Not out-of-fold: these rasters were built with the whole catalogue and mask every catalogue pixel. "
+                       "The blind lattice (pure density test) is reproduced within ~5 %, and dotting raises the score in both worlds, but the H19 family scores ~2.7× higher live than in the harness: "
+                       "the proxy compresses the range, so a harness win is necessary, not sufficient.</p>")
     hyp = open(ROOT / "knowledge" / "03_hypotheses_ranked_2026-10-02.md").read()
     research = f"""<div class="hero"><h1>Research</h1><p class="lead">What was run, in what order, and what it shows. Pre-registrations were committed before the runs
 (<code>knowledge/04_…</code>, <code>knowledge/05_…</code>).</p></div>
@@ -182,7 +226,7 @@ Response: exact sparse-regime DTI of a fixed emission (ridge NMS → top 2.45 % 
 <h2>2 · Add-on hypotheses and emission (pre-registered, paired)</h2>
 {addon_tbl(add, 'Cells = draws 0,1')}{addon_tbl(conf, 'Confirmation replicate (fresh draws 2,3)')}
 <h3>Budget / dotting sweep on the base surface (draws 0,1)</h3>{emk}
-<h2>3 · Why 0.2477 — the emission model</h2>{emu_html}
+<h2>3 · Why 0.2477 — the emission model</h2>{emu_html}{oos_html}{req_html}{href_html}
 <h2>4 · Hypotheses register</h2><p class="small">Verbatim register (written before the add-on runs): <code>knowledge/03_hypotheses_ranked_2026-10-02.md</code>.</p>
 <details><summary>Show the register</summary><pre style="white-space:pre-wrap;font-size:.85rem">{e(hyp)}</pre></details>
 <div class="callout"><b>Limits.</b> The holdout is a catalogue-gap proxy; H19-5 as emitted is not out-of-fold; family E may be flattered; proxy-vs-live Spearman was +0.33 (n = 24, n.s.) in the group's earlier record. Nothing here is a leaderboard score.</div>"""
@@ -191,7 +235,7 @@ Response: exact sparse-regime DTI of a fixed emission (ridge NMS → top 2.45 % 
     st = "".join(f"<tr><td><a href='{e(s['url'])}'>{e(s['title'])}</a><div class='small'>{e(s['publisher'])} · {e(s['kind'])}</div></td><td>{badge('read ' + s['verified_utc'], 'ok') if s['verified'] else badge('not verified here', 'warn')}</td><td class='small'>{e(s['used_for'])}</td><td class='small'>{e(s['how_verified'])}{(' — ' + e(s['caveats'])) if s['caveats'] else ''}</td></tr>" for s in src)
     dm = "".join(f"<tr><td class='mono'>{e(f['dest'])}</td><td class='mono'>{f['sha256'][:16]}…</td><td class='num'>{f['bytes']:,}</td><td>{e(f['group'])}</td><td class='small'>{e(f['provenance'])}</td></tr>" for f in man)
     ir = "".join(f"<tr id='{i['id']}'><td class='mono'>{i['id']}</td><td>{badge(i['severity'], 'bad' if i['severity']=='critical' else ('warn' if i['severity'] in ('high','medium') else 'info'))}{badge(i['status'], 'ok' if i['status'] in ('fixed','verified') else 'info')}</td><td>{e(i['issue'])}<div class='small'><b>Evidence:</b> {e(i['evidence'])}</div><div class='small'><b>Action:</b> {e(i['resolution_or_action'])}</div></td></tr>" for i in irr)
-    sc = "".join(f"<tr><td>{e(a['project'])}</td><td class='mono'>{e(a['label'])}</td><td class='num'>{'' if a['score'] is None else f'{a['score']:.4f}'}</td><td class='small'>{e(a['status'])}{(' — ' + e(a['note'])) if a['note'] else ''}</td></tr>" for a in sorted(ls['artifacts'], key=lambda a: -(a['score'] or -1)))
+    sc = "".join(f"<tr><td>{e(a['project'])}</td><td class='mono'>{e(a['label'])}</td><td class='num'>{score_fmt(a['score'])}</td><td class='small'>{e(a['status'])}{(' — ' + e(a['note'])) if a['note'] else ''}</td></tr>" for a in sorted(ls['artifacts'], key=lambda a: -(a['score'] or -1)))
     lbt = "".join(f"<tr><td>#{r['rank']}</td><td>{e(r['participant'])}</td><td class='num'>{r['best_public_dti']:.4f}</td><td class='num'>{r['submissions']}</td></tr>" for r in snap['top10'])
     sources = f"""<div class="hero"><h1>Sources &amp; audit</h1><p class="lead">Every source with its verification status, every input file with its SHA-256 pin, every irregularity with evidence and action.
 "Read" means the page/file was actually read in this session; "not verified here" means carried over or unreachable.</p></div>

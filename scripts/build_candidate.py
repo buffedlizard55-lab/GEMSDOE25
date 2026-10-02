@@ -24,9 +24,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from gems25.experiment import HGB_PARAMS, N_NEG, gather_columns, load_context  # noqa: E402
 from gems25.features import build_catalogue_features  # noqa: E402
-from gems25.families import family_columns  # noqa: E402
 from gems25.paths import data_dir, work_dir  # noqa: E402
-from gems25.submission import check_file, content_id, make_filename, make_note, sha256_file, write_submission, zip_single  # noqa: E402
+from gems25.submission import check_file, content_id, make_filename, make_note, write_submission  # noqa: E402
 from gems25.thinning import dot_thin, ridge_nms, score_ordered_dots, select_top_positive  # noqa: E402
 
 

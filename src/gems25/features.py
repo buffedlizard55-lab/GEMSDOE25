@@ -21,7 +21,7 @@ from scipy.ndimage import (
     zoom,
 )
 
-from .families import FAMILIES, family_columns
+from .families import family_columns
 
 BASE_NAMES = [
     "mag_anom", "rtp", "tmi_hg", "geod_2ndinv", "iso_grav_anom_slope", "tc", "geod_shearrate",

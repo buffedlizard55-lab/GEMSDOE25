@@ -102,3 +102,14 @@ def test_first_screen_of_home_has_the_download_before_anything_else():
     primary = next(s for s in J("registry/submissions.json")["files"] if s["role"] == "primary")
     assert t.index(primary["file"]) < t.index("Why the 0.2477 file scored best")
     assert "executive-summary.html" in t
+
+
+def test_the_invented_footprint_files_are_not_shipped_or_linked():
+    bad = ("gems25-factorial-best-v1-nan.tif", "gems25-factorial-best-v1-allfinite.tif")
+    for name in bad:
+        assert not (ROOT / "docs" / "downloads" / name).exists()
+    for page in ("README.md", "index.html", "docs/index.html", "docs/executive-summary.html", "docs/research.html", "docs/sources.html"):
+        text = (ROOT / page).read_text()
+        for name in bad:
+            # mentions are allowed only as warnings ("not this file"), never as a link target
+            assert f'href="docs/downloads/{name}"' not in text and f'href="downloads/{name}"' not in text and f"(docs/downloads/{name})" not in text

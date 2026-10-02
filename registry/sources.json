@@ -266,8 +266,8 @@
    "used_for": "same file names as the mirrored files",
    "verified": false,
    "verified_utc": null,
-   "how_verified": "dropbox.com unreachable from the sandbox (TLS reset); byte-identity with the mirror NOT verified",
-   "caveats": "The DEM-links PDF (1 m tile inventory) was not read; the sibling CI recovered tile URLs by OCR.",
+   "how_verified": "one share page (gems-geodawn-numerical-features.tif) was read via the page-fetch tool: it resolves to that file name, 'Jason shared this file', no size/hash shown; the other four links were not opened; dropbox.com is unreachable from code (TLS reset), so no bytes were compared with the mirror",
+   "caveats": "Byte identity between the Dropbox files and the pinned mirror is NOT verified. The DEM-links PDF (1 m tile inventory) was not read.",
    "license": "",
    "reachable_from_sandbox_bash": false
   },

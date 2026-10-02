@@ -28,8 +28,6 @@ def main() -> None:
     why = J("evidence/why_0_2477.json")
     emu = J("evidence/emission_model.json")
     add = opt("evidence/addons/results.json")
-    conf = opt("evidence/addons_confirm/results.json")
-    href = opt("evidence/harness_references.json")
     irr = J("registry/irregularities.json")["issues"]
     best = max(a["score"] for a in ls["artifacts"] if a["score"] is not None)
     brief = (ROOT / "knowledge" / "owner_brief_verbatim.txt").read_text().rstrip()

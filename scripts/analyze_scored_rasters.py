@@ -63,7 +63,6 @@ def main() -> None:
         chk = check_file(p, tmpl)
         n = int(m.sum())
         off = m & ~lab
-        dist_e = distance_transform_edt(~m)
         # nearest-neighbour spacing between emitted pixels (excluding self)
         ys, xs = np.nonzero(m)
         sub = np.random.default_rng(0).choice(ys.size, min(ys.size, 20000), replace=False)

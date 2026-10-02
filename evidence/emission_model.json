@@ -84,6 +84,107 @@
   "model_dti_low": 0.25002945809247196,
   "model_dti_high": 0.2613299747091814
  },
+ "consensus_pruning_break_even": {
+  "baseline_model_dti": 0.2477,
+  "rows": [
+   {
+    "dropped_fraction_of_pixels": 0.1,
+    "max_credit_share_of_dropped": 0.051968301613121826,
+    "per_pixel_credit_of_dropped_vs_average_max": 0.5196830161312183
+   },
+   {
+    "dropped_fraction_of_pixels": 0.2,
+    "max_credit_share_of_dropped": 0.10393660322624376,
+    "per_pixel_credit_of_dropped_vs_average_max": 0.5196830161312188
+   },
+   {
+    "dropped_fraction_of_pixels": 0.3,
+    "max_credit_share_of_dropped": 0.1559049048393655,
+    "per_pixel_credit_of_dropped_vs_average_max": 0.5196830161312184
+   },
+   {
+    "dropped_fraction_of_pixels": 0.5,
+    "max_credit_share_of_dropped": 0.2598415080656027,
+    "per_pixel_credit_of_dropped_vs_average_max": 0.5196830161312054
+   }
+  ],
+  "reading": "Dropping q of the pixels raises DTI only if the dropped pixels carry less than s* of the credit, i.e. their credit per pixel is below (s*/q) of the average."
+ },
+ "requirements": {
+  "truth_px_used": 12503.077035165228,
+  "fp_mass_per_emitted_px": 0.900818043566607,
+  "dotted_h19_5_d1_5_has": {
+   "emitted_px": 60069,
+   "credit_fraction": 0.4340644373393964,
+   "credit_per_emitted_px": 0.0903484509194447
+  },
+  "table": [
+   {
+    "target": 0.2477,
+    "label": "0.2477 (group best)",
+    "emitted_px": 30000,
+    "credit_fraction_required": 0.32114692218251706,
+    "credit_per_emitted_px": 0.13384415692180746
+   },
+   {
+    "target": 0.2477,
+    "label": "0.2477 (group best)",
+    "emitted_px": 40000,
+    "credit_fraction_required": 0.35869972246083676,
+    "credit_per_emitted_px": 0.11212125656050573
+   },
+   {
+    "target": 0.2477,
+    "label": "0.2477 (group best)",
+    "emitted_px": 60000,
+    "credit_fraction_required": 0.4338053230174761,
+    "credit_per_emitted_px": 0.09039835619920399
+   },
+   {
+    "target": 0.2941,
+    "label": "rank #5 snapshot 0.2941",
+    "emitted_px": 30000,
+    "credit_fraction_required": 0.3850649031747798,
+    "credit_per_emitted_px": 0.16048320493109042
+   },
+   {
+    "target": 0.2941,
+    "label": "rank #5 snapshot 0.2941",
+    "emitted_px": 40000,
+    "credit_fraction_required": 0.4300918500464513,
+    "credit_per_emitted_px": 0.13443678833318778
+   },
+   {
+    "target": 0.2941,
+    "label": "rank #5 snapshot 0.2941",
+    "emitted_px": 60000,
+    "credit_fraction_required": 0.5201457437897943,
+    "credit_per_emitted_px": 0.10839037173528522
+   },
+   {
+    "target": 0.3195,
+    "label": "rank #1 snapshot 0.3195",
+    "emitted_px": 30000,
+    "credit_fraction_required": 0.4205912362697468,
+    "credit_per_emitted_px": 0.17528948757986745
+   },
+   {
+    "target": 0.3195,
+    "label": "rank #1 snapshot 0.3195",
+    "emitted_px": 40000,
+    "credit_fraction_required": 0.4697723979234555,
+    "credit_per_emitted_px": 0.14684001200578142
+   },
+   {
+    "target": 0.3195,
+    "label": "rank #1 snapshot 0.3195",
+    "emitted_px": 60000,
+    "credit_fraction_required": 0.5681347212308728,
+    "credit_per_emitted_px": 0.1183905364316954
+   }
+  ],
+  "reading": "credit_per_emitted_px = (credit fraction of |G|) * |G| / emitted pixels; compare with the dotted H19-5 row above"
+ },
  "d2_8": {
   "min_dist": 2.4,
   "px": 44090,
