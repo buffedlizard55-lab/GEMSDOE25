@@ -1,7 +1,7 @@
 {
  "schema_version": 2,
  "generated_utc": "2026-10-02",
- "warning": "Owner-reported scores come from the task statement. They are not DrivenData receipts and are not linked to submission ids. A repeated 4-decimal score does not prove identical bytes. Unknown stays unknown. DrivenData forbids automatic access, so every row here is human-read or owner-typed.",
+ "warning": "All competition DTI values in this registry are user- or owner-reported claims, not organizer receipts. The 0.2477 submission result and 0.3195 leaderboard leader were not independently verified here; the local raster analysis verifies a deterministic pixel transformation, not its competition score. No DrivenData page was accessed or monitored. Unknown stays unknown.",
  "artifacts": [
   {
    "project": "GEMSDOE",
@@ -245,14 +245,13 @@
    "project": "GEMSDOE24",
    "label": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
    "score": 0.2477,
-   "status": "owner-reported",
-   "note": "group best; = dot_thin(H19-5, 1.5), 60,069 px; leaderboard row wbg1 0.2477 (#16) matches by value"
+   "status": "user-provided-unverified",
+   "note": "reported score 0.2477; local mask identity is verified, leaderboard/receipt association is not"
   }
  ],
  "leaderboard_snapshot": {
-  "read_utc": "2026-10-02",
   "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-  "how": "one-off, user-directed page read; rows 1-50",
+  "how": "values were supplied in the task context; official page/receipt not fetched or independently verified",
   "top10": [
    {
     "rank": 1,
@@ -354,7 +353,10 @@
   ],
   "gap_to_rank5": 0.0464,
   "gap_to_rank1": 0.0718,
-  "relative_gain_needed_for_rank1": 0.29
+  "relative_gain_needed_for_rank1": 0.29,
+  "reported_utc": "2026-10-02",
+  "status": "user-provided-unverified",
+  "verification_note": "Human review of the official leaderboard would be needed to verify, but this session did not access or monitor it."
  },
  "record_new_scores_with": "python scripts/record_live_score.py --file <name-or-sha-prefix> --score 0.xxxx"
 }

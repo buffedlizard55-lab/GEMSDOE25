@@ -1,5 +1,7 @@
 # 05 · Pre-registration — add-on hypothesis tests and emission experiment (frozen before running)
 
+> **Historical gate only; not current slot policy.** The primary-download/slot language below is preserved as an audit trail and is superseded by the user’s standing rule: no weekly slot unless the specific candidate beats the current spatially blocked holdout best and passes the exact-file audit. See the supersession note at the end and `knowledge/09_preregistered_hypotheses_2026-10-02.md`.
+
 Runs **after** the factorial analysis (`04_preregistered_factorial_*`), on the same 8 cells (4 quadrants × draws 0,1), same
 model/emission settings, paired. Base surface = the **highest-mean-DTI family combination of the 16 design rows** (ties → fewer columns).
 
@@ -41,3 +43,7 @@ Observation: in the frozen EM-K sweep the best variant (score-ordered dots, 2.4 
 rising there (solid emission already peaked at 1.5 %). The frozen grid therefore cannot locate the optimum. Extension, run once, same cells (draws 0,1), same base:
 K ∈ {3.5 %, 5 %, 7.5 %} × {dot1.5, sapd1.5, sapd2.4}. It informs only the emission parameters of the *exploratory* candidate; it is reported as post hoc and
 carries no gate. The primary file (a transform of the already-scored H19-5) is unaffected.
+
+## Supersession note (2026-10-02; applies to current/future slot decisions)
+
+The frozen primary-download rule above is a historical record, not the current slot policy. The later task instruction is stricter and controls: **no weekly submission slot may be used unless that specific candidate beats the current 0.152003389 spatially blocked holdout best and passes the exact-file audit; no exception is authorized.** All score anchors and leaderboard values named in this historical document (including 0.1922, 0.2477 and 0.3195) are user/owner-reported claims, not organizer-verified evidence; no organizer page or receipt was accessed, so they cannot be treated as live-score evidence. The current D2.8 download is format-validated only and is not slot-approved; the exploratory BDE+X1–X3 surface equals the current holdout comparator and also is not slot-approved. See `knowledge/09_preregistered_hypotheses_2026-10-02.md` and `registry/submissions.json` for the current decision.

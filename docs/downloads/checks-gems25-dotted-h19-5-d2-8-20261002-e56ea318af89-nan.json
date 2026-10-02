@@ -80,7 +80,7 @@
   },
   "variant_strict_whole_array_no_nan": {
    "pass_": false,
-   "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including the organizers' own template outside the footprint",
+   "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
    "hard": false
   },
   "profile_matches_template": {
@@ -89,5 +89,5 @@
    "hard": false
   }
  },
- "note": "GEMSDOE25 D2.8 | H19-5 Poisson-disk dots, 44,090 px; model 0.255 | id e56ea318af89 | not yet live-scored"
+ "note": "GEMSDOE25 D2.8 | format-validated; unscored; not holdout-promoted vs 0.152003389 | id e56ea318af89 | no slot"
 }

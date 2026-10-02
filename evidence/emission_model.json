@@ -1,4 +1,5 @@
 {
+ "input_status": "The DTI anchors are user/owner-reported claims, not independently verified; no organizer receipt/page was accessed.",
  "inputs": {
   "score_h19_5_owner_reported": 0.1922,
   "score_d1_5_owner_reported": 0.2477,
@@ -121,63 +122,63 @@
   "table": [
    {
     "target": 0.2477,
-    "label": "0.2477 (group best)",
+    "label": "reported 0.2477 claim (unverified)",
     "emitted_px": 30000,
     "credit_fraction_required": 0.32114692218251706,
     "credit_per_emitted_px": 0.13384415692180746
    },
    {
     "target": 0.2477,
-    "label": "0.2477 (group best)",
+    "label": "reported 0.2477 claim (unverified)",
     "emitted_px": 40000,
     "credit_fraction_required": 0.35869972246083676,
     "credit_per_emitted_px": 0.11212125656050573
    },
    {
     "target": 0.2477,
-    "label": "0.2477 (group best)",
+    "label": "reported 0.2477 claim (unverified)",
     "emitted_px": 60000,
     "credit_fraction_required": 0.4338053230174761,
     "credit_per_emitted_px": 0.09039835619920399
    },
    {
     "target": 0.2941,
-    "label": "rank #5 snapshot 0.2941",
+    "label": "reported rank-#5 claim 0.2941 (unverified)",
     "emitted_px": 30000,
     "credit_fraction_required": 0.3850649031747798,
     "credit_per_emitted_px": 0.16048320493109042
    },
    {
     "target": 0.2941,
-    "label": "rank #5 snapshot 0.2941",
+    "label": "reported rank-#5 claim 0.2941 (unverified)",
     "emitted_px": 40000,
     "credit_fraction_required": 0.4300918500464513,
     "credit_per_emitted_px": 0.13443678833318778
    },
    {
     "target": 0.2941,
-    "label": "rank #5 snapshot 0.2941",
+    "label": "reported rank-#5 claim 0.2941 (unverified)",
     "emitted_px": 60000,
     "credit_fraction_required": 0.5201457437897943,
     "credit_per_emitted_px": 0.10839037173528522
    },
    {
     "target": 0.3195,
-    "label": "rank #1 snapshot 0.3195",
+    "label": "reported rank-#1 claim 0.3195 (unverified)",
     "emitted_px": 30000,
     "credit_fraction_required": 0.4205912362697468,
     "credit_per_emitted_px": 0.17528948757986745
    },
    {
     "target": 0.3195,
-    "label": "rank #1 snapshot 0.3195",
+    "label": "reported rank-#1 claim 0.3195 (unverified)",
     "emitted_px": 40000,
     "credit_fraction_required": 0.4697723979234555,
     "credit_per_emitted_px": 0.14684001200578142
    },
    {
     "target": 0.3195,
-    "label": "rank #1 snapshot 0.3195",
+    "label": "reported rank-#1 claim 0.3195 (unverified)",
     "emitted_px": 60000,
     "credit_fraction_required": 0.5681347212308728,
     "credit_per_emitted_px": 0.1183905364316954
@@ -193,5 +194,5 @@
   "model_dti_low": 0.25002945809247196,
   "model_dti_high": 0.2613299747091814
  },
- "caveat": "First-order model with two fitted parameters and the two live scores as its only anchors; the shape of the curve in d is an extrapolation. The retention is geometric (truth assumed uniform near H19-5's detections). The band varies retention by +/-5 %. Not a leaderboard result."
+ "caveat": "First-order model with two fitted parameters and two user/owner-reported, unverified DTI claims as its only score anchors; all outputs are conditional, and the shape of the curve in d is an extrapolation. Retention is geometric (truth assumed uniform near H19-5's detections); the band varies retention by +/-5 %. No organizer receipt/page was accessed; this is not a verified leaderboard result."
 }

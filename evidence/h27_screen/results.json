@@ -1,0 +1,219 @@
+{
+ "hypothesis": "H27-1",
+ "stage": "screen",
+ "draws": [
+  4,
+  5
+ ],
+ "design": {
+  "hypothesis": "H27-1",
+  "stage": "screen",
+  "preregistration": "knowledge/09_preregistered_hypotheses_2026-10-02.md",
+  "draws": [
+   4,
+   5
+  ],
+  "spatial_folds": [
+   "NW",
+   "NE",
+   "SW",
+   "SE"
+  ],
+  "design_seed": 20261003,
+  "canonical_matrix": [
+   {
+    "arm": "BASE",
+    "T": -1,
+    "S": -1
+   },
+   {
+    "arm": "T",
+    "T": 1,
+    "S": -1
+   },
+   {
+    "arm": "S",
+    "T": -1,
+    "S": 1
+   },
+   {
+    "arm": "TS",
+    "T": 1,
+    "S": 1
+   }
+  ],
+  "row_order_zero_based": [
+   3,
+   1,
+   0,
+   2
+  ],
+  "randomized_matrix": [
+   {
+    "arm": "TS",
+    "T": 1,
+    "S": 1
+   },
+   {
+    "arm": "T",
+    "T": 1,
+    "S": -1
+   },
+   {
+    "arm": "BASE",
+    "T": -1,
+    "S": -1
+   },
+   {
+    "arm": "S",
+    "T": -1,
+    "S": 1
+   }
+  ],
+  "historical_holdout_best": 0.15200338908786984,
+  "fixed_model_families": "BDE",
+  "fixed_addons": [
+   "X1_K",
+   "X1_ThK",
+   "X1_UK",
+   "X2_compat",
+   "X2_compat_coh",
+   "X3_gm",
+   "X3_gd"
+  ],
+  "emission": {
+   "method": "score_ordered_dots",
+   "kfrac": 0.035,
+   "min_dist_px": 2.4
+  },
+  "notes": "Rows are fit in the saved randomized order within every fold/draw; same HGB seed and common hide draw across rows."
+ },
+ "n_cells": 32,
+ "historical_holdout_best": 0.15200338908786984,
+ "arms": {
+  "BASE": {
+   "mean_dti": 0.1431405959962211,
+   "mean_coverage": 0.24639360574672525,
+   "mean_emitted": 11660.625,
+   "mean_hug": 0.0723096937159414,
+   "mean_auc": 0.799373790110458,
+   "by_fold_dti": [
+    0.1484452821520772,
+    0.1394987449311142,
+    0.1266352664955536,
+    0.15798309040613934
+   ],
+   "by_fold_hug": [
+    0.06638285306124178,
+    0.06630567982824848,
+    0.07461504432519388,
+    0.0819351976490815
+   ]
+  },
+  "T": {
+   "mean_dti": 0.15288182411967066,
+   "mean_coverage": 0.26337954055757457,
+   "mean_emitted": 11655.125,
+   "mean_hug": 0.08604680941841372,
+   "mean_auc": 0.8032579212987101,
+   "by_fold_dti": [
+    0.16359400253565934,
+    0.14613824225711802,
+    0.13639180268332174,
+    0.16540324900258352
+   ],
+   "by_fold_hug": [
+    0.07880694359445443,
+    0.08211273461629841,
+    0.08539645035694093,
+    0.09787110910596114
+   ]
+  },
+  "S": {
+   "mean_dti": 0.14456648421274093,
+   "mean_coverage": 0.2481020136995723,
+   "mean_emitted": 11635.625,
+   "mean_hug": 0.0725137906664715,
+   "mean_auc": 0.8004920717186026,
+   "by_fold_dti": [
+    0.15073783642818273,
+    0.13675392110091023,
+    0.1322336384494998,
+    0.15854054087237102
+   ],
+   "by_fold_hug": [
+    0.06741424975125018,
+    0.06891958674573254,
+    0.07122205319488234,
+    0.08249927297402093
+   ]
+  },
+  "TS": {
+   "mean_dti": 0.15106448533108768,
+   "mean_coverage": 0.26049949655166627,
+   "mean_emitted": 11684.625,
+   "mean_hug": 0.08456724783846141,
+   "mean_auc": 0.8045434759720558,
+   "by_fold_dti": [
+    0.16248820654096205,
+    0.14194562957646595,
+    0.13326088974537909,
+    0.16656321546154357
+   ],
+   "by_fold_hug": [
+    0.07794203132399377,
+    0.08323053707898748,
+    0.08193345529531407,
+    0.09516296765555032
+   ]
+  }
+ },
+ "factorial_effects_dti": {
+  "T": {
+   "mean": 0.008119614620898163,
+   "by_fold": [
+    0.013449545248180733,
+    0.005915602900779776,
+    0.005391893741823708,
+    0.007721416592808367
+   ]
+  },
+  "S": {
+   "mean": -0.00019572528603156725,
+   "by_fold": [
+    0.0005933791407041339,
+    -0.0034687182554280216,
+    0.0012337295080017824,
+    0.0008587084625958641
+   ]
+  },
+  "T_x_S": {
+   "mean": -0.0016216135025514111,
+   "by_fold": [
+    -0.0016991751354014095,
+    -0.0007238944252240531,
+    -0.004364642445944436,
+    0.0003012579963641848
+   ]
+  }
+ },
+ "promotion_gate": {
+  "candidate_mean_dti": 0.15106448533108768,
+  "historical_best": 0.15200338908786984,
+  "historical_comparator_passed": false,
+  "mean_gain_vs_paired_base": 0.007923889334866582,
+  "folds_positive": 4,
+  "worst_fold_gain": 0.0024468846453517545,
+  "hug_share_delta": 0.012257554122520001,
+  "paired_gate_passed": true,
+  "passed": false,
+  "per_fold_gain": [
+   0.014042924388884853,
+   0.0024468846453517545,
+   0.006625623249825491,
+   0.00858012505540423
+  ]
+ },
+ "slot_eligible": false,
+ "proxy_warning": "Hide-and-recover catalogue-gap evidence only; a pass is necessary, not sufficient, and is not a competition score."
+}

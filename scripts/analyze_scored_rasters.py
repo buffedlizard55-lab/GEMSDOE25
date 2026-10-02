@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Why did the dotted H19-5 (owner-reported 0.2477) score best?  Forensics on the real scored rasters.
+"""Audit the local raster labelled 0.2477 without treating its score claim as verified.
 
-Reads the pinned scored rasters (``restore_data.py --group scored``) and the organizers' template/labels, and writes
-``evidence/why_0_2477.json``. Nothing here is a leaderboard score except where marked OWNER/LEADERBOARD.
+Reads pinned owner-mirrored rasters (``restore_data.py --group scored``) and the owner-mirrored template/labels,
+then writes ``evidence/why_0_2477.json``. All competition DTI inputs are user/owner-reported claims, not
+organizer receipts; this script can establish local file relationships only.
 """
 
 from __future__ import annotations
@@ -22,19 +23,20 @@ from gems25.paths import data_dir  # noqa: E402
 from gems25.submission import check_file  # noqa: E402
 from gems25.thinning import dot_thin, neighbour_profile  # noqa: E402
 
-# Owner-reported (task statement 2026-10-02) public scores; LEADERBOARD = row read on the official page 2026-10-02.
+# User/owner-reported DTI claims supplied for local calibration; no organizer page or receipt was accessed.
+_UNVERIFIED = "user/owner-reported; unverified (not an organizer receipt)"
 SCORES = {
-    "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif": (0.1922, "OWNER; leaderboard row smrtdoog5 0.1922 (#28)"),
-    "gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif": (0.1894, "OWNER; leaderboard row SDCF9 0.1894 (#30)"),
-    "gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif": (0.1855, "OWNER; leaderboard row extradr19 0.1855 (#33)"),
-    "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif": (0.2477, "OWNER; leaderboard row wbg1 0.2477 (#16)"),
-    "gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif": (None, "unscored"),
-    "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif": (0.0904, "OWNER (blind lattice probe)"),
-    "8GEMSDOE_Hedge-v2_submission.tif": (0.1563, "OWNER; leaderboard row smashi34 0.1563 (#41)"),
-    "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif": (0.1280, "OWNER"),
-    "gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif": (0.1839, "OWNER"),
-    "gemsdoe-ens12-adopted-7f00890a.tif": (0.1563, "OWNER"),
-    "gemsdoe9-PLACEHOLDER-2314b599.tif": (0.0107, "OWNER"),
+    "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif": (0.1922, f"{_UNVERIFIED}; claim 0.1922"),
+    "gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif": (0.1894, f"{_UNVERIFIED}; claim 0.1894"),
+    "gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif": (0.1855, f"{_UNVERIFIED}; claim 0.1855"),
+    "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif": (0.2477, f"{_UNVERIFIED}; claim 0.2477"),
+    "gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif": (None, "unscored claim"),
+    "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif": (0.0904, f"{_UNVERIFIED}; blind lattice claim 0.0904"),
+    "8GEMSDOE_Hedge-v2_submission.tif": (0.1563, f"{_UNVERIFIED}; claim 0.1563"),
+    "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif": (0.1280, f"{_UNVERIFIED}; claim 0.1280"),
+    "gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif": (0.1839, f"{_UNVERIFIED}; claim 0.1839"),
+    "gemsdoe-ens12-adopted-7f00890a.tif": (0.1563, f"{_UNVERIFIED}; claim 0.1563"),
+    "gemsdoe9-PLACEHOLDER-2314b599.tif": (0.0107, f"{_UNVERIFIED}; claim 0.0107"),
 }
 
 
@@ -50,7 +52,11 @@ def main() -> None:
     lab = load(d / "labels.tif") == 1
     dcat = distance_transform_edt(~lab)
     sdir = d / "scored"
-    out: dict = {"rasters": {}, "relations": {}}
+    out: dict = {
+        "score_claims_warning": "All competition DTI values below are user/owner-reported and unverified; file analysis verifies local pixels only.",
+        "rasters": {},
+        "relations": {},
+    }
     masks = {}
     for name, (score, src) in SCORES.items():
         p = sdir / name
@@ -112,7 +118,7 @@ def main() -> None:
                                           score_owner_reported=S0, truth_density_per_cell=float(tau),
                                           truth_px_in_footprint=float(tau * foot.sum()), as_pct_of_catalogue=float(tau * foot.sum() / lab.sum()))
         # pooled-subset reading: tau is the density in the *scored subset*, not necessarily the footprint
-    # ---- implied credit / FP mass from the two live scores (owner-reported 0.1922 and 0.2477)
+    # ---- Conditional model inversion using two unverified user/owner-reported score claims.
     from scipy.optimize import brentq
     D0, D1 = 0.1922, 0.2477
     n0, n1 = int(masks[h].sum()), int(masks[d15].sum())
@@ -126,17 +132,28 @@ def main() -> None:
     try:
         f = brentq(g, 0.01, 500)
         c = D0 * (0.2 * f + 0.8) / (1 - 0.2 * D0)
-        out["implied_by_live_scores"] = dict(retention_used=rho, credit_per_truth=c, fp_mass_per_truth=f,
-                                             implied_truth_px_if_92pct_of_h19_5_px_are_fp=n0 * 0.92 / f,
-                                             break_even_ratio_at_0_2477=0.2 * D1 / (1 - 0.2 * D1))
+        out["conditional_on_reported_scores"] = dict(
+            status="model inversion conditional on unverified user/owner-reported DTI claims",
+            score_claims=[D0, D1],
+            retention_used=rho,
+            credit_per_truth=c,
+            fp_mass_per_truth=f,
+            implied_truth_px_if_92pct_of_h19_5_px_are_fp=n0 * 0.92 / f,
+            break_even_ratio_at_0_2477=0.2 * D1 / (1 - 0.2 * D1),
+        )
     except ValueError:
-        out["implied_by_live_scores"] = dict(note="no solution for the geometric retention", retention_used=rho)
+        out["conditional_on_reported_scores"] = dict(
+            status="model inversion conditional on unverified user/owner-reported DTI claims",
+            score_claims=[D0, D1],
+            note="no solution for the geometric retention",
+            retention_used=rho,
+        )
     (ROOT / "evidence").mkdir(exist_ok=True)
     (ROOT / "evidence" / "why_0_2477.json").write_text(json.dumps(out, indent=1, default=float) + "\n")
     for k, v in out["relations"].items():
         print(f"{k}: {v}")
     print(json.dumps(out.get("lattice_calibration"), indent=1))
-    print(json.dumps(out.get("implied_by_live_scores"), indent=1))
+    print(json.dumps(out.get("conditional_on_reported_scores"), indent=1))
     for n, r in out["rasters"].items():
         print(f"{n[:70]:70s} px={r['positive_px']:>7d} fmt_ok={r['format_ok']} nn_med={r['nn_spacing_px']['median']:.2f} 3+nbr={r['neighbour_profile']['three_plus']:.2f} within3px_of_cat={r['frac_off_catalogue_within_3px_of_catalogue']:.3f}")
 

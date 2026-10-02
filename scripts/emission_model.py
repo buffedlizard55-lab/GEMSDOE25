@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""First-order live-score model for score-blind dotting of H19-5 -> ``evidence/emission_model.json``.
+"""Conditional score-claim model for score-blind dotting of H19-5 -> ``evidence/emission_model.json``.
 
 Model (assumptions stated, not measured): truth |G| pixels; H19-5 earns credit c|G| with false-positive mass f|G|.
 Thinning to n pixels keeps a fraction rho(d) of the credit (geometric: truth uniform in the neighbourhood of H19-5's
 detections, kernel credit to the nearest kept pixel) and the false-positive mass scales with the pixel count.
-(c, f) are solved from the two owner-reported scores (0.1922 and 0.2477) given rho(1.5); DTI(d) follows from
-DTI = rho c / (0.2 rho c + 0.2 (n/n0) f + 0.8).
+(c, f) are solved from two user/owner-reported, unverified DTI claims (0.1922 and 0.2477) given rho(1.5).
+Outputs are conditional extrapolations, not verified competition scores or evidence that a file won.
 """
 
 from __future__ import annotations
@@ -78,7 +78,11 @@ def main() -> None:
     lat_N = float(lw["lattice_calibration"]["truth_px_in_footprint"])
     fp_per_px = f * lat_N / n0  # false-positive mass per emitted pixel of H19-5 (kept constant under thinning)
     req = []
-    for tgt, label in ((D1, "0.2477 (group best)"), (0.2941, "rank #5 snapshot 0.2941"), (0.3195, "rank #1 snapshot 0.3195")):
+    for tgt, label in (
+        (D1, "reported 0.2477 claim (unverified)"),
+        (0.2941, "reported rank-#5 claim 0.2941 (unverified)"),
+        (0.3195, "reported rank-#1 claim 0.3195 (unverified)"),
+    ):
         for n in (30_000, 40_000, 60_000):
             c_req = tgt * (0.2 * fp_per_px * n / lat_N + 0.8) / (1 - 0.2 * tgt)
             req.append(dict(target=tgt, label=label, emitted_px=n, credit_fraction_required=c_req, credit_per_emitted_px=c_req * lat_N / n))
@@ -94,6 +98,7 @@ def main() -> None:
         prune.append(dict(dropped_fraction_of_pixels=q, max_credit_share_of_dropped=s_star, per_pixel_credit_of_dropped_vs_average_max=s_star / q))
     have = dict(emitted_px=n15, credit_fraction=c15, credit_per_emitted_px=c15 * lat_N / n15)
     out = dict(
+        input_status="The DTI anchors are user/owner-reported claims, not independently verified; no organizer receipt/page was accessed.",
         inputs=dict(score_h19_5_owner_reported=D0, score_d1_5_owner_reported=D1, n_h19_5=n0, n_d1_5=n15, retention_d1_5=rho15),
         solved=dict(credit_per_truth=c, fp_mass_per_truth=f),
         curve=curve,
@@ -103,9 +108,9 @@ def main() -> None:
         requirements=dict(truth_px_used=lat_N, fp_mass_per_emitted_px=fp_per_px, dotted_h19_5_d1_5_has=have, table=req,
                           reading="credit_per_emitted_px = (credit fraction of |G|) * |G| / emitted pixels; compare with the dotted H19-5 row above"),
         d2_8=next(r for r in curve if r["min_dist"] == 2.4),
-        caveat=("First-order model with two fitted parameters and the two live scores as its only anchors; the shape of the curve in d is an "
-                "extrapolation. The retention is geometric (truth assumed uniform near H19-5's detections). The band varies retention by +/-5 %. "
-                "Not a leaderboard result."),
+        caveat=("First-order model with two fitted parameters and two user/owner-reported, unverified DTI claims as its only score anchors; all outputs are conditional, "
+                "and the shape of the curve in d is an extrapolation. Retention is geometric (truth assumed uniform near H19-5's detections); the band varies retention by +/-5 %. "
+                "No organizer receipt/page was accessed; this is not a verified leaderboard result."),
     )
     (ROOT / "evidence" / "emission_model.json").write_text(json.dumps(out, indent=1) + "\n")
     for r in curve:

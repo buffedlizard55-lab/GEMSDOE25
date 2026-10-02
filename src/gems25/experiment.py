@@ -13,7 +13,7 @@ from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.metrics import roc_auc_score
 
 from .families import family_columns
-from .features import build_catalogue_features
+from .features import build_catalogue_features, build_tip_continuation
 from .holdout import Draw, Holdout
 from .metric import dti_binary
 from .thinning import dot_thin, ridge_nms, select_top_positive
@@ -38,13 +38,15 @@ class Context:
     fi: np.ndarray = field(init=False)
     holdout: Holdout = field(init=False)
     scale: dict = field(init=False)
+    h27_scarp: np.ndarray = field(init=False)
 
     def __post_init__(self):
         self.fi = np.flatnonzero(self.foot.ravel())
         self.holdout = Holdout(self.foot, self.labels, 0.20)
         self.e_names = family_columns("E")
         self.extra_names = ["X1_K", "X1_ThK", "X1_UK", "X2_compat", "X2_compat_coh", "X3_gm", "X3_gd"]
-        self.all_names = list(self.static_names) + list(self.e_names) + list(self.extra_names)
+        self.h27_names = ["H27_tip", "H27_scarp", "H27_tip_x_scarp"]
+        self.all_names = list(self.static_names) + list(self.e_names) + list(self.extra_names) + list(self.h27_names)
         self.col = {n: i for i, n in enumerate(self.all_names)}
         rng = np.random.default_rng(1)
         sub = np.sort(rng.choice(self.fi.size, 200_000, replace=False))
@@ -54,6 +56,18 @@ class Context:
             v = v[np.isfinite(v)]
             lo, hi = (np.percentile(v, 1), np.percentile(v, 99)) if v.size else (0.0, 1.0)
             self.scale[n] = (float(lo), float(hi if hi > lo else lo + 1.0))
+
+        required = ("L_step_max", "B_crest", "B_trough")
+        if all(n in self.static_names for n in required):
+            scaled = []
+            for n in required:
+                raw = np.asarray(self.static[self.static_names.index(n)], np.float32)
+                lo, hi = self.scale[n]
+                scaled.append(np.clip((raw - lo) / (hi - lo), 0.0, 1.0))
+            step, crest, trough = scaled
+            self.h27_scarp = np.nan_to_num(step * np.maximum(crest, trough), nan=0.0, posinf=0.0, neginf=0.0).astype(np.float32)
+        else:
+            self.h27_scarp = np.zeros(self.fi.size, np.float32)
 
     def vec(self, mask: np.ndarray) -> np.ndarray:
         """Footprint-vector indices where ``mask`` is true."""
@@ -76,12 +90,15 @@ class Context:
 class Cell:
     """Everything shared by all runs of one (fold, draw): features, training sample, test matrix."""
 
-    def __init__(self, ctx: Context, fold: int, seed: int, extras: bool = False):
-        self.ctx, self.fold, self.seed, self.extras = ctx, fold, seed, extras
+    def __init__(self, ctx: Context, fold: int, seed: int, extras: bool = False, h27: bool = False):
+        if h27 and not extras:
+            raise ValueError("H27 columns are appended after the add-on columns; set extras=True for aligned indices")
+        self.ctx, self.fold, self.seed, self.extras, self.h27 = ctx, fold, seed, extras, h27
         t0 = time.time()
         self.draw: Draw = ctx.holdout.draw(fold, seed)
         d = self.draw
         self.E = build_catalogue_features(d.visible, ctx.fi)
+        self.tip = build_tip_continuation(d.visible, ctx.foot, ctx.fi) if h27 else None
         rng = np.random.default_rng(777 + 31 * fold + seed)
         pos = ctx.vec(d.hidden_train)
         near = distance_transform_edt(~d.hidden_train) <= 1.5
@@ -111,7 +128,15 @@ class Cell:
         self.prep_seconds = time.time() - t0
 
     def _gather(self, idx: np.ndarray) -> np.ndarray:
-        return gather_columns(self.ctx, self.E, idx, self.extras)
+        X = gather_columns(self.ctx, self.E, idx, self.extras)
+        if self.h27:
+            tip = self.tip[idx]
+            scarp = self.ctx.h27_scarp[idx]
+            h = np.empty((idx.size, 3), np.float32)
+            h[:, 0], h[:, 1] = tip, scarp
+            h[:, 2] = tip * scarp
+            X = np.concatenate((X, h), axis=1)
+        return X
 
     # -------------------------------------------------------------------------------------
     def emit(self, score_q: np.ndarray, dotted: bool = True, min_dist: float = DOT_MIN_DIST, k: int | None = None):

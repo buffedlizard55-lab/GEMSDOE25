@@ -76,3 +76,6 @@ on 24 scored artefacts the group measured Spearman +0.33 (n.s.) between catalogu
 * H19-5 as emitted is *not* an out-of-fold surface (it saw the whole catalogue); it is reported only as a
   diagnostic and never as a beaten baseline.
 * No score is promised. Unknowns stay unknown.
+
+## Supersession note for current slot decisions (2026-10-02)
+This document records an earlier factorial gate and remains the historical preregistration for those runs. Its same-harness candidate gate is not a substitute for the current rule: a specific candidate must beat the current spatially blocked holdout best, pass its paired/confirmation criteria, and pass the exact-file audit before any weekly slot is considered. No exception is authorized; see `AGENTS.md`, `knowledge/09_preregistered_hypotheses_2026-10-02.md` and the current `registry/submissions.json`.

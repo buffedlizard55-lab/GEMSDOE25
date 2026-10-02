@@ -269,6 +269,114 @@ def build_catalogue_features(visible: np.ndarray, footprint_idx: np.ndarray) -> 
     return out
 
 
+def build_tip_continuation(visible: np.ndarray, footprint: np.ndarray, footprint_idx: np.ndarray,
+                           chunk_size: int = 500_000) -> np.ndarray:
+    """Directed continuation strength beyond endpoints of the *visible* catalogue.
+
+    Endpoints are degree-1 pixels in the 8-neighbour graph, with full local footprint support. Their outward
+    vector points away from the sole visible neighbour. For each footprint cell, the nearest endpoint must be
+    1.5--12 pixels away, locally coherent, line-parallel and outward-facing. The output is a [0, 1] vector.
+    Calculations are chunked after the distance transform to bound temporary memory on the 4 GB runner.
+    """
+    from scipy.ndimage import binary_erosion, convolve, distance_transform_edt
+
+    v = np.asarray(visible, dtype=bool).copy()
+    foot = np.asarray(footprint, dtype=bool)
+    raw_fi = np.asarray(footprint_idx)
+    if v.ndim != 2 or foot.shape != v.shape or raw_fi.ndim != 1:
+        raise ValueError("visible, footprint, and footprint_idx must describe one aligned 2-D grid")
+    if raw_fi.size and not np.issubdtype(raw_fi.dtype, np.integer):
+        raise ValueError("footprint_idx must contain integer flat indices")
+    fi = raw_fi.astype(np.int64, copy=False)
+    H, W = v.shape
+    if isinstance(chunk_size, (bool, np.bool_)) or not isinstance(chunk_size, (int, np.integer)) or chunk_size <= 0:
+        raise ValueError("chunk_size must be a positive integer")
+    if fi.size and ((fi < 0).any() or (fi >= H * W).any() or not foot.ravel()[fi].all()):
+        raise ValueError("footprint_idx must contain only valid flat indices inside the footprint")
+    v &= foot
+    out = np.zeros(fi.size, np.float32)
+    if not v.any() or not fi.size:
+        return out
+
+    # Do not treat a catalogue line clipped at the grid/footprint edge as a geological tip.
+    full_3x3 = binary_erosion(foot, structure=np.ones((3, 3), bool), border_value=0)
+    kernel = np.ones((3, 3), np.uint8)
+    kernel[1, 1] = 0
+    degree = convolve(v.astype(np.uint8), kernel, mode="constant", cval=0)
+    tips = v & (degree == 1) & full_3x3
+    tip_r, tip_c = np.nonzero(tips)
+    if not tip_r.size:
+        return out
+
+    # Doubled-angle local strike matches family E; coherence is its 2 km resultant length (also family E).
+    smooth = gaussian_filter(v.astype(np.float32), 2.0)
+    gy, gx = np.gradient(smooth)
+    jxx = gaussian_filter(gx * gx, 2.0)
+    jyy = gaussian_filter(gy * gy, 2.0)
+    jxy = gaussian_filter(gx * gy, 2.0)
+    phi2 = np.arctan2(2.0 * jxy, jxx - jyy)
+    line_c2 = -np.cos(phi2).astype(np.float32)
+    line_s2 = -np.sin(phi2).astype(np.float32)
+    wv = v.astype(np.float32)
+    sc, ss, sw = (_coarse_density(wv * line_c2, 20.0), _coarse_density(wv * line_s2, 20.0), _coarse_density(wv, 20.0))
+    coherence = np.sqrt(sc * sc + ss * ss) / np.maximum(sw, 1e-6)
+    coherence = np.where(sw > 1e-5, np.minimum(coherence, 1.0), 0.0)
+    tip_c2 = line_c2[tip_r, tip_c]
+    tip_s2 = line_s2[tip_r, tip_c]
+    tip_coh = coherence[tip_r, tip_c].astype(np.float32)
+    del smooth, gy, gx, jxx, jyy, jxy, phi2, line_c2, line_s2, wv, sc, ss, sw, coherence, degree, full_3x3
+
+    # A degree-1 endpoint has one visible neighbour. Point its direction away from that pixel.
+    tip_out_r = np.zeros(tip_r.size, np.float32)
+    tip_out_c = np.zeros(tip_c.size, np.float32)
+    for i, (r, c) in enumerate(zip(tip_r.tolist(), tip_c.tolist(), strict=True)):
+        nr = nc = -1
+        for dr in (-1, 0, 1):
+            for dc in (-1, 0, 1):
+                if dr == 0 and dc == 0:
+                    continue
+                rr, cc = r + dr, c + dc
+                if 0 <= rr < H and 0 <= cc < W and v[rr, cc]:
+                    nr, nc = rr, cc
+                    break
+            if nr >= 0:
+                break
+        if nr < 0:
+            continue
+        orow, ocol = float(r - nr), float(c - nc)
+        norm = float(np.hypot(orow, ocol))
+        tip_out_r[i], tip_out_c[i] = orow / norm, ocol / norm
+
+    # Nearest-tip indices are only 2 int32 grids (~98 MB); all per-pixel arithmetic is chunked.
+    nearest = distance_transform_edt(~tips, return_distances=False, return_indices=True)
+    tip_flat = tip_r.astype(np.int64) * W + tip_c.astype(np.int64)
+    for start in range(0, fi.size, chunk_size):
+        stop = min(fi.size, start + chunk_size)
+        ids = fi[start:stop]
+        rr = (ids // W).astype(np.int32)
+        cc = (ids % W).astype(np.int32)
+        nr = nearest[0, rr, cc]
+        nc = nearest[1, rr, cc]
+        dr = rr.astype(np.float32) - nr.astype(np.float32)
+        dc = cc.astype(np.float32) - nc.astype(np.float32)
+        d2 = dr * dr + dc * dc
+        dist = np.sqrt(d2)
+        near_flat = nr.astype(np.int64) * W + nc.astype(np.int64)
+        ti = np.searchsorted(tip_flat, near_flat)
+        safe_d2 = np.maximum(d2, 1e-12)
+        cos2 = (dc * dc - dr * dr) / safe_d2
+        sin2 = (2.0 * dc * dr) / safe_d2
+        parallel = tip_c2[ti] * cos2 + tip_s2[ti] * sin2
+        outward = dr * tip_out_r[ti] + dc * tip_out_c[ti]
+        outward = outward / np.maximum(dist, 1e-12)
+        align = np.clip((parallel - 0.5) / 0.5, 0.0, 1.0)
+        forward = np.clip((outward - 0.5) / 0.5, 0.0, 1.0)
+        strength = np.exp(-dist / 5.0) * align * forward * tip_coh[ti]
+        valid = (dist >= 1.5) & (dist <= 12.0) & (tip_coh[ti] >= 0.25) & (parallel >= 0.5) & (outward >= 0.5)
+        out[start:stop] = np.where(valid, np.clip(strength, 0.0, 1.0), 0.0)
+    return out
+
+
 # ----------------------------------------------------------------------------------------------
 # add-on static columns for the pre-registered hypothesis tests (H26-1, H26-2)
 # ----------------------------------------------------------------------------------------------

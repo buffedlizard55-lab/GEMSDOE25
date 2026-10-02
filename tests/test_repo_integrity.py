@@ -39,6 +39,12 @@ def test_data_manifest_hashes_look_like_sha256_and_pins_are_unique_files():
 def test_shipped_downloads_match_registry_hashes_and_are_small():
     subs = J("registry/submissions.json")["files"]
     assert any(s["role"] == "primary" for s in subs)
+    assert not any(s.get("slot_approved", False) for s in subs)
+    primary = next(s for s in subs if s["role"] == "primary")
+    assert "not holdout-promoted vs 0.152003389" in primary["note"] and "no slot" in primary["note"]
+    registered_tifs = {s["file"] for s in subs}
+    shipped_tifs = {p.name for p in (ROOT / "docs" / "downloads").glob("*.tif")}
+    assert shipped_tifs == registered_tifs, "unregistered GeoTIFF in docs/downloads can be downloaded directly"
     for s in subs:
         f = ROOT / s["path"]
         assert f.exists(), s["path"]
@@ -67,13 +73,59 @@ def test_feed_script_can_never_request_drivendata():
     assert not cs.is_blocked("https://gdr.openei.org/submissions/1391")
 
     class Boom:
-        def head(self, *a, **k):
+        def request(self, *a, **k):
             raise AssertionError("network call made to a blocked host")
-
-        get = head
 
     r = cs.probe(Boom(), "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/")
     assert "not fetched" in r["status"]
+
+
+def test_feed_manually_blocks_redirects_for_every_request_method():
+    import check_sources as cs
+
+    class Response:
+        def __init__(self, status, headers=None):
+            self.status_code = status
+            self.headers = headers or {}
+            self.closed = False
+
+        def close(self):
+            self.closed = True
+
+    class RedirectSession:
+        def __init__(self, responses):
+            self.responses = list(responses)
+            self.calls = []
+
+        def request(self, method, url, **kwargs):
+            assert kwargs["allow_redirects"] is False
+            self.calls.append((method, url))
+            return self.responses.pop(0)
+
+    original = "https://official.example.test/data"
+    blocked = "https://api.drivendata.org/anything"
+
+    # HEAD redirect: the forbidden host is never requested.
+    response = Response(302, {"Location": blocked})
+    session = RedirectSession([response])
+    got = cs.probe(session, original)
+    assert got["status"] == "redirect to DrivenData not followed"
+    assert session.calls == [("HEAD", original)] and response.closed
+
+    # A 405 HEAD followed by GET must also keep redirects disabled (the old GET fallback did not).
+    head, get = Response(405), Response(302, {"Location": blocked})
+    session = RedirectSession([head, get])
+    got = cs.probe(session, original)
+    assert got["status"] == "redirect to DrivenData not followed"
+    assert session.calls == [("HEAD", original), ("GET", original)]
+    assert head.closed and get.closed
+
+    # ScienceBase and GitHub paths share this same safe primitive.
+    response = Response(301, {"Location": blocked})
+    session = RedirectSession([response])
+    with pytest.raises(cs.BlockedRedirect):
+        cs.safe_request(session, "GET", original)
+    assert session.calls == [("GET", original)] and response.closed
 
 
 def test_readme_carries_the_brief_and_core_values():
@@ -100,7 +152,8 @@ def test_site_local_links_resolve(page):
 def test_first_screen_of_home_has_the_download_before_anything_else():
     t = (ROOT / "index.html").read_text()
     primary = next(s for s in J("registry/submissions.json")["files"] if s["role"] == "primary")
-    assert t.index(primary["file"]) < t.index("Why the 0.2477 file scored best")
+    assert t.index(primary["file"]) < t.index("Local audit of the reported 0.2477 raster (score unverified)")
+    assert "not slot-approved" in t and "0.152003389" in t
     assert "executive-summary.html" in t
 
 
