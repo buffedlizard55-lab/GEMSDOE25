@@ -153,6 +153,14 @@
    "issue": "The 0.2477 file is pixel-for-pixel dot_thin(H19-5, 1.5) (mask equality): 60,069 of 121,131 pixels, a strict subset, zero NaN inside the footprint, no emission on catalogue pixels. The unscored alternate equals dot_thin(H19-5, 2.4) (44,090 px).",
    "evidence": "evidence/why_0_2477.json; tests/test_group_reproduction.py",
    "resolution_or_action": "Re-uploading either file's *parent* or the scored file gives no new information."
+  },
+  {
+   "id": "IR-25-FEED-SCHEDULE",
+   "severity": "medium",
+   "status": "open",
+   "issue": "The source-feed workflow has run once on GitHub (push to main after PR #2, run succeeded and the bot committed docs/data/feed.json), but no *scheduled* (cron) run has been observed yet; GitHub only runs scheduled workflows from the default branch, so the first cron run can only happen after the merge. The ScienceBase 'lastUpdated' field was empty in that first run (reader fixed afterwards, untestable from the sandbox).",
+   "evidence": "gh run list --branch main (source-feed, success); git log origin/main (github-actions[bot] 'chore(feed): refresh source feed')",
+   "resolution_or_action": "Check the Actions tab for a scheduled run within 6 hours of the merge; until then treat docs/data/feed.json's timestamp as authoritative."
   }
  ]
 }
