@@ -15,6 +15,7 @@ from sklearn.metrics import roc_auc_score
 from .families import family_columns
 from .features import build_catalogue_features, build_tip_continuation
 from .holdout import Draw, Holdout
+from .h30 import H30_PAIR_NAMES, build_paired_tip_bridge, build_scarp_persistence
 from .metric import dti_binary
 from .thinning import dot_thin, ridge_nms, select_top_positive
 
@@ -39,6 +40,8 @@ class Context:
     holdout: Holdout = field(init=False)
     scale: dict = field(init=False)
     h27_scarp: np.ndarray = field(init=False)
+    h30_scarp: np.ndarray | None = field(init=False, default=None)
+    h30_scarp_diag: dict | None = field(init=False, default=None)
 
     def __post_init__(self):
         self.fi = np.flatnonzero(self.foot.ravel())
@@ -46,7 +49,9 @@ class Context:
         self.e_names = family_columns("E")
         self.extra_names = ["X1_K", "X1_ThK", "X1_UK", "X2_compat", "X2_compat_coh", "X3_gm", "X3_gd"]
         self.h27_names = ["H27_tip", "H27_scarp", "H27_tip_x_scarp"]
-        self.all_names = list(self.static_names) + list(self.e_names) + list(self.extra_names) + list(self.h27_names)
+        self.h30_names = list(H30_PAIR_NAMES)
+        self.all_names = (list(self.static_names) + list(self.e_names) + list(self.extra_names)
+                          + list(self.h27_names) + list(self.h30_names))
         self.col = {n: i for i, n in enumerate(self.all_names)}
         rng = np.random.default_rng(1)
         sub = np.sort(rng.choice(self.fi.size, 200_000, replace=False))
@@ -69,6 +74,22 @@ class Context:
         else:
             self.h27_scarp = np.zeros(self.fi.size, np.float32)
 
+    def ensure_h30_scarp(self) -> None:
+        """Build H30's static composite only when an H30 cell actually needs it."""
+        if self.h30_scarp is not None:
+            return
+        h30_required = ("L_step_max", "L_cross_max", "L_coh100")
+        if all(n in self.static_names for n in h30_required):
+            self.h30_scarp, self.h30_scarp_diag = build_scarp_persistence(self.static, self.static_names, self.scale)
+        else:
+            self.h30_scarp = np.zeros(self.fi.size, np.float32)
+            self.h30_scarp_diag = {
+                "missing_inputs": [n for n in h30_required if n not in self.static_names],
+                "n_footprint_pixels": int(self.fi.size),
+                "nonzero_fraction": 0.0,
+                "max_value": 0.0,
+            }
+
     def vec(self, mask: np.ndarray) -> np.ndarray:
         """Footprint-vector indices where ``mask`` is true."""
         return np.flatnonzero(mask.ravel()[self.fi])
@@ -90,15 +111,24 @@ class Context:
 class Cell:
     """Everything shared by all runs of one (fold, draw): features, training sample, test matrix."""
 
-    def __init__(self, ctx: Context, fold: int, seed: int, extras: bool = False, h27: bool = False):
+    def __init__(self, ctx: Context, fold: int, seed: int, extras: bool = False, h27: bool = False,
+                 h30: bool = False):
         if h27 and not extras:
             raise ValueError("H27 columns are appended after the add-on columns; set extras=True for aligned indices")
-        self.ctx, self.fold, self.seed, self.extras, self.h27 = ctx, fold, seed, extras, h27
+        if h30 and not (extras and h27):
+            raise ValueError("H30 columns follow the H27 columns; set extras=True and h27=True for aligned indices")
+        self.ctx, self.fold, self.seed, self.extras, self.h27, self.h30 = ctx, fold, seed, extras, h27, h30
         t0 = time.time()
         self.draw: Draw = ctx.holdout.draw(fold, seed)
         d = self.draw
+        if h30:
+            ctx.ensure_h30_scarp()
         self.E = build_catalogue_features(d.visible, ctx.fi)
         self.tip = build_tip_continuation(d.visible, ctx.foot, ctx.fi) if h27 else None
+        self.bridge = None
+        self.bridge_diag = None
+        if h30:
+            self.bridge, self.bridge_diag = build_paired_tip_bridge(d.visible, ctx.foot, ctx.fi)
         rng = np.random.default_rng(777 + 31 * fold + seed)
         pos = ctx.vec(d.hidden_train)
         near = distance_transform_edt(~d.hidden_train) <= 1.5
@@ -128,14 +158,24 @@ class Cell:
         self.prep_seconds = time.time() - t0
 
     def _gather(self, idx: np.ndarray) -> np.ndarray:
-        X = gather_columns(self.ctx, self.E, idx, self.extras)
+        ns, ne = self.ctx.static.shape[0], self.E.shape[0]
+        n_extra = len(self.ctx.extra_names) if self.extras else 0
+        n_h27, n_h30 = (3 if self.h27 else 0), (2 if self.h30 else 0)
+        X = np.empty((idx.size, ns + ne + n_extra + n_h27 + n_h30), np.float32)
+        gather_columns(self.ctx, self.E, idx, self.extras, out=X)
+        j = ns + ne + n_extra
         if self.h27:
             tip = self.tip[idx]
             scarp = self.ctx.h27_scarp[idx]
-            h = np.empty((idx.size, 3), np.float32)
-            h[:, 0], h[:, 1] = tip, scarp
-            h[:, 2] = tip * scarp
-            X = np.concatenate((X, h), axis=1)
+            X[:, j] = tip
+            X[:, j + 1] = scarp
+            X[:, j + 2] = tip * scarp
+            j += 3
+        if self.h30:
+            if self.bridge is None or self.ctx.h30_scarp is None:
+                raise RuntimeError("H30 features were requested before their per-cell/static fields were initialized")
+            X[:, j] = self.bridge[idx]
+            X[:, j + 1] = self.ctx.h30_scarp[idx]
         return X
 
     # -------------------------------------------------------------------------------------
@@ -197,11 +237,23 @@ class Cell:
         return np.where(cnt > 0, acc / np.maximum(cnt, 1), 0.0).astype(np.float32)
 
 
-def gather_columns(ctx: "Context", E: np.ndarray, idx: np.ndarray, extras: bool = False) -> np.ndarray:
-    """Static + catalogue (E) (+ add-on) columns for footprint-vector indices ``idx`` (one code path for all stages)."""
+def gather_columns(
+    ctx: "Context", E: np.ndarray, idx: np.ndarray, extras: bool = False, out: np.ndarray | None = None
+) -> np.ndarray:
+    """Static + catalogue (E) (+ add-on) columns for footprint-vector indices ``idx``.
+
+    ``out`` may be a larger preallocated matrix; only the base columns are written. This lets H27/H30 append
+    per-cell features without repeated full-matrix concatenations on the 4 GB runner.
+    """
     ns, ne = ctx.static.shape[0], E.shape[0]
     n_extra = len(ctx.extra_names) if extras else 0
-    X = np.empty((idx.size, ns + ne + n_extra), np.float32)
+    n_base = ns + ne + n_extra
+    if out is None:
+        X = np.empty((idx.size, n_base), np.float32)
+    else:
+        X = np.asarray(out)
+        if X.ndim != 2 or X.shape[0] != idx.size or X.shape[1] < n_base or X.dtype != np.float32:
+            raise ValueError("preallocated out must be float32 with matching rows and room for all base columns")
     X[:, :ns] = np.asarray(ctx.static[:, idx]).T
     X[:, ns : ns + ne] = E[:, idx].T
     if extras:

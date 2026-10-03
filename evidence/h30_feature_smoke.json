@@ -1,0 +1,118 @@
+{
+  "generated_utc": "2026-10-03T05:31:07Z",
+  "kind": "real-data H30 feature-construction smoke test",
+  "model_fit_executed": false,
+  "dti_evaluated": false,
+  "preregistration": "knowledge/11_preregistered_h30_pairwise_relay_factorial_2026-10-03.md",
+  "cell": {
+    "fold": 0,
+    "fold_name": "NW",
+    "draw": 6,
+    "features_enabled": [
+      "extras",
+      "H27",
+      "H30"
+    ],
+    "prep_seconds": 14.53,
+    "Xtr_shape": [
+      309985,
+      83
+    ],
+    "Xq_shape": [
+      1154738,
+      83
+    ]
+  },
+  "input_sha256_from_registry_data_manifest": {
+    "training_features": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "labels": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "ext_lidar_scarp_features_u8": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568"
+  },
+  "derived_cache_sha256_verified": {
+    "static_ABCD.npy": {
+      "sha256": "fe584a12ed3e1ed7d26b272c49f6da0bbe16e072d98f6b1694938d858305b084",
+      "bytes": 1322847616
+    },
+    "static_ABCD.npy.names.json": {
+      "sha256": "60d48fb99c0c032e5c33a774298112104c9e1cdd15482ac58cddefc948fb85de",
+      "bytes": 893
+    },
+    "addons.npy": {
+      "sha256": "ad31ff14a804b6956efa13b8c3caf6b322d6942b0f57911050ba243ac92e57bc",
+      "bytes": 103347588
+    },
+    "addons.npy.names.json": {
+      "sha256": "b1562d7d1f5e57de2002f67038d6b1b4668e3ae10354fac648722f6d33db7f27",
+      "bytes": 51
+    },
+    "bands/_footprint.npy": {
+      "sha256": "c446094771775c00802862e9ec58846fd1b278b4e608303e68811a2404dfd246",
+      "bytes": 12279288
+    },
+    "bands/_labels.npy": {
+      "sha256": "d77fa88ad58d0a268b736b3c1d6a8939fd237d5955369944bd2b299194b2555d",
+      "bytes": 12279288
+    }
+  },
+  "input_provenance_caveat": "Training and label rasters are hash-pinned owner mirrors, not organizer-authenticated. The LiDAR scarp feature raster is owner-derived from 3DEP tiles and is not a raw USGS rebuild.",
+  "terrain_scales_from_context": {
+    "L_step_max": [
+      0.0005580011056736112,
+      0.5134230256080627
+    ],
+    "L_cross_max": [
+      0.005022010765969753,
+      0.5954491496086121
+    ],
+    "L_coh100": [
+      0.08267716318368912,
+      0.9685039520263672
+    ]
+  },
+  "h30_scarp_feature_diagnostics": {
+    "source_nonfinite_counts": {
+      "L_step_max": 1274189,
+      "L_cross_max": 1960173,
+      "L_coh100": 1284471
+    },
+    "n_footprint_pixels": 5167373,
+    "nonzero_fraction": 0.607845417778047,
+    "max_value": 1.0,
+    "range": [
+      0.0,
+      1.0
+    ]
+  },
+  "h30_pair_bridge_diagnostics": {
+    "visible_tip_count": 5378,
+    "nearby_pair_count": 10484,
+    "accepted_pair_count": 2377,
+    "seed_pixel_count": 19539,
+    "nonzero_fraction": 0.013207871775465018,
+    "max_value": 0.6644677519798279
+  },
+  "feature_column_checks": {
+    "H27_tip": {
+      "column": 78,
+      "train_nonzero": 8387,
+      "test_nonzero": 21571,
+      "all_train_values_finite": true,
+      "all_test_values_finite": true
+    },
+    "H30_pair_bridge": {
+      "column": 81,
+      "train_nonzero": 3926,
+      "test_nonzero": 13262,
+      "all_train_values_finite": true,
+      "all_test_values_finite": true
+    },
+    "H30_scarp_persistence": {
+      "column": 82,
+      "train_nonzero": 189525,
+      "test_nonzero": 695747,
+      "all_train_values_finite": true,
+      "all_test_values_finite": true
+    }
+  },
+  "interpretation": "One fold/draw confirmed aligned train/test feature matrices, finite H30 columns, and nonempty feature fields. This is an engineering smoke test only: no model was fitted, no holdout DTI was computed, and it does not validate scientific or competition performance."
+}

@@ -79,6 +79,9 @@ Even two proxy passes are **necessary, not sufficient** for a slot. Any later fu
 - Local inputs: restored and SHA-256 checked against `registry/data_manifest.json` via `scripts/restore_data.py --group all`; 19-band training mirror hash `4371c82e…`, label/existing-fault mirror `7ba308cc…`, LiDAR scarp descriptor mirror `d580bb8b…`. These pins prove consistency with the owner’s mirror, not organizer authenticity. All inputs remain ignored under `data/`.
 - No new third-party data are needed for H30-1. The official GDR 1391 page was read and its CC BY 4.0 file listing was confirmed, but a separate H27 2-m-probe binary is not used here; a direct TLS download attempt from this sandbox failed. Do not infer bytes/schema/coverage from the listing.
 
-## 7. Deviation log
+## 7. Deviation and clarification log
 
-Initially empty. Add dated deviations and reasons after execution; never alter the frozen arm matrix, features, draws, metric, or gate to fit an outcome.
+- **2026-10-03, pre-fit implementation clarification (commit `97494c2`):** after H30 feature code was authored but before the real-data feature smoke test or any H30 model fit, the already-existing `Context.scale` procedure was written out exactly: 200,000 footprint indices sampled without replacement with `default_rng(1)`, finite-value 1st/99th percentiles, and the `[lo, lo+1]` fallback when the upper percentile is not greater. The feature transform and its use of `Context.scale` did not change; no model, DTI, or holdout outcome had been observed. The runner now records the exact three scales. This is an implementation-provenance clarification, not an outcome-driven design change.
+- **2026-10-03, engineering-only smoke:** fold 0/draw 6 constructed aligned real-data feature matrices and nonempty H30 fields. No model was fitted and no DTI was evaluated; see `evidence/h30_feature_smoke.json`. No design feature, threshold, draw, metric, or gate was changed after this check.
+
+No experimental outcome has been observed. Never alter the frozen arm matrix, features, draws, metric, or gate to fit an outcome.

@@ -98,9 +98,9 @@
    "outside": "nan",
    "status": "format-validated; unscored; not slot-approved",
    "title": "Research download: dotted H19-5, wider spacing (D2.8)",
-   "summary": "The owner-mirrored H19-5 raster thinned by deterministic Poisson-disk dotting to 44,090 pixels \u2014 73 % of the pixels of the 0.2477-labelled mirror, 36 % of H19-5. H28 live-anchored model: 0.2510, the ceiling of the whole dot_thin(H19-5, d) family (sweep optimum d = 2.4 px). That model is calibrated on 12,691 hidden-truth pixels and a 1.85 px concentration scale, and it reproduces three hash-verified owner-reported anchors within 0.0040 DTI (Monte-Carlo check of the algebra \u2264 0.0020); earlier two-anchor emission-model estimate 0.255. Reaching the reported #1 (0.3195) at this budget needs 1.29\u00d7 the credit density of this file, i.e. a better detector, not better geometry. This file is byte-identical to an owner-mirrored unscored alternate. It has not demonstrated a win over the frozen 0.152003389 spatially blocked holdout comparator (which itself does not reproduce in this environment \u2014 IR-25-COMPARATOR-DRIFT) and is not slot-approved.",
-   "expected_range": "0.247\u20130.255 (live-anchored model; earlier estimate 0.250\u20130.261)",
-   "note": "GEMSDOE25 D2.8 | live-model 0.251 (+-0.004); family ceiling; unscored; not slot-approved | id e56ea318af89 | no slot",
+   "summary": "Owner-mirrored H19-5 raster thinned by deterministic Poisson-disk dotting to 44,090 pixels (73% of the 0.2477-labelled mirror; 36% of H19-5). Conditional on unverified owner-reported score anchors, the H28 model estimates DTI 0.2510 and this file is its best point in the tested dot_thin(H19-5, d) sweep (d=1.8–4.0 px); this is a model output, not a competition score. The model-implied 12,691 truth count and 1.85-px concentration are fitted latent parameters, not verified hidden labels. This file is byte-identical to an owner-mirrored unscored alternate. It has not demonstrated a win over a comparable same-run holdout best and remains unscored/not slot-approved; the historical 0.152003389 comparator does not reproduce (IR-25-COMPARATOR-DRIFT).",
+   "expected_range": "0.247–0.255 (conditional H28 model; owner claims unverified; not a score)",
+   "note": "GEMSDOE25 D2.8 | H28 conditional model 0.251; not a score | unscored; not slot-approved | id e56ea318af89 | no slot",
    "parent": "H19-5 (owner-reported 0.1922); byte-identical (same SHA-256) to the group's unscored GEMSDOE24 alternate e56ea318af89, which this repo's writer reproduces exactly",
    "transform": "dot_thin(H19-5, min_dist 2.4) == dot_thin(H19-5, 2.8) (integer lattice)",
    "paired_harness_gate_vs_d1_5": {
@@ -115,7 +115,7 @@
      0.002814688715296637
     ]
    },
-   "gate_summary": "Conditional model and shared-mask paired diagnostic only; the diagnostic compares D2.8 with the 0.2477-labelled owner mirror, not with the current spatial holdout best. It is not a promotion/slot gate. Paired delta +0.0042, 4/4 folds, worst +0.0017; the candidate does not beat 0.152003389 on the required holdout. The H28 30-arm holdout factorial (evidence/h28_holdout/results.json) found no emission arm that beats this file's geometry: spacing 2.4-3.0 px is optimal, 6 px costs 0.045 DTI, and the habitat-ranked value field adds +0.0003 (p = 0.25).",
+   "gate_summary": "The shared-mask paired diagnostic compares D2.8 with the 0.2477-labelled owner mirror, not with hidden catalogue holdout truth or a current same-run spatial best. Its +0.0042 (4/4 folds) is diagnostic only, not a promotion gate. H28's separate 30-arm hide-and-recover experiment tested modelled emission choices; its registered gate failed and promoted no artifact. That experiment does not establish that this downloadable owner-mirror raster beats a current comparable same-run holdout best. The frozen 0.152003389 absolute comparator failed reproduction and cannot be used cross-run.",
    "slot_approved": false,
    "do_not_resubmit": false
   },

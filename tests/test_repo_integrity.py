@@ -47,6 +47,10 @@ def test_shipped_downloads_match_registry_hashes_and_are_small():
         assert "no slot" in item["note"] and "unscored" in item["note"]
         assert "not slot-approved" in item["note"] or "fallback" in item["note"]
         assert len(item["note"]) <= 120
+    receipt = J(f"docs/downloads/{primary['receipt']}")
+    assert receipt["note"] == primary["note"]
+    assert "not a competition score" in primary["summary"]
+    assert "comparable same-run holdout best" in primary["summary"]
     registered_tifs = {s["file"] for s in subs}
     shipped_tifs = {p.name for p in (ROOT / "docs" / "downloads").glob("*.tif")}
     assert shipped_tifs == registered_tifs, "unregistered GeoTIFF in docs/downloads can be downloaded directly"

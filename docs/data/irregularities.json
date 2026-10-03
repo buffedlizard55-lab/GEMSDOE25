@@ -190,17 +190,17 @@
    "id": "IR-25-HABITAT-MISSPECIFIED",
    "severity": "medium",
    "status": "closed",
-   "issue": "A truth-intensity model in distance-to-known-faults alone cannot explain the 25 hash-verified live scores: leave-one-artefact-out RMSE 0.0705-0.0812 (pre-registered threshold 0.020), the blind lattice is predicted at 0.2057 instead of 0.0904, and the worst residual is -0.1787 on the group's best file. The residuals are per-artefact detector skill, which that basis has no term for.",
+   "issue": "A single-band truth-intensity model based only on distance to known faults does not fit 25 hash-linked owner-reported DTI anchors: leave-one-artifact-out RMSE 0.0705–0.0812 (pre-registered threshold 0.020), blind-lattice prediction 0.2057 vs owner-reported 0.0904, and worst residual −0.1787. The score claims remain unverified; residuals indicate model misspecification relative to these claims and cannot be attributed solely to detector skill.",
    "evidence": "evidence/h28_calibration/habitat_fit.json, knowledge/10 sections 5, 11 (D1) and 12.6",
-   "resolution_or_action": "Closed as a negative result: 'hug the known-fault halo' is NOT a supported strategy and no submission was designed from that model. The calibration of record is the anchor estimator of knowledge/10 section 5b, which identifies (N, lambda) only from artefacts whose skill is known by construction (the blind lattice and one thinned family)."
+   "resolution_or_action": "Closed as a conditional negative result: the tested distance-to-known-faults habitat model did not satisfy its adoption rule, and no submission was designed from it. The fitted model does not support \"hug the known-fault halo\" as a promotion strategy. The anchor-based calibration remains conditional on unverified owner-reported scores and does not identify actual hidden-label locations."
   },
   {
    "id": "IR-25-LIVE-MODEL-SCOPE",
    "severity": "medium",
    "status": "open",
-   "issue": "The adopted live-anchored model pi \u221d exp(-d(H19-5)/1.85 px) reproduces its own family and the blind lattice within 0.004 DTI, but under-predicts surfaces outside that band: h25-ctx-ridge 0.0907 predicted vs 0.1280 reported, h28-dotted-ridge 0.1251 vs 0.1839, lidarscarp-top2pct implied N 22,893 vs 12,691. It therefore cannot score any emission that leaves the H19-5 band, and the two-band mixture that would extend it is not identified (nine-anchor spread 0.514 against a 0.053 threshold; mean absolute residual worse, 0.0335 vs 0.0172).",
+   "issue": "The single-band model fitted conditionally on 25 hash-linked owner-reported scores matches several in-band claims and the blind lattice within 0.004 DTI, but under-predicts owner-mirrored off-band surfaces: h25-ctx-ridge 0.0907 predicted vs 0.1280 reported, h28-dotted-ridge 0.1251 vs 0.1839, and lidarscarp-top2pct has model-implied N 22,893 vs 12,691 for the H19-5 family. These residuals show model-scope/misspecification risk relative to unverified claims; they do not establish where actual hidden labels lie or validate off-band scores. The two-band mixture was not identified (nine-anchor spread 0.514 vs 0.053; mean absolute residual worse, 0.0335 vs 0.0172).",
    "evidence": "evidence/h28_calibration/design.json (reference_rows_under_calibrated_pi), evidence/h28_calibration/mixture.json (adoption_rule)",
-   "resolution_or_action": "Scope limit printed wherever the model's predictions are quoted (README, download page, knowledge/10 section 6b). The three under-predicted surfaces are the ranked first target for H29: they are live evidence that truth exists off the H19-5 band."
+   "resolution_or_action": "Print this scope limit wherever predictions appear (README, site, knowledge/10). Treat off-band surfaces only as conditional-model exploration priorities, not evidence that hidden truth exists there. The current H30 register is separate and requires its own paired catalogue-gap proxy test."
   },
   {
    "id": "IR-25-REFSOL-CHANNEL4",
@@ -225,6 +225,14 @@
    "issue": "The official reference solution submits continuous averaged probabilities and its author notes 'it may be advantageous to threshold this map for better scoring'. This repository proves a stronger statement and had already been shipping binary emissions.",
    "evidence": "notebook cells 17 and 20 (y_final continuous; the third panel plots y_final > 0.1); the binary-optimality lemma recorded in evidence/h28_calibration/design.json ('binary_optimality_lemma'): for a fixed support the DTI is a linear-fractional function of p, so the optimum is bang-bang and soft values in (0,1) cannot beat a binary emission.",
    "resolution_or_action": "Closed as corroboration: the organizer's own benchmark points the same way as the algebra. Every file this repo ships is binary 0/1, and the lemma is now stated wherever the emission design is described."
+  },
+  {
+   "id": "IR-25-FACTORIAL-STATE",
+   "severity": "medium",
+   "status": "flagged",
+   "issue": "The condensed session handoff says the required five-family fractional factorial remains unrun, but the tracked repository contains a complete earlier run: evidence/factorial/cells.jsonl has 152 rows (16 registered model arms × 8 fold/draw cells plus 3 reference arms × 8), design.json specifies the 16-run Resolution V design, and results.json reports 16 runs with no deviations. Re-running the registered analyzer reproduces results.json/results.md byte-for-byte. H30 is a separate follow-on experiment and does not replace this five-family design.",
+   "evidence": "evidence/factorial/design.json; evidence/factorial/cells.jsonl (152 JSONL rows); evidence/factorial/results.json (16 runs, 8 cells per run, deviations=[]); evidence/factorial/results.md; scripts/analyze_factorial.py (rerun 2026-10-03, output hashes unchanged).",
+   "resolution_or_action": "Treat the five-family experiment as already executed from the available, internally reproducible evidence unless stronger provenance evidence invalidates it. Do not overwrite/rerun it merely because the handoff says unrun. Preserve it as a separate registered result; H30 remains an additional experiment. The local JSONL lacks a fit timestamp, so the exact original run date/environment should not be inferred."
   }
  ]
 }

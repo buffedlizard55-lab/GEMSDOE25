@@ -1,13 +1,13 @@
 {
  "schema_version": 1,
- "generated_utc": "2026-10-02",
+ "generated_utc": "2026-10-03",
  "legend": {
   "verified": "true = I read the cited page/file this session; false = carried over or unreachable"
  },
  "sources": [
   {
    "id": "dd-home",
-   "title": "GEMS Prize Challenge \u2014 competition page",
+   "title": "GEMS Prize Challenge — competition page",
    "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/",
    "publisher": "DrivenData / U.S. DOE Office of Geothermal (+NLR)",
    "kind": "official",
@@ -39,7 +39,7 @@
    "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/",
    "publisher": "DrivenData",
    "kind": "official",
-   "used_for": "sponsor, GeoDAWN context, citations (Matt\u00e9o 2021, Hermant 2025)",
+   "used_for": "sponsor, GeoDAWN context, citations (Mattéo 2021, Hermant 2025)",
    "verified": true,
    "verified_utc": "2026-10-02",
    "how_verified": "page text read",
@@ -70,7 +70,7 @@
    "used_for": "single GeoTIFF at 100 m, 3 submissions/week, one final submission per entity, AI-use disclosure in the narrative, finalists deliver code, deadline wording",
    "verified": true,
    "verified_utc": "2026-10-02",
-   "how_verified": "\u00a71.1, \u00a72, \u00a73.1-3.6, A.1 read (chunks 0-3 of 7); remaining appendices not read",
+   "how_verified": "§1.1, §2, §3.1-3.6, A.1 read (chunks 0-3 of 7); remaining appendices not read",
    "caveats": "Only the sections cited here were read.",
    "license": "",
    "reachable_from_sandbox_bash": false
@@ -153,9 +153,9 @@
    "kind": "official data",
    "used_for": "source of the competition's conductivity, detrended elevation, strain, gravity/magnetics, earthquake and fault layers; well/spring chemistry; 2 m probes; heat flow; paleo-geothermal; Qfaults v1/v2",
    "verified": true,
-   "verified_utc": "2026-10-02",
-   "how_verified": "page read: DOI 10.15121/1881483, license CC BY 4.0, file list",
-   "caveats": "License: CC BY 4.0 (attribution required). Not reachable from bash.",
+   "verified_utc": "2026-10-03",
+   "how_verified": "Official GDR page fetched; DOI, CC BY 4.0 licence, public-access status, and individual download links/sizes were visible. The separate 2 m-probe binary was not downloaded; direct bash TLS HEAD failed.",
+   "caveats": "CC BY 4.0 (attribution required). The page listing does not authenticate the locally mirrored derivatives or prove that an un-fetched binary is usable in this sandbox.",
    "license": "CC BY 4.0",
    "reachable_from_sandbox_bash": false
   },
@@ -181,9 +181,9 @@
    "kind": "official data",
    "used_for": "1 m DEM / lidar source of the scarp descriptors",
    "verified": true,
-   "verified_utc": "2026-10-02",
-   "how_verified": "page read: 'All 3DEP products are available free of charge and without use restrictions.'",
-   "caveats": "The raw 1 m tiles were not re-downloaded; the descriptors come from the owner's CI run (derived product).",
+   "verified_utc": "2026-10-03",
+   "how_verified": "USGS About 3DEP Products & Services page fetched; it states products are free and without use restrictions and describes DEM/LiDAR product availability.",
+   "caveats": "The raw 1 m tiles were not re-downloaded; this repository uses owner-CI-derived 3DEP scarp descriptors with hash pins, not organizer-authenticated source bytes.",
    "license": "no use restrictions (USGS statement)",
    "reachable_from_sandbox_bash": false
   },
@@ -223,9 +223,9 @@
    "kind": "peer-reviewed proceedings",
    "used_for": "motivation for node-type structural settings; 426 systems, ~39 % blind, step-overs ~32 %, terminations 25 %, intersections 22 %",
    "verified": true,
-   "verified_utc": "2026-10-02",
-   "how_verified": "abstract and introduction read",
-   "caveats": "",
+   "verified_utc": "2026-10-03",
+   "how_verified": "DOE OSTI-served full 2015 proceedings PDF fetched and read; verified inventory of 426 known systems, ~39% blind, ~250 categorized systems, and reported setting shares: ~32% relays/step-overs, 25% terminations, 22% intersections, 9% accommodation zones.",
+   "caveats": "Descriptive proportions of known Great Basin geothermal systems, not evidence that competition hidden-fault labels share these frequencies or that the H30 predictor will help.",
    "license": "",
    "reachable_from_sandbox_bash": false
   },
@@ -315,7 +315,7 @@
   },
   {
    "id": "gemsdoe27-score-ledger",
-   "title": "GEMSDOE27 registry/live_scores.json \u2014 the owner's SHA-256 <-> reported-score ledger",
+   "title": "GEMSDOE27 registry/live_scores.json — the owner's SHA-256 <-> reported-score ledger",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "publisher": "buffedlizard55-lab (sibling agent session)",
    "kind": "secondary quote of owner-reported scores",
@@ -329,7 +329,7 @@
   },
   {
    "id": "dd-reference-solution",
-   "title": "Official reference solution \u2014 U-Net with Monte-Carlo cross-validation (Prof. John Lipor, Portland State University)",
+   "title": "Official reference solution — U-Net with Monte-Carlo cross-validation (Prof. John Lipor, Portland State University)",
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "publisher": "DrivenData (organizer) on GitHub; notebook author John Lipor",
    "kind": "official",
@@ -338,8 +338,50 @@
    "verified_utc": "2026-10-03",
    "how_verified": "README.md and all 21 notebook cells (unet-mc-cv-reference-solution.ipynb, 1,578,736 B) read through api.github.com from this sandbox; the channel-4 claim was then tested against the restored mirror's own per-band non-finite masks",
    "caveats": "This is github.com/drivendataorg, NOT drivendata.org, so reading it does not touch the host whose Terms of Use bar automatic access (AGENTS.md rule 3); no competition page, leaderboard or data-download page was requested. The repo carries no licence file, so quote it, do not vendor it. The notebook's data file is named data/numeric_features.tif; the owner mirror of the same 19-band raster is gems-geodawn-numerical-features.tif (418,912,844 B). The reference solution's own score is not published anywhere in the repo.",
-   "license": "no licence file in the repository (all rights reserved by default) \u2014 cite, do not copy",
+   "license": "no licence file in the repository (all rights reserved by default) — cite, do not copy",
    "reachable_from_sandbox_bash": true
+  },
+  {
+   "id": "faulds-structural-inventory-2013",
+   "title": "Structural Inventory of Great Basin Geothermal Systems and Definition of Favorable Structural Settings (dataset)",
+   "url": "https://www.osti.gov/dataexplorer/biblio/dataset/1148722",
+   "publisher": "DOE OSTI / University of Nevada, Reno",
+   "kind": "official dataset record",
+   "used_for": "structural-setting rationale: terminations, step-overs/relay ramps, intersections, accommodation and transfer zones; record reports counts for known geothermal systems, not the competition holdout labels",
+   "verified": true,
+   "verified_utc": "2026-10-03",
+   "how_verified": "DOE OSTI Data Explorer record fetched; abstract, authorship, DOI 10.15121/1148722, and structural-setting definitions read.",
+   "caveats": "Descriptive study of known systems; does not validate candidate features or the hidden competition label distribution.",
+   "license": "",
+   "reachable_from_sandbox_bash": false
+  },
+  {
+   "id": "usgs-3dep-scarp-mapping-example",
+   "title": "Quaternary fault mapping from high-resolution 3DEP topography (USGS data release)",
+   "url": "https://www.usgs.gov/data/quaternary-fault-mapping-zapata-and-blanca-sections-sangre-de-cristo-fault-zone-high",
+   "publisher": "U.S. Geological Survey",
+   "kind": "official data release / methods example",
+   "used_for": "methods context only: USGS describes mapping fault scarps/tectonic lineations from 1 m 3DEP DEM derivatives, with select GPS validation; not target-region performance evidence",
+   "verified": true,
+   "verified_utc": "2026-10-03",
+   "how_verified": "Official USGS data release page fetched; dataset summary, method, DOI 10.5066/P13NFGLT, and CC0 rights line read.",
+   "caveats": "Colorado study area, not the GEMS competition footprint; it motivates a terrain test but does not validate these predictors.",
+   "license": "CC0 1.0 Universal for the cited data release",
+   "reachable_from_sandbox_bash": false
+  },
+  {
+   "id": "usgs-quaternary-fault-fold-factsheet-2004",
+   "title": "Quaternary Fault and Fold Database for the Nation",
+   "url": "https://pubs.usgs.gov/fs/2004/3033/fs-2004-3033.html",
+   "publisher": "U.S. Geological Survey",
+   "kind": "official fact sheet (historical background)",
+   "used_for": "background only: the fact sheet describes database fields including fault orientation, slip rate, recurrence interval, and timing of the most recent surface-faulting event; no QFFD data were used in the H30 model",
+   "verified": true,
+   "verified_utc": "2026-10-03",
+   "how_verified": "USGS fact sheet 2004-3033 HTML page fetched; database scope and listed fields read directly.",
+   "caveats": "Published March 2004; this page describes the database at that time and is not a current coverage/status audit or evidence about the competition hidden labels.",
+   "license": "",
+   "reachable_from_sandbox_bash": false
   }
  ]
 }
