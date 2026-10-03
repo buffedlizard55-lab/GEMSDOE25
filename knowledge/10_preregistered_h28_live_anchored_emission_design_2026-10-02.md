@@ -1,4 +1,4 @@
-# H28 — Live-anchored calibration of the hidden truth, and the DTI-optimal emission design
+# H28 — Conditional metric-model calibration on owner-reported score anchors, and emission design
 
 **Pre-registered 2026-10-02 (UTC) before any fit was run.** Nothing in this document was written after
 looking at a fitted value. `scripts/run_h28.py` implements exactly this plan and writes
@@ -147,17 +147,16 @@ comparison is apples-to-apples.
 
 ## 8. Holdout validation (the owner's gate) — a designed factorial, not OFAT
 
-The live calibration cannot be validated on live truth (we have none). The hide-and-recover harness
-(`src/gems25/holdout.py`, 4 spatial folds × draws 2 and 3, hidden truth = 20 % of catalogue components)
-validates the **design rule**, which is a geometric/statistical object that does not depend on the live
-scores. Emission factors are crossed as a **3 × 2 full factorial** (six arms, all evaluated on the *same*
+The score-anchor calibration cannot be validated against the competition's hidden labels here. The hide-and-recover harness
+(`src/gems25/holdout.py`, four spatial folds × draws 2 and 3, pseudo-new labels sampled from 20 % of catalogue components)
+provides a **catalogue-gap proxy** for comparing the registered design rule; it is not real hidden-fault truth. Emission factors are crossed as a **3 × 2 full factorial** (six arms, all evaluated on the *same*
 fitted surface per cell, so the model fit is shared and the comparison is paired):
 
 * **V — value field used to rank and place dots** (3 levels)
   * `V0` baseline: the current pipeline's emission — ridge-NMS score → top-2.45 % of the eroded domain →
     `dot_thin(min_dist=1.5)`;
   * `V1` habitat: `u = π̂_cat * k`, where `π̂_cat` is built from the fold's **visible** catalogue with the
-    *live-fitted* shape parameters (`A, ρ`) — no holdout truth enters anywhere;
+    selected model shape parameters (`A, ρ`) — no held-out catalogue labels enter the feature construction;
   * `V2` habitat × detector: `u = (π̂_cat · ŝ) * k` with `ŝ` the out-of-fold HGB score, min-max normalised.
 * **S — spacing / exclusion** (2 levels): `1.5` px (status quo) and `6.0` px (kernel-disjoint, §3).
 * Budget for every arm: the marginal rule of §7 evaluated with `N̂` scaled by cell area (a *density* rule, so
@@ -299,11 +298,11 @@ Two changes to §8, both made before any holdout cell was fitted:
    comparator computed on draws 0–1 would not be a paired comparison, so the H28 holdout runs on draws {0, 1}
    and **reproduces the comparator arm bit-for-bit as its first check**. If that reproduction fails, the whole
    holdout run is void.
-2. **Spacing levels.** §8 crossed spacing {1.5, 6.0}. The §7b sweep under the calibrated live model puts the
-   optimum of the status-quo family at `min_dist ≈ 2.8` px, not 6.0, because the truth is line-like: at 6 px the
-   kernels are disjoint (redundancy 0) but the gaps between dots cost more credit than the redundancy they save.
-   The 6.0 arm is therefore kept — as the arm that tests the redundancy theorem against real truth — and the
-   factor is widened to {1.5, 2.4, 3.0, 4.0, 6.0} so the response surface has a shape instead of two points.
+2. **Spacing levels.** §8 crossed spacing {1.5, 6.0}. The §7b sweep under the selected owner-claim-calibrated
+   model puts the status-quo family optimum near `min_dist ≈ 2.8` px, not 6.0; under that model's line-like spatial
+   intensity, the 6 px gaps are estimated to cost more credit than the redundancy they save. The 6.0 arm is
+   retained as a catalogue-gap proxy test of the redundancy theorem, and the factor is widened to
+   {1.5, 2.4, 3.0, 4.0, 6.0} so the response surface has a shape instead of two points.
 3. **Budget.** §8 said the marginal rule with `N̂` scaled by cell area. That rule needs a value field in the
    units of `π`, which only the habitat arms have; applying it to some arms and not others would confound the
    budget factor with the value factor. All arms therefore use the comparator's own budget rule
@@ -319,14 +318,9 @@ on fold means (draws averaged) of the best arm versus the comparator arm, plus t
 
 ### D3 — 2026-10-02, after §7b and its sensitivity grid, before the mixture model was run
 
-§7b refuted the 6 px design: in **0 of 9** cells of the `(λ, N)` sensitivity grid does the kernel-disjoint
-value-ranked emission beat `d1-5`, and the ceiling of the status-quo family is `min_dist ≈ 2.4` px
-(DTI 0.25104, which is exactly the file this repo already ships). The reason is that the truth is line-like:
-disjoint kernels cost more in uncovered truth between dots than they save in redundancy.
+Under the selected model, §7b's 6 px kernel-disjoint design beat `d1-5` in **0 of 9** `(λ, N)` sensitivity cells; the best point in the tested status-quo sweep was `min_dist ≈ 2.4` px (modelled DTI 0.25104, corresponding to the file shipped for research). Under this spatial model, estimated credit in the gaps between dots exceeds the estimated redundancy saved; this is not evidence about actual hidden labels.
 
-That leaves one untested way to raise the credit density without a new detector: the single-parent `π̂` of §5b
-under-predicts the two `GEMSDOE10` rasters by 0.037 and 0.059 DTI, i.e. those surfaces sit on truth that the
-H19-5 band does not contain. So the following **two-band mixture** was written down before it was run:
+The single-parent `π̂` of §5b under-predicts two owner-mirrored GEMSDOE10 surfaces by 0.037 and 0.059 DTI relative to their owner-reported claims. These residuals indicate off-band model mismatch; they do not establish that those surfaces contain hidden truth. A two-band mixture was preregistered as a test of this model limitation:
 
 ```
 pi_b  ∝  exp(-d(P1)/λ̂) + b · exp(-d(P2)/λ̂),   λ̂ = 1.85 px (unchanged from §5b), b ≥ 0
@@ -350,25 +344,22 @@ designed. If adopted, the candidate designs are `dot_thin(P1 ∪ P2, d)` and gre
 All DTI values labelled *reported* are user/owner-reported claims matched to bytes by SHA-256, not receipts.
 All values labelled *predicted* come from the calibrated model of §3/§5b and are conditional on it.
 
-### 12.1 The live metric now has a validated forward model
+### 12.1 Conditional forward-model calibration on owner-reported score claims
 
-`π̂ ∝ exp(−d(H19-5)/1.85 px)` on the scored domain (known pixels excluded), `N̂ = 12 691` truth pixels
-(`evidence/h28_calibration/anchors.json`):
+Conditional on the hash-linked owner-reported anchors and the selected model, the fit is `π̂ ∝ exp(−d(H19-5)/1.85 px)` on the scored domain (known pixels excluded), with model-implied `N̂ = 12 691` pixels (`evidence/h28_calibration/anchors.json`). This is not a verified hidden-label count or competition-score model.
 
 | check | result |
 | --- | --- |
-| A1 uniform `π` falsified | **PASS** — for `h19-5`, `h19-4`, `h16-1` and `d1-5` the inversion denominator is ≤ 0, i.e. **no** truth count whatever can produce their reported scores if the truth were spread uniformly over the footprint. The hidden truth is concentrated. |
-| A2 one `(N, λ)` for five anchors | **PASS** — implied `N` = 12 498 / 12 472 / 12 893 / 13 358 / 12 691 for `lattice-s5` / `h19-5` / `h19-4` / `h16-1` / `d1-5`; max relative spread **5.3 %** |
+| A1 uniform `π` candidate | **PASS conditionally** — under the published metric algebra and the supplied owner-reported scores, no truth count under uniform `π` reproduces four anchors. This makes uniform `π` inconsistent with those claims; it does not establish the actual hidden-label distribution. |
+| A2 one `(N, λ)` for five anchors | **PASS conditionally** — model-implied `N` = 12 498 / 12 472 / 12 893 / 13 358 / 12 691 for `lattice-s5` / `h19-5` / `h19-4` / `h16-1` / `d1-5`; max relative spread **5.3 %** |
 | A3 agreement with independent estimates | **PASS** — lattice-only 12 348 (uniform `π`), 12 498 (at `π̂`); this repo's earlier independent estimate 12 503 |
 | A4 sanity | **PASS** — every implied `N`/`N̂` ∈ [0.98, 1.06] |
 | C3 masking | **PASS** — `hedge-v2` and `ens12` are statistically identical after the metric masks known pixels (mass 166 519 both; max \|ΔTA\| < 1e-3), and both are reported at 0.1563 |
 | C5 Monte Carlo | **PASS** — analytic vs 6 exact-metric draws from `π̂`: lattice 0.09140/0.09144, `d1-5` 0.24372/0.24532, `h19-5` 0.19035/0.19232, `h28-dotted-ridge` 0.12509/0.12568; worst error 0.0020 |
 
-Predicted against reported: `lattice-s5` 0.0914 vs 0.0904, `h19-5` 0.1904 vs 0.1922, `d1-5` 0.2437 vs 0.2477,
-`d2-8` **0.2510** (unscored). Off-family rows are under-predicted, by design (§6b): `h25-ctx-ridge` 0.0907 vs
-0.1280, `h28-dotted-ridge` 0.1251 vs 0.1839. Mean absolute residual over the nine hash-verified anchors: **0.0172**.
+Under the selected model, predicted values against owner-reported claims are: `lattice-s5` 0.0914 vs 0.0904, `h19-5` 0.1904 vs 0.1922, and `d1-5` 0.2437 vs 0.2477; `d2-8` is predicted at **0.2510** (unscored). Off-family predictions are lower than the owner-reported claims (`h25-ctx-ridge` 0.0907 vs 0.1280, `h28-dotted-ridge` 0.1251 vs 0.1839); these residuals delimit model scope, not verified hidden truth. Mean absolute residual over the nine hash-linked owner-reported anchors: **0.0172**.
 
-### 12.2 Why 0.2477 won — the arithmetic, not a story
+### 12.2 What the 0.2477-labelled raster changes locally
 
 | raster | emitted px | median NN | redundancy `R/U` | credit/px | reported | predicted |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -376,31 +367,28 @@ Predicted against reported: `lattice-s5` 0.0914 vs 0.0904, `h19-5` 0.1904 vs 0.1
 | `d1-5` = `dot_thin(h19-5, 1.5)` | 60 069 | 2.24 | 0.32 | 0.0893 | 0.2477 | 0.2437 |
 | `d2-8` = `dot_thin(h19-5, 2.4)` | 44 090 | 3.00 | 0.07 | 0.1084 | unscored | 0.2510 |
 
-Dotting the solid surface threw away 50 % of its pixels but only 15 % of its captured credit, and it cut the
-redundant (overlapping-kernel) mass from 62 % to 32 %. In the exact algebra that is worth +0.053 DTI. **The
-0.2477 file is a geometry win, not a detection win**: its detector is byte-identical to the 0.1922 file.
+Under the selected model, dotting the solid surface removes 50 % of its pixels but only 15 % of its captured credit, reducing redundant (overlapping-kernel) mass from 62 % to 32 %; the modelled DTI changes by +0.053. The 0.2477-labelled raster is a geometry-only transform of the 0.1922-labelled surface (pixel identity verified locally), but the score-to-file association and the cause of any competition-score difference remain unverified.
 
-### 12.3 The ceiling of that family is the file this repo already ships
+### 12.3 Modelled ceiling within the tested H19-5 dotting sweep
 
-`dot_thin(h19-5, d)` swept over `d ∈ [1.8, 4.0]` under the validated model peaks at **d = 2.4 px, M = 44 090,
-DTI 0.25104** — which is `d2-8`, the current primary download. The value-ranked alternatives are all worse:
+Under the selected model, the `dot_thin(h19-5, d)` sweep over `d ∈ [1.8, 4.0]` peaks at **d = 2.4 px, M = 44 090,
+modelled DTI 0.25104** — the `d2-8` research download. The value-ranked alternatives are lower under this model:
 greedy-by-`π̂*k` at 3 px exclusion peaks at 0.2462 (M = 44 000), and at 6 px exclusion (kernel-disjoint, zero
 redundancy) peaks at 0.1933 (M = 26 000). In **0 of the 9** cells of the `(λ, N)` sensitivity grid does the
-6 px design beat `d1-5`. The redundancy theorem of §3 is true and irrelevant here: for line-like truth,
-disjoint kernels leave uncovered truth between dots that costs more than the redundancy they save.
+6 px design beat `d1-5`. This is a ceiling only for the tested H19-5 emission family and selected model, not a
+validated live score or global ceiling. The redundancy theorem of §3 still holds; under this selected spatial
+model, the estimated credit in the gaps between disjoint dots exceeds the estimated redundancy saved.
 
-### 12.4 The holdout agrees, with real truth
+### 12.4 The catalogue-gap holdout proxy
 
-`evidence/h28_holdout/` — 30 arms (value field × spacing × budget), 4 spatial folds × draws {0, 1}, one shared
-model fit per cell:
+`evidence/h28_holdout/` — 30 arms (value field × spacing × budget), four spatial folds × draws {0, 1}, one shared
+model fit per cell. The held-out labels are hidden catalogue components, not independently verified new-fault truth:
 
-* spacing main effects: 1.5→2.4 **+0.0074**, 2.4→3.0 −0.0003, 3.0→4.0 −0.0112, 4.0→6.0 −0.0350. The optimum is
-  2.4–3.0 px, exactly where the live-calibrated model puts it; 6 px costs 0.045 DTI.
+* spacing main effects: 1.5→2.4 **+0.0074**, 2.4→3.0 −0.0003, 3.0→4.0 −0.0112, 4.0→6.0 −0.0350. Within the tested proxy grid, 2.4–3.0 px is near-optimal, consistent with the selected metric model; 6 px costs 0.045 DTI.
 * value field: `habitat − score` **+0.0003**, `both − score` **+0.0012** (best arm `both`/3.0/3.5 %:
   +0.000699 paired, 4/8 cells positive, p = 0.248). Neither reaches the +0.001 paired threshold.
 * budget: 3.5 % beats 2.45 % by +0.0069…+0.0087 for every value field.
-* **gate: FAIL on both criteria** (best arm 0.150367 ≤ comparator 0.152003389; paired gain +0.000699 ≤ 0.001).
-  No arm is slot-eligible; nothing new is packaged.
+* **The registered gate did not pass.** The best arm's paired gain was +0.000699 ≤ +0.001. The historical absolute comparator (0.152003389) also failed reproduction (IR-25-COMPARATOR-DRIFT), so it is not a valid cross-run baseline. No arm is slot-eligible; nothing new was packaged.
 
 ### 12.5 Reproduction of the frozen comparator FAILED — and that is a finding
 
@@ -414,26 +402,27 @@ session can detect it. Consequence for policy: **absolute comparators do not tra
 only same-run paired contrasts do.** Every conclusion above that matters (spacing optimum, value-field
 neutrality, budget) is a same-run paired contrast.
 
-### 12.6 What the ledger says about where the truth is (and where it is not)
+### 12.6 What the fitted model implies about off-band owner-reported claims
 
-* `π̂` in the distance-to-known-faults basis cannot explain the reported scores (§5, LOO RMSE 0.070–0.081,
-  C1/C2/C4 all FAIL): the residuals are per-artefact detector skill. **"Hug the catalogue halo" is not a
-  supported strategy.**
-* Two-band mixtures (D3) are not identified either: the best (`h25-ctx-ridge`, b = 1.0) reaches a nine-anchor
-  spread of 0.514 (threshold 0.053) and makes the mean absolute residual *worse* (0.0335 vs 0.0172). Not
-  adopted; no design was built from it.
-* Implied `N` per surface is a direct measure of off-band truth: `h28-dotted-ridge` 28 989,
-  `lidarscarp-top2pct` 22 893, `h25-ctx-ridge` 20 072 versus 12 472–13 358 for the H19-5 family. **Three
-  surfaces sit on truth the H19-5 band does not contain** — the GEMSDOE10 context ridge and the 7GEMSDOE
-  LiDAR-scarp top-2 % emission. That is the ranked first target for H29 (§13).
+* The selected single-band `π̂` basis does not fit several owner-reported scores (§5, LOO RMSE 0.070–0.081,
+  C1/C2/C4 fail). This is evidence of model misspecification relative to those claims; residuals may reflect
+  score-link problems, artifact-specific detector differences, or a different hidden-label distribution.
+  **It does not locate actual hidden faults.** "Hug the catalogue halo" is not supported by this fitted model.
+* Two-band mixtures (D3) are not identified under these anchors: the best (`h25-ctx-ridge`, b = 1.0) reaches a
+  nine-anchor spread of 0.514 (threshold 0.053) and makes the mean absolute residual worse (0.0335 vs 0.0172).
+  Not adopted; no design was built from it.
+* Model-implied `N` per off-band surface is a misspecification diagnostic under the selected `π̂`, not a direct
+  measure of hidden truth: `h28-dotted-ridge` 28 989, `lidarscarp-top2pct` 22 893, `h25-ctx-ridge` 20 072
+  versus 12 472–13 358 for the H19-5 family. These owner-mirrored surfaces are H29 exploration priorities
+  (§13), not verified locations or counts of hidden labels.
 * Ledger-wide, the share of emitted pixels with a neighbour inside 6 px correlates with the reported score at
   Spearman **−0.670 (p = 6.9e-5, n = 29)** — consistent with the redundancy theorem — but inside mass strata
   the correlation is not significant (n = 7: −0.32, p = 0.48; n = 6: +0.76, p = 0.077), because skill and mass
   are confounded across the ledger. The theorem is proved algebraically; the ledger is only consistent with it.
 
-### 12.7 The gap to 0.3195 is a detection gap, and it is now quantified
+### 12.7 Conditional model arithmetic against the unverified 0.3195 claim
 
-At `φ = 0.900` FP mass per emitted pixel (measured, not assumed), the credit density `TP/M` required is:
+The following is sensitivity arithmetic, not a verified comparison: 0.2477, 0.2941, and 0.3195 are owner/user-reported claims, not independently authenticated scores. Under the selected model's estimated `φ = 0.900` false-positive mass per emitted pixel, the modelled credit density `TP/M` required to produce each target is:
 
 | target DTI | M = 20 000 | M = 30 000 | M = 44 090 | M = 60 069 |
 | --- | --- | --- | --- | --- |
@@ -441,9 +430,7 @@ At `φ = 0.900` FP mass per emitted pixel (measured, not assumed), the credit de
 | 0.2941 (reported #5) | 0.2149 | 0.1620 | 0.1282 | 0.1091 |
 | **0.3195 (reported #1)** | 0.2347 | 0.1770 | **0.1400** | 0.1191 |
 
-The best emission this repo can build today has credit density 0.1084 at M = 44 090 (predicted 0.25104).
-Reaching 0.3195 at that budget needs **1.29×** that credit density; reaching 0.2941 needs 1.18×. Emission
-geometry is exhausted (§12.3, §12.4): the whole remaining gap is *which pixels the detector says are faults*.
+The best point in the tested H19-5 dotting sweep has modelled credit density 0.1084 at M = 44 090 (predicted DTI 0.25104 under the selected `π̂`). Conditional on that model and on the unverified 0.3195 target, matching it at the same budget would require **1.29×** that estimated credit density; the analogous ratio for 0.2941 is 1.18×. These calculations do not establish a live-score gap, prove that every emission alternative is exhausted, or validate the off-band model. The H28 proxy promotion gate failed (§12.4).
 
 ## 13. Ranked next hypotheses (H29) — from this evidence, not from taste
 
@@ -453,24 +440,24 @@ its obtainability. ΔDTI values are **planning brackets, not estimates**; every 
 and a same-run paired holdout gate before a weekly slot (see §12.5 — the frozen absolute comparator does not
 transfer between environments).
 
-### H29-1 · Multi-band parent: emit the union of the three surfaces whose implied truth count exceeds N̂ — *rank 1*
+### H29-1 · Multi-band parent: test surfaces with model-implied N̂ above the H19-5 family — *rank 1*
 
 * **Layers**: the three hash-verified owner mirrors `h19-5` (multi-scale Hessian ridge over the GeoDAWN DEM/
   geophysics bands), `h25-ctx-ridge`/`h28-dotted-ridge` (GEMSDOE10 context ridge) and `lidarscarp-top2pct`
   (7GEMSDOE LiDAR scarp index, top 2 %); all are built from provided bands, none has a pixel on a known fault.
 * **Signature**: 1-px-wide ridge crests and scarp-continuity maxima — i.e. the geomorphic expression of a
   displacement surface, at three different resolutions and from three different band families.
-* **Why it finds *missing* faults**: §12.6 measures it. Their implied truth counts are 20 072, 22 893 and 28 989
-  against 12 472–13 358 for the H19-5 family, i.e. each sits on truth the other band does not contain. A union
-  parent therefore covers truth no single surface covers, and by construction none of its pixels are catalogue
-  pixels, so it cannot be "rediscovering" a known fault.
+* **Why it could find *missing* faults**: §12.6 reports model-implied counts of 20 072, 22 893, and 28 989
+  against 12 472–13 358 for the H19-5 family. These are conditional diagnostics from unverified owner-reported
+  scores, not measured hidden truth or proof of spatial complementarity. A union could add candidate coverage
+  outside the visible catalogue; the held-out catalogue-gap proxy must test whether that helps.
 * **Difference from what exists**: the group built ensembles by *probability union* at arbitrary budgets
   (`ens12` 0.1563, `dual-family-union` 0.1560, `F-ensemble-2pct` 0.0187). Nobody has built a **credit-ranked
   union emitted at the DTI-optimal spacing (2.4–3.0 px) and marginal-rule budget**, and nobody has selected the
   components by measured credit per emitted pixel (§12.6's table).
-* **ΔDTI**: +0.00 to +0.03 live. **Cost: low** — all bytes are already on disk and hash-verified. Needs either a
-  ≥3-band `π̂` that passes a D3-style adoption rule, or holdout-only validation with the live prediction left
-  explicitly unknown.
+* **Planning ΔDTI**: +0.00 to +0.03 on the proxy (very uncertain; not an estimate or live-score forecast).
+  **Cost: low** — all owner-mirror bytes are already on disk and hash-verified. Needs either a ≥3-band `π̂`
+  that passes a D3-style adoption rule, or holdout-only validation with competition performance explicitly unknown.
 
 ### H29-2 · Skill-weighted consensus pruning of a fixed parent — *rank 2*
 
@@ -543,7 +530,4 @@ transfer between environments).
 
 ### What would change the shipping decision
 
-The download stays `d2-8` until an emission beats 0.25104 under a model that passes its own adoption rule
-(§5b/D3) **and** beats a same-run paired comparator on the spatially blocked holdout. §12.3–§12.4 show that no
-change of spacing, budget, ranking field or dot pattern inside the H19-5 band can do that: the geometry is at
-its ceiling. Only a better parent surface (H29-1/2/3) or new physics (H29-4/5) can move the number.
+The existing `d2-8` file remains format-validated, unscored, and not slot-approved. Its 0.25104 value is a conditional model prediction within the tested H19-5 spacing sweep; the H28 catalogue-gap proxy gate failed, and the absolute comparator did not reproduce. These results do not establish a global emission ceiling or prove that only a new parent surface/new physics can help. Any future candidate must be newly preregistered, beat a comparable same-run spatial holdout control, pass its paired/confirmation gates, and pass the exact-file audit; competition performance remains unknown without official score evidence.

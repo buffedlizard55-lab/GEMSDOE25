@@ -93,55 +93,135 @@
  ],
  "current_turn_review": {
   "date_utc": "2026-10-03",
-  "session_focus": "H28: fetch and content-hash the group's 30 competition rasters from the owner's public mirrors, calibrate a forward model of the live metric on the 25 hash-linked scores, invert it for the DTI-optimal emission, and test the result on the spatially blocked holdout under a pre-registered gate.",
+  "session_focus": "Complete the frozen H30-1 screen and gated confirmation, record the negative fresh-draw result, and create/merge a PR from the fixed Arena branch without automating DrivenData or promoting a submission.",
   "pass_1_implementation_and_verification": {
    "done": [
-    "Rebuilt the environment and every derived cache (22 pinned inputs verified; prepare 48.8 s, static features 27 s, add-ons 8 s) and pinned their SHA-256 plus library versions in evidence/work_cache_hashes.json.",
-    "New provenance path: registry/artifact_mirrors.json (locations read from GitHub tree listings only) + scripts/restore_artifacts.py (fetch through api.github.com, hash locally, match scores through the owner's own hash<->score ledger) -> registry/artifact_ledger.json with 30 rows, 25 hash-linked and usable.",
-    "New module src/gems25/livecal.py: exact E[TP] = N<pi, m_p>, Poisson-saturating E[FP] with the exact step decomposition of the kernel-disc count, distance-bin machinery, closed-form inversion of the DTI for N, weighted-reservoir truth sampler, greedy disjoint design and the marginal-rule budget curve. 12 unit tests, including Monte-Carlo parity against metric.dti_binary/dti_exact and an exact check that Psi's first-order term equals KERNEL_VOLUME / V(R).",
-    "Pre-registered knowledge/10 (design, model family, fitting rule, acceptance criteria C1-C5, design rule, holdout gate, decision rules, falsification conditions) BEFORE running anything; amendments D1-D3 were each written before the run they justify and log the reason.",
-    "Ran it: uniform truth is falsified for four of the group's surfaces (no finite N can produce their reported scores); pi \u221d exp(-d(H19-5)/1.85 px) makes all five anchors imply one N (12,498/12,472/12,893/13,358/12,691, spread 5.3 %) -> N = 12,691, agreeing with the blind-lattice-only 12,348 and the repo's earlier independent 12,503. Checks A1-A4, C3 (masking) and C5 (Monte Carlo <= 0.0020) all PASS.",
-    "The calibrated model predicts lattice-s5 0.0914 vs 0.0904 reported, h19-5 0.1904 vs 0.1922, d1-5 0.2437 vs 0.2477, and d2-8 0.25104 - and the ceiling sweep shows d = 2.4 px / 44,090 px (exactly the shipped file) is the argmax of its whole family.",
-    "Refutations recorded rather than hidden: the 6 px kernel-disjoint design beats d1-5 in 0/9 and the shipped file in 0/9 sensitivity cells; the distance-to-known-faults habitat model fails C1/C2/C4 (LOO RMSE 0.070-0.081); the two-band mixture fails both D3 adoption criteria and was not adopted.",
-    "30-arm holdout factorial (value field x spacing x budget, 4 folds x draws 0,1, one shared fit per cell, 240 paired cells): spacing optimum 2.4-3.0 px, 6 px costs 0.045 DTI, habitat ranking +0.0003 (p = 0.76), habitat x score +0.0012 (p = 0.25); promotion gate FAIL on both criteria -> no arm slot-eligible, nothing new packaged.",
-    "Regenerated packaging, README and site from evidence only: the primary GeoTIFF is byte-identical (sha256 91eae1ca... unchanged) while its summary, expected range and 116-character note now carry the validated live-model number and the family-ceiling statement; new H28 panels on the home and research pages; 5 new irregularities, 2 new sources, knowledge index, AGENTS.md rule 5 and AI_DISCLOSURE.md updated.",
-    "90 tests and ruff green; all four site pages serve 200 through a local preview server; the source feed was refreshed (51 items, 24 reachable) and still never contacts drivendata.org."
+    "Read the complete README (including the verbatim owner brief), current continuation brief, and AGENTS.md; fetched origin, compared branch state, checked open PRs and remote Arena refs. origin/main had advanced to 67a4561 via a source-feed refresh; rebased only the fixed session branch onto it and kept the later 55-item feed refresh generated at 05:29 UTC.",
+    "Corrected H28 language that treated conditional model implications as observed hidden-label truth or a global ceiling; separated owner-reported anchors, conditional predictions, computed diagnostics, and inference in knowledge/10, registry/irregularities.json, knowledge/00_INDEX.md, README, and generated site pages.",
+    "Preserved the committed H30-1 preregistration: paired cross-strike bridges between distinct visible components \u00d7 fixed LiDAR scarp persistence; ranked three distinct hypotheses; fixed draws 6,7 for screen and 8,9 for confirmation; fixed BDE + X1\u2013X3 + H27 tip control, 2\u00b2 response contrasts, same-run controls, and the paired promotion gate.",
+    "Implemented H30 paired-tip/scarp features, lazy feature gathering, frozen runner/analyzer, real-data engineering smoke script, and design/feature tests. The feature smoke built aligned Xtr=(309985,83) and Xq=(1154738,83), with finite H30 fields and pinned input/cache hashes; model_fit_executed=false and dti_evaluated=false.",
+    "Regenerated README and Pages site from tracked evidence; the existing D2.8 remains format-validated but unscored and not slot-approved. No new submission raster or DrivenData access/upload was made.",
+    "Ran only the registered H30-1 sequence: screen draws 6,7 (40 cells) passed the frozen same-run gate; because the screen passed, ran only confirmation draws 8,9 (40 cells), which failed. Confirmation P+S mean DTI was 0.148330 vs best same-run controls 0.149605 (gain -0.001275), positive in 1/4 folds, worst fold -0.003842, mean hug-share change +0.007223. The preregistered primary candidate stops; no new TIFF or slot is authorized."
    ]
   },
   "pass_2_bug_edge_case_review": {
    "found_and_fixed": [
-    "FABRICATED IDENTIFIERS (the most serious defect of the session): the first draft of registry/artifact_ledger.json contained invented SHA-256 values for rows whose bytes had not been fetched. It was deleted before any use and replaced by a locations-only mirror registry plus a fetcher that computes every hash from real bytes and links a score only through the owner's ledger. tests/test_h28.py now fails any ledger row whose fit flag is set without a 64-hex hash and a 'matched by full SHA-256' provenance string.",
-    "Weighted-reservoir underflow: sample_truth_field used keys u^(1/w); with w ~ 1e-6 every key underflowed to 0, so the Monte-Carlo drew a near-uniform truth and reported 'errors' of 0.15-0.19 against the analytic prediction. Fixed by working in log space (log u / w); the Monte-Carlo then agreed to <= 0.0020 and a test pins the draw distribution against exact without-replacement probabilities on a small case.",
-    "First-order false-positive term: FP = M - N<pi,u_p> goes negative for dense truth and biased DTI by +0.0088 at nu ~ 0.17 and +0.048 at nu ~ 2.3 on the toy grid. Replaced by the exact Poisson saturation Psi(nu) and asserted analytically that its first-order term reproduces KERNEL_VOLUME / V(R).",
-    "Psi quadrature: midpoint integration over t made the interpolated slope 0.3 % low; replaced by the exact step decomposition of V(R(1-t)) and a grid densified near nu = 0.",
-    "Locally-flat pi in the FP term: nu was taken as N w_b V(R)/Z, which is worst exactly where pi varies fastest (next to known pixels). Kept only for the binned fit; every design and reference prediction now uses the full-resolution disc convolution livecal.disc_mass(pi).",
-    "Memory: the first stage-1 run was killed after the design stage because eight artefact kernel-field pairs (~800 MB) were still held; freed the cache and moved the heavy fields to float32.",
-    "greedy_disjoint scanned all 12.3 M grid cells and would pick zero-value pixels; it now restricts to eligible indices, exits early in value order, and both behaviours are tested (exclusion radius, pick order, maximality as a covering).",
-    "Comparator non-reproduction was caught by the pre-registered reproduction check, not by luck: IR-25-COMPARATOR-DRIFT records it, evidence/work_cache_hashes.json makes it detectable next time, and AGENTS.md rule 5 now requires recomputing the comparator in the same run.",
-    "Pre-registration drift: the sensitivity grid compared designs with d1-5 while section 7b/D3 specified the shipped d2-8 file; added the d2-8 column so the verdict is 0/9 against both, and the claim 'd2-8 dominates d1-5 in every cell' is now computed, not argued.",
-    "Dead code (_binw) removed; the binned Monte-Carlo path replaced by full-resolution sampling; ruff clean over src, scripts and tests.",
-    "Assumption audit kept in the open: everything is conditional on 25 unverified owner-reported scores; four rows without a hash link are excluded (IR-25-ARTEFACT-SCORE-LINK); pi's scope limit is printed wherever its numbers appear (IR-25-LIVE-MODEL-SCOPE); the GEMSDOE9 PLACEHOLDER file emits 196,132 px outside the footprint yet is reported scored, which this repo's verifier rejects (IR-25-PLACEHOLDER-OUTSIDE-FOOTPRINT)."
+    "H28 wording overstated where actual hidden truth lies and implied a global ceiling or exclusive strategy; rewrote those claims as conditional model implications, corrected registry/index wording, and regenerated README/site outputs.",
+    "Confirmation previously trusted a screen summary pass flag. It now verifies the preregistration hash, exact screen design/cell hashes, all 40 frozen screen cells and their metadata, and recomputes the paired gate from raw DTI/hug values; negative tests reject a failed gate, tampered summary, and modified cell file.",
+    "The runner requires a clean worktree for each fit, so the generated instructions now say to commit complete screen evidence before confirmation; this makes the confirmation code revision and gate evidence auditable.",
+    "Checked visible-only endpoint construction, distinct-component pairing, cross-strike rejection of collinear tips, finite/range checks, no input mutation, same-cell training draws, fixed emission budget, per-fold best same-run controls, and confirmation stop conditions; covered the key feature/gate edge cases with tests.",
+    "The first post-screen analyzer run rejected valid fractional TP_w/FP_w credits as noninteger counts. Inspection of src/gems25/metric.py confirmed these are distance-weighted sums; only emitted and n_truth must be integer counts. Fixed the analyzer to accept bounded fractional credits and validate coverage consistency, added regression tests, and reanalyzed the identical hash-bound 40-cell output. No model, feature, draw, response, threshold, or gate changed and no model was rerun.",
+    "Final evidence/site review found the confirm results.md inherited a screen-only sentence saying fresh confirmation was still required. Made the stage wording explicit, linked both stage reports on the Research page, and refreshed the README/site so the passing screen and failed confirmation/stop state cannot be confused."
+   ],
+   "known_residual_risks": [
+    "H30 holdout is a catalogue-gap proxy, not hidden competition truth; four quadrant blocks and two draws do not establish live-score performance or generalize to the undisclosed split.",
+    "Input rasters are hash-pinned owner mirrors, not organizer-authenticated. The 0.2477 and 0.3195 values remain owner/user-reported and unverified; no organizer score evidence was accessed.",
+    "The registered screen passed but fresh confirmation failed; the primary H30-1 candidate is stopped. The diagnostic T+P arm is not promotable post hoc. Four spatial blocks and two draws per stage provide limited proxy evidence, not live competition performance.",
+    "The refreshed source feed recorded 55 items and 24 reachable; sandbox TLS failures are connectivity observations, not proof that official sources are down. GDR binary/schema/coverage are not inferred from a page listing.",
+    "The old H28 absolute comparator did not reproduce across environments; only the H30 same-run paired controls are used for promotion."
    ]
   },
   "pass_3_recheck_against_the_original_brief": {
-   "item_by_item": [
-    "One-click downloadable submission .tif obvious at the start: unchanged path and SHA-256 at the top of README and the home page; the paste-in note now carries the validated model number and stays 116 characters.",
-    "Executive-summary subpage explaining exactly how to submit to competition #306: regenerated, still with the manual steps, the note field, the range-error root cause and the slot-discipline callout.",
-    "Fix the reported 'Predicted values must be in range [0, 1]' rejection: root cause (NaN inside the footprint) still documented and regression-tested; the shipped file has 0 NaN inside the footprint and [0,1] everywhere inside it.",
-    "Unique name + short Note per submission: content-addressed name e56ea318af89 and a <=120-character note, both machine-checked.",
-    "Replace one-factor-at-a-time with a designed experiment: the 2^(5-1) Resolution V feature factorial is retained, and the emission question is now a 3 x 5 x 2 full factorial with one shared fit per cell, so every contrast is paired (Box/Hunter/Hunter sparsity-of-effects reasoning cited in knowledge/04).",
-    "Explain why 0.2477 scored what it did and whether more is possible: answered with arithmetic under a validated model (dotting cut redundant kernel mass from 62 % to 32 % while keeping 85 % of the credit; predicted 0.1904 -> 0.2437) and with the ceiling result (the shipped D2.8 file is the argmax of that family at 0.25104).",
-    "Design a new unique strategy aiming above 0.3195: five ranked H29 hypotheses in knowledge/10 section 13, each naming layers, physical signature, why it catches a fault MISSING from the catalogue, how it differs from anything implemented, expected bracket, cost and obtainability; the honest headline is that emission geometry is exhausted and 0.3195 needs 1.29x the credit density of the best current file.",
-    "Validate the top candidate on the spatially blocked holdout before spending a slot: done (30 arms, 8 cells, gate FAIL) and the pre-registered consequence executed - nothing new packaged, no slot recommended.",
-    "Deep research stored as reusable knowledge with an auditable table of official verified links: knowledge/10 plus registry/sources.json (23 sources with verification method, date and caveats) and the refreshed feed.",
-    "GitHub Pages site, clean and organized, solving manual checking: new H28 panels on the home and research pages render every table from evidence JSON; the feed and source audit pages are regenerated; DrivenData is never contacted.",
-    "Run the task through multiple passes: this record.",
-    "Pull request merged to main: see post_merge_verification for the PR URL, merge commit and CI/Pages status.",
-    "Report limitations and the access needed: README limitations 1-7 (no credentials/receipts, blocked external binaries, 2 CPU / 4 GB, proxy is not truth, undisclosed split/validator, live-model scope limit, environment-specific comparator)."
+   "method": "Re-read README owner brief and continuation brief line by line; map each request to existing artifacts and the remaining registered gate.",
+   "mapping": {
+    "easy one-click TIF, prominent start-of-site download, unique note, range/CRS/grid/geotransform checks, and executive guide": "Existing D2.8 download and audit receipt remain prominent and format-validated only; it is explicitly unscored/not slot-approved. No new TIF was created.",
+    "replace OFAT with five-family designed factorial and retain all prior evidence": "The completed A\u2013E Resolution V record remains tracked and separate; H30 is an additional preregistered 2\u00b2, not a rerun or substitute.",
+    "rank 3\u20135 genuinely new geological hypotheses with layers/signature/missing-fault rationale/differences/gain bracket/cost/data status": "Three H30 hypotheses and their novelty/rationale, uncertain planning brackets, costs, source limits, and data status are recorded in knowledge/11; H30-1 is the registered top candidate.",
+    "validate before a weekly slot; confirmation only after screen; exact-file audit": "The screen passed, so only registered confirmation draws 8,9 were run; confirmation failed its mean-gain and fold-count gates. H30-1 is stopped; no TIF/slot was created or approved, and no diagnostic arm is promoted. Any future candidate requires a new preregistration, comparable same-run win, and exact-file audit.",
+    "official sources, owner claims, computed values, inference, and unknowns kept separate": "H30 sources and limitations are cited in knowledge/11 and registry; H28 scope corrections are propagated; owner mirrors/scores remain explicitly unverified.",
+    "current feed and clean site; never automate DrivenData": "Source feed/site/README regenerated; feed policy excludes DrivenData requests and no competition endpoint was contacted.",
+    "Maximize P(Win), Own the Outcome, autonomous work, and three cumulative passes": "Review record captures implementation, review/fixes, and line-by-line recheck; negative/unknown outcomes remain explicit.",
+    "PR and merge from this branch; do not push main": "origin/main was fetched and incorporated into the fixed Arena branch; open-PR preflight was empty. The review record and experiment evidence are ready for the required PR; PR creation, checks, and merge must be verified separately before claiming completion."
+   },
+   "gaps_found_and_closed": [
+    "Closed a fail-open confirmation path that trusted only results.json by binding the screen summary to raw hashes and recomputing the registered gate before confirmation.",
+    "Rebased the fixed session branch onto the latest fetched origin/main feed-only update without dropping the newer 55-item source feed."
    ]
+  },
+  "verification": {
+   "tests": "106 passed (2026-10-03), including H30 feature/design, weighted-credit validation, and confirmation-integrity guard tests.",
+   "ruff": "ruff check src scripts tests passed.",
+   "compile_and_cli": "py_compile passed for H30/site/build scripts; runner/analyzer --help commands succeeded.",
+   "json_and_whitespace": "H30 screen/confirmation design/results, review receipt, manifest and smoke evidence parsed; git diff --check passed.",
+   "smoke": "Real-data H30 feature-construction smoke only; Xtr=(309985,83), Xq=(1154738,83), no fit/DTI in the smoke test itself.",
+   "screen_result": {
+    "stage": "registered H30-1 screen, draws 6,7; 40 model cells.",
+    "candidate_mean_dti": 0.15156696516048285,
+    "mean_gain_vs_best_same_run_control": 0.00407834014748901,
+    "folds_positive": 4,
+    "worst_fold_gain": 0.0008925459454114937,
+    "mean_hug_share_delta": -0.0003785353716334282,
+    "paired_gate_passed": true,
+    "evidence": "evidence/h30_relay_screen/results.json and results.md; design/cell SHA-256 values recorded in results.json."
+   },
+   "confirmation_result": {
+    "stage": "registered H30-1 fresh confirmation, draws 8,9; 40 model cells; permitted only after the independently revalidated screen pass.",
+    "candidate_mean_dti": 0.14832985941364768,
+    "best_same_run_control_mean_dti": 0.14960512929210384,
+    "mean_gain_vs_best_same_run_control": -0.0012752698784561714,
+    "folds_positive": 1,
+    "worst_fold_gain": -0.0038418236552633933,
+    "mean_hug_share_delta": 0.0072226041355943245,
+    "paired_gate_passed": false,
+    "confirmation_gate_passed": false,
+    "slot_eligible": false,
+    "evidence": "evidence/h30_relay_confirm/results.json and results.md; design/cell SHA-256 values recorded in results.json."
+   },
+   "analysis_correction": "Initial screen analysis rejected fractional distance-weighted TP_w/FP_w as integer counts; validator corrected to treat only emitted and n_truth as counts. Raw screen files remained unchanged; no model rerun or design/gate change.",
+   "experiment_state": "H30-1 failed its registered fresh-draw confirmation; stop. No TIF, weekly slot, PR, or merge yet."
   }
  },
  "prior_turn_reviews": [
+  {
+   "date_utc": "2026-10-03",
+   "session_focus": "H28: fetch and content-hash the group's 30 competition rasters from the owner's public mirrors, calibrate a forward model of the live metric on the 25 hash-linked scores, invert it for the DTI-optimal emission, and test the result on the spatially blocked holdout under a pre-registered gate.",
+   "pass_1_implementation_and_verification": {
+    "done": [
+     "Rebuilt the environment and every derived cache (22 pinned inputs verified; prepare 48.8 s, static features 27 s, add-ons 8 s) and pinned their SHA-256 plus library versions in evidence/work_cache_hashes.json.",
+     "New provenance path: registry/artifact_mirrors.json (locations read from GitHub tree listings only) + scripts/restore_artifacts.py (fetch through api.github.com, hash locally, match scores through the owner's own hash<->score ledger) -> registry/artifact_ledger.json with 30 rows, 25 hash-linked and usable.",
+     "New module src/gems25/livecal.py: exact E[TP] = N<pi, m_p>, Poisson-saturating E[FP] with the exact step decomposition of the kernel-disc count, distance-bin machinery, closed-form inversion of the DTI for N, weighted-reservoir truth sampler, greedy disjoint design and the marginal-rule budget curve. 12 unit tests, including Monte-Carlo parity against metric.dti_binary/dti_exact and an exact check that Psi's first-order term equals KERNEL_VOLUME / V(R).",
+     "Pre-registered knowledge/10 (design, model family, fitting rule, acceptance criteria C1-C5, design rule, holdout gate, decision rules, falsification conditions) BEFORE running anything; amendments D1-D3 were each written before the run they justify and log the reason.",
+     "Ran it: uniform truth is falsified for four of the group's surfaces (no finite N can produce their reported scores); pi \u221d exp(-d(H19-5)/1.85 px) makes all five anchors imply one N (12,498/12,472/12,893/13,358/12,691, spread 5.3 %) -> N = 12,691, agreeing with the blind-lattice-only 12,348 and the repo's earlier independent 12,503. Checks A1-A4, C3 (masking) and C5 (Monte Carlo <= 0.0020) all PASS.",
+     "The calibrated model predicts lattice-s5 0.0914 vs 0.0904 reported, h19-5 0.1904 vs 0.1922, d1-5 0.2437 vs 0.2477, and d2-8 0.25104 - and the ceiling sweep shows d = 2.4 px / 44,090 px (exactly the shipped file) is the argmax of its whole family.",
+     "Refutations recorded rather than hidden: the 6 px kernel-disjoint design beats d1-5 in 0/9 and the shipped file in 0/9 sensitivity cells; the distance-to-known-faults habitat model fails C1/C2/C4 (LOO RMSE 0.070-0.081); the two-band mixture fails both D3 adoption criteria and was not adopted.",
+     "30-arm holdout factorial (value field x spacing x budget, 4 folds x draws 0,1, one shared fit per cell, 240 paired cells): spacing optimum 2.4-3.0 px, 6 px costs 0.045 DTI, habitat ranking +0.0003 (p = 0.76), habitat x score +0.0012 (p = 0.25); promotion gate FAIL on both criteria -> no arm slot-eligible, nothing new packaged.",
+     "Regenerated packaging, README and site from evidence only: the primary GeoTIFF is byte-identical (sha256 91eae1ca... unchanged) while its summary, expected range and 116-character note now carry the validated live-model number and the family-ceiling statement; new H28 panels on the home and research pages; 5 new irregularities, 2 new sources, knowledge index, AGENTS.md rule 5 and AI_DISCLOSURE.md updated.",
+     "90 tests and ruff green; all four site pages serve 200 through a local preview server; the source feed was refreshed (51 items, 24 reachable) and still never contacts drivendata.org."
+    ]
+   },
+   "pass_2_bug_edge_case_review": {
+    "found_and_fixed": [
+     "FABRICATED IDENTIFIERS (the most serious defect of the session): the first draft of registry/artifact_ledger.json contained invented SHA-256 values for rows whose bytes had not been fetched. It was deleted before any use and replaced by a locations-only mirror registry plus a fetcher that computes every hash from real bytes and links a score only through the owner's ledger. tests/test_h28.py now fails any ledger row whose fit flag is set without a 64-hex hash and a 'matched by full SHA-256' provenance string.",
+     "Weighted-reservoir underflow: sample_truth_field used keys u^(1/w); with w ~ 1e-6 every key underflowed to 0, so the Monte-Carlo drew a near-uniform truth and reported 'errors' of 0.15-0.19 against the analytic prediction. Fixed by working in log space (log u / w); the Monte-Carlo then agreed to <= 0.0020 and a test pins the draw distribution against exact without-replacement probabilities on a small case.",
+     "First-order false-positive term: FP = M - N<pi,u_p> goes negative for dense truth and biased DTI by +0.0088 at nu ~ 0.17 and +0.048 at nu ~ 2.3 on the toy grid. Replaced by the exact Poisson saturation Psi(nu) and asserted analytically that its first-order term reproduces KERNEL_VOLUME / V(R).",
+     "Psi quadrature: midpoint integration over t made the interpolated slope 0.3 % low; replaced by the exact step decomposition of V(R(1-t)) and a grid densified near nu = 0.",
+     "Locally-flat pi in the FP term: nu was taken as N w_b V(R)/Z, which is worst exactly where pi varies fastest (next to known pixels). Kept only for the binned fit; every design and reference prediction now uses the full-resolution disc convolution livecal.disc_mass(pi).",
+     "Memory: the first stage-1 run was killed after the design stage because eight artefact kernel-field pairs (~800 MB) were still held; freed the cache and moved the heavy fields to float32.",
+     "greedy_disjoint scanned all 12.3 M grid cells and would pick zero-value pixels; it now restricts to eligible indices, exits early in value order, and both behaviours are tested (exclusion radius, pick order, maximality as a covering).",
+     "Comparator non-reproduction was caught by the pre-registered reproduction check, not by luck: IR-25-COMPARATOR-DRIFT records it, evidence/work_cache_hashes.json makes it detectable next time, and AGENTS.md rule 5 now requires recomputing the comparator in the same run.",
+     "Pre-registration drift: the sensitivity grid compared designs with d1-5 while section 7b/D3 specified the shipped d2-8 file; added the d2-8 column so the verdict is 0/9 against both, and the claim 'd2-8 dominates d1-5 in every cell' is now computed, not argued.",
+     "Dead code (_binw) removed; the binned Monte-Carlo path replaced by full-resolution sampling; ruff clean over src, scripts and tests.",
+     "Assumption audit kept in the open: everything is conditional on 25 unverified owner-reported scores; four rows without a hash link are excluded (IR-25-ARTEFACT-SCORE-LINK); pi's scope limit is printed wherever its numbers appear (IR-25-LIVE-MODEL-SCOPE); the GEMSDOE9 PLACEHOLDER file emits 196,132 px outside the footprint yet is reported scored, which this repo's verifier rejects (IR-25-PLACEHOLDER-OUTSIDE-FOOTPRINT)."
+    ]
+   },
+   "pass_3_recheck_against_the_original_brief": {
+    "item_by_item": [
+     "One-click downloadable submission .tif obvious at the start: unchanged path and SHA-256 at the top of README and the home page; the paste-in note now carries the validated model number and stays 116 characters.",
+     "Executive-summary subpage explaining exactly how to submit to competition #306: regenerated, still with the manual steps, the note field, the range-error root cause and the slot-discipline callout.",
+     "Fix the reported 'Predicted values must be in range [0, 1]' rejection: root cause (NaN inside the footprint) still documented and regression-tested; the shipped file has 0 NaN inside the footprint and [0,1] everywhere inside it.",
+     "Unique name + short Note per submission: content-addressed name e56ea318af89 and a <=120-character note, both machine-checked.",
+     "Replace one-factor-at-a-time with a designed experiment: the 2^(5-1) Resolution V feature factorial is retained, and the emission question is now a 3 x 5 x 2 full factorial with one shared fit per cell, so every contrast is paired (Box/Hunter/Hunter sparsity-of-effects reasoning cited in knowledge/04).",
+     "Explain why 0.2477 scored what it did and whether more is possible: answered with arithmetic under a validated model (dotting cut redundant kernel mass from 62 % to 32 % while keeping 85 % of the credit; predicted 0.1904 -> 0.2437) and with the ceiling result (the shipped D2.8 file is the argmax of that family at 0.25104).",
+     "Design a new unique strategy aiming above 0.3195: five ranked H29 hypotheses in knowledge/10 section 13, each naming layers, physical signature, why it catches a fault MISSING from the catalogue, how it differs from anything implemented, expected bracket, cost and obtainability; the honest headline is that emission geometry is exhausted and 0.3195 needs 1.29x the credit density of the best current file.",
+     "Validate the top candidate on the spatially blocked holdout before spending a slot: done (30 arms, 8 cells, gate FAIL) and the pre-registered consequence executed - nothing new packaged, no slot recommended.",
+     "Deep research stored as reusable knowledge with an auditable table of official verified links: knowledge/10 plus registry/sources.json (23 sources with verification method, date and caveats) and the refreshed feed.",
+     "GitHub Pages site, clean and organized, solving manual checking: new H28 panels on the home and research pages render every table from evidence JSON; the feed and source audit pages are regenerated; DrivenData is never contacted.",
+     "Run the task through multiple passes: this record.",
+     "Pull request merged to main: see post_merge_verification for the PR URL, merge commit and CI/Pages status.",
+     "Report limitations and the access needed: README limitations 1-7 (no credentials/receipts, blocked external binaries, 2 CPU / 4 GB, proxy is not truth, undisclosed split/validator, live-model scope limit, environment-specific comparator)."
+    ]
+   }
+  },
   {
    "date_utc": "2026-10-02",
    "pass_1_implementation_and_verification": {
