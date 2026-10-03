@@ -19,11 +19,13 @@ from pathlib import Path
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
 from gems25.experiment import Cell, HGB_PARAMS, N_NEG, load_context  # noqa: E402
 from gems25.h30 import H30_BASE_EXTRAS  # noqa: E402
 from gems25.paths import work_dir  # noqa: E402
 from gems25.thinning import score_ordered_dots  # noqa: E402
+from scripts.analyze_h30_relay_factorial import verify_passing_screen  # noqa: E402
 
 DRAWS = {"screen": [6, 7], "confirm": [8, 9]}
 FOLDS = ["NW", "NE", "SW", "SE"]
@@ -104,21 +106,7 @@ def main() -> None:
     revision = frozen_git_revision()
     draws = DRAWS[args.stage]
     if args.stage == "confirm":
-        screen = ROOT / "evidence" / "h30_relay_screen" / "results.json"
-        if not screen.exists():
-            raise SystemExit("confirmation requires an analyzed, passing H30 screen on draws 6,7")
-        prior = json.loads(screen.read_text())
-        prior_design = prior.get("design", {})
-        prior_gate = prior.get("paired_promotion_gate", {})
-        if not (
-            prior.get("stage") == "screen"
-            and prior_design.get("stage") == "screen"
-            and prior_design.get("draws") == DRAWS["screen"]
-            and prior.get("n_rows") == 40
-            and prior.get("screen_gate_passed") is True
-            and prior_gate.get("paired_gate_passed") is True
-        ):
-            raise SystemExit("confirmation requires a complete passing H30 screen on the frozen draws 6,7")
+        verify_passing_screen(ROOT / "evidence" / "h30_relay_screen")
 
     out = Path(args.out) if args.out else ROOT / "evidence" / f"h30_relay_{args.stage}"
     if out.exists() and (not out.is_dir() or any(out.iterdir())):

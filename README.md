@@ -185,6 +185,8 @@ python -m venv .venv && .venv/bin/pip install -r requirements.txt
 # H30-1 is an additional preregistered paired-tip × scarp 2²; it does not replace the five-family design
 .venv/bin/python scripts/smoke_h30_features.py                # real-data feature check only; no model fit/DTI
 .venv/bin/python scripts/run_h30_relay_factorial.py --stage screen && .venv/bin/python scripts/analyze_h30_relay_factorial.py --dir evidence/h30_relay_screen
+# Commit the screen evidence; the runner requires a clean tree and revalidates its hashes/gate.
+git add evidence/h30_relay_screen && git commit -m 'Record H30 screen evidence'
 # ONLY if the saved screen results.json says screen_gate_passed=true:
 .venv/bin/python scripts/run_h30_relay_factorial.py --stage confirm && .venv/bin/python scripts/analyze_h30_relay_factorial.py --dir evidence/h30_relay_confirm
 # forensics and emission model

@@ -152,6 +152,89 @@ def validate_frozen_design(design: dict, stage: str) -> None:
         raise SystemExit("H30 run does not carry the pinned derived-cache hashes")
 
 
+def verify_passing_screen(run: Path) -> dict:
+    """Recompute the saved screen gate from hash-bound raw cells before permitting confirmation.
+
+    A passing flag in ``results.json`` is not trusted on its own: the confirmation path verifies the frozen
+    design, ties the summary to the exact raw files, validates all 40 registered cells, and recalculates the gate.
+    """
+    run = Path(run)
+    design_path, cells_path, results_path = run / "design.json", run / "cells.jsonl", run / "results.json"
+    if not all(path.is_file() for path in (design_path, cells_path, results_path)):
+        raise SystemExit(f"confirmation requires complete screen design/cells/results in {run}")
+    try:
+        design = json.loads(design_path.read_text())
+        results = json.loads(results_path.read_text())
+        rows = [json.loads(line) for line in cells_path.read_text().splitlines() if line.strip()]
+    except (OSError, json.JSONDecodeError) as exc:
+        raise SystemExit(f"cannot read complete H30 screen evidence in {run}: {exc}") from exc
+    validate_frozen_design(design, "screen")
+    if (design.get("stage") != "screen" or results.get("stage") != "screen"
+            or results.get("design") != design or results.get("n_rows") != 40):
+        raise SystemExit("saved H30 screen summary does not match its registered design and expected 40 cells")
+    expected_hashes = {
+        "design.json": sha256_file(design_path),
+        "cells.jsonl": sha256_file(cells_path),
+    }
+    if results.get("evidence_sha256") != expected_hashes:
+        raise SystemExit("saved H30 screen summary does not bind the exact design and raw-cell files")
+
+    draws = EXPECTED_DRAWS["screen"]
+    if any(not isinstance(row, dict) for row in rows):
+        raise SystemExit("saved H30 screen cells must each be a JSON object")
+    expected_keys = {(fold, draw, arm) for fold in range(4) for draw in draws for arm in EXPECTED_ARMS}
+    actual_keys = [(row.get("fold"), row.get("draw"), row.get("arm")) for row in rows]
+    if len(rows) != 40 or len(set(actual_keys)) != 40 or set(actual_keys) != expected_keys:
+        raise SystemExit("saved H30 screen cells are incomplete, duplicated, or outside the frozen design")
+    config_by_arm = {row["arm"]: row for row in design["randomized_matrix"]}
+    order_by_arm = {row["arm"]: i + 1 for i, row in enumerate(design["randomized_matrix"])}
+    lookup: dict[tuple[int, int, str], dict] = {}
+    for row in rows:
+        fold, draw, arm = row["fold"], row["draw"], row["arm"]
+        if (type(fold) is not int or type(draw) is not int or arm not in EXPECTED_ARMS
+                or row.get("stage") != "screen" or row.get("fold_name") != EXPECTED_FOLDS[fold]
+                or row.get("run_order") != order_by_arm[arm]
+                or row.get("P") != config_by_arm[arm]["P"] or row.get("S") != config_by_arm[arm]["S"]
+                or row.get("include_tip") != config_by_arm[arm]["include_tip"]
+                or row.get("factorial_arm") != config_by_arm[arm]["factorial_arm"]
+                or row.get("design_seed") != design["design_seed"]
+                or row.get("k_fraction") != design["emission"]["k_fraction"]
+                or row.get("min_distance_px") != design["emission"]["min_distance_px"]):
+            raise SystemExit(f"saved H30 screen cell metadata disagrees with its frozen design: {row}")
+        try:
+            dti_value, hug_value = float(row["dti"]), float(row["hug"])
+        except (KeyError, TypeError, ValueError) as exc:
+            raise SystemExit(f"saved H30 screen cell lacks finite DTI/hug metrics: {row}") from exc
+        if not np.isfinite([dti_value, hug_value]).all() or not (0.0 <= dti_value <= 1.0 and 0.0 <= hug_value <= 1.0):
+            raise SystemExit(f"saved H30 screen cell has out-of-range DTI/hug metrics: {row}")
+        lookup[(fold, draw, arm)] = row
+
+    dti_by_fold: dict[str, list[float]] = {}
+    hug_by_fold: dict[str, list[float]] = {}
+    for arm in EXPECTED_ARMS:
+        dti_by_fold[arm] = [
+            float(np.mean([lookup[(fold, draw, arm)]["dti"] for draw in draws]))
+            for fold in range(4)
+        ]
+        hug_by_fold[arm] = [
+            float(np.mean([lookup[(fold, draw, arm)]["hug"] for draw in draws]))
+            for fold in range(4)
+        ]
+    gate = h30_promotion_gate(
+        dti_by_fold["T_PLUS_P_S"],
+        {H30_CONTROL: dti_by_fold[H30_CONTROL], "T_BASE": dti_by_fold["T_BASE"]},
+        hug_by_fold["T_PLUS_P_S"],
+        {H30_CONTROL: hug_by_fold[H30_CONTROL], "T_BASE": hug_by_fold["T_BASE"]},
+    )
+    if results.get("paired_promotion_gate") != gate or results.get("screen_gate_passed") is not gate["paired_gate_passed"]:
+        raise SystemExit("saved H30 screen summary gate does not reproduce from its hash-bound raw cells")
+    if results.get("slot_eligible") is not False:
+        raise SystemExit("an H30 screen result can never mark a candidate slot-eligible")
+    if not gate["paired_gate_passed"]:
+        raise SystemExit("H30 screen gate failed; confirmation is prohibited")
+    return results
+
+
 def summarize_effect(values: np.ndarray) -> dict:
     arr = np.asarray(values, dtype=float)
     mean = float(arr.mean())
@@ -182,22 +265,9 @@ def main() -> None:
     if stage not in EXPECTED_DRAWS:
         raise SystemExit(f"unknown H30 stage {stage!r}")
     validate_frozen_design(design, stage)
+    screen = None
     if stage == "confirm":
-        screen_path = ROOT / "evidence" / "h30_relay_screen" / "results.json"
-        if not screen_path.exists():
-            raise SystemExit("confirmation run is invalid unless the screen gate passed")
-        screen = json.loads(screen_path.read_text())
-        screen_design = screen.get("design", {})
-        screen_gate = screen.get("paired_promotion_gate", {})
-        if not (
-            screen.get("stage") == "screen"
-            and screen_design.get("stage") == "screen"
-            and screen_design.get("draws") == EXPECTED_DRAWS["screen"]
-            and screen.get("n_rows") == 40
-            and screen.get("screen_gate_passed") is True
-            and screen_gate.get("paired_gate_passed") is True
-        ):
-            raise SystemExit("confirmation run is invalid unless the complete frozen screen passed")
+        screen = verify_passing_screen(ROOT / "evidence" / "h30_relay_screen")
 
     canonical = design["canonical_matrix"]
     order = design["row_order_zero_based"]
@@ -319,10 +389,7 @@ def main() -> None:
             "T_BASE": by_arm["T_BASE"]["by_fold_hug"],
         },
     )
-    prior_screen_passed = True
-    if stage == "confirm":
-        screen = json.loads((ROOT / "evidence" / "h30_relay_screen" / "results.json").read_text())
-        prior_screen_passed = bool(screen.get("screen_gate_passed", False))
+    prior_screen_passed = bool(screen["screen_gate_passed"]) if screen is not None else True
     screen_gate_passed = bool(gate["paired_gate_passed"])
     confirmation_gate_passed = bool(gate["paired_gate_passed"] and prior_screen_passed) if stage == "confirm" else None
 

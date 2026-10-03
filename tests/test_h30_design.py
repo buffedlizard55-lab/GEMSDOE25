@@ -11,6 +11,7 @@ from scripts.analyze_h30_relay_factorial import (
     FROZEN_CANONICAL_MATRIX,
     FROZEN_DESIGN_SEED,
     validate_frozen_design,
+    verify_passing_screen,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -79,6 +80,76 @@ def frozen_design_for_test():
         },
         "derived_cache_sha256_verified": {name: cache_record[name] for name in cache_names},
     }
+
+
+def write_screen_fixture(directory: Path, candidate_dti: float = 0.13) -> Path:
+    directory.mkdir()
+    design = frozen_design_for_test()
+    design_path = directory / "design.json"
+    cells_path = directory / "cells.jsonl"
+    design_path.write_text(json.dumps(design, indent=1) + "\n")
+    means = {
+        "BASE_NO_TIP": 0.10,
+        "T_BASE": 0.11,
+        "T_PLUS_P": 0.12,
+        "T_PLUS_S": 0.11,
+        "T_PLUS_P_S": candidate_dti,
+    }
+    hugs = {
+        "BASE_NO_TIP": 0.10,
+        "T_BASE": 0.15,
+        "T_PLUS_P": 0.16,
+        "T_PLUS_S": 0.16,
+        "T_PLUS_P_S": 0.20,
+    }
+    rows = []
+    for fold, fold_name in enumerate(EXPECTED_FOLDS):
+        for draw in (6, 7):
+            for run_order, cfg in enumerate(design["randomized_matrix"], start=1):
+                rows.append({
+                    "stage": "screen",
+                    "fold": fold,
+                    "fold_name": fold_name,
+                    "draw": draw,
+                    "run_order": run_order,
+                    "arm": cfg["arm"],
+                    "P": cfg["P"],
+                    "S": cfg["S"],
+                    "include_tip": cfg["include_tip"],
+                    "factorial_arm": cfg["factorial_arm"],
+                    "design_seed": FROZEN_DESIGN_SEED,
+                    "k_fraction": 0.035,
+                    "min_distance_px": 2.4,
+                    "dti": means[cfg["arm"]],
+                    "coverage": 0.5,
+                    "tp": 1,
+                    "fp": 1,
+                    "n_truth": 2,
+                    "emitted": 2,
+                    "hug": hugs[cfg["arm"]],
+                    "auc": 0.5,
+                })
+    cells_path.write_text("".join(json.dumps(row) + "\n" for row in rows))
+    gate = h30_promotion_gate(
+        [candidate_dti] * 4,
+        {"BASE_NO_TIP": [means["BASE_NO_TIP"]] * 4, "T_BASE": [means["T_BASE"]] * 4},
+        [hugs["T_PLUS_P_S"]] * 4,
+        {"BASE_NO_TIP": [hugs["BASE_NO_TIP"]] * 4, "T_BASE": [hugs["T_BASE"]] * 4},
+    )
+    def digest(path: Path) -> str:
+        return hashlib.sha256(path.read_bytes()).hexdigest()
+
+    results = {
+        "stage": "screen",
+        "n_rows": len(rows),
+        "design": design,
+        "evidence_sha256": {"design.json": digest(design_path), "cells.jsonl": digest(cells_path)},
+        "paired_promotion_gate": gate,
+        "screen_gate_passed": gate["paired_gate_passed"],
+        "slot_eligible": False,
+    }
+    (directory / "results.json").write_text(json.dumps(results, indent=1) + "\n")
+    return directory
 
 
 def test_h30_2x2_effects_return_coded_main_effects_and_difference_in_differences():
@@ -157,3 +228,29 @@ def test_frozen_h30_design_validator_rejects_changed_draws_or_matrix():
     design["canonical_matrix"] = list(reversed(design["canonical_matrix"]))
     with np.testing.assert_raises(SystemExit):
         validate_frozen_design(design, "screen")
+
+
+def test_confirmation_guard_recomputes_a_hash_bound_passing_screen(tmp_path):
+    screen_dir = write_screen_fixture(tmp_path / "passing")
+    verified = verify_passing_screen(screen_dir)
+    assert verified["screen_gate_passed"] is True
+
+    failed_dir = write_screen_fixture(tmp_path / "failed", candidate_dti=0.11)
+    with np.testing.assert_raises(SystemExit):
+        verify_passing_screen(failed_dir)
+
+
+def test_confirmation_guard_rejects_summary_tampering_and_changed_raw_cells(tmp_path):
+    screen_dir = write_screen_fixture(tmp_path / "tampered-summary")
+    results_path = screen_dir / "results.json"
+    results = json.loads(results_path.read_text())
+    results["paired_promotion_gate"]["mean_gain_vs_best_paired_control"] = 99.0
+    results_path.write_text(json.dumps(results, indent=1) + "\n")
+    with np.testing.assert_raises(SystemExit):
+        verify_passing_screen(screen_dir)
+
+    changed_dir = write_screen_fixture(tmp_path / "changed-cells")
+    with (changed_dir / "cells.jsonl").open("a") as sink:
+        sink.write("\n")
+    with np.testing.assert_raises(SystemExit):
+        verify_passing_screen(changed_dir)

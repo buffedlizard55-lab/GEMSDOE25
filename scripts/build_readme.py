@@ -244,7 +244,7 @@ def main() -> None:
             A("1. H30-1 failed its fresh-draw confirmation. Stop this candidate; do not create a TIFF or use a weekly slot. Any new idea requires a genuinely new preregistration.")
     elif h30_screen:
         if h30_screen.get("screen_gate_passed"):
-            A("1. H30-1 screen passed. Run only the frozen confirmation on draws 8,9 (`.venv/bin/python scripts/run_h30_relay_factorial.py --stage confirm && .venv/bin/python scripts/analyze_h30_relay_factorial.py --dir evidence/h30_relay_confirm`). No TIFF or weekly slot before confirmation and the subsequent same-run/exact-file gates.")
+            A("1. H30-1 screen passed. First commit the complete screen evidence (`evidence/h30_relay_screen/`) so the confirmation runner starts from a clean, auditable tree; it rechecks the raw-cell hashes and recomputes the gate. Then run only the frozen confirmation on draws 8,9 (`.venv/bin/python scripts/run_h30_relay_factorial.py --stage confirm && .venv/bin/python scripts/analyze_h30_relay_factorial.py --dir evidence/h30_relay_confirm`). No TIFF or weekly slot before confirmation and the subsequent same-run/exact-file gates.")
         else:
             A("1. H30-1 screen failed its registered paired gate. Stop; do not run confirmation, create a TIFF, or use a weekly slot. Any follow-up needs a new preregistration.")
     else:
@@ -278,6 +278,8 @@ def main() -> None:
       "# H30-1 is an additional preregistered paired-tip × scarp 2²; it does not replace the five-family design\n"
       ".venv/bin/python scripts/smoke_h30_features.py                # real-data feature check only; no model fit/DTI\n"
       ".venv/bin/python scripts/run_h30_relay_factorial.py --stage screen && .venv/bin/python scripts/analyze_h30_relay_factorial.py --dir evidence/h30_relay_screen\n"
+      "# Commit the screen evidence; the runner requires a clean tree and revalidates its hashes/gate.\n"
+      "git add evidence/h30_relay_screen && git commit -m 'Record H30 screen evidence'\n"
       "# ONLY if the saved screen results.json says screen_gate_passed=true:\n"
       ".venv/bin/python scripts/run_h30_relay_factorial.py --stage confirm && .venv/bin/python scripts/analyze_h30_relay_factorial.py --dir evidence/h30_relay_confirm\n"
       "# forensics and emission model\n"
