@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-03T01:39:34Z",
+ "generated_utc": "2026-10-03T05:25:34Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"448a6c711df972dd839f9fd3f989e22e\""
+   "detail": "HTTP 200; ETag: W/\"c8a151794b02f88139a93e79dd6fdddf\""
   },
   {
    "kind": "source",
@@ -105,7 +105,7 @@
    "url": "https://www.usgs.gov/3d-elevation-program",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Sat, 03 Oct 2026 01:39:21 GMT; ETag: W/\"1790991561\""
+   "detail": "HTTP 200; Last-Modified: Sat, 03 Oct 2026 05:25:22 GMT; ETag: W/\"1791005122\""
   },
   {
    "kind": "source",
@@ -145,7 +145,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"f9d7907ebd0feacc3af353418eca7706\""
+   "detail": "HTTP 200; ETag: W/\"33cad894b1bdb74ae61a332e35f3611d\""
   },
   {
    "kind": "source",
@@ -153,7 +153,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"68fe7dd1fd082c4a54c834023f4dfcef\""
+   "detail": "HTTP 200; ETag: W/\"d841f086789bb66151f1808c934bd59e\""
   },
   {
    "kind": "source",
@@ -177,7 +177,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"8ace639faecc85318ea5430ad04a4752\""
+   "detail": "HTTP 200; ETag: W/\"448a0f79e81b86d41a0581cb1aff7443\""
   },
   {
    "kind": "source",
@@ -185,7 +185,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"c6e1e86b8c9e95e6c996ea6a32646cbc\""
+   "detail": "HTTP 200; ETag: W/\"bc7436ee72ae5e42f0aae496cd631e87\""
   },
   {
    "kind": "source",
@@ -193,7 +193,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"448a6c711df972dd839f9fd3f989e22e\""
+   "detail": "HTTP 200; ETag: W/\"c8a151794b02f88139a93e79dd6fdddf\""
   },
   {
    "kind": "sciencebase",
