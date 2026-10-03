@@ -201,6 +201,30 @@
    "issue": "The adopted live-anchored model pi \u221d exp(-d(H19-5)/1.85 px) reproduces its own family and the blind lattice within 0.004 DTI, but under-predicts surfaces outside that band: h25-ctx-ridge 0.0907 predicted vs 0.1280 reported, h28-dotted-ridge 0.1251 vs 0.1839, lidarscarp-top2pct implied N 22,893 vs 12,691. It therefore cannot score any emission that leaves the H19-5 band, and the two-band mixture that would extend it is not identified (nine-anchor spread 0.514 against a 0.053 threshold; mean absolute residual worse, 0.0335 vs 0.0172).",
    "evidence": "evidence/h28_calibration/design.json (reference_rows_under_calibrated_pi), evidence/h28_calibration/mixture.json (adoption_rule)",
    "resolution_or_action": "Scope limit printed wherever the model's predictions are quoted (README, download page, knowledge/10 section 6b). The three under-predicted surfaces are the ranked first target for H29: they are live evidence that truth exists off the H19-5 band."
+  },
+  {
+   "id": "IR-25-REFSOL-CHANNEL4",
+   "severity": "info",
+   "status": "closed",
+   "issue": "The official reference solution keeps a patch only where 'valid elevation data (channel 4)' is finite, i.e. channel INDEX 4 = the 5th band. In the owner mirror the 5th band's own TIFF tag reads 'Isostatic gravity anomaly slope' (category gravity_data) and detrended elevation is band 12. Read literally that would mean the mirror's band order does not match the organizer's file, which would shift every feature-family assignment in this repository.",
+   "evidence": "COMPUTED this session: per-band non-finite masks of all 19 cached bands are IDENTICAL for 18 of 19 bands (7,112,688 non-finite pixels each, i.e. exactly the area outside the 5,167,373-px footprint); the single exception is band 6 ('tc'), which differs from band 5 by 12 pixels of 12,279,292. Source: github.com/drivendataorg/gems-prize-reference-solution, notebook cell 12.",
+   "resolution_or_action": "Closed: channel 4 in the reference is a data-validity proxy, not an elevation claim - because the non-finite mask is the same for every band, testing channel 4 is equivalent to testing any channel. No band-order discrepancy exists; the mirror's own per-band tags (which the reference solution itself reads) remain the band semantics of record (evidence/band_semantics.json, knowledge/08)."
+  },
+  {
+   "id": "IR-25-REFSOL-FORMAT",
+   "severity": "low",
+   "status": "open",
+   "issue": "The official reference solution writes its submission as a single-band float32 GeoTIFF using the labels' CRS and transform and sets NO nodata tag, so its file is finite everywhere (zeros outside the study area). This repository's primary download instead writes NaN outside the footprint to match the owner-mirrored sample_submission.tif, and ships a zeros-outside fallback. The two conventions differ and the portal's validator is not public.",
+   "evidence": "github.com/drivendataorg/gems-prize-reference-solution notebook cell 19 (rasterio.open(..., 'w', dtype=y_final.dtype, crs=..., transform=...); no nodata= argument); the owner-mirrored template has NaN outside the footprint; the GEMSDOE9 PLACEHOLDER mirror holds 196,132 pixels of value 1.0 outside the footprint and is nonetheless reported scored (IR-25-PLACEHOLDER-OUTSIDE-FOOTPRINT).",
+   "resolution_or_action": "Both files are already published on the download page: the NaN-outside primary (matching the template) and the zeros-outside fallback (matching the official reference's convention). If the portal ever rejects one, submit the other; neither has been organizer-verified. No change to the shipped bytes was made on this evidence."
+  },
+  {
+   "id": "IR-25-REFSOL-THRESHOLD-HINT",
+   "severity": "info",
+   "status": "closed",
+   "issue": "The official reference solution submits continuous averaged probabilities and its author notes 'it may be advantageous to threshold this map for better scoring'. This repository proves a stronger statement and had already been shipping binary emissions.",
+   "evidence": "notebook cells 17 and 20 (y_final continuous; the third panel plots y_final > 0.1); the binary-optimality lemma recorded in evidence/h28_calibration/design.json ('binary_optimality_lemma'): for a fixed support the DTI is a linear-fractional function of p, so the optimum is bang-bang and soft values in (0,1) cannot beat a binary emission.",
+   "resolution_or_action": "Closed as corroboration: the organizer's own benchmark points the same way as the algebra. Every file this repo ships is binary 0/1, and the lemma is now stated wherever the emission design is described."
   }
  ]
 }
