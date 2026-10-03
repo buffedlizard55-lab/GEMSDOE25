@@ -14,7 +14,10 @@
    arm stays failed. Experiments are *designed* (fractional factorial), not one-factor-at-a-time hunches.
 5. **No weekly slot unless the specific candidate beats the current comparable hide-and-recover best and passes the exact-file audit.**
    No exception is authorized in this project brief. Format-green is not gate-green. A holdout win is necessary, not sufficient
-   (proxy-vs-live Spearman measured +0.33, n.s., on 24 artefacts by GEMSDOE24).
+   (proxy-vs-live Spearman measured +0.33, n.s., on 24 artefacts by GEMSDOE24). **Recompute the comparator in the same run as the
+   candidate**: `data/work` is a gitignored derived cache and the frozen 0.152003389 recomputes to 0.149668 in a rebuilt environment
+   (IR-25-COMPARATOR-DRIFT), so a cross-session absolute comparison is not a paired test. `evidence/work_cache_hashes.json` pins the
+   caches and library versions; if the hashes differ, the old comparator number is a record, not a baseline.
 6. **Evidence classes stay separate:** OFFICIAL (read at the cited page), OWNER-reported score, COMPUTED (script + JSON named), INFERENCE
    (assumptions stated). Unknown stays unknown. Dates, hashes and links are recorded in `registry/`.
 7. **A renamed reference is not new work.** Every shipped TIF has a unique, content-addressed name, a short DrivenData note and a

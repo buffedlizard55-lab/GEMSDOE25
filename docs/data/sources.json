@@ -298,6 +298,34 @@
    "caveats": "",
    "license": "",
    "reachable_from_sandbox_bash": false
+  },
+  {
+   "id": "owner-mirror-artifacts",
+   "title": "Owner's public GitHub mirrors of the group's 30 competition rasters",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
+   "publisher": "buffedlizard55-lab (owner) mirrors: GEMSDOE, GEMSDOE2/3/4/9/10/21/22/24, 5-8GEMSDOE, 11-20GEMSDOE",
+   "kind": "owner mirror (bytes) + owner-reported scores",
+   "used_for": "the live-anchored calibration of knowledge/10: 25 rasters whose SHA-256 matches a row of the owner's own hash<->score ledger, spanning reported DTI 0.0020-0.2477 and emitted mass 44k-514k px",
+   "verified": true,
+   "verified_utc": "2026-10-02",
+   "how_verified": "each path was read from a GitHub REST tree listing (GET /repos/{owner}/{repo}/git/trees/HEAD?recursive=1) and each file was fetched through api.github.com by scripts/restore_artifacts.py, then SHA-256 hashed locally and matched against evidence/provenance/gemsdoe27_live_scores_snapshot.json",
+   "caveats": "A hash match proves the mirror is unchanged and ties a file to a row of the owner's ledger. It does NOT prove the organizer scored those bytes, and the DTI values remain user/owner-reported claims. Four rows have no ledger match and are excluded (IR-25-ARTEFACT-SCORE-LINK). raw.githubusercontent.com is unreachable from this sandbox; only api.github.com was used. drivendata.org was never contacted.",
+   "license": "owner's own submission artefacts, mirrored in the owner's public repositories",
+   "reachable_from_sandbox_bash": true
+  },
+  {
+   "id": "gemsdoe27-score-ledger",
+   "title": "GEMSDOE27 registry/live_scores.json \u2014 the owner's SHA-256 <-> reported-score ledger",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
+   "publisher": "buffedlizard55-lab (sibling agent session)",
+   "kind": "secondary quote of owner-reported scores",
+   "used_for": "linking each fetched raster to its reported DTI by content hash",
+   "verified": true,
+   "verified_utc": "2026-10-02",
+   "how_verified": "fetched through api.github.com; snapshot stored at evidence/provenance/gemsdoe27_live_scores_snapshot.json (sha256 1883b28665fd23ca31eee8282ff8b8475a742983613f465d41aa25393cd5dc5e)",
+   "caveats": "The sibling repository states the same warning this one does: the values are owner-reported public-leaderboard numbers, not DrivenData receipts. Neither agent fetched or monitored drivendata.org.",
+   "license": "",
+   "reachable_from_sandbox_bash": true
   }
  ]
 }
