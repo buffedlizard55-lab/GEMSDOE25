@@ -105,9 +105,12 @@ def main() -> None:
     h30_result = h30_confirm or h30_screen
     if h30_confirm:
         h30_gate = h30_confirm["paired_promotion_gate"]
-        h30_status = ("fresh-draw confirmation gate passed; full-data build and exact-file audit still required"
-                      if h30_confirm.get("confirmation_gate_passed")
-                      else "fresh-draw confirmation gate failed; stop, no candidate file")
+        if h30_confirm.get("confirmation_gate_passed"):
+            h30_status = "screen and fresh-draw confirmation gates passed; full-data build and exact-file audit still required"
+        elif h30_screen and h30_screen.get("screen_gate_passed"):
+            h30_status = "screen passed; fresh-draw confirmation failed; stop, no candidate file or slot"
+        else:
+            h30_status = "fresh-draw confirmation gate failed; stop, no candidate file or slot"
     elif h30_screen:
         h30_gate = h30_screen["paired_promotion_gate"]
         h30_status = ("screen gate passed; frozen confirmation on draws 8,9 required"
@@ -175,7 +178,7 @@ habitat ranking adds {h28_hold['contrasts']['value_score_to_habitat']:+.4f} (p =
 <tr><td>1</td><td>Paired visible-tip cross-strike bridge × LiDAR scarp persistence</td><td>+0.001 to +0.008</td><td>{e(h30_primary)}</td></tr>
 <tr><td>2</td><td>Visible-fault junction / accommodation-zone branch field</td><td>0 to +0.006</td><td>Registered only; not fitted</td></tr>
 <tr><td>3</td><td>Scale-persistent terrain lineament</td><td>0 to +0.005</td><td>Registered only; not fitted</td></tr></tbody></table>
-<p class="small">Hypotheses, novelty audit, official-source links, design and promotion gates: <a href="{kbase}/11_preregistered_h30_pairwise_relay_factorial_2026-10-03.md">H30 preregistration</a> · <a href="{prefix}research.html#h30">holdout tables</a>. The pre-existing five-family A–E experiment remains separately recorded in <code>evidence/factorial/</code>.</p></div>"""
+<p class="small">Hypotheses, novelty audit, official-source links, design and promotion gates: <a href="{kbase}/11_preregistered_h30_pairwise_relay_factorial_2026-10-03.md">H30 preregistration</a> · <a href="{kbase}/12_h30_relay_factorial_outcomes_2026-10-03.md">screen/confirmation decision record</a> · <a href="{prefix}research.html#h30">holdout tables</a>. The pre-existing five-family A–E experiment remains separately recorded in <code>evidence/factorial/</code>.</p></div>"""
         cls = fac["classification"]
         rows = "".join(f"<tr><td><b>{k}</b></td><td>{e(v['label'])}</td><td>{badge(v['classification'], {'matters alone':'ok','matters in combination':'info','inert':'warn','harmful':'bad'}[v['classification']])}</td><td class='num'>{v['main_effect']:+.4f}</td><td class='num'>{v['folds_positive']}/4</td></tr>" for k, v in cls.items())
         facb = f"""<h2>Which feature families matter? (designed experiment, not hunches)</h2>
@@ -323,6 +326,16 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
             for name, effect in h30_result["factorial_effects"].items()
         )
         gate = h30_result["paired_promotion_gate"]
+        screen_history = ""
+        if h30_confirm and h30_screen:
+            screen_gate = h30_screen["paired_promotion_gate"]
+            screen_history = (
+                f"<p class=\"small\"><b>Prior screen:</b> draws 6,7 passed with mean paired gain "
+                f"{screen_gate['mean_gain_vs_best_paired_control']:+.6f} DTI ({screen_gate['folds_positive']}/4 positive; "
+                f"worst {screen_gate['worst_fold_gain']:+.6f}; hug change {screen_gate['mean_hug_share_delta']:+.4f}). "
+                f"<a href=\"../evidence/h30_relay_screen/results.md\">Screen report</a>. "
+                f"<a href=\"../evidence/h30_relay_confirm/results.md\">Confirmation report</a>.</p>"
+            )
         if h30_result["stage"] == "screen":
             h30_decision = ("<b>SCREEN PASS — only the registered fresh-draw confirmation may proceed.</b>"
                             if h30_result.get("screen_gate_passed")
@@ -333,6 +346,7 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
                             else "<b>CONFIRMATION FAIL — stop; no candidate file or slot.</b>")
         h30_section = f"""<h2 id="h30">4 · H30-1 paired relay bridge × persistent scarp — {e(h30_result['stage'])}</h2>
 <p>Frozen design: <a href="../knowledge/11_preregistered_h30_pairwise_relay_factorial_2026-10-03.md">H30 preregistration</a>. Stage <b>{e(h30_result['stage'])}</b>, draws {', '.join(map(str, h30_result['design']['draws']))}, 4 spatial folds × 2 draws × 5 arms = {h30_result['n_rows']} model cells. The 2² P/S contrasts are estimated only on T, T+P, T+S, T+P+S; BASE_NO_TIP is a second same-run control.</p>
+{screen_history}
 <table><thead><tr><th>Arm</th><th class="num">Mean DTI</th><th class="num">NW</th><th class="num">NE</th><th class="num">SW</th><th class="num">SE</th><th class="num">Hug</th><th class="num">Coverage</th></tr></thead><tbody>{h30_rows}</tbody></table>
 <h3>Registered 2² response effects (four spatial-fold blocks)</h3><table><thead><tr><th>Effect</th><th class="num">Mean</th><th class="num">NW</th><th class="num">NE</th><th class="num">SW</th><th class="num">SE</th><th class="num">95% t interval</th></tr></thead><tbody>{h30_effect_rows}</tbody></table>
 <div class="callout"><b>Frozen P+S gate:</b> gain vs the per-fold best same-run control {gate['mean_gain_vs_best_paired_control']:+.6f} DTI; {gate['folds_positive']}/4 positive folds; worst fold {gate['worst_fold_gain']:+.6f}; mean hug-share change {gate['mean_hug_share_delta']:+.4f}. {h30_decision} Slot eligible: <b>no</b>. This catalogue-gap proxy is not new-fault truth or a competition score.</div>

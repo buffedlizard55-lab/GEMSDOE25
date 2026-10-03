@@ -199,7 +199,10 @@ def main() -> None:
         h30_result = h30_confirm
         h30_gate = h30_confirm["paired_promotion_gate"]
         if h30_confirm.get("confirmation_gate_passed"):
-            h30_status = "fresh-draw confirmation passed; full-data build and exact-file audit still required; no slot approval"
+            h30_status = "screen and fresh-draw confirmation passed; full-data build and exact-file audit still required; no slot approval"
+        elif h30_screen and h30_screen.get("screen_gate_passed"):
+            screen_gain = h30_screen["paired_promotion_gate"]["mean_gain_vs_best_paired_control"]
+            h30_status = f"screen passed (+{screen_gain:.6f}); fresh-draw confirmation failed; stop; no candidate file or slot"
         else:
             h30_status = "fresh-draw confirmation failed; stop; no candidate file or slot"
     elif h30_screen:
@@ -220,9 +223,9 @@ def main() -> None:
     A(f"| 1 | H30-1 | paired visible-tip cross-strike bridge × LiDAR scarp persistence | +0.001 to +0.008 | {h30_1_status} |")
     A("| 2 | H30-2 | visible-fault junction / accommodation-zone branch field | 0 to +0.006 | registered only; not fitted |")
     A("| 3 | H30-3 | scale-persistent terrain lineament | 0 to +0.005 | registered only; not fitted |")
-    A("\nPlanning brackets are uncertain prioritization judgments, not estimates or live-score forecasts. H30-1 screen draws are 6,7; confirmation draws 8,9 are allowed only after a screen pass. Even confirmation is only proxy evidence and cannot grant slot approval by itself.\n")
+    A("\nPlanning brackets are uncertain prioritization judgments, not estimates or live-score forecasts. H30-1 screen draws are 6,7; confirmation draws 8,9 are allowed only after a screen pass. Screen/confirmation outcomes and the stop decision are recorded in `knowledge/12_h30_relay_factorial_outcomes_2026-10-03.md`. Even confirmation is only proxy evidence and cannot grant slot approval by itself.\n")
     A("**Five-family factorial status:** the separate A–E Resolution V design is preserved in `evidence/factorial/`: 16 randomized design rows × 8 cells = 128 model cells, plus 24 reference cells (152 cell rows total). Its analyzer reproduced the tracked results byte-for-byte on 2026-10-03. H30 is additional, not a substitute. The handoff's 'unrun' note conflicts with these artifacts; see `IR-25-FACTORIAL-STATE`.\n")
-    A("**H30 engineering smoke test:** one real-data fold/draw built aligned 83-column train/test matrices and finite, nonempty H30 features; no model was fitted and no DTI was evaluated. Full diagnostics: `evidence/h30_feature_smoke.json`.\n")
+    A("**H30 engineering smoke test:** one real-data fold/draw built aligned 83-column train/test matrices and finite, nonempty H30 features. That engineering smoke itself fit no model and computed no DTI; the separate registered screen/confirmation outcomes are summarized above. Full smoke diagnostics: `evidence/h30_feature_smoke.json`.\n")
     A("## Flagged for review (full list with evidence: [`registry/irregularities.json`](registry/irregularities.json))\n")
     for i in irr:
         if i["severity"] in ("critical", "high"):

@@ -13,10 +13,11 @@
 | `08_data_dictionary_2026-10-02.md` | every provided band and external layer: shipped description vs official wording, statistics, family, flags, licences (generated) |
 | `09_preregistered_hypotheses_2026-10-02.md` | fresh, ranked H27 hypotheses; official source/obtainability checks; frozen H27-1 2² test and submission gate |
 | `10_preregistered_h28_live_anchored_emission_design_2026-10-02.md` | H28 metric-model calibration conditional on owner-reported, hash-linked claims; DTI-optimal emission design and findings (§12); its H29 ideas (§13) are already registered, not new work |
-| `11_preregistered_h30_pairwise_relay_factorial_2026-10-03.md` | current untried geology register and frozen H30-1 paired-tip relay × terrain 2² holdout design; stage/confirmation gates and explicit novelty boundary |
+| `11_preregistered_h30_pairwise_relay_factorial_2026-10-03.md` | frozen H30-1 paired-tip relay × terrain 2² holdout design, ranked H30 hypotheses, stage/confirmation gates, and explicit novelty boundary |
+| `12_h30_relay_factorial_outcomes_2026-10-03.md` | registered H30 screen pass + fresh-confirmation failure, weighted-credit analyzer correction, stop decision, and proxy limitations |
 | `current_project_brief_2026-10-03.md` | full active scope and acceptance criteria from the condensed handoff, labeled as a consolidated restatement rather than a verbatim prompt |
 | `../registry/*.json` | sources (with verification status), irregularities, score ledger, data pins, shipped submissions, **artefact ledger** (30 competition rasters with SHA-256 ↔ reported-score links), artefact mirrors |
-| `../evidence/*` | machine-readable results (prior factorial/add-ons/H27/H28, H30 feature smoke and relay-factorial screen/confirmation when executed, score-claim audit, emission model, forensics, work-cache hashes, and provenance) |
+| `../evidence/*` | machine-readable results (prior factorial/add-ons/H27/H28, H30 feature smoke plus registered screen/confirmation results, score-claim audit, emission model, forensics, work-cache hashes, and provenance) |
 
 ## How to read the H28 evidence
 

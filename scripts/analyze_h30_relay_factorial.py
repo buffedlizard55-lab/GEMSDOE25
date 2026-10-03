@@ -446,6 +446,11 @@ def main() -> None:
     }
     (run / "results.json").write_text(json.dumps(out, indent=1) + "\n")
 
+    stage_context = (
+        "A screen pass permits only the fresh confirmation on draws 8,9; even confirmation is not slot approval."
+        if stage == "screen"
+        else "Confirmation draws 8,9 were run only after the passing screen. This confirmation failed, so H30-1 stops; no candidate file or weekly slot."
+    )
     lines = [
         f"# H30-1 paired relay × terrain factorial — {stage} results",
         "",
@@ -478,7 +483,7 @@ def main() -> None:
         f"- Slot eligible: **no** — {out['slot_decision']}.",
         "",
         "Historical DTI values are proxy outputs from different hide draws and are not used as absolute promotion thresholds. "
-        "The frozen H28 comparator did not reproduce; see the registered paired rule. A fresh confirmation is required after a screen pass.",
+        "The frozen H28 comparator did not reproduce; see the registered paired rule. " + stage_context,
         "",
     ]
     (run / "results.md").write_text("\n".join(lines))
