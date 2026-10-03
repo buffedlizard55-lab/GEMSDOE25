@@ -93,7 +93,7 @@
  ],
  "current_turn_review": {
   "date_utc": "2026-10-03",
-  "session_focus": "Complete and audit the frozen H30-1 paired-relay screen implementation, correct H28 claim scope, run only the registered H30 screen, and open/merge a PR from the fixed Arena branch without automating DrivenData or promoting a submission.",
+  "session_focus": "Finish the frozen H30-1 paired-relay screen and, because its registered gate passed, run only its fresh confirmation; complete the line-by-line review and open/merge a PR from the fixed Arena branch without automating DrivenData or promoting a submission.",
   "pass_1_implementation_and_verification": {
    "done": [
     "Read the complete README (including the verbatim owner brief), current continuation brief, and AGENTS.md; fetched origin, compared branch state, checked open PRs and remote Arena refs. origin/main had advanced to 67a4561 via a source-feed refresh; rebased only the fixed session branch onto it and kept the later 55-item feed refresh generated at 05:29 UTC.",
@@ -101,7 +101,7 @@
     "Preserved the committed H30-1 preregistration: paired cross-strike bridges between distinct visible components \u00d7 fixed LiDAR scarp persistence; ranked three distinct hypotheses; fixed draws 6,7 for screen and 8,9 for confirmation; fixed BDE + X1\u2013X3 + H27 tip control, 2\u00b2 response contrasts, same-run controls, and the paired promotion gate.",
     "Implemented H30 paired-tip/scarp features, lazy feature gathering, frozen runner/analyzer, real-data engineering smoke script, and design/feature tests. The feature smoke built aligned Xtr=(309985,83) and Xq=(1154738,83), with finite H30 fields and pinned input/cache hashes; model_fit_executed=false and dti_evaluated=false.",
     "Regenerated README and Pages site from tracked evidence; the existing D2.8 remains format-validated but unscored and not slot-approved. No new submission raster or DrivenData access/upload was made.",
-    "At the review checkpoint, the H30 screen had not yet run; the next action is only the frozen draws 6,7 screen after this audit record is committed."
+    "Ran only the frozen H30-1 screen on draws 6,7: 40 cells across four spatial blocks and five arms. After the analyzer validation fix recorded in pass 2, unchanged raw cells reproduce a passing paired screen gate (+0.004078 mean gain vs per-fold best same-run controls; 4/4 positive folds; worst +0.000893; mean hug-share change -0.000379). Confirmation draws 8,9 are now permitted; no confirmation, TIFF, or slot has run/been created yet."
    ]
   },
   "pass_2_bug_edge_case_review": {
@@ -109,12 +109,13 @@
     "H28 wording overstated where actual hidden truth lies and implied a global ceiling or exclusive strategy; rewrote those claims as conditional model implications, corrected registry/index wording, and regenerated README/site outputs.",
     "Confirmation previously trusted a screen summary pass flag. It now verifies the preregistration hash, exact screen design/cell hashes, all 40 frozen screen cells and their metadata, and recomputes the paired gate from raw DTI/hug values; negative tests reject a failed gate, tampered summary, and modified cell file.",
     "The runner requires a clean worktree for each fit, so the generated instructions now say to commit complete screen evidence before confirmation; this makes the confirmation code revision and gate evidence auditable.",
-    "Checked visible-only endpoint construction, distinct-component pairing, cross-strike rejection of collinear tips, finite/range checks, no input mutation, same-cell training draws, fixed emission budget, per-fold best same-run controls, and confirmation stop conditions; covered the key feature/gate edge cases with tests."
+    "Checked visible-only endpoint construction, distinct-component pairing, cross-strike rejection of collinear tips, finite/range checks, no input mutation, same-cell training draws, fixed emission budget, per-fold best same-run controls, and confirmation stop conditions; covered the key feature/gate edge cases with tests.",
+    "The first post-screen analyzer run rejected valid fractional TP_w/FP_w credits as noninteger counts. Inspection of src/gems25/metric.py confirmed these are distance-weighted sums; only emitted and n_truth must be integer counts. Fixed the analyzer to accept bounded fractional credits and validate coverage consistency, added regression tests, and reanalyzed the identical hash-bound 40-cell output. No model, feature, draw, response, threshold, or gate changed and no model was rerun."
    ],
    "known_residual_risks": [
     "H30 holdout is a catalogue-gap proxy, not hidden competition truth; four quadrant blocks and two draws do not establish live-score performance or generalize to the undisclosed split.",
     "Input rasters are hash-pinned owner mirrors, not organizer-authenticated. The 0.2477 and 0.3195 values remain owner/user-reported and unverified; no organizer score evidence was accessed.",
-    "No H30 model fit/DTI/screen result exists at this checkpoint. Confirmation is prohibited unless the revalidated registered screen gate passes. Even a passing confirmation would not approve a weekly slot or a TIFF without a comparable same-run gate and exact-file audit.",
+    "The registered H30 screen on draws 6,7 passed; fresh confirmation on draws 8,9 has not yet run. Even a passing confirmation is only proxy evidence and cannot approve a weekly slot or TIFF without a comparable same-run gate and exact-file audit.",
     "The refreshed source feed recorded 55 items and 24 reachable; sandbox TLS failures are connectivity observations, not proof that official sources are down. GDR binary/schema/coverage are not inferred from a page listing.",
     "The old H28 absolute comparator did not reproduce across environments; only the H30 same-run paired controls are used for promotion."
    ]
@@ -125,7 +126,7 @@
     "easy one-click TIF, prominent start-of-site download, unique note, range/CRS/grid/geotransform checks, and executive guide": "Existing D2.8 download and audit receipt remain prominent and format-validated only; it is explicitly unscored/not slot-approved. No new TIF was created.",
     "replace OFAT with five-family designed factorial and retain all prior evidence": "The completed A\u2013E Resolution V record remains tracked and separate; H30 is an additional preregistered 2\u00b2, not a rerun or substitute.",
     "rank 3\u20135 genuinely new geological hypotheses with layers/signature/missing-fault rationale/differences/gain bracket/cost/data status": "Three H30 hypotheses and their novelty/rationale, uncertain planning brackets, costs, source limits, and data status are recorded in knowledge/11; H30-1 is the registered top candidate.",
-    "validate before a weekly slot; confirmation only after screen; exact-file audit": "Only the registered screen is authorized next. The confirmation runner revalidates its exact raw evidence and paired gate; no candidate TIF, slot, or upload exists.",
+    "validate before a weekly slot; confirmation only after screen; exact-file audit": "The frozen screen passed its same-run paired gate, so only the registered confirmation on draws 8,9 is allowed next. Screen alone is not confirmation; no TIF/slot is authorized, and any later candidate would still require the same-run best comparison plus exact-file audit.",
     "official sources, owner claims, computed values, inference, and unknowns kept separate": "H30 sources and limitations are cited in knowledge/11 and registry; H28 scope corrections are propagated; owner mirrors/scores remain explicitly unverified.",
     "current feed and clean site; never automate DrivenData": "Source feed/site/README regenerated; feed policy excludes DrivenData requests and no competition endpoint was contacted.",
     "Maximize P(Win), Own the Outcome, autonomous work, and three cumulative passes": "Review record captures implementation, review/fixes, and line-by-line recheck; negative/unknown outcomes remain explicit.",
@@ -137,12 +138,22 @@
    ]
   },
   "verification": {
-   "tests": "105 passed (2026-10-03), including H30 feature/design and confirmation-integrity guard tests.",
+   "tests": "106 passed (2026-10-03), including H30 feature/design, fractional-credit, and confirmation-integrity guard tests.",
    "ruff": "ruff check src scripts tests passed.",
-   "compile_and_cli": "py_compile passed for H30/site/build scripts; runner/analyzer --help commands succeeded.",
-   "json_and_whitespace": "review_passes.json, data_manifest.json, smoke evidence parsed; git diff --check passed.",
-   "smoke": "Real-data H30 feature construction only; Xtr=(309985,83), Xq=(1154738,83), no fit/DTI.",
-   "experiment_state": "H30 screen/confirmation not yet run at this review checkpoint; no TIFF, slot, PR, or merge yet."
+   "compile_and_cli": "py_compile passed for H30/site/build scripts; runner/analyzer --help commands succeeded before the screen.",
+   "json_and_whitespace": "review_passes.json, H30 screen design/results, manifest and smoke evidence parsed; git diff --check passed.",
+   "smoke": "Real-data H30 feature construction only; Xtr=(309985,83), Xq=(1154738,83), no fit/DTI in the smoke test itself.",
+   "screen_result": {
+    "stage": "registered H30-1 screen, draws 6,7; 40 model cells; raw design/cells hashes are recorded in results.json.",
+    "candidate_mean_dti": 0.15156696516048285,
+    "mean_gain_vs_best_same_run_control": 0.00407834014748901,
+    "folds_positive": 4,
+    "worst_fold_gain": 0.0008925459454114937,
+    "mean_hug_share_delta": -0.0003785353716334282,
+    "paired_gate_passed": true,
+    "status": "proxy screen only; confirmation allowed; not a competition score, not slot-eligible; no candidate TIFF."
+   },
+   "experiment_state": "H30 confirmation on draws 8,9 permitted but not yet run; no candidate TIFF, slot, PR, or merge yet."
   }
  },
  "prior_turn_reviews": [

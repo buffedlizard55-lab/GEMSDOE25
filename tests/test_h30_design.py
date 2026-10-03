@@ -10,6 +10,7 @@ from scripts.analyze_h30_relay_factorial import (
     EXPECTED_HGB_PARAMETERS,
     FROZEN_CANONICAL_MATRIX,
     FROZEN_DESIGN_SEED,
+    validate_cell_metrics,
     validate_frozen_design,
     verify_passing_screen,
 )
@@ -212,6 +213,28 @@ def test_h30_design_helpers_reject_incomplete_or_nonfinite_responses():
         factorial_2x2_effects({"T_BASE": 0.1, "T_PLUS_P": 0.2, "T_PLUS_S": 0.1, "T_PLUS_P_S": np.nan})
     with np.testing.assert_raises(ValueError):
         h30_promotion_gate([0.1] * 3, {}, [0.0] * 4, {})
+
+
+def test_analyzer_accepts_fractional_dti_credits_but_requires_integer_truth_count():
+    row = {
+        "dti": 0.10,
+        "coverage": 0.25,
+        "emitted": 5,
+        "hug": 0.20,
+        "auc": 0.60,
+        "tp": 0.50,
+        "fp": 2.25,
+        "n_truth": 2,
+    }
+    validate_cell_metrics(row)
+
+    bad_truth = dict(row, n_truth=2.5)
+    with np.testing.assert_raises(SystemExit):
+        validate_cell_metrics(bad_truth)
+
+    bad_credit = dict(row, tp=2.5)
+    with np.testing.assert_raises(SystemExit):
+        validate_cell_metrics(bad_credit)
 
 
 def test_frozen_h30_design_validator_accepts_exact_registered_plan():

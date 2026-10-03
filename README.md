@@ -116,7 +116,7 @@ These ΔDTI ranges are planning judgments, not estimates. H27-1 failed its regis
 
 | Rank | ID | Idea | Expected proxy ΔDTI (planning bracket) | Status |
 |---|---|---|---|---|
-| 1 | H30-1 | paired visible-tip cross-strike bridge × LiDAR scarp persistence | +0.001 to +0.008 | registered for screen draws 6,7; real-data feature smoke passed, no model fit or DTI yet |
+| 1 | H30-1 | paired visible-tip cross-strike bridge × LiDAR scarp persistence | +0.001 to +0.008 | P+S DTI 0.151567, paired gain +0.004078; screen passed; confirmation draws 8,9 required |
 | 2 | H30-2 | visible-fault junction / accommodation-zone branch field | 0 to +0.006 | registered only; not fitted |
 | 3 | H30-3 | scale-persistent terrain lineament | 0 to +0.005 | registered only; not fitted |
 
@@ -150,7 +150,7 @@ Planning brackets are uncertain prioritization judgments, not estimates or live-
 
 ## Next work (order matters)
 
-1. Run the frozen H30-1 paired-relay screen on draws 6,7 (`.venv/bin/python scripts/run_h30_relay_factorial.py --stage screen && .venv/bin/python scripts/analyze_h30_relay_factorial.py --dir evidence/h30_relay_screen`). The runner saves the design before fitting and refuses to overwrite evidence.
+1. H30-1 screen passed. First commit the complete screen evidence (`evidence/h30_relay_screen/`) so the confirmation runner starts from a clean, auditable tree; it rechecks the raw-cell hashes and recomputes the gate. Then run only the frozen confirmation on draws 8,9 (`.venv/bin/python scripts/run_h30_relay_factorial.py --stage confirm && .venv/bin/python scripts/analyze_h30_relay_factorial.py --dir evidence/h30_relay_confirm`). No TIFF or weekly slot before confirmation and the subsequent same-run/exact-file gates.
 2. Keep the prior five-family A–E Resolution V factorial separate: its complete `evidence/factorial/` record is present and was reproduced byte-for-byte; see `IR-25-FACTORIAL-STATE` for the handoff-state discrepancy. H30 is an additional hypothesis-specific 2², not a replacement.
 3. Keep H26/H27/H29 outcomes and registrations labeled as prior work. H27-1 failed its gate; the old H29 list is registered already and must not be relabeled as novel.
 4. Refresh the official-source/evidence tables and static site/feed (`scripts/check_sources.py`, then `scripts/build_site.py` and `scripts/build_readme.py`). The feed must never request or follow `drivendata.org`.

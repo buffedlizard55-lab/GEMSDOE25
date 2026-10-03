@@ -235,6 +235,28 @@ def verify_passing_screen(run: Path) -> dict:
     return results
 
 
+def validate_cell_metrics(row: dict) -> None:
+    """Check DTI diagnostics without assuming distance-weighted TP/FP credits are integers."""
+    try:
+        metric_values = np.asarray([row[name] for name in METRICS], dtype=float)
+        tp, fp, n_truth = np.asarray([row[name] for name in ("tp", "fp", "n_truth")], dtype=float)
+    except (KeyError, TypeError, ValueError) as exc:
+        raise SystemExit(f"missing/malformed metric or credit count in cell row: {row}") from exc
+    if not np.isfinite(metric_values).all() or not np.isfinite([tp, fp, n_truth]).all():
+        raise SystemExit(f"nonfinite primary/diagnostic result in row: {row}")
+    if any(not 0.0 <= row[name] <= 1.0 for name in ("dti", "coverage", "hug", "auc")):
+        raise SystemExit(f"unit-range metric outside [0,1] in cell row: {row}")
+    emitted = metric_values[2]
+    if (emitted < 0 or int(emitted) != emitted or min(tp, fp, n_truth) < 0
+            or not np.isclose(n_truth, round(n_truth), rtol=0.0, atol=1e-9)):
+        raise SystemExit(f"invalid emitted/truth/credit counts in cell row: {row}")
+    if tp > n_truth + 1e-8 or fp > emitted + 1e-8:
+        raise SystemExit(f"distance-weighted credit exceeds its possible count in cell row: {row}")
+    expected_coverage = tp / n_truth if n_truth else 0.0
+    if not np.isclose(metric_values[1], expected_coverage, rtol=1e-10, atol=1e-12):
+        raise SystemExit(f"coverage does not agree with weighted TP and truth count in cell row: {row}")
+
+
 def summarize_effect(values: np.ndarray) -> dict:
     arr = np.asarray(values, dtype=float)
     mean = float(arr.mean())
@@ -299,19 +321,7 @@ def main() -> None:
                 or row.get("k_fraction") != design["emission"]["k_fraction"]
                 or row.get("min_distance_px") != design["emission"]["min_distance_px"]):
             raise SystemExit(f"cell metadata disagrees with frozen design: {row}")
-        try:
-            metric_values = np.asarray([row[m] for m in METRICS], dtype=float)
-            counts = np.asarray([row[m] for m in ("tp", "fp", "n_truth")], dtype=float)
-        except (KeyError, TypeError, ValueError) as exc:
-            raise SystemExit(f"missing/malformed metric or count in cell row: {row}") from exc
-        if not np.isfinite(metric_values).all() or not np.isfinite(counts).all():
-            raise SystemExit(f"nonfinite primary/diagnostic result in row: {row}")
-        if any(not 0.0 <= row[name] <= 1.0 for name in ("dti", "coverage", "hug", "auc")):
-            raise SystemExit(f"unit-range metric outside [0,1] in cell row: {row}")
-        emitted = metric_values[2]
-        if (emitted < 0 or int(emitted) != emitted or (counts < 0).any()
-                or not np.equal(counts, np.floor(counts)).all()):
-            raise SystemExit(f"invalid emitted/truth/credit counts in cell row: {row}")
+        validate_cell_metrics(row)
 
     cell_keys = ((fold, draw) for fold in range(4) for draw in EXPECTED_DRAWS[stage])
     for fold, draw in cell_keys:
