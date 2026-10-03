@@ -89,6 +89,12 @@ def main() -> None:
     href = opt("evidence/harness_references.json")
     h27_screen = opt("evidence/h27_screen/results.json")
     h27_confirm = opt("evidence/h27_confirm/results.json")
+    h28 = opt("evidence/h28_calibration/design.json")
+    h28_anchors = opt("evidence/h28_calibration/anchors.json")
+    h28_habitat = opt("evidence/h28_calibration/habitat_fit.json")
+    h28_mix = opt("evidence/h28_calibration/mixture.json")
+    h28_hold = opt("evidence/h28_holdout/results.json")
+    h28_ledger = opt("registry/artifact_ledger.json")
     primary = next(s for s in subs if s["role"] == "primary")
     others = [s for s in subs if s["role"] != "primary"]
     snap = ls["leaderboard_snapshot"]
@@ -117,6 +123,29 @@ def main() -> None:
 <li><b>Metric arithmetic:</b> DTI = TP<sub>w</sub> / (0.2·(TP<sub>w</sub>+FP<sub>w</sub>) + 0.8·|G|). Thinning keeps ≈{100*r['geometric_credit_retention_d1_5']:.0f} % of the geometric credit estimate while removing ≈{100*(1-r['pixel_retention_d1_5']):.0f} % of the emitted pixels.</li>
 <li><b>Unverified score inputs:</b> the 0.0904 lattice and 0.1922→0.2477 values are supplied/owner-reported claims. Under those assumptions, estimated |G| is ≈{lc['truth_px_in_footprint']:,.0f} px and each emitted pixel needs ≥{imp['break_even_ratio_at_0_2477']:.3f} credit per unit of false-positive mass. No organizer page or receipt was accessed.</li></ol>
 <p class="small">Details, tables and caveats on the <a href="{prefix}research.html">Research</a> page. Evidence: <code>evidence/why_0_2477.json</code>; score claims: <code>registry/live_scores.json</code>.</p></div>"""
+        h28b = ""
+        if h28 and h28_anchors and h28_hold:
+            cal = h28["calibrated"]
+            rf = h28["reference_rows_under_calibrated_pi"]
+            cl = h28["ceiling_best"]
+            sel = h28_anchors["scan"][cal["pi"]]["per_anchor"]
+            tg = h28["targets_credit_density"]["table"]["0.3195"][str(int(cl["mass"]))]
+            h28b = f"""<h2>The live metric, calibrated — and the ceiling of the current file</h2>
+<div class="card"><ol>
+<li><b>The hidden truth cannot be uniform.</b> For four of the group's own surfaces the published DTI has <i>no</i> solution in the truth count under a uniform truth. Under
+<code>pi &prop; exp(-d(H19-5)/{cal['lambda_hat_px']} px)</code> all five anchors imply one count — {", ".join(f"{k} {v['implied_N']:,.0f}" for k, v in sel.items())} —
+so <b>N = {cal['n_hat']:,.0f}</b> hidden truth pixels (spread {h28_anchors['checks']['A2']['max_relative_spread'] * 100:.1f} %), agreeing with the blind-lattice-only estimate
+{h28_anchors['scan']['uniform']['per_anchor']['lattice-s5']['implied_N']:,.0f} and the earlier independent 12,503.</li>
+<li><b>It reproduces live scores.</b> predicted vs reported: {" · ".join(f"<code>{k}</code> {rf[k]['dti']:.4f} / {rf[k]['reported']:.4f}" for k in ("lattice-s5", "h19-5", "d1-5"))}.
+Monte-Carlo of the published metric agrees with the analytic expectation to ≤{max(v['abs_err'] for v in h28['checks']['C5_monte_carlo']['per_artefact'].values()):.4f}.</li>
+<li><b>The downloadable file is the ceiling of its own family.</b> Sweeping <code>dot_thin(H19-5, d)</code> over d ∈ [1.8, 4.0] peaks at d = {cl['min_dist']:.1f} px,
+{cl['mass']:,.0f} px → <b>{cl['dti']:.5f}</b>, which is exactly this D2.8 file. A kernel-disjoint 6 px design (zero redundancy) reaches only
+{max(r['dti'] for r in h28['designs'] if r['rule'] == 'R1_value6'):.5f} and beats <code>d1-5</code> in {h28['decision']['sensitivity_cells_beating_d1_5'].split('/')[0]} of 9 sensitivity cells.</li>
+<li><b>The remaining gap is detection, not geometry.</b> Reaching the reported #1 (0.3195) at this budget needs <b>{tg['vs_best_current_c_per_px']:.2f}×</b> the credit density
+({tg['credit_per_px_needed']:.4f} vs {cl['credit_per_px']:.4f} per emitted pixel). The 30-arm holdout factorial agrees: spacing 2.4–3.0 px is optimal, 6 px costs 0.045 DTI,
+habitat ranking adds {h28_hold['contrasts']['value_score_to_habitat']:+.4f} (p = 0.25) → <b>gate FAIL, no slot, nothing new packaged</b>.</li>
+</ol><p class="small">Pre-registered before any fit: <code>knowledge/10_preregistered_h28_live_anchored_emission_design_2026-10-02.md</code>. All reported scores are owner claims matched to bytes by SHA-256, not receipts.
+<a href="{prefix}research.html#h28">Full tables on the Research page</a>.</p></div>"""
         cls = fac["classification"]
         rows = "".join(f"<tr><td><b>{k}</b></td><td>{e(v['label'])}</td><td>{badge(v['classification'], {'matters alone':'ok','matters in combination':'info','inert':'warn','harmful':'bad'}[v['classification']])}</td><td class='num'>{v['main_effect']:+.4f}</td><td class='num'>{v['folds_positive']}/4</td></tr>" for k, v in cls.items())
         facb = f"""<h2>Which feature families matter? (designed experiment, not hunches)</h2>
@@ -140,7 +169,7 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
                 'It is format-validated but has not demonstrated a win over the current 0.152003389 spatial-holdout best. '
                 f'H27-1 status: {e(h27_status)}. Even a confirmed proxy win only makes a corresponding candidate eligible for packaging and review; it does not score or upload automatically. '
                 'Do not spend a weekly slot unless that specific candidate passes the frozen holdout gate.</div>')
-        return hero + cards + (f"<h3>Also available</h3>{alt}" if alt else "") + plan + stats + whyb + facb + flagb + feed
+        return hero + cards + (f"<h3>Also available</h3>{alt}" if alt else "") + plan + stats + whyb + h28b + facb + flagb + feed
 
     exec_body = f"""<div class="hero"><h1>Executive summary &amp; submission guide</h1><p class="lead">The file and upload instructions are provided for reproducibility. Nothing here uploads for you: the owner submits manually.</p></div>
 <div class="callout"><b>Slot status: do not submit the current D2.8 file on this evidence.</b> Format checks passed, but this candidate has not beaten the current 0.152003389 spatial-holdout comparator. Use a weekly slot only after the specific candidate passes the frozen holdout gate and any required confirmation.</div>
@@ -254,6 +283,155 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
 <div class="callout"><b>Frozen gate:</b> absolute comparator {g['candidate_mean_dti']:.6f} {'>' if g['historical_comparator_passed'] else '≤'} {g['historical_best']:.6f}; paired TS−BASE {g['mean_gain_vs_paired_base']:+.6f}, {g['folds_positive']}/4 folds positive, worst {g['worst_fold_gain']:+.6f}, hug delta {g['hug_share_delta']:+.4f}. {decision} This is a catalogue-gap proxy, not new-fault truth or a live score.</div>"""
     else:
         h27_section = """<p>H27-1 is preregistered for draws 4,5; the screen has not run. No candidate is eligible for a weekly slot until the frozen absolute (0.152003389) and paired gates pass, followed by confirmation on fresh draws 6,7.</p><p><a href="../knowledge/09_preregistered_hypotheses_2026-10-02.md">Read the full ranked register, data gates, feature formula and analysis plan.</a></p>"""
+    h28_section = ""
+    if h28 and h28_anchors and h28_hold:
+        cal, chk = h28["calibrated"], h28["checks"]
+        rf, cl = h28["reference_rows_under_calibrated_pi"], h28["ceiling_best"]
+        scan = h28_anchors["scan"]
+        anchor_rows = "".join(
+            f"<tr><td class='mono'>{k}</td><td class='num'>{v['mass']:,.0f}</td><td class='num'>{v['reported']:.4f}</td>"
+            f"<td class='num'>{v['T']:.4f}</td><td class='num'>{v['U']:.4f}</td><td class='num'>{(v['U'] - v['T']) / v['U']:.2f}</td>"
+            f"<td class='num'><b>{v['implied_N']:,.0f}</b></td></tr>"
+            for k, v in scan[cal["pi"]]["per_anchor"].items())
+        ref_rows = "".join(
+            f"<tr><td class='mono'>{k}</td><td class='num'>{v['mass']:,.0f}</td><td class='num'>{v['dti']:.5f}</td>"
+            f"<td class='num'>{v['reported']:.4f}</td><td class='num'>{v['dti'] - v['reported']:+.4f}</td><td class='num'>{v['credit_per_px']:.4f}</td></tr>"
+            if v["reported"] is not None else
+            f"<tr><td class='mono'>{k}</td><td class='num'>{v['mass']:,.0f}</td><td class='num'>{v['dti']:.5f}</td>"
+            f"<td class='num'>unscored</td><td class='num'>—</td><td class='num'>{v['credit_per_px']:.4f}</td></tr>"
+            for k, v in rf.items())
+        lam_rows = "".join(
+            f"<tr><td class='mono'>{k}</td><td class='num'>{v['n_finite']}/5</td><td class='num'>{v['median_N']:,.0f}</td>"
+            f"<td class='num'>{v['max_relative_spread']:.3f}</td><td>{badge('selected', 'ok') if k == cal['pi'] else (badge('falsified', 'bad') if v['n_finite'] < 5 else '')}</td></tr>"
+            for k, v in scan.items())
+        def check_text(k: str, v: dict) -> str:
+            if not isinstance(v, dict):
+                return ""
+            if k == "C3_masking":
+                return (f"hedge-v2 and ens12 are statistically identical once the metric masks known pixels "
+                        f"(emitted mass {v['mass_hedge_v2']:,.0f} both; max |ΔTA| = {v['ta_max_abs_diff']:.1e}); both are reported at "
+                        f"{v['reported_scores']['ens12']:.4f}")
+            if k == "A1":
+                return ("no finite truth count can produce the reported scores of h19-5, h19-4, h16-1 or d1-5 under "
+                        f"{', '.join(v['shapes_with_no_finite_N'])} truth — that π is falsified")
+            if k == "A2":
+                return (f"selected <code>{e(v['selected_pi'])}</code>; implied N spread {v['max_relative_spread']:.4f} ≤ {v['threshold']}")
+            if k == "A3":
+                return (f"N̂ = {v['n_hat']:,.0f} vs lattice-only {v['lattice_only_uniform_pi']:,.0f} and this repo's earlier independent "
+                        f"{v['repo_previous_estimate']:,.0f} (tolerance ±{v['tolerance']:.0%})")
+            if k == "A4":
+                lo = min(v["implied_over_n_hat"].values())
+                hi = max(v["implied_over_n_hat"].values())
+                return f"implied N / N̂ across the five anchors spans {lo:.3f}–{hi:.3f}"
+            if k == "C5_monte_carlo":
+                worst = max(x["abs_err"] for x in v["per_artefact"].values())
+                return f"max |analytic − Monte-Carlo| = {worst:.5f} ≤ {v['threshold']} over {len(v['per_artefact'])} artefacts"
+            return e(json.dumps(v, default=str)[:200])
+
+        check_rows = "".join(
+            f"<tr><td class='mono'>{k}</td><td>{badge(v.get('verdict', 'n/a') if isinstance(v, dict) else 'n/a', 'ok' if isinstance(v, dict) and v.get('verdict') == 'PASS' else 'bad')}</td>"
+            f"<td class='small'>{check_text(k, v)}</td></tr>"
+            for k, v in chk.items())
+        mc_rows = "".join(
+            f"<tr><td class='mono'>{k}</td><td class='num'>{v['analytic']:.5f}</td><td class='num'>{v['mc']['mean']:.5f} ± {v['mc']['sd']:.5f}</td>"
+            f"<td class='num'>{v['abs_err']:.5f}</td><td class='num'>{v['reported'] if v['reported'] is not None else '—'}</td></tr>"
+            for k, v in chk["C5_monte_carlo"]["per_artefact"].items())
+        skill_rows = "".join(
+            f"<tr><td class='mono'>{r['id']}</td><td class='num'>{r['mass']:,.0f}</td><td class='num'>{r.get('nn_median', float('nan')):.2f}</td>"
+            f"<td class='num'>{r.get('share_nn_below_6px', float('nan')):.2f}</td><td class='num'>{(r['redundancy_share'] or 0):.2f}</td>"
+            f"<td class='num'>{r['coverage_of_truth']:.4f}</td><td class='num'><b>{r['credit_per_px']:.4f}</b></td>"
+            f"<td class='num'>{r['reported']:.4f}</td><td>{badge('hash-linked', 'ok') if r['id'] in {x['id'] for x in (h28_ledger or {}).get('artifacts', []) if x.get('fit')} else badge('brief-only', 'warn')}</td></tr>"
+            for r in sorted(h28["redundancy_theorem"]["rows"], key=lambda x: -x["credit_per_px"]))
+        ceil_rows = "".join(
+            f"<tr><td class='num'>{r['min_dist']:.2f}</td><td class='num'>{r['mass']:,.0f}</td><td class='num'>{r['t']:.4f}</td>"
+            f"<td class='num'>{r['redundancy']:.4f}</td><td class='num'>{r['fp_per_px']:.3f}</td><td class='num'><b>{r['dti']:.5f}</b></td>"
+            f"{'<td>' + badge('ceiling = shipped D2.8', 'ok') + '</td>' if abs(r['dti'] - cl['dti']) < 1e-9 else '<td></td>'}</tr>"
+            for r in h28["ceiling_sweep"])
+        des_rows = "".join(
+            f"<tr><td class='mono'>{r['rule']}</td><td class='num'>{r.get('min_dist', 0):.2f}</td><td class='num'>{r['mass']:,.0f}</td>"
+            f"<td class='num'>{r['t']:.4f}</td><td class='num'>{r['redundancy']:.4f}</td><td class='num'>{r['credit_per_px']:.4f}</td><td class='num'><b>{r['dti']:.5f}</b></td></tr>"
+            for r in sorted(h28["designs"], key=lambda x: -x["dti"])[:12])
+        tg = h28["targets_credit_density"]["table"]
+        targ_rows = "".join(
+            f"<tr><td class='num'>{k}</td>" + "".join(
+                f"<td class='num'>{v['credit_per_px_needed']:.4f} ({v['vs_best_current_c_per_px']:.2f}×)</td>"
+                for _, v in sorted(tg[k].items(), key=lambda kv: int(kv[0]))) + "</tr>"
+            for k in ("0.2477", "0.2941", "0.3195") if k in tg)
+        sens_rows = "".join(
+            f"<tr><td class='num'>{r['lambda']}</td><td class='num'>{r['n_truth']:,.0f}</td><td class='num'>{r['best_budget']}</td>"
+            f"<td class='num'>{r['best_dti']:.5f}</td><td class='num'>{r['d1_5_dti']:.5f}</td>"
+            f"<td class='num'>{r.get('d2_8_dti', float('nan')):.5f}</td>"
+            f"<td>{badge('beats both', 'ok') if r.get('beats_d2_8') else badge('loses', 'bad')}</td></tr>" for r in h28["sensitivity"])
+        hold_rows = "".join(
+            f"<tr><td>{r['value']}</td><td class='num'>{r['min_dist']}</td><td class='num'>{100 * r['kfrac']:.2f} %</td>"
+            f"<td class='num'><b>{r['dti_mean']:.6f}</b></td><td class='num'>{r['emitted_mean']:,.0f}</td><td class='num'>{r['coverage_mean']:.4f}</td>"
+            f"<td class='num'>{r['hug_mean']:.3f}</td><td class='num'>{r['paired_delta_vs_comparator']:+.6f}</td>"
+            f"<td class='num'>{r['paired_cells_positive']}/{r['n_cells']}</td><td class='num'>{r['paired_p']:.3f}</td></tr>"
+            for r in h28_hold["table"][:12])
+        con_rows = "".join(f"<tr><td class='mono'>{k}</td><td class='num'>{v:+.6f}</td></tr>"
+                           for k, v in sorted(h28_hold["contrasts"].items(), key=lambda kv: -abs(kv[1])))
+        mix = h28_mix["adoption_rule"] if h28_mix else {}
+        hab = h28_habitat or {}
+        hab_rows = "".join(
+            f"<tr><td class='mono'>{m}</td><td class='num'>{v['n_truth']:,.0f}</td><td class='num'>{v['rmse']:.5f}</td>"
+            f"<td class='num'>{hab['loo'][m]['loo_rmse']:.5f}</td><td class='num'>{v['max_abs_resid']:.4f}</td>"
+            f"<td>{badge('selected', 'ok') if m == hab.get('selected') else ''}</td></tr>"
+            for m, v in hab.get("fits", {}).items())
+        h28_section = f"""<h2 id="h28">4b · H28 — the live metric calibrated on {(h28_ledger or {}).get('n_used_in_fit', 25)} hash-verified scores</h2>
+<p>Pre-registered before any fit in <a href="../knowledge/10_preregistered_h28_live_anchored_emission_design_2026-10-02.md"><code>knowledge/10</code></a>
+(with amendments D1–D3 logged in the same file). {h28_ledger['n_rows'] if h28_ledger else 30} competition rasters were fetched from the owner's public mirrors through the GitHub API and
+content-hashed; {(h28_ledger or {}).get('n_used_in_fit', 25)} are tied to a reported DTI by SHA-256 (<code>registry/artifact_ledger.json</code>). <b>Reported scores remain owner claims, not receipts.</b>
+The algebra: <code>E[TP] = N&lang;pi, m_p&rang;</code> is exact; <code>E[FP] = &Sigma;_x p(x) &Psi;(&nu;_x)</code> is the exact Poisson saturation of the kernel maximum.</p>
+<h3>Anchor inversion: one truth count explains five surfaces</h3>
+<table><thead><tr><th>&pi; candidate</th><th class="num">anchors identified</th><th class="num">median implied N</th><th class="num">max relative spread</th><th></th></tr></thead><tbody>{lam_rows}</tbody></table>
+<p class="small">A shape with fewer than five finite solutions is <b>falsified</b>: no truth count whatever can produce those reported scores under it. Selected
+<code>{e(cal['pi'])}</code> → N = {cal['n_hat']:,.0f}.</p>
+<table><thead><tr><th>anchor</th><th class="num">emitted px</th><th class="num">reported</th><th class="num">T = &lang;pi,m&rang;</th><th class="num">U = &lang;pi,u&rang;</th><th class="num">redundancy R/U</th><th class="num">implied N</th></tr></thead><tbody>{anchor_rows}</tbody></table>
+<h4>Predicted against reported under the calibrated model (scope: inside the H19-5 band — IR-25-LIVE-MODEL-SCOPE)</h4>
+<table><thead><tr><th>raster</th><th class="num">emitted px</th><th class="num">predicted DTI</th><th class="num">reported</th><th class="num">residual</th><th class="num">credit / px</th></tr></thead><tbody>{ref_rows}</tbody></table>
+<h3>Acceptance and validation checks</h3>
+<table><thead><tr><th>check</th><th>verdict</th><th>values</th></tr></thead><tbody>{check_rows}</tbody></table>
+<h4>Monte-Carlo of the published metric against the analytic expectation (truth drawn from the fitted &pi;)</h4>
+<table><thead><tr><th>artefact</th><th class="num">analytic</th><th class="num">Monte-Carlo (6 draws)</th><th class="num">|error|</th><th class="num">reported</th></tr></thead><tbody>{mc_rows}</tbody></table>
+<h3>Every scored surface the group ever shipped, ranked by credit per emitted pixel</h3>
+<p class="small">Credit per pixel is <code>N&middot;T/M</code> under the calibrated &pi;; the blind lattice (0.0228) is the information-free floor. Redundancy <code>R/U</code> is the share of
+captured kernel mass wasted on overlapping kernels — the quantity dotting removes. Rows marked <i>brief-only</i> have no hash-linked ledger row and were excluded from every fit.</p>
+<table><thead><tr><th>raster</th><th class="num">emitted px</th><th class="num">median NN</th><th class="num">share NN &lt; 6 px</th><th class="num">R/U</th><th class="num">coverage T</th><th class="num">credit / px</th><th class="num">reported</th><th>score link</th></tr></thead><tbody>{skill_rows}</tbody></table>
+<p class="small">Ledger-wide Spearman(share of pixels with a neighbour inside 6 px, reported score) = <b>{h28['redundancy_theorem']['spearman_all']['rho']:.3f}</b>
+(p = {h28['redundancy_theorem']['spearman_all']['p']:.1e}, n = {h28['redundancy_theorem']['spearman_all']['n']}) — consistent with the redundancy theorem; inside mass strata it is not significant
+(n ≤ 7), because detector skill dominates. The theorem itself is proved algebraically, not statistically.</p>
+<h3>Ceiling of the status-quo family, and the designs that lose to it</h3>
+<table><thead><tr><th class="num">min_dist px</th><th class="num">emitted px</th><th class="num">T</th><th class="num">redundancy</th><th class="num">FP / px</th><th class="num">predicted DTI</th><th></th></tr></thead><tbody>{ceil_rows}</tbody></table>
+<table><thead><tr><th>rule</th><th class="num">exclusion px</th><th class="num">emitted px</th><th class="num">T</th><th class="num">redundancy</th><th class="num">credit / px</th><th class="num">predicted DTI</th></tr></thead><tbody>{des_rows}</tbody></table>
+<h3>What a higher score would require (same calibrated model, measured &phi; = {h28['targets_credit_density']['phi_used']:.3f})</h3>
+<table><thead><tr><th class="num">target DTI</th>{"".join(f"<th class='num'>M = {int(m):,}</th>" for m in sorted(tg['0.3195'], key=lambda x: int(x)))}</tr></thead><tbody>{targ_rows}</tbody></table>
+<h3>Sensitivity of the 6 px (kernel-disjoint) design: {h28['decision']['sensitivity_cells_beating_d1_5']} cells beat d1-5, {h28['decision']['sensitivity_cells_beating_d2_8']} beat the shipped D2.8 file (which dominates d1-5 in every cell: {h28['decision']['d2_8_dominates_d1_5_in_every_cell']})</h3>
+<table><thead><tr><th class="num">&lambda; px</th><th class="num">N</th><th class="num">best budget</th><th class="num">best DTI</th><th class="num">d1-5 DTI</th><th class="num">D2.8 DTI</th><th>verdict</th></tr></thead><tbody>{sens_rows}</tbody></table>
+<h3>Holdout factorial (real hidden truth): value field × spacing × budget, 4 folds × draws 0,1</h3>
+<div class="callout {'warn' if not h28_hold['verdict']['gate_passed'] else ''}"><b>Comparator reproduction: {h28_hold['reproduction_check']['verdict']}</b> —
+recomputed {h28_hold['reproduction_check']['recomputed_mean']:.9f} vs frozen {h28_hold['reproduction_check']['frozen_mean']:.9f} (fold 0 identical to 9 decimals; folds 1–3 differ by up to
+{h28_hold['reproduction_check']['max_fold_abs_diff']:.1e}). This session's pipeline re-runs bit-for-bit, so the drift is environmental (IR-25-COMPARATOR-DRIFT; <code>evidence/work_cache_hashes.json</code> now pins every derived cache).
+<b>Gate: {'PASS' if h28_hold['verdict']['gate_passed'] else 'FAIL'}</b> — best arm {h28_hold['best_arm']['value']}/{h28_hold['best_arm']['min_dist']} px/{100 * h28_hold['best_arm']['kfrac']:.2f} % at
+{h28_hold['gate']['candidate_mean_dti']:.6f}; paired gain {h28_hold['gate']['mean_gain_vs_paired_base']:+.6f} ({h28_hold['gate']['folds_positive']}/4 folds). No arm is slot-eligible.</div>
+<table><thead><tr><th>value field</th><th class="num">spacing</th><th class="num">budget</th><th class="num">DTI</th><th class="num">emitted</th><th class="num">coverage</th><th class="num">hug</th><th class="num">&Delta; vs comparator</th><th class="num">cells +</th><th class="num">p</th></tr></thead><tbody>{hold_rows}</tbody></table>
+<table><thead><tr><th>contrast</th><th class="num">&Delta; DTI</th></tr></thead><tbody>{con_rows}</tbody></table>
+<h3>Two models that were tested and rejected</h3>
+<p><b>Habitat in distance-to-known-faults</b> (pre-registered §5): leave-one-artefact-out RMSE
+{hab.get('loo', {}).get(hab.get('selected', ''), {}).get('loo_rmse', float('nan')):.4f} against a 0.020 threshold; the blind lattice is predicted at
+{hab.get('checks', {}).get('C2', {}).get('predicted', float('nan')):.4f} instead of 0.0904. Its residuals are per-artefact detector skill, which that basis cannot represent —
+<b>&ldquo;hug the known-fault halo&rdquo; is not supported.</b></p>
+{'<table><thead><tr><th>model</th><th class="num">N</th><th class="num">RMSE</th><th class="num">LOO RMSE</th><th class="num">max residual</th><th></th></tr></thead><tbody>' + hab_rows + '</tbody></table>' if hab_rows else ''}
+<p><b>Two-band mixture</b> (amendment D3): the best second band (<code>{e(str(mix.get('selected', {}).get('second_parent')))}</code>, b = {mix.get('selected', {}).get('b')}) reaches a nine-anchor spread of
+{mix.get('criterion_i', {}).get('mixture', float('nan')):.3f} against a {mix.get('criterion_i', {}).get('threshold', float('nan')):.3f} threshold and makes the mean absolute residual <i>worse</i>
+({mix.get('criterion_ii', {}).get('mixture', float('nan')):.4f} vs {mix.get('criterion_ii', {}).get('single_parent', float('nan')):.4f}) → <b>not adopted</b>, and nothing was designed from it.
+What the single-band residuals do show is where truth lives off-band: implied N
+{h28_mix['single_parent_detail']['h28-dotted-ridge']['implied_N']:,.0f} for <code>h28-dotted-ridge</code>,
+{h28_mix['single_parent_detail']['lidarscarp-top2pct']['implied_N']:,.0f} for <code>lidarscarp-top2pct</code>,
+{h28_mix['single_parent_detail']['h25-ctx-ridge']['implied_N']:,.0f} for <code>h25-ctx-ridge</code> against 12,472–13,358 for the H19-5 family. Those three surfaces are H29's first target.</p>
+<p class="small">Evidence: <code>evidence/h28_calibration/anchors.json</code>, <code>design.json</code>, <code>mixture.json</code>, <code>habitat_fit.json</code>,
+<code>evidence/h28_holdout/results.json</code>. Scope limit IR-25-LIVE-MODEL-SCOPE: the model reproduces its own family and the blind lattice within 0.004 DTI but under-predicts off-band
+surfaces by up to 0.059, so it cannot score an emission that leaves the H19-5 band.</p>"""
+
     hyp = open(ROOT / "knowledge" / "03_hypotheses_ranked_2026-10-02.md").read()
     research = f"""<div class="hero"><h1>Research</h1><p class="lead">What was run, in what order, and what it shows. Preregistrations were written before the corresponding runs (<code>knowledge/04</code>, <code>knowledge/05</code>, <code>knowledge/09</code>).</p></div>
 <h2 id="factorial">1 · Fractional factorial across the five feature families</h2>
@@ -271,6 +449,7 @@ Response: exact sparse-regime DTI of a fixed emission (ridge NMS → top 2.45 % 
 <h3>Budget / dotting sweep on the base surface (draws 0,1)</h3>{emk}{ext_html}
 <h2>3 · Fault-tip × scarp hypothesis (H27-1)</h2>{h27_section}
 <h2>4 · Audit of the reported 0.2477 raster (score unverified) — emission model</h2>{emu_html}{oos_html}{req_html}{href_html}
+{h28_section}
 <h2>5 · Prior H26 register and current H27 hypotheses</h2><p class="small">H26 is a historical pre-run register with outcomes; the fresh H27 ranking is in <code>knowledge/09_preregistered_hypotheses_2026-10-02.md</code>.</p>
 <details><summary>Show the historical H26 register</summary><pre style="white-space:pre-wrap;font-size:.85rem">{e(hyp)}</pre></details>
 <div class="callout"><b>Limits.</b> The holdout is a catalogue-gap proxy; H19-5 as emitted is not out-of-fold; family E may be flattered; proxy-vs-live Spearman was +0.33 (n = 24, n.s.) in the group's earlier record. Nothing here is a leaderboard score.</div>"""
@@ -295,7 +474,7 @@ Response: exact sparse-regime DTI of a fixed emission (ridge NMS → top 2.45 % 
     (DOCS / "executive-summary.html").write_text(page("How to submit", exec_body, "exec", ""))
     (DOCS / "research.html").write_text(page("Research", research, "research", ""))
     (DOCS / "sources.html").write_text(page("Sources & audit", sources, "sources", ""))
-    for name in ("submissions", "live_scores", "irregularities", "sources", "data_manifest"):
+    for name in ("submissions", "live_scores", "irregularities", "sources", "data_manifest", "artifact_ledger"):
         (DOCS / "data" / f"{name}.json").write_text((ROOT / "registry" / f"{name}.json").read_text())
     print("site built:", [p.name for p in DOCS.glob("*.html")] + ["../index.html"])
 

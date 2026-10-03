@@ -43,7 +43,9 @@ def test_shipped_downloads_match_registry_hashes_and_are_small():
     primary = next(s for s in subs if s["role"] == "primary")
     fallback = next(s for s in subs if s["role"] == "fallback")
     for item in (primary, fallback):
-        assert "not holdout-promoted vs 0.152003389" in item["note"] and "no slot" in item["note"]
+        # the DrivenData note must never imply the file is scored or slot-approved
+        assert "no slot" in item["note"] and "unscored" in item["note"]
+        assert "not slot-approved" in item["note"] or "fallback" in item["note"]
         assert len(item["note"]) <= 120
     registered_tifs = {s["file"] for s in subs}
     shipped_tifs = {p.name for p in (ROOT / "docs" / "downloads").glob("*.tif")}

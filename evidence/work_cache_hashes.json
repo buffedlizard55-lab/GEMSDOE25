@@ -1,0 +1,35 @@
+{
+ "generated_utc": "2026-10-03T00:50:59Z",
+ "purpose": "SHA-256 of every derived cache this session's harness numbers depend on. data/work is gitignored, so without these hashes a future session cannot tell whether a rebuilt cache is bit-identical to the one a frozen comparator was computed from (IR-25-COMPARATOR-DRIFT).",
+ "environment": {
+  "python": "3.11.2",
+  "numpy": "2.4.6",
+  "scipy": "1.17.1",
+  "scikit_learn": "1.9.1",
+  "rasterio": "1.4.4"
+ },
+ "static_ABCD.npy": {
+  "sha256": "fe584a12ed3e1ed7d26b272c49f6da0bbe16e072d98f6b1694938d858305b084",
+  "bytes": 1322847616
+ },
+ "static_ABCD.npy.names.json": {
+  "sha256": "60d48fb99c0c032e5c33a774298112104c9e1cdd15482ac58cddefc948fb85de",
+  "bytes": 893
+ },
+ "addons.npy": {
+  "sha256": "ad31ff14a804b6956efa13b8c3caf6b322d6942b0f57911050ba243ac92e57bc",
+  "bytes": 103347588
+ },
+ "addons.npy.names.json": {
+  "sha256": "b1562d7d1f5e57de2002f67038d6b1b4668e3ae10354fac648722f6d33db7f27",
+  "bytes": 51
+ },
+ "bands/_footprint.npy": {
+  "sha256": "c446094771775c00802862e9ec58846fd1b278b4e608303e68811a2404dfd246",
+  "bytes": 12279288
+ },
+ "bands/_labels.npy": {
+  "sha256": "d77fa88ad58d0a268b736b3c1d6a8939fd237d5955369944bd2b299194b2555d",
+  "bytes": 12279288
+ }
+}

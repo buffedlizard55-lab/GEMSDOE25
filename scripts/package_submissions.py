@@ -91,19 +91,30 @@ def main() -> None:
     chk, chk0 = check_file(tif, tmpl), check_file(zero, tmpl)
     emu = json.loads((ROOT / "evidence" / "emission_model.json").read_text())
     m = emu["d2_8"]
+    # H28: the live-anchored forward model validated against five hash-verified owner-reported anchors
+    h28 = json.loads((ROOT / "evidence" / "h28_calibration" / "design.json").read_text())
+    anch = json.loads((ROOT / "evidence" / "h28_calibration" / "anchors.json").read_text())
+    h28_pred = h28["reference_rows_under_calibrated_pi"]["d2-8"]["dti"]
+    h28_ceiling = h28["ceiling_best"]
+    h28_resid = [abs(v["dti"] - v["reported"]) for k, v in h28["reference_rows_under_calibrated_pi"].items()
+                 if v["reported"] is not None and k in ("h19-5", "d1-5", "lattice-s5")]
+    h28_band = (h28_pred - max(h28_resid), h28_pred + max(h28_resid))
+    h28_target = h28["targets_credit_density"]["table"]["0.3195"][str(int(h28_ceiling["mass"]))]
+    assert abs(h28_ceiling["min_dist"] - 2.4) < 1e-9 and int(h28_ceiling["mass"]) == chk["positive_pixels"], (
+        "H28 says the shipped file is no longer the ceiling of its family; update the summary before packaging")
     hr = json.loads((ROOT / "evidence" / "harness_references.json").read_text())
     k15 = next(k for k in hr if "d1.5" in k)
     k28 = next(k for k in hr if "d2.8" in k)
     gate = paired_gate(hr[k28]["by_fold"], hr[k15]["by_fold"])
     note = make_note(
         "D2.8",
-        "format-validated; unscored; not holdout-promoted vs 0.152003389",
+        f"live-model {h28_pred:.3f} (+-{max(h28_resid):.3f}); family ceiling; unscored; not slot-approved",
         cid,
         scored="no slot",
     )
     zero_note = make_note(
         "D2.8 zeros",
-        "format fallback; unscored; not holdout-promoted vs 0.152003389",
+        "format fallback, zeros outside; same predictions; unscored",
         cid,
         scored="no slot",
     )
@@ -113,16 +124,22 @@ def main() -> None:
              content_id=cid, positive_pixels=chk["positive_pixels"], format_ok=chk["ok_to_upload"], checks=chk["checks"], receipt=f"checks-{tif.stem}.json",
              outside="nan", status="format-validated; unscored; not slot-approved", title="Research download: dotted H19-5, wider spacing (D2.8)",
              summary=("The owner-mirrored H19-5 raster thinned by deterministic Poisson-disk dotting to 44,090 pixels — 73 % of the pixels of the 0.2477-labelled mirror, 36 % of H19-5. "
-                      f"Conditional emission-model estimate: {m['model_dti']:.3f} (band {m['model_dti_low']:.3f}–{m['model_dti_high']:.3f}), using unverified user/owner-reported score claims. "
-                      "This file is byte-identical to an owner-mirrored unscored alternate. It has not demonstrated a win over the current 0.152003389 spatially blocked holdout best and is not slot-approved."),
-             expected_range=f"{m['model_dti_low']:.3f}–{m['model_dti_high']:.3f}", note=note,
+                      f"H28 live-anchored model: {h28_pred:.4f}, the ceiling of the whole dot_thin(H19-5, d) family (sweep optimum d = {h28_ceiling['min_dist']:.1f} px). "
+                      f"That model is calibrated on {anch['selected']['n_hat']:,.0f} hidden-truth pixels and a {anch['selected']['lambda_hat_px']} px concentration scale, and it reproduces three "
+                      f"hash-verified owner-reported anchors within {max(h28_resid):.4f} DTI (Monte-Carlo check of the algebra ≤ 0.0020); earlier two-anchor emission-model estimate {m['model_dti']:.3f}. "
+                      f"Reaching the reported #1 (0.3195) at this budget needs {h28_target['vs_best_current_c_per_px']:.2f}× the credit density of this file, i.e. a better detector, not better geometry. "
+                      "This file is byte-identical to an owner-mirrored unscored alternate. It has not demonstrated a win over the frozen 0.152003389 spatially blocked holdout comparator (which itself does not "
+                      "reproduce in this environment — IR-25-COMPARATOR-DRIFT) and is not slot-approved."),
+             expected_range=f"{h28_band[0]:.3f}–{h28_band[1]:.3f} (live-anchored model; earlier estimate {m['model_dti_low']:.3f}–{m['model_dti_high']:.3f})", note=note,
              parent="H19-5 (owner-reported 0.1922); byte-identical (same SHA-256) to the group's unscored GEMSDOE24 alternate e56ea318af89, which this repo's writer reproduces exactly",
              transform="dot_thin(H19-5, min_dist 2.4) == dot_thin(H19-5, 2.8) (integer lattice)",
              paired_harness_gate_vs_d1_5=gate,
              gate_summary=("Conditional model and shared-mask paired diagnostic only; the diagnostic compares D2.8 with the 0.2477-labelled owner mirror, "
                            "not with the current spatial holdout best. It is not a promotion/slot gate. "
                            f"Paired delta {gate['mean_gain']:+.4f}, {gate['folds_positive']}/4 folds, worst {gate['worst_fold']:+.4f}; "
-                           "the candidate does not beat 0.152003389 on the required holdout."),
+                           "the candidate does not beat 0.152003389 on the required holdout. The H28 30-arm holdout factorial "
+                           "(evidence/h28_holdout/results.json) found no emission arm that beats this file's geometry: spacing 2.4-3.0 px is optimal, "
+                           "6 px costs 0.045 DTI, and the habitat-ranked value field adds +0.0003 (p = 0.25)."),
              slot_approved=False, do_not_resubmit=False),
         dict(id="primary-zeros", role="fallback", file=zero.name, path=f"docs/downloads/{zero.name}", bytes=zero.stat().st_size, sha256=chk0["sha256"],
              content_id=cid, positive_pixels=chk0["positive_pixels"], format_ok=chk0["ok_to_upload"], checks=chk0["checks"], receipt=f"checks-{tif.stem}.json",

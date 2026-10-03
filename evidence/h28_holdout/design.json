@@ -1,0 +1,394 @@
+{
+ "hypothesis": "H28 holdout emission factorial",
+ "preregistration": "knowledge/10_preregistered_h28_live_anchored_emission_design_2026-10-02.md#8",
+ "amendment": "D2 (draws 0-1 to match the frozen comparator; spacing widened to five levels; budget as a factor)",
+ "draws": [
+  0,
+  1
+ ],
+ "spatial_folds": [
+  "NW",
+  "NE",
+  "SW",
+  "SE"
+ ],
+ "factors": {
+  "value": [
+   "score",
+   "habitat",
+   "both"
+  ],
+  "min_dist": [
+   1.5,
+   2.4,
+   3.0,
+   4.0,
+   6.0
+  ],
+  "kfrac": [
+   0.0245,
+   0.035
+  ]
+ },
+ "lambda_hat_px": 1.85,
+ "lambda_provenance": "evidence/h28_calibration/anchors.json (live-anchored, \u00a75b)",
+ "model": {
+  "base": "BDE",
+  "extras": [
+   "X1_K",
+   "X1_ThK",
+   "X1_UK",
+   "X2_compat",
+   "X2_compat_coh",
+   "X3_gm",
+   "X3_gd"
+  ],
+  "h27_columns": false,
+  "fit_seed": "draw"
+ },
+ "comparator": {
+  "value": "score",
+  "min_dist": 2.4,
+  "kfrac": 0.035,
+  "dti": 0.15200338908786984,
+  "source": "evidence/addons/emk_extension.json variant sapd2.4 kfrac 0.035"
+ },
+ "design_seed": 20261003,
+ "canonical_matrix": [
+  {
+   "value": "score",
+   "min_dist": 1.5,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "habitat",
+   "min_dist": 1.5,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "both",
+   "min_dist": 1.5,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "score",
+   "min_dist": 2.4,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "habitat",
+   "min_dist": 2.4,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "both",
+   "min_dist": 2.4,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "score",
+   "min_dist": 3.0,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "habitat",
+   "min_dist": 3.0,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "both",
+   "min_dist": 3.0,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "score",
+   "min_dist": 4.0,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "habitat",
+   "min_dist": 4.0,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "both",
+   "min_dist": 4.0,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "score",
+   "min_dist": 6.0,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "habitat",
+   "min_dist": 6.0,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "both",
+   "min_dist": 6.0,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "score",
+   "min_dist": 1.5,
+   "kfrac": 0.035
+  },
+  {
+   "value": "habitat",
+   "min_dist": 1.5,
+   "kfrac": 0.035
+  },
+  {
+   "value": "both",
+   "min_dist": 1.5,
+   "kfrac": 0.035
+  },
+  {
+   "value": "score",
+   "min_dist": 2.4,
+   "kfrac": 0.035
+  },
+  {
+   "value": "habitat",
+   "min_dist": 2.4,
+   "kfrac": 0.035
+  },
+  {
+   "value": "both",
+   "min_dist": 2.4,
+   "kfrac": 0.035
+  },
+  {
+   "value": "score",
+   "min_dist": 3.0,
+   "kfrac": 0.035
+  },
+  {
+   "value": "habitat",
+   "min_dist": 3.0,
+   "kfrac": 0.035
+  },
+  {
+   "value": "both",
+   "min_dist": 3.0,
+   "kfrac": 0.035
+  },
+  {
+   "value": "score",
+   "min_dist": 4.0,
+   "kfrac": 0.035
+  },
+  {
+   "value": "habitat",
+   "min_dist": 4.0,
+   "kfrac": 0.035
+  },
+  {
+   "value": "both",
+   "min_dist": 4.0,
+   "kfrac": 0.035
+  },
+  {
+   "value": "score",
+   "min_dist": 6.0,
+   "kfrac": 0.035
+  },
+  {
+   "value": "habitat",
+   "min_dist": 6.0,
+   "kfrac": 0.035
+  },
+  {
+   "value": "both",
+   "min_dist": 6.0,
+   "kfrac": 0.035
+  }
+ ],
+ "row_order_zero_based": [
+  2,
+  0,
+  25,
+  24,
+  7,
+  3,
+  13,
+  20,
+  17,
+  16,
+  22,
+  27,
+  19,
+  18,
+  15,
+  28,
+  23,
+  10,
+  12,
+  5,
+  9,
+  6,
+  29,
+  1,
+  21,
+  14,
+  4,
+  11,
+  8,
+  26
+ ],
+ "randomized_matrix": [
+  {
+   "value": "both",
+   "min_dist": 1.5,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "score",
+   "min_dist": 1.5,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "habitat",
+   "min_dist": 4.0,
+   "kfrac": 0.035
+  },
+  {
+   "value": "score",
+   "min_dist": 4.0,
+   "kfrac": 0.035
+  },
+  {
+   "value": "habitat",
+   "min_dist": 3.0,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "score",
+   "min_dist": 2.4,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "habitat",
+   "min_dist": 6.0,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "both",
+   "min_dist": 2.4,
+   "kfrac": 0.035
+  },
+  {
+   "value": "both",
+   "min_dist": 1.5,
+   "kfrac": 0.035
+  },
+  {
+   "value": "habitat",
+   "min_dist": 1.5,
+   "kfrac": 0.035
+  },
+  {
+   "value": "habitat",
+   "min_dist": 3.0,
+   "kfrac": 0.035
+  },
+  {
+   "value": "score",
+   "min_dist": 6.0,
+   "kfrac": 0.035
+  },
+  {
+   "value": "habitat",
+   "min_dist": 2.4,
+   "kfrac": 0.035
+  },
+  {
+   "value": "score",
+   "min_dist": 2.4,
+   "kfrac": 0.035
+  },
+  {
+   "value": "score",
+   "min_dist": 1.5,
+   "kfrac": 0.035
+  },
+  {
+   "value": "habitat",
+   "min_dist": 6.0,
+   "kfrac": 0.035
+  },
+  {
+   "value": "both",
+   "min_dist": 3.0,
+   "kfrac": 0.035
+  },
+  {
+   "value": "habitat",
+   "min_dist": 4.0,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "score",
+   "min_dist": 6.0,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "both",
+   "min_dist": 2.4,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "score",
+   "min_dist": 4.0,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "score",
+   "min_dist": 3.0,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "both",
+   "min_dist": 6.0,
+   "kfrac": 0.035
+  },
+  {
+   "value": "habitat",
+   "min_dist": 1.5,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "score",
+   "min_dist": 3.0,
+   "kfrac": 0.035
+  },
+  {
+   "value": "both",
+   "min_dist": 6.0,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "habitat",
+   "min_dist": 2.4,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "both",
+   "min_dist": 4.0,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "both",
+   "min_dist": 3.0,
+   "kfrac": 0.0245
+  },
+  {
+   "value": "both",
+   "min_dist": 4.0,
+   "kfrac": 0.035
+  }
+ ],
+ "note": "All arms share one HGB fit and one candidate pool per cell; only the value field, the exclusion radius and the budget differ. The habitat field uses the fold's visible catalogue only."
+}

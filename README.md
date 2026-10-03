@@ -6,11 +6,11 @@
 
 ## ⬇ Download the format-validated GeoTIFF (not slot-approved)
 
-**[↓ `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif`](docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif)** — The owner-mirrored H19-5 raster thinned by deterministic Poisson-disk dotting to 44,090 pixels — 73 % of the pixels of the 0.2477-labelled mirror, 36 % of H19-5. Conditional emission-model estimate: 0.255 (band 0.250–0.261), using unverified user/owner-reported score claims. This file is byte-identical to an owner-mirrored unscored alternate. It has not demonstrated a win over the current 0.152003389 spatially blocked holdout best and is not slot-approved.
+**[↓ `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif`](docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif)** — The owner-mirrored H19-5 raster thinned by deterministic Poisson-disk dotting to 44,090 pixels — 73 % of the pixels of the 0.2477-labelled mirror, 36 % of H19-5. H28 live-anchored model: 0.2510, the ceiling of the whole dot_thin(H19-5, d) family (sweep optimum d = 2.4 px). That model is calibrated on 12,691 hidden-truth pixels and a 1.85 px concentration scale, and it reproduces three hash-verified owner-reported anchors within 0.0040 DTI (Monte-Carlo check of the algebra ≤ 0.0020); earlier two-anchor emission-model estimate 0.255. Reaching the reported #1 (0.3195) at this budget needs 1.29× the credit density of this file, i.e. a better detector, not better geometry. This file is byte-identical to an owner-mirrored unscored alternate. It has not demonstrated a win over the frozen 0.152003389 spatially blocked holdout comparator (which itself does not reproduce in this environment — IR-25-COMPARATOR-DRIFT) and is not slot-approved.
 
 * Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, NaN outside (verified against the pinned owner-mirror template, not organizer-authenticated; independent check receipt: `docs/downloads/checks-gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.json`).
 * Unique content id `e56ea318af89` · SHA-256 `91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8` · 44,090 emitted pixels · status: **format-validated; unscored; not slot-approved**.
-* **Note to paste** in DrivenData's *Note (optional)* field: `GEMSDOE25 D2.8 | format-validated; unscored; not holdout-promoted vs 0.152003389 | id e56ea318af89 | no slot`
+* **Note to paste** in DrivenData's *Note (optional)* field: `GEMSDOE25 D2.8 | live-model 0.251 (+-0.004); family ceiling; unscored; not slot-approved | id e56ea318af89 | no slot`
 * Format fallback (format troubleshooting only; not slot-approved): [`gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif`](docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif) — Format fallback: same predictions, zeros outside the footprint (format fallback; unscored; not slot-approved; 44,090 px).
 * Step-by-step upload guide: [`docs/executive-summary.html`](https://buffedlizard55-lab.github.io/GEMSDOE25/docs/executive-summary.html).
 
@@ -20,6 +20,20 @@
 * **Root cause of the reported portal error** (`Predicted values must be in range [0, 1]`): the previous GEMSDOE25 file used an invented footprint — 2,344,929 of the 5,167,373 owner-mirror template-footprint pixels were NaN (NaN fails every range test) and it emitted 1,249,834 positive pixels. Fixed and tested (`evidence/old_gems25_tif_forensics.json`, `src/gems25/submission.py`). The cause is inferred from the data; the portal validator is not public.
 * **Local audit of the reported 0.2477 raster (score unverified):** it is *exactly* `dot_thin(H19-5, 1.5)` — a pixel-identical deterministic subset (49.6 % of H19-5's pixels, none on a catalogue pixel). This verifies the raster transformation, not the claimed competition DTI. No organizer receipt/page was accessed; the claimed 0.2477 and 0.3195 remain unverified.
 * **Model-only calibration:** if the supplied 0.2477 score claim is correct, the emission model predicts **0.2553** (band 0.2500–0.2613) for `dot_thin(H19-5, 2.4)` (44,090 px). This is an extrapolation on owner/user-provided score anchors, not independent evidence or a score; no comparison to the unverified 0.3195 claim is established.
+## H28 — the live metric, calibrated on the group's own 25 hash-verified scores
+
+Pre-registered before any fit in [`knowledge/10_preregistered_h28_live_anchored_emission_design_2026-10-02.md`](knowledge/10_preregistered_h28_live_anchored_emission_design_2026-10-02.md). 30 competition rasters were fetched from the owner's public GitHub mirrors and content-hashed; **25 are tied to a reported DTI by SHA-256** (`registry/artifact_ledger.json`, `scripts/restore_artifacts.py`). Every DTI below labelled *reported* is a user/owner-reported claim, not a receipt; every value labelled *predicted* is conditional on the fitted model.
+
+* **The hidden truth cannot be uniform.** For `h19-5`, `h19-4`, `h16-1` and `d1-5` the closed-form inversion of the published DTI has **no solution** under a uniform truth: no truth count whatever reproduces their reported scores. Under `pi ∝ exp(-d(H19-5)/1.85 px)` all five anchors imply one truth count — lattice-s5 12,498, h19-5 12,472, h19-4 12,893, h16-1 13,358, d1-5 12,691 → **N = 12,691** hidden truth pixels (max spread 5.3 %), which agrees with the blind-lattice-only estimate 12,348 and with this repo's earlier independent 12,503.
+* **The forward model reproduces live scores.** predicted vs reported: `lattice-s5` 0.0914 vs 0.0904; `h19-5` 0.1903 vs 0.1922; `d1-5` 0.2437 vs 0.2477. A Monte-Carlo run of the *published* metric on truth drawn from the fitted `pi` agrees with the analytic expectation to 0.0020 DTI (check C5).
+* **Why the reported 0.2477 won — arithmetic, not narrative.** Dotting the solid `h19-5` surface threw away 50 % of its pixels but only 15 % of the credit it captured, and it cut redundant (overlapping-kernel) mass from 62 % to 32 % of captured kernel mass. Credit per emitted pixel rose 0.0520 → 0.0893; predicted DTI 0.1903 → 0.2437. The detector did not change at all: the 0.2477 file is a *geometry* win.
+* **The ceiling of that geometry is the file already shipped here.** Sweeping `dot_thin(H19-5, d)` over d ∈ [1.8, 4.0] peaks at **d = 2.4 px, 44,090 px, predicted DTI 0.25104** — which *is* the D2.8 download. Value-ranked alternatives are worse: greedy-by-`pi*k` at 3 px peaks at 0.24622, and at 6 px (kernel-disjoint, zero redundancy) at 0.19332. The 6 px design beats `d1-5` in **0 of 9** cells of the (λ, N) sensitivity grid and the shipped D2.8 file in **0 of 9** (D2.8 dominates d1-5 in every cell: True): the redundancy theorem is true and irrelevant here, because for line-like truth the gaps between disjoint dots cost more credit than the overlap they save.
+* **The holdout agrees, with real hidden truth.** A 30-arm factorial (value field × spacing × budget, 4 spatial folds × draws 0,1, one shared fit per cell — `evidence/h28_holdout/`): spacing 1.5→2.4 px **+0.0074**, 2.4→3.0 −0.0003, 3.0→4.0 −0.0112, 4.0→6.0 **−0.0350**; habitat-ranked dots add +0.0003 and habitat×score +0.0012 (best arm paired gain +0.000699, p = 0.248). **Gate: FAIL on both criteria** (0.150367 ≤ 0.152003389; gain ≤ 0.001) → no arm is slot-eligible and nothing new was packaged.
+* **The remaining gap to 0.3195 is detection, not emission.** At the measured 0.900 false-positive mass per emitted pixel, reaching 0.3195 at this file's budget needs **1.29×** its credit density (0.1400 vs 0.1084); reaching the reported #5 (0.2941) needs 1.18×. Emission geometry is exhausted — the whole gap is *which pixels the detector calls faults*.
+* **Where the truth is not.** A habitat model in distance-to-known-faults alone cannot explain the 25 live scores (leave-one-artefact-out RMSE 0.0705 against a pre-registered 0.020 threshold; the blind lattice is predicted at 0.1386 instead of 0.0904) — its residuals are per-artefact detector skill. **"Hug the known-fault halo" is not a supported strategy.** A two-band mixture is not identified either (nine-anchor spread 0.514 vs a 0.053 threshold), so it was **not adopted** and nothing was designed from it.
+* **Where the truth is.** Implied truth count per surface measures off-band truth: `h28-dotted-ridge` 28,989, `lidarscarp-top2pct` 22,893, `h25-ctx-ridge` 20,072 against 12,472–13,358 for the H19-5 family. Three surfaces sit on truth the H19-5 band does not contain — the GEMSDOE10 context ridge and the 7GEMSDOE LiDAR-scarp top-2 % emission. That is H29's first target.
+* **Reproducibility flag (IR-25-COMPARATOR-DRIFT).** The frozen comparator arm recomputes to 0.149667509 here against the frozen 0.152003389 (fold 0 identical to 9 decimals; folds 1–3 differ by up to 7.4e-03); this session's pipeline re-runs bit-for-bit, so the drift is environmental (`data/work` is a gitignored derived cache that was never hashed). `evidence/work_cache_hashes.json` now pins every derived cache and the library versions. **Absolute comparators do not transfer between environments; only same-run paired contrasts do.**
+
 
 ## Designed factorial experiment (replaces one-factor-at-a-time)
 
@@ -108,6 +122,7 @@ These ΔDTI ranges are planning judgments, not estimates. No weekly slot is elig
 * **IR-25-PROVENANCE** (high, open) — Every competition raster here is an owner mirror (hash-pinned), not organizer-authenticated; the DrivenData data page is login-walled and the Dropbox links in the brief are unreachable from the sandbox, so byte-identity with the originals is not verified.
 * **IR-25-PROXY-LIMITS** (high, disclosed) — The hide-and-recover holdout is a catalogue-gap proxy (hidden = catalogue components), not new-fault truth. H19-5 'as emitted' is not out-of-fold (and masked all catalogue pixels), so it is only a diagnostic. Family E may be flattered by the simulation. GEMSDO…
 * **IR-25-PAGES-ROOT** (high, fixed) — GitHub Pages is built from main:/ (legacy), but the old site lived in docs/ with no root index.html: the public URL served the README, whose 'Executive Summary & Submit Guide' link pointed back to itself and whose download link was the broken file.
+* **IR-25-COMPARATOR-DRIFT** (high, open) — The frozen hide-and-recover comparator 0.15200338908786984 (evidence/addons/emk_extension.json, variant sapd2.4 at kfrac 0.035, base BDE + the seven add-ons, draws 0-1) does NOT reproduce in this environment. Re-running that exact arm here gives 0.149667509 (f…
 
 ## Limitations and what is needed
 
@@ -116,14 +131,19 @@ These ΔDTI ranges are planning judgments, not estimates. No weekly slot is elig
 3. **Compute:** 2 CPUs / 4 GB RAM, no GPU → boosted trees, not the reference U-Net; no raw 1 m DEM processing. The H27 screen ran in about 14 minutes after the feature cache was built.
 4. **The proxy is not the truth:** the hide-and-recover holdout hides catalogue components; proxy-vs-live correlation in the group's prior record was weak (Spearman +0.33, n = 24, n.s.). Holdout wins are necessary, not sufficient.
 5. **Hidden labels, public/private split, source authenticity, score claims and the portal validator remain undisclosed/unverified.**
+6. **The live-anchored model has a scope limit (IR-25-LIVE-MODEL-SCOPE):** it reproduces the H19-5 family and the blind lattice within 0.004 DTI but under-predicts surfaces outside that band by up to 0.059, so it cannot score an emission that leaves the band.
+7. **The frozen holdout comparator is environment-specific (IR-25-COMPARATOR-DRIFT):** 0.152003389 recomputes to 0.149668 here. Any future gate must recompute its comparator in the same run.
 
 ## Next work (order matters)
 
 1. H27-1 failed the absolute holdout-comparator gate on draws 4,5. Stop per preregistration; do not run confirmation or spend a slot. A T-only follow-up is unconfirmed and would need its own preregistration and fresh holdout validation.
-2. On a networked runner, retrieve the official GDR probe/paleo files and USGS heat-flow ZIP; verify checksums, schema, coverage, residual definitions and licence before preregistering any new test.
-3. Keep the D2.8 file format-validated but unscored/not slot-approved. Only package and consider a specific candidate after it beats the 0.152003389 spatial holdout best under a prespecified paired test and (when specified) fresh-draw confirmation.
-4. If organizer verification of 0.2477/0.3195 is needed, use an independently supplied non-sensitive receipt; this repository will not fetch or monitor DrivenData.
-5. Owner decisions remain in IR-25-SCORE-IDENTITY, IR-25-TOU, IR-25-PUBLIC-DATA, IR-25-DEADLINE, and IR-27-EXTERNAL-DATA-ACCESS.
+2. Full ranked register with layers, signatures, why-they-find-missing-faults, differences from what exists, obtainability and cost: `knowledge/10_preregistered_h28_live_anchored_emission_design_2026-10-02.md` §13 (H29-1 … H29-5).
+3. **H29-1 (ranked first by the live evidence): multi-surface parent.** Build the emission from the union of `h19-5`, `h28-dotted-ridge`/`h25-ctx-ridge` and `lidarscarp-top2pct`, dotted at 2.4-3.0 px with the marginal-rule budget. Those three are the surfaces whose implied truth count exceeds N-hat, i.e. they hold off-band truth; all three rasters are already on disk and hash-verified. It needs either a >=3-band `pi` with more anchors or holdout-only validation, and it must beat a same-run comparator before any slot.
+4. **H29-2/H29-3: skill-weighted consensus pruning, then tip continuation (family T) on that union parent** - the only positive factor in the H27 screen (+0.008120, 4/4 folds), which failed solely on the environment-specific absolute comparator.
+5. On a networked runner, retrieve the official GDR geodetics/seismicity and probe/paleo files (H29-5) and the USGS heat-flow ZIP (H29-4); verify checksums, schema, coverage, residual definitions and licence before preregistering any new test.
+6. Keep the D2.8 file format-validated but unscored/not slot-approved. Only package and consider a specific candidate after it beats a **same-run** paired comparator on the spatially blocked holdout (the frozen 0.152003389 record does not reproduce in this environment — IR-25-COMPARATOR-DRIFT) and, where a pre-registration specifies it, fresh-draw confirmation.
+7. If organizer verification of 0.2477/0.3195 is needed, use an independently supplied non-sensitive receipt; this repository will not fetch or monitor DrivenData.
+8. Owner decisions remain in IR-25-SCORE-IDENTITY, IR-25-TOU, IR-25-PUBLIC-DATA, IR-25-DEADLINE, and IR-27-EXTERNAL-DATA-ACCESS.
 
 ## Standing session charter
 
@@ -144,6 +164,12 @@ python -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python scripts/run_h27.py --stage screen && .venv/bin/python scripts/analyze_h27.py --dir evidence/h27_screen
 # if and only if the screen's absolute + paired gates pass:
 .venv/bin/python scripts/run_h27.py --stage confirm && .venv/bin/python scripts/analyze_h27.py --dir evidence/h27_confirm
+# H28: live-anchored calibration, inverse design, holdout factorial (knowledge/10)
+.venv/bin/python scripts/restore_artifacts.py                # fetch + hash the 30 owner-mirrored competition rasters -> registry/artifact_ledger.json
+.venv/bin/python scripts/run_h28.py                        # anchors, checks, ceiling sweep, designs, sensitivity (~7 min)
+.venv/bin/python scripts/run_h28.py --habitat-only          # the section 5 misspecification diagnostic (~10 min)
+.venv/bin/python scripts/run_h28_mixture.py                 # two-band mixture test (D3)
+.venv/bin/python scripts/run_h28_holdout.py && .venv/bin/python scripts/analyze_h28_holdout.py   # 30 arms x 8 cells (~6 min)
 # forensics and emission model
 .venv/bin/python scripts/analyze_scored_rasters.py && .venv/bin/python scripts/emission_model.py && .venv/bin/python scripts/validate_emission_model.py && .venv/bin/python scripts/harness_references.py
 # files, site, README

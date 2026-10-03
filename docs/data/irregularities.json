@@ -1,6 +1,6 @@
 {
  "schema_version": 3,
- "review_date_utc": "2026-10-02",
+ "review_date_utc": "2026-10-03",
  "issues": [
   {
    "id": "IR-25-NAN-FOOTPRINT",
@@ -161,6 +161,46 @@
    "issue": "The source-feed workflow has run once on GitHub (push to main after PR #2, run succeeded and the bot committed docs/data/feed.json), but no *scheduled* (cron) run has been observed yet; GitHub only runs scheduled workflows from the default branch, so the first cron run can only happen after the merge. The ScienceBase 'lastUpdated' field was empty in that first run (reader fixed afterwards, untestable from the sandbox).",
    "evidence": "gh run list --branch main (source-feed, success); git log origin/main (github-actions[bot] 'chore(feed): refresh source feed')",
    "resolution_or_action": "Check the Actions tab for a scheduled run within 6 hours of the merge; until then treat docs/data/feed.json's timestamp as authoritative."
+  },
+  {
+   "id": "IR-25-COMPARATOR-DRIFT",
+   "severity": "high",
+   "status": "open",
+   "issue": "The frozen hide-and-recover comparator 0.15200338908786984 (evidence/addons/emk_extension.json, variant sapd2.4 at kfrac 0.035, base BDE + the seven add-ons, draws 0-1) does NOT reproduce in this environment. Re-running that exact arm here gives 0.149667509 (fold 0 identical to 9 decimals; folds 1-3 differ by +0.0023, -0.0042, -0.0074). Re-running a single cell in isolation reproduces this session's value bit-for-bit, so this session's pipeline is deterministic; the drift is environmental. data/work is a gitignored derived cache (static_ABCD.npy, addons.npy, bands/) that this session rebuilt with numpy 2.4.6, scipy 1.17.1, scikit-learn 1.9.1, rasterio 1.4.4, and no hash of it was ever recorded, so the previous cache cannot be compared.",
+   "evidence": "evidence/h28_holdout/results.json (reproduction_check), evidence/work_cache_hashes.json (SHA-256 of every derived cache plus library versions), scripts/run_h28_holdout.py, scripts/analyze_h28_holdout.py",
+   "resolution_or_action": "Policy change recorded in knowledge/10 section 12.5: absolute comparators do not transfer between environments, so a promotion gate must recompute its comparator in the same run as the candidate. evidence/work_cache_hashes.json now exists so the next session can detect a rebuilt cache immediately. The frozen 0.152003389 is retained as the historical record and no arm was promoted on the strength of this drift."
+  },
+  {
+   "id": "IR-25-ARTEFACT-SCORE-LINK",
+   "severity": "medium",
+   "status": "open",
+   "issue": "Four of the 30 competition rasters in registry/artifact_ledger.json carry a score that appears only in the owner's brief list and has no row in the owner's own hash<->score ledger (GEMSDOE27/registry/live_scores.json): hedge-v2 (0.1563), h18-4-geologic-map-faults-gap (0.0360), h20-1 (0.1890) and h23-a-6pct (0.1002). Their bytes are verified, but the file-to-score link is not, so they are excluded from every fit.",
+   "evidence": "registry/artifact_ledger.json (rows with fit=false and score_source naming the gap), scripts/restore_artifacts.py",
+   "resolution_or_action": "Excluded from the H28 calibration (25 of 30 rows are hash-linked and used). hedge-v2 is kept as the masking validation because its statistics are provably identical to ens12's, which is hash-linked. Ask the owner to confirm these four file-to-score pairs; until then they are diagnostics only."
+  },
+  {
+   "id": "IR-25-PLACEHOLDER-OUTSIDE-FOOTPRINT",
+   "severity": "low",
+   "status": "open",
+   "issue": "The GEMSDOE9 raster whose file name says PLACEHOLDER (sha256 2314b599..., owner-reported 0.0107) holds 196,132 pixels of value 1.0 OUTSIDE the owner-mirror template footprint, plus 6,915,655 zeros; it has no NaN. This repo's verifier rejects it on outside_footprint_is_nan_or_zero, yet the owner's ledger reports a score for those exact bytes.",
+   "evidence": "COMPUTED by scripts/run_h28.py / src/gems25/submission.check_file on the fetched mirror; the score is an OWNER-reported claim",
+   "resolution_or_action": "INFERENCE, not verified: the organizer's validator does not appear to enforce a NaN-outside convention, and out-of-footprint pixels appear not to be scored (a 1.0-valued 196k-pixel overspill still scored 0.0107, consistent with only in-footprint pixels counting). Keep shipping NaN-outside (the template's own convention) - it satisfies both readings."
+  },
+  {
+   "id": "IR-25-HABITAT-MISSPECIFIED",
+   "severity": "medium",
+   "status": "closed",
+   "issue": "A truth-intensity model in distance-to-known-faults alone cannot explain the 25 hash-verified live scores: leave-one-artefact-out RMSE 0.0705-0.0812 (pre-registered threshold 0.020), the blind lattice is predicted at 0.2057 instead of 0.0904, and the worst residual is -0.1787 on the group's best file. The residuals are per-artefact detector skill, which that basis has no term for.",
+   "evidence": "evidence/h28_calibration/habitat_fit.json, knowledge/10 sections 5, 11 (D1) and 12.6",
+   "resolution_or_action": "Closed as a negative result: 'hug the known-fault halo' is NOT a supported strategy and no submission was designed from that model. The calibration of record is the anchor estimator of knowledge/10 section 5b, which identifies (N, lambda) only from artefacts whose skill is known by construction (the blind lattice and one thinned family)."
+  },
+  {
+   "id": "IR-25-LIVE-MODEL-SCOPE",
+   "severity": "medium",
+   "status": "open",
+   "issue": "The adopted live-anchored model pi \u221d exp(-d(H19-5)/1.85 px) reproduces its own family and the blind lattice within 0.004 DTI, but under-predicts surfaces outside that band: h25-ctx-ridge 0.0907 predicted vs 0.1280 reported, h28-dotted-ridge 0.1251 vs 0.1839, lidarscarp-top2pct implied N 22,893 vs 12,691. It therefore cannot score any emission that leaves the H19-5 band, and the two-band mixture that would extend it is not identified (nine-anchor spread 0.514 against a 0.053 threshold; mean absolute residual worse, 0.0335 vs 0.0172).",
+   "evidence": "evidence/h28_calibration/design.json (reference_rows_under_calibrated_pi), evidence/h28_calibration/mixture.json (adoption_rule)",
+   "resolution_or_action": "Scope limit printed wherever the model's predictions are quoted (README, download page, knowledge/10 section 6b). The three under-predicted surfaces are the ranked first target for H29: they are live evidence that truth exists off the H19-5 band."
   }
  ]
 }
