@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-03T01:34:32Z",
+ "generated_utc": "2026-10-03T01:38:02Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
