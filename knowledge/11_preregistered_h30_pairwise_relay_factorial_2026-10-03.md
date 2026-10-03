@@ -42,6 +42,8 @@ From the existing static columns, percentile-scale with the already frozen `Cont
 
 `S = clip(scale(L_step_max) × scale(L_cross_max) × scale(L_coh100), 0, 1)`.
 
+For reproducibility, `Context.scale` samples 200,000 footprint pixels without replacement using NumPy `default_rng(1)`, takes the 1st/99th percentiles of finite sampled values, and uses `[lo, lo+1]` if the sampled 99th percentile is not greater than the 1st. H30 uses these existing scales unchanged. The exact draw-independent scaling parameters are computed before any H30 cell fit and saved with the run diagnostics.
+
 Replace nonfinite inputs by zero only after documenting their count; do not fill from labels. This differs from H27’s `L_step_max × max(B_crest, B_trough)`. No additional raster, outside-data download, or per-run tuning is allowed.
 
 The fitted HGB may learn P×S splits in the both-on arm. The pre-registered 2×2 **response** interaction is separately computed from the DTI outcomes; no post-hoc feature product is added.
