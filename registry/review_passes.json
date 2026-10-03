@@ -59,20 +59,38 @@
    "Terms-of-Use scope (also bars manual monitoring without consent) -> flagged IR-25-TOU for the owner."
   ]
  },
- "post_merge_verification": {
-  "pr": "https://github.com/buffedlizard55-lab/GEMSDOE25/pull/2 merged into main as 9fae6ca7ef00ea2004afcbe12a52b4261f411efa (2026-10-02T20:31:35Z)",
-  "checks": [
-   "CI (pytest + ruff) green on the PR head and on main after the merge",
-   "GitHub Pages build for main reported 'built'; the public root page and the executive-summary page were fetched and show the new site",
-   "the three shipped GeoTIFFs stored on main were hashed via the GitHub API and match registry/submissions.json exactly",
-   "the source-feed workflow ran on main, contacted only non-DrivenData hosts and skipped the 8 DrivenData sources by policy"
-  ],
-  "not_verified": [
-   "the TIF bytes as served by the Pages edge (github.io is unreachable from the sandbox shell)",
-   "a scheduled (cron) feed run",
-   "any DrivenData upload (the owner uploads)"
-  ]
- },
+ "post_merge_verification": [
+  {
+   "pr": "https://github.com/buffedlizard55-lab/GEMSDOE25/pull/2 merged into main as 9fae6ca7ef00ea2004afcbe12a52b4261f411efa (2026-10-02T20:31:35Z)",
+   "checks": [
+    "CI (pytest + ruff) green on the PR head and on main after the merge",
+    "GitHub Pages build for main reported 'built'; the public root page and the executive-summary page were fetched and show the new site",
+    "the three shipped GeoTIFFs stored on main were hashed via the GitHub API and match registry/submissions.json exactly",
+    "the source-feed workflow ran on main, contacted only non-DrivenData hosts and skipped the 8 DrivenData sources by policy"
+   ],
+   "not_verified": [
+    "the TIF bytes as served by the Pages edge (github.io is unreachable from the sandbox shell)",
+    "a scheduled (cron) feed run",
+    "any DrivenData upload (the owner uploads)"
+   ]
+  },
+  {
+   "pr": "https://github.com/buffedlizard55-lab/GEMSDOE25/pull/7 merged into main as edcb548a1e08d7fb7f583da91538b6ea105c55e2 (2026-10-03T01:30:17Z)",
+   "checks": [
+    "CI 'tests' (pytest + ruff) green on the PR head (34 s) and on main at edcb548a",
+    "'source-feed' workflow succeeded on main at edcb548a and the bot committed 17efa0fe 'chore(feed): refresh source feed [skip ci]'",
+    "GitHub Pages latest build for main reported status 'built' (commit 17efa0fe, built 2026-10-03T01:31:18Z); pages source is main:/",
+    "the shipped primary GeoTIFF was re-downloaded from main through the GitHub API and hashes to 91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8, 1,603,424 bytes - byte-identical to registry/submissions.json (the packaging change touched only the summary/note/receipt text)",
+    "the regenerated feed on main marks all ten drivendata.org / community.drivendata.org rows 'not fetched (Terms of Use)'; the only 'ok' row whose URL contains 'drivendata' is github.com/drivendataorg/gems-prize-reference-solution, a GitHub host, not the Website"
+   ],
+   "not_verified": [
+    "the TIF bytes as served by the Pages edge (github.io is unreachable from this sandbox)",
+    "any DrivenData upload, score or receipt (the owner uploads; nothing was automated)",
+    "the reference solution's own leaderboard score (not published in that repository)",
+    "the four owner-reported scores with no hash-linked ledger row (IR-25-ARTEFACT-SCORE-LINK)"
+   ]
+  }
+ ],
  "current_turn_review": {
   "date_utc": "2026-10-03",
   "session_focus": "H28: fetch and content-hash the group's 30 competition rasters from the owner's public mirrors, calibrate a forward model of the live metric on the 25 hash-linked scores, invert it for the DTI-optimal emission, and test the result on the spatially blocked holdout under a pre-registered gate.",

@@ -326,6 +326,20 @@
    "caveats": "The sibling repository states the same warning this one does: the values are owner-reported public-leaderboard numbers, not DrivenData receipts. Neither agent fetched or monitored drivendata.org.",
    "license": "",
    "reachable_from_sandbox_bash": true
+  },
+  {
+   "id": "dd-reference-solution",
+   "title": "Official reference solution \u2014 U-Net with Monte-Carlo cross-validation (Prof. John Lipor, Portland State University)",
+   "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
+   "publisher": "DrivenData (organizer) on GitHub; notebook author John Lipor",
+   "kind": "official",
+   "used_for": "corroboration of the metric weights and the data contract, read this session: TverskyLoss(alpha=0.2, beta=0.8, mode='binary') matches the published DTI weights; nodata handled as X[X < -1e38] = NaN (the mirror's sentinel is -3.4028234663852886e+38); labels read as y[y < 1] = 0; per-channel min-max normalisation; the reference reads each band's own TIFF tags (description, data_category) for band semantics; patches are kept where 'y > 0' and channel index 4 is finite; the submission is written as a single-band float32 GeoTIFF with the labels' CRS/transform and NO nodata tag, i.e. finite everywhere; and the author notes 'it may be advantageous to threshold this map for better scoring'",
+   "verified": true,
+   "verified_utc": "2026-10-03",
+   "how_verified": "README.md and all 21 notebook cells (unet-mc-cv-reference-solution.ipynb, 1,578,736 B) read through api.github.com from this sandbox; the channel-4 claim was then tested against the restored mirror's own per-band non-finite masks",
+   "caveats": "This is github.com/drivendataorg, NOT drivendata.org, so reading it does not touch the host whose Terms of Use bar automatic access (AGENTS.md rule 3); no competition page, leaderboard or data-download page was requested. The repo carries no licence file, so quote it, do not vendor it. The notebook's data file is named data/numeric_features.tif; the owner mirror of the same 19-band raster is gems-geodawn-numerical-features.tif (418,912,844 B). The reference solution's own score is not published anywhere in the repo.",
+   "license": "no licence file in the repository (all rights reserved by default) \u2014 cite, do not copy",
+   "reachable_from_sandbox_bash": true
   }
  ]
 }

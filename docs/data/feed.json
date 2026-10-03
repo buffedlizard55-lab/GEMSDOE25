@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-03T01:04:22Z",
+ "generated_utc": "2026-10-03T01:34:32Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -183,6 +183,14 @@
    "kind": "source",
    "title": "GEMSDOE27 registry/live_scores.json \u2014 the owner's SHA-256 <-> reported-score ledger",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
+   "verified_in_repo": true,
+   "status": "unreachable",
+   "detail": "SSLError"
+  },
+  {
+   "kind": "source",
+   "title": "Official reference solution \u2014 U-Net with Monte-Carlo cross-validation (Prof. John Lipor, Portland State University)",
+   "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "unreachable",
    "detail": "SSLError"
