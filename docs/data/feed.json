@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-05T05:51:24Z",
+ "generated_utc": "2026-10-05T14:53:01Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"ddd16131c80d6bd2e179cd558eb2da5d\""
+   "detail": "HTTP 200; ETag: W/\"c2707db60a521e948f1a0a034be8ba9f\""
   },
   {
    "kind": "source",
@@ -104,8 +104,8 @@
    "title": "USGS 3D Elevation Program",
    "url": "https://www.usgs.gov/3d-elevation-program",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "ReadTimeout"
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Mon, 05 Oct 2026 14:52:42 GMT; ETag: W/\"1791211962\""
   },
   {
    "kind": "source",
@@ -145,7 +145,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"2c39bfd5020dfb2614bc4e5e977522f4\""
+   "detail": "HTTP 200; ETag: W/\"7d9c48c2cdd6123fc09588603733a90f\""
   },
   {
    "kind": "source",
@@ -153,7 +153,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"8d5744b476b1cd2882cc3d1dea14e729\""
+   "detail": "HTTP 200; ETag: W/\"b10b3c9273894c408acaf44de1e74272\""
   },
   {
    "kind": "source",
@@ -177,7 +177,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"6a479927e8a44683322576f894e79639\""
+   "detail": "HTTP 200; ETag: W/\"63a6abc3d49e4ae3bf5823897fe3a3fb\""
   },
   {
    "kind": "source",
@@ -185,7 +185,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"32ff9d04c1fe22a14ab63bccfa373e8f\""
+   "detail": "HTTP 200; ETag: W/\"33ec3c2346fa67612f1c00f4503722ba\""
   },
   {
    "kind": "source",
@@ -193,7 +193,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"ddd16131c80d6bd2e179cd558eb2da5d\""
+   "detail": "HTTP 200; ETag: W/\"c2707db60a521e948f1a0a034be8ba9f\""
   },
   {
    "kind": "source",
@@ -208,8 +208,8 @@
    "title": "Quaternary fault mapping from high-resolution 3DEP topography (USGS data release)",
    "url": "https://www.usgs.gov/data/quaternary-fault-mapping-zapata-and-blanca-sections-sangre-de-cristo-fault-zone-high",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "ReadTimeout"
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Mon, 05 Oct 2026 14:52:51 GMT; ETag: W/\"1791211971\""
   },
   {
    "kind": "source",
@@ -245,7 +245,7 @@
    "title": "5GEMSDOE",
    "url": "https://github.com/buffedlizard55-lab/5GEMSDOE",
    "status": "ok",
-   "detail": "pushed_at 2026-09-28T14:04:33Z"
+   "detail": "pushed_at 2026-10-05T14:50:15Z"
   },
   {
    "kind": "sibling-repo",
@@ -280,7 +280,7 @@
    "title": "12GEMSDOE",
    "url": "https://github.com/buffedlizard55-lab/12GEMSDOE",
    "status": "ok",
-   "detail": "pushed_at 2026-10-04T20:10:24Z"
+   "detail": "pushed_at 2026-10-05T12:15:51Z"
   },
   {
    "kind": "sibling-repo",
@@ -308,7 +308,7 @@
    "title": "16GEMSDOE",
    "url": "https://github.com/buffedlizard55-lab/16GEMSDOE",
    "status": "ok",
-   "detail": "pushed_at 2026-09-30T11:23:31Z"
+   "detail": "pushed_at 2026-10-05T14:32:27Z"
   },
   {
    "kind": "sibling-repo",
@@ -343,14 +343,14 @@
    "title": "GEMSDOE",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE",
    "status": "ok",
-   "detail": "pushed_at 2026-09-28T14:01:24Z"
+   "detail": "pushed_at 2026-10-05T14:47:25Z"
   },
   {
    "kind": "sibling-repo",
    "title": "GEMSDOE2",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE2",
    "status": "ok",
-   "detail": "pushed_at 2026-09-28T13:53:21Z"
+   "detail": "pushed_at 2026-10-05T14:36:29Z"
   },
   {
    "kind": "sibling-repo",
@@ -364,7 +364,7 @@
    "title": "GEMSDOE4",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE4",
    "status": "ok",
-   "detail": "pushed_at 2026-09-28T14:02:08Z"
+   "detail": "pushed_at 2026-10-05T14:47:38Z"
   },
   {
    "kind": "sibling-repo",
