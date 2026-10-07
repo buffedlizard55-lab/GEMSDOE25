@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-06T18:27:30Z",
+ "generated_utc": "2026-10-07T06:09:32Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -40,8 +40,8 @@
    "title": "Official rules (NLR 96647)",
    "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
    "verified_in_repo": true,
-   "status": "HTTP 404",
-   "detail": "HTTP 404; Content-Length: 237"
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Wed, 09 Sep 2026 21:37:58 GMT; Content-Length: 455140; ETag: \"6f1e4-65b13aa31500b\""
   },
   {
    "kind": "source",
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"4b4e77b29885e44d33050a4d945a1b6a\""
+   "detail": "HTTP 200; ETag: W/\"6f906cb0e83a5bbe1ade549075aec692\""
   },
   {
    "kind": "source",
@@ -104,8 +104,8 @@
    "title": "USGS 3D Elevation Program",
    "url": "https://www.usgs.gov/3d-elevation-program",
    "verified_in_repo": true,
-   "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Tue, 06 Oct 2026 18:24:51 GMT; Content-Length: 18159; ETag: \"1791311091-gzip\""
+   "status": "unreachable",
+   "detail": "ReadTimeout"
   },
   {
    "kind": "source",
@@ -145,15 +145,15 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"cca8272ed3254731d0d8b838e7fb9ba1\""
+   "detail": "HTTP 200; ETag: W/\"650dc14964fee0ddcd53298f4ffd0b16\""
   },
   {
    "kind": "source",
    "title": "Owner mirror: labels, template, external layers, scored rasters (GEMSDOE24 @ 07345ea)",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
-   "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"bd13753931aa63cd3edca5ec195b99e0\""
+   "status": "HTTP 502",
+   "detail": "HTTP 502; Content-Length: 56622; ETag: \"6ac5d4f1-dd2e\""
   },
   {
    "kind": "source",
@@ -177,7 +177,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"a8adbb95e3d788cd621656b1f51c0aad\""
+   "detail": "HTTP 200; ETag: W/\"080dc2aaffe65124f09a5453907acd3f\""
   },
   {
    "kind": "source",
@@ -185,7 +185,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"080cdba00fa42e2fe5673584c6f2aab0\""
+   "detail": "HTTP 200; ETag: W/\"84ba3428dcac0369754b010360488347\""
   },
   {
    "kind": "source",
@@ -193,7 +193,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"4b4e77b29885e44d33050a4d945a1b6a\""
+   "detail": "HTTP 200; ETag: W/\"6f906cb0e83a5bbe1ade549075aec692\""
   },
   {
    "kind": "source",
@@ -208,8 +208,8 @@
    "title": "Quaternary fault mapping from high-resolution 3DEP topography (USGS data release)",
    "url": "https://www.usgs.gov/data/quaternary-fault-mapping-zapata-and-blanca-sections-sangre-de-cristo-fault-zone-high",
    "verified_in_repo": true,
-   "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Tue, 06 Oct 2026 18:27:22 GMT; ETag: W/\"1791311242\""
+   "status": "unreachable",
+   "detail": "ReadTimeout"
   },
   {
    "kind": "source",
@@ -280,7 +280,7 @@
    "title": "12GEMSDOE",
    "url": "https://github.com/buffedlizard55-lab/12GEMSDOE",
    "status": "ok",
-   "detail": "pushed_at 2026-10-06T12:01:27Z"
+   "detail": "pushed_at 2026-10-06T21:37:04Z"
   },
   {
    "kind": "sibling-repo",
