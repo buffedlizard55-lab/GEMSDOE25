@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-08T23:25:40Z",
+ "generated_utc": "2026-10-09T06:19:26Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"7973a12181d6b29eb1637b143b789c5d\""
+   "detail": "HTTP 200; ETag: W/\"939aff1a81f1acaa50c4c6298a267f5d\""
   },
   {
    "kind": "source",
@@ -104,8 +104,8 @@
    "title": "USGS 3D Elevation Program",
    "url": "https://www.usgs.gov/3d-elevation-program",
    "verified_in_repo": true,
-   "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Thu, 08 Oct 2026 23:17:23 GMT; Content-Length: 18160; ETag: \"1791501443-gzip\""
+   "status": "HTTP 504",
+   "detail": "HTTP 504; Content-Length: 132"
   },
   {
    "kind": "source",
@@ -144,16 +144,16 @@
    "title": "Owner mirror of training_features.tif (5 parts)",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
-   "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"36868a874279172d06a254576395ac6d\""
+   "status": "HTTP 504",
+   "detail": "HTTP 504; Content-Length: 92"
   },
   {
    "kind": "source",
    "title": "Owner mirror: labels, template, external layers, scored rasters (GEMSDOE24 @ 07345ea)",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
-   "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"6a1c344a7bf8374f4285093f2210113e\""
+   "status": "HTTP 504",
+   "detail": "HTTP 504; Content-Length: 92"
   },
   {
    "kind": "source",
@@ -176,8 +176,8 @@
    "title": "Owner's public GitHub mirrors of the group's 30 competition rasters",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
-   "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"cb46d54436afbb423f5d0f419c8a0d54\""
+   "status": "HTTP 504",
+   "detail": "HTTP 504; Content-Length: 92"
   },
   {
    "kind": "source",
@@ -185,7 +185,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"bf665e882e353755a82d784efa4fa64f\""
+   "detail": "HTTP 200; ETag: W/\"2fe22f87fbf588cef8ba8f3e12c2601b\""
   },
   {
    "kind": "source",
@@ -193,7 +193,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"7973a12181d6b29eb1637b143b789c5d\""
+   "detail": "HTTP 200; ETag: W/\"cd12d98686a79f91821678eeca760bce\""
   },
   {
    "kind": "source",
@@ -208,8 +208,8 @@
    "title": "Quaternary fault mapping from high-resolution 3DEP topography (USGS data release)",
    "url": "https://www.usgs.gov/data/quaternary-fault-mapping-zapata-and-blanca-sections-sangre-de-cristo-fault-zone-high",
    "verified_in_repo": true,
-   "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Thu, 08 Oct 2026 23:25:30 GMT; ETag: W/\"1791501930\""
+   "status": "unreachable",
+   "detail": "ReadTimeout"
   },
   {
    "kind": "source",
