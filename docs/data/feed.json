@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-14T17:20:51Z",
+ "generated_utc": "2026-10-14T21:47:59Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"77e5ebe785ea7851a128ed7a24fc0b57\""
+   "detail": "HTTP 200; ETag: W/\"3f252d40484177ef1bfcff5bcbb71cc6\""
   },
   {
    "kind": "source",
@@ -105,7 +105,7 @@
    "url": "https://www.usgs.gov/3d-elevation-program",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Wed, 14 Oct 2026 17:18:51 GMT; ETag: W/\"1791998331\""
+   "detail": "HTTP 200; Last-Modified: Wed, 14 Oct 2026 21:46:43 GMT; ETag: W/\"1792014403\""
   },
   {
    "kind": "source",
@@ -128,8 +128,8 @@
    "title": "Faulds & Hinz (2015) Favorable tectonic and structural settings of geothermal systems in the Great Basin",
    "url": "https://www.osti.gov/servlets/purl/1724082",
    "verified_in_repo": true,
-   "status": "HTTP 429",
-   "detail": "HTTP 429; Content-Length: 52"
+   "status": "ok",
+   "detail": "HTTP 200; Content-Length: 1719141"
   },
   {
    "kind": "source",
@@ -145,7 +145,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"25aaa08c6ec042e0137ba0572f1b240d\""
+   "detail": "HTTP 200; ETag: W/\"5aaede653fb1554c119374fa6aa1a074\""
   },
   {
    "kind": "source",
@@ -153,7 +153,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"26f4aa305345042fbb9a84a08c14a33b\""
+   "detail": "HTTP 200; ETag: W/\"1a43c747fe4d93970c299c79a2faed38\""
   },
   {
    "kind": "source",
@@ -177,7 +177,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"16979423d45c9ce94245dcb58bd22310\""
+   "detail": "HTTP 200; ETag: W/\"e4419c949c42e49baa98a21c600c9e61\""
   },
   {
    "kind": "source",
@@ -185,7 +185,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"d1a096309ef9601db391466fecea7d6f\""
+   "detail": "HTTP 200; ETag: W/\"0939269a67fe03c73d69df840977a8ae\""
   },
   {
    "kind": "source",
@@ -193,7 +193,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"0e9665a3c2bb9adfcef7a7faed104dd1\""
+   "detail": "HTTP 200; ETag: W/\"68cd927130f480f5bf07656d7377d019\""
   },
   {
    "kind": "source",
@@ -209,7 +209,7 @@
    "url": "https://www.usgs.gov/data/quaternary-fault-mapping-zapata-and-blanca-sections-sangre-de-cristo-fault-zone-high",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Wed, 14 Oct 2026 17:20:16 GMT; ETag: W/\"1791998416\""
+   "detail": "HTTP 200; Last-Modified: Wed, 14 Oct 2026 21:47:50 GMT; ETag: W/\"1792014470\""
   },
   {
    "kind": "source",
@@ -237,8 +237,8 @@
    "kind": "sciencebase",
    "title": "Great Basin heat-flow release",
    "url": "https://www.sciencebase.gov/catalog/item/6297d2fad34ec53d276c5b28",
-   "status": "unreachable",
-   "detail": "RuntimeError"
+   "status": "ok",
+   "detail": "lastUpdated 2022-07-20T14:07:29Z"
   },
   {
    "kind": "sibling-repo",
@@ -280,7 +280,7 @@
    "title": "12GEMSDOE",
    "url": "https://github.com/buffedlizard55-lab/12GEMSDOE",
    "status": "ok",
-   "detail": "pushed_at 2026-10-14T10:11:04Z"
+   "detail": "pushed_at 2026-10-14T20:41:00Z"
   },
   {
    "kind": "sibling-repo",
