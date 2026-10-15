@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-14T21:47:59Z",
+ "generated_utc": "2026-10-15T04:50:57Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"3f252d40484177ef1bfcff5bcbb71cc6\""
+   "detail": "HTTP 200; ETag: W/\"bf3df4045fdd7015cc691b4fafb8ca3e\""
   },
   {
    "kind": "source",
@@ -105,7 +105,7 @@
    "url": "https://www.usgs.gov/3d-elevation-program",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Wed, 14 Oct 2026 21:46:43 GMT; ETag: W/\"1792014403\""
+   "detail": "HTTP 200; Last-Modified: Thu, 15 Oct 2026 04:49:42 GMT; ETag: W/\"1792039782\""
   },
   {
    "kind": "source",
@@ -145,7 +145,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"5aaede653fb1554c119374fa6aa1a074\""
+   "detail": "HTTP 200; ETag: W/\"c12b12b386329578e7d5c61b14dded29\""
   },
   {
    "kind": "source",
@@ -153,7 +153,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"1a43c747fe4d93970c299c79a2faed38\""
+   "detail": "HTTP 200; ETag: W/\"7317211be6afa62fbbcb30f01951856d\""
   },
   {
    "kind": "source",
@@ -177,7 +177,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"e4419c949c42e49baa98a21c600c9e61\""
+   "detail": "HTTP 200; ETag: W/\"57e6af1c49b63d11973b168bc2d31f55\""
   },
   {
    "kind": "source",
@@ -185,7 +185,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"0939269a67fe03c73d69df840977a8ae\""
+   "detail": "HTTP 200; ETag: W/\"0493eb80c136dc40780b854dccf6085a\""
   },
   {
    "kind": "source",
@@ -193,7 +193,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"68cd927130f480f5bf07656d7377d019\""
+   "detail": "HTTP 200; ETag: W/\"e83a40189715734395cb9be1694de25f\""
   },
   {
    "kind": "source",
@@ -209,7 +209,7 @@
    "url": "https://www.usgs.gov/data/quaternary-fault-mapping-zapata-and-blanca-sections-sangre-de-cristo-fault-zone-high",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Wed, 14 Oct 2026 21:47:50 GMT; ETag: W/\"1792014470\""
+   "detail": "HTTP 200; Last-Modified: Thu, 15 Oct 2026 04:50:49 GMT; ETag: W/\"1792039849\""
   },
   {
    "kind": "source",
