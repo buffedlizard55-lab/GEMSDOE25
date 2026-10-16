@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-16T04:41:28Z",
+ "generated_utc": "2026-10-16T11:35:54Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"c59d1ddec9b501d9bc2792a7b288fea6\""
+   "detail": "HTTP 200; ETag: W/\"3a5cd78a4fc4910b1f3cfb6596af48f8\""
   },
   {
    "kind": "source",
@@ -105,15 +105,15 @@
    "url": "https://www.usgs.gov/3d-elevation-program",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Fri, 16 Oct 2026 04:40:08 GMT; ETag: W/\"1792125608\""
+   "detail": "HTTP 200; Last-Modified: Fri, 16 Oct 2026 11:33:49 GMT; ETag: W/\"1792150429\""
   },
   {
    "kind": "source",
    "title": "Slip & dilation tendency, Quaternary faults, Great Basin (Siler 2022)",
    "url": "https://www.sciencebase.gov/catalog/item/6296974dd34ec53d276bb33d",
    "verified_in_repo": true,
-   "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Thu, 01 Jan 1970 00:00:00 GMT"
+   "status": "unreachable",
+   "detail": "ReadTimeout"
   },
   {
    "kind": "source",
@@ -145,7 +145,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"145ce4dac5eabb9b98b2456607df58b6\""
+   "detail": "HTTP 200; ETag: W/\"4732d7e005b81320c038e8d9107ba8c1\""
   },
   {
    "kind": "source",
@@ -153,7 +153,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"65ad66171f04f367783745470e93da01\""
+   "detail": "HTTP 200; ETag: W/\"7c6c9856969081d9126422a2340468e9\""
   },
   {
    "kind": "source",
@@ -177,7 +177,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"14366d7e180e6d0fb1aaa190840a7abf\""
+   "detail": "HTTP 200; ETag: W/\"25bb66acdd7af677e503d2862f00f85e\""
   },
   {
    "kind": "source",
@@ -185,7 +185,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"d08326fd7b31426cfca95215bed93437\""
+   "detail": "HTTP 200; ETag: W/\"a5b739c3a8e65f8d2f3b3c84243bdef1\""
   },
   {
    "kind": "source",
@@ -193,7 +193,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"8798f50c3e23aba91cb80075ab2256cb\""
+   "detail": "HTTP 200; ETag: W/\"6acc8ba31213be1b981b6924efad372f\""
   },
   {
    "kind": "source",
@@ -209,7 +209,7 @@
    "url": "https://www.usgs.gov/data/quaternary-fault-mapping-zapata-and-blanca-sections-sangre-de-cristo-fault-zone-high",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Fri, 16 Oct 2026 04:41:19 GMT; ETag: W/\"1792125679\""
+   "detail": "HTTP 200; Last-Modified: Fri, 16 Oct 2026 11:35:28 GMT; ETag: W/\"1792150528\""
   },
   {
    "kind": "source",
@@ -280,7 +280,7 @@
    "title": "12GEMSDOE",
    "url": "https://github.com/buffedlizard55-lab/12GEMSDOE",
    "status": "ok",
-   "detail": "pushed_at 2026-10-15T20:20:00Z"
+   "detail": "pushed_at 2026-10-16T09:47:25Z"
   },
   {
    "kind": "sibling-repo",
