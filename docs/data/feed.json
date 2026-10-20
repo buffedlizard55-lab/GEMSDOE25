@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-19T22:27:51Z",
+ "generated_utc": "2026-10-20T04:59:44Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"cb4b6aed59e8fb9c558598c36f9ec2a3\""
+   "detail": "HTTP 200; ETag: W/\"b9dcdd7ea7c9f0529ae94871451b7263\""
   },
   {
    "kind": "source",
@@ -105,7 +105,7 @@
    "url": "https://www.usgs.gov/3d-elevation-program",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Mon, 19 Oct 2026 22:26:35 GMT; ETag: W/\"1792448795\""
+   "detail": "HTTP 200; Last-Modified: Tue, 20 Oct 2026 04:59:12 GMT; ETag: W/\"1792472352\""
   },
   {
    "kind": "source",
@@ -136,8 +136,8 @@
    "title": "Hermant, Kiersnowski & Bellanger (2025) Using deep learning to map Quaternary faults in Western USA",
    "url": "https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Hermant.pdf",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Tue, 21 Jan 2025 13:57:06 GMT; Content-Length: 3072200; ETag: \"2ee0c8-62c37c0a1318a\""
   },
   {
    "kind": "source",
@@ -145,7 +145,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"af93c19a773f12c4301234bf234eb93e\""
+   "detail": "HTTP 200; ETag: W/\"27bc01ee9af71f8d44566525f7d82ada\""
   },
   {
    "kind": "source",
@@ -153,7 +153,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"8dba4999e49f65ded11e4e7419b7c6a7\""
+   "detail": "HTTP 200; ETag: W/\"5a68d37bb5480770319818709a0fc7c7\""
   },
   {
    "kind": "source",
@@ -168,8 +168,8 @@
    "title": "INGENIOUS project site",
    "url": "https://gbcge.org/current-projects/ingenious/",
    "verified_in_repo": false,
-   "status": "unreachable",
-   "detail": "ConnectTimeout"
+   "status": "ok",
+   "detail": "HTTP 200"
   },
   {
    "kind": "source",
@@ -177,7 +177,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"3e6f9b50918cf83a2946a272a3fc5097\""
+   "detail": "HTTP 200; ETag: W/\"0a36c7c143940791a1fc03e46ff14cb5\""
   },
   {
    "kind": "source",
@@ -185,7 +185,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"3c0a417ec9d71f99db7512a9d4555068\""
+   "detail": "HTTP 200; ETag: W/\"1ba8368c8acd432c23632d97fdd377ec\""
   },
   {
    "kind": "source",
@@ -193,7 +193,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"fc24c06cec06ad8dac402b2304965a10\""
+   "detail": "HTTP 200; ETag: W/\"b9dcdd7ea7c9f0529ae94871451b7263\""
   },
   {
    "kind": "source",
@@ -209,7 +209,7 @@
    "url": "https://www.usgs.gov/data/quaternary-fault-mapping-zapata-and-blanca-sections-sangre-de-cristo-fault-zone-high",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Mon, 19 Oct 2026 22:27:42 GMT; ETag: W/\"1792448862\""
+   "detail": "HTTP 200; Last-Modified: Tue, 20 Oct 2026 04:59:35 GMT; ETag: W/\"1792472375\""
   },
   {
    "kind": "source",
