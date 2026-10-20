@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-20T11:50:01Z",
+ "generated_utc": "2026-10-20T17:17:09Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"1df31cee9856906a6105deb65d5c11d9\""
+   "detail": "HTTP 200; ETag: W/\"3dbc4c468025c44bf31c87e0bd6fe761\""
   },
   {
    "kind": "source",
@@ -105,15 +105,15 @@
    "url": "https://www.usgs.gov/3d-elevation-program",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Tue, 20 Oct 2026 11:48:10 GMT; ETag: W/\"1792496890\""
+   "detail": "HTTP 200; Last-Modified: Tue, 20 Oct 2026 17:16:53 GMT; ETag: W/\"1792516613\""
   },
   {
    "kind": "source",
    "title": "Slip & dilation tendency, Quaternary faults, Great Basin (Siler 2022)",
    "url": "https://www.sciencebase.gov/catalog/item/6296974dd34ec53d276bb33d",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "ReadTimeout"
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Thu, 01 Jan 1970 00:00:00 GMT"
   },
   {
    "kind": "source",
@@ -145,7 +145,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"b2ebfe7be89a0d0cabdb814c82a6f0cc\""
+   "detail": "HTTP 200; ETag: W/\"4e5be11f25e532245ef02d9fd8911214\""
   },
   {
    "kind": "source",
@@ -153,7 +153,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"4acbfe0665d56db00845f033a86936f1\""
+   "detail": "HTTP 200; ETag: W/\"dbc37f44652fa4356a6037e5b7db8666\""
   },
   {
    "kind": "source",
@@ -177,7 +177,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"e8b02dbb838e4a2d666ed9adf0ff1c7b\""
+   "detail": "HTTP 200; ETag: W/\"65c7fd72a070586357a68ddf27a4ca13\""
   },
   {
    "kind": "source",
@@ -185,7 +185,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"0b4b7abac08dec2645f339b1da8b5f50\""
+   "detail": "HTTP 200; ETag: W/\"07dbb8477ec65e452b1f7a91639e84e3\""
   },
   {
    "kind": "source",
@@ -193,7 +193,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"84e175a82b3b5afa7f57f7f9d2122398\""
+   "detail": "HTTP 200; ETag: W/\"3dbc4c468025c44bf31c87e0bd6fe761\""
   },
   {
    "kind": "source",
@@ -209,7 +209,7 @@
    "url": "https://www.usgs.gov/data/quaternary-fault-mapping-zapata-and-blanca-sections-sangre-de-cristo-fault-zone-high",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Tue, 20 Oct 2026 11:48:58 GMT; ETag: W/\"1792496938\""
+   "detail": "HTTP 200; Last-Modified: Tue, 20 Oct 2026 17:17:00 GMT; ETag: W/\"1792516620\""
   },
   {
    "kind": "source",
@@ -237,8 +237,8 @@
    "kind": "sciencebase",
    "title": "Great Basin heat-flow release",
    "url": "https://www.sciencebase.gov/catalog/item/6297d2fad34ec53d276c5b28",
-   "status": "unreachable",
-   "detail": "ReadTimeout"
+   "status": "ok",
+   "detail": "lastUpdated 2022-07-20T14:07:29Z"
   },
   {
    "kind": "sibling-repo",
@@ -399,7 +399,7 @@
    "title": "GEMSDOE23",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE23",
    "status": "ok",
-   "detail": "pushed_at 2026-10-19T18:46:14Z"
+   "detail": "pushed_at 2026-10-20T15:54:53Z"
   },
   {
    "kind": "sibling-repo",
