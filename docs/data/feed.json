@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-22T17:17:17Z",
+ "generated_utc": "2026-10-22T21:43:32Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"ebec6dc45a9f3f1243318f56db0a9cd0\""
+   "detail": "HTTP 200; ETag: W/\"4f8f38c00454c4441e60ca5dde97ce84\""
   },
   {
    "kind": "source",
@@ -105,7 +105,7 @@
    "url": "https://www.usgs.gov/3d-elevation-program",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Thu, 22 Oct 2026 17:17:01 GMT; ETag: W/\"1792689421\""
+   "detail": "HTTP 200; Last-Modified: Thu, 22 Oct 2026 21:42:58 GMT; ETag: W/\"1792705378\""
   },
   {
    "kind": "source",
@@ -128,8 +128,8 @@
    "title": "Faulds & Hinz (2015) Favorable tectonic and structural settings of geothermal systems in the Great Basin",
    "url": "https://www.osti.gov/servlets/purl/1724082",
    "verified_in_repo": true,
-   "status": "ok",
-   "detail": "HTTP 200; Content-Length: 1719141"
+   "status": "HTTP 429",
+   "detail": "HTTP 429; Content-Length: 52"
   },
   {
    "kind": "source",
@@ -145,7 +145,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"34f02e85477f7cad5aec675ea65fe231\""
+   "detail": "HTTP 200; ETag: W/\"3c0290dfcde3a5491b20ab3ee680afd5\""
   },
   {
    "kind": "source",
@@ -153,7 +153,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"12f1a8fe392af3b63869743d16b2fbb5\""
+   "detail": "HTTP 200; ETag: W/\"c9e73fba91d622214fffc3a838ef569e\""
   },
   {
    "kind": "source",
@@ -177,7 +177,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"d2ea0311789f0d550693ef4f2df841fe\""
+   "detail": "HTTP 200; ETag: W/\"bc611b62afca44a5873dd446c470f543\""
   },
   {
    "kind": "source",
@@ -185,7 +185,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"a6a23919bdbf551c08b7704d7d63dcae\""
+   "detail": "HTTP 200; ETag: W/\"64018fa2080b6947d6c4de2faa8f8f1f\""
   },
   {
    "kind": "source",
@@ -193,15 +193,15 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"ebec6dc45a9f3f1243318f56db0a9cd0\""
+   "detail": "HTTP 200; ETag: W/\"4f8f38c00454c4441e60ca5dde97ce84\""
   },
   {
    "kind": "source",
    "title": "Structural Inventory of Great Basin Geothermal Systems and Definition of Favorable Structural Settings (dataset)",
    "url": "https://www.osti.gov/dataexplorer/biblio/dataset/1148722",
    "verified_in_repo": true,
-   "status": "ok",
-   "detail": "HTTP 200"
+   "status": "unreachable",
+   "detail": "ReadTimeout"
   },
   {
    "kind": "source",
@@ -209,7 +209,7 @@
    "url": "https://www.usgs.gov/data/quaternary-fault-mapping-zapata-and-blanca-sections-sangre-de-cristo-fault-zone-high",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Thu, 22 Oct 2026 17:17:08 GMT; ETag: W/\"1792689428\""
+   "detail": "HTTP 200; Last-Modified: Thu, 22 Oct 2026 21:43:24 GMT; ETag: W/\"1792705404\""
   },
   {
    "kind": "source",
@@ -280,7 +280,7 @@
    "title": "12GEMSDOE",
    "url": "https://github.com/buffedlizard55-lab/12GEMSDOE",
    "status": "ok",
-   "detail": "pushed_at 2026-10-22T10:10:24Z"
+   "detail": "pushed_at 2026-10-22T20:33:21Z"
   },
   {
    "kind": "sibling-repo",
