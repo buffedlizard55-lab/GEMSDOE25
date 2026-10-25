@@ -11,7 +11,8 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 SUBS = json.loads((ROOT / "registry" / "submissions.json").read_text())["files"]
-PRIMARY = next(s for s in SUBS if s["role"] == "primary")
+# KDC artifact, wherever it is registered (role became "alternate" when a later session featured a new file)
+PRIMARY = next(s for s in SUBS if s["id"] == "kdc-b2-complement")
 CARD = json.loads((ROOT / "registry" / "run_card_kdc_2026-10-25.json").read_text())
 RECEIPT = json.loads((ROOT / "docs" / "downloads" / PRIMARY["receipt"]).read_text())
 GATE_MIN_GAIN, GATE_MIN_POS, GATE_WORST, R_MIN = 0.001, 3, -0.01, 0.50  # knowledge/17 §2 (frozen)
