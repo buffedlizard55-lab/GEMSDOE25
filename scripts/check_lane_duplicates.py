@@ -94,27 +94,48 @@ def main() -> None:
         ov = float((dist_to_reg[cand_dots] <= OVERLAP_DIST).mean()) if cand_dots.any() else 0.0
         dist_to_cand = distance_transform_edt(~cand_dots) if cand_dots.any() else np.full(cv.shape, np.inf)
         ov_rev = float((dist_to_cand[rdots] <= OVERLAP_DIST).mean()) if rdots.any() else 0.0
+        # Density-aware companion (pre-registered knowledge/22 section 4): halo
+        # coverage = footprint fraction within 3 px of the registry dots = the
+        # overlap a uniformly random candidate would score. At coverage >= 0.70 the
+        # literal candidate-side test cannot discriminate; the symmetric statistic
+        # decides for those rasters. The literal flag is kept and always reported.
+        coverage = float(((dist_to_reg <= OVERLAP_DIST) & foot).sum() / max(int(foot.sum()), 1)) if rdots.any() else 0.0
+        dense_nondiscriminative = bool(coverage >= OVERLAP_MAX)
+        sym_min = float(min(ov, ov_rev))
+        lane_overlap_flag = bool(sym_min > OVERLAP_MAX) if dense_nondiscriminative else bool(ov > OVERLAP_MAX)
         rows.append(dict(file=p.name, sha256=sha256(p), byte_identical=sha256(p) == cand_sha,
                          spearman=round(rho, 6), dots_within_3px=round(ov, 6), registry_dots_within_3px_of_candidate=round(ov_rev, 6),
                          registry_dots=int(rdots.sum()),
                          flag_rank=bool(abs(rho) > RHO_MAX), flag_overlap=bool(ov > OVERLAP_MAX),
-                         density_caveat=("registry raster is dense (>= 1 dot per 25 px); candidate-side overlap is not discriminative"
-                                         if rdots.sum() > 0.5 * cand_dots.sum() * 3 else "")))
+                         halo_coverage_3px=round(coverage, 6),
+                         excess_overlap_over_coverage=round(ov - coverage, 6),
+                         symmetric_min_overlap_3px=round(sym_min, 6),
+                         non_discriminative_dense=dense_nondiscriminative,
+                         flag_overlap_lane=lane_overlap_flag,
+                         density_caveat=("registry raster halo covers >= 70% of the footprint; candidate-side overlap is not discriminative, symmetric statistic used"
+                                         if dense_nondiscriminative else "")))
     flagged = [r for r in rows if r.get("flag_rank") or r.get("flag_overlap") or r.get("byte_identical")]
+    flagged_lane = [r for r in rows if r.get("flag_rank") or r.get("flag_overlap_lane") or r.get("byte_identical")]
     in_ledger = cand_sha in ledger_sha
     registry_complete = bool(rows)
     rec = dict(candidate=cand.name, sha256=cand_sha, candidate_dots=int(cand_dots.sum()),
                thresholds=dict(spearman_max=RHO_MAX, dots_within_3px_max=OVERLAP_MAX, dist_px=OVERLAP_DIST),
                sha_in_artifact_ledger=in_ledger, registry_checked=len(rows), registry_complete=registry_complete,
                flagged=[r["file"] for r in flagged],
+               flagged_literal=[r["file"] for r in flagged],
+               flagged_lane=[r["file"] for r in flagged_lane],
                verdict=("UNVERIFIED - empty registry; fail closed" if not registry_complete
                         else ("DUPLICATE/LANE OVERLAP - do not package" if (flagged or in_ledger)
                               else "UNIQUE vs available registry")),
+               verdict_density_aware=("UNVERIFIED - empty registry; fail closed" if not registry_complete
+                                      else ("DUPLICATE/LANE OVERLAP (density-aware) - do not package" if (flagged_lane or in_ledger)
+                                            else "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)")),
                rows=rows,
                note=("Spearman is computed on a 400k random footprint sample of raw values; binary rasters have heavy "
                      "ties, so rho is a conservative rank summary, not a continuous rank correlation."))
     print(json.dumps({k: rec[k] for k in ("candidate", "sha256", "candidate_dots", "sha_in_artifact_ledger",
-                                          "registry_checked", "flagged", "verdict")}, indent=1))
+                                          "registry_checked", "flagged", "verdict", "flagged_lane",
+                                          "verdict_density_aware")}, indent=1))
     for r in rows:
         if "spearman" in r:
             print(f"  {r['file'][:70]:70s} rho={r['spearman']:+.3f} within3px={r['dots_within_3px']:.3f} "

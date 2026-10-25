@@ -1,0 +1,56 @@
+{
+ "hypothesis": "H37-2 SPR spring-line alignment ridge: A37S = H35 arm B + 2 SPR columns vs C37 = H35 arm B recomputed same-run",
+ "preregistration": "knowledge/23_preregistered_h37_2_spring_line_2026-10-25.md",
+ "draws": [
+  18,
+  19
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "arms": {
+  "C37": {
+   "use_SPR": false
+  },
+  "A37S": {
+   "use_SPR": true
+  }
+ },
+ "min_dist": 2.4,
+ "kfrac": 0.035,
+ "model": {
+  "base": "BDE",
+  "extras": [
+   "X1_K",
+   "X1_ThK",
+   "X1_UK",
+   "X2_compat",
+   "X2_compat_coh",
+   "X3_gm",
+   "X3_gd"
+  ],
+  "tip_column": "H27_tip",
+  "h34_columns": [
+   "H34_resmag_shallow_ridge",
+   "H34_resmag_mid_ridge",
+   "H34_baseflex_ridge"
+  ],
+  "spr_columns": [
+   "SPR_kde_ridge",
+   "SPR_ridge_x_elong"
+  ],
+  "fit_seed": "draw"
+ },
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px) via gems25.experiment.Cell.evaluate",
+ "leakage_auc_cap": 0.9,
+ "gate": {
+  "arm": "A37S vs C37",
+  "mean_gain_gt": 0.001,
+  "folds_positive_min": 3,
+  "worst_fold_min": -0.01,
+  "mean_hug_increase_max": 0.1
+ }
+}

@@ -70,3 +70,41 @@ def test_negative_rank_correlation_is_checked_by_absolute_magnitude():
 
     assert result[0]["spearman"] == pytest.approx(-1.0)
     assert result[0]["duplicate"] is True
+
+
+def test_density_aware_lane_separates_dense_lattice_from_true_duplicates():
+    """knowledge/22 section 4: halo coverage >= 0.70 makes the literal candidate-side
+    statistic non-discriminative (a random set scores the coverage); the symmetric
+    statistic decides there, while the literal flag stays reported."""
+    from scripts.validate_gem_candidate import lane_is_clear_density_aware
+
+    shape = (60, 60)
+    foot = np.ones(shape, dtype=bool)
+    fi = np.flatnonzero(foot)
+    rng = np.random.default_rng(7)
+    surface = rng.normal(size=shape).astype(np.float32)
+    lattice = np.zeros(shape, dtype=np.float32)
+    lattice[::5, ::5] = 1
+
+    sparse = np.zeros(shape, dtype=bool)
+    sparse[10, 10] = sparse[30, 40] = sparse[50, 15] = sparse[5, 55] = True
+    row = lane_check(SimpleNamespace(foot=foot, fi=fi), sparse, surface,
+                     [{"file": "dense-lattice.tif", "arr": lattice}])[0]
+    assert row["halo_coverage_3px"] >= 0.70
+    assert row["non_discriminative_dense"] is True
+    assert row["flag_overlap"] is True            # literal flag still reported
+    assert row["duplicate"] is True               # literal verdict unchanged
+    assert row["reverse_overlap_within_3px"] < 0.70
+    assert row["duplicate_lane"] is False         # density-aware verdict differs
+    assert lane_is_clear([row]) is False
+    assert lane_is_clear_density_aware([row]) is True
+    assert lane_is_clear_density_aware([]) is False  # fails closed
+
+    # A candidate that really does sit on the lattice stays a duplicate either way.
+    on_lattice = np.zeros(shape, dtype=bool)
+    on_lattice[::5, ::5] = True
+    row2 = lane_check(SimpleNamespace(foot=foot, fi=fi), on_lattice, surface,
+                      [{"file": "dense-lattice.tif", "arr": lattice}])[0]
+    assert row2["symmetric_min_overlap_3px"] == 1.0
+    assert row2["duplicate_lane"] is True
+    assert lane_is_clear_density_aware([row2]) is False

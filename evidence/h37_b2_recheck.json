@@ -1,0 +1,86 @@
+{
+ "evidence_class": "COMPUTED from hash-pinned owner-mirror rasters; scores are OWNER-reported claims",
+ "generated_by": "scripts/verify_b2_chain.py",
+ "footprint_pixels": 5167373,
+ "catalogue_pixels": 60988,
+ "fetched": {
+  "B1_r1": {
+   "path": "/home/user/GEMSDOE25/data/artifacts_h37/gems28-h27-4-r1-solo.tif",
+   "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+   "owner_reported_score": 0.2708,
+   "repo": "buffedlizard55-lab/GEMSDOE28",
+   "source_path": "docs/downloads/gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif"
+  },
+  "B2": {
+   "path": "/home/user/GEMSDOE25/data/artifacts_h37/gems32-h33-2-b2-zeros.tif",
+   "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+   "owner_reported_score": 0.2778,
+   "repo": "buffedlizard55-lab/GEMSDOE32",
+   "source_path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+  },
+  "anderson36": {
+   "path": "/home/user/GEMSDOE25/data/artifacts_h37/gems36-anderson-pinn.tif",
+   "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+   "owner_reported_score": 0.275,
+   "repo": "buffedlizard55-lab/GEMSDOE36",
+   "source_path": "docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif"
+  }
+ },
+ "counts": {
+  "h19_5": 121131,
+  "d28": 44090,
+  "B1": 40199,
+  "B2": 37654,
+  "anderson36": 38854
+ },
+ "identities": {
+  "d28_subset_of_h19_5_xor": 0,
+  "B1_eq_d28_and_dist_gt_1_xor": 0,
+  "B2_eq_d28_and_dist_gt_2_xor": 0,
+  "B2_eq_B1_and_dist_gt_2_xor": 0,
+  "anderson36_minus_B2": 1200,
+  "B2_minus_anderson36": 0
+ },
+ "shells": {
+  "d28": {
+   "d_eq_0": 0,
+   "d_in_0_1": 3891,
+   "d_in_1_2": 2545,
+   "d_in_2_3": 2171,
+   "d_gt_3": 35483
+  },
+  "B1": {
+   "d_eq_0": 0,
+   "d_in_0_1": 0,
+   "d_in_1_2": 2545,
+   "d_in_2_3": 2171,
+   "d_gt_3": 35483
+  },
+  "B2": {
+   "d_eq_0": 0,
+   "d_in_0_1": 0,
+   "d_in_1_2": 0,
+   "d_in_2_3": 2171,
+   "d_gt_3": 35483
+  },
+  "anderson36": {
+   "d_eq_0": 0,
+   "d_in_0_1": 0,
+   "d_in_1_2": 0,
+   "d_in_2_3": 2281,
+   "d_gt_3": 36573
+  }
+ },
+ "breakeven_at_owner_scores": {
+  "d28_0.2600": 0.054852320675105495,
+  "B1_0.2708": 0.05726127040514252,
+  "B2_0.2778": 0.05882851213417475
+ },
+ "owner_chain": [
+  "h19-5 solid 0.1922 OWNER",
+  "dot d1.5 0.2477 OWNER",
+  "d2.8 0.2600 OWNER",
+  "B1 (d>1px) 0.2708 OWNER",
+  "B2 (d>2px) 0.2778 OWNER"
+ ]
+}

@@ -521,6 +521,22 @@
    "issue": "The H36-TZC TIF was built and site-registered as the primary download after its frozen holdout gate FAILED (paired -0.0013, 2/4 folds) and its final dots triggered the strict duplicate-lane stop (100% vs the r13 lattice; 92.2% within 3 px of this repo's own H35 download, same base detector). It is unique by content (92562b7b7fea) but is NOT lane-clear and NOT gate-passed.",
    "evidence": "evidence/h36_screen/analysis.json; docs/downloads/lane-gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.json; registry/run_card_h36_h37_2026-10-25.json.",
    "resolution_or_action": "Registered with verdict negative, ok_to_download=true (testing), ok_to_submit_slot=false, slot_approved=false, DO NOT SUBMIT in title/status/note, following the KDC precedent (IR-25-BUILD-DESPITE-FAILED-GATE) for the owner's highest-urgency unique-TIF deliverable. Promotion would require a fresh pre-registered gate pass AND lane clearance vs H35/H31 (i.e. a genuinely different base detector, not an added block)."
+  },
+  {
+   "id": "IR-25-H37-AMENDMENT",
+   "severity": "medium",
+   "status": "disclosed",
+   "issue": "knowledge/22 section 3 stated no other experiment would run this session unless H37-1 passed both stages. H37-1 failed its screen, yet a second experiment (H37-2 SPR) was run.",
+   "evidence": "knowledge/23 amendment disclosure (commit 75696c8, before any SPR feature was computed); knowledge/22 ranked H37-2 (#2) before any H37 fit; repo precedents H34->H35 and KDC E1->E2 ran a second pre-registered experiment after a failure within the 3-experiment budget.",
+   "resolution_or_action": "Amendment committed and disclosed before the SPR computation; H37-1's failed arm untouched (no lag/direction retuning); fresh draws 18-19 used; H37-2 then failed its own gate and experiments stopped. Future pre-registrations should state the session experiment sequence explicitly instead of an over-strict stopping sentence."
+  },
+  {
+   "id": "IR-25-H37-SPR-NEAR-MISS",
+   "severity": "info",
+   "status": "disclosed",
+   "issue": "H37-2 SPR screen paired gain +0.000937 vs the frozen >+0.001 gate (miss by 0.000063), 3/4 folds positive, pooled +0.00096, 95% CI includes zero. There is a standing temptation to round, add the confirmation draws anyway, or re-read the gate.",
+   "evidence": "evidence/h37_2_screen/analysis.json (gate.passed=false); knowledge/23 frozen gate; SPR ridge nonzero on 5.7% of the footprint (sparse support); one of eight cells produced identical TP/FP/emitted counts with/without the SPR columns.",
+   "resolution_or_action": "Recorded as NEGATIVE; confirmation draws 20-21 were NOT run; no SPR file built. Any follow-up must be a new pre-registration that owns this near-miss (knowledge/24 section 6 item 5)."
   }
  ]
 }
