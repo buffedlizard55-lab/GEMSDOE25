@@ -17,6 +17,9 @@
 | `12_h30_relay_factorial_outcomes_2026-10-03.md` | registered H30 screen pass + fresh-confirmation failure, weighted-credit analyzer correction, stop decision, and proxy limitations |
 | `13_preregistered_h31_credit_field_emission_2026-10-25.md` | H31-1 pre-registration (credit-field candidate selection; screen result: negative) |
 | `14_gemsdoe32_analysis_and_hypotheses_2026-10-25.md` | why GEMSDOE32's 0.2778 file scored (claims labelled), what can and cannot be verified, ranked H32 hypotheses |
+| `14_preregistered_h31_flank_shielded_subscarp_factorial_2026-10-25.md` | pixel-exact forensics across all 9 focus sites (`GEMSDOE24..36`), 4 ranked H31 hypotheses, and frozen H31-1 2² factorial design (`C × M`) |
+| `15_h31_outcomes_and_run_card_2026-10-25.md` | H31-1 leakage canary (`PASS`), screen (`PASS`), confirmation outcomes, unique H31-1 GeoTIFF (`40bfe1d5b1c5`) duplicate-lane audit, and Protocol Rule 5 JSON Run Card |
+| `owner_brief_2026-10-25_verbatim.txt` | verbatim 2026-10-25 task prompt and Parallel-Run Protocol (also embedded in `README.md`) |
 | `owner_brief_2026-10-25_consolidated.md` | the 2026-10-25 request, condensed and grouped (not verbatim) |
 | `current_project_brief_2026-10-03.md` | full active scope and acceptance criteria from the condensed handoff, labeled as a consolidated restatement rather than a verbatim prompt |
 | `../registry/*.json` | sources (with verification status), irregularities, score ledger, data pins, shipped submissions, **artefact ledger** (30 competition rasters with SHA-256 ↔ reported-score links), artefact mirrors |

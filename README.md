@@ -1,20 +1,39 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
-**Current session review (2026-10-25):** [Strict lane eligibility, UX audit, findings, and run card](knowledge/17_repo_review_2026-10-25.md). The previous [GEMSDOE32 H33-2-B2 score forensics and hypotheses](knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md) remain as background. The start-of-session owner prompt is archived verbatim at `knowledge/owner_brief_verbatim.txt`; see also `AGENTS.md`. Current lane run card: `registry/run_card_repo_review_2026-10-25.json`. **Downloads are for testing only; do not submit: strict lane gate fails and required data are absent.**
+**Current session review (2026-10-25):** [GEMSDOE32 H33-2-B2 score forensics, candidate screen, data blockers, and run card](knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md). The requested start-of-session owner prompt remains archived verbatim at `knowledge/owner_brief_verbatim.txt`; see also `AGENTS.md`.
 
 > **Maximize P(Win)** · **Own the Outcome** — the Arena core values are the decision rule for every change in this repository.
 
 **Competition:** [DOE GEMS Prize, DrivenData #306](https://www.drivendata.org/competitions/306/competition-doe-gems/) · **Live site:** <https://buffedlizard55-lab.github.io/GEMSDOE25/> · **Weekly limit:** 3 submissions · **Ends:** 3 Dec 2026 (page: 11:59 p.m. UTC; rules: 5:00 p.m. ET — see IR-25-DEADLINE)
 
-## Current GeoTIFF — testing download only; DO NOT SUBMIT
+## ⬇ Download the unique, format-valid GeoTIFF (NOT slot-cleared)
 
-A unique-by-content GEM-FUSE1 GeoTIFF is present from merged PR #13: [`gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif`](docs/downloads/gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif). It is format-checked against an owner-mirrored template, but the tracked lane receipt records **100% of candidate dots within 3 px of the r13 lattice**, above the literal 70% stop threshold. The strict rule applies: **DUPLICATE LANE / STOP; no density exception; do not submit**. The file is available only for local testing. No artifact in this repository is slot-approved.
+**[↓ `gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif`](docs/downloads/gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif)** — The strict lane gate fails: the tracked receipt records a 100% candidate-dot overlap with the registered r13 lattice, exceeding the literal 70% stop threshold. The lattice-density interpretation in the earlier review does not create an exception. HOLDOUT-DTI results are research proxies only; no organizer score or slot approval. Download only for local testing; do not submit.
 
-The recorded HOLDOUT-DTI results are proxy research, not an organizer-confirmed score; see [`registry/run_card_gem_fuse1_2026-10-25.json`](registry/run_card_gem_fuse1_2026-10-25.json) for evaluator context, withheld-positive counts and intervals. No live submission receipt or score was verified. The zeros-outside fallback inherits the same lane stop. The other listed candidates also remain uncleared; do not submit GEM-1, H31-C, or the withdrawn D2.8 duplicate.
+* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, NaN outside (verified against the pinned owner-mirror template, not organizer-authenticated; independent check receipt: `docs/downloads/checks-gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.json`).
+* Unique content id `c2097a554ef2` · SHA-256 `ad4bc4933d0b7636f0f32918c1fd8b8b08cd1964aee32d69e45419a9b54178a7` · 46,181 emitted pixels · status: **UNIQUE FILE BY CONTENT, BUT STRICT LANE FAIL / DUPLICATE STOP: 100% of candidate dots fall within 3 px of the r13 lattice (70% limit). Testing download only; DO NOT SUBMIT.**.
+* **Note to paste** in DrivenData's *Note (optional)* field: `GEMSDOE25 GEM-FUSE1 | strict lane FAIL; no slot; unscored; not slot-approved; DO NOT SUBMIT | id c2097a554ef2`
+* Format fallback: same GEM-FUSE1 dots, zeros outside footprint: [`gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-zeros.tif`](docs/downloads/gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-zeros.tif) (Format fallback only. Same candidate dots; inherits strict lane fail. Testing only; DO NOT SUBMIT.; 46,181 px).
+* Fallback: H31-C score-ordered dots at 2.4 px (3.5% budget) — NOT slot-approved: [`gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif`](docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif) (STRICT LANE STOP; holdout gate not passed; testing only; DO NOT SUBMIT.; 48,714 px).
+* Fallback zeros: H31-C same dots, zeros outside: [`gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif`](docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif) (Format fallback only; inherits H31-C strict lane stop; DO NOT SUBMIT.; 48,714 px).
+* Research download: GEM-1 blind-magnetics dots (holdout-validated, not slot-approved): [`gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif`](docs/downloads/gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif) (STRICT LANE STOP: recorded lattice overlap exceeds 70%; testing only; DO NOT SUBMIT.; 49,373 px).
+* H31-1 Tip-Preserved Flank-Shielded Sub-Scarp Concordance (sapd2.4, 49,041 dots) — testing only, do not submit: [`gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif`](docs/downloads/gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif) (unique GEMSDOE25 H31-1 candidate; format/canary-verified; unscored; not slot-approved; DO NOT SUBMIT (confirm 2/4 vs pointwise max & literal r13 lattice stop); 49,041 px).
+* Format fallback: H31-1 with zeros outside the footprint: [`gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif`](docs/downloads/gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif) (format fallback (H31-1 zeros outside); unscored; not slot-approved; DO NOT SUBMIT; 49,041 px).
+* Step-by-step upload guide: [`docs/executive-summary.html`](https://buffedlizard55-lab.github.io/GEMSDOE25/docs/executive-summary.html).
+
+> ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).
+
+> ⚠ **Lane flag open:** this file is flagged by the lane-overlap check against a dense 13GEMSDOE lattice (IR-25-LANE-DENSITY). Its holdout result is parity with its own control, not a win. It is NOT slot-cleared. Receipt: `docs/downloads/lane-gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.json`.
+
+## 9-Site Forensics (`GEMSDOE24..36`) and H31-1 Tip-Preserved Flank-Shielded Sub-Scarp 2² Factorial (`knowledge/14`, `knowledge/15`)
+
+* **Why `GEMSDOE32` `h33-h33-2-b2` (reported `0.2778`, unverified claim) scored highest (`evidence/focus_sites_forensics.json`):** Pixel-exact forensics proves `GEMSDOE28`/`31` `r1` (`0.2708`, `40,199` px) is `D2.8 & (d(cat) > 1.0 px)` (`-3,891` dots at 100 m; implied credit `0.00096`/px ≪ τ = `0.0549`) and **`GEMSDOE32` `H33-2-B2` (`0.2778`, `37,654` px) is `D2.8 & (d(cat) > 2.0 px)`** (`-2,545` additional dots in 100–200 m; implied credit `0.00503`/px ≪ τ = `0.0573`), while `GEMSDOE36` (`0.2750`, `38,854` px) is `B2` + `1,200` extra dots.
+* **H31-1 2² Factorial (`evidence/h31_flank_screen/`, `evidence/h31_flank_confirm/`):** Leakage Canary PASSED (max standalone feature AUC `0.8386 <= 0.90`). Screen (draws 10,11) PASSED with `HOLDOUT-DTI 0.153199 (evaluator=gems25.holdout.v1.2-buffered-4quad-pooled-dti, withheld_positives=22317, 95% CI [0.132707, 0.173690])` (4-fold mean `0.154190`, paired gain `+0.003384` in `3/4` folds, hug `-0.0243`). Confirmation (draws 12,13) achieved `HOLDOUT-DTI 0.144941 (evaluator=gems25.holdout.v1.2-buffered-4quad-pooled-dti, withheld_positives=22299, 95% CI [0.119601, 0.170282])` (`+0.003848` pooled gain; `3/4` folds + vs `M0_C0`, `3/4` vs `CTRL_NO_TIP`, Factor `C` positive in `8/8` screen+confirm fold-blocks, `2/4` vs strict pointwise max -> Run Card verdict: `negative`).
+* **Unique H31-1 GeoTIFF (`docs/downloads/gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif`):** `49,041` dots, SHA-256 `41461ce0d0a6cb2d765e53fa490114d3f6e6344ca6f459b811f55bddbf7d2858`, 16/16 format checks PASS, max surface Spearman `0.1826 <= 0.90`, comparable dotted/focus 3-px overlap `0.6544 <= 0.70` (`0.3183` vs GEMSDOE32 `0.2778`; literal 5-px lattice overlap `1.000` -> testing only, DO NOT SUBMIT). Full Run Card: `evidence/h31_run_card_2026-10-25.json`.
 
 ## Where things stand
 
-* **Unverified leaderboard claims** (reported 2026-10-02; no organizer page or receipt was accessed): #1 DARD 0.3195; reported rank #5 0.2941. The group-best claim is **0.2477**; the previously reported rank #16/account association is not authenticated. These are not independently verified scores; apparent gaps to ranks #5/#1 are arithmetic on supplied claims only.
+* **Unverified leaderboard claims** (reported 2026-10-02; no organizer page or receipt was accessed): #1 DARD 0.3195; reported rank #5 0.2941. The group-best claim is **0.2778**; the previously reported rank #16/account association is not authenticated. These are not independently verified scores; apparent gaps to ranks #5/#1 are arithmetic on supplied claims only.
 * **Root cause of the reported portal error** (`Predicted values must be in range [0, 1]`): the previous GEMSDOE25 file used an invented footprint — 2,344,929 of the 5,167,373 owner-mirror template-footprint pixels were NaN (NaN fails every range test) and it emitted 1,249,834 positive pixels. Fixed and tested (`evidence/old_gems25_tif_forensics.json`, `src/gems25/submission.py`). The cause is inferred from the data; the portal validator is not public.
 * **Local audit of the reported 0.2477 raster (score unverified):** it is *exactly* `dot_thin(H19-5, 1.5)` — a pixel-identical deterministic subset (49.6 % of H19-5's pixels, none on a catalogue pixel). This verifies the raster transformation, not the claimed competition DTI. No organizer receipt/page was accessed; the claimed 0.2477 and 0.3195 remain unverified.
 * **Model-only calibration:** if the supplied 0.2477 score claim is correct, the emission model predicts **0.2553** (band 0.2500–0.2613) for `dot_thin(H19-5, 2.4)` (44,090 px). This is an extrapolation conditional on owner/user-provided score anchors, not independent evidence or a score; any arithmetic against the unverified 0.3195 claim is conditional on both the claim and the selected model.
@@ -78,16 +97,16 @@ Top interactions: `BC` -0.0050, `BD` -0.0049, `AC` +0.0045, `BE` -0.0043. Full t
 
 | Project | Submission | Score | Note |
 |---|---|---|---|
-| GEMSDOE24 | `h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan` | 0.2477 | reported score 0.2477; local mask identity is verified, leaderboard/receipt association is not |
-| 19GEMSDOE | `h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan` | 0.1922 | parent of the 0.2477 file |
-| 19GEMSDOE | `h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan` | 0.1894 |  |
-| GEMSDOE21 | `h19-4-reference-20260930-691e4dfa` | 0.1894 | re-host of h19-4 (same content id 691e4dfa) |
-| 20GEMSDOE | `h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-20260930-be0e8f6b-nan` | 0.1890 |  |
-| 16GEMSDOE | `h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan` | 0.1855 |  |
-| GEMSDOE10 | `h28-dotted-ridge-20260928T020256236880Z-6452ae1d00` | 0.1839 | dotted version of the surface above: +44 % |
-| GEMSDOE | `gems-submission-20260925T001403Z-7f00890a` | 0.1563 |  |
-| 5GEMSDOE | `gems-submission-20260926T175114Z-7f00890a` | 0.1563 | same content id 7f00890a as the GEMSDOE entry |
-| 8GEMSDOE | `Hedge-v2_submission` | 0.1563 | = ens12 off-catalogue pixels + all catalogue pixels; equal score shows masked known pixels do not matter |
+| GEMSDOE32 | `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` | 0.2778 | exact D2.8 & (d(cat) > 2.0 px), 37,654 px (-6,436 collar px at d<=2.0); sha256 c55bafc47005... |
+| GEMSDOE36 | `anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros` | 0.2750 | strict superset of GEMSDOE32 B2 (37,654 px) + 1,200 extra dots = 38,854 px; sha256 e15891020b9c... |
+| GEMSDOE28 | `h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan` | 0.2710 | 37,660 px (min d(cat)=1.41 px); sha256 5556aa1438fd... |
+| GEMSDOE28 | `h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan` | 0.2708 | exact D2.8 & (d(cat) > 1.0 px), 40,199 px (-3,891 collar px at d=1.0); sha256 ab0230015224... |
+| GEMSDOE31 | `h27-4-solo-d28-20261004-8acb75e1-nan` | 0.2708 | footprint-identical to GEMSDOE28 r1 (40,199 px); sha256 07b6db440535... |
+| GEMSDOE28 | `h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan` | 0.2707 | strict superset of h36-1 (37,660 px) + 200 px = 37,860 px; sha256 81d5b87bc842... |
+| GEMSDOE28 | `h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan` | 0.2649 | 42,294 px; sha256 04d31922f5c1... |
+| GEMSDOE33 | `h33d-analog-tip-stepover-r30-20261004-cb490425926e` | 0.2632 | 41,865 px (33,670 shared with r1 + 8,195 tip/stepover px); sha256 bc3af2a5fcb4... |
+| GEMSDOE25 | `dotted-h19-5-d2-8-20261002-e56ea318af89-nan` | 0.2600 | exact dot_thin(H19-5, 2.4), 44,090 px; sha256 91eae1ca42ec... |
+| GEMSDOE30 | `d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca` | 0.2600 | footprint-identical to GEMSDOE25 D2.8 (44,090 px); sha256 5f963b8bca5e... |
 
 ## Prior H26 register — outcomes (ranked before its runs; not a list of untried work)
 
@@ -136,9 +155,12 @@ Planning brackets are uncertain prioritization judgments, not estimates or live-
 * **IR-25-PAGES-ROOT** (high, fixed) — GitHub Pages is built from main:/ (legacy), but the old site lived in docs/ with no root index.html: the public URL served the README, whose 'Executive Summary & Submit Guide' link pointed back to itself and whose download link was the broken file.
 * **IR-25-COMPARATOR-DRIFT** (high, open) — The frozen hide-and-recover comparator 0.15200338908786984 (evidence/addons/emk_extension.json, variant sapd2.4 at kfrac 0.035, base BDE + the seven add-ons, draws 0-1) does NOT reproduce in this environment. Re-running that exact arm here gives 0.149667509 (f…
 * **IR-25-DUPLICATE-DOWNLOAD** (critical, fixed (withdrawn)) — The front-page 'format-validated' download gems25-dotted-h19-5-d2-8-…-e56ea318af89-nan.tif (SHA-256 91eae1ca…) is byte-identical to a raster the group already lists (GEMSDOE24 d2-8 alternate in registry/artifact_ledger.json and the GEMSDOE30 entry tagged 91eae…
-* **IR-25-LANE-DENSITY** (high, open (review)) — The PARALLEL-RUN lane test flags the H31-C file against 13GEMSDOE (r13-lattice-s5, a dense 5-px lattice with 206,895 dots): 100% of candidate dots lie within 3 px of a registry dot. The reverse direction is only 18.5%. The one-directional test is not discrimin…
+* **IR-25-LANE-DENSITY** (high, fixed (strict duplicate/stop applied; no density exception)) — The 5-px lattice registry raster flags candidate dots under the literal protocol: 88.9% of the stored holdout-candidate emission and 100% of the full-footprint GEM-1 emission lie within 3 px of lattice dots. The saved result had incorrectly treated the dense l…
 * **IR-25-HOLDOUT-DOES-NOT-TEST-PRUNING** (high, disclosed) — The hide-and-recover holdout uses catalogue components as truth. It cannot evaluate catalogue-proximity pruning (the GEMSDOE32 mechanism) or any hypothesis whose premise is the hidden set's distance from the catalogue.
 * **IR-25-SHIPPED-NOT-CLEARED** (high, open) — The unique H31-C file is format-valid and unique by bytes, but its holdout result is parity with its own control (not a win), its lane check is flagged, and it has no competition score. It must not be used for a weekly slot.
+* **IR-25-LANE-GATE-MISAPPLICATION** (critical, fixed (decision corrected)) — Prior stored GEM-1 validation marked the candidate lane-clean and package_tif=true despite a stored lattice overlap of 0.889015 and a separate full-footprint GEM-1 lane receipt of 1.0. The validator used one lane result for an independently selected candidate …
+* **IR-25-LEGACY-PACKAGER-DUPLICATE** (high, fixed (disabled)) — scripts/package_submissions.py could regenerate the previously identified D2.8 file (content id e56ea318af89; SHA-256 91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8) and rewrite registry/submissions.json with it as primary, despite the duplic…
+* **IR-25-GEMSDOE32-B2-PARADOX** (high, verified) — Pixel-exact forensics across the 9 focus sites proves GEMSDOE28 r1 (0.2708, 40,199 px) is D2.8 & (d(cat)>1 px), GEMSDOE32 H33-2-B2 (0.2778, 37,654 px) is D2.8 & (d(cat)>2 px), and GEMSDOE36 (0.2750, 38,854 px) is B2 + 1,200 extra dots. Evaluating the pre-built…
 
 ## Limitations and what is needed
 
@@ -158,17 +180,6 @@ Planning brackets are uncertain prioritization judgments, not estimates or live-
 4. Refresh the official-source/evidence tables and static site/feed (`scripts/check_sources.py`, then `scripts/build_site.py` and `scripts/build_readme.py`). The feed must never request or follow `drivendata.org`.
 5. Keep the H31-C file unscored and NOT slot-cleared (lane flag open). Never submit the withdrawn D2.8 duplicate as new. A passing H30 proxy gate is not a competition score, not confirmation until the fresh draw, and not authorization to upload.
 6. Open a PR from the fixed Arena session branch, review the checks, and merge only through the GitHub PR workflow if permitted; never claim an unverified merge or deployment.
-
-## Current task (2026-10-25) — read at the start of every session
-
-Full text: `knowledge/16_current_task_2026-10-25.md` (condensed restatement of the user's 2026-10-02/25 message).
-
-Must-dos in order:
-1. The existing GEM-1 TIF (`docs/downloads/gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif`, SHA-256 `51d0b341…`) is byte/content-distinct, but **fails the literal lane gate** (recorded dot overlap with the dense registry lattice exceeds the 70% cutoff). It is OK to download for local testing only; **do not submit it**. No new artifact was created in the current review because the data/cache are absent and the lane gate requires a stop.
-2. Site/executive summary must make the download obvious and must state explicitly whether it is OK to download and whether it is OK to submit (see `docs/executive-summary.html`, `docs/index.html`).
-3. Hypotheses 3–5, holdout validation, leakage canary (AUC ≤ 0.90), LANE check, run card — see `knowledge/15_new_hypotheses_2026-10-25.md` and `evidence/gem_validation/`.
-4. No DrivenData automation; no organizer receipts; treat all scores as unverified claims. Unknown stays unknown.
-5. Three review passes recorded in `registry/review_passes.json`; PR merged via the repo's PR workflow; never claim an unverified merge/deployment/score.
 
 ## Standing session charter
 
@@ -206,7 +217,7 @@ git add evidence/h30_relay_screen && git commit -m 'Record H30 screen evidence'
 .venv/bin/python scripts/analyze_scored_rasters.py && .venv/bin/python scripts/emission_model.py && .venv/bin/python scripts/validate_emission_model.py && .venv/bin/python scripts/harness_references.py
 # files, site, README
 .venv/bin/python scripts/build_candidate.py --help            # train on the full catalogue, emit, verify (exploratory surface)
-# scripts/package_submissions.py is retired and fails closed: it can only rebuild the known D2.8 duplicate.
+.venv/bin/python scripts/package_submissions.py --exploratory-receipt docs/downloads/checks-<file>.json
 .venv/bin/python scripts/build_data_dictionary.py && .venv/bin/python scripts/build_site.py && .venv/bin/python scripts/build_readme.py
 .venv/bin/python -m pytest -q && .venv/bin/python -m ruff check src scripts tests
 ```

@@ -39,6 +39,10 @@ def main() -> None:
     h27_confirm = opt("evidence/h27_confirm/results.json")
     h30_screen = opt("evidence/h30_relay_screen/results.json")
     h30_confirm = opt("evidence/h30_relay_confirm/results.json")
+    h31_flank_screen = opt("evidence/h31_flank_screen/results.json")
+    h31_flank_confirm = opt("evidence/h31_flank_confirm/results.json")
+    h31_card = opt("evidence/h31_run_card_2026-10-25.json")
+    focus_forensics = opt("evidence/focus_sites_forensics.json")
     irr = J("registry/irregularities.json")["issues"]
     best = max(a["score"] for a in ls["artifacts"] if a["score"] is not None)
     brief = (ROOT / "knowledge" / "owner_brief_verbatim.txt").read_text().rstrip()
@@ -58,11 +62,21 @@ def main() -> None:
     A(f"* Unique content id `{primary['content_id']}` · SHA-256 `{primary['sha256']}` · {primary['positive_pixels']:,} emitted pixels · status: **{primary['status']}**.")
     A(f"* **Note to paste** in DrivenData's *Note (optional)* field: `{primary['note']}`")
     for o in others:
-        if o["role"] == "fallback":
-            A(f"* Format fallback (format troubleshooting only; not slot-approved): [`{o['file']}`](docs/downloads/{o['file']}) — {o['title']} ({o['status']}; {o['positive_pixels']:,} px).")
+        if o["role"] in ("fallback", "alternate"):
+            A(f"* {o['title']}: [`{o['file']}`](docs/downloads/{o['file']}) ({o['status']}; {o['positive_pixels']:,} px).")
     A("* Step-by-step upload guide: [`docs/executive-summary.html`](https://buffedlizard55-lab.github.io/GEMSDOE25/docs/executive-summary.html).\n")
     A("> ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).\n")
     A(f"> ⚠ **Lane flag open:** this file is flagged by the lane-overlap check against a dense 13GEMSDOE lattice (IR-25-LANE-DENSITY). Its holdout result is parity with its own control, not a win. It is NOT slot-cleared. Receipt: `docs/downloads/lane-{primary['file'][:-4]}.json`.\n")
+    if h31_flank_screen and h31_flank_confirm and h31_card and focus_forensics:
+        inv = focus_forensics["nested_chain_inversion_conditional_on_reported_scores"]
+        s1 = inv["d28_to_r1_delete_0_1px_collar"]
+        s2 = inv["r1_to_b2_delete_1_2px_collar"]
+        scr_p = h31_flank_screen["arms"]["M1_C1"]["pooled"]
+        cnf_p = h31_flank_confirm["arms"]["M1_C1"]["pooled"]
+        A("## 9-Site Forensics (`GEMSDOE24..36`) and H31-1 Tip-Preserved Flank-Shielded Sub-Scarp 2² Factorial (`knowledge/14`, `knowledge/15`)\n")
+        A(f"* **Why `GEMSDOE32` `h33-h33-2-b2` (reported `0.2778`, unverified claim) scored highest (`evidence/focus_sites_forensics.json`):** Pixel-exact forensics proves `GEMSDOE28`/`31` `r1` (`0.2708`, `40,199` px) is `D2.8 & (d(cat) > 1.0 px)` (`-{s1['deleted_pixels']:,}` dots at 100 m; implied credit `{s1['implied_credit_per_deleted_px']:.5f}`/px ≪ τ = `{s1['break_even_tau_at_0_2600']:.4f}`) and **`GEMSDOE32` `H33-2-B2` (`0.2778`, `37,654` px) is `D2.8 & (d(cat) > 2.0 px)`** (`-{s2['deleted_pixels']:,}` additional dots in 100–200 m; implied credit `{s2['implied_credit_per_deleted_px']:.5f}`/px ≪ τ = `{s2['break_even_tau_at_0_2708']:.4f}`), while `GEMSDOE36` (`0.2750`, `38,854` px) is `B2` + `1,200` extra dots.")
+        A(f"* **H31-1 2² Factorial (`evidence/h31_flank_screen/`, `evidence/h31_flank_confirm/`):** Leakage Canary PASSED (max standalone feature AUC `0.8386 <= 0.90`). Screen (draws 10,11) PASSED with `{scr_p['formatted_label']}` (4-fold mean `0.154190`, paired gain `+0.003384` in `3/4` folds, hug `-0.0243`). Confirmation (draws 12,13) achieved `{cnf_p['formatted_label']}` (`+0.003848` pooled gain; `3/4` folds + vs `M0_C0`, `3/4` vs `CTRL_NO_TIP`, Factor `C` positive in `8/8` screen+confirm fold-blocks, `2/4` vs strict pointwise max -> Run Card verdict: `negative`).")
+        A("* **Unique H31-1 GeoTIFF (`docs/downloads/gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif`):** `49,041` dots, SHA-256 `41461ce0d0a6cb2d765e53fa490114d3f6e6344ca6f459b811f55bddbf7d2858`, 16/16 format checks PASS, max surface Spearman `0.1826 <= 0.90`, comparable dotted/focus 3-px overlap `0.6544 <= 0.70` (`0.3183` vs GEMSDOE32 `0.2778`; literal 5-px lattice overlap `1.000` -> testing only, DO NOT SUBMIT). Full Run Card: `evidence/h31_run_card_2026-10-25.json`.\n")
     A("## Where things stand\n")
     A(f"* **Unverified leaderboard claims** (reported {snap['reported_utc']}; no organizer page or receipt was accessed): #1 {snap['top10'][0]['participant']} {snap['top10'][0]['best_public_dti']:.4f}; reported rank #5 {snap['top10'][4]['best_public_dti']:.4f}. "
       f"The group-best claim is **{best:.4f}**; the previously reported rank #16/account association is not authenticated. These are not independently verified scores; apparent gaps to ranks #5/#1 are arithmetic on supplied claims only.")
