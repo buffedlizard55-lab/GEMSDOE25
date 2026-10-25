@@ -264,7 +264,7 @@ def build_h36_sidecar(
 def load_h36_sidecar(work: Path, external_dir: Path, footprint: np.ndarray) -> np.ndarray:
     """Load (or build once) the (7, n_foot) float32 H36 memmap sidecar."""
     work = Path(work)
-    path = work / "h36_columns.npy"
+    path = work / "h36_spigm_columns.npy"
     names_path = Path(str(path) + ".names.json")
     n_foot = int(np.asarray(footprint, dtype=bool).sum())
     if not path.exists() or not names_path.exists():

@@ -3,7 +3,7 @@
 **Session branch:** `arena/867f087d-gemsdoe25`  
 **Pre-registration (committed before any experiment):** [`knowledge/21_preregistered_h36_spigm_submodular_2026-10-25.md`](21_preregistered_h36_spigm_submodular_2026-10-25.md) (`2c5e873`, frozen runner/analyzer commit `1138a18`)  
 **Protocol budget:** `3 / 3` experiments used (`E1` screen on draws `20,21`; `E2` confirmation on draws `22,23`; `E3` 4-fold LOQO full-footprint build + 47-raster lane audit + dual automated `[0, 1]` portal validation), `< 35 min` compute total (`<= 2 h` cap), `0` post-hoc parameter tweaks.  
-**Run Card:** [`registry/run_card_h36_2026-10-25.json`](../registry/run_card_h36_2026-10-25.json)
+**Run Card:** [`registry/run_card_h36_spigm_2026-10-25.json`](../registry/run_card_h36_spigm_2026-10-25.json)
 
 ---
 
@@ -67,7 +67,7 @@ All five hypotheses were pre-registered before any experiment in [`knowledge/21_
 
 ## 4. Pre-Registered Spatial Holdout Outcomes (`E1` + `E2`, Untouched Draws `20..23`)
 
-**Evaluator label:** `HOLDOUT-DTI` via `gems25.holdout.Holdout(v1, 4-quadrant, collar=15px, hide_frac=0.20, erode=12) + gems25.metric.dti_binary(alpha=0.2, beta=0.8, R=3.0px)` (`evidence/h36_screen/analysis.json`, `evidence/h36_confirm/analysis.json`, `evidence/h36_pooled_16cells.json`).
+**Evaluator label:** `HOLDOUT-DTI` via `gems25.holdout.Holdout(v1, 4-quadrant, collar=15px, hide_frac=0.20, erode=12) + gems25.metric.dti_binary(alpha=0.2, beta=0.8, R=3.0px)` (`evidence/h36_spigm_screen/analysis.json`, `evidence/h36_spigm_confirm/analysis.json`, `evidence/h36_spigm_pooled_16cells.json`).
 - **Withheld positives:** `E1` (`draws 20,21`, `8` cells) = **`22,232`** (`11,172` + `11,060`); `E2` (`draws 22,23`, `8` cells) = **`22,391`** (`10,893` + `11,498`); 16-cell combined = **`44,623`**.
 - **Protocol Rule 4 — Standalone Feature Leakage Canary:** **8 / 8 features PASS** (`max_canary_auc = 0.6503 <= 0.90`: `H27_tip 0.6355`, `H36_burial_regime 0.6503`, `H36_chem_diseq 0.6088`, `H36_gm_strike_concord 0.5317`, `H36_grav_spi_k 0.5465`, `H36_mag_spi_k 0.5726`, `H36_transtension_iq 0.5809`, `H36_up150_persist 0.5703`).
 
@@ -91,7 +91,7 @@ All five hypotheses were pre-registered before any experiment in [`knowledge/21_
 
 ---
 
-## 5. `E3` Unique GeoTIFF Deliverable & 47-Raster Lane Audit (`evidence/h36_build/build_manifest.json`)
+## 5. `E3` Unique GeoTIFF Deliverable & 56-Raster Lane Audit (`evidence/h36_spigm_build/build_manifest.json`)
 
 Per pre-registered `knowledge/21` §3.3, full-footprint 4-fold LOQO `H36_PoE_submod` exceeded `70%` 3-px dot overlap against this repository's own DEM-lineage rasters (`0.7920` vs `H35`), so `scripts/build_h36_submission.py` automatically selected and packaged the **zero-topography `H36_S_submod`** arm (`0` DEM / `0` LiDAR features):
 
@@ -103,9 +103,9 @@ Per pre-registered `knowledge/21` §3.3, full-footprint 4-fold LOQO `H36_PoE_sub
 - **Automated dual validation (zero human intervention):**
   1. `gems25.submission.check_file`: **PASS** (`0` hard failures; `EPSG:32611`, `3730 × 3292`, `100 m` affine transform, `0` NaN/Inf inside `5,167,373`-px footprint, values in `[0.0, 1.0]`, `nodata = None`).
   2. Independent strict whole-array validator: **PASS** (`((arr >= 0.0) & (arr <= 1.0)).all() == True` across all `12,279,160` cells of `-zeros.tif`, directly preventing `"Predicted values must be in range [0, 1]"`).
-- **47-raster surface & final-dot lane check (`evidence/h36_lane_surface.json`, `evidence/h36_lane_duplicates_canonical.json`):**
-  - Pre-placement continuous surface `|Spearman|` across all 47 rasters: **`max = 0.1193 <= 0.90` (`0` flags — PASS)**.
-  - Final-dot `|Spearman|` across all 47 rasters: **`max = 0.5622 <= 0.90` (`0` flags — PASS)**.
+- **56-raster surface & final-dot lane check (`evidence/h36_spigm_lane_surface.json`, `evidence/h36_spigm_build/lane_dots_sub.json`, `evidence/h36_spigm_lane_duplicates_canonical.json`):**
+  - Pre-placement continuous surface `|Spearman|` across all 56 non-self rasters: **`max = 0.1213 <= 0.90` (`0` flags — PASS)**.
+  - Final-dot `|Spearman|` across all 56 non-self rasters: **`max = 0.0647 <= 0.90` (`0` flags — PASS)**.
   - **Against ALL `31` non-lattice scored & sibling top-scorer rasters (`GEMSDOE10..91`, including all 9 focus sites + `GEMSDOE70`):** **`31 / 31` CLEAR (`max 3-px overlap = 0.5985 <= 0.70`)** — specifically:
     - vs `GEMSDOE32` `H33-2-B2` (`0.2778`): **`23.95%`** (`0.2395`)
     - vs `GEMSDOE36` `PINNs` (`0.2750`): **`24.39%`** (`0.2439`)
@@ -114,8 +114,8 @@ Per pre-registered `knowledge/21` §3.3, full-footprint 4-fold LOQO `H36_PoE_sub
     - vs `GEMSDOE70` (`0.2478`): **`21.23%`** (`0.2123`)
     - vs `KDC` (`55,374` px): **`38.28%`** (`0.3828`)
     - vs `GEM-FUSE1` (`37,654` px): **`16.73%`** (`0.1673`)
-  - **Symmetric / mutual 3-px overlap (`min(A->B, B->A)`) across all 47 rasters:** **`max = 0.5794 <= 0.70`**.
-  - **Literal strict all-47 one-way check (`PR #14` rule):** flags synthetic `r13-lattice-s5` (`1.0000`, `IR-25-LANE-DENSITY`) and this repo's unscored `48,849`-dot `H35` (`0.7073` one-way, `0.5570` reverse — `273` dots above `70%` due to shared `Family E` catalogue distance/density halo, logged as `IR-25-CATALOGUE-HALO-CONVERGENCE`). Under strict repo policy: **`lane_clear = False`, `verdict = "negative"`, `ok_to_download = True`, `ok_to_submit_slot = False` (DO NOT SUBMIT)**.
+  - **Symmetric / mutual 3-px overlap (`min(A->B, B->A)`) across all 55 non-lattice rasters:** **`max = 0.5794 <= 0.70`**.
+  - **Literal strict all-56 one-way check (`PR #14` rule):** flags synthetic `r13-lattice-s5` (`1.0000`, `IR-25-LANE-DENSITY`) and this repo's unscored `~48,500`-dot `Family E`-halo builds (`H35 0.7073`, `H36-TZC 0.708`, `H37-DOC 0.708`, `MSCR 0.703`, `XG1 0.709`, with reverse overlaps only `0.557–0.563` due to shared `Family E` catalogue distance/density halo; logged as `IR-25-CATALOGUE-HALO-CONVERGENCE`). Under strict repo policy: **`lane_clear = False`, `verdict = "negative"`, `ok_to_download = True`, `ok_to_submit_slot = False` (DO NOT SUBMIT)**.
 
 ---
 

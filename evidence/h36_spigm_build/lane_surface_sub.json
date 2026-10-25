@@ -1,8 +1,8 @@
 {
  "sample_pixels": 400000,
  "rho_max": 0.9,
- "registry_checked": 47,
- "worst_abs_spearman": 0.119293,
+ "registry_checked": 56,
+ "worst_abs_spearman": 0.1213,
  "flagged": [],
  "all_clear": true,
  "rows": [
@@ -232,6 +232,13 @@
   },
   {
    "group": "downloads",
+   "file": "gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
+   "spearman_surface": 0.111867,
+   "abs_spearman": 0.111867,
+   "flag_rank": false
+  },
+  {
+   "group": "downloads",
    "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
    "spearman_surface": 0.015208,
    "abs_spearman": 0.015208,
@@ -323,6 +330,34 @@
   },
   {
    "group": "downloads",
+   "file": "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-nan.tif",
+   "spearman_surface": 0.118847,
+   "abs_spearman": 0.118847,
+   "flag_rank": false
+  },
+  {
+   "group": "downloads",
+   "file": "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.tif",
+   "spearman_surface": 0.118847,
+   "abs_spearman": 0.118847,
+   "flag_rank": false
+  },
+  {
+   "group": "downloads",
+   "file": "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-nan.tif",
+   "spearman_surface": 0.1213,
+   "abs_spearman": 0.1213,
+   "flag_rank": false
+  },
+  {
+   "group": "downloads",
+   "file": "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-zeros.tif",
+   "spearman_surface": 0.1213,
+   "abs_spearman": 0.1213,
+   "flag_rank": false
+  },
+  {
+   "group": "downloads",
    "file": "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-nan.tif",
    "spearman_surface": 0.049565,
    "abs_spearman": 0.049565,
@@ -333,6 +368,34 @@
    "file": "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-zeros.tif",
    "spearman_surface": 0.049565,
    "abs_spearman": 0.049565,
+   "flag_rank": false
+  },
+  {
+   "group": "downloads",
+   "file": "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-nan.tif",
+   "spearman_surface": 0.117342,
+   "abs_spearman": 0.117342,
+   "flag_rank": false
+  },
+  {
+   "group": "downloads",
+   "file": "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.tif",
+   "spearman_surface": 0.117342,
+   "abs_spearman": 0.117342,
+   "flag_rank": false
+  },
+  {
+   "group": "downloads",
+   "file": "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-nan.tif",
+   "spearman_surface": 0.118209,
+   "abs_spearman": 0.118209,
+   "flag_rank": false
+  },
+  {
+   "group": "downloads",
+   "file": "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.tif",
+   "spearman_surface": 0.118209,
+   "abs_spearman": 0.118209,
    "flag_rank": false
   }
  ]

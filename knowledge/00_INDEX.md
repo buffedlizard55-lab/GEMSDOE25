@@ -53,3 +53,5 @@
 | `22_crossfield_outcome_2026-10-25.md` | parallel CF-1 outcome: negative diagnostic (DO NOT SUBMIT); see `registry/run_card_cf1_2026-10-25.json` |
 | `21_preregistered_h36_tiltzero_coincidence_2026-10-25.md` | parallel session: H36-TZC pre-registration (negative; see `registry/run_card_h36_h37_2026-10-25.json`) |
 | `22_preregistered_h37_seisalign_2026-10-25.md` | parallel session: H37-SEISALIGN pre-registration — a DIFFERENT hypothesis from this session's H37 DOC/SPR lane (knowledge/24 §8) |
+| `21_preregistered_h36_spigm_submodular_2026-10-25.md` | H36-SPIGM session: 9-site forensics (`GEMSDOE24..36`), `Family A` `200×` unit-mismatch proof, 5 ranked untried hypotheses (`H36-1..H36-5`), and frozen `E1`/`E2`/`E3` protocol |
+| `22_h36_outcomes_and_forensics_2026-10-25.md` | H36-SPIGM outcomes: 16-cell (`44,623` withheld positives) spatial holdout, zero-topography `H36_S_submod` `3/4`-fold subsurface win (`0.1345` vs `0.040` `GEM-1`), 56-raster lane audit (`3937b96ce366`), and prioritized next steps |

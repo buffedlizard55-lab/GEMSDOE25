@@ -1,4 +1,4 @@
-"""Unit and mathematical-equivalence tests for H36 (`src/gems25/h36.py`)."""
+"""Unit and mathematical-equivalence tests for H36-SPIGM (`src/gems25/h36_spigm.py`)."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ import numpy as np
 import pytest
 from scipy.ndimage import distance_transform_edt
 
-from gems25.h36 import (
+from gems25.h36_spigm import (
     H36_NAMES,
     TENT25,
     compute_alpha_sub,
@@ -166,7 +166,7 @@ def test_h36_featured_deliverable_run_card_and_site_banners():
     subs = json.loads((root / "registry" / "submissions.json").read_text())["files"]
     primary = next(s for s in subs if s["role"] == "primary")
     fallback = next(s for s in subs if s["role"] == "fallback")
-    card = json.loads((root / "registry" / "run_card_h36_2026-10-25.json").read_text())
+    card = json.loads((root / "registry" / "run_card_h36_spigm_2026-10-25.json").read_text())
 
     assert primary["id"] == "h36-spigm-subsurface"
     assert fallback["id"] == "h36-spigm-subsurface-nan"
@@ -212,4 +212,3 @@ def test_h36_featured_deliverable_run_card_and_site_banners():
         assert "OK to download: YES" in html_txt
         assert "OK to spend a weekly slot: NO" in html_txt
         assert "DO NOT SUBMIT" in html_txt
-

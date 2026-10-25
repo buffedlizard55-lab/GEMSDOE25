@@ -29,7 +29,7 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from gems25.experiment import HGB_PARAMS, Cell, load_context  # noqa: E402
-from gems25.h36 import (  # noqa: E402
+from gems25.h36_spigm import (  # noqa: E402
     CAND_KFRAC_DEFAULT,
     FLANK_PX_DEFAULT,
     H36_NAMES,

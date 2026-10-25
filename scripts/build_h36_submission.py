@@ -39,7 +39,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from gems25.experiment import HGB_PARAMS, N_NEG, gather_columns, load_context  # noqa: E402
 from gems25.features import build_catalogue_features, build_tip_continuation  # noqa: E402
-from gems25.h36 import (  # noqa: E402
+from gems25.h36_spigm import (  # noqa: E402
     H36_NAMES,
     TARGET_FULL_DOTS,
     compute_alpha_sub,
@@ -264,7 +264,7 @@ def _strict_whole_array_validator(tif_path: Path, foot: np.ndarray, lab: np.ndar
 def main() -> None:
     t0 = time.time()
     work, ddir = work_dir(), data_dir()
-    ev_dir = ROOT / "evidence" / "h36_build"
+    ev_dir = ROOT / "evidence" / "h36_spigm_build"
     ev_dir.mkdir(parents=True, exist_ok=True)
 
     ctx = load_context(work)

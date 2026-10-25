@@ -32,13 +32,13 @@ def sha256_file(p: Path) -> str:
 
 
 def main() -> None:
-    manifest = J(EV / "h36_build" / "build_manifest.json")
-    scr = J(EV / "h36_screen" / "analysis.json")
-    cnf = J(EV / "h36_confirm" / "analysis.json")
-    pool16 = J(EV / "h36_pooled_16cells.json")
-    surf_lane = J(EV / "h36_lane_surface.json")
-    dots_lane = J(EV / "h36_lane_duplicates_canonical.json")
-    dots_ext = J(EV / "h36_build" / "lane_dots_sub.json")
+    manifest = J(EV / "h36_spigm_build" / "build_manifest.json")
+    scr = J(EV / "h36_spigm_screen" / "analysis.json")
+    cnf = J(EV / "h36_spigm_confirm" / "analysis.json")
+    pool16 = J(EV / "h36_spigm_pooled_16cells.json")
+    surf_lane = J(EV / "h36_spigm_lane_surface.json")
+    dots_lane = J(EV / "h36_spigm_lane_duplicates_canonical.json")
+    dots_ext = J(EV / "h36_spigm_build" / "lane_dots_sub.json")
 
     zfile = manifest["files"]["zeros"]
     nfile = manifest["files"]["nan"]
@@ -210,7 +210,7 @@ def main() -> None:
             "plus unscored local H35 (70.73% one-way / 55.70% reverse via shared Family E halo)."
         ),
     }
-    card_path = REG / "run_card_h36_2026-10-25.json"
+    card_path = REG / "run_card_h36_spigm_2026-10-25.json"
     card_path.write_text(json.dumps(run_card, indent=1) + "\n")
 
     # 4. Register in registry/submissions.json as primary + fallback, keeping all existing TIFs as alternates
@@ -264,7 +264,7 @@ def main() -> None:
             "worst_abs_spearman_surface": strict_lane["worst_abs_spearman_surface"],
         },
         lane_summary=lane_summary,
-        run_card="registry/run_card_h36_2026-10-25.json",
+        run_card="registry/run_card_h36_spigm_2026-10-25.json",
     )
 
     new_entries = [
