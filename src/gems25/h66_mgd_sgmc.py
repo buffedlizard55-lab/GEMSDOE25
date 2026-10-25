@@ -278,7 +278,7 @@ def build_h66_sgmc_sidecar(
     with rasterio.open(external_dir / "derived_sgmc_faults_100m_u8.tif") as s:
         sgmc_u8 = s.read(1)
 
-    geod_2nd = np.load(work / "bands" / "10_geod_2ndinv.npy")
+    geod_2nd = np.load(work / "bands" / "04_geod_2ndinv.npy")
     iso_grav = np.load(work / "bands" / "13_iso_grav_anom.npy")
     vecs = compute_sgmc_reactivation_grids(
         sgmc_u8=sgmc_u8,
