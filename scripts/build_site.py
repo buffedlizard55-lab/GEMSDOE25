@@ -73,6 +73,21 @@ def dl_card(s: dict, prefix: str, big: bool = True) -> str:
 <div class="note"><code id="{nid}">{e(s['note'])}</code></div></section>"""
 
 
+def verdict_banner(p: dict, prefix: str, exec_page: bool = False) -> str:
+    """Top-of-page status for the primary file, driven by registry/submissions.json (no hand-written status text)."""
+    dl = "YES" if p.get("ok_to_download", p.get("format_ok")) else "NO"
+    slot = "YES" if p.get("ok_to_submit_slot") else "NO"
+    title = "Executive summary &amp; submission guide" if exec_page else "Download the unique, format-valid GeoTIFF"
+    return f"""<div class="hero"><h1>{title}</h1>
+<div class="stats"><div class="stat"><b style="color:#15803d">OK to download: {dl}</b><span>for local testing: unique by content · all hard format checks pass · values in [0,1] · no NaN inside the footprint</span></div>
+<div class="stat"><b style="color:#b91c1c">OK to spend a weekly slot: {slot}</b><span>verdict <b>{e(p.get('verdict', 'n/a'))}</b>: not slot-approved — DO NOT SUBMIT (strict lane gate and pre-registered holdout gate both fail)</span></div>
+<div class="stat"><b>{e(p.get('expected_range') or 'n/a')}</b><span>model projection for this file versus the owner-reported 0.2778 best — not a score</span></div></div>
+<p class="lead"><b>{e(p['title'])}.</b> The download card below has the file, checksum and the note to paste.</p>
+<p class="small"><b>Status:</b> {e(p['status'])}. <b>Lane:</b> {e(p.get('lane_summary', 'n/a'))}. <b>Run card:</b> <code>{e(p.get('run_card', ''))}</code>.
+Zip alternative: <a href="{prefix}downloads/{e(p.get('zip', ''))}" download>{e(p.get('zip', ''))}</a>. The earlier "Predicted values must be in range [0, 1]" error came from NaN pixels inside the footprint of an old file; this file has none (zeros outside, no NaN anywhere).
+The frozen holdout comparator 0.152003389 does not reproduce in this environment (IR-25-COMPARATOR-DRIFT); gates use the best same-run control instead.</p></div>"""
+
+
 def main() -> None:
     subs = J("registry/submissions.json")["files"]
     ls = J("registry/live_scores.json")
@@ -106,6 +121,8 @@ def main() -> None:
     primary = next(s for s in subs if s["role"] == "primary")
     others = [s for s in subs if s["role"] != "primary"]
     selected = primary
+    kdc = opt("registry/run_card_kdc_2026-10-25.json")
+    anchor = opt("evidence/live_anchor_complement.json")
     snap = ls["leaderboard_snapshot"]
     lead = snap["top10"][0]["best_public_dti"]
     best = max(a["score"] for a in ls["artifacts"] if a["score"] is not None)
@@ -128,8 +145,7 @@ def main() -> None:
         h30_status = "registered screen draws 6,7; real-data feature smoke passed, no model fit or DTI yet"
 
     def home(prefix: str) -> str:
-        hero = """<div class="hero"><h1>Testing download only — no artifact is cleared for a slot.</h1>
-<p class="lead">One click gets a <b>single-band float32 GeoTIFF with finite [0,1] predictions throughout the footprint</b>, according to a tracked owner-mirror format receipt. This establishes format validity only—not a competition score or slot eligibility. The GEM-FUSE1 file is unique by content, but its lane receipt records <b>100% of candidate dots within 3 px of the r13 lattice</b>, above the literal 70% stop threshold. This is a duplicate-lane stop; <b>do not submit this file</b>. The density-artifact interpretation and reverse-overlap figure do not create an exception. This file is <b>not slot-approved</b>; the frozen 0.152003389 comparator does not reproduce in this environment (IR-25-COMPARATOR-DRIFT), so same-run controls remain required. Download only for local testing. The former D2.8 download was byte-identical to a listed submission and has been <b>withdrawn</b> (IR-25-DUPLICATE-DOWNLOAD). No organizer score is verified.</p></div>"""
+        hero = verdict_banner(primary, prefix)
         cards = dl_card(primary, prefix)
         alt = "".join(f"""<div class="card"><b>{e(o['title'])}</b> {badge(o['status'], 'ok' if o['status']=='scored' else 'warn')}
 <p class="small" style="margin:.3em 0">{e(o['summary'])}</p><a class="btn alt small" href="{prefix}downloads/{o['file']}" download>↓ {e(o['file'])}</a>
@@ -200,7 +216,7 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
         feed = f"""<h2>Source feed</h2><div id="feed" data-base="{prefix}"><p class="small">Loading <code>data/feed.json</code> …</p></div>
 <p class="small">The feed blocks DrivenData requests and redirected targets. The displayed leaderboard values are user-provided, unverified claims—not live snapshots.</p>"""
         plan = ('<div class="callout warn"><b>No weekly slot is approved for the downloadable GeoTIFFs (0.152003389 historical comparator drift; strict lane &amp; confirmation gates not cleared).</b> '
-                'All current downloads (including <code>gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif</code> and <code>gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif</code>) are format-validated research artifacts only and are <b>not slot-approved (DO NOT SUBMIT)</b>. '
+                f'All current downloads (including <code>{e(primary["file"])}</code>, <code>gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif</code> and <code>gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif</code>) are format-validated research artifacts only and are <b>not slot-approved (DO NOT SUBMIT)</b>. '
                 f'H30-1 status: {e(h30_status)}. H31-1 flank-shielded 2&sup2; status: screen passed (<code>0.153199</code> pooled HOLDOUT-DTI, <code>+0.003384</code> paired gain, <code>3/4</code> folds +); confirmation achieved <code>0.144941</code> pooled HOLDOUT-DTI (<code>+0.003848</code> pooled gain, <code>3/4</code> folds + vs each individual control, <code>2/4</code> vs strict pointwise max &rarr; verdict: <code>negative</code>). '
                 'Nothing is submitted or monitored automatically.</div>')
         h31_block = ""
@@ -223,9 +239,39 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
 <div class="card"><p><b>Why GEMSDOE32 <code>h33-h33-2-b2</code> (owner-reported <code>0.2778</code>, unverified claim) scored highest:</b> Pixel-exact forensics across 13 fetched GeoTIFFs (<code>evidence/focus_sites_forensics.json</code>) proves that <code>GEMSDOE28</code>/<code>31</code> <code>r1</code> (<code>0.2708</code>, <code>40,199</code> px) is <b><code>D2.8 &amp; (d(catalogue) &gt; 1.0 px)</code></b> (deleting <code>{s1['deleted_pixels']:,}</code> collar dots at 100 m with implied credit <code>{s1['implied_credit_per_deleted_px']:.5f}</code>/px &ll; &tau; = <code>{s1['break_even_tau_at_0_2600']:.4f}</code>) and <b><code>GEMSDOE32</code> <code>H33-2-B2</code> (<code>0.2778</code>, <code>37,654</code> px) is <code>D2.8 &amp; (d(catalogue) &gt; 2.0 px)</code></b> (deleting an additional <code>{s2['deleted_pixels']:,}</code> collar dots in 100–200 m with implied credit <code>{s2['implied_credit_per_deleted_px']:.5f}</code>/px &ll; &tau; = <code>{s2['break_even_tau_at_0_2708']:.4f}</code>), while <code>GEMSDOE36</code> (<code>0.2750</code>, <code>38,854</code> px) is <code>B2</code> plus <code>1,200</code> extra dots.</p>
 {h31_aniso_html}
 <p><b>H31-1 2&sup2; Factorial (<code>knowledge/14_preregistered_h31_flank_shielded_subscarp_factorial_2026-10-25.md</code>, <code>knowledge/15_h31_outcomes_and_run_card_2026-10-25.md</code>):</b> Tested tip-preserved lateral-flank shielding (<code>Factor C</code>: <code>d(visible) &gt; 2.5 px</code> or <code>H27_tip &ge; 0.05</code>) &times; multi-physics subdued-scarp concordance (<code>Factor M</code>: <code>H31_subscarp_concord</code> + <code>H31_offflank_tip_halo</code>). Leakage Canary PASSED (all standalone features AUC &le; <code>0.8386</code> &le; <code>0.90</code>). Screen (draws 10,11) PASSED with <code>{e(h31_flank_screen['arms']['M1_C1']['pooled']['formatted_label'])}</code> (paired gain <code>+0.003384</code>, <code>3/4</code> folds +). Confirmation (draws 12,13) achieved <code>{e(h31_flank_confirm['arms']['M1_C1']['pooled']['formatted_label'])}</code> (<code>+0.003848</code> pooled gain; <code>3/4</code> folds + vs <code>M0_C0</code>, <code>3/4</code> vs <code>CTRL_NO_TIP</code>, Factor <code>C</code> positive in <code>8/8</code> fold-blocks, <code>2/4</code> vs strict pointwise max &rarr; Run Card verdict: <code>negative</code>). Unique GeoTIFF: <code>gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif</code> (<code>49,041</code> dots, SHA-256 <code>41461ce0d0a6…</code>, max surface Spearman <code>0.1826</code>, comparable dotted/focus 3-px overlap <code>0.6544</code> &le; <code>0.70</code>, <code>0.3183</code> vs GEMSDOE32 <code>0.2778</code>; literal r13 5-px lattice overlap <code>1.000</code> &rarr; testing only, DO NOT SUBMIT).</p></div>"""
-        return hero + cards + (f"<h3>Also available</h3>{alt}" if alt else "") + plan + stats + h31_block + whyb + h28b + h30b + facb + flagb + feed
+        kdcb = ""
+        if kdc:
+            g1 = kdc["experiments"][0]["gate"]
+            g2 = kdc["experiments"][1]["gate"]
+            arms = kdc["holdout_dti"]["arms"]
+            hc = kdc["live_build"]["registry_halo_cost"]
+            def ci_txt(v):
+                return "" if not v["ci95"] else "[{:.4f}, {:.4f}]".format(*v["ci95"])
 
-    exec_body = f"""<div class="hero"><h1>Executive summary &amp; submission guide</h1><p class="lead">Download a single-band float32 GeoTIFF for local review. Format validation is separate from scientific promotion, uniqueness, and organizer acceptance.</p></div>
+            def eff_txt(x):
+                return "n/i" if not x["identifiable"] else "{:.2f}–{:.2f}".format(*x["efficiency_range"])
+
+            arow = "".join(f"<tr><td class='mono'>{e(k)}</td><td class='num'>{v['mean']:.5f}</td><td class='num'>{ci_txt(v)}</td></tr>"
+                           for k, v in arms.items())
+            anc = ""
+            if anchor:
+                anc = "".join(f"<tr><td class='mono'>{e(x['file'])}</td><td class='num'>{x['owner_reported_score']:.4f}</td>"
+                              f"<td class='num'>{x['frac_within_3px_h19_5']:.3f}</td><td class='num'>{eff_txt(x)}</td></tr>"
+                              for x in sorted(anchor["rows"], key=lambda x: -x["owner_reported_score"]))
+            kdcb = f"""<h2 id="b2">Why H33-2-B2 scored 0.2778, and why this session could not beat it</h2>
+<div class="card"><ol>
+<li><b>What B2 is (COMPUTED from the pinned rasters):</b> exactly the GEMSDOE28 h27-4 file minus every dot within 2 px of the catalogue (XOR 0), and h27-4 is the D2.8 dotting of H19-5 minus dots within 1 px. B2 has 37,654 binary dots (nearest-neighbour spacing 3.0 px, median 19.6 px from the catalogue). Every file scoring ≥ 0.2449 except GEMSDOE70 (0.2478; 14.3 % on H19-5 pixels, 62 % within 3 px) is a ≥ 96.9 % pixel subset of H19-5.</li>
+<li><b>Why it scored higher (INFERENCE from owner-reported scores):</b> each removal of near-catalogue dots raised the score monotonically (0.2600 → 0.2708 → 0.2778), so the hidden truth is depleted within ≈200 m of mapped faults (masked pixels score nothing; expert-identified new faults sit away from mapped traces). Removing low-yield dots lowers FP faster than TP.</li>
+<li><b>Seven sibling files swapped 34–49 % of their dots off the H19-5 halo; all scored lower</b>. Implied off-halo dot efficiency is 0.15–0.72 of B2's average dot (table below). Nobody had <i>added</i> dots. Under the lane rule, adding beats swapping (DTI algebra, knowledge/17).</li>
+<li><b>This session's test (HOLDOUT-DTI, pre-registered):</b> adding kernel-disjoint model dots to the best same-run control gave {g1['mean_gain']:+.4f} (95 % CI [{g1['gain_ci95'][0]:+.4f}, {g1['gain_ci95'][1]:+.4f}], {g1['folds_positive']}/4 folds, efficiency R {g1['efficiency_R_pooled']:.3f}) → <b>gate FAIL</b>. The flank-zone variant gave {g2['mean_gain']:+.4f} (R {g2['efficiency_R_pooled']:.3f}) → <b>FAIL</b>. The folds disagree: north R ≈ 0.36, south R ≈ 0.6.</li>
+<li><b>The uniqueness wall:</b> the 3 px halos of 30 other-site registry rasters cover {100*hc['footprint_frac_in_registry_halo']:.1f} % of the footprint and {100*hc['frac_topk_ridge_inside_registry_halo']:.1f} % of this repo's top-3.5 % model ridges. A unique file must put new dots in lower-value terrain (IR-25-REGISTRY-HALO-COST).</li></ol>
+<table><thead><tr><th>Holdout arm (E1+E2)</th><th class="num">Mean HOLDOUT-DTI</th><th class="num">95 % CI</th></tr></thead><tbody>{arow}</tbody></table>
+<p class="small">{e(kdc['holdout_dti']['evaluator'])}; withheld positives per fold {e(kdc['holdout_dti']['withheld_positives_per_fold'])}. {e(kdc['holdout_dti']['reproduction'])}.</p>
+<table><thead><tr><th>Registry file (swap design)</th><th class="num">Owner-reported</th><th class="num">Share near H19-5</th><th class="num">Off-incumbent efficiency e</th></tr></thead><tbody>{anc}</tbody></table>
+<p class="small">INFERENCE from owner-reported scores (<code>evidence/live_anchor_complement.json</code>); live break-even e ≈ 0.33–0.47. n/i = not identifiable (&lt;5 % off-incumbent dots).</p></div>"""
+        return hero + cards + (f"<h3>Also available</h3>{alt}" if alt else "") + plan + kdcb + stats + h31_block + whyb + h28b + h30b + facb + flagb + feed
+
+    exec_body = f"""{verdict_banner(primary, '', exec_page=True)}
 <div class="callout"><b>Current unique research artifact: {e(selected['file'])}.</b> <b>OK to download for inspection/reproduction: YES.</b> Its tracked receipt reports format checks passing against an owner-mirrored template; this is not a fresh check in this checkout. <b>OK to submit to a competition scoring slot: NO.</b> The strict parallel-run lane gate is triggered: more than 70% of candidate dots are within 3 px of a registry lattice raster. Treat this as a duplicate-lane stop. No available TIFF is currently eligible for a weekly scoring slot; do not upload it.</div>
 {dl_card(selected, '')}
 <h2>Competition upload instructions — for a future gate-cleared candidate only</h2>
@@ -248,7 +294,7 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
 <li>Generative-AI use is allowed but must be described in the narrative (<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">§3.2</a>); a draft is in <code>AI_DISCLOSURE.md</code>.</li>
 <li>Known USGS/INGENIOUS pixels are masked and pixel-exact; predictions on them do not matter (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4">staff</a>).</li>
 <li>Deadline wording differs between the page (11:59 p.m. UTC, 3 Dec 2026) and the rules (5:00 p.m. ET): confirm with <a href="mailto:gemsprize@nlr.gov">gemsprize@nlr.gov</a>.</li></ul>
-<div class="callout"><b>Slot discipline.</b> All current downloads are research artifacts only. The strict lane test disqualifies the GEM-1 candidate; H31-C is also lane-flagged and its holdout experiment was negative. Do not upload either. A future candidate needs a fresh passing holdout, leakage canaries, lane clearance, and exact-file audit; no proxy result is a live score.</div>"""
+<div class="callout"><b>Slot discipline.</b> All current downloads are research artifacts only. The strict lane test stops every current file (each has more than 70 % of its dots within 3 px of the dense r13 lattice). The featured KDC file additionally failed its pre-registered holdout gate; GEM-1/GEM-FUSE1 were gated against a weak control; H31-C and H31-1 were negative. Do not upload any of them. A future candidate needs a fresh passing holdout, leakage canaries, lane clearance, and exact-file audit; no proxy result is a live score.</div>"""
 
     # ------------------------------------------------------------------ research page
     effs = fac["effects_dti"]

@@ -49,46 +49,32 @@ def main() -> None:
     best = max(a["score"] for a in ls["artifacts"] if a["score"] is not None)
     brief = (ROOT / "knowledge" / "owner_brief_verbatim.txt").read_text().rstrip()
     active_brief = (ROOT / "knowledge" / "current_project_brief_2026-10-03.md").read_text().rstrip()
-    prompt_20261025 = (ROOT / "knowledge" / "current_project_brief_2026-10-25.md").read_text().rstrip()
     L = []
     A = L.append
     A("# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize\n")
-    A("**Current session review (2026-10-25):** [H31-1 Anisotropic Along-Strike Continuation & 3DEP LiDAR Strike Coherence + B=2 Shadow Guard (`c213681203f6`)](knowledge/14_h31_anisotropic_scarp_outcomes_2026-10-25.md) · [Preregistration & 4 Ranked Geological Hypotheses](knowledge/13_preregistered_h31_anisotropic_scarp_coherence_2026-10-25.md) · [GEMSDOE32 H33-2-B2 score forensics](knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md). The requested start-of-session owner prompt remains archived verbatim at `knowledge/owner_brief_verbatim.txt` and `knowledge/current_project_brief_2026-10-25.md`; see also `AGENTS.md`.\n")
+    A("**Latest session (2026-10-25, session 6):** [why H33-2-B2 scored 0.2778, the KDC/flank holdout tests (both negative) and the unique KDC file](knowledge/19_kdc_results_2026-10-25.md) · "
+      "run card `registry/run_card_kdc_2026-10-25.json` · owner brief copies (neither guaranteed verbatim, IR-25-BRIEF-RECONSTRUCTED): "
+      "[`knowledge/owner_brief_2026-10-25_verbatim.txt`](knowledge/owner_brief_2026-10-25_verbatim.txt) (parallel session, abridged) and "
+      "[`knowledge/owner_brief_2026-10-25_s6_RECONSTRUCTED.txt`](knowledge/owner_brief_2026-10-25_s6_RECONSTRUCTED.txt) (full reconstruction) · older verbatim brief `knowledge/owner_brief_verbatim.txt` · `AGENTS.md`.\n")
     A("> **Maximize P(Win)** · **Own the Outcome** — the Arena core values are the decision rule for every change in this repository.\n")
     A("**Competition:** [DOE GEMS Prize, DrivenData #306](https://www.drivendata.org/competitions/306/competition-doe-gems/) · "
       "**Live site:** <https://buffedlizard55-lab.github.io/GEMSDOE25/> · **Weekly limit:** 3 submissions · "
       "**Ends:** 3 Dec 2026 (page: 11:59 p.m. UTC; rules: 5:00 p.m. ET — see IR-25-DEADLINE)\n")
-    A("## ⬇ Download the Unique, Automated-Validated H31-1 GeoTIFF (`c213681203f6`)\n")
+    A("## ⬇ Download the unique, format-valid GeoTIFF (testing only — DO NOT SUBMIT)\n")
     A(f"**[↓ `{primary['file']}`](docs/downloads/{primary['file']})** — {primary['summary']}\n")
-    A(f"* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, NaN outside "
+    outside_txt = "zeros outside (no NaN anywhere)" if primary.get("outside") == "zero" else "NaN outside"
+    A(f"* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, {outside_txt} "
       f"(verified against the pinned owner-mirror template, not organizer-authenticated; independent check receipt: `docs/downloads/{primary['receipt']}`).")
-    A(f"* Unique content id `{primary['content_id']}` · SHA-256 `{primary['sha256']}` · {primary['positive_pixels']:,} emitted pixels (`min_distance_to_known_fault = 2.24 px = 224 m`) · status: **{primary['status']}**.")
-    A("* **Single-GeoTIFF `.zip` archive:** [`docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6.zip`](docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6.zip)")
+    A(f"* Unique content id `{primary['content_id']}` · SHA-256 `{primary['sha256']}` · {primary['positive_pixels']:,} emitted pixels · status: **{primary['status']}**.")
     A(f"* **Note to paste** in DrivenData's *Note (optional)* field: `{primary['note']}`")
     for o in others:
         if o["role"] in ("fallback", "alternate"):
             A(f"* {o['title']}: [`{o['file']}`](docs/downloads/{o['file']}) ({o['status']}; {o['positive_pixels']:,} px).")
     A("* Step-by-step upload guide: [`docs/executive-summary.html`](https://buffedlizard55-lab.github.io/GEMSDOE25/docs/executive-summary.html).\n")
     A("> ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).\n")
-    A(f"> ℹ **Automated Readiness & Lane Audit (`docs/downloads/{primary['receipt']}`, `evidence/h31_experiments/uniqueness_audit.json`):** `gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif` passed all **15/15 hard format checks**, the **single-feature leakage canary** (`max AUC = 0.8419 <= 0.90`), the **8-cell holdout promotion gate** (`HOLDOUT-DTI = 0.156523`, `+0.008838` vs `BASE` in `4/4` folds, `+0.005717` vs `T_BASE` in `4/4` folds, beating `0.152003389`), and **comparable-detector uniqueness** (`max rank-corr = 0.1697 <= 0.90`, `max symmetric 3-px overlap = 0.5837 <= 0.70`, `max sparse-detector 3-px overlap = 0.6707 <= 0.70`, `31.75%` vs `GEMSDOE32` `0.2778`). Under the literal one-way 3-px check against the dense 5-px `r13-lattice-s5` grid (`IR-25-LANE-DENSITY`, where every pixel in the study area lies within $\\sqrt{{8}}=2.83 < 3\\text{{ px}}$ of a $5\\times 5$ lattice), `slot_approved` is kept `False` until the owner waives the 5-px calibration lattice.\n")
-    if h31_aniso_res and h31_aniso_card:
-        pc = h31_aniso_res["paired_contrasts"]
-        A("## H31-1 Anisotropic Fault-Tip Continuation × 100 m 3DEP LiDAR Strike Coherence + B=2 Shadow Guard (`knowledge/13`, `knowledge/14`)\n")
-        A("| Arm (`Draws 10, 11` · `22,317` withheld positives) | Pooled `HOLDOUT-DTI` | Cell Mean `HOLDOUT-DTI` | 95% CI | $\\Delta$ vs `BASE` (`Folds +`) | $\\Delta$ vs `T_BASE` (`Folds +`) | Hug Share |")
-        A("|---|---:|---:|---|---:|---:|---:|")
-        for arm_id, k_b, k_t in [
-            ("BASE", None, None),
-            ("T_BASE", None, None),
-            ("H31_E1_ANISO", "E1_vs_BASE", "E1_vs_T_BASE"),
-            ("H31_E2_COH", "E2_vs_BASE", "E2_vs_T_BASE"),
-            ("H31_E3_B2", "E3_vs_BASE", "E3_vs_T_BASE"),
-        ]:
-            ar = h31_aniso_res["arms"][arm_id]
-            db = f"`{pc[k_b]['mean_dti_delta']:+.6f}` (`{pc[k_b]['folds_positive']}/4`)" if k_b else ("`+0.003121` (`4/4`)" if arm_id == "T_BASE" else "—")
-            dt = f"`{pc[k_t]['mean_dti_delta']:+.6f}` (`{pc[k_t]['folds_positive']}/4`)" if k_t else ("`-0.003121` (`0/4`)" if arm_id == "BASE" else "—")
-            A(f"| `{arm_id}` | `{ar['pooled_holdout_dti']:.6f}` | **`{ar['cell_mean_holdout_dti']:.6f}`** | `[{ar['cell_ci95'][0]:.6f}, {ar['cell_ci95'][1]:.6f}]` | {db} | {dt} | `{ar['mean_hug_share']:.4f}` |")
-        A("\n### JSON RUN CARD (`evidence/h31_experiments/run_card.json`)\n")
-        A("```json\n" + json.dumps(h31_aniso_card, indent=2) + "\n```\n")
+    A(f"> **OK to download (local testing): {'YES' if primary.get('ok_to_download') else 'NO'} · OK to spend a weekly slot: {'YES' if primary.get('ok_to_submit_slot') else 'NO'} — DO NOT SUBMIT** "
+      f"(verdict **{primary.get('verdict', 'n/a')}**). Projection: {primary.get('expected_range', 'n/a')}. Lane: {primary.get('lane_summary', 'n/a')}. "
+      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest known file. Why this file is featured: IR-25-FEATURED-DOWNLOAD-RATIONALE.\n")
     if h31_flank_screen and h31_flank_confirm and h31_card and focus_forensics:
         inv = focus_forensics["nested_chain_inversion_conditional_on_reported_scores"]
         s1 = inv["d28_to_r1_delete_0_1px_collar"]
@@ -98,7 +84,11 @@ def main() -> None:
         A("## 9-Site Forensics (`GEMSDOE24..36`) and H31-1 Tip-Preserved Flank-Shielded Sub-Scarp 2² Factorial (`knowledge/14`, `knowledge/15`)\n")
         A(f"* **Why `GEMSDOE32` `h33-h33-2-b2` (reported `0.2778`, unverified claim) scored highest (`evidence/focus_sites_forensics.json`):** Pixel-exact forensics proves `GEMSDOE28`/`31` `r1` (`0.2708`, `40,199` px) is `D2.8 & (d(cat) > 1.0 px)` (`-{s1['deleted_pixels']:,}` dots at 100 m; implied credit `{s1['implied_credit_per_deleted_px']:.5f}`/px ≪ τ = `{s1['break_even_tau_at_0_2600']:.4f}`) and **`GEMSDOE32` `H33-2-B2` (`0.2778`, `37,654` px) is `D2.8 & (d(cat) > 2.0 px)`** (`-{s2['deleted_pixels']:,}` additional dots in 100–200 m; implied credit `{s2['implied_credit_per_deleted_px']:.5f}`/px ≪ τ = `{s2['break_even_tau_at_0_2708']:.4f}`), while `GEMSDOE36` (`0.2750`, `38,854` px) is `B2` + `1,200` extra dots.")
         A(f"* **H31-1 2² Factorial (`evidence/h31_flank_screen/`, `evidence/h31_flank_confirm/`):** Leakage Canary PASSED (max standalone feature AUC `0.8386 <= 0.90`). Screen (draws 10,11) PASSED with `{scr_p['formatted_label']}` (4-fold mean `0.154190`, paired gain `+0.003384` in `3/4` folds, hug `-0.0243`). Confirmation (draws 12,13) achieved `{cnf_p['formatted_label']}` (`+0.003848` pooled gain; `3/4` folds + vs `M0_C0`, `3/4` vs `CTRL_NO_TIP`, Factor `C` positive in `8/8` screen+confirm fold-blocks, `2/4` vs strict pointwise max -> Run Card verdict: `negative`).")
-        A("* **Unique H31-1 GeoTIFF (`docs/downloads/gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif`):** `49,041` dots, SHA-256 `41461ce0d0a6cb2d765e53fa490114d3f6e6344ca6f459b811f55bddbf7d2858`, 16/16 format checks PASS, max surface Spearman `0.1826 <= 0.90`, comparable dotted/focus 3-px overlap `0.6544 <= 0.70` (`0.3183` vs GEMSDOE32 `0.2778`; literal 5-px lattice overlap `1.000` -> testing only, DO NOT SUBMIT). Full Run Card: `evidence/h31_run_card_2026-10-25.json`.\n")
+        A("* **Unique H31-1 GeoTIFF (`docs/downloads/gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif`):** `49,041` dots, SHA-256 `41461ce0d0a6cb2d765e53fa490114d3f6e6344ca6f459b811f55bddbf7d2858`, 16/16 format checks PASS, max surface Spearman `0.1826 <= 0.90`, comparable dotted/focus 3-px overlap `0.6544 <= 0.70` (`0.3183` vs GEMSDOE32 `0.2778`; literal 5-px lattice overlap `1.000` -> testing only, DO NOT SUBMIT). Full Run Card: `evidence/h31_run_card_2026-10-25.json`.")
+        if h31_aniso_res and h31_aniso_card:
+            A("* **H31-1 Anisotropic Along-Strike Continuation + 100 m 3DEP LiDAR Strike Coherence + B=2 Shadow Guard (`knowledge/13_preregistered_h31_anisotropic_scarp_coherence_2026-10-25.md`, `knowledge/14_h31_anisotropic_scarp_outcomes_2026-10-25.md`, `evidence/h31_experiments/run_card.json`):** Single-feature leakage canary PASSED (`max AUC = 0.8419 <= 0.90`). On untouched draws `10,11` (`8` cells, `22,317` withheld positives), `H31_E3_B2` achieved pooled `HOLDOUT-DTI = 0.156013`, cell mean `0.156523` (`95% CI [0.141886, 0.171160]`), beating `BASE` by `+0.008838` (`4/4` folds) and `T_BASE` by `+0.005717` (`4/4` folds). Built unique GeoTIFF [`docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif`](docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif) (`43,771` dots, `content_id = c213681203f6`, SHA-256 `22a9d729bec45b72a7309380a0da7d147d79fadcdf1472259ca5eecea524893d`, 15/15 hard format checks PASS, max rank-corr `0.1697 <= 0.90`, max symmetric 3-px overlap `0.5837 <= 0.70`, max sparse-detector 3-px overlap `0.6707 <= 0.70`, `31.75%` vs `GEMSDOE32` `0.2778`; literal 5-px lattice overlap `1.000` under `IR-25-LANE-DENSITY`).\n")
+        else:
+            A("")
     A("## Where things stand\n")
     A(f"* **Unverified leaderboard claims** (reported {snap['reported_utc']}; no organizer page or receipt was accessed): #1 {snap['top10'][0]['participant']} {snap['top10'][0]['best_public_dti']:.4f}; reported rank #5 {snap['top10'][4]['best_public_dti']:.4f}. "
       f"The group-best claim is **{best:.4f}**; the previously reported rank #16/account association is not authenticated. These are not independently verified scores; apparent gaps to ranks #5/#1 are arithmetic on supplied claims only.")
@@ -334,6 +324,12 @@ def main() -> None:
     A("Set `GEMS_DATA_DIR` / `GEMS_WORK_DIR` to keep the 419 MB raster and the ~1.5 GB feature cache outside the checkout.\n")
     A("## Repository map\n")
     A("| Path | Role |\n|---|---|\n| `src/gems25/` | metric (official DTI + brute-force twin), hide-and-recover holdout, thinning/NMS, families & features, H30 relay/scarp add-ons, factorial engine, experiment cells, strict submission writer/checker |\n| `scripts/` | restore, build, run, analyse, package, site, README, feed, score recorder |\n| `registry/` | sources (with verification status), irregularities, score ledger, data pins, shipped submissions |\n| `evidence/` | machine-readable results and forensics |\n| `knowledge/` | pre-registrations, ranked hypotheses, verified research digest, the brief |\n| `docs/`, `index.html` | GitHub Pages site (root `index.html` is the landing page; Pages builds from `main:/`) |\n| `tests/` | unit, parity, integrity and reproduction tests |\n")
+    A("## Owner brief 2026-10-25, session 6 (agent reconstruction, not guaranteed verbatim) — read every session\n")
+    A("Reconstructed after context condensation; the 21 owner-reported scores that were transcribed independently all match (IR-25-BRIEF-RECONSTRUCTED). "
+      "A shorter parallel-session copy is `knowledge/owner_brief_2026-10-25_verbatim.txt`. Owner: paste the original over either file to make it authoritative.\n")
+    A("<details><summary><strong>Full text</strong></summary>\n")
+    A("~~~text\n" + (ROOT / "knowledge" / "owner_brief_2026-10-25_s6_RECONSTRUCTED.txt").read_text().rstrip() + "\n~~~\n")
+    A("</details>\n")
     A("## Standing brief 2026-10-25 (consolidated restatement, not verbatim) — read every session\n")
     A("Full text: [`knowledge/owner_brief_2026-10-25_consolidated.md`](knowledge/owner_brief_2026-10-25_consolidated.md). GEMSDOE32 0.2778 analysis and ranked next hypotheses: [`knowledge/14_gemsdoe32_analysis_and_hypotheses_2026-10-25.md`](knowledge/14_gemsdoe32_analysis_and_hypotheses_2026-10-25.md). H31 pre-registration: [`knowledge/13_preregistered_h31_credit_field_emission_2026-10-25.md`](knowledge/13_preregistered_h31_credit_field_emission_2026-10-25.md). Run card: `registry/run_card_h31_2026-10-25.json`.\n")
     A("<details><summary><strong>Full text of the 2026-10-25 brief (consolidated)</strong></summary>\n")
@@ -347,10 +343,6 @@ def main() -> None:
     A("The current user message was condensed into the session handoff. The full active scope and acceptance criteria are preserved below, separately from the verbatim 2026-10-02 brief.\n")
     A("<details><summary><strong>Full continuation brief and current constraints</strong></summary>\n")
     A("~~~text\n" + active_brief + "\n~~~\n")
-    A("</details>\n")
-    A("## Current session prompt (2026-10-25 — verbatim)\n")
-    A("<details><summary><strong>Full text of the 2026-10-25 prompt and PARALLEL-RUN PROTOCOL</strong></summary>\n")
-    A("~~~text\n" + prompt_20261025 + "\n~~~\n")
     A("</details>\n")
     (ROOT / "README.md").write_text("\n".join(L))
     print("README.md written,", len("\n".join(L)), "chars")

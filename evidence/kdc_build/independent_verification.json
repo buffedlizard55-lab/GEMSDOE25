@@ -1,0 +1,67 @@
+{
+ "zeros_finite_everywhere": true,
+ "zeros_values_binary_0_1": true,
+ "zeros_outside_footprint_all_zero": true,
+ "nan_twin_equal_inside_footprint": true,
+ "nan_twin_nan_outside": true,
+ "b2_subset_of_file": true,
+ "b2_dots": 37654,
+ "file_dots": 55374,
+ "complement_dots": 17720,
+ "complement_min_dist_b2_px": 3.1622776601683795,
+ "complement_min_dist_h19_5_px": 3.1622776601683795,
+ "complement_min_dist_catalogue_px": 3.1622776601683795,
+ "dots_on_catalogue_pixels": 0,
+ "zip_members": [
+  "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-zeros.tif"
+ ],
+ "zip_member_sha256_matches": true,
+ "lane_recomputed": [
+  {
+   "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "overlap_within_3px": 0.9994,
+   "byte_identical": false
+  },
+  {
+   "file": "g19_h19-5_0.1922.tif",
+   "overlap_within_3px": 0.68,
+   "byte_identical": false
+  },
+  {
+   "file": "g24_d1-5_0.2477.tif",
+   "overlap_within_3px": 0.68,
+   "byte_identical": false
+  },
+  {
+   "file": "g25_d2-8_0.2600.tif",
+   "overlap_within_3px": 0.68,
+   "byte_identical": false
+  },
+  {
+   "file": "g27_topo-gap-d1-5_0.2449.tif",
+   "overlap_within_3px": 0.68,
+   "byte_identical": false
+  },
+  {
+   "file": "g28_h27-4-r1-solo_0.2708.tif",
+   "overlap_within_3px": 0.68,
+   "byte_identical": false
+  },
+  {
+   "file": "g28_h32-1-prethin_0.2649.tif",
+   "overlap_within_3px": 0.68,
+   "byte_identical": false
+  },
+  {
+   "file": "g30_d28-poisson_0.2600.tif",
+   "overlap_within_3px": 0.68,
+   "byte_identical": false
+  }
+ ],
+ "worst_non_degenerate_overlap": {
+  "file": "g19_h19-5_0.1922.tif",
+  "overlap_within_3px": 0.68,
+  "byte_identical": false
+ },
+ "all_ok": true
+}

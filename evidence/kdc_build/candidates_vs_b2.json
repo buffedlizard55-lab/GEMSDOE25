@@ -1,0 +1,48 @@
+{
+ "evidence_class": "COMPUTED",
+ "reference": "GEMSDOE32 H33-2-B2 (owner-reported 0.2778)",
+ "files": {
+  "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif": {
+   "dots": 44090,
+   "b2_dots_kept": 37654,
+   "frac_b2_kept": 1.0,
+   "frac_dots_within_3px_b2": 0.8817
+  },
+  "gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif": {
+   "dots": 46181,
+   "b2_dots_kept": 465,
+   "frac_b2_kept": 0.0123,
+   "frac_dots_within_3px_b2": 0.2076
+  },
+  "gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif": {
+   "dots": 49373,
+   "b2_dots_kept": 465,
+   "frac_b2_kept": 0.0123,
+   "frac_dots_within_3px_b2": 0.201
+  },
+  "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif": {
+   "dots": 49041,
+   "b2_dots_kept": 1361,
+   "frac_b2_kept": 0.0361,
+   "frac_dots_within_3px_b2": 0.3183
+  },
+  "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif": {
+   "dots": 48714,
+   "b2_dots_kept": 1356,
+   "frac_b2_kept": 0.036,
+   "frac_dots_within_3px_b2": 0.3213
+  },
+  "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-nan.tif": {
+   "dots": 55374,
+   "b2_dots_kept": 37654,
+   "frac_b2_kept": 1.0,
+   "frac_dots_within_3px_b2": 0.68
+  },
+  "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-zeros.tif": {
+   "dots": 55374,
+   "b2_dots_kept": 37654,
+   "frac_b2_kept": 1.0,
+   "frac_dots_within_3px_b2": 0.68
+  }
+ }
+}

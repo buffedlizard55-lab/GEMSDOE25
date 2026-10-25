@@ -20,6 +20,10 @@
 | `14_preregistered_h31_flank_shielded_subscarp_factorial_2026-10-25.md` | pixel-exact forensics across all 9 focus sites (`GEMSDOE24..36`), 4 ranked H31 hypotheses, and frozen H31-1 2² factorial design (`C × M`) |
 | `15_h31_outcomes_and_run_card_2026-10-25.md` | H31-1 leakage canary (`PASS`), screen (`PASS`), confirmation outcomes, unique H31-1 GeoTIFF (`40bfe1d5b1c5`) duplicate-lane audit, and Protocol Rule 5 JSON Run Card |
 | `owner_brief_2026-10-25_verbatim.txt` | verbatim 2026-10-25 task prompt and Parallel-Run Protocol (also embedded in `README.md`) |
+| `17_preregistered_kdc_kernel_disjoint_complement_2026-10-25.md` | session 6: G25-K1–K4 hypothesis register and the frozen KDC design (number 17 is shared with a parallel session) |
+| `18_preregistered_kdc_flank_fault_zone_multiplicity_2026-10-25.md` | session 6: G25-K5 flank pre-registration (number 18 is shared with a parallel session) |
+| `19_kdc_results_2026-10-25.md` | session 6: why B2 scored 0.2778, E1/E2 results (both negative), the KDC file, the uniqueness wall, next work |
+| `owner_brief_2026-10-25_s6_RECONSTRUCTED.txt` | session 6 brief, agent reconstruction (not guaranteed verbatim) |
 | `owner_brief_2026-10-25_consolidated.md` | the 2026-10-25 request, condensed and grouped (not verbatim) |
 | `13_preregistered_h31_anisotropic_scarp_coherence_2026-10-25.md` | cross-site forensic synthesis (`0.1922 -> 0.2477 -> 0.2600 -> 0.2708 -> 0.2778`), 4 ranked untried geological hypotheses (`H31-1` through `H31-4`), and preregistered single-lane `H31-1` 3-experiment suite (`E1: +ANISO4`, `E2: +COH2`, `E3: +B2`) on fresh draws `10,11` |
 | `14_h31_anisotropic_scarp_outcomes_2026-10-25.md` | completed `H31-1` post-run outcomes (`HOLDOUT-DTI = 0.156523`, `+0.008838` vs `BASE`, `4/4` folds), leakage canary (`max AUC = 0.8419 <= 0.90`), registry uniqueness audit across 41 rasters (`max corr = 0.1697`, `max overlap = 0.6707`), and JSON `RUN CARD` (`evidence/h31_experiments/run_card.json`) |
