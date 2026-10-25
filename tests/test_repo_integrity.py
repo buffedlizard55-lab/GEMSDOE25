@@ -178,6 +178,27 @@ def test_the_invented_footprint_files_are_not_shipped_or_linked():
             assert f'href="docs/downloads/{name}"' not in text and f'href="downloads/{name}"' not in text and f"(docs/downloads/{name})" not in text
 
 
+def test_kdc_run_card_does_not_clear_a_literal_lattice_lane_failure():
+    card = J("registry/run_card_kdc_2026-10-25.json")
+    assert card["correlation_overlap_vs_registry"]["lane_clean"] is False
+    assert card["correlation_overlap_vs_registry"]["lane_clean_substantive_only"] is True
+    assert card["strict_lane"]["lattice_overlap"] > card["correlation_overlap_vs_registry"]["caps"]["overlap"]
+    assert card["strict_lane"]["lane_clear"] is False
+    assert card["validator_output"]["ok_to_upload"] is True  # format-only checker result
+    assert card["validator_output"]["ok_to_submit_slot"] is False
+
+
+def test_negative_download_copy_never_recommends_uploading_a_fallback():
+    forbidden_copy = (
+        "upload the zeros primary first",
+        "use this twin only if the portal rejects",
+    )
+    for item in J("registry/submissions.json")["files"]:
+        if item.get("ok_to_submit_slot") is False or item.get("verdict") == "negative":
+            copy = " ".join(str(item.get(key, "")) for key in ("title", "summary", "status")).lower()
+            assert not any(phrase in copy for phrase in forbidden_copy), (item["file"], copy)
+
+
 def test_shipped_files_are_not_duplicates_of_already_scored_files():
     # content ids of rasters that already have an owner-reported score (re-uploading them gives no information)
     already_scored = {"989f59505db1": "dotted H19-5 d1.5 (0.2477)", "80d47e1ab2ee": "H19-5 (0.1922)"}

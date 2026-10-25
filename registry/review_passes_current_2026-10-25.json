@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "date_utc": "2026-10-25",
+  "session_branch": "arena/e9480eb3-gemsdoe25",
+  "pass_1_implement_and_verify": {
+    "completed": [
+      "Read AGENTS.md, README.md, current task brief, KDC results/run card, hypothesis records, source digest, and submission-site generation/registration code.",
+      "Confirmed data/ has only .gitkeep; did not download competition data or contact DrivenData.",
+      "Corrected contradictory H35 NaN-twin copy in both submission registries and the generator, rebuilt the root and docs pages, and added a regression test.",
+      "Created a repository-review note and a negative review run card; no new raster or scoring slot was used."
+    ]
+  },
+  "pass_2_bug_assumption_edge_case_review": {
+    "completed": [
+      "Found the KDC historical aggregate lane_clean=true contradicted strict_lane.lane_clear=false because the former excluded the dense r13 lattice; corrected the aggregate to false, documented the substantive-only 0.680 figure, disambiguated format-only ok_to_upload from slot eligibility, and added regression tests.",
+      "Verified the existing downloadable KDC file is explicitly DO NOT SUBMIT; its historical receipt is not presented as fresh validation.",
+      "Checked the H35 negative artifact's fallback copy and generated site output so it no longer instructs upload of either variant."
+    ]
+  },
+  "pass_3_recheck_original_request": {
+    "completed": [
+      "Rechecked the GEMSDOE32 explanation: reported score remains OWNER-REPORTED; pixel transformation is a repository-computed forensic result; no causal score claim was made.",
+      "Added three distinct prospective hypotheses with their layers, physical mechanism, non-fault mimics, costs, and official-source blockers; all are labeled proposals and none is claimed viable without source verification.",
+      "Ran the full available test suite: 133 passed, 4 skipped for restored-data requirements; Ruff and git diff --check passed."
+    ],
+    "open_limitations": [
+      "No local feature/label/template arrays, so no fresh HOLDOUT-DTI or validator run and no scientifically defensible new submission TIF.",
+      "No new official third-party geospatial source was fetched; source availability/coverage/licence remain unverified where stated in the research note.",
+      "No organizer-confirmed competition score or receipt; no upload or submission slot used.",
+      "GitHub PR creation/merge and deployment remain pending until changes are pushed on the fixed session branch and checks are verified."
+    ]
+  }
+}
