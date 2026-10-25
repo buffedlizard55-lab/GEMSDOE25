@@ -1,65 +1,42 @@
-# GEMSDOE25 — Anisotropic Scarp-Coherence Fault Discovery & Designed-Factorial Experiments for the DOE GEMS Prize
+# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
+
+**Current session review (2026-10-25):** [H31-1 Anisotropic Along-Strike Continuation & 3DEP LiDAR Strike Coherence + B=2 Shadow Guard (`c213681203f6`)](knowledge/14_h31_anisotropic_scarp_outcomes_2026-10-25.md) · [Preregistration & 4 Ranked Geological Hypotheses](knowledge/13_preregistered_h31_anisotropic_scarp_coherence_2026-10-25.md) · [GEMSDOE32 H33-2-B2 score forensics](knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md). The requested start-of-session owner prompt remains archived verbatim at `knowledge/owner_brief_verbatim.txt` and `knowledge/current_project_brief_2026-10-25.md`; see also `AGENTS.md`.
 
 > **Maximize P(Win)** · **Own the Outcome** — the Arena core values are the decision rule for every change in this repository.
 
 **Competition:** [DOE GEMS Prize, DrivenData #306](https://www.drivendata.org/competitions/306/competition-doe-gems/) · **Live site:** <https://buffedlizard55-lab.github.io/GEMSDOE25/> · **Weekly limit:** 3 submissions · **Ends:** 3 Dec 2026 (page: 11:59 p.m. UTC; rules: 5:00 p.m. ET — see IR-25-DEADLINE)
 
-## ✅ READY TO SUBMIT — Download the Validated, Genuinely Unique H31-1 GeoTIFF Submission
+## ⬇ Download the Unique, Automated-Validated H31-1 GeoTIFF (`c213681203f6`)
 
-> **AUTOMATED SUBMISSION READINESS VERDICT: `OK TO DOWNLOAD & SUBMIT` (`slot_approved = true`, `verdict = promote`)**
-> All **15 hard automated format/geometry/range checks**, the **single-feature holdout leakage canary** (`max AUC = 0.8419 <= 0.90`), the **preregistered 8-cell spatial-holdout promotion gate** (`HOLDOUT-DTI = 0.156523`, `+0.008838` vs `BASE` in `4/4` folds, `+0.005717` vs `T_BASE` in `4/4` folds, beating `0.152003389`), and the **41-raster registry uniqueness gate** (`max rank-corr = 0.1697 <= 0.90`, `max 3-px dot overlap = 0.6707 <= 0.70`, `31.75%` overlap vs `GEMSDOE32`) passed automatically with **zero human intervention required**.
+**[↓ `gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif`](docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif)** — H31-1 Anisotropic fault-tip continuation + 100 m 3DEP LiDAR-DEM strike coherence + 200 m (B=2 px) digitization-shadow guard + d=2.8 px Poisson-disk thinning (43,771 px, content_id c213681203f6). Passed all 15 hard format checks, single-feature leakage canary (max AUC = 0.8419 <= 0.90), 8-cell holdout promotion gate (HOLDOUT-DTI = 0.156523, +0.008838 vs BASE in 4/4 folds, +0.005717 vs T_BASE in 4/4 folds; beats the comparable same-run holdout best and historical 0.152003389 comparator; holdout proxy is not a competition score), and comparable-detector uniqueness (max rank-corr 0.1697 <= 0.90, max symmetric 3-px overlap 0.5837 <= 0.70, max sparse-detector 3-px overlap 0.6707 <= 0.70, 31.75% vs GEMSDOE32 0.2778). Under the literal strict lane gate against the 5-px r13 calibration lattice (100% of any in-footprint pixel lies within sqrt(8)=2.83 < 3 px of a 5x5 grid; IR-25-LANE-DENSITY), slot_approved remains false (do not submit without owner lattice waiver).
 
-1. **Primary GeoTIFF (recommended — matches `sample_submission.tif` NaN-outside convention):** **[⬇ `docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif`](docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif)** (`1,602,328` bytes · SHA-256 `22a9d729bec45b72a7309380a0da7d147d79fadcdf1472259ca5eecea524893d` · unique `content_id = c213681203f6`)
-2. **Zeros-outside fallback GeoTIFF (finite `0.0` outside footprint, identical `43,771`-px in-footprint mask):** **[⬇ `docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif`](docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif)** (`837,228` bytes · SHA-256 `64c792f0ebacc474a3b23109a67148d5eb00d8e4c190c6221603e64050771c62` · `content_id = c213681203f6`)
+* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, NaN outside (verified against the pinned owner-mirror template, not organizer-authenticated; independent check receipt: `docs/downloads/checks-gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.json`).
+* Unique content id `c213681203f6` · SHA-256 `22a9d729bec45b72a7309380a0da7d147d79fadcdf1472259ca5eecea524893d` · 43,771 emitted pixels (`min_distance_to_known_fault = 2.24 px = 224 m`) · status: **VALIDATED UNIQUE H31-1 CANDIDATE (15/15 format checks PASS, HOLDOUT-DTI 0.156523 PASS in 4/4 folds, sparse/symmetric uniqueness PASS <= 0.6707); strict 5-px lattice lane flag open (IR-25-LANE-DENSITY; do not submit without owner lattice waiver)**.
+* **Single-GeoTIFF `.zip` archive:** [`docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6.zip`](docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6.zip)
+* **Note to paste** in DrivenData's *Note (optional)* field: `GEMSDOE25 H31-B2 | HOLDOUT-DTI 0.1565 (+0.0088); unscored; not slot-approved; no slot | id c213681203f6`
+* Format Fallback: H31-1 with zeros outside the footprint (identical 43,771 in-footprint predictions): [`gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif`](docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif) (Format fallback (zeros outside footprint; 43,771 px); inherits strict 5-px lattice lane flag; do not submit without owner lattice waiver; 43,771 px).
+* GEM-FUSE1 — unique content, strict lane stop; testing only, do not submit: [`gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif`](docs/downloads/gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif) (UNIQUE FILE BY CONTENT, BUT STRICT LANE FAIL / DUPLICATE STOP: 100% of candidate dots fall within 3 px of the r13 lattice (70% limit). Testing download only; DO NOT SUBMIT.; 46,181 px).
+* Format fallback: same GEM-FUSE1 dots, zeros outside footprint: [`gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-zeros.tif`](docs/downloads/gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-zeros.tif) (Format fallback only. Same candidate dots; inherits strict lane fail. Testing only; DO NOT SUBMIT.; 46,181 px).
+* Fallback: H31-C score-ordered dots at 2.4 px (3.5% budget) — NOT slot-approved: [`gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif`](docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif) (STRICT LANE STOP; holdout gate not passed; testing only; DO NOT SUBMIT.; 48,714 px).
+* Fallback zeros: H31-C same dots, zeros outside: [`gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif`](docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif) (Format fallback only; inherits H31-C strict lane stop; DO NOT SUBMIT.; 48,714 px).
+* Research download: GEM-1 blind-magnetics dots (holdout-validated, not slot-approved): [`gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif`](docs/downloads/gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif) (STRICT LANE STOP: recorded lattice overlap exceeds 70%; testing only; DO NOT SUBMIT.; 49,373 px).
+* H31-1 Tip-Preserved Flank-Shielded Sub-Scarp Concordance (sapd2.4, 49,041 dots) — testing only, do not submit: [`gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif`](docs/downloads/gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif) (unique GEMSDOE25 H31-1 candidate; format/canary-verified; unscored; not slot-approved; DO NOT SUBMIT (confirm 2/4 vs pointwise max & literal r13 lattice stop); 49,041 px).
+* Format fallback: H31-1 with zeros outside the footprint: [`gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif`](docs/downloads/gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif) (format fallback (H31-1 zeros outside); unscored; not slot-approved; DO NOT SUBMIT; 49,041 px).
+* Step-by-step upload guide: [`docs/executive-summary.html`](https://buffedlizard55-lab.github.io/GEMSDOE25/docs/executive-summary.html).
 
-* **Summary:** H31-1 Anisotropic fault-tip continuation + 100 m 3DEP LiDAR-DEM strike coherence + 200 m (B=2 px) digitization-shadow guard + d=2.8 px Poisson-disk thinning (43,771 px). HOLDOUT-DTI = 0.156523 (+0.008838 vs BASE in 4/4 folds; +0.005717 vs T_BASE in 4/4 folds; beats the comparable same-run holdout best and historical 0.152003389 comparator; holdout proxy is not a competition score).
-* **Automated verification receipt:** [`docs/downloads/checks-gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.json`](docs/downloads/checks-gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.json) — `EPSG:32611`, `3730 × 3292` @ `100 m`, `0` NaN inside the `5,167,373`-px footprint, values in `[0.0, 1.0]`, `43,771` emitted fault dots (`min_distance_to_known_fault = 2.24 px = 224 m`, `0` dots in the `0–200 m` digitization-uncertainty shadow).
-* **Paste this short Note (`120` chars <= 140) into DrivenData's *Note (optional)* field:** `GEMSDOE25 H31-B2 | Anisotropic along-strike continuation + 3DEP LiDAR strike coh | id c213681203f6 | not yet live-scored`
-* **Step-by-step upload guide:** [`docs/executive-summary.html`](https://buffedlizard55-lab.github.io/GEMSDOE25/docs/executive-summary.html).
+> ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).
 
-## Forensic Synthesis of Focus Sites (`GEMSDOE24`–`36`) & Why `GEMSDOE32` Achieved `0.2778`
+> ℹ **Automated Readiness & Lane Audit (`docs/downloads/checks-gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.json`, `evidence/h31_experiments/uniqueness_audit.json`):** `gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif` passed all **15/15 hard format checks**, the **single-feature leakage canary** (`max AUC = 0.8419 <= 0.90`), the **8-cell holdout promotion gate** (`HOLDOUT-DTI = 0.156523`, `+0.008838` vs `BASE` in `4/4` folds, `+0.005717` vs `T_BASE` in `4/4` folds, beating `0.152003389`), and **comparable-detector uniqueness** (`max rank-corr = 0.1697 <= 0.90`, `max symmetric 3-px overlap = 0.5837 <= 0.70`, `max sparse-detector 3-px overlap = 0.6707 <= 0.70`, `31.75%` vs `GEMSDOE32` `0.2778`). Under the literal one-way 3-px check against the dense 5-px `r13-lattice-s5` grid (`IR-25-LANE-DENSITY`, where every pixel in the study area lies within $\sqrt{8}=2.83 < 3\text{ px}$ of a $5\times 5$ lattice), `slot_approved` is kept `False` until the owner waives the 5-px calibration lattice.
 
-We performed a byte-and-pixel forensic audit across the actual GeoTIFFs of all 9 focus repositories (`GEMSDOE24`, `GEMSDOE25`, `GEMSDOE27`, `GEMSDOE28`, `GEMSDOE30`, `GEMSDOE31`, `GEMSDOE32`, `GEMSDOE33`, `GEMSDOE36`). Full derivations and tables are in [`knowledge/13_preregistered_h31_anisotropic_scarp_coherence_2026-10-25.md`](knowledge/13_preregistered_h31_anisotropic_scarp_coherence_2026-10-25.md) and [`knowledge/14_h31_anisotropic_scarp_outcomes_2026-10-25.md`](knowledge/14_h31_anisotropic_scarp_outcomes_2026-10-25.md).
+## H31-1 Anisotropic Fault-Tip Continuation × 100 m 3DEP LiDAR Strike Coherence + B=2 Shadow Guard (`knowledge/13`, `knowledge/14`)
 
-| Focus Project | Artifact (`content_id`) | Score Claim (owner-reported) | Emitted $N$ | $d_{\text{cat}}\in(0,1]$ | $d_{\text{cat}}\in(1,2]$ | $d_{\text{cat}}>2$ | Exact Pixel Relationship to `GEMSDOE25` `d2-8` (`44,090` px) |
-|---|---|---:|---:|---:|---:|---:|---|
-| `GEMSDOE24` | `dotted-h19-5-d1-5` (`989f59505db1`) | `0.2477` | `60,069` | `5,451` | `4,462` | `50,156` | Greedy $d=1.5\text{ px}$ thinning of `H19-5` (`121,131` px, `0.1922`) |
-| `GEMSDOE25` / `30` | `dotted-h19-5-d2-8` (`e56ea318af89`) | `0.2600` | `44,090` | `3,891` | `2,545` | `37,654` | Greedy $d=2.8\text{ px}$ thinning of `H19-5` (`+0.0123` over `d1-5`) |
-| `GEMSDOE28` / `31` | `h27-4-r1-solo-d2-8` (`8acb75e1f2cc`) | `0.2708` | `40,199` | `0` | `2,545` | `37,654` | Strict subset: `d2-8` minus `3,891` $d_{\text{cat}}=1$ dots (`+0.0108`) |
-| **`GEMSDOE32`** | **`h33-2-b2` (`4311d7454b8e`)** | **`0.2778`** | **`37,654`** | **`0`** | **`0`** | **`37,654`** | **Strict subset: `d2-8` minus all `6,436` $d_{\text{cat}}\le 2$ dots (`+0.0178`)** |
-| `GEMSDOE28` | `h36-1-rung30-blind-r1` (`b531dae0a36f`) | `0.2710` | `37,660` | `0` | `2,353` | `35,307` | Iso-budget control ($d=3.0, B=1$): `6` px from `GEMSDOE32`, `-0.0068` worse |
-| `GEMSDOE27` | `topo-gap-closure-t-v2` (`5512495c6bd1`) | `0.2449` | `61,328` | `5,691` | `4,650` | `50,987` | `d1-5` + `1,259` straight-line gap-closure dots (`-0.0028` vs `d1-5`) |
-| `GEMSDOE33` | `h33d-analog-tip` (`cb490425926e`) | `0.2608` / `0.2632` | `41,865` | `1,377` | `2,566` | `37,922` | Re-admitted `1,377` $d_{\text{cat}}=1$ tip dots (`-0.0100` vs `B=1`) |
-| `GEMSDOE36` | `anderson-geothermal-pinn` (`3b691a9ebe74`) | `0.2750` | `38,854` | `0` | `0` | `38,854` | `GEMSDOE32` (`37,654`) + `1,200` GDR/stepover dots (`-0.0028` vs `0.2778`) |
-| **`GEMSDOE25 (H31-1)`** | **`gems25-h31-aniso-scarp-b2` (`c213681203f6`)** | **`HOLDOUT-DTI 0.1565` (`unscored`)** | **`43,771`** | **`0`** | **`0`** | **`43,771`** | **New OOF 83-feature `H31-1` detector ($B=2.0, d=2.8$); `31.75%` 3-px overlap vs `GEMSDOE32`** |
-
-### Why `GEMSDOE32` Achieved `0.2778` and How to Beat It
-
-1. **Break-Even Marginal Credit Rule:** Under $\text{DTI} = \text{TP}_w / (0.2\,\text{TP}_w(1-\rho) + 0.2\,N + 0.8\,|G|)$, adding or keeping a dot increases DTI iff its marginal true-positive credit exceeds $\tau(\text{DTI}) = 0.2\,\text{DTI}/(1 - 0.2\,\text{DTI})$ (`0.0549` at `0.2600`, `0.0573` at `0.2708`, `0.0588` at `0.2778`, `0.0968` at the `0.4413` leaderboard claim).
-2. **The 0–200 m (`B=2 px`) Digitization-Uncertainty & Filter-Halo Shadow:** `known_faults` was rasterized at `100 m` from `1:24,000–1:500,000` USGS/INGENIOUS polylines (`±60–250 m` positional error), while multi-scale topographic filters (`100–2,000 m`) smear high fault probability 100–200 m perpendicular to every scarp. Masking only $d_{\text{cat}}=0$ leaves a double-sided halo at $d_{\text{cat}}\in\{1,\sqrt{2},2\}$ where hidden test truth is virtually zero ($\approx 0.0034\text{ credit/dot}$ at $d_{\text{cat}}=1$ and $\approx 0.0040\text{ credit/dot}$ at $d_{\text{cat}}\in(1,2]$, $15\times$ below break-even $\tau$). Removing all `6,436` $d_{\text{cat}}\le 2$ dots saved $1{,}287.2$ denominator units (`+0.0178` DTI over `d2-8`).
-3. **Iso-Budget Proof (`GEMSDOE32` vs `GEMSDOE28` `h36-1`):** `GEMSDOE28` `h36-1` (`37,660` px, `0.2710`) and `GEMSDOE32` (`37,654` px, `0.2778`) have virtually identical pixel counts (`6` px difference), proving that replacing `2,353` dead $100\text{–}200\text{ m}$ flank dots with `2,347` off-catalogue interior ridge dots adds $\Delta\text{TP}_w \approx +123\text{ px}$ (`+0.0068` DTI).
-4. **Why Additive Post-Hoc Heuristics Regressed (`GEMSDOE27`, `33`, `36`) & How `H31-1` Advances Beyond `0.2778`:** Appending un-ranked dots onto a fixed mask (`GEMSDOE36` added `1,200` GDR/stepover dots at `0.0126` credit/dot) dilutes the denominator. To exceed `0.2778` while remaining a genuinely unique detector (`<= 0.90` rank-corr, `<= 70%` 3-px dot overlap), we must improve the **out-of-fold probability surface $P(x)$ before ridge NMS and Poisson-disk thinning** by pairing **anisotropic fault-tip continuation** with **100 m 3DEP LiDAR-to-DEM strike-tensor coherence**, followed by the $B=2.0\text{ px}$ digitization-shadow guard.
-
-## Ranked Candidate Geological Hypotheses (`H31-1`–`H31-4`; Preregistered Before Execution in `knowledge/13`)
-
-| Rank | ID | Geological Hypothesis & Layers | Physical Signature & Why It Catches Missing Faults | Expected `HOLDOUT-DTI` Gain | Cost | Status |
-|---|---|---|---|---|---|---|
-| **1** | **`H31-1`** | **Anisotropic Fault-Tip Elliptical Continuation × 100 m 3DEP LiDAR-to-DEM Strike Coherence + 200 m (`B=2`) Shadow Guard** (`Known_Faults`, `lidar_slope_100m`, `lidar_aspect_*_100m`, `dem`) | Unmapped step-overs & un-digitized splays propagate inside an $8:1$ along-strike / $1:3$ cross-strike stress shadow (`d_along/8, d_perp*3`) and preserve coherent strike across 100 m 3DEP LiDAR and 500 m DEM while excluding the 0–200 m digitization shadow | **`+0.004` to `+0.012`** | ~14 min CPU | **Executed & Promoted (`+0.008838` vs `BASE`, `4/4` folds)** |
-| 2 | `H31-2` | Coseismic / Cumulative Throw-Gradient & Multi-Scale Scarp Asymmetry (`lidar_elev_std_100m`, `lidar_p90_p10_100m`, `tpi`, `dem`) | Range-front and intrabasin normal faults exhibit systematic hanging-wall vs footwall curvature asymmetry and high throw-to-roughness ratio | `+0.002` to `+0.006` | ~12 min CPU | Preregistered reserve lane |
-| 3 | `H31-3` | SGMC Lithologic Contact Juxtaposition × Potential-Field Step (`sgmc_contact_100m.tif`, `sgmc_unit_id_100m.tif`, `grav_isa_slope`, `mag_slope`) | Concealed basin-bounding faults juxtapose Quaternary alluvium against Tertiary volcanics/Paleozoic carbonate along coincident gravity/magnetic steps | `+0.001` to `+0.005` | ~10 min CPU | Preregistered reserve lane |
-| 4 | `H31-4` | Crustal-Scale Strain-Transfer Accommodation Corridor (`geodawn_thd`, `grav_ba_up5km`, `mag_rtp`, `dem`) | Regional transtensional accommodation zones (Walker Lane / Humboldt structural belt) focus unmapped fault swarms along deep potential-field gradients | `+0.001` to `+0.004` | ~10 min CPU | Preregistered reserve lane |
-
-## Executed 3-Experiment `H31-1` Holdout Protocol (`Draws 10, 11`, `22,317` Withheld Positives)
-
-All numbers below are **`HOLDOUT-DTI`** (`evaluator = HOLDOUT-DTI-v1`, `22,317` withheld fault pixels across 8 fold×draw cells on untouched draws `10, 11`, not competition scores). Every `H31-1` feature first passed the single-feature holdout leakage canary (`max AUC = H31_d_perp = 0.8419 <= 0.90`; see `evidence/h31_experiments/leakage_canary.json`).
-
-| Arm | Experiment Role | Pooled `HOLDOUT-DTI` | Cell Mean `HOLDOUT-DTI` | 95% CI (Cell Mean) | $\Delta$ vs `BASE` (Folds `+`) | $\Delta$ vs `T_BASE` (Folds `+`) | Hug Share |
-|---|---|---:|---:|---|---:|---:|---:|
-| `BASE` | Control 1 (`BDE + X1-X3`, 77 features, $B=0$) | `0.147111` | **`0.147685`** | `[0.134118, 0.161252]` | — | `-0.003121` (`0/4`) | `0.0729` |
-| `T_BASE` | Control 2 (`BASE + H27 tip`, 81 features, $B=0$) | `0.150108` | **`0.150806`** | `[0.138141, 0.163471]` | `+0.003121` (`4/4`) | — | `0.0904` |
-| `H31_E1_ANISO` | Exp 1 (`BASE + 4 anisotropic continuation features`, $B=0$) | `0.155068` | **`0.155652`** | `[0.138262, 0.173043]` | `+0.007968` (`4/4`) | `+0.004847` (`3/4`) | `0.0945` |
-| `H31_E2_COH` | Exp 2 (`E1 + 2 LiDAR-DEM strike coherence features`, $B=0$) | `0.155392` | **`0.155940`** | `[0.141158, 0.170722]` | `+0.008256` (`4/4`) | `+0.005134` (`4/4`) | `0.0923` |
-| `H31_E3_B2` | **Exp 3 (Promoted: `E2 + B=2.0 px` shadow guard)** | `0.156013` | **`0.156523`** | `[0.141886, 0.171160]` | `+0.008838` (`4/4`) | `+0.005717` (`4/4`) | `0.0740` |
+| Arm (`Draws 10, 11` · `22,317` withheld positives) | Pooled `HOLDOUT-DTI` | Cell Mean `HOLDOUT-DTI` | 95% CI | $\Delta$ vs `BASE` (`Folds +`) | $\Delta$ vs `T_BASE` (`Folds +`) | Hug Share |
+|---|---:|---:|---|---:|---:|---:|
+| `BASE` | `0.147111` | **`0.147685`** | `[0.134118, 0.161252]` | — | `-0.003121` (`0/4`) | `0.0729` |
+| `T_BASE` | `0.150108` | **`0.150806`** | `[0.138141, 0.163471]` | `+0.003121` (`4/4`) | — | `0.0904` |
+| `H31_E1_ANISO` | `0.155068` | **`0.155652`** | `[0.138262, 0.173043]` | `+0.007968` (`4/4`) | `+0.004847` (`3/4`) | `0.0945` |
+| `H31_E2_COH` | `0.155392` | **`0.155940`** | `[0.141158, 0.170722]` | `+0.008256` (`4/4`) | `+0.005134` (`4/4`) | `0.0923` |
+| `H31_E3_B2` | `0.156013` | **`0.156523`** | `[0.141886, 0.171160]` | `+0.008838` (`4/4`) | `+0.005717` (`4/4`) | `0.0740` |
 
 ### JSON RUN CARD (`evidence/h31_experiments/run_card.json`)
 
@@ -149,6 +126,12 @@ All numbers below are **`HOLDOUT-DTI`** (`evaluator = HOLDOUT-DTI-v1`, `22,317` 
 }
 ```
 
+## 9-Site Forensics (`GEMSDOE24..36`) and H31-1 Tip-Preserved Flank-Shielded Sub-Scarp 2² Factorial (`knowledge/14`, `knowledge/15`)
+
+* **Why `GEMSDOE32` `h33-h33-2-b2` (reported `0.2778`, unverified claim) scored highest (`evidence/focus_sites_forensics.json`):** Pixel-exact forensics proves `GEMSDOE28`/`31` `r1` (`0.2708`, `40,199` px) is `D2.8 & (d(cat) > 1.0 px)` (`-3,891` dots at 100 m; implied credit `0.00096`/px ≪ τ = `0.0549`) and **`GEMSDOE32` `H33-2-B2` (`0.2778`, `37,654` px) is `D2.8 & (d(cat) > 2.0 px)`** (`-2,545` additional dots in 100–200 m; implied credit `0.00503`/px ≪ τ = `0.0573`), while `GEMSDOE36` (`0.2750`, `38,854` px) is `B2` + `1,200` extra dots.
+* **H31-1 2² Factorial (`evidence/h31_flank_screen/`, `evidence/h31_flank_confirm/`):** Leakage Canary PASSED (max standalone feature AUC `0.8386 <= 0.90`). Screen (draws 10,11) PASSED with `HOLDOUT-DTI 0.153199 (evaluator=gems25.holdout.v1.2-buffered-4quad-pooled-dti, withheld_positives=22317, 95% CI [0.132707, 0.173690])` (4-fold mean `0.154190`, paired gain `+0.003384` in `3/4` folds, hug `-0.0243`). Confirmation (draws 12,13) achieved `HOLDOUT-DTI 0.144941 (evaluator=gems25.holdout.v1.2-buffered-4quad-pooled-dti, withheld_positives=22299, 95% CI [0.119601, 0.170282])` (`+0.003848` pooled gain; `3/4` folds + vs `M0_C0`, `3/4` vs `CTRL_NO_TIP`, Factor `C` positive in `8/8` screen+confirm fold-blocks, `2/4` vs strict pointwise max -> Run Card verdict: `negative`).
+* **Unique H31-1 GeoTIFF (`docs/downloads/gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif`):** `49,041` dots, SHA-256 `41461ce0d0a6cb2d765e53fa490114d3f6e6344ca6f459b811f55bddbf7d2858`, 16/16 format checks PASS, max surface Spearman `0.1826 <= 0.90`, comparable dotted/focus 3-px overlap `0.6544 <= 0.70` (`0.3183` vs GEMSDOE32 `0.2778`; literal 5-px lattice overlap `1.000` -> testing only, DO NOT SUBMIT). Full Run Card: `evidence/h31_run_card_2026-10-25.json`.
+
 ## Where things stand
 
 * **Unverified leaderboard claims** (reported 2026-10-02; no organizer page or receipt was accessed): #1 DARD 0.3195; reported rank #5 0.2941. The group-best claim is **0.2778**; the previously reported rank #16/account association is not authenticated. These are not independently verified scores; apparent gaps to ranks #5/#1 are arithmetic on supplied claims only.
@@ -215,7 +198,7 @@ Top interactions: `BC` -0.0050, `BD` -0.0049, `AC` +0.0045, `BE` -0.0043. Full t
 
 | Project | Submission | Score | Note |
 |---|---|---|---|
-| GEMSDOE32 | `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` | 0.2778 | group best: d2.8 minus 6,436 flank dots at d_cat <= 2 px (B=2, 200 m exclusion, 37,654 px, content_id 4311d7454b8e); +0.0070 over B=1 |
+| GEMSDOE32 | `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` | 0.2778 | exact D2.8 & (d(cat) > 2.0 px), 37,654 px (-6,436 collar px at d<=2.0); sha256 c55bafc47005... |
 | GEMSDOE50 | `h50-b2-d28-37654-20261005T195308Z-c55bafc4-zeros` | 0.2778 | re-host of GEMSDOE32 B=2 (sha256 prefix c55bafc4) |
 | GEMSDOE58 | `h58-1-b2-200m-moat-d28-37654-20261010T012000Z-c55bafc4-zeros` | 0.2778 | re-host of GEMSDOE32 B=2 |
 | GEMSDOE78 | `h78-1-b2-tip-scarp-bridge-37758-20261018T220000Z-935455d1-zeros` | 0.2775 | B=2 base + 104 tip-scarp bridge dots |
@@ -272,6 +255,13 @@ Planning brackets are uncertain prioritization judgments, not estimates or live-
 * **IR-25-PROXY-LIMITS** (high, disclosed) — The hide-and-recover holdout is a catalogue-gap proxy (hidden = catalogue components), not new-fault truth. H19-5 'as emitted' is not out-of-fold (and masked all catalogue pixels), so it is only a diagnostic. Family E may be flattered by the simulation. GEMSDO…
 * **IR-25-PAGES-ROOT** (high, fixed) — GitHub Pages is built from main:/ (legacy), but the old site lived in docs/ with no root index.html: the public URL served the README, whose 'Executive Summary & Submit Guide' link pointed back to itself and whose download link was the broken file.
 * **IR-25-COMPARATOR-DRIFT** (high, open) — The frozen hide-and-recover comparator 0.15200338908786984 (evidence/addons/emk_extension.json, variant sapd2.4 at kfrac 0.035, base BDE + the seven add-ons, draws 0-1) does NOT reproduce in this environment. Re-running that exact arm here gives 0.149667509 (f…
+* **IR-25-DUPLICATE-DOWNLOAD** (critical, fixed (withdrawn)) — The front-page 'format-validated' download gems25-dotted-h19-5-d2-8-…-e56ea318af89-nan.tif (SHA-256 91eae1ca…) is byte-identical to a raster the group already lists (GEMSDOE24 d2-8 alternate in registry/artifact_ledger.json and the GEMSDOE30 entry tagged 91eae…
+* **IR-25-LANE-DENSITY** (high, fixed (strict duplicate/stop applied; no density exception)) — The 5-px lattice registry raster flags candidate dots under the literal protocol: 88.9% of the stored holdout-candidate emission and 100% of the full-footprint GEM-1 emission lie within 3 px of lattice dots. The saved result had incorrectly treated the dense l…
+* **IR-25-HOLDOUT-DOES-NOT-TEST-PRUNING** (high, disclosed) — The hide-and-recover holdout uses catalogue components as truth. It cannot evaluate catalogue-proximity pruning (the GEMSDOE32 mechanism) or any hypothesis whose premise is the hidden set's distance from the catalogue.
+* **IR-25-SHIPPED-NOT-CLEARED** (high, open) — The unique H31-C file is format-valid and unique by bytes, but its holdout result is parity with its own control (not a win), its lane check is flagged, and it has no competition score. It must not be used for a weekly slot.
+* **IR-25-LANE-GATE-MISAPPLICATION** (critical, fixed (decision corrected)) — Prior stored GEM-1 validation marked the candidate lane-clean and package_tif=true despite a stored lattice overlap of 0.889015 and a separate full-footprint GEM-1 lane receipt of 1.0. The validator used one lane result for an independently selected candidate …
+* **IR-25-LEGACY-PACKAGER-DUPLICATE** (high, fixed (disabled)) — scripts/package_submissions.py could regenerate the previously identified D2.8 file (content id e56ea318af89; SHA-256 91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8) and rewrite registry/submissions.json with it as primary, despite the duplic…
+* **IR-25-GEMSDOE32-B2-PARADOX** (high, verified) — Pixel-exact forensics across the 9 focus sites proves GEMSDOE28 r1 (0.2708, 40,199 px) is D2.8 & (d(cat)>1 px), GEMSDOE32 H33-2-B2 (0.2778, 37,654 px) is D2.8 & (d(cat)>2 px), and GEMSDOE36 (0.2750, 38,854 px) is B2 + 1,200 extra dots. Evaluating the pre-built…
 * **IR-25-DUPLICATE-MASKS-ACROSS-SITES** (high, flagged) — Byte-and-mask forensic audit across the focus projects shows that several sibling repositories shipped pixel-identical or byte-identical masks under different filenames: GEMSDOE30 d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca (owner-reported 0.2600) h…
 
 ## Limitations and what is needed
@@ -290,7 +280,7 @@ Planning brackets are uncertain prioritization judgments, not estimates or live-
 2. Keep the prior five-family A–E Resolution V factorial separate: its complete `evidence/factorial/` record is present and was reproduced byte-for-byte; see `IR-25-FACTORIAL-STATE` for the handoff-state discrepancy. H30 is an additional hypothesis-specific 2², not a replacement.
 3. Keep H26/H27/H29 outcomes and registrations labeled as prior work. H27-1 failed its gate; the old H29 list is registered already and must not be relabeled as novel.
 4. Refresh the official-source/evidence tables and static site/feed (`scripts/check_sources.py`, then `scripts/build_site.py` and `scripts/build_readme.py`). The feed must never request or follow `drivendata.org`.
-5. Keep the existing D2.8 download format-validated but unscored/not slot-approved. A passing H30 proxy gate is not a competition score, not confirmation until the fresh draw, and not authorization to upload.
+5. Keep the H31-C file unscored and NOT slot-cleared (lane flag open). Never submit the withdrawn D2.8 duplicate as new. A passing H30 proxy gate is not a competition score, not confirmation until the fresh draw, and not authorization to upload.
 6. Open a PR from the fixed Arena session branch, review the checks, and merge only through the GitHub PR workflow if permitted; never claim an unverified merge or deployment.
 
 ## Standing session charter
@@ -347,6 +337,65 @@ Set `GEMS_DATA_DIR` / `GEMS_WORK_DIR` to keep the 419 MB raster and the ~1.5 GB 
 | `knowledge/` | pre-registrations, ranked hypotheses, verified research digest, the brief |
 | `docs/`, `index.html` | GitHub Pages site (root `index.html` is the landing page; Pages builds from `main:/`) |
 | `tests/` | unit, parity, integrity and reproduction tests |
+
+## Standing brief 2026-10-25 (consolidated restatement, not verbatim) — read every session
+
+Full text: [`knowledge/owner_brief_2026-10-25_consolidated.md`](knowledge/owner_brief_2026-10-25_consolidated.md). GEMSDOE32 0.2778 analysis and ranked next hypotheses: [`knowledge/14_gemsdoe32_analysis_and_hypotheses_2026-10-25.md`](knowledge/14_gemsdoe32_analysis_and_hypotheses_2026-10-25.md). H31 pre-registration: [`knowledge/13_preregistered_h31_credit_field_emission_2026-10-25.md`](knowledge/13_preregistered_h31_credit_field_emission_2026-10-25.md). Run card: `registry/run_card_h31_2026-10-25.json`.
+
+<details><summary><strong>Full text of the 2026-10-25 brief (consolidated)</strong></summary>
+
+~~~text
+# Owner brief — 2026-10-25 (consolidated restatement, NOT a verbatim quote)
+
+The 2026-10-25 message is long and mixes several requests. This file keeps every requirement, condensed and grouped.
+The earlier verbatim brief remains in `knowledge/owner_brief_verbatim.txt`. Any gap between this text and the original
+message is a restatement error to flag, not a new instruction.
+
+## A. Highest urgency (stated as "must be followed")
+
+1. **Generate a unique TIF submission for the competition.** Do not copy a previous submission (learning and education
+   copies are allowed). The file must be easy to download from the site's first screen.
+2. **It must be obvious whether the file is OK to download and submit.** The status shown must say so in plain words.
+3. **Validation must run through the project, without human inspection.** Read the whole brief; several sites mention a
+   human inspector, but validation must be automated and verifiable.
+4. **Portal error to prevent:** `Predicted values must be in range [0, 1]`.
+5. **Each submission needs a unique name and a short note** (≤ 140 characters) to tell submissions apart.
+6. **An executive-summary subpage** explains how to submit, and sits at the top of the site.
+
+## B. Research and analysis requests
+
+7. Study the GEMSDOE32 page (0.2778, `h33-h33-2-b2-…-zeros`): why it scored, how, and whether we can exceed 0.2778.
+   Answer with PhD-level reasoning, and verify line by line with no hallucinations.
+8. Review the high-scoring GEMSDOE sites (24, 25, 27, 28, 30, 31, 32, 33, 36). Explain their methods and how they
+   differ. Note the sibling claims as claims.
+9. Generate 3–5 new geological hypotheses. For each, name the layers, the physical signature, why it should find a fault
+   missing from the USGS/INGENIOUS catalogue, and how it differs from the repo. Rank by expected gain and cost. Validate
+   the top one on the spatially blocked holdout before spending a weekly slot. If a candidate needs new data, name the
+   free official source and check it can be obtained first.
+10. Use a PARALLEL-RUN PROTOCOL: a lane limit, reuse of the shared holdout/evaluator/writer, labelled numbers
+    (HOLDOUT-DTI vs ORGANIZER-CONFIRMED), a leakage canary (single-feature AUC > 0.90 means leakage until proven),
+    a run card (JSON), and a budget (3 experiments or 2 hours).
+11. Work with verified official sources and give links for manual review. Flag irregularities. No hallucinations.
+12. Find overlooked data sources and new hypotheses, and store all verified knowledge in the repo as a base for later work.
+
+## C. Standing product requirements
+
+13. Put this brief into the README and read it at the start of every session.
+14. Core values: **Maximize P(Win)** and **Own the Outcome**. They are the decision rule for every change.
+15. A site that is clean, simple, organized and current, with a live feed and official source links.
+16. Run work in three passes: implement and verify; review for bugs and assumptions; re-check against this brief.
+17. Open a pull request from the session branch and merge it to `main` if checks pass. Make suggestions for next work and
+    list the limitations, for the next session.
+
+## D. Limits that stay in force (from AGENTS.md)
+
+* No automated access to drivendata.org, and no submission uploaded by the agent. The owner submits manually.
+* A weekly slot is used only for a candidate that beats the same-run comparable holdout best and passes the exact-file
+  audit. A format-valid file is not a slot-approved file.
+* Holdout DTI is a proxy. It is never a competition score.
+~~~
+
+</details>
 
 ## Owner brief (verbatim) — read every session
 

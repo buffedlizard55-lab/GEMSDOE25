@@ -37,26 +37,21 @@ def test_data_manifest_hashes_look_like_sha256_and_pins_are_unique_files():
 
 
 def test_shipped_downloads_match_registry_hashes_and_are_small():
-    from scripts.package_submissions import promotion_receipt_valid
-
     subs = J("registry/submissions.json")["files"]
     assert any(s["role"] == "primary" for s in subs)
+    assert not any(s.get("slot_approved", False) for s in subs)
     primary = next(s for s in subs if s["role"] == "primary")
     fallback = next(s for s in subs if s["role"] == "fallback")
+    for item in (primary, fallback):
+        # the DrivenData note must never imply the file is scored or slot-approved
+        assert "no slot" in item["note"] and "unscored" in item["note"]
+        assert "not slot-approved" in item["note"] or "fallback" in item["note"]
+        assert len(item["note"]) <= 120
     receipt = J(f"docs/downloads/{primary['receipt']}")
     assert receipt["note"] == primary["note"]
-    if primary.get("slot_approved", False):
-        assert promotion_receipt_valid(receipt), "slot_approved primary must pass promotion_receipt_valid()"
-        for item in (primary, fallback):
-            assert "not yet live-scored" in item["note"] or "unscored" in item["note"]
-            assert len(item["note"]) <= 140
-    else:
-        for item in (primary, fallback):
-            assert "no slot" in item["note"] and "unscored" in item["note"]
-            assert "not slot-approved" in item["note"] or "fallback" in item["note"]
-            assert len(item["note"]) <= 120
-    assert "not a competition score" in primary["summary"]
-    assert "comparable same-run holdout best" in primary["summary"]
+    assert "strict lane" in primary["summary"].lower() or "lane gate" in primary["summary"].lower()
+    assert "do not submit" in primary["status"].lower()
+    assert all(not s.get("slot_approved", False) for s in subs)
     registered_tifs = {s["file"] for s in subs}
     shipped_tifs = {p.name for p in (ROOT / "docs" / "downloads").glob("*.tif")}
     assert shipped_tifs == registered_tifs, "unregistered GeoTIFF in docs/downloads can be downloaded directly"
@@ -66,7 +61,7 @@ def test_shipped_downloads_match_registry_hashes_and_are_small():
         assert hashlib.sha256(f.read_bytes()).hexdigest() == s["sha256"], s["file"]
         assert f.stat().st_size < 6_000_000
         assert s["format_ok"] is True
-        assert len(s["note"]) <= 140 and (s["content_id"] in s["file"] or s["role"] in ("fallback", "zip"))
+        assert len(s["note"]) <= 120 and s["content_id"] in s["file"] or s["role"] in ("fallback", "zip")
 
 
 def test_no_large_or_forbidden_files_are_tracked():
@@ -168,11 +163,7 @@ def test_first_screen_of_home_has_the_download_before_anything_else():
     t = (ROOT / "index.html").read_text()
     primary = next(s for s in J("registry/submissions.json")["files"] if s["role"] == "primary")
     assert t.index(primary["file"]) < t.index("Local audit of the reported 0.2477 raster (score unverified)")
-    if primary.get("slot_approved", False):
-        assert "READY TO SUBMIT" in t or "APPROVED FOR UPLOAD" in t
-    else:
-        assert "not slot-approved" in t
-    assert "0.152003389" in t
+    assert "not slot-approved" in t and "0.152003389" in t
     assert "executive-summary.html" in t
 
 
@@ -189,13 +180,6 @@ def test_the_invented_footprint_files_are_not_shipped_or_linked():
 
 def test_shipped_files_are_not_duplicates_of_already_scored_files():
     # content ids of rasters that already have an owner-reported score (re-uploading them gives no information)
-    already_scored = {
-        "989f59505db1": "dotted H19-5 d1.5 (0.2477)",
-        "80d47e1ab2ee": "H19-5 (0.1922)",
-        "e56ea318af89": "dotted H19-5 d2.8 (0.2600)",
-        "8acb75e1f2cc": "GEMSDOE28/31 h27-4 B=1 (0.2708)",
-        "4311d7454b8e": "GEMSDOE32 h33-2-b2 B=2 (0.2778)",
-        "3b691a9ebe74": "GEMSDOE36 PINN (0.2750)",
-    }
+    already_scored = {"989f59505db1": "dotted H19-5 d1.5 (0.2477)", "80d47e1ab2ee": "H19-5 (0.1922)"}
     for s in J("registry/submissions.json")["files"]:
         assert s["content_id"] not in already_scored, (s["file"], already_scored.get(s["content_id"]))

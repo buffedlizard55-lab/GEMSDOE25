@@ -1,0 +1,46 @@
+{
+ "hypothesis": "H31-1 credit-field candidate selection and dotting",
+ "preregistration": "knowledge/13_preregistered_h31_credit_field_emission_2026-10-25.md",
+ "draws": [
+  0,
+  1
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "arms": [
+  {
+   "arm": "C",
+   "kind": "score",
+   "kfrac": 0.035
+  },
+  {
+   "arm": "A1",
+   "kind": "credit",
+   "kfrac": 0.035
+  },
+  {
+   "arm": "A2",
+   "kind": "credit",
+   "kfrac": 0.0245
+  }
+ ],
+ "min_dist": 2.4,
+ "model": {
+  "base": "BDE",
+  "extras": [
+   "X1_K",
+   "X1_ThK",
+   "X1_UK",
+   "X2_compat",
+   "X2_compat_coh",
+   "X3_gm",
+   "X3_gd"
+  ],
+  "fit_seed": "draw"
+ },
+ "reference": "evidence/h28_holdout/cells.jsonl (score, 2.4, 0.035)"
+}

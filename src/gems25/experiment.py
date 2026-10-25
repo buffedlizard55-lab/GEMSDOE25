@@ -16,6 +16,14 @@ from .families import family_columns
 from .features import build_catalogue_features, build_tip_continuation
 from .holdout import Draw, Holdout
 from .h30 import H30_PAIR_NAMES, build_paired_tip_bridge, build_scarp_persistence
+from .h31 import (
+    H31_FEATURE_NAMES,
+    H31_SUB_INPUTS,
+    H31_SURF_INPUTS,
+    build_offflank_tip_halo,
+    build_subscarp_concordance,
+    candidates_flank_shielded,
+)
 from .metric import dti_binary
 from .thinning import dot_thin, ridge_nms, select_top_positive
 
@@ -42,6 +50,8 @@ class Context:
     h27_scarp: np.ndarray = field(init=False)
     h30_scarp: np.ndarray | None = field(init=False, default=None)
     h30_scarp_diag: dict | None = field(init=False, default=None)
+    h31_subscarp: np.ndarray | None = field(init=False, default=None)
+    h31_subscarp_diag: dict | None = field(init=False, default=None)
 
     def __post_init__(self):
         self.fi = np.flatnonzero(self.foot.ravel())
@@ -50,8 +60,9 @@ class Context:
         self.extra_names = ["X1_K", "X1_ThK", "X1_UK", "X2_compat", "X2_compat_coh", "X3_gm", "X3_gd"]
         self.h27_names = ["H27_tip", "H27_scarp", "H27_tip_x_scarp"]
         self.h30_names = list(H30_PAIR_NAMES)
+        self.h31_names = list(H31_FEATURE_NAMES)
         self.all_names = (list(self.static_names) + list(self.e_names) + list(self.extra_names)
-                          + list(self.h27_names) + list(self.h30_names))
+                          + list(self.h27_names) + list(self.h30_names) + list(self.h31_names))
         self.col = {n: i for i, n in enumerate(self.all_names)}
         rng = np.random.default_rng(1)
         sub = np.sort(rng.choice(self.fi.size, 200_000, replace=False))
@@ -90,6 +101,23 @@ class Context:
                 "max_value": 0.0,
             }
 
+    def ensure_h31_subscarp(self) -> None:
+        """Build H31's static sub-scarp multi-physics concordance only when an H31 cell needs it."""
+        if self.h31_subscarp is not None:
+            return
+        h31_required = (*H31_SURF_INPUTS, *H31_SUB_INPUTS)
+        if all(n in self.static_names for n in h31_required):
+            self.h31_subscarp, self.h31_subscarp_diag = build_subscarp_concordance(self.static, self.static_names, self.scale)
+        else:
+            self.h31_subscarp = np.zeros(self.fi.size, np.float32)
+            self.h31_subscarp_diag = {
+                "missing_inputs": [n for n in h31_required if n not in self.static_names],
+                "n_footprint_pixels": int(self.fi.size),
+                "nonzero_fraction": 0.0,
+                "mean_value": 0.0,
+                "max_value": 0.0,
+            }
+
     def vec(self, mask: np.ndarray) -> np.ndarray:
         """Footprint-vector indices where ``mask`` is true."""
         return np.flatnonzero(mask.ravel()[self.fi])
@@ -112,23 +140,33 @@ class Cell:
     """Everything shared by all runs of one (fold, draw): features, training sample, test matrix."""
 
     def __init__(self, ctx: Context, fold: int, seed: int, extras: bool = False, h27: bool = False,
-                 h30: bool = False):
+                 h30: bool = False, h31: bool = False):
         if h27 and not extras:
             raise ValueError("H27 columns are appended after the add-on columns; set extras=True for aligned indices")
         if h30 and not (extras and h27):
             raise ValueError("H30 columns follow the H27 columns; set extras=True and h27=True for aligned indices")
-        self.ctx, self.fold, self.seed, self.extras, self.h27, self.h30 = ctx, fold, seed, extras, h27, h30
+        if h31 and not (extras and h27):
+            raise ValueError("H31 columns require extras=True and h27=True for aligned indices")
+        self.ctx, self.fold, self.seed, self.extras, self.h27, self.h30, self.h31 = (
+            ctx, fold, seed, extras, h27, h30, h31
+        )
         t0 = time.time()
         self.draw: Draw = ctx.holdout.draw(fold, seed)
         d = self.draw
         if h30:
             ctx.ensure_h30_scarp()
+        if h31:
+            ctx.ensure_h31_subscarp()
         self.E = build_catalogue_features(d.visible, ctx.fi)
         self.tip = build_tip_continuation(d.visible, ctx.foot, ctx.fi) if h27 else None
         self.bridge = None
         self.bridge_diag = None
         if h30:
             self.bridge, self.bridge_diag = build_paired_tip_bridge(d.visible, ctx.foot, ctx.fi)
+        self.offflank_halo = None
+        self.offflank_diag = None
+        if h31:
+            self.offflank_halo, self.offflank_diag = build_offflank_tip_halo(d.visible, self.tip, ctx.foot, ctx.fi)
         rng = np.random.default_rng(777 + 31 * fold + seed)
         pos = ctx.vec(d.hidden_train)
         near = distance_transform_edt(~d.hidden_train) <= 1.5
@@ -155,13 +193,22 @@ class Cell:
         neg_pool = np.flatnonzero(dq & ~cq)
         self.auc_neg = np.random.default_rng(5).choice(neg_pool, size=min(150_000, neg_pool.size), replace=False)
         self._grid = np.zeros(ctx.foot.shape, np.float32)
+        if self.tip is not None:
+            self._grid[:] = 0
+            self._grid.ravel()[ctx.fi] = self.tip
+            self.tip_c = self._grid[sl].copy()
+            self._grid[:] = 0
+        else:
+            self.tip_c = None
         self.prep_seconds = time.time() - t0
 
     def _gather(self, idx: np.ndarray) -> np.ndarray:
         ns, ne = self.ctx.static.shape[0], self.E.shape[0]
         n_extra = len(self.ctx.extra_names) if self.extras else 0
-        n_h27, n_h30 = (3 if self.h27 else 0), (2 if self.h30 else 0)
-        X = np.empty((idx.size, ns + ne + n_extra + n_h27 + n_h30), np.float32)
+        n_h27 = 3 if self.h27 else 0
+        n_h30 = 2 if (self.h30 or self.h31) else 0
+        n_h31 = 2 if self.h31 else 0
+        X = np.empty((idx.size, ns + ne + n_extra + n_h27 + n_h30 + n_h31), np.float32)
         gather_columns(self.ctx, self.E, idx, self.extras, out=X)
         j = ns + ne + n_extra
         if self.h27:
@@ -176,6 +223,16 @@ class Cell:
                 raise RuntimeError("H30 features were requested before their per-cell/static fields were initialized")
             X[:, j] = self.bridge[idx]
             X[:, j + 1] = self.ctx.h30_scarp[idx]
+            j += 2
+        elif self.h31:
+            X[:, j] = 0.0
+            X[:, j + 1] = 0.0
+            j += 2
+        if self.h31:
+            if self.offflank_halo is None or self.ctx.h31_subscarp is None:
+                raise RuntimeError("H31 features were requested before their per-cell/static fields were initialized")
+            X[:, j] = self.ctx.h31_subscarp[idx]
+            X[:, j + 1] = self.offflank_halo[idx]
         return X
 
     # -------------------------------------------------------------------------------------
@@ -199,6 +256,39 @@ class Cell:
         r = ridge_nms(s, self.dom_c, 1.0)
         sc = np.where(r & ~self.known_c, s, 0.0)
         return s, select_top_positive(sc, self.dom_c, self.K if k is None else k)
+
+    def candidates_flank_shielded(
+        self,
+        score_q: np.ndarray,
+        k: int | None = None,
+        *,
+        flank_radius_px: float = 2.5,
+        tip_preserve_threshold: float = 0.05,
+    ):
+        """(score crop, top-K ridge candidates, shield_diag) with tip-preserved lateral-flank shielding."""
+        if self.tip_c is None:
+            raise RuntimeError("tip_c is required for tip-preserved flank shielding; initialize Cell with h27=True")
+        g = self._grid
+        g[:] = 0
+        g.ravel()[self.ctx.fi[self.q]] = np.nan_to_num(score_q, nan=0.0).astype(np.float32)
+        s = g[self.sl].copy()
+        return candidates_flank_shielded(
+            s,
+            self.dom_c,
+            self.known_c,
+            self.tip_c,
+            self.K if k is None else k,
+            flank_radius_px=flank_radius_px,
+            tip_preserve_threshold=tip_preserve_threshold,
+        )
+
+    def feature_canary_auc(self, col_idx: int) -> dict[str, float]:
+        """Compute single-feature ROC-AUC on the holdout quadrant (`max(auc, 1-auc)` and signed `auc`)."""
+        vals = self.Xq[:, int(col_idx)]
+        raw_auc = self.auc(vals)
+        if not np.isfinite(raw_auc):
+            return {"raw_auc": float("nan"), "canary_auc": float("nan")}
+        return {"raw_auc": float(raw_auc), "canary_auc": float(max(raw_auc, 1.0 - raw_auc))}
 
     def evaluate(self, emitted_c: np.ndarray) -> dict:
         r = dti_binary(emitted_c, self.truth_c, valid=self.dom_c, known=self.known_c)

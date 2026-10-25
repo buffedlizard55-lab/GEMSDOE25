@@ -31,9 +31,9 @@ sys.path.insert(0, str(ROOT / "src"))
 from gems25.experiment import HGB_PARAMS, Cell, load_context  # noqa: E402
 from gems25.h31 import (  # noqa: E402
     H31_ANISO_NAMES,
-    H31_ARMS,
+    H31_ANISO_ARMS,
     H31_COH_NAMES,
-    H31_FEATURE_NAMES,
+    H31_ANISO_FEATURE_NAMES,
     apply_digitization_shadow_guard,
     build_h31_features,
     build_static_lidar_dem_coherence,
@@ -109,7 +109,7 @@ def main() -> None:
         "design_seed": DESIGN_SEED,
         "fitted_arms_canonical": fitted_arms,
         "fitted_arms_randomized_order": randomized_fitted,
-        "all_arms": list(H31_ARMS),
+        "all_arms": list(H31_ANISO_ARMS),
         "base_families": BASE_FAMILIES,
         "base_extras": BASE_EXTRAS,
         "h31_aniso_features": list(H31_ANISO_NAMES),
@@ -169,7 +169,7 @@ def main() -> None:
                     fname = ctx.all_names[col_idx]
                     raw_auc = cell.auc(cell.Xq[:, col_idx])
                     canary_by_feature.setdefault(fname, []).append(float(raw_auc))
-                for offset, fname in enumerate(H31_FEATURE_NAMES):
+                for offset, fname in enumerate(H31_ANISO_FEATURE_NAMES):
                     col_idx = n_orig + offset
                     raw_auc = cell.auc(cell.Xq[:, col_idx])
                     canary_by_feature.setdefault(fname, []).append(float(raw_auc))
@@ -186,16 +186,16 @@ def main() -> None:
                 )
 
                 cached = existing_cells.get((fold, draw), [])
-                if len(cached) == len(H31_ARMS):
+                if len(cached) == len(H31_ANISO_ARMS):
                     by_arm = {r["arm"]: r for r in cached}
-                    for arm in H31_ARMS:
+                    for arm in H31_ANISO_ARMS:
                         row = by_arm[arm]
                         cells_rows.append(row)
                         sink.write(json.dumps(row) + "\n")
                     sink.flush()
                     print(
                         f"[fold {fold} ({FOLDS[fold]}) draw {draw} | CACHED | {time.time()-t_cell:.1f}s] "
-                        + " | ".join(f"{a}={by_arm[a]['dti']:.6f}" for a in H31_ARMS),
+                        + " | ".join(f"{a}={by_arm[a]['dti']:.6f}" for a in H31_ANISO_ARMS),
                         flush=True,
                     )
                     del cell
@@ -253,7 +253,7 @@ def main() -> None:
                     "predict_s": e2_timing["predict_s"] + b2_s,
                 }
 
-                for arm in H31_ARMS:
+                for arm in H31_ANISO_ARMS:
                     row = cell_results[arm]
                     cells_rows.append(row)
                     sink.write(json.dumps(row) + "\n")
@@ -261,7 +261,7 @@ def main() -> None:
 
                 print(
                     f"[fold {fold} ({FOLDS[fold]}) draw {draw} | n_pos={n_withheld} | {time.time()-t_cell:.1f}s] "
-                    + " | ".join(f"{a}={cell_results[a]['dti']:.6f}" for a in H31_ARMS),
+                    + " | ".join(f"{a}={cell_results[a]['dti']:.6f}" for a in H31_ANISO_ARMS),
                     flush=True,
                 )
                 del cell
@@ -303,7 +303,7 @@ def main() -> None:
 
     # Summarize arm metrics (both cell-mean with 8-cell 95% CI, 4-fold block mean with 4-fold 95% CI, and pooled DTI)
     arm_summaries: dict[str, dict] = {}
-    for arm in H31_ARMS:
+    for arm in H31_ANISO_ARMS:
         rows = [r for r in cells_rows if r["arm"] == arm]
         cell_dtis = [r["dti"] for r in rows]
         mean_cell, lo_cell, hi_cell = ci95(cell_dtis)
@@ -438,7 +438,7 @@ def main() -> None:
         "| Arm | Pooled `HOLDOUT-DTI` | Cell Mean `HOLDOUT-DTI` | 95% CI (8 cells) | 95% CI (4 folds) | `NW` | `NE` | `SW` | `SE` | Mean Emitted | Hug Share |",
         "|---|---:|---:|---|---|---:|---:|---:|---:|---:|---:|",
     ]
-    for arm in H31_ARMS:
+    for arm in H31_ANISO_ARMS:
         s = arm_summaries[arm]
         pf = s["per_fold_dti"]
         md.append(

@@ -42,7 +42,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from gems25.experiment import HGB_PARAMS, N_NEG, gather_columns, load_context  # noqa: E402
 from gems25.features import build_catalogue_features, build_tip_continuation  # noqa: E402
 from gems25.h31 import (  # noqa: E402
-    H31_FEATURE_NAMES,
+    H31_ANISO_FEATURE_NAMES,
     apply_digitization_shadow_guard,
     build_h31_features,
     build_static_lidar_dem_coherence,
@@ -365,7 +365,7 @@ def main() -> None:
         },
         "build": {
             "base": BASE_FAMILIES,
-            "extras": BASE_EXTRAS + ["H27_tip", *H31_FEATURE_NAMES],
+            "extras": BASE_EXTRAS + ["H27_tip", *H31_ANISO_FEATURE_NAMES],
             "kfrac": KFRAC,
             "variant": f"sapd{MIN_DIST_PX}_b{int(B2_BUFFER_PX)}",
             "min_dist_px": MIN_DIST_PX,

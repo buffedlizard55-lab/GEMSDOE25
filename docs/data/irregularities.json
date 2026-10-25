@@ -1,6 +1,6 @@
 {
  "schema_version": 3,
- "review_date_utc": "2026-10-03",
+ "review_date_utc": "2026-10-25",
  "issues": [
   {
    "id": "IR-25-NAN-FOOTPRINT",
@@ -233,6 +233,86 @@
    "issue": "The condensed session handoff says the required five-family fractional factorial remains unrun, but the tracked repository contains a complete earlier run: evidence/factorial/cells.jsonl has 152 rows (16 registered model arms \u00d7 8 fold/draw cells plus 3 reference arms \u00d7 8), design.json specifies the 16-run Resolution V design, and results.json reports 16 runs with no deviations. Re-running the registered analyzer reproduces results.json/results.md byte-for-byte. H30 is a separate follow-on experiment and does not replace this five-family design.",
    "evidence": "evidence/factorial/design.json; evidence/factorial/cells.jsonl (152 JSONL rows); evidence/factorial/results.json (16 runs, 8 cells per run, deviations=[]); evidence/factorial/results.md; scripts/analyze_factorial.py (rerun 2026-10-03, output hashes unchanged).",
    "resolution_or_action": "Treat the five-family experiment as already executed from the available, internally reproducible evidence unless stronger provenance evidence invalidates it. Do not overwrite/rerun it merely because the handoff says unrun. Preserve it as a separate registered result; H30 remains an additional experiment. The local JSONL lacks a fit timestamp, so the exact original run date/environment should not be inferred."
+  },
+  {
+   "id": "IR-25-DUPLICATE-DOWNLOAD",
+   "severity": "critical",
+   "status": "fixed (withdrawn)",
+   "issue": "The front-page 'format-validated' download gems25-dotted-h19-5-d2-8-\u2026-e56ea318af89-nan.tif (SHA-256 91eae1ca\u2026) is byte-identical to a raster the group already lists (GEMSDOE24 d2-8 alternate in registry/artifact_ledger.json and the GEMSDOE30 entry tagged 91eae1ca, 0.2600 claim). The brief requires a unique file.",
+   "evidence": "registry/submissions.json (role now 'duplicate'); scripts/check_lane_duplicates.py on the file: byte_identical=True vs data/scored/gems24-\u2026d2-8\u2026; registry/artifact_ledger.json.",
+   "resolution_or_action": "Withdrawn as primary. Replaced by the unique H31-C file (docs/downloads/gems25-h31-control-\u2026-nan.tif). The old file stays in git history and is labelled DUPLICATE. Do not submit it as new. The legacy script that could recreate the duplicate as primary is disabled (IR-25-LEGACY-PACKAGER-DUPLICATE)."
+  },
+  {
+   "id": "IR-25-LANE-DENSITY",
+   "severity": "high",
+   "status": "fixed (strict duplicate/stop applied; no density exception)",
+   "issue": "The 5-px lattice registry raster flags candidate dots under the literal protocol: 88.9% of the stored holdout-candidate emission and 100% of the full-footprint GEM-1 emission lie within 3 px of lattice dots. The saved result had incorrectly treated the dense lattice as a degenerate exception and marked GEM-1 lane-clean. The GEM-FUSE1 receipt added by merged PR #13 also records 100% of candidate dots within 3 px of the r13 lattice; its density-artifact explanation does not supersede this literal threshold.",
+   "evidence": "evidence/gem_validation/results.json (stored lattice overlap 0.889015); evidence/gem_validation/lane_gem1.json (full-footprint overlap 1.0); scripts/validate_gem_candidate.py; docs/downloads/lane-gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.json (candidate-side overlap 1.0)",
+   "resolution_or_action": "Applied the protocol verbatim: either overlap exceeds 70%, so GEM-1 and H31-C are duplicate-lane stops and are download-for-testing only; do not submit. No density-normalized exception is authorized. Corrected saved decision and site labels; new validation code fails closed and checks each candidate full-footprint raster. GEM-FUSE1 is now explicitly marked DUPLICATE LANE / STOP, testing-only, do not submit; reverse overlap and density interpretation do not waive the user-set threshold. The GEM-FUSE1 builder is disabled and regression-tested to prevent recreating this known duplicate. The H31-C registry writer is also disabled and regression-tested to prevent restoring that known lane duplicate as primary."
+  },
+  {
+   "id": "IR-25-LEADERBOARD-CONFLICT",
+   "severity": "medium",
+   "status": "flagged",
+   "issue": "The 2026-10-25 brief gives conflicting leaderboard figures: 'Current competition leaderboard GEMSDOE high score: 0.4413', then '0.3195 is the highest score right now'. The GEMSDOE32 page lists #1 0.3262, #2 DARD 0.3195, #3 0.3042 ('read 2026-10-04'). None verified here (drivendata not accessed per AGENTS.md).",
+   "evidence": "owner brief 2026-10-25; https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html (leaderboard section).",
+   "resolution_or_action": "Owner to confirm the current figures from the official leaderboard page. The repo uses no leaderboard number as a target without this."
+  },
+  {
+   "id": "IR-25-BREAKEVEN-SHORTHAND",
+   "severity": "low",
+   "status": "flagged",
+   "issue": "GEMSDOE32 gives a break-even credit of 0.0548 'from 0.2\u00b70.26 = 0.0520'. The repo's metric gives marginal_inclusion_ratio(0.26) = 0.05485 (the ratio form \u03b1D/(1\u2212\u03b1D)); the linear 0.2\u00b7D shorthand is 0.0520.",
+   "evidence": "gems25.metric.marginal_inclusion_ratio; knowledge/14_gemsdoe32_analysis_and_hypotheses_2026-10-25.md \u00a72.",
+   "resolution_or_action": "Use the ratio form. The 0.0548 figure is consistent with it."
+  },
+  {
+   "id": "IR-25-HOLDOUT-DOES-NOT-TEST-PRUNING",
+   "severity": "high",
+   "status": "disclosed",
+   "issue": "The hide-and-recover holdout uses catalogue components as truth. It cannot evaluate catalogue-proximity pruning (the GEMSDOE32 mechanism) or any hypothesis whose premise is the hidden set's distance from the catalogue.",
+   "evidence": "src/gems25/holdout.py docstring; GEMSDOE32 IR-32-PROXY-01; knowledge/14 \u00a73.",
+   "resolution_or_action": "Propose a new holdout whose truth is restricted to components at least 200 m from the visible traces, pre-registered before use (H32-1). Not run."
+  },
+  {
+   "id": "IR-25-SHIPPED-NOT-CLEARED",
+   "severity": "high",
+   "status": "open",
+   "issue": "The unique H31-C file is format-valid and unique by bytes, but its holdout result is parity with its own control (not a win), its lane check is flagged, and it has no competition score. It must not be used for a weekly slot.",
+   "evidence": "registry/run_card_h31_2026-10-25.json; evidence/h31_screen/analysis.json.",
+   "resolution_or_action": "The site and README label it 'UNIQUE FILE - NOT CLEARED'. A slot needs a passing confirmation, a cleared lane check, and the exact-file audit."
+  },
+  {
+   "id": "IR-25-LANE-GATE-MISAPPLICATION",
+   "severity": "critical",
+   "status": "fixed (decision corrected)",
+   "issue": "Prior stored GEM-1 validation marked the candidate lane-clean and package_tif=true despite a stored lattice overlap of 0.889015 and a separate full-footprint GEM-1 lane receipt of 1.0. The validator used one lane result for an independently selected candidate and its holdout emission was crop-indexed against full-grid rasters. This could falsely clear an unrelated candidate.",
+   "evidence": "evidence/gem_validation/results.json; evidence/gem_validation/lane_gem1.json; prior scripts/validate_gem_candidate.py code; corrected tests/test_lane_protocol.py",
+   "resolution_or_action": "Now check each candidate surface and exact full-footprint emission separately, use absolute Spearman, require a nonempty readable registry, and require lane clearance in the per-candidate promotion gate. Corrected the stored decision to package_tif=false. Raw inputs are absent, so the corrected algorithm has unit tests but no fresh full-data run."
+  },
+  {
+   "id": "IR-25-LEGACY-PACKAGER-DUPLICATE",
+   "severity": "high",
+   "status": "fixed (disabled)",
+   "issue": "scripts/package_submissions.py could regenerate the previously identified D2.8 file (content id e56ea318af89; SHA-256 91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8) and rewrite registry/submissions.json with it as primary, despite the duplicate finding and no new candidate gate.",
+   "evidence": "prior scripts/package_submissions.py; IR-25-DUPLICATE-DOWNLOAD; tests/test_packaging_gate.py",
+   "resolution_or_action": "Retired the legacy CLI; it now exits before accessing data or writing artifacts. Retained a same-run exact-SHA promotion-receipt validator for tests/future safe packager code. README reproduction instructions now warn against invoking it."
+  },
+  {
+   "id": "IR-25-RESTORE-API-RATELIMIT",
+   "severity": "medium",
+   "status": "fixed",
+   "issue": "scripts/restore_data.py and scripts/restore_artifacts.py previously relied on gh api (GitHub REST API, 5,000 req/hr shared across parallel sessions) with fallback to raw.githubusercontent.com (outside the sandbox network allowlist). When the REST API quota hit 0 during parallel runs on 2026-10-25, gh api failed with HTTP 403.",
+   "evidence": "gh api rate_limit (core remaining=0); scripts/restore_data.py; scripts/restore_artifacts.py; PR #10 (knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md)",
+   "resolution_or_action": "Fixed in scripts/restore_data.py and scripts/restore_artifacts.py by adding _git_fetch_blob (git fetch --depth=1 --filter=blob:none + git show FETCH_HEAD:<path> over https://github.com/), which is inside the sandbox allowlist, uses zero REST API quota, and restored all 22 manifest files + 30 artifact rasters + 13 focus-site rasters with 100% SHA-256 verification."
+  },
+  {
+   "id": "IR-25-GEMSDOE32-B2-PARADOX",
+   "severity": "high",
+   "status": "verified",
+   "issue": "Pixel-exact forensics across the 9 focus sites proves GEMSDOE28 r1 (0.2708, 40,199 px) is D2.8 & (d(cat)>1 px), GEMSDOE32 H33-2-B2 (0.2778, 37,654 px) is D2.8 & (d(cat)>2 px), and GEMSDOE36 (0.2750, 38,854 px) is B2 + 1,200 extra dots. Evaluating the pre-built full-catalogue B2 raster directly on Holdout (where hidden_test is a subset of labels) yields an artificial 0.0041 DTI because B2 masked d(labels)<=2.0 (including hidden_test), whereas applying lateral-flank shielding strictly to draw.visible inside each out-of-fold Holdout cell (Factor C) is positive in 8/8 fold-blocks across screen and confirmation.",
+   "evidence": "evidence/focus_sites_forensics.json; evidence/h31_flank_screen/results.json; evidence/h31_flank_confirm/results.json",
+   "resolution_or_action": "Never evaluate a post-hoc full-catalogue collar-pruned raster against hidden_test subset of labels; always apply flank shielding strictly to draw.visible inside each out-of-fold Holdout cell (src/gems25/h31.py::candidates_flank_shielded)."
   },
   {
    "id": "IR-25-DUPLICATE-MASKS-ACROSS-SITES",

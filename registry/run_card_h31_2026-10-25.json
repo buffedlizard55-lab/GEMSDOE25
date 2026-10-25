@@ -1,0 +1,111 @@
+{
+  "run_card_version": 1,
+  "date_utc": "2026-10-25",
+  "session_branch": "arena/b6c33f15-gemsdoe25",
+  "hypothesis": "H31-1: choosing emission candidates and dot order from the kernel-credit field u = value_field(score) (instead of raw-score ridge candidates) raises holdout DTI at equal budget.",
+  "mechanism": "u sums each pixel's 3-px triangular-kernel neighbourhood of the normalised score, i.e. the expected credit one dot collects; selecting and ordering dots by u should move dots to where expected credit is highest per unit FP.",
+  "non_fault_process_that_could_mimic_it": "Smoothing a score surface with a 3-px kernel favours broad, high-score regions (basin margins, thermal-rich lowlands, DEM-ridge clusters) that carry no fault; a gain could be a regional-density effect, not fault detection. Also: the catalogue-proximity bias (dots hugging visible traces) inflates holdout credit because the holdout truth is the catalogue itself (IR-32-PROXY-01).",
+  "pre_registration": "knowledge/13_preregistered_h31_credit_field_emission_2026-10-25.md (committed before the run, commit 7c1f246)",
+  "experiment": {
+    "id": "H31-1 screen",
+    "draws": [
+      0,
+      1
+    ],
+    "folds": [
+      "NW",
+      "NE",
+      "SW",
+      "SE"
+    ],
+    "control": "score, 2.4 px, kfrac 0.035 (C)",
+    "primary_arm": "A1 credit-field candidates + dots, 2.4 px, kfrac 0.035",
+    "reproduction": "PASS (8/8 control cells match evidence/h28_holdout/cells.jsonl, max abs diff 0.0)",
+    "A1_mean_paired_gain": -0.000678,
+    "A1_folds_positive": "2/4",
+    "A1_worst_fold": -0.003661,
+    "A1_gate": "FAILED (needs >+0.001, >=3/4 folds, worst >=-0.010)",
+    "A2_mean_paired_gain": -0.008081,
+    "A2_gate": "FAILED",
+    "confirmation_run": "not run (screen failed, per pre-registration)",
+    "evidence": "evidence/h31_screen/"
+  },
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator": "gems25.metric.dti_binary (alpha 0.2, beta 0.8, R=3 px), same-run control C",
+    "mean": 0.149668,
+    "ci95": [
+      0.133069,
+      0.166266
+    ],
+    "ci_method": "t-interval over the four fold means (t=3.182, df=3)",
+    "withheld_positives_per_fold": [
+      1879,
+      2408,
+      3798,
+      3207
+    ]
+  },
+  "correlation_overlap_vs_registry": {
+    "checker": "scripts/check_lane_duplicates.py",
+    "receipt": "docs/downloads/lane-gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.json",
+    "spearman_max": 0.0472,
+    "dots_within_3px_max": 1.0,
+    "flagged": [
+      "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
+    ],
+    "flag_detail": "The receipt records 100% of candidate dots within 3 px of the r13 lattice (>70% stop threshold). Reverse overlap (18.5%) does not waive the candidate-side rule; no density exception is authorized. DUPLICATE LANE / STOP.",
+    "lane_limit": "Literal rule: absolute rho >0.90 OR >70% candidate dots within 3 px of any one registry raster => duplicate and stop. Triggered.",
+    "protocol_verdict": "DUPLICATE LANE / STOP",
+    "submission_allowed": false,
+    "slot_approved": false
+  },
+  "raster": {
+    "file": "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+    "sha256": "2165bb8e229ee27e25edf57e990191d8f7836ab4b07e2779f15023f7c34a3ab2",
+    "positive_pixels": 48714,
+    "content_id": "9edd6bed8268",
+    "submission_allowed": false,
+    "slot_approved": false
+  },
+  "validator_output": {
+    "tool": "gems25.submission.check_file against owner-mirrored data/sample_submission.tif; format-only, not lane/slot validation",
+    "hard_failures": [],
+    "checks": {
+      "template_matches_expected_grid_and_footprint": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "crs_epsg_32611": true,
+      "shape_matches_template": true,
+      "geotransform_matches_template": true,
+      "footprint_all_finite": true,
+      "footprint_values_in_0_1": true,
+      "outside_footprint_is_nan_official": true,
+      "outside_footprint_is_nan_or_zero": true,
+      "nan_mask_identical_to_template": true,
+      "nodata_tag": true,
+      "variant_nan_aware_whole_array": true,
+      "variant_masked_read": true,
+      "variant_strict_whole_array_no_nan": false,
+      "profile_matches_template": true
+    },
+    "note_on_check": "variant_strict_whole_array_no_nan = False by design: the official format is NaN outside the footprint; the footprint itself has no NaN and values lie in [0,1].",
+    "format_validator_reported_ok_to_upload": true,
+    "overall_submission_allowed": false,
+    "authorization_note": "No: the recorded strict lane check exceeds the 70% candidate-dot threshold."
+  },
+  "submission_name": "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan",
+  "submission_note": "GEMSDOE25 H31-C | lane FAIL; unscored; no slot; DO NOT SUBMIT | id 9edd6bed8268",
+  "note_length": 79,
+  "verdict": "DUPLICATE LANE / STOP; no slot. Holdout-DTI is proxy evidence, not a competition score; do not submit.",
+  "limits": [
+    "Holdout truth = catalogue components (IR-25-PROXY-LIMITS, IR-32-PROXY-01); cannot test catalogue-proximity hypotheses.",
+    "Competition score unknown; leaderboard figures are sibling claims.",
+    "Owner-mirror template and validator are not organizer-authenticated (IR-25-PROVENANCE)."
+  ],
+  "budget": {
+    "experiments_used": 1,
+    "limit": 3,
+    "wall_clock_note": "about 1.5 h including setup"
+  }
+}

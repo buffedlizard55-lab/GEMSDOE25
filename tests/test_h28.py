@@ -83,7 +83,9 @@ def test_anchor_checks_all_pass_and_are_consistent():
 def test_the_shipped_file_is_the_ceiling_of_its_family():
     ceil = DESIGN["ceiling_best"]
     subs = J("registry/submissions.json")["files"]
-    primary = next(s for s in subs if s["role"] == "primary")
+    # the H28 ceiling file is the withdrawn duplicate after the 2026-10-25 re-registration; find it by its mass
+    primary = next(s for s in subs if s["positive_pixels"] == int(ceil["mass"]))
+    assert primary["role"] == "duplicate"
     assert abs(ceil["min_dist"] - 2.4) < 1e-9
     ref = DESIGN["reference_rows_under_calibrated_pi"]["d2-8"]
     assert int(ceil["mass"]) == int(ref["mass"]) == 44090
