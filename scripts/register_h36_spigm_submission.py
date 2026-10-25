@@ -91,7 +91,8 @@ def main() -> None:
     mutual_max = max(float(r["mutual_3px_min"]) for r in non_lat)
 
     strict_lane = {
-        "policy": "literal 70 % / 3 px and |Spearman| <= 0.90 across all 47 rasters (PR #14)",
+        "policy": f"literal 70 % / 3 px and |Spearman| <= 0.90 across all {len(rows)} non-self rasters (PR #14)",
+        "registry_rasters_checked": len(rows),
         "lane_clear": bool(not dots_lane["flagged"] and not surf_lane["flagged"]),
         "strict_verdict": "DUPLICATE LANE / STOP (r13 lattice + unscored H35 catalogue-halo)" if dots_lane["flagged"] else "clear",
         "lattice_file": LATTICE,

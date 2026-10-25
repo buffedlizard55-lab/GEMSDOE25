@@ -115,10 +115,10 @@
     "strict_verdict": "DUPLICATE LANE / STOP (r13 lattice + unscored H35 catalogue-halo)",
     "lattice_overlap": 1.0,
     "worst_other_registry_overlap": 0.598529,
-    "worst_abs_spearman_final": 0.06548,
-    "worst_abs_spearman_surface": 0.1213
+    "worst_abs_spearman_final": 0.074467,
+    "worst_abs_spearman_surface": 0.127535
    },
-   "lane_summary": "clears all 31 non-lattice scored & sibling top-scorer rasters (23.95% within 3 px of GEMSDOE32 0.2778; 21.23% vs GEMSDOE70; worst 0.599 <= 0.70; pre-placement surface |Spearman| <= 0.1213 <= 0.90; final-dot |Spearman| <= 0.0655 <= 0.90; max mutual 3-px overlap 0.5794 <= 0.70); strict lane gate fails on dense r13 lattice (100.0%) and local unscored H35 (70.7% one-way, 55.7% reverse)",
+   "lane_summary": "clears all 31 non-lattice scored & sibling top-scorer rasters (23.95% within 3 px of GEMSDOE32 0.2778; 21.23% vs GEMSDOE70; worst 0.599 <= 0.70; pre-placement surface |Spearman| <= 0.1275 <= 0.90; final-dot |Spearman| <= 0.0745 <= 0.90; max mutual 3-px overlap 0.5874 <= 0.70); strict lane gate fails on dense r13 lattice (100.0%) and local unscored H35 (70.7% one-way, 55.7% reverse)",
    "run_card": "registry/run_card_h36_spigm_2026-10-25.json"
   },
   {
@@ -153,11 +153,222 @@
     "strict_verdict": "DUPLICATE LANE / STOP (r13 lattice + unscored H35 catalogue-halo)",
     "lattice_overlap": 1.0,
     "worst_other_registry_overlap": 0.598529,
-    "worst_abs_spearman_final": 0.06548,
-    "worst_abs_spearman_surface": 0.1213
+    "worst_abs_spearman_final": 0.074467,
+    "worst_abs_spearman_surface": 0.127535
    },
-   "lane_summary": "clears all 31 non-lattice scored & sibling top-scorer rasters (23.95% within 3 px of GEMSDOE32 0.2778; 21.23% vs GEMSDOE70; worst 0.599 <= 0.70; pre-placement surface |Spearman| <= 0.1213 <= 0.90; final-dot |Spearman| <= 0.0655 <= 0.90; max mutual 3-px overlap 0.5794 <= 0.70); strict lane gate fails on dense r13 lattice (100.0%) and local unscored H35 (70.7% one-way, 55.7% reverse)",
+   "lane_summary": "clears all 31 non-lattice scored & sibling top-scorer rasters (23.95% within 3 px of GEMSDOE32 0.2778; 21.23% vs GEMSDOE70; worst 0.599 <= 0.70; pre-placement surface |Spearman| <= 0.1275 <= 0.90; final-dot |Spearman| <= 0.0745 <= 0.90; max mutual 3-px overlap 0.5874 <= 0.70); strict lane gate fails on dense r13 lattice (100.0%) and local unscored H35 (70.7% one-way, 55.7% reverse)",
    "run_card": "registry/run_card_h36_spigm_2026-10-25.json"
+  },
+  {
+   "id": "h38-greedy-credit",
+   "role": "alternate",
+   "file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.tif",
+   "path": "docs/downloads/gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.tif",
+   "bytes": 856510,
+   "sha256": "03b9d4c09aa630b69b49bd33df57f0660875a1b26b3d00cc1e38570404d6dae2",
+   "content_id": "18de99d38bb0",
+   "positive_pixels": 54472,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "np.nanmin/np.nanmax over the whole array",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.json",
+   "lane_receipt": "lane-gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.json",
+   "outside": "zero",
+   "status": "UNIQUE BY CONTENT \u00b7 FORMAT-VALID \u00b7 HOLDOUT GATE PASS x2 \u00b7 verdict negative \u00b7 DO NOT SUBMIT (holdout gate PASS x2 + format PASS; blocked by: lane duplicate vs this repo's own unscored lineage (cf1-transverse-negative-20261025-22e2f9eddad9, h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5, h31-aniso-scarp-b2-d2-8-20261025-c213681203f6, h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268, h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719, h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea, h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf, xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9; worst 1.000 vs gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif) \u2014 supersession is an owner selector decision, not agent-cleared; strict lane gate (literal) vs the dense r13 lattice: 100.0% of dots within 3 px (halo coverage 99.87%; density-aware symmetric overlap 0.189) (IR-25-LANE-DENSITY))",
+   "title": "H38 greedy-credit emission on the H35 surface (54,472 dots) \u2014 holdout gate PASS x2; lane-blocked; DO NOT SUBMIT",
+   "summary": "H38 greedy marginal-credit emission (knowledge/25): the validated H35 detector surface (BDE+7 + directed tip + H34 RESMAG-FLEX, 3-draw HGB average) is unchanged; dots are bought from the same ridge-NMS 3.5% candidate pool by exact incremental triangular-kernel credit per plug-in FP, stopping at the DTI break-even ratio \u2014 no fixed spacing or count (54,472 dots). HOLDOUT-DTI A1 0.1613 (95% CI 0.1420\u20130.1805; pooled 0.1617) vs same-surface control A0 0.1565 (pooled 0.1568); combined paired gain +0.0048 (95% CI +0.0024\u2013+0.0071), 4/4 folds, worst +0.0032, pooled +0.0050; screen (draws 20\u201321) +0.0055 PASS, confirmation (draws 22\u201323) +0.0040 PASS; off-catalogue pooled gain +0.0055; withheld positives per fold [1973, 2333, 3611, 3239] (off-catalogue [1948, 2309, 3518, 3182]). HOLDOUT-DTI is a catalogue-gap proxy, not a competition score. Leakage canary max effective AUC 0.833 (line score; base surface 0.844; cap 0.90). Primary file is zeros-outside (every cell finite in [0,1], no NaN anywhere); the NaN twin has identical footprint values. Lane: strict lane gate (literal) vs the dense r13 lattice: 100.0% of dots within 3 px (halo coverage 99.87%; density-aware symmetric overlap 0.189); vs 28 other-site/scored rasters worst 3-px dot overlap 0.683 (gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif), no flag; overlap vs GEMSDOE32 B2 (OWNER 0.2778) 0.316; worst final-dot |Spearman| 0.387, pre-placement surface worst |Spearman| 0.154; FLAGGED vs own unscored lineage (cf1-transverse-negative-20261025-22e2f9eddad9, h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5, h31-aniso-scarp-b2-d2-8-20261025-c213681203f6, h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268, h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719, h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea, h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf, xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9; worst 1.000). Verdict: negative.",
+   "zip": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.zip",
+   "zip_bundle": {
+    "file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.zip",
+    "path": "docs/downloads/gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.zip",
+    "bytes": 224272
+   },
+   "transform": "ridge-NMS top-K (3.5%) -> greedy marginal-credit dots (break-even stopping, no fixed spacing), 3-draw HGB average (BDE+7+tip+H34), catalogue pixels excluded, 0.0 outside footprint",
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": false,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "slot_reason": "holdout gate PASS x2 + format PASS; blocked by: lane duplicate vs this repo's own unscored lineage (cf1-transverse-negative-20261025-22e2f9eddad9, h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5, h31-aniso-scarp-b2-d2-8-20261025-c213681203f6, h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268, h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719, h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea, h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf, xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9; worst 1.000 vs gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif) \u2014 supersession is an owner selector decision, not agent-cleared; strict lane gate (literal) vs the dense r13 lattice: 100.0% of dots within 3 px (halo coverage 99.87%; density-aware symmetric overlap 0.189) (IR-25-LANE-DENSITY)",
+   "expected_range": "no live projection (HOLDOUT-DTI 0.1613 only; not a score)",
+   "lane": {
+    "lane_clear": false,
+    "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+    "density_aware_verdict": "DUPLICATE/LANE OVERLAP (density-aware) - do not package",
+    "lattice_overlap": 1.0,
+    "worst_other_site_overlap": 0.682736,
+    "worst_other_site_file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+    "worst_own_lineage_overlap": 1.0,
+    "worst_own_lineage_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+    "worst_abs_spearman_final": 0.386989,
+    "worst_abs_spearman_surface": 0.154274,
+    "overlap_vs_gemsdoe32_b2": 0.315703,
+    "flagged_other_site": [],
+    "flagged_own_lineage": [
+     "gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
+     "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+     "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
+     "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+     "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+     "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+     "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
+     "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+     "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif",
+     "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-nan.tif",
+     "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.tif",
+     "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-nan.tif",
+     "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-zeros.tif",
+     "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-nan.tif",
+     "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.tif"
+    ],
+    "registry_checked": 50
+   },
+   "lane_summary": "strict lane gate (literal) vs the dense r13 lattice: 100.0% of dots within 3 px (halo coverage 99.87%; density-aware symmetric overlap 0.189); vs 28 other-site/scored rasters worst 3-px dot overlap 0.683 (gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif), no flag; overlap vs GEMSDOE32 B2 (OWNER 0.2778) 0.316; worst final-dot |Spearman| 0.387, pre-placement surface worst |Spearman| 0.154; FLAGGED vs own unscored lineage (cf1-transverse-negative-20261025-22e2f9eddad9, h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5, h31-aniso-scarp-b2-d2-8-20261025-c213681203f6, h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268, h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719, h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea, h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf, xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9; worst 1.000)",
+   "run_card": "registry/run_card_h38_2026-10-25.json",
+   "note": "GEMSDOE25 H38 greedy-credit k3.5% | PASSx2 +0.005; unscored; not slot-approved; no slot | id 18de99d38bb0",
+   "parent": "H35 arm B detector surface (BDE+7+H27_tip+H34) + greedy marginal-credit emission (knowledge/25)"
+  },
+  {
+   "id": "h38-greedy-credit-nan",
+   "role": "alternate",
+   "file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+   "path": "docs/downloads/gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+   "bytes": 1622928,
+   "sha256": "d81c69cace45144ea29d6d1f208efec3f38ff45265171f5f6c9bbbfdd43eabcf",
+   "content_id": "18de99d38bb0",
+   "positive_pixels": 54472,
+   "format_ok": true,
+   "checks": {},
+   "receipt": "checks-gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.json",
+   "lane_receipt": "lane-gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.json",
+   "outside": "nan",
+   "status": "template-convention twin (NaN outside); identical footprint values; unscored; not slot-approved; DO NOT SUBMIT",
+   "title": "H38 with NaN outside the footprint (official template convention); same dots as primary",
+   "summary": "Identical prediction values inside the template footprint; NaN instead of 0.0 outside. Format-convention twin kept for local testing only; same verdict as the zeros primary.",
+   "transform": "outside=nan",
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": false,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "slot_reason": "holdout gate PASS x2 + format PASS; blocked by: lane duplicate vs this repo's own unscored lineage (cf1-transverse-negative-20261025-22e2f9eddad9, h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5, h31-aniso-scarp-b2-d2-8-20261025-c213681203f6, h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268, h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719, h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea, h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf, xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9; worst 1.000 vs gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif) \u2014 supersession is an owner selector decision, not agent-cleared; strict lane gate (literal) vs the dense r13 lattice: 100.0% of dots within 3 px (halo coverage 99.87%; density-aware symmetric overlap 0.189) (IR-25-LANE-DENSITY)",
+   "expected_range": "no live projection (HOLDOUT-DTI 0.1613 only; not a score)",
+   "lane": {
+    "lane_clear": false,
+    "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+    "density_aware_verdict": "DUPLICATE/LANE OVERLAP (density-aware) - do not package",
+    "lattice_overlap": 1.0,
+    "worst_other_site_overlap": 0.682736,
+    "worst_other_site_file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+    "worst_own_lineage_overlap": 1.0,
+    "worst_own_lineage_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+    "worst_abs_spearman_final": 0.386989,
+    "worst_abs_spearman_surface": 0.154274,
+    "overlap_vs_gemsdoe32_b2": 0.315703,
+    "flagged_other_site": [],
+    "flagged_own_lineage": [
+     "gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
+     "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+     "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
+     "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+     "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+     "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+     "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
+     "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+     "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif",
+     "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-nan.tif",
+     "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.tif",
+     "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-nan.tif",
+     "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-zeros.tif",
+     "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-nan.tif",
+     "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.tif"
+    ],
+    "registry_checked": 50
+   },
+   "lane_summary": "strict lane gate (literal) vs the dense r13 lattice: 100.0% of dots within 3 px (halo coverage 99.87%; density-aware symmetric overlap 0.189); vs 28 other-site/scored rasters worst 3-px dot overlap 0.683 (gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif), no flag; overlap vs GEMSDOE32 B2 (OWNER 0.2778) 0.316; worst final-dot |Spearman| 0.387, pre-placement surface worst |Spearman| 0.154; FLAGGED vs own unscored lineage (cf1-transverse-negative-20261025-22e2f9eddad9, h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5, h31-aniso-scarp-b2-d2-8-20261025-c213681203f6, h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268, h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719, h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea, h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf, xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9; worst 1.000)",
+   "run_card": "registry/run_card_h38_2026-10-25.json",
+   "note": "GEMSDOE25 H38 nan twin fallback | unscored; not slot-approved; no slot | id 18de99d38bb0",
+   "parent": "H35 arm B detector surface (BDE+7+H27_tip+H34) + greedy marginal-credit emission (knowledge/25)"
   },
   {
    "id": "mscr-multiscale-crest",

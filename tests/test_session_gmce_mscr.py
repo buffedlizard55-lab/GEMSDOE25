@@ -1,8 +1,13 @@
 """Locks the 2026-10-25 GMCE/MSCR session: run card <-> analyses <-> registry.
 
 The negative verdict must *follow* from the two pre-registered screen analyses (gate
-fields failing on evidence), canaries must pass, and the featured download must be the
-unique MSCR file with slot labels off. Nothing here may be satisfied by hand-edited prose.
+fields failing on evidence), canaries must pass, and the MSCR registry entry (looked up
+by its pinned SHA-256) must be the unique MSCR file with slot labels off. Nothing here
+may be satisfied by hand-edited prose.
+
+Merge note (H38 session): the featured (primary) role moved to the newer H38 file when
+the branches were unioned, so this module pins the MSCR *entry* rather than whichever
+entry is currently featured; every original assertion is preserved against that entry.
 """
 from __future__ import annotations
 

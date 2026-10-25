@@ -91,7 +91,7 @@ All five hypotheses were pre-registered before any experiment in [`knowledge/21_
 
 ---
 
-## 5. `E3` Unique GeoTIFF Deliverable & 56-Raster Lane Audit (`evidence/h36_spigm_build/build_manifest.json`)
+## 5. `E3` Unique GeoTIFF Deliverable & 58-Raster Lane Audit (`evidence/h36_spigm_build/build_manifest.json`)
 
 Per pre-registered `knowledge/21` §3.3, full-footprint 4-fold LOQO `H36_PoE_submod` exceeded `70%` 3-px dot overlap against this repository's own DEM-lineage rasters (`0.7920` vs `H35`), so `scripts/build_h36_submission.py` automatically selected and packaged the **zero-topography `H36_S_submod`** arm (`0` DEM / `0` LiDAR features):
 
@@ -103,9 +103,9 @@ Per pre-registered `knowledge/21` §3.3, full-footprint 4-fold LOQO `H36_PoE_sub
 - **Automated dual validation (zero human intervention):**
   1. `gems25.submission.check_file`: **PASS** (`0` hard failures; `EPSG:32611`, `3730 × 3292`, `100 m` affine transform, `0` NaN/Inf inside `5,167,373`-px footprint, values in `[0.0, 1.0]`, `nodata = None`).
   2. Independent strict whole-array validator: **PASS** (`((arr >= 0.0) & (arr <= 1.0)).all() == True` across all `12,279,160` cells of `-zeros.tif`, directly preventing `"Predicted values must be in range [0, 1]"`).
-- **56-raster surface & final-dot lane check (`evidence/h36_spigm_lane_surface.json`, `evidence/h36_spigm_build/lane_dots_sub.json`, `evidence/h36_spigm_lane_duplicates_canonical.json`):**
-  - Pre-placement continuous surface `|Spearman|` across all 56 non-self rasters: **`max = 0.1213 <= 0.90` (`0` flags — PASS)**.
-  - Final-dot `|Spearman|` across all 56 non-self rasters: **`max = 0.0647 <= 0.90` (`0` flags — PASS)**.
+- **58-raster surface & final-dot lane check (`evidence/h36_spigm_lane_surface.json`, `evidence/h36_spigm_build/lane_dots_sub.json`, `evidence/h36_spigm_lane_duplicates_canonical.json`):**
+  - Pre-placement continuous surface `|Spearman|` across all 58 non-self rasters: **`max = 0.1275 <= 0.90` (`0` flags — PASS)**.
+  - Final-dot `|Spearman|` across all 58 non-self rasters: **`max = 0.0745 <= 0.90` (`0` flags — PASS)**.
   - **Against ALL `31` non-lattice scored & sibling top-scorer rasters (`GEMSDOE10..91`, including all 9 focus sites + `GEMSDOE70`):** **`31 / 31` CLEAR (`max 3-px overlap = 0.5985 <= 0.70`)** — specifically:
     - vs `GEMSDOE32` `H33-2-B2` (`0.2778`): **`23.95%`** (`0.2395`)
     - vs `GEMSDOE36` `PINNs` (`0.2750`): **`24.39%`** (`0.2439`)
@@ -114,8 +114,8 @@ Per pre-registered `knowledge/21` §3.3, full-footprint 4-fold LOQO `H36_PoE_sub
     - vs `GEMSDOE70` (`0.2478`): **`21.23%`** (`0.2123`)
     - vs `KDC` (`55,374` px): **`38.28%`** (`0.3828`)
     - vs `GEM-FUSE1` (`37,654` px): **`16.73%`** (`0.1673`)
-  - **Symmetric / mutual 3-px overlap (`min(A->B, B->A)`) across all 55 non-lattice rasters:** **`max = 0.5794 <= 0.70`**.
-  - **Literal strict all-56 one-way check (`PR #14` rule):** flags synthetic `r13-lattice-s5` (`1.0000`, `IR-25-LANE-DENSITY`) and this repo's unscored `~48,500`-dot `Family E`-halo builds (`H35 0.7073`, `H36-TZC 0.708`, `H37-DOC 0.708`, `MSCR 0.703`, `XG1 0.709`, with reverse overlaps only `0.557–0.563` due to shared `Family E` catalogue distance/density halo; logged as `IR-25-CATALOGUE-HALO-CONVERGENCE`). Under strict repo policy: **`lane_clear = False`, `verdict = "negative"`, `ok_to_download = True`, `ok_to_submit_slot = False` (DO NOT SUBMIT)**.
+  - **Symmetric / mutual 3-px overlap (`min(A->B, B->A)`) across all 57 non-lattice rasters:** **`max = 0.5874 <= 0.70`**.
+  - **Literal strict all-58 one-way check (`PR #14` rule):** flags synthetic `r13-lattice-s5` (`1.0000`, `IR-25-LANE-DENSITY`) and this repo's unscored `~48,500`-dot `Family E`-halo builds (`H35 0.7073`, `H36-TZC 0.708`, `H37-DOC 0.708`, `H38 0.724`, `MSCR 0.703`, `XG1 0.709`, with reverse overlaps only `0.557–0.587` due to shared `Family E` catalogue distance/density halo; logged as `IR-25-CATALOGUE-HALO-CONVERGENCE`). Under strict repo policy: **`lane_clear = False`, `verdict = "negative"`, `ok_to_download = True`, `ok_to_submit_slot = False` (DO NOT SUBMIT)**.
 
 ---
 

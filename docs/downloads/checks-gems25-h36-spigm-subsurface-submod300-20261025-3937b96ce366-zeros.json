@@ -1352,7 +1352,8 @@
   "sha256": "159c7b66fee4abbbfe27cf5ba86109e6b7c3b27c420056cd58579a99b2f1cc76"
  },
  "strict_lane": {
-  "policy": "literal 70 % / 3 px and |Spearman| <= 0.90 across all 47 rasters (PR #14)",
+  "policy": "literal 70 % / 3 px and |Spearman| <= 0.90 across all 58 non-self rasters (PR #14)",
+  "registry_rasters_checked": 58,
   "lane_clear": false,
   "strict_verdict": "DUPLICATE LANE / STOP (r13 lattice + unscored H35 catalogue-halo)",
   "lattice_file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
@@ -1361,14 +1362,14 @@
   "scored_and_sibling_non_lattice_all_clear": true,
   "worst_scored_or_sibling_overlap": 0.598529,
   "worst_scored_or_sibling_file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
-  "worst_local_unscored_overlap": 0.709221,
-  "worst_local_unscored_file": "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-nan.tif",
-  "max_mutual_3px_overlap_non_lattice": 0.579356,
+  "worst_local_unscored_overlap": 0.724438,
+  "worst_local_unscored_file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+  "max_mutual_3px_overlap_non_lattice": 0.587384,
   "overlap_vs_gemsdoe32_b2_02778": 0.239523,
   "overlap_vs_gemsdoe36_02750": 0.243852,
   "overlap_vs_gemsdoe70_02478": 0.212328,
   "overlap_vs_kdc_primary": 0.382801,
-  "worst_abs_spearman_final": 0.06548,
-  "worst_abs_spearman_surface": 0.1213
+  "worst_abs_spearman_final": 0.074467,
+  "worst_abs_spearman_surface": 0.127535
  }
 }
