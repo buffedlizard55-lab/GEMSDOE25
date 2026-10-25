@@ -19,6 +19,10 @@
 | `14_gemsdoe32_analysis_and_hypotheses_2026-10-25.md` | why GEMSDOE32's 0.2778 file scored (claims labelled), what can and cannot be verified, ranked H32 hypotheses |
 | `14_preregistered_h31_flank_shielded_subscarp_factorial_2026-10-25.md` | pixel-exact forensics across all 9 focus sites (`GEMSDOE24..36`), 4 ranked H31 hypotheses, and frozen H31-1 2² factorial design (`C × M`) |
 | `15_h31_outcomes_and_run_card_2026-10-25.md` | H31-1 leakage canary (`PASS`), screen (`PASS`), confirmation outcomes, unique H31-1 GeoTIFF (`40bfe1d5b1c5`) duplicate-lane audit, and Protocol Rule 5 JSON Run Card |
+| `21_preregistered_gmce_2026-10-25.md` | this session: 5 ranked untried hypotheses, the frozen GMCE-1 gravity-magnetic coherent-edge lane (screen draws 20-21), and the one-paragraph audited answer to "why 0.2778" |
+| `22_preregistered_mscr_exp2_2026-10-25.md` | experiment 2 pre-registration: MSCR-1 multi-scale crest persistence (screen draws 22-23) after GMCE-1 read out negative; TIF supersession (single MSCR primary) |
+| `23_gmce_mscr_outcomes_2026-10-25.md` | session outcomes: B2 chain re-verified pixel-exactly (incl. non-nested thinning detail), GMCE-1 -0.0012 / MSCR-1 -0.0004 paired HOLDOUT-DTI (both NEGATIVE), the unique MSCR TIF (dd2bb4b09cd2), automated submit-status verdict, next work |
+| `current_session_brief_2026-10-25_gmce_mscr_CONDENSED.md` | the 2026-10-25 session prompt, condensed for working use (NOT verbatim) |
 | `owner_brief_2026-10-25_verbatim.txt` | verbatim 2026-10-25 task prompt and Parallel-Run Protocol (also embedded in `README.md`) |
 | `17_preregistered_kdc_kernel_disjoint_complement_2026-10-25.md` | session 6: G25-K1–K4 hypothesis register and the frozen KDC design (number 17 is shared with a parallel session) |
 | `18_preregistered_kdc_flank_fault_zone_multiplicity_2026-10-25.md` | session 6: G25-K5 flank pre-registration (number 18 is shared with a parallel session) |

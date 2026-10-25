@@ -76,8 +76,8 @@ Secondary/diagnostic arms (both negative results, deliverables):
   catalogue-component pixels are themselves >2 px from *visible* components in
   this hide-and-recover design — the instrument works, but the proxy's
   near-catalogue truth population is too small to price flank behaviour
-  precisely (a limitation, recorded, not a licence to extrapolate to the live
-  "corrections within 300 m" wording).
+precisely (a limitation, recorded, not a licence to extrapolate to the live
+"corrections within 300 m" wording).
 
 ## 4. Lane
 
@@ -155,3 +155,24 @@ confirmation paired CI includes zero (−0.0025…+0.0105) although its pooled
 delta (+0.0050) matches the screen's. Template and labels are owner-mirrored,
 not organizer-authenticated (IR-25-PROVENANCE). All competition scores cited
 are OWNER claims.
+
+## 8. Merge note (parallel GMCE/MSCR session)
+Post-merge addendum (parallel GMCE/MSCR session, PRs #27–28): while this
+session ran, `main` merged the GMCE/MSCR lane (two fresh-draw detector
+experiments, both negative: paired −0.0012 and −0.0004; its MSCR file a
+strict-lane stop, DO NOT SUBMIT) plus a strict lane-preflight fix to the
+shared validator. The merge unioned both registries (26 files; H38 featured
+as the newest session, MSCR kept as an alternate download). One integration
+change was made to that session's lock test: `tests/test_session_gmce_mscr.py`
+now pins the MSCR registry entry by its SHA-256 instead of by the featured
+role, preserving every assertion. Their independent B2-chain verification
+(`evidence/gmce_session_b2_chain_verification.json`) agrees with §1
+(including that D2.8 equals `dot_thin(H19-5)` at both 2.4 and 2.8 — the same
+pixel set). Note both sessions used knowledge number 25 for different files
+(`25_preregistered_h38_…` here, `25_current_checkout_review_…` there),
+following the repo's shared-number precedent for parallel sessions. Lane
+receipts in §4 were computed against the pre-merge registry (which already
+included all scored/other-site rasters); the merged registry adds only the
+MSCR/GMCE-lineage downloads, themselves H31/H35-family surfaces, which cannot
+change the §4 other-site conclusion but would add own-lineage flags of the
+same kind.

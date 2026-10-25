@@ -1,25 +1,20 @@
 #!/usr/bin/env python3
-"""Re-verify the H19-5 -> D2.8 -> B1 -> B2 (0.2778) pixel chain from restored bytes.
+"""Re-verify the H19-5 -> D1.5 -> D2.8 -> R1 -> B2 -> G36 pixel chain from hash-pinned mirrors.
 
-Session-7 line-by-line check of the explanation recorded in
-``evidence/focus_sites_forensics.json`` / knowledge/17:
+Inputs are the SHA-256-pinned files restored by ``scripts/fetch_top_scorers.py`` into
+``data/registry_top`` plus the pinned ``labels.tif`` / ``sample_submission.tif``. Nothing is
+fetched. Every competition score used in the arithmetic inversion is an OWNER-reported claim
+(registry/top_scorer_sources.json), and the inversion additionally assumes the H28-calibrated
+hidden-truth size N=12,691 px and the approximation TP_w + FP_w ~= emitted mass M (exact only
+if the kernel-hit mass of the prediction equals the truth-side credit mass). Those assumptions
+are recorded in the output; the pixel identities themselves are exact.
 
-* fetch the GEMSDOE28 B1, GEMSDOE32 B2 and GEMSDOE36 rasters from the owner's
-  public GitHub repos and require SHA-256 == the pins in the focus forensics
-  (mismatch aborts; nothing is asserted from unpinned bytes);
-* verify B1 == D2.8 & (d(catalogue) > 1 px) and B2 == D2.8 & (d > 2 px)
-  pixel-exactly, and the GEMSDOE36 = B2 + extra relation;
-* report distance shells and the DTI break-even ratios at the OWNER-reported
-  scores (scores stay OWNER claims; the algebra is `gems25.metric`).
-
-Output: ``evidence/h37_b2_recheck.json`` (COMPUTED; scores OWNER).
+    .venv/bin/python scripts/verify_b2_chain.py
 """
 
 from __future__ import annotations
 
-import hashlib
 import json
-import subprocess
 import sys
 from pathlib import Path
 
@@ -31,102 +26,116 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from gems25.metric import marginal_inclusion_ratio  # noqa: E402
 from gems25.paths import data_dir  # noqa: E402
+from gems25.submission import sha256_file  # noqa: E402
+from gems25.thinning import dot_thin  # noqa: E402
 
-WANTED = {"gems28-h27-4-r1-solo": "B1_r1", "gems32-h33-2-b2-zeros": "B2", "gems36-anderson-pinn": "anderson36"}
-
-
-def sha256(p: Path) -> str:
-    h = hashlib.sha256()
-    with p.open("rb") as f:
-        for chunk in iter(lambda: f.read(1 << 20), b""):
-            h.update(chunk)
-    return h.hexdigest()
-
-
-def fetch(repo: str, path: str, dest: Path, pin: str) -> None:
-    if dest.exists() and sha256(dest) == pin:
-        return
-    dest.parent.mkdir(parents=True, exist_ok=True)
-    tmp = dest.with_suffix(".partial")
-    with tmp.open("wb") as out:
-        r = subprocess.run(["gh", "api", f"repos/{repo}/contents/{path}",
-                            "-H", "Accept: application/vnd.github.raw"],
-                           stdout=out, stderr=subprocess.PIPE)
-    if r.returncode != 0:
-        tmp.unlink(missing_ok=True)
-        raise SystemExit(f"gh fetch failed for {repo}/{path}: {r.stderr.decode()[:300]}")
-    got = sha256(tmp)
-    if got != pin:
-        tmp.unlink(missing_ok=True)
-        raise SystemExit(f"SHA-256 mismatch for {repo}/{path}: got {got}, pin {pin}")
-    tmp.replace(dest)
+TOP = data_dir() / "registry_top"
+FILES = {  # key -> (file, OWNER-reported score)
+    "h19_5": ("g19_h19-5_0.1922.tif", 0.1922),
+    "d1_5": ("g24_d1-5_0.2477.tif", 0.2477),
+    "d2_8": ("g25_d2-8_0.2600.tif", 0.2600),
+    "g30": ("g30_d28-poisson_0.2600.tif", 0.2600),
+    "r1_g28": ("g28_h27-4-r1-solo_0.2708.tif", 0.2708),
+    "r1_g31": ("g31_h27-4-solo-d28_0.2708.tif", 0.2708),
+    "b2_g32": ("g32_h33-2-b2_0.2778.tif", 0.2778),
+    "g36": ("g36_anderson-pinn_0.2750.tif", 0.2750),
+}
+N_G = 12691.0
 
 
-def dots(path: Path, foot: np.ndarray) -> np.ndarray:
-    with rasterio.open(path) as s:
-        return (np.nan_to_num(s.read(1), nan=0.0) > 0) & foot
+def read_mask(name: str, foot: np.ndarray) -> np.ndarray:
+    p = TOP / FILES[name][0]
+    with rasterio.open(p) as s:
+        a = s.read(1)
+    return (np.nan_to_num(a, nan=0.0) > 0) & foot
+
+
+def implied_tp(score: float, mass: float, n_g: float = N_G) -> float:
+    """Invert DTI ~= TP / (0.2*M + 0.8*N) approximately... (exact algebra, approx. model).
+
+    With FN = N - TP and the approximation TP + FP ~= M (emitted binary mass):
+    DTI = TP / (TP + 0.2*FP + 0.8*FN) = TP / (0.2*TP + 0.2*FP + 0.8*N) [since alpha = 1-beta]
+        ~= TP / (0.2*M + 0.8*N), hence TP ~= DTI * (0.2*M + 0.8*N) / (1 - 0.04*DTI) only if
+    the 0.2*TP term is instead kept explicit; we use this repo's earlier convention
+    (scripts/analyze_focus_sites.py) so the numbers are comparable cell-for-cell.
+    """
+    return score * (0.2 * mass + 0.8 * n_g) / (1.0 - 0.04 * score)
 
 
 def main() -> None:
-    data = data_dir()
-    focus = json.loads((ROOT / "evidence" / "focus_sites_forensics.json").read_text())
-    by_id = {a["id"]: a for a in focus["focus_artifacts"]}
-    art_dir = data / "artifacts_h37"
-    fetched = {}
-    for fid, key in WANTED.items():
-        a = by_id[fid]
-        dest = art_dir / f"{fid}.tif"
-        fetch(a["repo"], a["path"], dest, a["sha256"])
-        fetched[key] = dict(path=str(dest), sha256=a["sha256"],
-                            owner_reported_score=a["owner_reported_score"], repo=a["repo"],
-                            source_path=a["path"])
-
-    with rasterio.open(data / "sample_submission.tif") as s:
+    reg = {r["local"]: r["sha256"] for r in json.loads((ROOT / "registry/top_scorer_sources.json").read_text())["rasters"]}
+    hashes = {}
+    for k, (fname, _s) in FILES.items():
+        h = sha256_file(TOP / fname)
+        assert h == reg[fname], f"hash mismatch for {fname}"
+        hashes[k] = h
+    with rasterio.open(data_dir() / "sample_submission.tif") as s:
         foot = np.isfinite(s.read(1))
-    with rasterio.open(data / "labels.tif") as s:
+    with rasterio.open(data_dir() / "labels.tif") as s:
         lab = s.read(1) == 1
-    d28 = dots(data / "scored" / "gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif", foot)
-    h195 = dots(data / "scored" / "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif", foot)
-    dist = distance_transform_edt(~lab)
-
-    def shells(d: np.ndarray, dd: np.ndarray) -> dict:
-        x = dd[d]
-        return dict(d_eq_0=int((x == 0).sum()), d_in_0_1=int(((x > 0) & (x <= 1)).sum()),
-                    d_in_1_2=int(((x > 1) & (x <= 2)).sum()), d_in_2_3=int(((x > 2) & (x <= 3)).sum()),
-                    d_gt_3=int((x > 3).sum()))
-
-    b1 = dots(Path(fetched["B1_r1"]["path"]), foot)
-    b2 = dots(Path(fetched["B2"]["path"]), foot)
-    a36 = dots(Path(fetched["anderson36"]["path"]), foot)
-    exp_b1 = d28 & (dist > 1.0)
-    exp_b2 = d28 & (dist > 2.0)
+    dist = distance_transform_edt(~(lab & foot))
+    m = {k: read_mask(k, foot) for k in FILES}
+    counts = {k: int(v.sum()) for k, v in m.items()}
+    shells = {}
+    d = dist[m["d2_8"]]
+    for name, lo, hi in [("d_eq_0", -1, 0), ("0_lt_d_le_1", 0, 1.0), ("1_lt_d_le_2", 1.0, 2.0),
+                         ("2_lt_d_le_3", 2.0, 3.0), ("d_gt_3", 3.0, np.inf)]:
+        shells[name] = int(((d > lo) & (d <= hi)).sum())
+    thin24 = dot_thin(m["h19_5"], 2.4)
+    identities = {
+        "d1_5_equals_dot_thin_h19_5_1.5": bool(np.array_equal(dot_thin(m["h19_5"], 1.5), m["d1_5"])),
+        "d2_8_equals_dot_thin_h19_5_2.4": bool(np.array_equal(thin24, m["d2_8"])),
+        "d2_8_equals_dot_thin_h19_5_2.8": bool(np.array_equal(dot_thin(m["h19_5"], 2.8), m["d2_8"])),
+        "d2_8_subset_of_h19_5": bool(not (m["d2_8"] & ~m["h19_5"]).any()),
+        "d1_5_subset_of_h19_5": bool(not (m["d1_5"] & ~m["h19_5"]).any()),
+        "g30_equals_d2_8_on_footprint": bool(np.array_equal(m["g30"], m["d2_8"])),
+        "r1_g28_equals_r1_g31": bool(np.array_equal(m["r1_g28"], m["r1_g31"])),
+        "r1_equals_d2_8_and_dist_gt_1": bool(np.array_equal(m["d2_8"] & (dist > 1.0), m["r1_g28"])),
+        "b2_equals_d2_8_and_dist_gt_2": bool(np.array_equal(m["d2_8"] & (dist > 2.0), m["b2_g32"])),
+        "b2_equals_r1_and_dist_gt_2": bool(np.array_equal(m["r1_g28"] & (dist > 2.0), m["b2_g32"])),
+        "b2_subset_of_g36": bool(not (m["b2_g32"] & ~m["g36"]).any()),
+        "no_chain_file_emits_on_catalogue": bool(all(not (v & lab).any() for v in m.values())),
+    }
+    steps = []
+    chain = [("d2_8", "r1_g28"), ("r1_g28", "b2_g32"), ("b2_g32", "g36")]
+    for a, b in chain:
+        sa, sb = FILES[a][1], FILES[b][1]
+        ma, mb = float(counts[a]), float(counts[b])
+        tpa, tpb = implied_tp(sa, ma), implied_tp(sb, mb)
+        dm = mb - ma
+        steps.append(dict(from_=a, to=b, mass_from=ma, mass_to=mb, delta_mass=dm,
+                          owner_dti_from=sa, owner_dti_to=sb,
+                          implied_delta_tp=float(tpb - tpa),
+                          implied_credit_per_delta_px=float((tpb - tpa) / dm) if dm else None,
+                          break_even_tau_at_from=float(marginal_inclusion_ratio(sa))))
     out = dict(
-        evidence_class="COMPUTED from hash-pinned owner-mirror rasters; scores are OWNER-reported claims",
-        generated_by="scripts/verify_b2_chain.py",
-        footprint_pixels=int(foot.sum()), catalogue_pixels=int(lab.sum()),
-        fetched=fetched,
-        counts=dict(h19_5=int(h195.sum()), d28=int(d28.sum()), B1=int(b1.sum()), B2=int(b2.sum()),
-                    anderson36=int(a36.sum())),
-        identities=dict(
-            d28_subset_of_h19_5_xor=int((d28 & ~h195).sum()),
-            B1_eq_d28_and_dist_gt_1_xor=int((b1 ^ exp_b1).sum()),
-            B2_eq_d28_and_dist_gt_2_xor=int((b2 ^ exp_b2).sum()),
-            B2_eq_B1_and_dist_gt_2_xor=int((b2 ^ (b1 & (dist > 2.0))).sum()),
-            anderson36_minus_B2=int((a36 & ~b2).sum()),
-            B2_minus_anderson36=int((b2 & ~a36).sum()),
+        evidence_class="COMPUTED pixel identities on hash-pinned mirrors; scores OWNER-reported; inversion conditional",
+        hashes=hashes, counts=counts, d2_8_distance_shells=shells, identities=identities,
+        thinning_note=(
+            "dot_thin is NOT nested across spacings on this parent: only "
+            f"{int((m['d2_8'] & m['d1_5']).sum())} of D2.8's {counts['d2_8']} dots are in D1.5 "
+            f"({int((m['d2_8'] & ~m['d1_5']).sum())} are h19-5 pixels that D1.5 blocked). D1.5->D2.8 is a "
+            "re-thinning of the same parent surface, not a subset deletion; only R1 and B2 are exact deletions."
         ),
-        shells=dict(d28=shells(d28, dist), B1=shells(b1, dist), B2=shells(b2, dist),
-                    anderson36=shells(a36, dist)),
-        breakeven_at_owner_scores={
-            k: marginal_inclusion_ratio(v)
-            for k, v in (("d28_0.2600", 0.2600), ("B1_0.2708", 0.2708), ("B2_0.2778", 0.2778))
-        },
-        owner_chain=["h19-5 solid 0.1922 OWNER", "dot d1.5 0.2477 OWNER", "d2.8 0.2600 OWNER",
-                     "B1 (d>1px) 0.2708 OWNER", "B2 (d>2px) 0.2778 OWNER"],
+        inversion=dict(assumed_N_hidden_px=N_G,
+                       approximation="TP_w + FP_w ~= emitted binary mass M; DTI = TP/(TP+0.2FP+0.8FN), FN=N-TP",
+                       convention="matches scripts/analyze_focus_sites.py cell-for-cell",
+                       steps=steps),
+        targets=dict(
+            credit_per_dot_at_b2=float(implied_tp(0.2778, counts["b2_g32"]) / counts["b2_g32"]),
+            note="OWNER targets 0.3195 and 0.4413 conflict in the brief (IR-25-LEADERBOARD-CONFLICT); both unconverted.",
+            implied_credit_per_dot_needed={
+                s: float(implied_tp(s, counts["b2_g32"]) / counts["b2_g32"])
+                for s in (0.2878, 0.3195, 0.4413)
+            },
+        ),
     )
-    out_path = ROOT / "evidence" / "h37_b2_recheck.json"
+    print(json.dumps(out, indent=1))
+    if not all(identities.values()):
+        raise SystemExit(f"IDENTITY FAILURE: {identities}")
+    out_path = ROOT / "evidence" / "gmce_session_b2_chain_verification.json"
     out_path.write_text(json.dumps(out, indent=1) + "\n")
-    print(json.dumps({k: out[k] for k in ("counts", "identities", "breakeven_at_owner_scores")}, indent=1))
+    print(f"wrote {out_path.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":
