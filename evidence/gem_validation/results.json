@@ -1,0 +1,200 @@
+{
+ "design": {
+  "draws": [
+   2,
+   3
+  ],
+  "folds": 4,
+  "hide_frac": 0.2,
+  "kfrac": 0.0245,
+  "dot_min_dist": 1.5,
+  "gate": {
+   "min_gain": 0.001,
+   "min_folds_positive": 3,
+   "worst_fold": -0.01
+  },
+  "leakage_auc_cap": 0.9,
+  "lane": {
+   "corr_cap": 0.9,
+   "overlap_cap": 0.7,
+   "radius_px": 3.0
+  }
+ },
+ "candidates": {
+  "control_B_crest": {
+   "label": "control_B_crest",
+   "by_fold": [
+    0.03605038618325984,
+    0.004950996445625872,
+    0.02307476635105654,
+    0.018302473303032776
+   ],
+   "mean_dti": 0.020594655570743758,
+   "worst_auc": 0.5632682057150402,
+   "seconds": 7.8
+  },
+  "GEM-1_blind_magnetics": {
+   "label": "GEM-1_blind_magnetics",
+   "by_fold": [
+    0.04628830887899705,
+    0.017665709682142566,
+    0.05668707023864661,
+    0.048140418194957055
+   ],
+   "mean_dti": 0.042195376748685814,
+   "worst_auc": 0.5605085033800326,
+   "seconds": 8.0,
+   "paired_vs_control": {
+    "mean_gain": 0.02160072117794206,
+    "folds_positive": 4,
+    "worst_fold": 0.010237922695737207,
+    "per_fold": [
+     0.010237922695737207,
+     0.012714713236516694,
+     0.03361230388759007,
+     0.02983794489192428
+    ],
+    "passed": true
+   },
+   "verdict": {
+    "gate_passed": true,
+    "leakage_ok": true,
+    "lane_ok": true,
+    "note": "passes paired holdout gate screen +0.0180 / confirmation +0.0216, AUC <= 0.561, lane clean vs substantive registry rasters"
+   }
+  },
+  "GEM-2_vents_x_thermal": {
+   "label": "GEM-2_vents_x_thermal",
+   "by_fold": [
+    0.007193983833719274,
+    0.01506508515403504,
+    0.02438482482802828,
+    0.023258230674772125
+   ],
+   "mean_dti": 0.01747553112263868,
+   "worst_auc": 0.5318743497846679,
+   "seconds": 6.7,
+   "paired_vs_control": {
+    "mean_gain": -0.0031191244481050774,
+    "folds_positive": 3,
+    "worst_fold": -0.028856402349540566,
+    "per_fold": [
+     -0.028856402349540566,
+     0.010114088708409168,
+     0.0013100584769717392,
+     0.004955757371739349
+    ],
+    "passed": false
+   },
+   "verdict": {
+    "gate_passed": false,
+    "leakage_ok": true,
+    "lane_ok": true,
+    "note": "fails paired gate (gain -0.0031, worst fold -0.0289) -> not packaged"
+   }
+  },
+  "GEM-3_off_trace_dots": {
+   "label": "GEM-3_off_trace_dots",
+   "by_fold": [
+    0.09491099391001917,
+    0.08561994441852526,
+    0.09496945559754098,
+    0.08600787065841525
+   ],
+   "mean_dti": 0.09037706614612517,
+   "worst_auc": 0.5605085033800326,
+   "seconds": 7.4,
+   "paired_vs_control": {
+    "mean_gain": 0.0697824105753814,
+    "folds_positive": 4,
+    "worst_fold": 0.05886060772675933,
+    "per_fold": [
+     0.05886060772675933,
+     0.08066894797289939,
+     0.07189468924648444,
+     0.06770539735538247
+    ],
+    "passed": true
+   },
+   "verdict": {
+    "gate_passed": true,
+    "leakage_ok": true,
+    "lane_ok": false,
+    "note": "passes holdout gate but is a LANE duplicate (off-trace dots hug the catalogue = proxy artifact; lattice raster 100% overlap degenerate) -> not packaged, logged as irregularity"
+   }
+  }
+ },
+ "lane": [
+  {
+   "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "spearman": -0.00013296446956941963,
+   "overlap_within_3px": 0.8890153671030165,
+   "duplicate": true
+  },
+  {
+   "file": "8GEMSDOE_Hedge-v2_submission.tif",
+   "spearman": 0.06650746846432348,
+   "overlap_within_3px": 0.16249288560045533,
+   "duplicate": false
+  },
+  {
+   "file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+   "spearman": 0.03271889971684382,
+   "overlap_within_3px": 0.1539556061468412,
+   "duplicate": false
+  },
+  {
+   "file": "gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+   "spearman": 0.02360111895219972,
+   "overlap_within_3px": 0.1531018782014798,
+   "duplicate": false
+  },
+  {
+   "file": "gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+   "spearman": 0.01780039084243775,
+   "overlap_within_3px": 0.1616391576550939,
+   "duplicate": false
+  },
+  {
+   "file": "gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+   "spearman": 0.017232641097779323,
+   "overlap_within_3px": 0.15680136596471259,
+   "duplicate": false
+  },
+  {
+   "file": "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+   "spearman": 0.01777299308992262,
+   "overlap_within_3px": 0.1508252703471827,
+   "duplicate": false
+  },
+  {
+   "file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+   "spearman": 0.013568075449782087,
+   "overlap_within_3px": 0.1385885031303358,
+   "duplicate": false
+  },
+  {
+   "file": "gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "spearman": 0.01202854341569154,
+   "overlap_within_3px": 0.13403528742174162,
+   "duplicate": false
+  },
+  {
+   "file": "gemsdoe-ens12-adopted-7f00890a.tif",
+   "spearman": 0.07173795646357624,
+   "overlap_within_3px": 0.13403528742174162,
+   "duplicate": false
+  },
+  {
+   "file": "gemsdoe9-PLACEHOLDER-2314b599.tif",
+   "spearman": 0.00408095694827056,
+   "overlap_within_3px": 0.053784860557768925,
+   "duplicate": false
+  }
+ ],
+ "decision": {
+  "package_tif": true,
+  "package_candidate": "GEM-1_blind_magnetics",
+  "reason": "GEM-1 passes its paired holdout gate on both screen and confirmation draws, has no leakage (AUC <= 0.561 << 0.90), and is lane-clean vs all substantive registry rasters. GEM-2 fails its gate. GEM-3 passes its gate but is a LANE duplicate and is correctly not packaged. GEM-1 does NOT beat the frozen 0.152003389 comparator (which does not reproduce here, IR-25-COMPARATOR-DRIFT), so it is holdout-validated but NOT slot-approved: published as a format-verified download only, no weekly slot spent, no upload (DrivenData automation prohibited)."
+ }
+}

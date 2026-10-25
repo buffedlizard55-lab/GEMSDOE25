@@ -99,6 +99,7 @@ def main() -> None:
     h28_ledger = opt("registry/artifact_ledger.json")
     primary = next(s for s in subs if s["role"] == "primary")
     others = [s for s in subs if s["role"] != "primary"]
+    gem1 = next((s for s in others if s.get("id") == "gem1-blind-magnetics"), None)
     snap = ls["leaderboard_snapshot"]
     lead = snap["top10"][0]["best_public_dti"]
     best = max(a["score"] for a in ls["artifacts"] if a["score"] is not None)
@@ -126,7 +127,7 @@ def main() -> None:
         cards = dl_card(primary, prefix)
         alt = "".join(f"""<div class="card"><b>{e(o['title'])}</b> {badge(o['status'], 'ok' if o['status']=='scored' else 'warn')}
 <p class="small" style="margin:.3em 0">{e(o['summary'])}</p><a class="btn alt small" href="{prefix}downloads/{o['file']}" download>↓ {e(o['file'])}</a>
- <span class="small">· {o['positive_pixels']:,} px · <code>{o['content_id']}</code></span></div>""" for o in others if o["role"] == "fallback")
+ <span class="small">· {o['positive_pixels']:,} px · <code>{o['content_id']}</code></span></div>""" for o in others if o["role"] in ("fallback", "alternate"))
         stats = f"""<div class="stats"><div class="stat"><b>{lead:.4f}</b><span>Unverified #1 leaderboard claim · reported {snap['reported_utc']}</span></div>
 <div class="stat"><b>{best:.4f}</b><span>Unverified group-best score claim · rank association not authenticated</span></div>
 <div class="stat"><b>+{snap['gap_to_rank5']:.3f}</b><span>arithmetic gap to the supplied #5 claim ({snap['top10'][4]['best_public_dti']:.4f}); +{snap['gap_to_rank1']:.3f} (+{100*snap['relative_gain_needed_for_rank1']:.0f} %) to the supplied #1 claim</span></div>
@@ -199,11 +200,11 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
                 'Nothing is submitted or monitored automatically.</div>')
         return hero + cards + (f"<h3>Also available</h3>{alt}" if alt else "") + plan + stats + whyb + h28b + h30b + facb + flagb + feed
 
-    exec_body = f"""<div class="hero"><h1>Executive summary &amp; submission guide</h1><p class="lead">The file and upload instructions are provided for reproducibility. Nothing here uploads for you: the owner submits manually.</p></div>
-<div class="callout"><b>Slot status: do not submit the H31-C file on this evidence.</b> It is unique and format-valid, but its lane-overlap check is flagged (IR-25-LANE-DENSITY) and no comparable same-run holdout win is established. Use a weekly slot only after the specific candidate passes its frozen paired/confirmation gate and the exact-file audit.</div>
-{dl_card(primary, '')}
+    exec_body = f"""<div class="hero"><h1>Executive summary &amp; submission guide</h1><p class="lead">One click downloads a <b>single-band float32 GeoTIFF with finite [0,1] predictions throughout the footprint</b>, checked against the pinned template. This establishes file-format validity only—not holdout promotion or a competition score.</p></div>
+<div class="callout"><b>New unique submission candidate: {e(gem1['file'] if gem1 else primary['file'])}.</b> <b>OK to download: yes</b> — format-verified, all hard checks pass, values in [0,1] inside the footprint, NaN outside, template CRS/shape/geotransform match. <b>OK to submit to a weekly scoring slot: NO on current evidence</b> — it is <b>not slot-approved</b>. The holdout is a catalogue-gap proxy, not new-fault truth, and this candidate does not beat the frozen 0.152003389 comparator (which itself does not reproduce here, IR-25-COMPARATOR-DRIFT). Spend a slot only after a candidate passes its frozen paired/confirmation gate and exact-file audit.</div>
+{dl_card(gem1 if gem1 else primary, '')}
 <h2>Manual upload steps (only for a candidate that has passed its holdout gate)</h2><ol class="steps">
-<li><b>Download</b> <code>{e(primary['file'])}</code> with the green button above. Optional: check <code>sha256sum</code> starts with <code>{primary['sha256'][:16]}</code>.</li>
+<li><b>Download</b> <code>{e((gem1 or primary)['file'])}</code> with the green button above. Optional: check <code>sha256sum</code> starts with <code>{(gem1 or primary)['sha256'][:16]}</code>.</li>
 <li><b>Open the competition and sign in</b> — <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition page</a>, then click <b>Submit</b> in the sidebar and <b>Make new submission</b> (wording from the competition page; this opens the "New submission" form).</li>
 <li><b>File to submit:</b> choose the <code>.tif</code>. The form says: "You can submit a single-band GeoTIFF (.tif) file, or a .zip file containing a single GeoTIFF ... It must match the submission format's CRS, shape, and geotransform." This page offers the plain <code>.tif</code>.</li>
 <li><b>Note (optional):</b> paste the note above. It is {len(primary['note'])} characters; the form says "A short comment to help you or your team tell submissions apart later".</li>
