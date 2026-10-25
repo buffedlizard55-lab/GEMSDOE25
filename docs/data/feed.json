@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-25T21:36:00Z",
+ "generated_utc": "2026-10-25T21:41:31Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"24e1ef9730d25a6a41c1c9a107e8c2d5\""
+   "detail": "HTTP 200; ETag: W/\"33f3b3421157fa8b72c760be660e043f\""
   },
   {
    "kind": "source",
@@ -145,7 +145,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"e81e2099cb093981fcb35443cc281edc\""
+   "detail": "HTTP 200; ETag: W/\"4ee926624106156de5e3f522ea56d534\""
   },
   {
    "kind": "source",
@@ -153,7 +153,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"0c9b511608fc6daffc1fda849ae5b22f\""
+   "detail": "HTTP 200; ETag: W/\"7847ebb94c0aa48a7b2538cdf0bd7ba9\""
   },
   {
    "kind": "source",
@@ -177,7 +177,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"dc3cca110836d4b88b9042bc8e592f39\""
+   "detail": "HTTP 200; ETag: W/\"137fe4fe3b35b8e145e6d749104206d1\""
   },
   {
    "kind": "source",
@@ -185,7 +185,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"d5db730ed26bef6d91c78080dacb7972\""
+   "detail": "HTTP 200; ETag: W/\"1390fc1cdd3092a5d1019f6c6282bde3\""
   },
   {
    "kind": "source",
@@ -193,7 +193,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"24e1ef9730d25a6a41c1c9a107e8c2d5\""
+   "detail": "HTTP 200; ETag: W/\"33f3b3421157fa8b72c760be660e043f\""
   },
   {
    "kind": "source",
@@ -233,7 +233,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"a1cb1493366771819d313aff01c04daa\""
+   "detail": "HTTP 200; ETag: W/\"5eb16ec28f81b223986001517244ff3b\""
   },
   {
    "kind": "source",
@@ -241,7 +241,23 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE36",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"49c40e96e519fe4de6b02a6d670ec418\""
+   "detail": "HTTP 200; ETag: W/\"69e745d454b1d361d4a59a859cbd6546\""
+  },
+  {
+   "kind": "source",
+   "title": "GEMSDOE32 project site (sibling; H33-2-B2 champion, Arena41/H32-WIN lanes)",
+   "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+   "verified_in_repo": true,
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 20:51:37 GMT; Content-Length: 9424; ETag: W/\"6ade6bd9-631c\""
+  },
+  {
+   "kind": "source",
+   "title": "GEMSDOE36 project site (sibling; Anderson-PINN 0.2750 claim)",
+   "url": "https://buffedlizard55-lab.github.io/GEMSDOE36/docs/",
+   "verified_in_repo": true,
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Sun, 04 Oct 2026 21:18:00 GMT; Content-Length: 5715; ETag: W/\"6ac2c288-442d\""
   },
   {
    "kind": "sciencebase",
