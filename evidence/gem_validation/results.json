@@ -31,7 +31,7 @@
    ],
    "mean_dti": 0.020594655570743758,
    "worst_auc": 0.5632682057150402,
-   "seconds": 7.8
+   "seconds": 6.4
   },
   "GEM-1_blind_magnetics": {
    "label": "GEM-1_blind_magnetics",
@@ -43,7 +43,7 @@
    ],
    "mean_dti": 0.042195376748685814,
    "worst_auc": 0.5605085033800326,
-   "seconds": 8.0,
+   "seconds": 6.4,
    "paired_vs_control": {
     "mean_gain": 0.02160072117794206,
     "folds_positive": 4,
@@ -55,12 +55,6 @@
      0.02983794489192428
     ],
     "passed": true
-   },
-   "verdict": {
-    "gate_passed": true,
-    "leakage_ok": true,
-    "lane_ok": true,
-    "note": "passes paired holdout gate screen +0.0180 / confirmation +0.0216, AUC <= 0.561, lane clean vs substantive registry rasters"
    }
   },
   "GEM-2_vents_x_thermal": {
@@ -73,7 +67,7 @@
    ],
    "mean_dti": 0.01747553112263868,
    "worst_auc": 0.5318743497846679,
-   "seconds": 6.7,
+   "seconds": 5.2,
    "paired_vs_control": {
     "mean_gain": -0.0031191244481050774,
     "folds_positive": 3,
@@ -85,12 +79,6 @@
      0.004955757371739349
     ],
     "passed": false
-   },
-   "verdict": {
-    "gate_passed": false,
-    "leakage_ok": true,
-    "lane_ok": true,
-    "note": "fails paired gate (gain -0.0031, worst fold -0.0289) -> not packaged"
    }
   },
   "GEM-3_off_trace_dots": {
@@ -103,7 +91,7 @@
    ],
    "mean_dti": 0.09037706614612517,
    "worst_auc": 0.5605085033800326,
-   "seconds": 7.4,
+   "seconds": 6.1,
    "paired_vs_control": {
     "mean_gain": 0.0697824105753814,
     "folds_positive": 4,
@@ -115,12 +103,6 @@
      0.06770539735538247
     ],
     "passed": true
-   },
-   "verdict": {
-    "gate_passed": true,
-    "leakage_ok": true,
-    "lane_ok": false,
-    "note": "passes holdout gate but is a LANE duplicate (off-trace dots hug the catalogue = proxy artifact; lattice raster 100% overlap degenerate) -> not packaged, logged as irregularity"
    }
   }
  },
@@ -193,8 +175,23 @@
   }
  ],
  "decision": {
-  "package_tif": true,
+  "per_candidate": {
+   "GEM-1_blind_magnetics": {
+    "gate_passed": true,
+    "leakage_ok": true
+   },
+   "GEM-2_vents_x_thermal": {
+    "gate_passed": false,
+    "leakage_ok": true
+   },
+   "GEM-3_off_trace_dots": {
+    "gate_passed": true,
+    "leakage_ok": true
+   }
+  },
+  "lane_ok": false,
+  "package_tif": false,
   "package_candidate": "GEM-1_blind_magnetics",
-  "reason": "GEM-1 passes its paired holdout gate on both screen and confirmation draws, has no leakage (AUC <= 0.561 << 0.90), and is lane-clean vs all substantive registry rasters. GEM-2 fails its gate. GEM-3 passes its gate but is a LANE duplicate and is correctly not packaged. GEM-1 does NOT beat the frozen 0.152003389 comparator (which does not reproduce here, IR-25-COMPARATOR-DRIFT), so it is holdout-validated but NOT slot-approved: published as a format-verified download only, no weekly slot spent, no upload (DrivenData automation prohibited)."
+  "reason": "GEM-1 passes its paired holdout gate on screen and confirmation draws, has no leakage (AUC <= 0.561 << 0.90), and is lane-clean vs all substantive registry rasters. It is holdout-validated but NOT slot-approved: it does not beat the frozen 0.152003389 comparator, which itself does not reproduce here (IR-25-COMPARATOR-DRIFT). Published as a format-verified download only; no weekly slot spent; no upload (DrivenData automation prohibited)."
  }
 }
