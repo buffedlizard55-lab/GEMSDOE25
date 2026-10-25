@@ -53,3 +53,5 @@
 | `22_crossfield_outcome_2026-10-25.md` | parallel CF-1 outcome: negative diagnostic (DO NOT SUBMIT); see `registry/run_card_cf1_2026-10-25.json` |
 | `21_preregistered_h36_tiltzero_coincidence_2026-10-25.md` | parallel session: H36-TZC pre-registration (negative; see `registry/run_card_h36_h37_2026-10-25.json`) |
 | `22_preregistered_h37_seisalign_2026-10-25.md` | parallel session: H37-SEISALIGN pre-registration — a DIFFERENT hypothesis from this session's H37 DOC/SPR lane (knowledge/24 §8) |
+| `25_preregistered_h38_greedy_credit_emission_2026-10-25.md` | H38 session: why-0.2778 decomposition, 5 ranked untried hypotheses, frozen greedy marginal-credit emission design (committed before any fit) |
+| `26_h38_outcomes_and_0.2778_answer_2026-10-25.md` | H38 outcomes: B2 chain re-verified (XOR 0), greedy emission GATE PASS x2 (combined pooled +0.0050 HOLDOUT-DTI), A3/A2 diagnostics, unique H38 file `18de99d38bb0` (lane-blocked, DO NOT SUBMIT), next steps ranked by P(Win) |
