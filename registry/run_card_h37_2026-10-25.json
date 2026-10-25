@@ -1,0 +1,227 @@
+{
+ "run_card_version": 1,
+ "date_utc": "2026-10-25",
+ "session_branch": "arena/97b7bf66-gemsdoe25",
+ "hypothesis": "H37-1 DOC: subsurface steps offset 200-400 m down-dip (downhill) of the surface trace mark buried basin-margin faults missed by zero-lag concordance features. H37-2 SPR: aligned hot-spring discharge (ridge/elongation of the spring KDE) marks permeable unmapped faults.",
+ "mechanism": "Detector = H35 arm B (BDE+7+H27_tip+H34 RESMAG-FLEX HGB, sapd2.4/k3.5%) + 6 DOC lagged-ridge columns (E1) or + 2 SPR spring-line columns (E2); same-run paired control C37 = H35-B recomputed per cell. DTI = TP/(0.2(TP+FP)+0.8N); a better detector raises mean credit per emitted pixel.",
+ "non_fault_process_that_could_mimic_it": "DOC: alluvial-fan wedges prograding off unfaulted bedrock slopes, lava-flow/intrusion margins, Lake Lahontan shoreline benches. SPR: fan-toe/lithologic-contact spring lines, valley/road sampling bias.",
+ "pre_registration": [
+  "knowledge/22_preregistered_h37_doc_down_dip_offset_2026-10-25.md (commit 7618687)",
+  "knowledge/23_preregistered_h37_2_spring_line_2026-10-25.md (commit 75696c8; amendment disclosed there)"
+ ],
+ "experiments": [
+  {
+   "id": "E1 H37-1 DOC screen",
+   "evidence": "evidence/h37_screen/",
+   "draws": [
+    14,
+    15
+   ],
+   "label": "HOLDOUT-DTI",
+   "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px/300m) via gems25.experiment.Cell.evaluate",
+   "candidate_mean": 0.14980146895410087,
+   "candidate_ci95": [
+    0.13736673758025478,
+    0.16223620032794697
+   ],
+   "candidate_pooled": 0.14928812904135202,
+   "control_mean": 0.1506849262076233,
+   "control_pooled": 0.1499574421858246,
+   "paired_gain_mean": -0.0008834572535224156,
+   "paired_gain_ci95": [
+    -0.006917139417625294,
+    0.005150224910580463
+   ],
+   "per_fold_gain": [
+    -0.0035113029824346,
+    -0.004332602037637634,
+    0.00044047708370267835,
+    0.003869598922279893
+   ],
+   "folds_positive": 2,
+   "worst_fold": -0.004332602037637634,
+   "hug_mean": 0.0006239497553820819,
+   "withheld_positives_per_fold": [
+    1905,
+    2333,
+    3689,
+    3164
+   ],
+   "leakage_canary_max": 0.5602482505707763,
+   "gate_passed": false,
+   "verdict": "FAIL (no confirmation run)"
+  },
+  {
+   "id": "E2 H37-2 SPR screen",
+   "evidence": "evidence/h37_2_screen/",
+   "draws": [
+    18,
+    19
+   ],
+   "label": "HOLDOUT-DTI",
+   "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px/300m) via gems25.experiment.Cell.evaluate",
+   "candidate_mean": 0.16055523830014098,
+   "candidate_ci95": [
+    0.12085772738987288,
+    0.2002527492104091
+   ],
+   "candidate_pooled": 0.1589731304523333,
+   "control_mean": 0.15961794017692435,
+   "control_pooled": 0.15801587305846176,
+   "paired_gain_mean": 0.0009372981232166483,
+   "paired_gain_ci95": [
+    -0.0005547355009882409,
+    0.0024293317474215377
+   ],
+   "per_fold_gain": [
+    0.001188271213856562,
+    0.0007383270123857699,
+    0.0020370092591098787,
+    -0.00021441499248561757
+   ],
+   "folds_positive": 3,
+   "worst_fold": -0.00021441499248561757,
+   "hug_mean": 0.0012985171592879707,
+   "withheld_positives_per_fold": [
+    1834,
+    2367,
+    3688,
+    3302
+   ],
+   "leakage_canary_max": 0.5223693779969858,
+   "gate_passed": false,
+   "verdict": "FAIL (mean gain +0.00094 < +0.001 gate; no confirmation run)"
+  }
+ ],
+ "holdout_dti": {
+  "label": "HOLDOUT-DTI",
+  "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px/300m) via gems25.experiment.Cell.evaluate",
+  "A37_mean": 0.14980146895410087,
+  "A37_ci95": [
+   0.13736673758025478,
+   0.16223620032794697
+  ],
+  "A37_pooled": 0.14928812904135202,
+  "C37_mean_draws14_15": 0.1506849262076233,
+  "withheld_positives_per_fold": [
+   1905,
+   2333,
+   3689,
+   3164
+  ],
+  "note": "catalogue-gap proxy; not ORGANIZER-CONFIRMED; no live score implied"
+ },
+ "b2_recheck": {
+  "identities": {
+   "d28_subset_of_h19_5_xor": 0,
+   "B1_eq_d28_and_dist_gt_1_xor": 0,
+   "B2_eq_d28_and_dist_gt_2_xor": 0,
+   "B2_eq_B1_and_dist_gt_2_xor": 0,
+   "anderson36_minus_B2": 1200,
+   "B2_minus_anderson36": 0
+  },
+  "counts": {
+   "h19_5": 121131,
+   "d28": 44090,
+   "B1": 40199,
+   "B2": 37654,
+   "anderson36": 38854
+  },
+  "evidence": "evidence/h37_b2_recheck.json",
+  "reading": "B2 (0.2778 OWNER) = D2.8 & d(cat)>2px pixel-exact (XOR 0); emission economics, not new geology"
+ },
+ "correlation_overlap_vs_registry": {
+  "caps": {
+   "spearman": 0.9,
+   "overlap": 0.7,
+   "radius_px": 3.0
+  },
+  "registry_checked": 26,
+  "surface_worst_abs_spearman_before_placement": 0.151776,
+  "substantive_scored_worst_overlap": 0.682401,
+  "substantive_scored_worst_abs_spearman_final": 0.046872,
+  "vs_h33_2_b2": {
+   "overlap": 0.3121532201717973,
+   "reverse": 0.37486057258193023,
+   "halo_coverage": 0.15085344139081888
+  },
+  "lattice": {
+   "literal_overlap": 1.0,
+   "halo_coverage": 0.998713,
+   "excess_over_coverage": 0.001287,
+   "symmetric_min": 0.185761
+  },
+  "own_lineage_worst_overlap": 0.928075,
+  "own_lineage_worst_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+  "flagged_literal": [
+   "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+   "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
+   "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+   "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+   "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+   "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
+   "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+   "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif"
+  ],
+  "flagged_lane_density_aware": [
+   "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+   "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
+   "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+   "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+   "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+   "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
+   "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+   "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif"
+  ],
+  "sha_in_artifact_ledger": false,
+  "lane_verdict": "UNIQUE BY CONTENT vs other-site substantive rasters; DUPLICATE LANE vs own H31/H35 lineage (same detector family) -- supersession tier, never submit alongside them; lattice literal flag is non-discriminative (coverage 0.9987)"
+ },
+ "shipped_file": {
+  "zeros": "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-zeros.tif",
+  "sha256": "099fe8c1a853c4158bbf8ea3e2bdfab74a0283dc8c6d22054737e5a43204349a",
+  "content_id": "558c08ce13bf",
+  "positive_pixels": 48662,
+  "bytes": 846106,
+  "nan_twin": "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-nan.tif",
+  "nan_sha256": "4c35c74a34ce97671d3f2be158574726c6f5775a4da29467f0757bc19dd75e37",
+  "zip": "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-zeros.zip"
+ },
+ "raster_sha256": "099fe8c1a853c4158bbf8ea3e2bdfab74a0283dc8c6d22054737e5a43204349a",
+ "validator_output": {
+  "ok_to_upload_format": true,
+  "hard_failures": [],
+  "checks_pass": {
+   "template_matches_expected_grid_and_footprint": true,
+   "single_band": true,
+   "dtype_float32": true,
+   "crs_epsg_32611": true,
+   "shape_matches_template": true,
+   "geotransform_matches_template": true,
+   "footprint_all_finite": true,
+   "footprint_values_in_0_1": true,
+   "outside_footprint_is_nan_official": false,
+   "outside_footprint_is_nan_or_zero": true,
+   "nan_mask_identical_to_template": true,
+   "nodata_tag": true,
+   "variant_nan_aware_whole_array": true,
+   "variant_masked_read": true,
+   "variant_strict_whole_array_no_nan": true,
+   "profile_matches_template": true
+  },
+  "footprint": "5,167,373 px all finite in [0,1]; EPSG:32611; 3730x3292; transform matches pinned owner-mirror template (not organizer-authenticated)"
+ },
+ "submission_name": "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-zeros.tif",
+ "note": "GEMSDOE25 H37 DOC sapd2.4 k3.5% | unscored; not slot-approved; no slot (holdout gates failed) | id 558c08ce13bf",
+ "note_chars": 111,
+ "ok_to_download_local_testing": true,
+ "ok_to_submit_slot": false,
+ "verdict": "negative",
+ "verdict_reason": "Both pre-registered screens failed their frozen gates (E1 paired -0.0009, 2/4 folds; E2 +0.00094 vs +0.001, 3/4 folds). The file is unique by content and format-valid, lane-clean vs other-site substantive rasters, but lane-duplicate vs its own H31/H35 detector lineage. DO NOT SUBMIT. H33-2-B2 (OWNER 0.2778) remains the strongest known file; no file here is shown to beat it.",
+ "deviation_from_preregistration": "knowledge/22 section 3's session stopping sentence was amended by knowledge/23 BEFORE any SPR computation to allow the pre-ranked experiment 2 (IR-25-H37-AMENDMENT). The TIF was built despite failed gates per the owner's highest-urgency unique-download requirement (knowledge/22 section 5 frozen policy), labelled negative everywhere.",
+ "limitations": [
+  "Registry for lane checks = restored data/scored (11) + docs/downloads (15) + fetched focus rasters for B2; newer sibling-session lanes are not pinned here (IR-25-GEMSDOE32-NEW-LANES-UNCHECKED).",
+  "Holdout truth is withheld catalogue components; it cannot reward genuinely off-catalogue faults or test catalogue-flank pruning (IR-25-HOLDOUT-DOES-NOT-TEST-PRUNING).",
+  "Leaderboard figures 0.4413/0.3195/0.3262 are OWNER claims in conflict (IR-25-LEADERBOARD-CONFLICT); template is owner-mirror, not organizer-authenticated (IR-25-PROVENANCE)."
+ ]
+}

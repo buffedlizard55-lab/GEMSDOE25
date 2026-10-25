@@ -52,7 +52,8 @@ def main() -> None:
     L = []
     A = L.append
     A("# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize\n")
-    A("**Latest session (2026-10-25, session 6):** [why H33-2-B2 scored 0.2778, the KDC/flank holdout tests (both negative) and the unique KDC file](knowledge/19_kdc_results_2026-10-25.md) · "
+    A("**Latest session (2026-10-25, session 7):** [why H33-2-B2 scored 0.2778 (chain re-verified pixel-exact), two new pre-registered experiments (H37-1 DOC, H37-2 SPR — both negative), the density-aware lane audit and the unique H37 file (DO NOT SUBMIT)](knowledge/24_h37_outcomes_and_0.2778_answer_2026-10-25.md) · "
+      "run card `registry/run_card_h37_2026-10-25.json` · pre-registrations `knowledge/22`, `knowledge/23` · session 6: [KDC results](knowledge/19_kdc_results_2026-10-25.md) · "
       "run card `registry/run_card_kdc_2026-10-25.json` · owner brief copies (neither guaranteed verbatim, IR-25-BRIEF-RECONSTRUCTED): "
       "[`knowledge/owner_brief_2026-10-25_verbatim.txt`](knowledge/owner_brief_2026-10-25_verbatim.txt) (parallel session, abridged) and "
       "[`knowledge/owner_brief_2026-10-25_s6_RECONSTRUCTED.txt`](knowledge/owner_brief_2026-10-25_s6_RECONSTRUCTED.txt) (full reconstruction) · older verbatim brief `knowledge/owner_brief_verbatim.txt` · `AGENTS.md`.\n")
@@ -66,7 +67,10 @@ def main() -> None:
     A(f"* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, {outside_txt} "
       f"(verified against the pinned owner-mirror template, not organizer-authenticated; independent check receipt: `docs/downloads/{primary['receipt']}`).")
     A(f"* Unique content id `{primary['content_id']}` · SHA-256 `{primary['sha256']}` · {primary['positive_pixels']:,} emitted pixels · status: **{primary['status']}**.")
-    A(f"* **Note to paste** in DrivenData's *Note (optional)* field: `{primary['note']}`")
+    if primary.get("ok_to_submit_slot"):
+        A(f"* **Note to paste** in DrivenData's *Note (optional)* field: `{primary['note']}`")
+    else:
+        A(f"* **Research identifier only — do NOT paste into the competition form (DO NOT SUBMIT):** `{primary['note']}`")
     for o in others:
         if o["role"] in ("fallback", "alternate"):
             A(f"* {o['title']}: [`{o['file']}`](docs/downloads/{o['file']}) ({o['status']}; {o['positive_pixels']:,} px).")
