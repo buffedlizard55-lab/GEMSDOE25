@@ -182,7 +182,18 @@
      "External 3DEP raw-channel and GDR probe/stress bytes and target-region coverage have not been verified as obtainable from this runner."
     ]
    },
-   "verdict": "negative; no new TIFF and no submission eligibility established. Existing testing artifacts are DO NOT SUBMIT."
+   "verdict": "negative; no new TIFF and no submission eligibility established. Existing testing artifacts are DO NOT SUBMIT.",
+   "main_integration_and_final_verification": {
+    "merged_base_commit": "73bc8763bfe4df1cc68aa17eae0be25420a16990 (origin/main; PR #19)",
+    "resolution": "Merged origin/main into the fixed session branch; retained PR #19 regression test and H35 upload-copy correction, regenerated the site from the merged registry, and preserved this review report/run card.",
+    "verification": {
+     "pytest": "132 passed, 4 skipped (3 scored-raster restore dependent; 1 sample-submission template restore dependent)",
+     "ruff": "ruff check src scripts tests passed",
+     "git_diff_check": "passed",
+     "site": "generated from merged registry and checked for DO NOT SUBMIT, non-submission note wording, H35 twin warning and lane-method irregularity"
+    },
+    "pr20": "OPEN; merge not claimed. Updated branch must be pushed, checks re-run, and conflicts/merge status rechecked."
+   }
   },
   {
    "date_utc": "2026-10-25",
