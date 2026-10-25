@@ -1,0 +1,76 @@
+{
+ "schema_version": 1,
+ "hypothesis": "H31-1",
+ "method_lane": "Anisotropic Along-Strike Structural Continuation + Cross-Scale 3DEP LiDAR Rotational Strike Coherence + B=2 Digitization-Shadow Guard",
+ "evaluator_version": "HOLDOUT-DTI-v1 (alpha=0.2, beta=0.8, R=300m triangular kernel, 20km blocks, 2km guard, 3px visible-collar, 12px domain erosion)",
+ "preregistration": "knowledge/13_preregistered_h31_anisotropic_scarp_coherence_2026-10-25.md",
+ "preregistration_sha256": "3b81ea7d34e1c8510ffed2b0831d81444f4935a11c4f505cc74b039058fcf19e",
+ "generated_utc": "2026-10-25T20:50:21Z",
+ "draws": [
+  10,
+  11
+ ],
+ "spatial_folds": [
+  "NW",
+  "NE",
+  "SW",
+  "SE"
+ ],
+ "design_seed": 20261025,
+ "fitted_arms_canonical": [
+  "BASE",
+  "T_BASE",
+  "H31_E1_ANISO",
+  "H31_E2_COH"
+ ],
+ "fitted_arms_randomized_order": [
+  "H31_E1_ANISO",
+  "BASE",
+  "T_BASE",
+  "H31_E2_COH"
+ ],
+ "all_arms": [
+  "BASE",
+  "T_BASE",
+  "H31_E1_ANISO",
+  "H31_E2_COH",
+  "H31_E3_B2"
+ ],
+ "base_families": "BDE",
+ "base_extras": [
+  "X1_K",
+  "X1_ThK",
+  "X1_UK",
+  "X2_compat",
+  "X2_compat_coh",
+  "X3_gm",
+  "X3_gd"
+ ],
+ "h31_aniso_features": [
+  "H31_a_along",
+  "H31_d_par",
+  "H31_d_perp",
+  "H31_k_aniso"
+ ],
+ "h31_coherence_features": [
+  "H31_lidar_dem_compat",
+  "H31_lidar_cat_compat"
+ ],
+ "hgb_params": {
+  "max_iter": 100,
+  "learning_rate": 0.12,
+  "max_leaf_nodes": 31,
+  "min_samples_leaf": 50,
+  "l2_regularization": 1.0,
+  "class_weight": {
+   "0": 1,
+   "1": 5
+  },
+  "early_stopping": false
+ },
+ "emission": {
+  "kfrac": 0.035,
+  "min_dist_px": 2.4,
+  "e3_post_thinning_flank_guard_px": 2.0
+ }
+}

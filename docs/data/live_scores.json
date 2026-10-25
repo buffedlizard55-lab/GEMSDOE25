@@ -324,6 +324,167 @@
    "score": 0.275,
    "status": "user-provided-unverified",
    "note": "strict superset of GEMSDOE32 B2 (37,654 px) + 1,200 extra dots = 38,854 px; sha256 e15891020b9c..."
+  },
+  {
+   "project": "GEMSDOE28",
+   "label": "h38-1-hf-euler-d2-8-r1-20261003-56a9f473edc7-nan",
+   "score": 0.2707,
+   "status": "owner-reported",
+   "note": "h36-1 + 200 high-frequency Euler dots (37,860 px)"
+  },
+  {
+   "project": "GEMSDOE35",
+   "label": "300m-spacing-h35a-all-add-20261004T224735Z-7eb0c69f",
+   "score": 0.2498,
+   "status": "owner-reported",
+   "note": ""
+  },
+  {
+   "project": "GEMSDOE50",
+   "label": "h50-b2-d28-37654-20261005T195308Z-c55bafc4-zeros",
+   "score": 0.2778,
+   "status": "owner-reported",
+   "note": "re-host of GEMSDOE32 B=2 (sha256 prefix c55bafc4)"
+  },
+  {
+   "project": "GEMSDOE51",
+   "label": "h41-b25-aniso-scarp-corrob-20261007T161806Z-74bcfa6e-zeros",
+   "score": 0.2753,
+   "status": "owner-reported",
+   "note": ""
+  },
+  {
+   "project": "GEMSDOE52",
+   "label": "h52-b25-aniso-corrob-36345-20261007T222749Z-1ba501c5-zeros",
+   "score": 0.2762,
+   "status": "owner-reported",
+   "note": ""
+  },
+  {
+   "project": "GEMSDOE53",
+   "label": "h53-scarp-corrob-c25-36339-20261008T180500Z-55ef5635-zeros",
+   "score": 0.2747,
+   "status": "owner-reported",
+   "note": ""
+  },
+  {
+   "project": "GEMSDOE56",
+   "label": "h56-2-b2-aniso3-36459-20261009T120000Z-b2a9d03f-zeros",
+   "score": 0.2763,
+   "status": "owner-reported",
+   "note": ""
+  },
+  {
+   "project": "GEMSDOE57",
+   "label": "h57-b2-splay-corrob-36869-20261009T193000Z-bb20c457-zeros",
+   "score": 0.2767,
+   "status": "owner-reported",
+   "note": ""
+  },
+  {
+   "project": "GEMSDOE58",
+   "label": "h58-1-b2-200m-moat-d28-37654-20261010T012000Z-c55bafc4-zeros",
+   "score": 0.2778,
+   "status": "owner-reported",
+   "note": "re-host of GEMSDOE32 B=2"
+  },
+  {
+   "project": "GEMSDOE59",
+   "label": "h59-b2-d31-aniso-33106-20261010T120000Z-aa0b7e91-zeros",
+   "score": 0.272,
+   "status": "owner-reported",
+   "note": ""
+  },
+  {
+   "project": "GEMSDOE60",
+   "label": "h60-b2-d29-35790-20261010T184500Z-4ca90e26-zeros",
+   "score": 0.2755,
+   "status": "owner-reported",
+   "note": ""
+  },
+  {
+   "project": "GEMSDOE65",
+   "label": "h65-2-b224-r3-189-37465-20261013T030000Z-0d7b56a6-zeros",
+   "score": 0.2767,
+   "status": "owner-reported",
+   "note": ""
+  },
+  {
+   "project": "GEMSDOE66",
+   "label": "h66-1-b2-uncorrob-c0067-37010-20261013T183000Z-9197a296-zeros",
+   "score": 0.2761,
+   "status": "owner-reported",
+   "note": ""
+  },
+  {
+   "project": "GEMSDOE67",
+   "label": "h67-1-b2-playa-uncorrob-prune-37246-20261014T023500Z-98cc8dc8-zeros",
+   "score": 0.2761,
+   "status": "owner-reported",
+   "note": ""
+  },
+  {
+   "project": "GEMSDOE68",
+   "label": "h68-3-b2-interior-3px-uncorrob-37451-20261014T150000Z-2fd09c17-zeros",
+   "score": 0.2768,
+   "status": "owner-reported",
+   "note": ""
+  },
+  {
+   "project": "GEMSDOE70",
+   "label": "h70-oof-lgbm-scarp-geophys-b2-d28-36863-20261015T060000Z-a91e882b-zeros",
+   "score": 0.2478,
+   "status": "owner-reported",
+   "note": "independent OOF LightGBM detector with B=2 and d=2.8"
+  },
+  {
+   "project": "GEMSDOE71",
+   "label": "h71-1-b2-flank-splay-prune-37401-20261015T120000Z-b769996d-zeros",
+   "score": 0.2762,
+   "status": "owner-reported",
+   "note": ""
+  },
+  {
+   "project": "GEMSDOE76",
+   "label": "h76-msgf-oof-b2-d28-37868-20261017T220000Z-d3478886-zeros",
+   "score": 0.2343,
+   "status": "owner-reported",
+   "note": "independent MSGF OOF detector"
+  },
+  {
+   "project": "GEMSDOE78",
+   "label": "h78-1-b2-tip-scarp-bridge-37758-20261018T220000Z-935455d1-zeros",
+   "score": 0.2775,
+   "status": "owner-reported",
+   "note": "B=2 base + 104 tip-scarp bridge dots"
+  },
+  {
+   "project": "GEMSDOE79",
+   "label": "h79-1-b2-scarp-tip-splay-37988-20261019T060000Z-87783287-zeros",
+   "score": 0.2773,
+   "status": "owner-reported",
+   "note": ""
+  },
+  {
+   "project": "GEMSDOE81",
+   "label": "h81-1-b2-strict-relay-54-37708-20261020T060000Z-851c36de-zeros",
+   "score": 0.2775,
+   "status": "owner-reported",
+   "note": "B=2 base + 54 strict relay dots"
+  },
+  {
+   "project": "GEMSDOE91",
+   "label": "h91-hybrid-topo-geophys-d28-b2-37737-20261025T020000Z-f538baeb-zeros",
+   "score": 0.1823,
+   "status": "owner-reported",
+   "note": "independent hybrid topo-geophys detector (<70% overlap regime)"
+  },
+  {
+   "project": "GEMSDOE92",
+   "label": "h92-tpcr-pinn-b2-d28-37939-20261025T120000Z-bc24350b-zeros",
+   "score": 0.1816,
+   "status": "owner-reported",
+   "note": "independent TPCR-PINN detector (<70% overlap regime)"
   }
  ],
  "leaderboard_snapshot": {
@@ -435,5 +596,14 @@
   "status": "user-provided-unverified",
   "verification_note": "Human review of the official leaderboard would be needed to verify, but this session did not access or monitor it."
  },
- "record_new_scores_with": "python scripts/record_live_score.py --file <name-or-sha-prefix> --score 0.xxxx"
+ "record_new_scores_with": "python scripts/record_live_score.py --file <name-or-sha-prefix> --score 0.xxxx",
+ "leaderboard_high_score_latest_claim": {
+  "participant": "DARD",
+  "best_public_dti_latest_claim": 0.4413,
+  "earlier_snapshot_best_public_dti": 0.3195,
+  "group_best_public_dti_claim": 0.2778,
+  "group_best_project": "GEMSDOE32",
+  "group_best_artifact": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+  "status": "user/owner-reported claim (not independently verified via DrivenData)"
+ }
 }

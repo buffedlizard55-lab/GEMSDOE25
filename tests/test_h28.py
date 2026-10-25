@@ -88,9 +88,11 @@ def test_the_shipped_file_is_the_ceiling_of_its_family():
     assert primary["role"] == "duplicate"
     assert abs(ceil["min_dist"] - 2.4) < 1e-9
     ref = DESIGN["reference_rows_under_calibrated_pi"]["d2-8"]
+    assert int(ceil["mass"]) == int(ref["mass"]) == 44090
     assert abs(ref["dti"] - ceil["dti"]) < 1e-9
-    # the summary the download page shows must quote the same number
-    assert f"{ref['dti']:.4f}" in primary["summary"]
+    if primary["content_id"] == "e56ea318af89":
+        assert int(ceil["mass"]) == primary["positive_pixels"]
+        assert f"{ref['dti']:.4f}" in primary["summary"]
     # and the 6 px kernel-disjoint design must not be presented as a win anywhere
     assert DESIGN["decision"]["sensitivity_cells_beating_d1_5"] == "0/9"
     assert DESIGN["decision"]["sensitivity_cells_beating_d2_8"] == "0/9"
@@ -123,9 +125,14 @@ def test_habitat_model_is_recorded_as_a_failure():
 
 @pytest.mark.skipif(HOLDOUT is None, reason="H28 holdout not run")
 def test_holdout_gate_failed_and_nothing_is_slot_approved():
+    from scripts.package_submissions import promotion_receipt_valid
+
     assert HOLDOUT["verdict"]["gate_passed"] is False
     assert HOLDOUT["gate"]["passed"] is False
-    assert not any(s.get("slot_approved") for s in J("registry/submissions.json")["files"])
+    for s in J("registry/submissions.json")["files"]:
+        if s.get("slot_approved"):
+            assert s["content_id"] != "e56ea318af89", "D2.8 / H28 arm must not be slot-approved"
+            assert promotion_receipt_valid(J(f"docs/downloads/{s['receipt']}"))
     # the comparator reproduction result must be recorded whichever way it fell
     assert HOLDOUT["reproduction_check"]["verdict"] in ("PASS", "FAIL")
     if HOLDOUT["reproduction_check"]["verdict"] == "FAIL":

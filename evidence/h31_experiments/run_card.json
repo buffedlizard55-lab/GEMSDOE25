@@ -1,0 +1,83 @@
+{
+  "hypothesis": "H31-1: Anisotropic Along-Strike Structural Continuation & Cross-Scale 3DEP LiDAR-DEM-Catalogue Rotational Strike Coherence with B=2 (200 m) Digitization-Shadow Guard",
+  "mechanism": "Decomposes displacement from visible faults into rotational strike alignment a_along = cos(2*(phi_disp - theta_strike)), along-strike coordinate d_par, cross-strike normal offset d_perp, and elliptical continuation kernel k_aniso, paired with rotational inner products cos(2*(theta_LiDAR - theta_DEM))*L_coh100 and cos(2*(theta_LiDAR - theta_cat))*L_coh100 to isolate multi-scale tectonic scarps across unmapped relay ramps and splays, followed by post-thinning B=2 (d_cat > 200 m) cartographic flank-shadow suppression and d=2.8 px score-ordered Poisson-disk dotting.",
+  "mimic": "Alluvial-fan braided stream channels, dendritic erosional gullies, Pleistocene pluvial lake shoreline benches (Lahontan/Bonneville), and graded desert roads (which produce 1 m LiDAR elevation steps L_step_max but curve across regional strike and fail 1 m LiDAR -> 100 m DEM -> 2 km structural strike rotational coherence).",
+  "holdout_dti": {
+    "evaluator_version": "HOLDOUT-DTI-v1 (alpha=0.2, beta=0.8, R=300m triangular kernel, 20km blocks, 2km guard, 3px visible-collar, 12px domain erosion)",
+    "draws": [
+      10,
+      11
+    ],
+    "n_cells": 8,
+    "withheld_positives": 22317,
+    "pooled_holdout_dti": 0.156013,
+    "cell_mean_holdout_dti": 0.156523,
+    "ci95_8_cells": [
+      0.141886,
+      0.17116
+    ],
+    "ci95_4_spatial_folds": [
+      0.129822,
+      0.183225
+    ],
+    "per_fold_dti": {
+      "NW": 0.155817,
+      "NE": 0.147521,
+      "SW": 0.142455,
+      "SE": 0.180299
+    },
+    "delta_vs_base_mean": 0.008838,
+    "delta_vs_base_ci95": [
+      0.005551,
+      0.012126
+    ],
+    "delta_vs_t_base_mean": 0.005717,
+    "delta_vs_t_base_ci95": [
+      0.002206,
+      0.009229
+    ],
+    "leakage_canary_max_symmetric_auc": 0.841905,
+    "leakage_canary_pass": true
+  },
+  "registry_correlation_overlap": {
+    "n_rasters_checked": 41,
+    "max_surface_rank_correlation": 0.1697,
+    "max_surface_rank_correlation_ref": "h23-a-6pct",
+    "surface_rank_correlation_limit": 0.9,
+    "max_symmetric_3px_dot_overlap": 0.5837,
+    "max_symmetric_3px_dot_overlap_ref": "h16-continuation",
+    "max_sparse_detector_oneway_3px_overlap": 0.6707,
+    "max_sparse_detector_oneway_3px_overlap_ref": "h28-dotted-ridge",
+    "dot_overlap_limit": 0.7,
+    "vs_gemsdoe32_02778_rank_corr": 0.048061,
+    "vs_gemsdoe32_02778_3px_overlap": 0.317458,
+    "vs_gems25_d28_rank_corr": 0.032089,
+    "vs_gems25_d28_3px_overlap": 0.332229,
+    "pass": true
+  },
+  "raster_sha256": {
+    "primary_nan_tif": "22a9d729bec45b72a7309380a0da7d147d79fadcdf1472259ca5eecea524893d",
+    "fallback_zeros_tif": "64c792f0ebacc474a3b23109a67148d5eb00d8e4c190c6221603e64050771c62",
+    "content_id": "c213681203f6"
+  },
+  "validator_output": {
+    "ok_to_upload": true,
+    "hard_failures": [],
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_matches_template": true,
+    "shape_matches_template": true,
+    "transform_matches_template": true,
+    "no_catalogue_overlap": true,
+    "min_distance_to_catalogue_px": 2.24,
+    "positive_pixels": 43771,
+    "positive_fraction": 0.008471,
+    "file_size_bytes": 1602328
+  },
+  "submission_name": "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+  "fallback_submission_name": "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+  "zip_submission_name": "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6.zip",
+  "note": "GEMSDOE25 H31-B2 | Anisotropic along-strike continuation + 3DEP LiDAR strike coh | id c213681203f6 | not yet live-scored",
+  "note_length": 120,
+  "verdict": "promote"
+}
