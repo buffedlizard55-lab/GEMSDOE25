@@ -388,12 +388,14 @@
    "title": "State Geologic Map Compilation (SGMC) Geodatabase of the Conterminous United States (USGS DS 1052)",
    "publisher": "U.S. Geological Survey",
    "kind": "official dataset",
-   "url": "https://pubs.usgs.gov/ds/1052/",
+   "url": "https://www.usgs.gov/data/state-geologic-map-compilation-sgmc-geodatabase-conterminous-united-states",
    "verified": true,
    "verified_utc": "2026-10-25",
-   "used_for": "H31-3 SGMC lithologic contact / structural juxtaposition rasters (sgmc_contact_100m.tif, sgmc_fault_dist_100m.tif, sgmc_unit_id_100m.tif in data/external/)",
-   "how_verified": "Local raster SHA-256 pins verified via scripts/restore_data.py against registry/data_manifest.json",
-   "caveats": "1:500,000 compilation scale; contact boundaries have +-250 m positional uncertainty."
+   "used_for": "H37-3 candidate (knowledge/22): SGMC geologic-map fault distance/strike columns from the pinned derived raster data/external/derived_sgmc_faults_100m_u8.tif; earlier session used related SGMC rasters",
+   "how_verified": "USGS data page read in full this session (session 7): SGMC = seamless spatial database of 48 state geologic maps ranging 1:50,000 to 1:1,000,000 scale; Horton, San Juan & Stoeser 2017, USGS Data Series 1052; DOI 10.5066/F7WH2N65; rights CC0 1.0; page recommends the 2026 GeMS update (DOI 10.5066/P1A3DQZK). The earlier entry's 'how_verified' cited only local SHA-256 pins, which verify the owner-mirror bytes, not this page -- corrected.",
+   "caveats": "Source state maps vary 1:50,000-1:1,000,000, so positional accuracy at 100 m is the limiting caveat; units are not reconciled across state boundaries. The derived raster in the mirror is not byte-traced to vector feature classes here.",
+   "license": "CC0 1.0 (page 'Rights')",
+   "reachable_from_sandbox_bash": false
   },
   {
    "id": "owner-mirror-gemsdoe32",

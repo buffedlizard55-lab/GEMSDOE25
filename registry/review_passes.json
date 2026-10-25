@@ -142,6 +142,66 @@
  "prior_turn_reviews": [
   {
    "date_utc": "2026-10-25",
+   "session_branch": "arena/bbd595e8-gemsdoe25",
+   "focus": "Repository review of GEMSDOE24\u201336 owner-mirrored evidence, why GEMSDOE32 B2 is reported highest, current download/slot wording, and safe next-hypothesis selection.",
+   "pass_1_implement_and_verify": {
+    "completed": [
+     "Read AGENTS.md and the full README, then audited current input availability, the submission writer/holdout, current run cards, the source registry, focus-site forensics, and generated site.",
+     "Added knowledge/21_repo_review_2026-10-25.md with a nine-site evidence summary, strict evidence classes, limitations, four ranked untried candidate forms, sources for manual review, and an explicit no-new-TIFF decision.",
+     "Updated registry/run_card_repo_review_2026-10-25.json: no HOLDOUT-DTI, CI, raster hash or validator result is invented; verdict is negative and current downloads are DO NOT SUBMIT.",
+     "Recorded the missing lane-method paragraph as IR-25-LANE-METHOD-UNSPECIFIED.",
+     "Corrected the stale H31 cross-run absolute-comparator claim in the registry, receipt, site-generator source and regenerated site; kept only same-run contrast language.",
+     "Changed site download-card note labels so research-only identifiers are explicitly not for the competition form; linked the review and no-new-TIFF decision from the README."
+    ]
+   },
+   "pass_2_bug_assumption_edge_case_review": {
+    "completed": [
+     "Verified all nine focus-site rows against existing owner-mirror forensics and score ledger; preserved scores as OWNER-REPORTED claims and pixel relations as computed mirror evidence.",
+     "Checked all new run-card fields and site banners: missing inputs result in null/NOT RUN, existing lane fail remains fail, no promotion or upload is implied.",
+     "Rebuilt the generated site from registry/evidence and checked the updated primary and executive-summary pages.",
+     "Installed project requirements plus pytest/ruff in an ignored local .venv; .venv is not tracked."
+    ]
+   },
+   "pass_3_recheck_original_request": {
+    "completed": [
+     "Rechecked the request and parallel-run protocol: did not generate a new TIF because the shared data/cache and template are absent, the lane method is unspecified, and no fresh holdout or pre-placement/final-dot lane test can be run safely.",
+     "Documented that the unique-TIFF requirement remains unmet by this review; existing unique-content downloads remain testing-only / DO NOT SUBMIT.",
+     "No DrivenData page, leaderboard, submission endpoint, or weekly slot was accessed or used."
+    ],
+    "verification": {
+     "pytest": "131 passed, 4 skipped (3 scored-raster restore dependent; 1 competition-template restore dependent)",
+     "ruff": "ruff check src scripts tests passed",
+     "git_diff_check": "passed",
+     "site_run_card_assertions": "passed; all pages, run-card negative status, null holdout/validator, DO NOT SUBMIT banner, comparator correction, research-note label and lane irregularity were checked"
+    },
+    "open_limitations": [
+     "data/ contains only .gitkeep; no fresh experiment, shared feature-stack reuse, template-based validation, or strict full-registry lane check is possible.",
+     "No new TIFF was generated, by design. This review fails the user\u2019s highest-priority file-generation request rather than bypassing the required gates.",
+     "The exact intended parallel lane is not unambiguously specified in the message.",
+     "All current downloads fail or lack strict lane clearance; no competition slot is approved.",
+     "External 3DEP raw-channel and GDR probe/stress bytes and target-region coverage have not been verified as obtainable from this runner."
+    ]
+   },
+   "verdict": "negative; no new TIFF and no submission eligibility established. Existing testing artifacts are DO NOT SUBMIT.",
+   "main_integration_and_final_verification": {
+    "merged_base_commit": "73bc8763bfe4df1cc68aa17eae0be25420a16990 (origin/main; PR #19)",
+    "resolution": "Merged origin/main into the fixed session branch; retained PR #19 regression test and H35 upload-copy correction, regenerated the site from the merged registry, and preserved this review report/run card.",
+    "verification": {
+     "pytest": "132 passed, 4 skipped (3 scored-raster restore dependent; 1 sample-submission template restore dependent)",
+     "ruff": "ruff check src scripts tests passed",
+     "git_diff_check": "passed",
+     "site": "generated from merged registry and checked for DO NOT SUBMIT, non-submission note wording, H35 twin warning and lane-method irregularity"
+    },
+    "pr20": "MERGED: https://github.com/buffedlizard55-lab/GEMSDOE25/pull/20; merge commit 3002787f02511ff140d15e9d9a06cc294206765f.",
+    "main_verification": {
+     "tests": "GitHub Actions tests succeeded on main commit 3002787f02511ff140d15e9d9a06cc294206765f (run 40237924632).",
+     "github_pages": "GitHub Pages build/deploy succeeded for main commit 3002787f02511ff140d15e9d9a06cc294206765f (run 40237924447); Pages API status built at 2026-10-25T21:58:11Z.",
+     "deployment_claim": "Workflow/API status verified; the hosted page was not independently fetched in this turn."
+    }
+   }
+  },
+  {
+   "date_utc": "2026-10-25",
    "session_branch": "arena/d6aa679e-gemsdoe25",
    "focus": "Resolve PR #14 conflicts against newly merged main while enforcing the literal lane threshold on the GEM-FUSE1 artifact added by PR #13; keep all current artifacts testing-only and unsubmitted.",
    "pass_1": {
@@ -513,5 +573,133 @@
    ]
   },
   "post_merge_note": "Merged with origin/main PRs #13-#16 in PR #18: adopted strict literal lane policy; H35 slot verdict amended to negative (run card addendum); KDC remains primary; H35 registered as alternate testing download."
- }
+ },
+ "xg1_session_review_2026_10_25_arena_60dab308": {
+  "branch": "arena/60dab308-gemsdoe25",
+  "review": {
+   "date_utc": "2026-10-25",
+   "branch": "arena/60dab308-gemsdoe25",
+   "pass_1_implement_and_verify": [
+    "Read README (incl. briefs), AGENTS.md, knowledge base, registries, runnable code; fetched origin and inventoried arena branches/PRs. Restored 22 SHA-pinned inputs + 21 hash-pinned top-scorer rasters; caches bit-identical to evidence/work_cache_hashes.json.",
+    "Decomposed GEMSDOE32 h33-h33-2-b2 0.2778 (OWNER score) from pixel-exact nested subsets: emission economics under DTI=TP/(0.2(TP+FP)+0.8N); regenerated evidence/b2_microvariants.json exactly (15 scored variants 0.2720-0.2775 all below 0.2778; B=3 shell 0.064/dot > tau 0.056-0.059).",
+    "Ranked 5 untried hypotheses and pre-registered XG1 (knowledge/21, commit da478e6) BEFORE any fit: cross-gradient (Gallardo & Meju 2003, doi:10.1029/2003GL017370) alignment ridges of gravity x RTP x log-depth-to-base (GeoDAWN USGS doi:10.5066/P93LGLVQ CC0; INGENIOUS GDR 1391 doi:10.15121/1881483) - no new external data needed; SHORELINE-SUPPRESS recorded BLOCKED (3DEP unreachable in sandbox).",
+    "Implemented src/gems25/xgrad.py + 5 unit tests; screen draws 14-15 (fresh): X HOLDOUT-DTI 0.149923 vs same-run best control B35 0.150685; paired gain -0.000762 (CI -0.00194..+0.00042), 1/4 folds, canary 0.547. Frozen gate FAIL -> no confirmation run, verdict negative (evidence/xg1_screen).",
+    "Built the unique full-footprint file per frozen rule (48,669 dots, zeros-outside primary: whole-array finite in [0,1], no NaN anywhere; EPSG:32611 3730x3292; 0 dots on catalogue/outside; SHA e1b144f0..; content id 52e65fb521f9; note 116 chars). Lane: surface worst |rho| 0.152; final vs B2 31.4%/rho 0.022, vs scored worst 68.0%, vs own unscored H35 parent 93.2% (flagged). Registered + run card; site/README regenerated; featured with DO NOT SUBMIT banner; slot_approved false everywhere."
+   ],
+   "pass_2_bugs_assumptions_edge_cases": [
+    "First screen launch failed closed (0 cells, no outcome seen): an added whole-matrix finite check is incompatible with the harness (static stack carries NaN by design; HGB missing-value handling). Fixed to gate only the new XG columns (commit 6368be8); incomplete evidence dir deleted; design unchanged.",
+    "Shared-tool bug: lane checkers ignored data/registry_top, so no candidate had ever been lane-checked vs the 0.2778 B2 raster. Fixed once in both checkers with SHA de-dup (commit 58c0337), IR-25-LANE-CHECKS-MISSED-TOP.",
+    "build_site.verdict_banner hard-coded '(strict lane gate and pre-registered holdout gate both fail)'; now data-driven from registry slot_reason/verdict.",
+    "Same-file parallel edits clobbered each other TWICE (build_readme session line; register flags text). Re-applied sequentially/atomic and verified by grep on generated output. (Same defect class as H35 session.)",
+    "Session-6 tests/test_kdc.py selected the KDC file via role=='primary'; after re-featuring they failed. Fixed to select KDC by id (tests are KDC-specific); lane summary wording aligned to 'strict lane gate' for test_repo_integrity. Suite: 140 passed, ruff clean.",
+    "register_xg1_submission.py re-run verified byte-stable output (idempotent); independent exact-file audit re-ran gems25.submission.check_file on both twins + strict whole-array test + catalogue/footprint dot counts + no SHA/content-id collisions vs registry."
+   ],
+   "pass_3_recheck_against_the_original_brief": [
+    "Highest-urgency item: a UNIQUE single-band GeoTIFF now sits at the top of the site/README with explicit OK-to-download YES / OK-to-submit NO, unique name, <=140-char note, [0,1] finite values, template-exact grid - validated by automated checks only (no human inspector). It is not a copy: 31.4% dot overlap vs B2; not slot-eligible (holdout negative AND literal lane overlap vs own lineage), and every surface says so.",
+    "PhD-level 0.2778 explanation + focus-site review + how>0.2778 roadmap: knowledge/22. Candidate did NOT beat the comparable same-run holdout best, so no weekly slot is recommended - negative result delivered as required. No drivendata.org automation; all scores kept OWNER/COMPUTED-separated; projections never written as scores.",
+    "Remaining limits disclosed (knowledge/22 \u00a75-6): proxy<->live rho +0.33 n.s.; IR-25-LANE-DENSITY blocks any same-repo slot until the owner sets a substantive-lane policy (H35 stuck identically); B=2 pruning untestable with this holdout; 3DEP channel blocked in sandbox; mirrors not organizer-authenticated; exact current-session prompt text not reproduced verbatim (condensed handoff - IR-25-BRIEF-RECONSTRUCTED pattern), owner briefs already embedded in README.",
+    "Next work ordered: CURV-PERSIST screen on B35 (fresh pre-reg, draws 18-19); owner lane-policy decision; a collar-test design for pruning; 3DEP absolute DEM outside sandbox."
+   ]
+  }
+ },
+ "current_turn_review_2026_10_25_h37": {
+  "session_branch": "arena/97b7bf66-gemsdoe25",
+  "pass_1_implement_and_verify": [
+   "Read AGENTS.md + full README (owner brief), checked open PRs and parallel arena/* branches; fast-forwarded the session branch to origin/main (PR #19/#20) before writing.",
+   "Restored all 22 pinned inputs autonomously (scripts/restore_data.py --group all; SHA-256 verified) and rebuilt caches bit-identical to evidence/work_cache_hashes.json (static_ABCD + addons, all 6 pins OK) -- resolving the 'data placement' blocker cited by the parallel review session (knowledge/21) without DrivenData access.",
+   "Pre-registered before any fit (knowledge/22 commit 7618687; knowledge/23 commit 75696c8): 5 ranked untried hypotheses, single lane, frozen gate/draws, density-aware lane rule, automated OK-to-submit rule.",
+   "Re-verified the 0.2778 explanation line by line: fetched GEMSDOE28/32/36 rasters, required SHA-256 == focus pins, recomputed B1==D2.8&d>1, B2==D2.8&d>2 (XOR 0), GEMSDOE36==B2+1200 (evidence/h37_b2_recheck.json).",
+   "Ran 2 pre-registered hide-and-recover experiments with leakage canaries (DOC max AUC 0.560; SPR 0.522): E1 paired -0.0009 2/4 folds NEGATIVE; E2 +0.00094 vs +0.001 gate 3/4 folds NEGATIVE. No confirmation draws, no tuning on outcomes, no submission slot touched.",
+   "Built the unique session TIF (48,662 dots, content 558c08ce13bf) with the shared writer; surface Spearman checked before placement (worst |rho| 0.152) and final dots after (clean vs other-site substantive rasters, worst 0.682; duplicate vs own H31/H35 lineage 0.928); zeros-outside passes the strictest whole-array [0,1] validator.",
+   "Registered file + run card (registry/run_card_h37_2026-10-25.json) programmatically from receipts; regenerated README + site; verdict negative, OK-to-download YES / OK-to-submit NO stated at the top."
+  ],
+  "pass_2_bugs_assumptions_edge_cases": [
+   "Fixed a wrong training-matrix column slice in scripts/build_h37_candidate.py (tip index out of gather width) by matching build_h35's explicit tip column.",
+   "Test failure exposed exact-integer-lag sampling of a delta ridge; corrected the synthetic test to the smoothed ridge the real fields have (no design change).",
+   "Investigated the one identical H37-2 cell: n_cols 59 vs 61 proves SPR columns were in the fit; identical TP/FP follow from HGB not splitting on 5.7%-support columns there. Softened two text claims from 'byte-identical dots' to the actually measured 'identical TP/FP/emitted counts'.",
+   "Corrected registry/sources.json SGMC entry: its 'verification' was a hash pin, not a page read, and the 1:500,000 scale claim did not match the USGS page read this session (1:50,000-1:1,000,000; CC0; 2026 GeMS update DOI 10.5066/P1A3DQZK).",
+   "Fixed README generator still saying 'Note to paste' for a DO-NOT-SUBMIT featured file (site was fixed in PR #19; README now says research identifier only).",
+   "Ruff E702 semicolons in tests fixed; full suite 146 passed; site regeneration is timestamp-only non-idempotent (pre-existing).",
+   "Independently recomputed content_id from the shipped TIF (558c08ce13bf matches), verified ZIP holds exactly the single TIF bytes, and zeros/NaN twins agree on all footprint pixels."
+  ],
+  "pass_3_recheck_against_the_original_brief": [
+   "Unique TIF generated (not a copy; new content id; lane-clean vs other sites incl. B2 0.312) with obvious automated verdict: DO NOT SUBMIT because both holdout screens failed and it is lineage-duplicate -- exactly the honest outcome of the mandated gates.",
+   "Why-0.2778 answered quantitatively with re-verified pixel identities and break-even algebra; 'can we beat it' answered as not demonstrated, with the credit-density arithmetic and the contradictory leaderboard figures left flagged (IR-25-LEADERBOARD-CONFLICT).",
+   "3-5 ranked novel hypotheses with layers/signatures/mimics/costs in knowledge/22; top two validated on fresh-draw holdouts before any slot question; blocked external ideas named with free official sources and egress checked.",
+   "Every number labelled HOLDOUT-DTI / OWNER / projection; no score promised; DrivenData never automated; upload remains a manual owner selector step within the weekly cap.",
+   "Remaining risks recorded as irregularities (IR-25-H37-AMENDMENT, IR-25-H37-SPR-NEAR-MISS) and next steps ranked by P(Win) in knowledge/24 section 6."
+  ]
+ },
+ "gmce_mscr_session_review_2026_10_25": {
+  "branch": "arena/58bd9d81-gemsdoe25",
+  "review": {
+   "date_utc": "2026-10-25",
+   "branch": "arena/58bd9d81-gemsdoe25",
+   "pass_1_implement_and_verify": [
+    "Read AGENTS.md + full README incl. verbatim owner brief, knowledge/17 focus-site forensics and the 9-site winners; restored all SHA-pinned data groups, 30-raster artefact ledger and 21 top-scorer mirrors; rebuilt work caches bit-identical to all six 2026-10-03 pins.",
+    "Pre-registered knowledge/21 (8198a31, before any fit): 5 ranked untried hypotheses, GMCE-1 design, frozen gate (mean>0.001, >=3/4 folds, worst>=-0.01, canary<=0.90) vs same-run recomputed BEST control on frozen fresh draws.",
+    "GMCE-1 screen draws 20-21 NEGATIVE (paired -0.001209, 1/4 folds; candidate pooled HOLDOUT-DTI 0.150125 CI 0.1386-0.1616 vs BEST 0.151492; canary 0.560). No confirmation, no retune.",
+    "Pre-registered knowledge/22 (b9c5a5e) before any MSCR fit; MSCR-1 screen draws 22-23 NEGATIVE (paired -0.000373 CI -0.012393..+0.011646, 1/4 folds; pooled 0.161954 vs 0.161968; canary 0.654). No confirmation per frozen rule; 2/3 experiments used.",
+    "Re-verified the 0.2778 chain pixel-exactly on hash-pinned mirrors (scripts/verify_b2_chain.py, 12/12 identities) incl. the new finding that D1.5->D2.8 is a non-nested re-thinning (IR-25-THINNING-NONNESTED).",
+    "Built the session's unique TIF from the MSCR arm only (48,442 dots, sha256 0c8b7e91.., content id dd2bb4b09cd2) via the shared writer; zeros primary + NaN twin + single-TIF zip; independent plain-rasterio audits pass both twins; strict lane receipt = DUPLICATE/LANE OVERLAP and extended lane (50 external rows + lattice + own lineage) agrees -> verdict negative, DO NOT SUBMIT.",
+    "Registered MSCR as featured primary (KDC demoted to alternate, labels unchanged), regenerated README + 4 site pages + root mirror from registry; one JSON run card assembled solely from tracked evidence JSONs. Full suite: 153 passed."
+   ],
+   "pass_2_bugs_assumptions_edge_cases": [
+    "tests/test_kdc.py coupled KDC-specific assertions to role==primary; repointed them to the KDC entry by id (generic primary checks now exercise the MSCR file).",
+    "build_site.py stale subtexts fixed: expected-range no longer called a 'model projection'; slot-discipline callout no longer calls KDC the featured file. build_readme.py 'latest session' header now describes this session (knowledge/23).",
+    "Independent-audit script bugs (not TIF defects) found and fixed: bare-NaN JSON emission and a list-vs-tuple dtype comparison; final audits pass on both twins.",
+    "Run-card lane grouping reviewed: 'registry_top' rows (21) kept distinct from the 9 named focus winners; sparse-focus cleanliness (worst 0.38 dots) disclosed alongside, never instead of, the literal strict FAIL.",
+    "Checked generated outputs for stale KDC numbers (55,374 / 0.25-0.31 appear only in KDC rows); verified over HTTP: root, executive-summary and the TIF itself (200, 845,772 bytes).",
+    "Assumption audit: OWNER score claims (0.2778 chain, leader 0.3195 vs 0.4413) stay labelled OWNER, never ORGANIZER-CONFIRMED; HOLDOUT-DTI always labelled with evaluator, withheld counts and 95% CI; no live projection computed for the MSCR file."
+   ],
+   "pass_3_recheck_against_the_original_brief": [
+    "Focus sites GEMSDOE24/25/27/28/30/31/32/33/36 highest scorers reviewed; why/how h33-h33-2-b2 reached 0.2778 answered with re-computed pixel identities and credit-per-dot inversion (knowledge/23 S1). Can-we-beat-it answered quantitatively and empirically: not demonstrated (23 S2).",
+    "UNIQUE TIF generated (new full fit, no copied dots; 31.5% of dots within 3px of B2), unique content-addressed name + 106-char note, featured at the very start of README/site/executive-summary with OK-to-download YES for testing and OK-to-submit NO, both generated from automated evidence, no human inspection step.",
+    "Protocol honoured: one lane, surface checked before placement and final dots after, shared holdout/writer reused, canaries run, JSON run card emitted, 2 of 3 experiments, agent spent no slot and never touched drivendata.org.",
+    "Owner prompt stored (condensed, honestly labelled; verbatim copy remains in README from earlier sessions); executive-summary subpage gives exact upload steps conditioned on future approval; limitations and needed access itemised in knowledge/23 S5.",
+    "Remaining work: fetch one blocked official external layer on a networked runner (GDR 1391 / USGS heat flow), build distance-stratified holdout variant, owner decision on dense-raster lane policy and organizer receipts for scores."
+   ]
+  }
+ },
+  "current_checkout_review_2026_10_25_arena_e7df9bae": {
+    "session_branch": "arena/e7df9bae-gemsdoe25",
+    "focus": "Review current repository against the latest user brief; fix lane-validator registry coverage and enforce pre-placement surface lane checks.",
+    "pass_1_implement_and_verify": [
+      "Read AGENTS.md and README.md plus the current project briefs, focus-site forensics, source/data registries, holdout, writer, validator, and stored score/run-card evidence.",
+      "Confirmed data/ contains only .gitkeep and no fresh template, labels, work cache, or restored registry; no new experiment, TIF, submission slot, or DrivenData access was used.",
+      "Fixed validate_gem_candidate.load_registry_rasters to include data/registry_top and deduplicate index entries by SHA-256 without retaining all decoded full-grid rasters in memory.",
+      "Added strict surface lane preflight before holdout prediction placement and before full-footprint candidate emission; absent registry, undefined correlation, >0.90 absolute Spearman, and shape mismatch fail closed.",
+      "Added tests/test_lane_preflight.py for absolute correlation, undefined correlation, empty registry, top-scorer registry discovery, and lazy raster loading."
+    ],
+    "pass_2_bug_assumption_edge_case_review": [
+      "Verified the existing final-dot lane gate remains literal; no density-aware override was wired into the promotion decision.",
+      "Ran focused lane tests: 8 passed. Ran full suite: 166 passed, 5 skipped; skipped tests require restored scored rasters or sample_submission.tif.",
+      "Ruff passed for src scripts tests; git diff --check passed.",
+      "Flagged a remaining protocol gap: the shared validator scores composite-surface AUC but does not guarantee an isolated canary for every raw input feature; a future candidate must add that gate before fitting/promotion.",
+      "Checked candidate external-data provenance; GDR/USGS official links remain manual-review references, and data availability/schema/licensing were not freshly checked from this runner."
+    ],
+    "pass_3_recheck_against_original_request": [
+      "Rechecked the full request: no organizer-confirmed score is claimed; supplied scores remain owner-reported; no projection is written as a result.",
+      "Ranked four follow-up hypotheses in knowledge/25, named layers, signatures, missing-catalogue rationale, prior-work differences, mimics, planning-only gain brackets, cost and data status.",
+      "Top candidate was not fit because the shared data/cache and full registry are absent and the prompt does not uniquely identify the method lane; strict lane protocol therefore prevents a safe experiment or new TIFF.",
+      "README links the current review and run card. Existing TIFFs remain testing-only and are not slot-approved."
+    ],
+    "verification": {
+      "pytest": "166 passed, 5 skipped",
+      "ruff": "ruff check src scripts tests passed",
+      "git_diff_check": "passed",
+      "holdout_dti": "NOT RUN; no fresh evaluator output, withheld-positive count, or CI",
+      "raster": "NO NEW TIFF; sha256 null",
+      "validator": "NOT RUN; competition sample template absent",
+      "pull_request": "PR #28 opened from arena/e7df9bae-gemsdoe25; origin/main advanced with PR #27 while this review was underway, so the session branch integrated that main update before merge-ready verification."
+    },
+    "open_limitations": [
+      "data/ contains only .gitkeep; pinned public owner mirrors are not organizer-authenticated and no data were restored in this review.",
+      "No new method lane is unambiguously specified in the prompt; current strict lane protocol is binding.",
+      "The shared validator still needs per-feature leakage canaries for every raw predictor before combination.",
+      "No fresh holdout, strict full-registry lane audit, exact-template raster validation, or organizer-confirmed score exists for this review.",
+      "External sources were not re-fetched; verify current source text, required file coverage, schemas and licensing manually before acquisition."
+    ],
+    "verdict": "negative; code review and validator hardening only; no new TIF and no scoring-slot approval."
+  }
 }

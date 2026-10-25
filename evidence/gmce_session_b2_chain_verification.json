@@ -1,0 +1,97 @@
+{
+ "evidence_class": "COMPUTED pixel identities on hash-pinned mirrors; scores OWNER-reported; inversion conditional",
+ "hashes": {
+  "h19_5": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+  "d1_5": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+  "d2_8": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+  "g30": "5f963b8bca5ec226ddc7caaadec239c6be6d28aa567f890033be04d04bfd5e32",
+  "r1_g28": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+  "r1_g31": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+  "b2_g32": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "g36": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a"
+ },
+ "counts": {
+  "h19_5": 121131,
+  "d1_5": 60069,
+  "d2_8": 44090,
+  "g30": 44090,
+  "r1_g28": 40199,
+  "r1_g31": 40199,
+  "b2_g32": 37654,
+  "g36": 38854
+ },
+ "d2_8_distance_shells": {
+  "d_eq_0": 0,
+  "0_lt_d_le_1": 3891,
+  "1_lt_d_le_2": 2545,
+  "2_lt_d_le_3": 2171,
+  "d_gt_3": 35483
+ },
+ "identities": {
+  "d1_5_equals_dot_thin_h19_5_1.5": true,
+  "d2_8_equals_dot_thin_h19_5_2.4": true,
+  "d2_8_equals_dot_thin_h19_5_2.8": true,
+  "d2_8_subset_of_h19_5": true,
+  "d1_5_subset_of_h19_5": true,
+  "g30_equals_d2_8_on_footprint": true,
+  "r1_g28_equals_r1_g31": true,
+  "r1_equals_d2_8_and_dist_gt_1": true,
+  "b2_equals_d2_8_and_dist_gt_2": true,
+  "b2_equals_r1_and_dist_gt_2": true,
+  "b2_subset_of_g36": true,
+  "no_chain_file_emits_on_catalogue": true
+ },
+ "thinning_note": "dot_thin is NOT nested across spacings on this parent: only 29849 of D2.8's 44090 dots are in D1.5 (14241 are h19-5 pixels that D1.5 blocked). D1.5->D2.8 is a re-thinning of the same parent surface, not a subset deletion; only R1 and B2 are exact deletions.",
+ "inversion": {
+  "assumed_N_hidden_px": 12691.0,
+  "approximation": "TP_w + FP_w ~= emitted binary mass M; DTI = TP/(TP+0.2FP+0.8FN), FN=N-TP",
+  "convention": "matches scripts/analyze_focus_sites.py cell-for-cell",
+  "steps": [
+   {
+    "from_": "d2_8",
+    "to": "r1_g28",
+    "mass_from": 44090.0,
+    "mass_to": 40199.0,
+    "delta_mass": -3891.0,
+    "owner_dti_from": 0.26,
+    "owner_dti_to": 0.2708,
+    "implied_delta_tp": -3.7392298698832747,
+    "implied_credit_per_delta_px": 0.0009609945694894049,
+    "break_even_tau_at_from": 0.054852320675105495
+   },
+   {
+    "from_": "r1_g28",
+    "to": "b2_g32",
+    "mass_from": 40199.0,
+    "mass_to": 37654.0,
+    "delta_mass": -2545.0,
+    "owner_dti_from": 0.2708,
+    "owner_dti_to": 0.2778,
+    "implied_delta_tp": -12.799688767008774,
+    "implied_credit_per_delta_px": 0.005029347256192053,
+    "break_even_tau_at_from": 0.05726127040514252
+   },
+   {
+    "from_": "b2_g32",
+    "to": "g36",
+    "mass_from": 37654.0,
+    "mass_to": 38854.0,
+    "delta_mass": 1200.0,
+    "owner_dti_from": 0.2778,
+    "owner_dti_to": 0.275,
+    "implied_delta_tp": 16.106710834493242,
+    "implied_credit_per_delta_px": 0.013422259028744369,
+    "break_even_tau_at_from": 0.05882851213417475
+   }
+  ]
+ },
+ "targets": {
+  "credit_per_dot_at_b2": 0.13193034525971178,
+  "note": "OWNER targets 0.3195 and 0.4413 conflict in the brief (IR-25-LEADERBOARD-CONFLICT); both unconverted.",
+  "implied_credit_per_dot_needed": {
+   "0.2878": 0.136734766254554,
+   "0.3195": 0.15199051333416108,
+   "0.4413": 0.21097360628402895
+  }
+ }
+}

@@ -52,7 +52,19 @@ def main() -> None:
     L = []
     A = L.append
     A("# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize\n")
-    A("**Latest session (2026-10-25, session 6):** [why H33-2-B2 scored 0.2778, the KDC/flank holdout tests (both negative) and the unique KDC file](knowledge/19_kdc_results_2026-10-25.md) · "
+    A("## Start here every session — owner mandate, 2026-10-25\n")
+    A("**MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.** The project's decision principles are **Maximize P(Win)** and **Own the Outcome**. Review the original owner prompt and this README each session; follow `AGENTS.md`. Test catalogue-free geological hypotheses on buffered, spatially blocked hide-and-recover folds; test each feature alone for leakage (AUC >0.90 is presumptive leakage); check surface and final dots against every available registry raster (|rank correlation| >0.90 or >70% within 3 pixels is a duplicate-lane stop). Report pooled HOLDOUT-DTI with withheld-positive count and 95% CI, never present a projection or owner-reported claim as an organizer-confirmed score. Never spend a weekly slot before a separate selector decision. Exact-file format checks do not imply submission approval. Read the complete historical owner brief at the bottom. The current owner's very long updated prompt is not claimed to be transcribed verbatim here; this section records its actionable protocol, not the complete message.\n")
+    A("**Current-checkout review (2026-10-25):** [strict lane preflight/code review, focus-site evidence, ranked next hypotheses, and limitations](knowledge/25_current_checkout_review_2026-10-25.md) · machine-readable run card [`registry/run_card_current_checkout_review_2026-10-25.json`](registry/run_card_current_checkout_review_2026-10-25.json). This review generated no TIF and authorizes no scoring slot.\n")
+    A("**Latest session (2026-10-25, GMCE/MSCR lane):** [why H33-2-B2 scored 0.2778 (chain re-verified pixel-exactly incl. non-nested thinning), two fresh-draw detector experiments (GMCE-1 gravity-magnetic coherent edge, MSCR-1 multi-scale crest persistence; both negative) and the unique MSCR file (DO NOT SUBMIT)](knowledge/23_gmce_mscr_outcomes_2026-10-25.md) · "
+      "run card `registry/run_card_session_2026-10-25_gmce_mscr.json` · pre-registrations `knowledge/21_preregistered_gmce_2026-10-25.md`, `knowledge/22_preregistered_mscr_exp2_2026-10-25.md`.\n")
+    A("**Latest session (2026-10-25, session 7, H37 lane):** [why H33-2-B2 scored 0.2778 (chain re-verified pixel-exact), two new pre-registered experiments (H37-1 DOC, H37-2 SPR — both negative), the density-aware lane audit and the unique H37 file (DO NOT SUBMIT)](knowledge/24_h37_outcomes_and_0.2778_answer_2026-10-25.md) · "
+      "run card `registry/run_card_h37_2026-10-25.json` · pre-registrations `knowledge/22_preregistered_h37…`, `knowledge/23`.\n")
+    A("**Latest session (2026-10-25, XG1 lane):** [why H33-2-B2 scored 0.2778 at PhD level, five ranked untried hypotheses, and the pre-registered XG1 cross-gradient test — HOLDOUT-DTI NEGATIVE (−0.0008 vs the same-run H35 base), unique file built, DO NOT SUBMIT](knowledge/22_xg1_outcome_2026-10-25.md) · "
+      "pre-registration [`knowledge/21`](knowledge/21_preregistered_xg1_cross_gradient_2026-10-25.md) · run card `registry/run_card_xg1_2026-10-25.json`.\n")
+    A("**Latest CF-1 diagnostic (parallel lane):** [download the newly generated TIFF (testing only)](docs/downloads/gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif) · SHA-256 `a0b58cca87ad98f9579c8744e6dd216b7eb4a3e5b075a4bd7af3cf3004ab5cf0` · **DO NOT SUBMIT**: same-run holdout gate failed (2/4 folds; gain +0.000599, 95% CI −0.009788…+0.010986, 11,060 withheld positives), strict lane fails (100% lattice overlap; 92.83% H31-C). `registry/run_card_cf1_2026-10-25.json` provides the exact audit. This is not an organizer score.\n")
+    A("**Parallel session (2026-10-25, H36/H37):** [why H33-2-B2 scored 0.2778 and the two negative holdout tests (H36 coincident tilt-zero contacts, H37 seismicity alignment) plus the unique H36-TZC testing file](knowledge/23_h36_h37_outcomes_2026-10-25.md) · "
+      "run cards `registry/run_card_h36_h37_2026-10-25.json` · pre-registrations `knowledge/21_preregistered_h36_tiltzero_coincidence_2026-10-25.md`, `knowledge/22_preregistered_h37_seisalign_2026-10-25.md`.\n")
+    A("**Session 6:** [why H33-2-B2 scored 0.2778, the KDC/flank holdout tests (both negative) and the unique KDC file](knowledge/19_kdc_results_2026-10-25.md) · "
       "run card `registry/run_card_kdc_2026-10-25.json` · owner brief copies (neither guaranteed verbatim, IR-25-BRIEF-RECONSTRUCTED): "
       "[`knowledge/owner_brief_2026-10-25_verbatim.txt`](knowledge/owner_brief_2026-10-25_verbatim.txt) (parallel session, abridged) and "
       "[`knowledge/owner_brief_2026-10-25_s6_RECONSTRUCTED.txt`](knowledge/owner_brief_2026-10-25_s6_RECONSTRUCTED.txt) (full reconstruction) · older verbatim brief `knowledge/owner_brief_verbatim.txt` · `AGENTS.md`.\n")
@@ -66,7 +78,10 @@ def main() -> None:
     A(f"* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, {outside_txt} "
       f"(verified against the pinned owner-mirror template, not organizer-authenticated; independent check receipt: `docs/downloads/{primary['receipt']}`).")
     A(f"* Unique content id `{primary['content_id']}` · SHA-256 `{primary['sha256']}` · {primary['positive_pixels']:,} emitted pixels · status: **{primary['status']}**.")
-    A(f"* **Note to paste** in DrivenData's *Note (optional)* field: `{primary['note']}`")
+    if primary.get("ok_to_submit_slot"):
+        A(f"* **Note to paste** in DrivenData's *Note (optional)* field: `{primary['note']}`")
+    else:
+        A(f"* **Research identifier only — do NOT paste into the competition form (DO NOT SUBMIT):** `{primary['note']}`")
     for o in others:
         if o["role"] in ("fallback", "alternate"):
             A(f"* {o['title']}: [`{o['file']}`](docs/downloads/{o['file']}) ({o['status']}; {o['positive_pixels']:,} px).")
@@ -74,7 +89,7 @@ def main() -> None:
     A("> ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).\n")
     A(f"> **OK to download (local testing): {'YES' if primary.get('ok_to_download') else 'NO'} · OK to spend a weekly slot: {'YES' if primary.get('ok_to_submit_slot') else 'NO'} — DO NOT SUBMIT** "
       f"(verdict **{primary.get('verdict', 'n/a')}**). Projection: {primary.get('expected_range', 'n/a')}. Lane: {primary.get('lane_summary', 'n/a')}. "
-      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest known file. Why this file is featured: IR-25-FEATURED-DOWNLOAD-RATIONALE.\n")
+      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest known file. Why this negative file is featured: IR-25-XG1-FEATURED-NEGATIVE.\n")
     if h31_flank_screen and h31_flank_confirm and h31_card and focus_forensics:
         inv = focus_forensics["nested_chain_inversion_conditional_on_reported_scores"]
         s1 = inv["d28_to_r1_delete_0_1px_collar"]

@@ -178,6 +178,16 @@ def test_the_invented_footprint_files_are_not_shipped_or_linked():
             assert f'href="docs/downloads/{name}"' not in text and f'href="downloads/{name}"' not in text and f"(docs/downloads/{name})" not in text
 
 
+def test_kdc_run_card_does_not_clear_a_literal_lattice_lane_failure():
+    card = J("registry/run_card_kdc_2026-10-25.json")
+    assert card["correlation_overlap_vs_registry"]["lane_clean"] is False
+    assert card["correlation_overlap_vs_registry"]["lane_clean_substantive_only"] is True
+    assert card["strict_lane"]["lattice_overlap"] > card["correlation_overlap_vs_registry"]["caps"]["overlap"]
+    assert card["strict_lane"]["lane_clear"] is False
+    assert card["validator_output"]["ok_to_upload"] is True  # format-only checker result
+    assert card["validator_output"]["ok_to_submit_slot"] is False
+
+
 def test_negative_download_copy_never_instructs_upload():
     forbidden = ("upload the", "submit this", "use this twin")
     for item in J("registry/submissions.json")["files"]:

@@ -1,0 +1,531 @@
+{
+ "schema": "run_card/v1 (PARALLEL-RUN PROTOCOL item 5)",
+ "session": "2026-10-25 GMCE-1 + MSCR-1 (arena/58bd9d81-gemsdoe25)",
+ "experiments_used": "2 of 3 budget (GMCE screen; MSCR screen). No confirmation: frozen gates failed at screen stage.",
+ "question": {
+  "why_0_2778": {
+   "summary": "Emission economics on one strong surface: h19-5 (121,131 px, OWNER 0.1922) -> dot_thin 1.5 (60,069 px, OWNER 0.2477) -> re-thin 2.4/2.8 (44,090 px, OWNER 0.2600) -> delete d<=1px (40,199 px, OWNER 0.2708) -> delete d<=2px = B2 (37,654 px, OWNER 0.2778). Deleted collar dots carried ~0.001-0.005 implied credit/dot vs break-even tau ~0.055-0.059.",
+   "evidence": "evidence/gmce_session_b2_chain_verification.json (recomputed this session; all identities true)",
+   "identities": {
+    "d1_5_equals_dot_thin_h19_5_1.5": true,
+    "d2_8_equals_dot_thin_h19_5_2.4": true,
+    "d2_8_equals_dot_thin_h19_5_2.8": true,
+    "d2_8_subset_of_h19_5": true,
+    "d1_5_subset_of_h19_5": true,
+    "g30_equals_d2_8_on_footprint": true,
+    "r1_g28_equals_r1_g31": true,
+    "r1_equals_d2_8_and_dist_gt_1": true,
+    "b2_equals_d2_8_and_dist_gt_2": true,
+    "b2_equals_r1_and_dist_gt_2": true,
+    "b2_subset_of_g36": true,
+    "no_chain_file_emits_on_catalogue": true
+   },
+   "thinning_note": "dot_thin is NOT nested across spacings on this parent: only 29849 of D2.8's 44090 dots are in D1.5 (14241 are h19-5 pixels that D1.5 blocked). D1.5->D2.8 is a re-thinning of the same parent surface, not a subset deletion; only R1 and B2 are exact deletions.",
+   "inversion": {
+    "assumed_N_hidden_px": 12691.0,
+    "approximation": "TP_w + FP_w ~= emitted binary mass M; DTI = TP/(TP+0.2FP+0.8FN), FN=N-TP",
+    "convention": "matches scripts/analyze_focus_sites.py cell-for-cell",
+    "steps": [
+     {
+      "from_": "d2_8",
+      "to": "r1_g28",
+      "mass_from": 44090.0,
+      "mass_to": 40199.0,
+      "delta_mass": -3891.0,
+      "owner_dti_from": 0.26,
+      "owner_dti_to": 0.2708,
+      "implied_delta_tp": -3.7392298698832747,
+      "implied_credit_per_delta_px": 0.0009609945694894049,
+      "break_even_tau_at_from": 0.054852320675105495
+     },
+     {
+      "from_": "r1_g28",
+      "to": "b2_g32",
+      "mass_from": 40199.0,
+      "mass_to": 37654.0,
+      "delta_mass": -2545.0,
+      "owner_dti_from": 0.2708,
+      "owner_dti_to": 0.2778,
+      "implied_delta_tp": -12.799688767008774,
+      "implied_credit_per_delta_px": 0.005029347256192053,
+      "break_even_tau_at_from": 0.05726127040514252
+     },
+     {
+      "from_": "b2_g32",
+      "to": "g36",
+      "mass_from": 37654.0,
+      "mass_to": 38854.0,
+      "delta_mass": 1200.0,
+      "owner_dti_from": 0.2778,
+      "owner_dti_to": 0.275,
+      "implied_delta_tp": 16.106710834493242,
+      "implied_credit_per_delta_px": 0.013422259028744369,
+      "break_even_tau_at_from": 0.05882851213417475
+     }
+    ]
+   },
+   "targets": {
+    "credit_per_dot_at_b2": 0.13193034525971178,
+    "note": "OWNER targets 0.3195 and 0.4413 conflict in the brief (IR-25-LEADERBOARD-CONFLICT); both unconverted.",
+    "implied_credit_per_dot_needed": {
+     "0.2878": 0.136734766254554,
+     "0.3195": 0.15199051333416108,
+     "0.4413": 0.21097360628402895
+    }
+   },
+   "caveats": "Scores are OWNER-reported, not organizer receipts; inversion assumes N_hidden=12,691 px and TP_w+FP_w ~= emitted mass; B2's blanket 200 m deletion conflicts with the READ staff wording on corrections within 300 m; brief leader claims 0.3195 vs 0.4413 conflict (IR-25-LEADERBOARD-CONFLICT)."
+  },
+  "can_we_beat_it": "Not demonstrated. Two new detector blocks (GMCE-1, MSCR-1) added nothing over the same-run holdout best on fresh draws (paired -0.0012 / -0.0004). No live score above 0.2778 is claimed; any such number would be a projection."
+ },
+ "experiment_1": {
+  "hypothesis": "GMCE-1: a basement-offsetting fault steps both potential fields across one line, so gravity and RTP gradient vectors are (anti)parallel on a co-located edge even under cover.",
+  "mechanism": "3 columns from iso_grav_anom + rtp: min(pct log grad mags)*|cos dtheta|, signed twin, ridge of the first; added to the frozen H35-B HGB detector, emission unchanged.",
+  "mimicking_non_fault_process": "Lithologic contacts (intrusion margins, stratigraphic pinch-outs) with joint density+magnetization contrast; shared survey-levelling lineaments.",
+  "preregistration": "knowledge/21_preregistered_gmce_2026-10-25.md (commit 8198a31)",
+  "holdout_dti": {
+   "experiment": "GMCE screen",
+   "label": "HOLDOUT-DTI",
+   "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px/300m) via gems25.experiment.Cell.evaluate",
+   "draws": [
+    20,
+    21
+   ],
+   "candidate_arm": "GMCE",
+   "candidate_pooled_dti": 0.15012470683932896,
+   "candidate_pooled_ci95": [
+    0.13860116671464404,
+    0.1616482469640139
+   ],
+   "control_arm": "BEST (H35-B config recomputed in the same run)",
+   "control_pooled_dti": 0.15149191402408538,
+   "control_pooled_ci95": [
+    0.13898366780306196,
+    0.1640001602451088
+   ],
+   "paired_gain_mean": -0.0012085879102125968,
+   "paired_gain_ci95": [
+    -0.009159736511349293,
+    0.006742560690924099
+   ],
+   "folds_positive": 1,
+   "worst_fold": -0.007532278141878901,
+   "withheld_positives": {
+    "per_fold": [
+     2011,
+     2308,
+     3634,
+     3162
+    ],
+    "pooled_cells_total": 22232
+   },
+   "leakage_canary": {
+    "cap": 0.9,
+    "columns": [
+     "GMCE_par_min",
+     "GMCE_signed_min",
+     "GMCE_ridge_par"
+    ],
+    "max_feature_auc": 0.5603680909521553,
+    "passed": true,
+    "context_h34_max_auc": 0.5830832054318649
+   },
+   "gate": {
+    "mean_gain_gt": 0.001,
+    "folds_positive_min": 3,
+    "worst_fold_min": -0.01,
+    "passed": false
+   },
+   "verdict": "NEGATIVE",
+   "formatted": "HOLDOUT-DTI GMCE pooled 0.150125 (fold-pooled 95% CI 0.1386-0.1616) vs BEST pooled 0.151492; paired mean gain -0.001209 (1/4 folds, worst -0.007532); withheld positives (pooled cells) 22232; evaluator gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px/300m) via gems25.experiment.Cell.evaluate"
+  }
+ },
+ "experiment_2": {
+  "hypothesis": "MSCR-1: fault-controlled range fronts/graben margins are topographic lines at 400 m wavelength and persist from 100 m to 400 m scales, unlike single-scale drainage noise.",
+  "mechanism": "3 columns from det_elev: ridge(z,4.0), sqrt(pct(ridge(z,1))*pct(ridge(z,4))), ridge(-z,4.0); added to the same frozen detector/emission.",
+  "mimicking_non_fault_process": "Lithologic strike ridges/valleys (hogbacks, soft-unit strike valleys); fluvial terrace edges.",
+  "preregistration": "knowledge/22_preregistered_mscr_exp2_2026-10-25.md (commit b9c5a5e)",
+  "holdout_dti": {
+   "experiment": "MSCR screen",
+   "label": "HOLDOUT-DTI",
+   "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px/300m) via gems25.experiment.Cell.evaluate",
+   "draws": [
+    22,
+    23
+   ],
+   "candidate_arm": "MSCR",
+   "candidate_pooled_dti": 0.16195442694286824,
+   "candidate_pooled_ci95": [
+    0.12142430263336232,
+    0.20248455125237416
+   ],
+   "control_arm": "BEST (H35-B config recomputed in the same run)",
+   "control_pooled_dti": 0.16196768789843227,
+   "control_pooled_ci95": [
+    0.13318824932130427,
+    0.19074712647556027
+   ],
+   "paired_gain_mean": -0.0003733933724533317,
+   "paired_gain_ci95": [
+    -0.012392809000476691,
+    0.011646022255570028
+   ],
+   "folds_positive": 1,
+   "worst_fold": -0.005370592557992021,
+   "withheld_positives": {
+    "per_fold": [
+     1934,
+     2358,
+     3587,
+     3315
+    ],
+    "pooled_cells_total": 22391
+   },
+   "leakage_canary": {
+    "cap": 0.9,
+    "columns": [
+     "MSCR_crest_s4",
+     "MSCR_crest_persist",
+     "MSCR_trough_s4"
+    ],
+    "max_feature_auc": 0.654114418522446,
+    "passed": true,
+    "context_h34_max_auc": 0.568096235418876
+   },
+   "gate": {
+    "mean_gain_gt": 0.001,
+    "folds_positive_min": 3,
+    "worst_fold_min": -0.01,
+    "mean_hug_increase_max": 0.1,
+    "passed": false
+   },
+   "verdict": "NEGATIVE",
+   "formatted": "HOLDOUT-DTI MSCR pooled 0.161954 (fold-pooled 95% CI 0.1214-0.2025) vs BEST pooled 0.161968; paired mean gain -0.000373 (1/4 folds, worst -0.005371); withheld positives (pooled cells) 22391; evaluator gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px/300m) via gems25.experiment.Cell.evaluate"
+  }
+ },
+ "tif": {
+  "primary_file": "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.tif",
+  "sha256": "0c8b7e91d7a4402e8fc9e6e840b5533669de1a17f1c1acc941c0c3bde0db7ea5",
+  "content_id": "dd2bb4b09cd2",
+  "positive_pixels": 48442,
+  "bytes": 845772,
+  "outside": "zeros (no NaN anywhere)",
+  "nan_twin": {
+   "file": "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-nan.tif",
+   "path": "docs/downloads/gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-nan.tif",
+   "bytes": 1611552,
+   "sha256": "672a14fb0023eeef64f36c63732e9ec7bda23a078810204882af7b434812156f",
+   "content_id": "dd2bb4b09cd2",
+   "positive_pixels": 48442,
+   "format_ok": true,
+   "hard_failures": [],
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": true,
+     "detail": "7,111,787/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=nan",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "np.nanmin/np.nanmax over the whole array",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": false,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   }
+  },
+  "zip": {
+   "file": "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.zip",
+   "path": "docs/downloads/gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.zip",
+   "bytes": 209075
+  },
+  "note": "GEMSDOE25 MSCR-1 sapd2.4 k3.5% | holdout gate FAIL; no slot; unscored; not slot-approved | id dd2bb4b09cd2",
+  "note_chars": 106,
+  "build": {
+   "base": "BDE",
+   "extras": [
+    "X1_K",
+    "X1_ThK",
+    "X1_UK",
+    "X2_compat",
+    "X2_compat_coh",
+    "X3_gm",
+    "X3_gd"
+   ],
+   "tip_column": "H27_tip",
+   "h34_columns": [
+    "H34_resmag_shallow_ridge",
+    "H34_resmag_mid_ridge",
+    "H34_baseflex_ridge"
+   ],
+   "mscr_columns": [
+    "MSCR_crest_s4",
+    "MSCR_crest_persist",
+    "MSCR_trough_s4"
+   ],
+   "kfrac": 0.035,
+   "min_dist": 2.4,
+   "draws": 3,
+   "draw_rng": "424200+m (same as build_h35_candidate.py)",
+   "seconds": 172,
+   "utc": "2026-10-25T22:24:24.972820+00:00",
+   "scores": "data/work/mscr_full_scores.npy (gitignored cache)"
+  },
+  "validator_independent_zeros": {
+   "file": "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.tif",
+   "bytes": 845772,
+   "sha256": "0c8b7e91d7a4402e8fc9e6e840b5533669de1a17f1c1acc941c0c3bde0db7ea5",
+   "meta": {
+    "count": 1,
+    "dtypes": [
+     "float32"
+    ],
+    "crs": "EPSG:32611",
+    "epsg": 32611,
+    "shape": [
+     3730,
+     3292
+    ],
+    "transform": [
+     100.0,
+     0.0,
+     243350.0,
+     0.0,
+     -100.0,
+     4508550.0
+    ],
+    "nodata": null
+   },
+   "footprint_px": 5167373,
+   "positive_pixels": 48442,
+   "distinct_values": [
+    0.0,
+    1.0
+   ],
+   "outside_convention": "zeros",
+   "checks": {
+    "template_footprint_px_is_5167373": true,
+    "single_band": true,
+    "dtype_float32": true,
+    "crs_epsg_32611_and_equals_template": true,
+    "shape_equals_template": true,
+    "transform_equals_template": true,
+    "transform_is_100m_243350_4508550": true,
+    "footprint_all_finite": true,
+    "footprint_values_in_0_1": true,
+    "outside_all_zero": true,
+    "outside_all_nan": false,
+    "strict_whole_array_0_le_x_le_1": true,
+    "no_emission_on_catalogue": true
+   },
+   "all_hard_checks_pass": true,
+   "zip": {
+    "file": "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.zip",
+    "sha256": "65153a8d001482fe1aa56a2399fe1162eb48ed8147fcb832a6f9cafb3d8725f8",
+    "members": [
+     "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.tif"
+    ],
+    "contains_exactly_candidate_bytes": true
+   }
+  },
+  "validator_independent_nan": {
+   "file": "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-nan.tif",
+   "bytes": 1611552,
+   "sha256": "672a14fb0023eeef64f36c63732e9ec7bda23a078810204882af7b434812156f",
+   "meta": {
+    "count": 1,
+    "dtypes": [
+     "float32"
+    ],
+    "crs": "EPSG:32611",
+    "epsg": 32611,
+    "shape": [
+     3730,
+     3292
+    ],
+    "transform": [
+     100.0,
+     0.0,
+     243350.0,
+     0.0,
+     -100.0,
+     4508550.0
+    ],
+    "nodata": "nan"
+   },
+   "footprint_px": 5167373,
+   "positive_pixels": 48442,
+   "distinct_values": [
+    0.0,
+    1.0
+   ],
+   "outside_convention": "nan",
+   "checks": {
+    "template_footprint_px_is_5167373": true,
+    "single_band": true,
+    "dtype_float32": true,
+    "crs_epsg_32611_and_equals_template": true,
+    "shape_equals_template": true,
+    "transform_equals_template": true,
+    "transform_is_100m_243350_4508550": true,
+    "footprint_all_finite": true,
+    "footprint_values_in_0_1": true,
+    "outside_all_zero": false,
+    "outside_all_nan": true,
+    "strict_whole_array_0_le_x_le_1": false,
+    "no_emission_on_catalogue": true
+   },
+   "all_hard_checks_pass": true,
+   "zip": null
+  },
+  "writer_checks_hard_failures": []
+ },
+ "lane": {
+  "thresholds": {
+   "abs_spearman_max": 0.9,
+   "dots_within_3px_max": 0.7
+  },
+  "strict_receipt": {
+   "file": "docs/downloads/lane-gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.json",
+   "verdict": "DUPLICATE/LANE OVERLAP - do not package",
+   "flagged": [
+    "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+    "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
+    "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+    "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+    "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+    "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
+    "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+    "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif"
+   ],
+   "registry_checked": 26,
+   "sha_in_artifact_ledger": false
+  },
+  "extended": {
+   "focus_site_winners_registry_top": {
+    "n": 21,
+    "worst_cand_dots_within_3px": 0.5010321621733207,
+    "worst_abs_spearman_surface": 0.098303,
+    "b2_overlap": 0.3151397547582676
+   },
+   "external_sparse": {
+    "n": 50,
+    "worst_abs_spearman_surface": 0.181473,
+    "worst_surface_file": "h23-a-6pct.tif",
+    "worst_abs_spearman_final": 0.071076,
+    "worst_final_file": "h16-continuation.tif",
+    "worst_cand_dots_within_3px": 0.7894802031295157,
+    "worst_overlap_file": "pindrop-nodes.tif",
+    "lane_pass": false
+   },
+   "lattice": [
+    {
+     "group": "scored",
+     "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+     "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+     "registry_dots": 206895,
+     "spearman_surface": 0.004056,
+     "spearman_final": 0.000304,
+     "cand_dots_within_3px": 1.0,
+     "reg_dots_within_3px_of_cand": 0.18509872157374513,
+     "dense_lattice": true
+    }
+   ],
+   "own_lineage": {
+    "n": 8,
+    "worst_abs_spearman_surface": 0.151043,
+    "worst_surface_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+    "worst_abs_spearman_final": 0.321838,
+    "worst_final_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+    "worst_cand_dots_within_3px": 0.9175715288386112,
+    "worst_overlap_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+    "lane_pass": false
+   },
+   "reading": "Surface (pre-placement) and final-dot Spearman <= 0.90 vs every compared raster. Dot overlap <= 0.70 vs all sparse focus-site winners (worst 0.38) but > 0.70 vs dense rasters (r13 lattice 1.00, pindrop/h23/r7 103k-336k dots, reverse overlap 0.19-0.44, surface rho <= 0.18) and vs this repo's own H31/H35 HGB lineage (0.76-0.92). Under the repo's merged literal strict lane rule (no density exception) this is a DUPLICATE LANE / STOP."
+  }
+ },
+ "verdict": "negative",
+ "ok_to_download_testing": true,
+ "ok_to_submit_slot": false,
+ "slot_statement": "DO NOT SUBMIT: both pre-registered holdout gates FAILED and the literal strict lane gate stops the file.",
+ "next_steps": [
+  "Do not spend a weekly slot on GMCE-1/MSCR-1 transforms; the incumbent band stack appears saturated for incremental static columns on this proxy (two fresh-draw negatives).",
+  "Blocked-data route (rank 5, knowledge/21): GDR 1391 paleo-geothermal zip + USGS heat-flow DOI 10.5066/P9BZPVUC need a networked runner; verify bytes/coverage/licence before proposing.",
+  "Junction field (H30-2) remains registered-only; its proxy/live sign conflict must be resolved by design (e.g. hug-gated, catalogue-distance-stratified scoring) before fitting.",
+  "Owner decisions still open: lattice-density lane policy (IR-25-LANE-DENSITY), leaderboard conflict 0.3195 vs 0.4413, deadline convention, GeoDAWN licence line."
+ ],
+ "limitations": [
+  "No DrivenData access (AGENTS rule 3): template/labels/scores are hash-pinned owner mirrors, not organizer-authenticated.",
+  "Holdout is a catalogue-gap proxy (proxy-live Spearman +0.33 n.s. n=24, GEMSDOE24); HOLDOUT-DTI is not a competition score.",
+  "Sandbox egress is github/pypi/npm only: ScienceBase/GDR/3DEP raw downloads are impossible here.",
+  "No GPU use was needed; HGB CPU fits only. data/work caches rebuilt this session are bit-identical to evidence/work_cache_hashes.json pins."
+ ]
+}
