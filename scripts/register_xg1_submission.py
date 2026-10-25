@@ -62,6 +62,10 @@ def main() -> None:
     lat_overlap = float(lat_rows[0]["dots_within_3px"]) if lat_rows else None
     substantive = [r for r in rows if r["file"] != LATTICE]
     flags_sub = [r["file"] for r in substantive if r["flag_rank"] or r["flag_overlap"] or r["byte_identical"]]
+    short_flags = sorted(
+        {f.removesuffix("-nan.tif").removesuffix("-zeros.tif").removeprefix("gems25-") for f in flags_sub}
+    )
+    flags_txt = ", ".join(short_flags)
     worst_sub_overlap = max((r["dots_within_3px"] for r in substantive), default=0.0)
     worst_sub_overlap_file = max(substantive, key=lambda r: r["dots_within_3px"])["file"] if substantive else None
     worst_sub_rho = max((abs(r["spearman"]) for r in substantive), default=0.0)
@@ -83,8 +87,8 @@ def main() -> None:
     if not format_ok:
         fail_parts.append("format audit FAILED")
     if not lane_ok:
-        fail_parts.append(f"substantive lane flags: {flags_sub}" if flags_sub else "surface lane screen FAILED")
-    lat_txt = f"strict literal lane vs the dense r13 lattice: {100 * lat_overlap:.1f}% of dots within 3 px" if lat_overlap is not None else "r13 lattice not restored"
+        fail_parts.append(f"substantive lane flags (own lineage): {flags_txt}" if flags_sub else "surface lane screen FAILED")
+    lat_txt = f"strict lane gate (literal) vs the dense r13 lattice: {100 * lat_overlap:.1f}% of dots within 3 px" if lat_overlap is not None else "r13 lattice not restored"
     slot_reason = (
         "gate + substantive lane + exact-file audit all pass; eligible for the owner's separate selector step "
         f"(literal lattice caveat disclosed: {lat_txt})"
@@ -96,7 +100,7 @@ def main() -> None:
         f"{worst_sub_overlap:.3f} ({worst_sub_overlap_file}), worst final-dot |Spearman| {worst_sub_rho:.3f}, "
         f"pre-placement surface worst |Spearman| {surface_rho_max:.3f}; "
         + (f"overlap vs GEMSDOE32 B2 (0.2778) {b2_overlap:.3f}; " if b2_overlap is not None else "B2 raster not in lane set; ")
-        + ("no substantive flag" if not flags_sub else f"FLAGGED: {flags_sub}")
+        + ("no substantive flag" if not flags_sub else f"FLAGGED (own unscored lineage): {flags_txt}")
     )
     x, b35 = comb["arms"]["X"], comb["arms"]["B35"]
     gain = comb["primary_X_vs_B35"]

@@ -52,8 +52,9 @@ def main() -> None:
     L = []
     A = L.append
     A("# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize\n")
-    A("**Latest session (2026-10-25, session 6):** [why H33-2-B2 scored 0.2778, the KDC/flank holdout tests (both negative) and the unique KDC file](knowledge/19_kdc_results_2026-10-25.md) · "
-      "run card `registry/run_card_kdc_2026-10-25.json` · owner brief copies (neither guaranteed verbatim, IR-25-BRIEF-RECONSTRUCTED): "
+    A("**Latest session (2026-10-25, session 7):** [why H33-2-B2 scored 0.2778 at PhD level, five ranked untried hypotheses, and the pre-registered XG1 cross-gradient test — HOLDOUT-DTI NEGATIVE (−0.0008 vs the same-run H35 base), unique file built, DO NOT SUBMIT](knowledge/22_xg1_outcome_2026-10-25.md) · "
+      "pre-registration [`knowledge/21`](knowledge/21_preregistered_xg1_cross_gradient_2026-10-25.md) · run card `registry/run_card_xg1_2026-10-25.json` · "
+      "**session 6:** [KDC/flank tests (both negative) and the unique KDC file](knowledge/19_kdc_results_2026-10-25.md) · run card `registry/run_card_kdc_2026-10-25.json` · owner brief copies (neither guaranteed verbatim, IR-25-BRIEF-RECONSTRUCTED): "
       "[`knowledge/owner_brief_2026-10-25_verbatim.txt`](knowledge/owner_brief_2026-10-25_verbatim.txt) (parallel session, abridged) and "
       "[`knowledge/owner_brief_2026-10-25_s6_RECONSTRUCTED.txt`](knowledge/owner_brief_2026-10-25_s6_RECONSTRUCTED.txt) (full reconstruction) · older verbatim brief `knowledge/owner_brief_verbatim.txt` · `AGENTS.md`.\n")
     A("> **Maximize P(Win)** · **Own the Outcome** — the Arena core values are the decision rule for every change in this repository.\n")
@@ -74,7 +75,7 @@ def main() -> None:
     A("> ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).\n")
     A(f"> **OK to download (local testing): {'YES' if primary.get('ok_to_download') else 'NO'} · OK to spend a weekly slot: {'YES' if primary.get('ok_to_submit_slot') else 'NO'} — DO NOT SUBMIT** "
       f"(verdict **{primary.get('verdict', 'n/a')}**). Projection: {primary.get('expected_range', 'n/a')}. Lane: {primary.get('lane_summary', 'n/a')}. "
-      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest known file. Why this file is featured: IR-25-FEATURED-DOWNLOAD-RATIONALE.\n")
+      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest known file. Why this negative file is featured: IR-25-XG1-FEATURED-NEGATIVE.\n")
     if h31_flank_screen and h31_flank_confirm and h31_card and focus_forensics:
         inv = focus_forensics["nested_chain_inversion_conditional_on_reported_scores"]
         s1 = inv["d28_to_r1_delete_0_1px_collar"]

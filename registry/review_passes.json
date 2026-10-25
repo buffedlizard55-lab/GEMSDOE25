@@ -513,5 +513,33 @@
    ]
   },
   "post_merge_note": "Merged with origin/main PRs #13-#16 in PR #18: adopted strict literal lane policy; H35 slot verdict amended to negative (run card addendum); KDC remains primary; H35 registered as alternate testing download."
+ },
+ "xg1_session_review_2026_10_25_arena_60dab308": {
+  "branch": "arena/60dab308-gemsdoe25",
+  "review": {
+   "date_utc": "2026-10-25",
+   "branch": "arena/60dab308-gemsdoe25",
+   "pass_1_implement_and_verify": [
+    "Read README (incl. briefs), AGENTS.md, knowledge base, registries, runnable code; fetched origin and inventoried arena branches/PRs. Restored 22 SHA-pinned inputs + 21 hash-pinned top-scorer rasters; caches bit-identical to evidence/work_cache_hashes.json.",
+    "Decomposed GEMSDOE32 h33-h33-2-b2 0.2778 (OWNER score) from pixel-exact nested subsets: emission economics under DTI=TP/(0.2(TP+FP)+0.8N); regenerated evidence/b2_microvariants.json exactly (15 scored variants 0.2720-0.2775 all below 0.2778; B=3 shell 0.064/dot > tau 0.056-0.059).",
+    "Ranked 5 untried hypotheses and pre-registered XG1 (knowledge/21, commit da478e6) BEFORE any fit: cross-gradient (Gallardo & Meju 2003, doi:10.1029/2003GL017370) alignment ridges of gravity x RTP x log-depth-to-base (GeoDAWN USGS doi:10.5066/P93LGLVQ CC0; INGENIOUS GDR 1391 doi:10.15121/1881483) - no new external data needed; SHORELINE-SUPPRESS recorded BLOCKED (3DEP unreachable in sandbox).",
+    "Implemented src/gems25/xgrad.py + 5 unit tests; screen draws 14-15 (fresh): X HOLDOUT-DTI 0.149923 vs same-run best control B35 0.150685; paired gain -0.000762 (CI -0.00194..+0.00042), 1/4 folds, canary 0.547. Frozen gate FAIL -> no confirmation run, verdict negative (evidence/xg1_screen).",
+    "Built the unique full-footprint file per frozen rule (48,669 dots, zeros-outside primary: whole-array finite in [0,1], no NaN anywhere; EPSG:32611 3730x3292; 0 dots on catalogue/outside; SHA e1b144f0..; content id 52e65fb521f9; note 116 chars). Lane: surface worst |rho| 0.152; final vs B2 31.4%/rho 0.022, vs scored worst 68.0%, vs own unscored H35 parent 93.2% (flagged). Registered + run card; site/README regenerated; featured with DO NOT SUBMIT banner; slot_approved false everywhere."
+   ],
+   "pass_2_bugs_assumptions_edge_cases": [
+    "First screen launch failed closed (0 cells, no outcome seen): an added whole-matrix finite check is incompatible with the harness (static stack carries NaN by design; HGB missing-value handling). Fixed to gate only the new XG columns (commit 6368be8); incomplete evidence dir deleted; design unchanged.",
+    "Shared-tool bug: lane checkers ignored data/registry_top, so no candidate had ever been lane-checked vs the 0.2778 B2 raster. Fixed once in both checkers with SHA de-dup (commit 58c0337), IR-25-LANE-CHECKS-MISSED-TOP.",
+    "build_site.verdict_banner hard-coded '(strict lane gate and pre-registered holdout gate both fail)'; now data-driven from registry slot_reason/verdict.",
+    "Same-file parallel edits clobbered each other TWICE (build_readme session line; register flags text). Re-applied sequentially/atomic and verified by grep on generated output. (Same defect class as H35 session.)",
+    "Session-6 tests/test_kdc.py selected the KDC file via role=='primary'; after re-featuring they failed. Fixed to select KDC by id (tests are KDC-specific); lane summary wording aligned to 'strict lane gate' for test_repo_integrity. Suite: 140 passed, ruff clean.",
+    "register_xg1_submission.py re-run verified byte-stable output (idempotent); independent exact-file audit re-ran gems25.submission.check_file on both twins + strict whole-array test + catalogue/footprint dot counts + no SHA/content-id collisions vs registry."
+   ],
+   "pass_3_recheck_against_the_original_brief": [
+    "Highest-urgency item: a UNIQUE single-band GeoTIFF now sits at the top of the site/README with explicit OK-to-download YES / OK-to-submit NO, unique name, <=140-char note, [0,1] finite values, template-exact grid - validated by automated checks only (no human inspector). It is not a copy: 31.4% dot overlap vs B2; not slot-eligible (holdout negative AND literal lane overlap vs own lineage), and every surface says so.",
+    "PhD-level 0.2778 explanation + focus-site review + how>0.2778 roadmap: knowledge/22. Candidate did NOT beat the comparable same-run holdout best, so no weekly slot is recommended - negative result delivered as required. No drivendata.org automation; all scores kept OWNER/COMPUTED-separated; projections never written as scores.",
+    "Remaining limits disclosed (knowledge/22 \u00a75-6): proxy<->live rho +0.33 n.s.; IR-25-LANE-DENSITY blocks any same-repo slot until the owner sets a substantive-lane policy (H35 stuck identically); B=2 pruning untestable with this holdout; 3DEP channel blocked in sandbox; mirrors not organizer-authenticated; exact current-session prompt text not reproduced verbatim (condensed handoff - IR-25-BRIEF-RECONSTRUCTED pattern), owner briefs already embedded in README.",
+    "Next work ordered: CURV-PERSIST screen on B35 (fresh pre-reg, draws 18-19); owner lane-policy decision; a collar-test design for pruning; 3DEP absolute DEM outside sandbox."
+   ]
+  }
  }
 }

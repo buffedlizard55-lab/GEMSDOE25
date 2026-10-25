@@ -457,6 +457,46 @@
    "issue": "GEMSDOE32's site (re-read 2026-10-25) now carries newer unscored lanes (Arena41 PF-only, gates failed; H32-WIN-46090) whose rasters are not in this repo's pinned registry/data manifest, so H34/H35 lane checks could not include them. Post-merge note: H35 was lane-checked vs the merged parallel-session downloads (KDC 43.4%, GEM-FUSE1 18.0% - distinct; H31-1 82.3% - same lane).",
    "evidence": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html (fetched 2026-10-25, two chunks); registry/data_manifest.json has no 2026-10-25 GEMSDOE32 entries.",
    "resolution_or_action": "Pin those rasters by SHA-256 into registry/data_manifest.json (owner mirrors) and re-run scripts/check_lane_duplicates.py before any future packaging in this lane family."
+  },
+  {
+   "id": "IR-25-XG1-NEGATIVE",
+   "severity": "medium",
+   "status": "disclosed",
+   "issue": "XG1 cross-gradient block (pre-registered knowledge/21, commit da478e6) FAILS the frozen screen gate: draws 14-15 paired HOLDOUT-DTI gain X-B35 = -0.000762 (95% CI -0.00194..+0.00042), 1/4 folds positive, pooled delta -0.00080; canary 0.547 pass. Confirmation draws 16-17 were NOT run per the frozen rule.",
+   "evidence": "evidence/xg1_screen/{cells.jsonl,design.json,analysis.json}; knowledge/22_xg1_outcome_2026-10-25.md; registry/run_card_xg1_2026-10-25.json.",
+   "resolution_or_action": "Verdict negative. No sigma/band re-runs (that would be tuning on the outcome). Any retry needs a fresh pre-registration and fresh draws."
+  },
+  {
+   "id": "IR-25-LANE-CHECKS-MISSED-TOP",
+   "severity": "high",
+   "status": "fixed",
+   "issue": "The shared lane checkers (scripts/check_lane_duplicates.py, scripts/check_lane_surface.py) never compared candidates against data/registry_top, i.e. against the hash-pinned top-scorer mirrors including the GEMSDOE32 B2 0.2778 raster. Earlier 'worst vs scored' lane summaries therefore omitted the champion file.",
+   "evidence": "commit 58c0337; registry/top_scorer_sources.json; docs/downloads/lane-gems25-xg1-crossgrad-*.json (43 rasters checked, byte-identical restores de-duplicated by SHA-256).",
+   "resolution_or_action": "registry_top added to both shared checkers (fix once, no private fork). Past lane claims that matter for a future slot should be re-run with the fixed tool before any owner selector step."
+  },
+  {
+   "id": "IR-25-XG1-LANE-LINEAGE",
+   "severity": "high",
+   "status": "disclosed",
+   "issue": "XG1 final dots overlap its own unscored lineage above the 70%/3 px literal cap: H35 93.2%, H31 control 89.2%, H31-1 82.6%, H31 aniso 75.6%; checker verdict 'DUPLICATE/LANE OVERLAP - do not package'. Vs GEMSDOE32 B2 overlap is 31.4% and vs every scored raster at most 68.0% (gems10-h25-ctx-ridge; receipt rows), so the file is unique by content vs all scored files but is a same-lane descendant of H35 by construction (additive design).",
+   "evidence": "docs/downloads/lane-gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.json; evidence/xg1_lane_surface.json (surface worst |rho| 0.152).",
+   "resolution_or_action": "Not slot-eligible under the literal protocol regardless of holdout (also negative). Any future same-lineage promotion needs an explicit owner substantive-lane policy decision (see IR-25-LANE-DENSITY)."
+  },
+  {
+   "id": "IR-25-XG1-FEATURED-NEGATIVE",
+   "severity": "medium",
+   "status": "disclosed",
+   "issue": "The featured (primary) download is now the XG1 file whose verdict is negative. It is featured because the brief requires the newest unique format-valid file and its download/submit status to be obvious on the front page; the site/README banner, registry rows and DrivenData note all say DO NOT SUBMIT / not slot-approved / no slot, and slot_approved=false everywhere. Risk: a reader may mistake 'featured' for permission.",
+   "evidence": "registry/submissions.json (xg1-crossgrad primary, ok_to_download=true, ok_to_submit_slot=false); docs/index.html verdict banner (data-driven slot_reason); registry/run_card_xg1_2026-10-25.json.",
+   "resolution_or_action": "Banner text is generated from registry fields (build_site.verdict_banner fixed to use slot_reason). If the owner prefers, demote XG1 to alternate and feature a 'no submission this week' notice instead."
+  },
+  {
+   "id": "IR-25-XG1-LANE-SELFASSIGNED",
+   "severity": "low",
+   "status": "disclosed",
+   "issue": "The brief as received in this (condensed) session contained no parallel-run lane-assignment paragraph naming this session's lane. The session self-assigned a single lane - potential-field structural alignment (XG1) added to the H35 detector - and stayed inside it (one confirmatory experiment, no second detector family).",
+   "evidence": "knowledge/21 (lane statement) and knowledge/22.",
+   "resolution_or_action": "Owner to confirm lane assignments in future briefs; if another parallel session owns this lane, the XG1 negative still stands as evidence but its file must not be promoted."
   }
  ]
 }
