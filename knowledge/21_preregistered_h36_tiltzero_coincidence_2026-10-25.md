@@ -121,3 +121,14 @@ units and the tilt spans (−π/2, π/2). Zero-crossing extraction
 (|θ| ≤ 0.05 rad with an opposite-sign 4-neighbour), proximity σ=2 px and the
 coincidence field exp(−d_mag·d_grav/9) are unchanged. This amendment and the code
 implementing it are committed before the first holdout fit.
+
+## Amendment 2 (2026-10-25, before any holdout fit — zero-contour discretisation)
+
+On a synthetic vertical step the corrected spectral tilt jumps from −0.268 rad to
++0.268 rad between adjacent pixels: the sign change is real but no pixel satisfies
+|θ| ≤ 0.05, so a tolerance-gated mask misses exactly the sharpest contacts
+(unit test failure, recorded in `tests/test_h36.py` history). **Frozen fix:**
+the tilt-zero line is the sign-change adjacency itself — every pixel with a
+4-neighbour of opposite sign (both sides of the contour, a 1–2 px line); the
+|θ| ≤ 0.05 tolerance is dropped. Column names, proximity/coincidence definitions,
+arms, draws and gate are unchanged. Still before the first holdout fit.
