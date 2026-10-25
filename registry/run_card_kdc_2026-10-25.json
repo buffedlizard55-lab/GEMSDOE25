@@ -417,10 +417,14 @@
   "worst_abs_spearman_surface": 0.1533,
   "worst_overlap": 0.68,
   "worst_overlap_file": "g19_h19-5_0.1922.tif",
-  "lane_clean": true
+  "lane_clean_substantive_only": true,
+  "lane_clean": false,
+  "lane_clean_scope_note": "The 0.680 maximum excludes the dense r13 lattice. The strict protocol counts every registry raster; see strict_lane below (r13 overlap 0.9994, lane_clear=false)."
  },
  "validator_output": {
   "ok_to_upload": true,
+  "format_only_semantics": "This field reports format-check success only; it is not submission authorization. The candidate fails the strict lane and holdout gates; DO NOT SUBMIT.",
+  "ok_to_submit_slot": false,
   "hard_failures": [],
   "positive_pixels": 55374,
   "checks": {
