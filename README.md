@@ -157,6 +157,17 @@ Planning brackets are uncertain prioritization judgments, not estimates or live-
 5. Keep the existing D2.8 download format-validated but unscored/not slot-approved. A passing H30 proxy gate is not a competition score, not confirmation until the fresh draw, and not authorization to upload.
 6. Open a PR from the fixed Arena session branch, review the checks, and merge only through the GitHub PR workflow if permitted; never claim an unverified merge or deployment.
 
+## Current task (2026-10-25) — read at the start of every session
+
+Full text: `knowledge/16_current_task_2026-10-25.md` (condensed restatement of the user's 2026-10-02/25 message).
+
+Must-dos in order:
+1. Generate a **unique TIF submission** (never copy a previous submission except to learn). `docs/downloads/gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif` (sha256 `51d0b341…`, 49,373 dots) is the current unique artifact: **format-verified; holdout-validated vs same-run control; NOT slot-approved; not a live score.** OK to download for format/reproducibility testing; **NOT authorized for a weekly scoring slot** on current evidence.
+2. Site/executive summary must make the download obvious and must state explicitly whether it is OK to download and whether it is OK to submit (see `docs/executive-summary.html`, `docs/index.html`).
+3. Hypotheses 3–5, holdout validation, leakage canary (AUC ≤ 0.90), LANE check, run card — see `knowledge/15_new_hypotheses_2026-10-25.md` and `evidence/gem_validation/`.
+4. No DrivenData automation; no organizer receipts; treat all scores as unverified claims. Unknown stays unknown.
+5. Three review passes recorded in `registry/review_passes.json`; PR merged via the repo's PR workflow; never claim an unverified merge/deployment/score.
+
 ## Standing session charter
 
 Read this README, both the verbatim owner brief and the current continuation brief below, then `AGENTS.md` at the start of every session. First commands: `git fetch origin`, compare with the fixed session branch, `gh pr list --state open`. Pre-register before fitting. No weekly slot unless the specific candidate beats the current comparable same-run holdout best and passes the exact-file audit; no exception is authorized here. Never automate `drivendata.org`. Review in three passes. Unknown stays unknown.

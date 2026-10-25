@@ -1,0 +1,113 @@
+{
+ "file": "gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif",
+ "path": "docs/downloads/gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif",
+ "bytes": 1612154,
+ "sha256": "51d0b3414896a18de24de969467c6e8947678d80e32ab12d2812a1f6b2bed467",
+ "content_id": "279a305b80d2",
+ "positive_pixels": 49373,
+ "format_ok": true,
+ "checks": {
+  "template_matches_expected_grid_and_footprint": {
+   "pass_": true,
+   "detail": "(3730, 3292), footprint 5,167,373 px",
+   "hard": true
+  },
+  "single_band": {
+   "pass_": true,
+   "detail": "count=1",
+   "hard": true
+  },
+  "dtype_float32": {
+   "pass_": true,
+   "detail": "dtypes=('float32',)",
+   "hard": true
+  },
+  "crs_epsg_32611": {
+   "pass_": true,
+   "detail": "32611",
+   "hard": true
+  },
+  "shape_matches_template": {
+   "pass_": true,
+   "detail": "(3730, 3292) vs (3730, 3292)",
+   "hard": true
+  },
+  "geotransform_matches_template": {
+   "pass_": true,
+   "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+   "hard": true
+  },
+  "footprint_all_finite": {
+   "pass_": true,
+   "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+   "hard": true
+  },
+  "footprint_values_in_0_1": {
+   "pass_": true,
+   "detail": "min=0.0 max=1.0",
+   "hard": true
+  },
+  "outside_footprint_is_nan_official": {
+   "pass_": true,
+   "detail": "7,111,787/7,111,787 NaN",
+   "hard": false
+  },
+  "outside_footprint_is_nan_or_zero": {
+   "pass_": true,
+   "detail": "NaN (official) or 0 (fallback) outside",
+   "hard": true
+  },
+  "nan_mask_identical_to_template": {
+   "pass_": true,
+   "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+   "hard": true
+  },
+  "nodata_tag": {
+   "pass_": true,
+   "detail": "nodata=nan",
+   "hard": false
+  },
+  "variant_nan_aware_whole_array": {
+   "pass_": true,
+   "detail": "np.nanmin/np.nanmax over the whole array",
+   "hard": true
+  },
+  "variant_masked_read": {
+   "pass_": true,
+   "detail": "rasterio masked read",
+   "hard": true
+  },
+  "variant_strict_whole_array_no_nan": {
+   "pass_": false,
+   "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+   "hard": false
+  },
+  "profile_matches_template": {
+   "pass_": true,
+   "detail": "compress=lzw (template lzw)",
+   "hard": false
+  }
+ },
+ "note": "GEMSDOE25 GEM-1 | holdout-validated, unscored, no slot | id 279a305b80d2 | not slot-approved",
+ "build": {
+  "base": "GEM-1 unsupervised surface",
+  "kfrac": 0.0245,
+  "variant": "score_ordered_dots",
+  "seconds": 5,
+  "utc": "2026-10-25T20:27:50.055189+00:00"
+ },
+ "status": "format-validated; holdout-validated vs same-run control; NOT slot-approved; NOT a competition score",
+ "holdout_dti": {
+  "screen_draws_0_1": 0.036657,
+  "screen_gain_vs_control": 0.018021,
+  "confirmation_draws_2_3": 0.042195,
+  "confirmation_gain_vs_control": 0.021601,
+  "auc": 0.561
+ },
+ "lane": {
+  "worst_registry_spearman_abs": 0.0717,
+  "max_dot_overlap_substantive_raster": 0.4816,
+  "lattice_raster_overlap_100pct": "degenerate full-footprint lattice, flagged as irregularity"
+ },
+ "limitation": "holdout is a catalogue-gap proxy, not new-fault truth or a live score; does not beat the frozen 0.152003389 comparator; no DrivenData access was used"
+}
