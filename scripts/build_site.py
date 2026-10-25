@@ -69,7 +69,7 @@ def dl_card(s: dict, prefix: str, big: bool = True) -> str:
 <div class="row"><a class="btn" href="{href}" download>↓ Download {e(s['file'])}</a></div>
 <div class="row">{badge(status, kind)}{badge(chk, 'ok' if s.get('format_ok') else 'bad')}{badge('float32 · [0,1] · ' + ('zeros outside footprint' if s.get('outside') == 'zero' else 'NaN outside footprint'), 'info')}{badge(f"{s['positive_pixels']:,} px emitted", 'info')}</div>
 <p class="small">{fmt_bytes(s['bytes'])} · unique content id <code>{s['content_id']}</code> · SHA-256 <code>{s['sha256'][:16]}…</code> · <a href="{prefix}executive-summary.html">exact upload steps</a></p>
-<p style="margin:10px 0 2px"><b>Note to paste in DrivenData's "Note (optional)" field</b> <button class="btn alt small" data-copy="{nid}">Copy note</button></p>
+<p style="margin:10px 0 2px"><b>{'Note to paste in DrivenData only if separately selector-approved' if s.get('ok_to_submit_slot') else 'Research note only — NOT for the competition form (DO NOT SUBMIT)'}</b> <button class="btn alt small" data-copy="{nid}">Copy {'submission note' if s.get('ok_to_submit_slot') else 'research identifier'}</button></p>
 <div class="note"><code id="{nid}">{e(s['note'])}</code></div></section>"""
 
 
@@ -82,7 +82,7 @@ def verdict_banner(p: dict, prefix: str, exec_page: bool = False) -> str:
 <div class="stats"><div class="stat"><b style="color:#15803d">OK to download: {dl}</b><span>for local testing: unique by content · all hard format checks pass · values in [0,1] · no NaN inside the footprint</span></div>
 <div class="stat"><b style="color:#b91c1c">OK to spend a weekly slot: {slot}</b><span>verdict <b>{e(p.get('verdict', 'n/a'))}</b>: {'eligible for the separate owner selector step — still not slot-approved' if p.get('ok_to_submit_slot') else 'not slot-approved — DO NOT SUBMIT'} ({e(p.get('slot_reason') or 'see registry')})</span></div>
 <div class="stat"><b>{e(p.get('expected_range') or 'n/a')}</b><span>model projection for this file versus the owner-reported 0.2778 best — not a score</span></div></div>
-<p class="lead"><b>{e(p['title'])}.</b> The download card below has the file, checksum and the note to paste.</p>
+<p class="lead"><b>{e(p['title'])}.</b> The download card below has the {'file, checksum, and submission note' if p.get('ok_to_submit_slot') else 'local-testing file, checksum, and research identifier (not for the competition form)'}.</p>
 <p class="small"><b>Status:</b> {e(p['status'])}. <b>Lane:</b> {e(p.get('lane_summary', 'n/a'))}. <b>Run card:</b> <code>{e(p.get('run_card', ''))}</code>.
 Zip alternative: <a href="{prefix}downloads/{e(p.get('zip', ''))}" download>{e(p.get('zip', ''))}</a>. The earlier "Predicted values must be in range [0, 1]" error came from NaN pixels inside the footprint of an old file; this file has none (zeros outside, no NaN anywhere).
 The frozen holdout comparator 0.152003389 does not reproduce in this environment (IR-25-COMPARATOR-DRIFT); gates use the best same-run control instead.</p></div>"""
@@ -144,8 +144,27 @@ def main() -> None:
         h30_gate = None
         h30_status = "registered screen draws 6,7; real-data feature smoke passed, no model fit or DTI yet"
 
+    cf1 = next((s for s in subs if s['id'] == 'cf1-transverse-negative'), None)
+    cf1_card = opt('registry/run_card_cf1_2026-10-25.json')
+
+    def latest_diagnostic(prefix: str) -> str:
+        if cf1 is None or cf1_card is None:
+            return ''
+        hold = cf1_card['holdout_dti']
+        comp = cf1_card['registry_comparison']
+        # This is a duplicate-lane diagnostic, not a replacement primary or a slot candidate.
+        return f'''<section class="dl"><h2>Latest unique CF-1 research TIFF — DO NOT SUBMIT</h2>
+<p><b>OK to download for local testing: YES. OK to submit to DrivenData: NO.</b>
+HOLDOUT-DTI {hold['candidate']:.6f} ({hold['n_withheld_positives']:,} withheld positives; seed {hold['draws'][0]}, four folds) vs same-run control {hold['same_run_control']:.6f};
+paired gain {hold['paired_gain']:+.6f} (95% fold-t CI {hold['gain_95pct_fold_t_ci'][0]:+.6f}…{hold['gain_95pct_fold_t_ci'][1]:+.6f}), {hold['positive_folds']}/4 folds positive.
+Pre-registered screen failed; no confirmation or weekly slot. The strict lane check also fails:
+{comp['lattice_overlap']:.0%} of dots within 3 px of the registered r13 lattice; {comp['h31_control_overlap']:.2%} near H31-C. New SHA-256
+is not a lane clearance. Format verification is against an owner-mirrored template only.</p>
+<a class="btn" href="{prefix}downloads/{e(cf1['file'])}" download>↓ Download CF-1 diagnostic TIFF (testing only)</a>
+<p class="small">SHA-256 <code>{cf1['sha256']}</code> · EPSG:32611 · 3730×3292 · no NaN inside footprint · all values [0,1] · <a href="{prefix}executive-summary.html">submission eligibility guide</a> · note (≤140 chars): <code>{e(cf1['note'])}</code></p></section>'''
+
     def home(prefix: str) -> str:
-        hero = verdict_banner(primary, prefix)
+        hero = latest_diagnostic(prefix) + verdict_banner(primary, prefix)
         cards = dl_card(primary, prefix)
         alt = "".join(f"""<div class="card"><b>{e(o['title'])}</b> {badge(o['status'], 'ok' if o['status']=='scored' else 'warn')}
 <p class="small" style="margin:.3em 0">{e(o['summary'])}</p><a class="btn alt small" href="{prefix}downloads/{o['file']}" download>↓ {e(o['file'])}</a>
@@ -230,7 +249,7 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
                     "<p><b>H31-1 Anisotropic Along-Strike Continuation &times; 100 m 3DEP LiDAR Strike Coherence + B=2 Shadow Guard (<code>knowledge/13_preregistered_h31_anisotropic_scarp_coherence_2026-10-25.md</code>, <code>knowledge/14_h31_anisotropic_scarp_outcomes_2026-10-25.md</code>):</b> "
                     "Evaluated on draws 10,11 (8 cells, 22,317 withheld positives). Single-feature leakage canary PASSED (max AUC = <code>0.8419</code> &le; <code>0.90</code>). "
                     "<code>H31_E3_B2</code> achieved pooled <code>HOLDOUT-DTI = 0.156013</code>, cell mean <code>0.156523</code> (95% CI <code>[0.141886, 0.171160]</code>), "
-                    "beating <code>BASE</code> by <code>+0.008838</code> (<code>4/4</code> folds) and <code>T_BASE</code> by <code>+0.005717</code> (<code>4/4</code> folds) and exceeding <code>0.152003389</code>. "
+                    "beating <code>BASE</code> by <code>+0.008838</code> (<code>4/4</code> folds) and <code>T_BASE</code> by <code>+0.005717</code> (<code>4/4</code> folds) while the historical absolute comparator <code>0.152003389</code> is not comparable across environments (IR-25-COMPARATOR-DRIFT). "
                     "Primary GeoTIFF: <code>gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif</code> (<code>43,771</code> dots, SHA-256 <code>22a9d729bec4…</code>, 15/15 hard format checks PASS, "
                     "max rank-corr <code>0.1697</code> &le; <code>0.90</code>, max symmetric 3-px overlap <code>0.5837</code> &le; <code>0.70</code>, max sparse-detector 3-px overlap <code>0.6707</code> &le; <code>0.70</code>, <code>0.3175</code> vs GEMSDOE32 <code>0.2778</code>; "
                     "literal r13 5-px lattice overlap <code>1.000</code> under IR-25-LANE-DENSITY). JSON Run Card: <code>evidence/h31_experiments/run_card.json</code>.</p>"
@@ -271,7 +290,7 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
 <p class="small">INFERENCE from owner-reported scores (<code>evidence/live_anchor_complement.json</code>); live break-even e ≈ 0.33–0.47. n/i = not identifiable (&lt;5 % off-incumbent dots).</p></div>"""
         return hero + cards + (f"<h3>Also available</h3>{alt}" if alt else "") + plan + kdcb + stats + h31_block + whyb + h28b + h30b + facb + flagb + feed
 
-    exec_body = f"""{verdict_banner(primary, '', exec_page=True)}
+    exec_body = f"""{latest_diagnostic('')}{verdict_banner(primary, '', exec_page=True)}
 <div class="callout"><b>Current unique research artifact: {e(selected['file'])}.</b> <b>OK to download for inspection/reproduction: YES.</b> Its tracked receipt reports format checks passing against an owner-mirrored template; this is not a fresh check in this checkout. <b>OK to submit to a competition scoring slot: NO.</b> The strict parallel-run lane gate is triggered: more than 70% of candidate dots are within 3 px of a registry lattice raster. Treat this as a duplicate-lane stop. No available TIFF is currently eligible for a weekly scoring slot; do not upload it.</div>
 {dl_card(selected, '')}
 <h2>Competition upload instructions — for a future gate-cleared candidate only</h2>

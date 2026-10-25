@@ -459,6 +459,14 @@
    "resolution_or_action": "Pin those rasters by SHA-256 into registry/data_manifest.json (owner mirrors) and re-run scripts/check_lane_duplicates.py before any future packaging in this lane family."
   },
   {
+   "id": "IR-25-LANE-METHOD-UNSPECIFIED",
+   "severity": "medium",
+   "status": "open",
+   "issue": "The parallel-run instruction says the session lane is a single method paragraph below, but no single named experiment method is unambiguously designated in the current brief. The repository has several historical lanes and strict lane checks; selecting one by inference would risk a private fork or cross-lane duplication.",
+   "evidence": "knowledge/21_repo_review_2026-10-25.md; current user prompt; AGENTS.md rules 4-5.",
+   "resolution_or_action": "Do not fit or emit a new candidate until the method is explicitly frozen in a preregistration. This session also lacks the shared data/cache, so no validation or slot decision is possible. Existing files remain DO NOT SUBMIT."
+  },
+  {
    "id": "IR-25-XG1-NEGATIVE",
    "severity": "medium",
    "status": "disclosed",

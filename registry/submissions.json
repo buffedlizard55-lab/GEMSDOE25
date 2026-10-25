@@ -156,7 +156,7 @@
    "outside": "nan",
    "status": "template-convention twin (NaN outside); identical footprint values; unscored; not slot-approved; DO NOT SUBMIT",
    "title": "XG1 with NaN outside the footprint (official template convention); same dots as primary",
-   "summary": "Identical prediction values inside the template footprint; NaN instead of 0.0 outside. Prefer the zeros primary (passes the strictest whole-array [0,1] validator); use this twin only if the portal rejects zeros.",
+   "summary": "Identical prediction values inside the template footprint; NaN instead of 0.0 outside. Format-convention twin kept for local testing only; same negative verdict as the zeros primary.",
    "transform": "outside=nan",
    "verdict": "negative",
    "slot_approved": false,
@@ -439,12 +439,12 @@
    "outside": "nan",
    "status": "VALIDATED UNIQUE H31-1 CANDIDATE (15/15 format checks PASS, HOLDOUT-DTI 0.156523 PASS in 4/4 folds, sparse/symmetric uniqueness PASS <= 0.6707); strict 5-px lattice lane flag open (IR-25-LANE-DENSITY; do not submit without owner lattice waiver)",
    "title": "H31-1 Anisotropic Along-Strike Continuation + 100 m 3DEP LiDAR Strike Coherence + B=2 (200 m) Digitization-Shadow Guard (43,771 px)",
-   "summary": "H31-1 Anisotropic fault-tip continuation + 100 m 3DEP LiDAR-DEM strike coherence + 200 m (B=2 px) digitization-shadow guard + d=2.8 px Poisson-disk thinning (43,771 px, content_id c213681203f6). Passed all 15 hard format checks, single-feature leakage canary (max AUC = 0.8419 <= 0.90), 8-cell holdout promotion gate (HOLDOUT-DTI = 0.156523, +0.008838 vs BASE in 4/4 folds, +0.005717 vs T_BASE in 4/4 folds; beats the comparable same-run holdout best and historical 0.152003389 comparator; holdout proxy is not a competition score), and comparable-detector uniqueness (max rank-corr 0.1697 <= 0.90, max symmetric 3-px overlap 0.5837 <= 0.70, max sparse-detector 3-px overlap 0.6707 <= 0.70, 31.75% vs GEMSDOE32 0.2778). Under the literal strict lane gate against the 5-px r13 calibration lattice (100% of any in-footprint pixel lies within sqrt(8)=2.83 < 3 px of a 5x5 grid; IR-25-LANE-DENSITY), slot_approved remains false (do not submit without owner lattice waiver).",
+   "summary": "H31-1 Anisotropic fault-tip continuation + 100 m 3DEP LiDAR-DEM strike coherence + 200 m (B=2 px) digitization-shadow guard + d=2.8 px Poisson-disk thinning (43,771 px, content_id c213681203f6). Passed all 15 hard format checks, single-feature leakage canary (max AUC = 0.8419 <= 0.90), 8-cell holdout promotion gate (HOLDOUT-DTI = 0.156523, +0.008838 vs BASE in 4/4 folds, +0.005717 vs T_BASE in 4/4 folds; beats the comparable same-run holdout control; historical absolute comparator 0.152003389 is not comparable across environments (IR-25-COMPARATOR-DRIFT); holdout proxy is not a competition score), and comparable-detector uniqueness (max rank-corr 0.1697 <= 0.90, max symmetric 3-px overlap 0.5837 <= 0.70, max sparse-detector 3-px overlap 0.6707 <= 0.70, 31.75% vs GEMSDOE32 0.2778). Under the literal strict lane gate against the 5-px r13 calibration lattice (100% of any in-footprint pixel lies within sqrt(8)=2.83 < 3 px of a 5x5 grid; IR-25-LANE-DENSITY), slot_approved remains false (do not submit without owner lattice waiver).",
    "expected_range": "HOLDOUT-DTI pooled 0.156013, cell mean 0.156523 (95% CI [0.141886, 0.171160], 22,317 withheld positives across draws 10,11; not a competition score)",
    "note": "GEMSDOE25 H31-B2 | HOLDOUT-DTI 0.1565 (+0.0088); unscored; not slot-approved; no slot | id c213681203f6",
    "parent": "trained out-of-fold in GEMSDOE25: families BDE + X1_K, X1_ThK, X1_UK, X2_compat, X2_compat_coh, X3_gm, X3_gd, H27_tip, H31_a_along, H31_d_par, H31_d_perp, H31_k_aniso, H31_lidar_dem_compat, H31_lidar_cat_compat, 3 hide-and-recover draws (seeds [10, 11, 12])",
    "transform": "Hessian ridge NMS -> top 3.20 % -> score-ordered Poisson-disk (d=2.8 px) -> B=2.0 px (200 m) digitization-shadow flank exclusion",
-   "gate_summary": "PROMOTED (HOLDOUT-DTI pooled 0.156013, cell mean 0.156523, 95% CI [0.141886, 0.171160], 22,317 withheld positives across draws 10,11; +0.008838 vs BASE in 4/4 folds, +0.005717 vs T_BASE in 4/4 folds; exceeds historical 0.152003 comparator; max registry rank-corr 0.1697 <= 0.90, max 3-px dot overlap 0.5837 <= 0.70).",
+   "gate_summary": "HISTORICAL HOLDOUT-DTI RESEARCH RESULT (not current promotion / not slot approval; pooled 0.156013, cell mean 0.156523, 95% CI [0.141886, 0.171160], 22,317 withheld positives across draws 10,11; +0.008838 vs BASE in 4/4 folds, +0.005717 vs T_BASE in 4/4 folds; historical absolute comparator 0.152003 is not comparable across environments (IR-25-COMPARATOR-DRIFT); max registry rank-corr 0.1697 <= 0.90, max 3-px dot overlap 0.5837 <= 0.70).",
    "zip_bundle": {
     "file": "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6.zip",
     "path": "docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6.zip",
@@ -1424,7 +1424,7 @@
    "outside": "nan",
    "status": "UNIQUE FILE - DO NOT SUBMIT under the merged strict lane policy (literal r13 lattice stop; 82-89% dot overlap with the H31-lineage lane); frozen holdout gate PASSED in screen + confirmation; unscored; not slot-approved",
    "title": "H35 RESMAG+tip dots (NaN outside) \u2014 holdout gate passed; strict-lane DO NOT SUBMIT",
-   "summary": "Identical prediction values inside the template footprint; NaN instead of 0.0 outside, matching the template convention. Upload the zeros primary first (strictest [0,1] validator); use this twin only if the portal rejects zeros.",
+   "summary": "Identical prediction values inside the template footprint; NaN instead of 0.0 outside, matching the template convention. Research/testing twin only: strict lane failed, so do not upload either H35 file.",
    "expected_range": "no competition estimate (HOLDOUT-DTI only: 0.1476, 95% CI 0.1317\u20130.1635)",
    "note": "GEMSDOE25 H35 R+T nan twin fallback | unscored; not slot-approved; no slot | id d5d4cde1e719",
    "parent": "primary",
@@ -1445,6 +1445,120 @@
     "overlap_vs_h31_control": 0.89,
     "lattice_overlap": 1.0,
     "overlap_vs_h31_aniso": 0.753
+   }
+  },
+  {
+   "id": "cf1-transverse-negative",
+   "role": "alternate",
+   "verdict": "negative",
+   "file": "gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
+   "path": "docs/downloads/gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
+   "bytes": 846366,
+   "sha256": "a0b58cca87ad98f9579c8744e6dd216b7eb4a3e5b075a4bd7af3cf3004ab5cf0",
+   "content_id": "22e2f9eddad9",
+   "positive_pixels": 48777,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "np.nanmin/np.nanmax over the whole array",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.json",
+   "lane_receipt": "evidence/crossfield_2026-10-25/lane.json",
+   "outside": "zero",
+   "status": "NEGATIVE \u2014 DO NOT SUBMIT: 2/4 holdout folds; 100% overlap with r13 lattice; 92.83% overlap with H31-C",
+   "title": "CF-1 transverse magnetic\u2013gravity diagnostic (new content; NOT submit-eligible)",
+   "summary": "Independent transverse gradient feature on RTP and gravity; HOLDOUT-DTI 0.138651 versus same-run 0.138052 (seed 21; 11,060 withheld positives), paired gain +0.000599 (95% fold-t CI \u22120.009788 to +0.010986); 2/4 folds positive, gate failed. Strict 3-px overlap fails vs registered r13 lattice (100%) and H31-C (92.83%). Format verified against pinned owner template, not organizer authenticated. No organizer score. Download for audit only; DO NOT SUBMIT.",
+   "expected_range": null,
+   "note": "G25 CF1 transverse | negative, strict lane FAIL; no slot, unscored, not slot-approved | id 22e2f9eddad9",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "holdout_gate_passed": false,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "lane": {
+    "lane_clear": false,
+    "lattice_overlap": 1.0,
+    "worst_overlap": 1.0,
+    "worst_abs_spearman": 0.367417,
+    "preplacement_surface_abs_rho": 0.15206
    }
   }
  ]

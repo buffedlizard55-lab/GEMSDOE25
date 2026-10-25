@@ -245,8 +245,8 @@ def main() -> None:
         status="template-convention twin (NaN outside); identical footprint values; unscored; not slot-approved; "
                + ("same verdict as primary" if ok_slot else "DO NOT SUBMIT"),
         title="XG1 with NaN outside the footprint (official template convention); same dots as primary",
-        summary="Identical prediction values inside the template footprint; NaN instead of 0.0 outside. Prefer the zeros "
-                "primary (passes the strictest whole-array [0,1] validator); use this twin only if the portal rejects zeros.",
+        summary="Identical prediction values inside the template footprint; NaN instead of 0.0 outside. Format-convention "
+                "twin kept for local testing only; same negative verdict as the zeros primary.",
         transform="outside=nan",
         **{**common, "note": nan_note},
     )
