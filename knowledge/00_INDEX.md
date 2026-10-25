@@ -47,3 +47,5 @@
 | `24_h37_outcomes_and_0.2778_answer_2026-10-25.md` | session 7 outcomes: B2 chain re-verified (XOR 0), E1/E2 both negative, unique H37 file `558c08ce13bf` (DO NOT SUBMIT), next steps ranked by P(Win) |
 | `21_preregistered_crossfield_2026-10-25.md` | parallel CF-1 lane: transverse potential-field pre-registration (note: knowledge numbers 21/22 are shared across parallel sessions) |
 | `22_crossfield_outcome_2026-10-25.md` | parallel CF-1 outcome: negative diagnostic (DO NOT SUBMIT); see `registry/run_card_cf1_2026-10-25.json` |
+| `21_preregistered_h36_tiltzero_coincidence_2026-10-25.md` | parallel session: H36-TZC pre-registration (negative; see `registry/run_card_h36_h37_2026-10-25.json`) |
+| `22_preregistered_h37_seisalign_2026-10-25.md` | parallel session: H37-SEISALIGN pre-registration — a DIFFERENT hypothesis from this session's H37 DOC/SPR lane (knowledge/24 §8) |

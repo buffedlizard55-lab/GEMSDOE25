@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """H37-1 analysis: frozen paired gate (A37 vs same-run C37=H35-B) + pooled DTI. HOLDOUT-DTI only.
 
-    .venv/bin/python scripts/analyze_h37_doc.py evidence/h37_screen --stage screen --out evidence/h37_screen/analysis.json
-    .venv/bin/python scripts/analyze_h37_doc.py evidence/h37_screen evidence/h37_confirm --stage combined --out evidence/h37_confirm/analysis_combined.json
+    .venv/bin/python scripts/analyze_h37_doc.py evidence/h37_doc_screen --stage screen --out evidence/h37_doc_screen/analysis.json
+    .venv/bin/python scripts/analyze_h37_doc.py evidence/h37_doc_screen evidence/h37_confirm --stage combined --out evidence/h37_confirm/analysis_combined.json
 """
 
 from __future__ import annotations

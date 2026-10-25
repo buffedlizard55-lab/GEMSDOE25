@@ -37,7 +37,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from gems25.experiment import HGB_PARAMS, N_NEG, gather_columns, load_context  # noqa: E402
 from gems25.features import build_catalogue_features, build_tip_continuation  # noqa: E402
 from gems25.h34 import H34_NAMES, load_h34_sidecar  # noqa: E402
-from gems25.h37 import H37_NAMES, SPR_NAMES, load_h37_sidecar, load_spr_sidecar  # noqa: E402
+from gems25.h37_doc_spr import H37_NAMES, SPR_NAMES, load_h37_sidecar, load_spr_sidecar  # noqa: E402
 from gems25.paths import data_dir, work_dir  # noqa: E402
 from gems25.submission import check_file, content_id, make_filename, write_submission, zip_single  # noqa: E402
 from gems25.thinning import ridge_nms, score_ordered_dots, select_top_positive  # noqa: E402

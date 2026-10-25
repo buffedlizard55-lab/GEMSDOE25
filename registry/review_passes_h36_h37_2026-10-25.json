@@ -1,0 +1,48 @@
+{
+ "schema_version": 1,
+ "date_utc": "2026-10-25",
+ "session_branch": "arena/6589f793-gemsdoe25",
+ "method": "Three passes as requested. Each pass builds on the previous one; findings below are real defects/gaps found and fixed, not a rubber stamp.",
+ "pass_1_implement_and_verify": {
+  "scope": "Review repo + nine focus sites' evidence, answer why 0.2778 (OWNER) won, pre-register 4 ranked hypotheses, validate top two on the hide-and-recover holdout vs the same-run best control, build a unique TIF with validator + lane checks, register it with obvious download/submit labels, rebuild site/README.",
+  "done": [
+   "Restored 22 SHA-256-pinned inputs (core/external/scored) via scripts/restore_data.py; rebuilt the cached feature stack; hashes bit-identical to evidence/work_cache_hashes.json (comparator environment verified, IR-25-COMPARATOR-DRIFT does not apply to these runs).",
+   "Pre-registered knowledge/21 (4 ranked hypotheses) and committed it BEFORE any fit (d40ae7d); three pre-fit operator amendments committed separately with data-property evidence only (no outcome seen).",
+   "Implemented src/gems25/h36.py (spectral tilt-zero coincidence) and h37.py (seismicity structure-tensor alignment) with synthetic unit tests; runners reuse gems25.experiment.Cell, gems25.metric.dti_binary, gems25.submission writer/checker (no private forks).",
+   "Experiment 1 H36-TZC screen (draws 30-31): paired -0.0013, 2/4 folds, canary 0.588 -> NEGATIVE, no confirmation.",
+   "Pre-registered knowledge/22 BEFORE Experiment 2; H37-SEISALIGN screen (draws 40-41): paired -0.0021, 1/4 folds, canary 0.536 -> NEGATIVE, no confirmation.",
+   "Built unique TIF gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.tif (48,634 dots, SHA-256 8bbddbb4...) + NaN twin + ZIP; check_file hard checks all pass; surface lane Spearman 0.151; final-dot lane duplicate/stop recorded (lattice 100%, H35 92.2%).",
+   "Registered as primary download with verdict negative, ok_to_download=true, ok_to_submit_slot=false; rebuilt README + site; run card registry/run_card_h36_h37_2026-10-25.json; outcomes knowledge/23."
+  ]
+ },
+ "pass_2_bugs_assumptions_edge_cases": {
+  "found_and_fixed": [
+   "Provider derivative bands are scale-mismatched for a direct tilt (tmi_hg per-km magnitude vs tmi_vg ~300x smaller): tilt recomputed spectrally from the field bands (Amendment 1, IR-25-H36-DERIVATIVE-BAND-SCALES).",
+   "Tolerance-gated zero mask missed sharp contacts (synthetic step jumps -0.268 -> +0.268 rad with no |theta|<=0.05 pixel): zero line redefined as sign-change adjacency (Amendment 2).",
+   "Ungated magnetic zero set covered 23.4% of the footprint (sign speckle in gradient-free areas): crossings gated to at/above-median THDR (Amendment 3). All amendments precede every holdout fit.",
+   "First candidate build was restarted before completion because its embedded note (139 chars, missing 'no slot') would have failed the site note tests (<=120, required phrases); the shipped note is 105 chars and test-enforced.",
+   "tests/test_kdc.py was bound to role='primary' and failed once KDC became an alternate: retargeted to the KDC entry by id; added tests/test_h36_submission.py guarding the new primary's labels, hashes, lane stop and negative gates (151 tests pass).",
+   "README latest-session line did not update on the first rebuild (edit/run race): rebuilt and verified in the rendered README and site HTML.",
+   "Registration summary initially described the lane fail as lattice-only; corrected to name the substantive own-lineage H35/H31 overlap (92.2%) before registering."
+  ],
+  "known_residual_risks": [
+   "Holdout is a catalogue-gap proxy (proxy-vs-live Spearman +0.33, n=24, n.s.); both negatives are 'no demonstrated gain', with paired CIs including small positive values.",
+   "The shipped TIF's detector shares the BDE+tip+H34 base with H35/H31-C, so its dots are a lane duplicate by placement even though its content bytes are unique; it must never be submitted as a distinct lane.",
+   "GEMSDOE32's newer unscored lanes (Arena41, H32-WIN) are not in this repo's pinned registry (IR-25-GEMSDOE32-NEW-LANES-UNCHECKED), so lane checks cannot include them.",
+   "All competition rasters are owner mirrors, not organizer-authenticated (IR-25-PROVENANCE); 0.2778/0.3195/0.4413 remain OWNER claims (leaderboard conflict unresolved)."
+  ]
+ },
+ "pass_3_recheck_against_the_original_brief": {
+  "mapping": {
+   "unique TIF, obvious download/submit status": "docs/downloads/gems25-h36-tiltzero-coincide-...-zeros.tif featured first on index.html + README with 'OK to download: YES / OK to spend a weekly slot: NO - DO NOT SUBMIT'; executive-summary.html has the upload steps for a future gate-cleared file only",
+   "study highest focus-site submissions + why 0.2778": "knowledge/17 (prior forensics) + knowledge/23 Section 1 decomposition (OWNER-labelled)",
+   "3-5 new hypotheses, ranked, validate top before any slot": "knowledge/21 (4 candidates + deferred external check naming USGS National Map); top two validated, both negative; no slot spent by the agent",
+   "parallel-run protocol (lane, reuse, labels, canary, run card, budget)": "lane checked on surface + final dots; shared Cell/evaluator/writer reused; every number labelled HOLDOUT-DTI with evaluator/withheld counts/CI or OWNER; canaries 0.588/0.536 <= 0.90; registry/run_card_h36_h37_2026-10-25.json; 2 of max 3 experiments used",
+   "fix [0,1] portal error": "zeros-outside primary is finite over the whole array; check_file hard checks pass; root cause documented in src/gems25/submission.py",
+   "unique name + short note": "content-addressed file name; 105-char note in registry, receipt and site (test-enforced <=120)",
+   "no hallucinations / verify / flag irregularities": "two new flags IR-25-H36-DERIVATIVE-BAND-SCALES and IR-25-H36-BUILD-DESPITE-FAILED-GATE; sources in knowledge/21 (USGS GeoDAWN DOI 10.5066/P93LGLVQ, Miller & Singh 1994) with verification status; no DrivenData access"
+  },
+  "verdict": "negative - no candidate beat the current comparable holdout best; the unique TIF is a testing artifact (DO NOT SUBMIT), not a slot candidate",
+  "post_merge": "PR #26 conflicted with main (parallel XG1/CF1 sessions had merged). Resolved by union-merging registry/submissions.json and registry/irregularities.json (H36 entries demoted to alternate; XG1 remains featured primary), taking main's build_readme/test_kdc resolutions plus an added H36/H37 session line, regenerating README + site, re-running the lane checker on the merged tree (H35 92.2%, XG1 91.8%), and re-running the full suite (158 passed)."
+ }
+}

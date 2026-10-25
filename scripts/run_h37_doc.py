@@ -7,7 +7,7 @@ kfrac 0.035 for both:
   C37 = BDE+7 + H27_tip + 3 H34 cols            (H35 arm B, recomputed this run)
   A37 = C37 + 6 DOC cols (`gems25.h37`)         (candidate)
 
-    .venv/bin/python scripts/run_h37_doc.py --draws 14 15 --out evidence/h37_screen
+    .venv/bin/python scripts/run_h37_doc.py --draws 14 15 --out evidence/h37_doc_screen
     .venv/bin/python scripts/run_h37_doc.py --draws 16 17 --out evidence/h37_confirm  # only if screen passes
 """
 
@@ -28,7 +28,7 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 from gems25.experiment import HGB_PARAMS, Cell, load_context  # noqa: E402
 from gems25.h34 import H34_NAMES, load_h34_sidecar  # noqa: E402
-from gems25.h37 import H37_NAMES, load_h37_sidecar  # noqa: E402
+from gems25.h37_doc_spr import H37_NAMES, load_h37_sidecar  # noqa: E402
 from gems25.paths import work_dir  # noqa: E402
 from gems25.thinning import score_ordered_dots  # noqa: E402
 from run_h28_holdout import BASE, EXTRAS, FOLDS  # noqa: E402

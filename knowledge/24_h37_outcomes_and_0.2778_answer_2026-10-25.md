@@ -146,3 +146,15 @@ organizer authenticity (IR-25-PROVENANCE). Four spatial folds give wide CIs;
 the E2 paired CI (−0.0006…+0.0024) includes zero improvement. Sandbox egress
 (github/pypi/npm) blocks ScienceBase/GDR/National-Map primary fetches; their
 obtainability was checked at the listing level only where stated.
+
+## 8. Merge note (name collision with a parallel session)
+
+A parallel session independently used the label "H37-SEISALIGN" for a different
+hypothesis (seismicity structure-tensor alignment; `knowledge/22_preregistered_h37_seisalign_2026-10-25.md`,
+also negative) and its code/evidence landed on `main` first (PR #26) at
+`src/gems25/h37.py`, `tests/test_h37.py`, `evidence/h37_screen/`. To merge
+without overwriting either session's work, this session's module/tests/evidence
+were renamed to `src/gems25/h37_doc_spr.py`, `tests/test_h37_doc_spr.py`,
+`evidence/h37_doc_screen/` in the merge commit; numbers and file contents are
+unchanged. "H37" in knowledge/22_doc, knowledge/23 and knowledge/24 always
+means the DOC/SPR lane of this session.

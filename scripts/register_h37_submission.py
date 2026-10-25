@@ -2,7 +2,7 @@
 """Register the H37 session file (DOC arm) + write the protocol run card.
 
 Assembled programmatically from evidence receipts (no hand-typed result numbers):
-  evidence/h37_screen/analysis.json       H37-1 DOC screen (negative)
+  evidence/h37_doc_screen/analysis.json       H37-1 DOC screen (negative)
   evidence/h37_2_screen/analysis.json     H37-2 SPR screen (negative, near-miss)
   evidence/h37_build/surface_lane_doc.json surface Spearman before placement
   docs/downloads/checks-<zeros>.json      writer/checker receipt
@@ -52,7 +52,7 @@ def main() -> None:
     cid = zrec["content_id"]
     lane_path = DL / f"lane-{zpath.stem}.json"
     lane = J(lane_path)
-    e1 = J(EV / "h37_screen" / "analysis.json")
+    e1 = J(EV / "h37_doc_screen" / "analysis.json")
     e2 = J(EV / "h37_2_screen" / "analysis.json")
     surf = J(EV / "h37_build" / "surface_lane_doc.json")
     b2chk = J(EV / "h37_b2_recheck.json")
@@ -186,7 +186,7 @@ def main() -> None:
         "pre_registration": ["knowledge/22_preregistered_h37_doc_down_dip_offset_2026-10-25.md (commit 7618687)",
                              "knowledge/23_preregistered_h37_2_spring_line_2026-10-25.md (commit 75696c8; amendment disclosed there)"],
         "experiments": [
-            {"id": "E1 H37-1 DOC screen", "evidence": "evidence/h37_screen/", "draws": [14, 15],
+            {"id": "E1 H37-1 DOC screen", "evidence": "evidence/h37_doc_screen/", "draws": [14, 15],
              "label": "HOLDOUT-DTI", "evaluator": e1["evaluator"],
              "candidate_mean": e1["arms"]["A37"]["mean"], "candidate_ci95": e1["arms"]["A37"]["ci95"],
              "candidate_pooled": e1["arms"]["A37"]["pooled_dti"],

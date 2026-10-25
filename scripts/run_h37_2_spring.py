@@ -27,7 +27,7 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 from gems25.experiment import HGB_PARAMS, Cell, load_context  # noqa: E402
 from gems25.h34 import H34_NAMES, load_h34_sidecar  # noqa: E402
-from gems25.h37 import SPR_NAMES, load_spr_sidecar  # noqa: E402
+from gems25.h37_doc_spr import SPR_NAMES, load_spr_sidecar  # noqa: E402
 from gems25.paths import work_dir  # noqa: E402
 from gems25.thinning import score_ordered_dots  # noqa: E402
 from run_h28_holdout import BASE, EXTRAS, FOLDS  # noqa: E402

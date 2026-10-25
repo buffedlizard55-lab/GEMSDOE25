@@ -12,7 +12,7 @@
  "experiments": [
   {
    "id": "E1 H37-1 DOC screen",
-   "evidence": "evidence/h37_screen/",
+   "evidence": "evidence/h37_doc_screen/",
    "draws": [
     14,
     15
