@@ -155,3 +155,61 @@ def test_real_h36_sidecar_if_bands_restored():
         col = np.asarray(arr[j])
         assert np.isfinite(col).all(), H36_NAMES[j]
         assert float(np.std(col)) > 0.0, H36_NAMES[j]
+
+
+def test_h36_featured_deliverable_run_card_and_site_banners():
+    import hashlib
+    import json
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[1]
+    subs = json.loads((root / "registry" / "submissions.json").read_text())["files"]
+    primary = next(s for s in subs if s["role"] == "primary")
+    fallback = next(s for s in subs if s["role"] == "fallback")
+    card = json.loads((root / "registry" / "run_card_h36_2026-10-25.json").read_text())
+
+    assert primary["id"] == "h36-spigm-subsurface"
+    assert fallback["id"] == "h36-spigm-subsurface-nan"
+    assert primary["content_id"] == card["content_id"] == "3937b96ce366"
+    assert primary["positive_pixels"] == card["emitted_positive_pixels"] == 37654
+    assert card["on_catalogue_positive_pixels"] == 0
+
+    for item, exp_sha in ((primary, card["raster_sha256"]), (fallback, card["nan_twin_sha256"])):
+        p = root / item["path"]
+        assert p.exists()
+        assert hashlib.sha256(p.read_bytes()).hexdigest() == exp_sha == item["sha256"]
+        assert len(item["note"]) <= 120
+        assert all(tok in item["note"] for tok in ("no slot", "unscored", "not slot-approved", "3937b96ce366"))
+
+    assert (root / "docs" / "downloads" / primary["zip"]).exists()
+    assert primary["ok_to_download"] is True and card["ok_to_download"] is True
+    assert primary["ok_to_submit_slot"] is False and card["ok_to_submit"] is False
+    assert primary["slot_approved"] is False and card["slot_approved"] is False
+    assert primary["verdict"] == card["verdict"] == "negative"
+
+    # Protocol Rule 1 & Rule 4 checks in Run Card
+    assert card["leakage_canary"]["all_pass"] is True
+    assert card["leakage_canary"]["max_canary_auc_pooled_16cells"] <= 0.90
+    lane = card["correlation_overlap_vs_registry"]
+    assert lane["scored_and_sibling_non_lattice_all_clear"] is True
+    assert lane["worst_scored_or_sibling_overlap"] <= 0.70
+    assert lane["overlap_vs_gemsdoe32_b2_02778"] < 0.30
+    assert lane["worst_abs_spearman_surface"] <= 0.90
+    assert lane["worst_abs_spearman_final"] <= 0.90
+    assert lane["lane_clear"] is False  # literal strict r13-lattice-s5 + unscored H35 halo rule
+
+    # Dual [0, 1] portal validation checks
+    v_out = card["validator_output"]
+    assert v_out["automated_without_human_intervention"] is True
+    assert v_out["zeros_primary_format_ok"] is True and not v_out["zeros_primary_hard_failures"]
+    assert v_out["zeros_independent_strict_validator"]["whole_array_in_0_1"] is True
+    assert v_out["zeros_independent_strict_validator"]["cannot_trigger_range_0_1_portal_error"] is True
+
+    # Front-page & Executive Summary status banner visibility
+    for page_rel in ("index.html", "docs/index.html", "docs/executive-summary.html"):
+        html_txt = (root / page_rel).read_text()
+        assert primary["file"] in html_txt
+        assert "OK to download: YES" in html_txt
+        assert "OK to spend a weekly slot: NO" in html_txt
+        assert "DO NOT SUBMIT" in html_txt
+

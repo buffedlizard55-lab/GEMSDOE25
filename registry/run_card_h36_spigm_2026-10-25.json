@@ -1,0 +1,865 @@
+{
+ "run_card_version": 1,
+ "date_utc": "2026-10-25",
+ "session_branch": "arena/867f087d-gemsdoe25",
+ "experiments_used": "3 of 3 (E1 screen draws 20,21; E2 confirmation draws 22,23; E3 4-fold LOQO full-footprint build + 47-raster lane check + dual automated validation)",
+ "pre_registration": "knowledge/21_preregistered_h36_spigm_submodular_2026-10-25.md (commit 2c5e873, frozen code 1138a18)",
+ "outcomes_report": "knowledge/22_h36_outcomes_and_forensics_2026-10-25.md",
+ "hypothesis": "H36-1 (SPI-GM Subsurface Blind-Fault Expert + Elkan Prior-Shift Calibration + Exact 300 m Submodular Marginal-Credit Cover): correcting the 200x potential-field gradient unit mismatch in Family A via local magnetic/gravity source wavenumber (H36_mag_spi_k, H36_grav_spi_k), training a zero-topography subsurface fault expert (C + E + H36, 0 DEM / 0 LiDAR features) plus a cover-adaptive Product-of-Experts fusion with BDE+7, calibrating posterior probabilities under Elkan (2001) prior-shift, and replacing greedy 2.4-px spacing with exact Minoux lazy-greedy maximization of the asymmetric Tversky numerator on the 300 m kernel (d(catalogue) > 200 m) improves blind/covered fault recovery and yields a genuinely unique non-topographic GeoTIFF.",
+ "mechanism": "Hydrothermal upflow along buried Basin-and-Range step-overs, accommodation zones, and pediment-covered range fronts destroys titanomagnetite or juxtaposes basement blocks across steeply dipping contacts (sharp unit-corrected H36_mag_spi_k & omnidirectional H36_grav_spi_k wavenumbers + 150 m upward-continuation persistence H36_up150_persist + strike concordance H36_gm_strike_concord), creates conductive clay/brine smearing at 2 km MT depth + shallow conductive-base cupolas + heat-flow disequilibrium (H36_chem_diseq, H36_transtension_iq), and concentrates microseismicity near brittle fault tips even where Holocene alluvial/playa sedimentation erases surface scarps (H36_burial_regime). Exact 300 m submodular selection allocates 37,654 off-catalogue (d > 200 m) binary dots by true expected 29-pixel kernel marginal credit.",
+ "non_fault_process_that_could_mimic_it": "Unfaulted Tertiary ash-flow tuff / basalt paleochannel pinch-outs and pluton-country-rock intrusive contacts (strong SPI_mag and gravity wavenumber ridges without brittle permeability), closed-basin evaporite/playa clay lenses producing shallow conductive MT anomalies without fault-controlled upflow, and mining/geothermal injection seismicity clusters.",
+ "leakage_canary": {
+  "rule": "Standalone holdout ROC-AUC <= 0.90 per feature before trusting any result",
+  "all_pass": true,
+  "max_canary_auc_screen": 0.635473,
+  "max_canary_auc_confirm": 0.650295,
+  "max_canary_auc_pooled_16cells": 0.650295,
+  "per_feature_pooled_16cells": {
+   "H27_tip": {
+    "mean_raw_auc": 0.568519,
+    "mean_canary_auc": 0.568519,
+    "max_canary_auc": 0.635473,
+    "pass_cap_0p90": true
+   },
+   "H36_burial_regime": {
+    "mean_raw_auc": 0.464665,
+    "mean_canary_auc": 0.545109,
+    "max_canary_auc": 0.650295,
+    "pass_cap_0p90": true
+   },
+   "H36_chem_diseq": {
+    "mean_raw_auc": 0.532907,
+    "mean_canary_auc": 0.551601,
+    "max_canary_auc": 0.608795,
+    "pass_cap_0p90": true
+   },
+   "H36_gm_strike_concord": {
+    "mean_raw_auc": 0.505329,
+    "mean_canary_auc": 0.51166,
+    "max_canary_auc": 0.531722,
+    "pass_cap_0p90": true
+   },
+   "H36_grav_spi_k": {
+    "mean_raw_auc": 0.509404,
+    "mean_canary_auc": 0.522334,
+    "max_canary_auc": 0.546537,
+    "pass_cap_0p90": true
+   },
+   "H36_mag_spi_k": {
+    "mean_raw_auc": 0.511634,
+    "mean_canary_auc": 0.517864,
+    "max_canary_auc": 0.57255,
+    "pass_cap_0p90": true
+   },
+   "H36_transtension_iq": {
+    "mean_raw_auc": 0.514096,
+    "mean_canary_auc": 0.526288,
+    "max_canary_auc": 0.580899,
+    "pass_cap_0p90": true
+   },
+   "H36_up150_persist": {
+    "mean_raw_auc": 0.511675,
+    "mean_canary_auc": 0.526714,
+    "max_canary_auc": 0.570293,
+    "pass_cap_0p90": true
+   }
+  }
+ },
+ "holdout_dti": {
+  "label": "HOLDOUT-DTI (spatially blocked hide-and-recover proxy; never a competition score)",
+  "evaluator_version": "gems25.holdout.Holdout(v1,4-quadrant,collar=15px,hide_frac=0.20,erode=12)+gems25.metric.dti_binary(alpha=0.2,beta=0.8,R=3.0px)",
+  "screen_E1_draws_20_21": {
+   "withheld_positives_total": 22232,
+   "withheld_positives_per_draw": {
+    "20": 11172,
+    "21": 11060
+   },
+   "arms": {
+    "C0_BDE_ctrl": {
+     "metric_label": "HOLDOUT-DTI",
+     "n_cells": 8,
+     "withheld_positives_sum_across_cells": 22232,
+     "pooled_dti": 0.142882,
+     "pooled_dti_bootstrap_ci95": [
+      0.133568,
+      0.151472
+     ],
+     "mean_emitted_per_cell": 11623.1,
+     "mean_hug": 0.0718,
+     "mean_auc": 0.792537,
+     "fold_means": {
+      "NE": 0.145568,
+      "NW": 0.143123,
+      "SE": 0.147965,
+      "SW": 0.136016
+     },
+     "mean_fold_dti": 0.143168,
+     "fold_t_ci95": [
+      0.134955,
+      0.151381
+     ]
+    },
+    "C1_Sub_ctrl": {
+     "metric_label": "HOLDOUT-DTI",
+     "n_cells": 8,
+     "withheld_positives_sum_across_cells": 22232,
+     "pooled_dti": 0.126284,
+     "pooled_dti_bootstrap_ci95": [
+      0.113513,
+      0.140203
+     ],
+     "mean_emitted_per_cell": 11038.2,
+     "mean_hug": 0.0868,
+     "mean_auc": 0.757236,
+     "fold_means": {
+      "NE": 0.111862,
+      "NW": 0.149771,
+      "SE": 0.122069,
+      "SW": 0.125206
+     },
+     "mean_fold_dti": 0.127227,
+     "fold_t_ci95": [
+      0.101652,
+      0.152802
+     ]
+    },
+    "H36_PoE_sapd": {
+     "metric_label": "HOLDOUT-DTI",
+     "n_cells": 8,
+     "withheld_positives_sum_across_cells": 22232,
+     "pooled_dti": 0.143115,
+     "pooled_dti_bootstrap_ci95": [
+      0.129246,
+      0.157415
+     ],
+     "mean_emitted_per_cell": 11122.0,
+     "mean_hug": 0.0928,
+     "mean_auc": 0.788169,
+     "fold_means": {
+      "NE": 0.131754,
+      "NW": 0.167911,
+      "SE": 0.142158,
+      "SW": 0.136088
+     },
+     "mean_fold_dti": 0.144478,
+     "fold_t_ci95": [
+      0.118708,
+      0.170247
+     ]
+    },
+    "H36_PoE_submod": {
+     "metric_label": "HOLDOUT-DTI",
+     "n_cells": 8,
+     "withheld_positives_sum_across_cells": 22232,
+     "pooled_dti": 0.14064,
+     "pooled_dti_bootstrap_ci95": [
+      0.123004,
+      0.157171
+     ],
+     "mean_emitted_per_cell": 8900.8,
+     "mean_hug": 0.0402,
+     "mean_auc": 0.788169,
+     "fold_means": {
+      "NE": 0.129971,
+      "NW": 0.166258,
+      "SE": 0.141675,
+      "SW": 0.130702
+     },
+     "mean_fold_dti": 0.142151,
+     "fold_t_ci95": [
+      0.115198,
+      0.169105
+     ]
+    },
+    "H36_S_submod": {
+     "metric_label": "HOLDOUT-DTI",
+     "n_cells": 8,
+     "withheld_positives_sum_across_cells": 22232,
+     "pooled_dti": 0.12759,
+     "pooled_dti_bootstrap_ci95": [
+      0.111289,
+      0.145487
+     ],
+     "mean_emitted_per_cell": 8900.8,
+     "mean_hug": 0.0375,
+     "mean_auc": 0.762498,
+     "fold_means": {
+      "NE": 0.113501,
+      "NW": 0.158189,
+      "SE": 0.11919,
+      "SW": 0.125105
+     },
+     "mean_fold_dti": 0.128996,
+     "fold_t_ci95": [
+      0.097124,
+      0.160868
+     ]
+    }
+   },
+   "comparisons": {
+    "primary_H36_PoE_submod_vs_C0_BDE_ctrl": {
+     "mean_fold_gain": -0.001017,
+     "pooled_dti_gain": -0.002242,
+     "pooled_dti_gain_ci95": [
+      -0.0144,
+      0.011063
+     ],
+     "fold_gains": {
+      "NE": -0.015597,
+      "NW": 0.023134,
+      "SE": -0.00629,
+      "SW": -0.005314
+     },
+     "folds_positive": 1,
+     "n_folds": 4,
+     "cells_positive": 4,
+     "n_cells": 8,
+     "worst_fold_gain": -0.015597,
+     "gate_pass": false
+    },
+    "subsurface_H36_S_submod_vs_C1_Sub_ctrl": {
+     "mean_fold_gain": 0.001769,
+     "pooled_dti_gain": 0.001306,
+     "pooled_dti_gain_ci95": [
+      -0.003521,
+      0.006192
+     ],
+     "fold_gains": {
+      "NE": 0.001639,
+      "NW": 0.008418,
+      "SE": -0.002878,
+      "SW": -0.000102
+     },
+     "folds_positive": 2,
+     "n_folds": 4,
+     "cells_positive": 6,
+     "n_cells": 8,
+     "worst_fold_gain": -0.002878,
+     "gate_pass": false
+    },
+    "subsurface_H36_S_submod_vs_C0_BDE_ctrl": {
+     "mean_fold_gain": -0.014172,
+     "pooled_dti_gain": -0.015292,
+     "pooled_dti_gain_ci95": [
+      -0.030344,
+      0.000517
+     ],
+     "fold_gains": {
+      "NE": -0.032067,
+      "NW": 0.015065,
+      "SE": -0.028774,
+      "SW": -0.010911
+     },
+     "folds_positive": 1,
+     "n_folds": 4,
+     "cells_positive": 3,
+     "n_cells": 8,
+     "worst_fold_gain": -0.032067,
+     "gate_pass": false
+    },
+    "ablation_submod300_vs_sapd24_on_s_PoE": {
+     "mean_fold_gain": -0.002327,
+     "pooled_dti_gain": -0.002475,
+     "pooled_dti_gain_ci95": [
+      -0.006909,
+      0.001018
+     ],
+     "fold_gains": {
+      "NE": -0.001783,
+      "NW": -0.001654,
+      "SE": -0.000483,
+      "SW": -0.005386
+     },
+     "folds_positive": 0,
+     "n_folds": 4,
+     "cells_positive": 2,
+     "n_cells": 8,
+     "worst_fold_gain": -0.005386,
+     "gate_pass": false
+    },
+    "ablation_H36_PoE_sapd_vs_C0_BDE_ctrl": {
+     "mean_fold_gain": 0.00131,
+     "pooled_dti_gain": 0.000233,
+     "pooled_dti_gain_ci95": [
+      -0.010722,
+      0.012613
+     ],
+     "fold_gains": {
+      "NE": -0.013815,
+      "NW": 0.024788,
+      "SE": -0.005807,
+      "SW": 7.2e-05
+     },
+     "folds_positive": 2,
+     "n_folds": 4,
+     "cells_positive": 4,
+     "n_cells": 8,
+     "worst_fold_gain": -0.013815,
+     "gate_pass": false
+    }
+   }
+  },
+  "confirmation_E2_draws_22_23": {
+   "withheld_positives_total": 22391,
+   "withheld_positives_per_draw": {
+    "22": 10893,
+    "23": 11498
+   },
+   "arms": {
+    "C0_BDE_ctrl": {
+     "metric_label": "HOLDOUT-DTI",
+     "n_cells": 8,
+     "withheld_positives_sum_across_cells": 22391,
+     "pooled_dti": 0.155446,
+     "pooled_dti_bootstrap_ci95": [
+      0.141317,
+      0.172852
+     ],
+     "mean_emitted_per_cell": 11691.2,
+     "mean_hug": 0.0714,
+     "mean_auc": 0.800345,
+     "fold_means": {
+      "NE": 0.152045,
+      "NW": 0.134347,
+      "SE": 0.183884,
+      "SW": 0.146623
+     },
+     "mean_fold_dti": 0.154225,
+     "fold_t_ci95": [
+      0.120629,
+      0.187821
+     ]
+    },
+    "C1_Sub_ctrl": {
+     "metric_label": "HOLDOUT-DTI",
+     "n_cells": 8,
+     "withheld_positives_sum_across_cells": 22391,
+     "pooled_dti": 0.13999,
+     "pooled_dti_bootstrap_ci95": [
+      0.12808,
+      0.151692
+     ],
+     "mean_emitted_per_cell": 11094.5,
+     "mean_hug": 0.0921,
+     "mean_auc": 0.778614,
+     "fold_means": {
+      "NE": 0.120532,
+      "NW": 0.135966,
+      "SE": 0.150175,
+      "SW": 0.149152
+     },
+     "mean_fold_dti": 0.138956,
+     "fold_t_ci95": [
+      0.116866,
+      0.161047
+     ]
+    },
+    "H36_PoE_sapd": {
+     "metric_label": "HOLDOUT-DTI",
+     "n_cells": 8,
+     "withheld_positives_sum_across_cells": 22391,
+     "pooled_dti": 0.159185,
+     "pooled_dti_bootstrap_ci95": [
+      0.1465,
+      0.174507
+     ],
+     "mean_emitted_per_cell": 11108.9,
+     "mean_hug": 0.0966,
+     "mean_auc": 0.798311,
+     "fold_means": {
+      "NE": 0.14729,
+      "NW": 0.139606,
+      "SE": 0.179587,
+      "SW": 0.163322
+     },
+     "mean_fold_dti": 0.157451,
+     "fold_t_ci95": [
+      0.129192,
+      0.18571
+     ]
+    },
+    "H36_PoE_submod": {
+     "metric_label": "HOLDOUT-DTI",
+     "n_cells": 8,
+     "withheld_positives_sum_across_cells": 22391,
+     "pooled_dti": 0.15857,
+     "pooled_dti_bootstrap_ci95": [
+      0.144225,
+      0.176502
+     ],
+     "mean_emitted_per_cell": 8900.8,
+     "mean_hug": 0.0382,
+     "mean_auc": 0.798311,
+     "fold_means": {
+      "NE": 0.144337,
+      "NW": 0.138292,
+      "SE": 0.182879,
+      "SW": 0.161109
+     },
+     "mean_fold_dti": 0.156654,
+     "fold_t_ci95": [
+      0.124877,
+      0.188432
+     ]
+    },
+    "H36_S_submod": {
+     "metric_label": "HOLDOUT-DTI",
+     "n_cells": 8,
+     "withheld_positives_sum_across_cells": 22391,
+     "pooled_dti": 0.141301,
+     "pooled_dti_bootstrap_ci95": [
+      0.129549,
+      0.155405
+     ],
+     "mean_emitted_per_cell": 8900.8,
+     "mean_hug": 0.0337,
+     "mean_auc": 0.782033,
+     "fold_means": {
+      "NE": 0.121889,
+      "NW": 0.142157,
+      "SE": 0.157783,
+      "SW": 0.141323
+     },
+     "mean_fold_dti": 0.140788,
+     "fold_t_ci95": [
+      0.117399,
+      0.164177
+     ]
+    }
+   },
+   "comparisons": {
+    "primary_H36_PoE_submod_vs_C0_BDE_ctrl": {
+     "mean_fold_gain": 0.00243,
+     "pooled_dti_gain": 0.003124,
+     "pooled_dti_gain_ci95": [
+      -0.005579,
+      0.01452
+     ],
+     "fold_gains": {
+      "NE": -0.007708,
+      "NW": 0.003945,
+      "SE": -0.001005,
+      "SW": 0.014486
+     },
+     "folds_positive": 2,
+     "n_folds": 4,
+     "cells_positive": 3,
+     "n_cells": 8,
+     "worst_fold_gain": -0.007708,
+     "gate_pass": false
+    },
+    "subsurface_H36_S_submod_vs_C1_Sub_ctrl": {
+     "mean_fold_gain": 0.001832,
+     "pooled_dti_gain": 0.001312,
+     "pooled_dti_gain_ci95": [
+      -0.004068,
+      0.007591
+     ],
+     "fold_gains": {
+      "NE": 0.001357,
+      "NW": 0.006191,
+      "SE": 0.007608,
+      "SW": -0.007828
+     },
+     "folds_positive": 3,
+     "n_folds": 4,
+     "cells_positive": 5,
+     "n_cells": 8,
+     "worst_fold_gain": -0.007828,
+     "gate_pass": true
+    },
+    "subsurface_H36_S_submod_vs_C0_BDE_ctrl": {
+     "mean_fold_gain": -0.013437,
+     "pooled_dti_gain": -0.014145,
+     "pooled_dti_gain_ci95": [
+      -0.025347,
+      -0.000363
+     ],
+     "fold_gains": {
+      "NE": -0.030156,
+      "NW": 0.00781,
+      "SE": -0.026101,
+      "SW": -0.0053
+     },
+     "folds_positive": 1,
+     "n_folds": 4,
+     "cells_positive": 3,
+     "n_cells": 8,
+     "worst_fold_gain": -0.030156,
+     "gate_pass": false
+    },
+    "ablation_submod300_vs_sapd24_on_s_PoE": {
+     "mean_fold_gain": -0.000797,
+     "pooled_dti_gain": -0.000616,
+     "pooled_dti_gain_ci95": [
+      -0.005085,
+      0.003901
+     ],
+     "fold_gains": {
+      "NE": -0.002954,
+      "NW": -0.001313,
+      "SE": 0.003291,
+      "SW": -0.002213
+     },
+     "folds_positive": 1,
+     "n_folds": 4,
+     "cells_positive": 3,
+     "n_cells": 8,
+     "worst_fold_gain": -0.002954,
+     "gate_pass": false
+    },
+    "ablation_H36_PoE_sapd_vs_C0_BDE_ctrl": {
+     "mean_fold_gain": 0.003226,
+     "pooled_dti_gain": 0.003739,
+     "pooled_dti_gain_ci95": [
+      -0.003301,
+      0.013493
+     ],
+     "fold_gains": {
+      "NE": -0.004754,
+      "NW": 0.005258,
+      "SE": -0.004297,
+      "SW": 0.016699
+     },
+     "folds_positive": 2,
+     "n_folds": 4,
+     "cells_positive": 4,
+     "n_cells": 8,
+     "worst_fold_gain": -0.004754,
+     "gate_pass": false
+    }
+   }
+  },
+  "pooled_16_cells_draws_20_21_22_23": {
+   "withheld_positives_total": 44623,
+   "withheld_positives_per_draw": {
+    "20": 11172,
+    "21": 11060,
+    "22": 10893,
+    "23": 11498
+   },
+   "arms": {
+    "C0_BDE_ctrl": {
+     "metric_label": "HOLDOUT-DTI",
+     "n_cells": 16,
+     "withheld_positives_sum_across_cells": 44623,
+     "pooled_dti": 0.14919,
+     "pooled_dti_bootstrap_ci95": [
+      0.140218,
+      0.15979
+     ],
+     "mean_emitted_per_cell": 11657.2,
+     "mean_hug": 0.0716,
+     "mean_auc": 0.796441,
+     "fold_means": {
+      "NE": 0.148807,
+      "NW": 0.138735,
+      "SE": 0.165924,
+      "SW": 0.14132
+     },
+     "mean_fold_dti": 0.148697,
+     "fold_t_ci95": [
+      0.129198,
+      0.168195
+     ]
+    },
+    "C1_Sub_ctrl": {
+     "metric_label": "HOLDOUT-DTI",
+     "n_cells": 16,
+     "withheld_positives_sum_across_cells": 44623,
+     "pooled_dti": 0.133164,
+     "pooled_dti_bootstrap_ci95": [
+      0.123406,
+      0.142797
+     ],
+     "mean_emitted_per_cell": 11066.4,
+     "mean_hug": 0.0894,
+     "mean_auc": 0.767925,
+     "fold_means": {
+      "NE": 0.116197,
+      "NW": 0.142869,
+      "SE": 0.136122,
+      "SW": 0.137179
+     },
+     "mean_fold_dti": 0.133092,
+     "fold_t_ci95": [
+      0.11456,
+      0.151623
+     ]
+    },
+    "H36_PoE_sapd": {
+     "metric_label": "HOLDOUT-DTI",
+     "n_cells": 16,
+     "withheld_positives_sum_across_cells": 44623,
+     "pooled_dti": 0.151172,
+     "pooled_dti_bootstrap_ci95": [
+      0.14031,
+      0.162448
+     ],
+     "mean_emitted_per_cell": 11115.4,
+     "mean_hug": 0.0947,
+     "mean_auc": 0.79324,
+     "fold_means": {
+      "NE": 0.139522,
+      "NW": 0.153758,
+      "SE": 0.160873,
+      "SW": 0.149705
+     },
+     "mean_fold_dti": 0.150965,
+     "fold_t_ci95": [
+      0.136777,
+      0.165152
+     ]
+    },
+    "H36_PoE_submod": {
+     "metric_label": "HOLDOUT-DTI",
+     "n_cells": 16,
+     "withheld_positives_sum_across_cells": 44623,
+     "pooled_dti": 0.149635,
+     "pooled_dti_bootstrap_ci95": [
+      0.136482,
+      0.162894
+     ],
+     "mean_emitted_per_cell": 8900.8,
+     "mean_hug": 0.0392,
+     "mean_auc": 0.79324,
+     "fold_means": {
+      "NE": 0.137154,
+      "NW": 0.152275,
+      "SE": 0.162277,
+      "SW": 0.145906
+     },
+     "mean_fold_dti": 0.149403,
+     "fold_t_ci95": [
+      0.132557,
+      0.166249
+     ]
+    },
+    "H36_S_submod": {
+     "metric_label": "HOLDOUT-DTI",
+     "n_cells": 16,
+     "withheld_positives_sum_across_cells": 44623,
+     "pooled_dti": 0.134467,
+     "pooled_dti_bootstrap_ci95": [
+      0.12295,
+      0.145988
+     ],
+     "mean_emitted_per_cell": 8900.8,
+     "mean_hug": 0.0356,
+     "mean_auc": 0.772266,
+     "fold_means": {
+      "NE": 0.117695,
+      "NW": 0.150173,
+      "SE": 0.138487,
+      "SW": 0.133214
+     },
+     "mean_fold_dti": 0.134892,
+     "fold_t_ci95": [
+      0.113446,
+      0.156339
+     ]
+    }
+   },
+   "comparisons": {
+    "primary_H36_PoE_submod_vs_C0_BDE_ctrl": {
+     "mean_fold_gain": 0.000706,
+     "pooled_dti_gain": 0.000445,
+     "pooled_dti_gain_ci95": [
+      -0.007763,
+      0.009226
+     ],
+     "fold_gains": {
+      "NE": -0.011653,
+      "NW": 0.01354,
+      "SE": -0.003648,
+      "SW": 0.004586
+     },
+     "folds_positive": 2,
+     "n_folds": 4,
+     "cells_positive": 7,
+     "n_cells": 16,
+     "worst_fold_gain": -0.011653,
+     "gate_pass": false
+    },
+    "subsurface_H36_S_submod_vs_C1_Sub_ctrl": {
+     "mean_fold_gain": 0.001801,
+     "pooled_dti_gain": 0.001302,
+     "pooled_dti_gain_ci95": [
+      -0.002409,
+      0.005198
+     ],
+     "fold_gains": {
+      "NE": 0.001498,
+      "NW": 0.007304,
+      "SE": 0.002365,
+      "SW": -0.003965
+     },
+     "folds_positive": 3,
+     "n_folds": 4,
+     "cells_positive": 11,
+     "n_cells": 16,
+     "worst_fold_gain": -0.003965,
+     "gate_pass": true
+    },
+    "subsurface_H36_S_submod_vs_C0_BDE_ctrl": {
+     "mean_fold_gain": -0.013804,
+     "pooled_dti_gain": -0.014723,
+     "pooled_dti_gain_ci95": [
+      -0.024605,
+      -0.004347
+     ],
+     "fold_gains": {
+      "NE": -0.031111,
+      "NW": 0.011438,
+      "SE": -0.027438,
+      "SW": -0.008106
+     },
+     "folds_positive": 1,
+     "n_folds": 4,
+     "cells_positive": 6,
+     "n_cells": 16,
+     "worst_fold_gain": -0.031111,
+     "gate_pass": false
+    },
+    "ablation_submod300_vs_sapd24_on_s_PoE": {
+     "mean_fold_gain": -0.001562,
+     "pooled_dti_gain": -0.001537,
+     "pooled_dti_gain_ci95": [
+      -0.004633,
+      0.001455
+     ],
+     "fold_gains": {
+      "NE": -0.002368,
+      "NW": -0.001484,
+      "SE": 0.001404,
+      "SW": -0.003799
+     },
+     "folds_positive": 1,
+     "n_folds": 4,
+     "cells_positive": 5,
+     "n_cells": 16,
+     "worst_fold_gain": -0.003799,
+     "gate_pass": false
+    },
+    "ablation_H36_PoE_sapd_vs_C0_BDE_ctrl": {
+     "mean_fold_gain": 0.002268,
+     "pooled_dti_gain": 0.001982,
+     "pooled_dti_gain_ci95": [
+      -0.005082,
+      0.009602
+     ],
+     "fold_gains": {
+      "NE": -0.009285,
+      "NW": 0.015023,
+      "SE": -0.005052,
+      "SW": 0.008385
+     },
+     "folds_positive": 2,
+     "n_folds": 4,
+     "cells_positive": 8,
+     "n_cells": 16,
+     "worst_fold_gain": -0.009285,
+     "gate_pass": false
+    }
+   }
+  }
+ },
+ "correlation_overlap_vs_registry": {
+  "policy": "literal 70 % / 3 px and |Spearman| <= 0.90 across all 47 rasters (PR #14)",
+  "lane_clear": false,
+  "strict_verdict": "DUPLICATE LANE / STOP (r13 lattice + unscored H35 catalogue-halo)",
+  "lattice_file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+  "lattice_overlap": 1.0,
+  "scored_and_sibling_non_lattice_count": 31,
+  "scored_and_sibling_non_lattice_all_clear": true,
+  "worst_scored_or_sibling_overlap": 0.598529,
+  "worst_scored_or_sibling_file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+  "worst_local_unscored_overlap": 0.707309,
+  "worst_local_unscored_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+  "max_mutual_3px_overlap_non_lattice": 0.579356,
+  "overlap_vs_gemsdoe32_b2_02778": 0.239523,
+  "overlap_vs_gemsdoe36_02750": 0.243852,
+  "overlap_vs_gemsdoe70_02478": 0.212328,
+  "overlap_vs_kdc_primary": 0.382801,
+  "worst_abs_spearman_final": 0.054006,
+  "worst_abs_spearman_surface": 0.119293
+ },
+ "submission_name": "gems25-h36-spigm-subsurface-submod300-20261025-3937b96ce366-zeros.tif",
+ "nan_twin_name": "gems25-h36-spigm-subsurface-submod300-20261025-3937b96ce366-nan.tif",
+ "zip_name": "gems25-h36-spigm-subsurface-submod300-20261025-3937b96ce366-zeros.zip",
+ "content_id": "3937b96ce366",
+ "raster_sha256": "182f9e5f03cb66033d7106d1e7ca29cdc50280d10fe0306438138bf52e1540bc",
+ "nan_twin_sha256": "c103482fb70b4eb447a4fd9ae5b4a82baa2bcf41b161e34170f86cf5fdce8778",
+ "emitted_positive_pixels": 37654,
+ "on_catalogue_positive_pixels": 0,
+ "validator_output": {
+  "automated_without_human_intervention": true,
+  "zeros_primary_format_ok": true,
+  "zeros_primary_hard_failures": [],
+  "zeros_independent_strict_validator": {
+   "independent_validator_pass": true,
+   "count": 1,
+   "dtype": "float32",
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "nodata": null,
+   "footprint_all_finite": true,
+   "footprint_in_0_1": true,
+   "whole_array_all_finite": true,
+   "whole_array_in_0_1": true,
+   "cannot_trigger_range_0_1_portal_error": true,
+   "on_catalogue_positive_pixels": 0,
+   "footprint_min": 0.0,
+   "footprint_max": 1.0,
+   "positive_pixels": 37654
+  },
+  "nan_twin_format_ok": true,
+  "nan_twin_hard_failures": [],
+  "nan_independent_strict_validator": {
+   "independent_validator_pass": true,
+   "count": 1,
+   "dtype": "float32",
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "nodata": NaN,
+   "footprint_all_finite": true,
+   "footprint_in_0_1": true,
+   "whole_array_all_finite": false,
+   "whole_array_in_0_1": false,
+   "cannot_trigger_range_0_1_portal_error": false,
+   "on_catalogue_positive_pixels": 0,
+   "footprint_min": 0.0,
+   "footprint_max": 1.0,
+   "positive_pixels": 37654
+  }
+ },
+ "note": "GEMSDOE25 H36_S_submod 37654d | unscored; no slot; not slot-approved | id 3937b96ce366",
+ "note_chars": 86,
+ "ok_to_download": true,
+ "ok_to_submit": false,
+ "slot_approved": false,
+ "verdict": "negative",
+ "verdict_rationale": "OK TO DOWNLOAD (YES): 100% automated dual portal validation passed (0 NaN anywhere in -zeros.tif, all 12,279,160 cells finite in [0, 1], exact EPSG:32611 / 3730x3292 / 100m match), 0 pixels copied from any prior submission, clears 31/31 non-lattice scored & sibling top-scorer rasters (23.95% 3-px overlap vs GEMSDOE32 0.2778; max 59.85% <= 70%; max surface |Spearman| 0.1193 <= 0.90), and zero-topography H36_S_submod passed its paired subsurface gate (3/4 folds +, 11/16 cells +, HOLDOUT-DTI 0.1345 vs 0.040 prior blind-magnetics lanes). OK TO SUBMIT TO WEEKLY SLOT (NO \u2014 verdict negative): H36_PoE_submod achieved 2/4 folds + vs full DEM+LiDAR C0_BDE_ctrl (west +0.0135/+0.0046, east -0.0117/-0.0036), H36_S_submod trails full DEM+LiDAR C0 (0.1345 vs 0.1492), and literal all-47 check flags synthetic r13-lattice-s5 (100%) plus unscored local H35 (70.73% one-way / 55.70% reverse via shared Family E halo)."
+}
