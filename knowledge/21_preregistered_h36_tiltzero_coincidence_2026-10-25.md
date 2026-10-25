@@ -100,3 +100,24 @@ Any of these would spend FP mass (0.2-weighted) with no hidden-truth credit.
   clarification: `registry/sources.json` ids `dd-problem`, `dd-forum-11516`
   (read 2026-10-02, recorded there). CRS EPSG:32611: https://epsg.io/32611.
 - No DrivenData page was accessed in this session (AGENTS.md rule 3).
+
+## Amendment 1 (2026-10-25, before any holdout fit — operator correction, not outcome tuning)
+
+The original operator (tilt from the provider derivative bands) is scale-broken on
+this raster, measured on data properties only (no model was fitted and no holdout
+outcome was seen): `tmi_hg` (median 13.15, always ≥ 0) is ~7× the spatial total
+horizontal derivative of `tmi` (median 1.87 nT/px, Spearman 0.991 at σ=1 — i.e. a
+per-km scaling), while `tmi_vg` has median |value| 0.051, ~300× smaller, so
+atan2(vg, hg) ≈ 0 almost everywhere and the resulting "zero line" covered
+1,456,226 px (28% of the footprint; gravity: 151,824 px). A proximity column built
+on that mask has mean 0.55 and is >0.5 on 60% of the footprint — not a contact line.
+
+**Corrected frozen operator (same hypothesis, same three columns, same gate):**
+tilt is computed from each *field itself* (`tmi` band 14, `iso_grav_anom` band 13)
+by the spectral derivative theorem at a 200 m upward-continued level —
+VDR spectrum = 2π|k|·exp(−2π|k|·200 m)·F spectrum (reflect-pad 256 px, as in H34),
+THDR from spatial gradients of the continued field — so both derivatives share
+units and the tilt spans (−π/2, π/2). Zero-crossing extraction
+(|θ| ≤ 0.05 rad with an opposite-sign 4-neighbour), proximity σ=2 px and the
+coincidence field exp(−d_mag·d_grav/9) are unchanged. This amendment and the code
+implementing it are committed before the first holdout fit.
