@@ -43,8 +43,8 @@ def main() -> None:
     assert len(note) <= 120 and "no slot" in note and "unscored" in note and "not slot-approved" in note, note
     cid = zrec["content_id"]
 
-    scr = J(EV / "h38_screen" / "analysis.json")
-    cnf = opt(EV / "h38_confirm" / "analysis.json")
+    scr = J(EV / "h38_ospc_screen" / "analysis.json")
+    cnf = opt(EV / "h38_ospc_confirm" / "analysis.json")
     comb = cnf or scr
     screen_pass = bool(scr["gate"]["passed"] and scr["leakage_canary"]["passed"])
     confirm_pass = bool(cnf and cnf["gate"]["passed"] and cnf["leakage_canary"]["passed"])
@@ -52,7 +52,7 @@ def main() -> None:
 
     lane_path = DL / f"lane-{zpath.stem}.json"
     lane = J(lane_path)
-    surface = J(EV / "h38_build" / "surface_lane_h38.json")
+    surface = J(EV / "h38_ospc_build" / "surface_lane_h38.json")
     rows = [r for r in lane["rows"] if "spearman" in r]
 
     lat_rows = [r for r in rows if r["file"] == LATTICE]
@@ -186,9 +186,9 @@ def main() -> None:
         holdout=dict(
             label="HOLDOUT-DTI",
             evaluator=comb["evaluator_version"],
-            screen=dict(path="evidence/h38_screen/analysis.json", gain=gain["mean"], passed=screen_pass),
+            screen=dict(path="evidence/h38_ospc_screen/analysis.json", gain=gain["mean"], passed=screen_pass),
             confirmation=(
-                dict(path="evidence/h38_confirm/analysis.json", gain=cnf["contrasts"]["primary_G1_S1_vs_G0_S0"]["mean"], passed=confirm_pass)
+                dict(path="evidence/h38_ospc_confirm/analysis.json", gain=cnf["contrasts"]["primary_G1_S1_vs_G0_S0"]["mean"], passed=confirm_pass)
                 if cnf
                 else None
             ),
@@ -245,7 +245,7 @@ def main() -> None:
             caps=dict(spearman=0.90, overlap_3px=0.70),
             lane_summary=lane_summary,
             lane_receipt=f"docs/downloads/{lane_path.name}",
-            surface_lane_receipt="evidence/h38_build/surface_lane_h38.json",
+            surface_lane_receipt="evidence/h38_ospc_build/surface_lane_h38.json",
         ),
         raster=dict(
             file=zrec["file"],
@@ -277,10 +277,10 @@ def main() -> None:
         budget_respected=True,
         build=rec.get("build"),
     )
-    (REG / "run_card_h38_2026-10-25.json").write_text(json.dumps(card, indent=2) + "\n")
+    (REG / "run_card_h38_ospc_2026-10-25.json").write_text(json.dumps(card, indent=2) + "\n")
 
     subs = J(REG / "submissions.json")
-    files = [f for f in subs["files"] if not f.get("id", "").startswith("h38-")]
+    files = [f for f in subs["files"] if not f.get("id", "").startswith("h38-ospc-")]
     for f in files:
         if f["role"] == "primary":
             f["role"] = "alternate"
@@ -298,7 +298,7 @@ def main() -> None:
         expected_range=expected,
         lane=lane_entry,
         lane_summary=lane_summary,
-        run_card="registry/run_card_h38_2026-10-25.json",
+        run_card="registry/run_card_h38_ospc_2026-10-25.json",
         note=note,
         parent="H35 arm B detector (BDE+7+H27_tip+H34) + H38 OSPC (4 cols) + exact 300 m submodular R_1 U R_2 allocation",
     )

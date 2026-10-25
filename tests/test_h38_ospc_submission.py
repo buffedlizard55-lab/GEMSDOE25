@@ -35,7 +35,7 @@ def test_h38_is_featured_primary_and_files_match_registry():
 
 def test_h38_run_card_and_note_follow_parallel_run_protocol():
     primary = next(s for s in J("registry/submissions.json")["files"] if s["id"] == "h38-ospc-submod")
-    card = J("registry/run_card_h38_2026-10-25.json")
+    card = J("registry/run_card_h38_ospc_2026-10-25.json")
     receipt = J(f"docs/downloads/{primary['receipt']}")
 
     required = (
@@ -68,13 +68,13 @@ def test_h38_run_card_and_note_follow_parallel_run_protocol():
 
 
 def test_h38_holdout_screen_and_three_tier_lane_audit():
-    scr = J("evidence/h38_screen/analysis.json")
+    scr = J("evidence/h38_ospc_screen/analysis.json")
     assert scr["leakage_canary"]["passed"] is True
     assert scr["leakage_canary"]["h38_max_canary_auc"] <= 0.90
     assert scr["gate"]["passed"] is False
     assert scr["contrasts"]["primary_G1_S1_vs_G0_S0"]["folds_positive"] == 1
     assert scr["contrasts"]["primary_G1_S1_vs_G0_S0"]["per_fold"]["NW"] > 0.005
-    assert not (ROOT / "evidence" / "h38_confirm").exists(), "Confirmation must not run after screen failure"
+    assert not (ROOT / "evidence" / "h38_ospc_confirm").exists(), "Confirmation must not run after screen failure"
 
     primary = next(s for s in J("registry/submissions.json")["files"] if s["id"] == "h38-ospc-submod")
     lane = primary["lane"]

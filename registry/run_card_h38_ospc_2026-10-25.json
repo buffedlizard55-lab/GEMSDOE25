@@ -287,7 +287,7 @@
     },
     "lane_summary": "strict lane gate (literal) vs r13 5-px lattice: 100.0% within 3 px; 0/21 GEMSDOE27..91 top-scorers flagged (GEMSDOE32 0.2778 overlap 0.326, GEMSDOE70 submodular 0.2478 overlap 0.271, max sibling top-scorer 0.519 on g63_cvarlw_0.2303.tif); historical scored max 0.718 (gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif); own HGB lineage max 3-px overlap 0.965 (gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif; exact pixel overlap vs S0 on same surface only 0.275); worst final-dot |Spearman| 0.184, pre-placement surface worst |Spearman| 0.153",
     "lane_receipt": "docs/downloads/lane-gems25-h38-ospc-submod-20261025-680d62616417-zeros.json",
-    "surface_lane_receipt": "evidence/h38_build/surface_lane_h38.json"
+    "surface_lane_receipt": "evidence/h38_ospc_build/surface_lane_h38.json"
   },
   "raster": {
     "file": "gems25-h38-ospc-submod-20261025-680d62616417-zeros.tif",

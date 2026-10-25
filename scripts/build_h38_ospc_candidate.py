@@ -37,7 +37,7 @@ from check_lane_duplicates import registry_rasters  # noqa: E402
 from gems25.experiment import HGB_PARAMS, N_NEG, gather_columns, load_context  # noqa: E402
 from gems25.features import build_catalogue_features, build_tip_continuation  # noqa: E402
 from gems25.h34 import H34_NAMES, load_h34_sidecar  # noqa: E402
-from gems25.h38 import (  # noqa: E402
+from gems25.h38_ospc import (  # noqa: E402
     DEFAULT_MIN_DIST_FLOOR_PX,
     DEFAULT_POOL_KFRAC,
     H38_NAMES,
@@ -167,7 +167,7 @@ def main() -> None:
     # Pre-placement continuous surface lane check across all registry directories
     reg_paths = [rp for rp in registry_rasters() if not rp.name.startswith(f"gems25-{SLUG}-")]
     surf = surface_lane(p, fi, reg_paths, foot.shape)
-    build_dir = ROOT / "evidence" / "h38_build"
+    build_dir = ROOT / "evidence" / "h38_ospc_build"
     build_dir.mkdir(parents=True, exist_ok=True)
     surf_path = build_dir / "surface_lane_h38.json"
     surf_path.write_text(
@@ -265,7 +265,7 @@ def main() -> None:
             worst_abs_spearman=surf["worst_abs_spearman"],
             worst_abs_spearman_file=surf["worst_abs_spearman_file"],
             flagged=surf["flagged"],
-            path="evidence/h38_build/surface_lane_h38.json",
+            path="evidence/h38_ospc_build/surface_lane_h38.json",
         ),
         build=dict(
             arm="G1_S1",

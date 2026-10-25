@@ -6,7 +6,7 @@ import numpy as np
 import pytest
 
 from gems25.features import LIDAR_BANDS, LIDAR_QUANT
-from gems25.h38 import (
+from gems25.h38_ospc import (
     H38_NAMES,
     calibrate_case_control_posterior,
     compute_h38_ospc_grids,

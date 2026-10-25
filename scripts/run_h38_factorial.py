@@ -31,7 +31,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from gems25.experiment import HGB_PARAMS, Cell, load_context  # noqa: E402
 from gems25.h31 import EVALUATOR_VERSION  # noqa: E402
 from gems25.h34 import H34_NAMES, load_h34_sidecar  # noqa: E402
-from gems25.h38 import (  # noqa: E402
+from gems25.h38_ospc import (  # noqa: E402
     DEFAULT_MIN_DIST_FLOOR_PX,
     DEFAULT_POOL_KFRAC,
     H38_NAMES,

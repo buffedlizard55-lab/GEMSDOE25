@@ -1,7 +1,7 @@
 # 26 · PhD Synthesis of `GEMSDOE32` (`0.2778`), `H38-OSPC × SUBMOD` 2² Factorial Outcomes, North–South Structural Regime Split & Unique GeoTIFF Audit (2026-10-25, Session 8)
 
 **Evidence labels (`Parallel-Run Protocol` #3):**
-- `COMPUTED`: verified pixel-for-pixel or bit-for-bit in this workspace from SHA-256-pinned rasters and caches (`evidence/work_cache_hashes.json`, `evidence/focus_sites_forensics.json`, `evidence/top_scorer_forensics.json`, `evidence/h38_screen/analysis.json`).
+- `COMPUTED`: verified pixel-for-pixel or bit-for-bit in this workspace from SHA-256-pinned rasters and caches (`evidence/work_cache_hashes.json`, `evidence/focus_sites_forensics.json`, `evidence/top_scorer_forensics.json`, `evidence/h38_ospc_screen/analysis.json`).
 - `HOLDOUT-DTI`: evaluated locally by `gems25.metric.dti_binary` ($\alpha = 0.2, \beta = 0.8, R = 300\text{ m} = 3\text{ px}$ triangular kernel, visible catalogue masked pixel-exact) under `gems25.holdout.v1.2-buffered-4quad-pooled-dti`.
 - `OWNER-REPORTED`: score or leaderboard figure supplied by the project owner or sibling repository metadata (`registry/live_scores.json`); **zero `ORGANIZER-CONFIRMED` receipts exist in this repository**, and `drivendata.org` was never accessed (`AGENTS.md` Rule 3).
 
@@ -49,7 +49,7 @@ Because `TP + FP = M` identically for binary predictions (`src/gems25/metric.py:
 
 ---
 
-## 2. Session-8 `H38-OSPC × SUBMOD` 2² Factorial Results (`evidence/h38_screen/`)
+## 2. Session-8 `H38-OSPC × SUBMOD` 2² Factorial Results (`evidence/h38_ospc_screen/`)
 
 ### 2.1 Four-Arm Holdout Summary (`HOLDOUT-DTI`, `gems25.holdout.v1.2-buffered-4quad-pooled-dti`, Draws `[24, 25]`, `22,281` Withheld Positives)
 

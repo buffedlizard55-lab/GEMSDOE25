@@ -146,7 +146,7 @@ def main() -> None:
 
     cf1 = next((s for s in subs if s['id'] == 'cf1-transverse-negative'), None)
     cf1_card = opt('registry/run_card_cf1_2026-10-25.json')
-    h38_card = opt('registry/run_card_h38_2026-10-25.json')
+    h38_card = opt('registry/run_card_h38_ospc_2026-10-25.json')
 
     def latest_diagnostic(prefix: str) -> str:
         if cf1 is None or cf1_card is None:
@@ -175,7 +175,7 @@ is not a lane clearance. Format verification is against an owner-mirrored templa
         ov = h38_card['correlation_overlap_vs_registry']
         kbase = "../knowledge" if not prefix else "knowledge"
         return f'''<div class="card"><h2>Session 8 — H38 OSPC × 300 m Submodular Multi-Scale Skeleton 2&sup2; Factorial (Pre-Registered Pre-Fit)</h2>
-<p><b>Pre-registration:</b> <a href="{kbase}/25_preregistered_h38_ospc_submod_factorial_2026-10-25.md"><code>knowledge/25</code></a> (commit <code>c9c7e76</code>) · <b>Full PhD synthesis &amp; 0.2778 proof:</b> <a href="{kbase}/26_h38_outcomes_and_0.2778_phd_synthesis_2026-10-25.md"><code>knowledge/26</code></a> · <b>Run card:</b> <code>registry/run_card_h38_2026-10-25.json</code>.</p>
+<p><b>Pre-registration:</b> <a href="{kbase}/25_preregistered_h38_ospc_submod_factorial_2026-10-25.md"><code>knowledge/25</code></a> (commit <code>c9c7e76</code>) · <b>Full PhD synthesis &amp; 0.2778 proof:</b> <a href="{kbase}/26_h38_outcomes_and_0.2778_phd_synthesis_2026-10-25.md"><code>knowledge/26</code></a> · <b>Run card:</b> <code>registry/run_card_h38_ospc_2026-10-25.json</code>.</p>
 <ul>
 <li><b>HOLDOUT-DTI (<code>{e(hd['evaluator_version'])}</code>, draws <code>{hd['draws_evaluated']}</code>, <code>{hd['withheld_positives_total']:,}</code> withheld positives):</b> Primary <code>G1_S1</code> fold-mean <code>{c_arm['fold_mean_dti']:.6f}</code> (95% CI <code>[{c_arm['ci95_fold_mean'][0]:.6f}, {c_arm['ci95_fold_mean'][1]:.6f}]</code>; pooled <code>{c_arm['pooled_dti']:.6f}</code>) vs same-run H35 arm-B control <code>G0_S0</code> <code>{b_arm['fold_mean_dti']:.6f}</code> (pooled <code>{b_arm['pooled_dti']:.6f}</code>); paired gain <b><code>{g_con['mean']:+.6f}</code></b> (<code>{g_con['folds_positive']}/4</code> folds positive; <code>hug</code> delta <code>{g_con['hug_mean']:+.4f}</code>). Leakage canary PASSED (max standalone feature AUC <code>{hd['leakage_canary']['h38_max_canary_auc']:.4f} &le; 0.90</code>). Confirmation draws <code>[26, 27]</code> were NOT run per frozen stopping rule.</li>
 <li><b>Great Basin North–South Structural Regime Split (<code>IR-25-H38-REGIME-SPLIT</code>):</b> Sparse-catalogue <code>NW</code> (<code>0.88%</code> fault prevalence, <code>75.0%</code> 3DEP 1 m LiDAR) jumped <b><code>{g_con['per_fold']['NW']:+.6f}</code></b> (<code>+0.0033</code> OSPC + <code>+0.0068</code> submodular), whereas missing-LiDAR <code>NE</code> (<code>54.2%</code> 3DEP) was flat (<code>{g_con['per_fold']['NE']:+.6f}</code>) and dense anastomosing <code>SW/SE</code> (<code>1.44–1.54%</code> Walker Lane / Sevier splays) lost <code>{g_con['per_fold']['SW']:+.6f}</code> / <code>{g_con['per_fold']['SE']:+.6f}</code>. Orthogonal main effects: Factor <code>G</code> <code>{fe['main_effect_G_OSPC']['mean']:+.6f}</code>, Factor <code>S</code> <code>{fe['main_effect_S_SUBMOD']['mean']:+.6f}</code>, <code>G&times;S</code> <code>{fe['interaction_GxS']['mean']:+.6f}</code>.</li>

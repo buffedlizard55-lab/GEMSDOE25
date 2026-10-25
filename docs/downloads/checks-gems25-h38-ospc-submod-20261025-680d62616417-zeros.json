@@ -410,7 +410,7 @@
     "label": "HOLDOUT-DTI",
     "evaluator": "gems25.holdout.v1.2-buffered-4quad-pooled-dti",
     "screen": {
-      "path": "evidence/h38_screen/analysis.json",
+      "path": "evidence/h38_ospc_screen/analysis.json",
       "gain": -0.001097042965781142,
       "passed": false
     },

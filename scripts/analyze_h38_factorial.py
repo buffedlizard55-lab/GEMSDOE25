@@ -18,7 +18,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from gems25.h31 import EVALUATOR_VERSION  # noqa: E402
-from gems25.h38 import H38_NAMES  # noqa: E402
+from gems25.h38_ospc import H38_NAMES  # noqa: E402
 from gems25.metric import ALPHA, BETA  # noqa: E402
 
 T_CRIT_DF3_95 = 3.182446305284263
