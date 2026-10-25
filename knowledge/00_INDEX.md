@@ -49,3 +49,5 @@
 | `22_crossfield_outcome_2026-10-25.md` | parallel CF-1 outcome: negative diagnostic (DO NOT SUBMIT); see `registry/run_card_cf1_2026-10-25.json` |
 | `21_preregistered_h36_tiltzero_coincidence_2026-10-25.md` | parallel session: H36-TZC pre-registration (negative; see `registry/run_card_h36_h37_2026-10-25.json`) |
 | `22_preregistered_h37_seisalign_2026-10-25.md` | parallel session: H37-SEISALIGN pre-registration — a DIFFERENT hypothesis from this session's H37 DOC/SPR lane (knowledge/24 §8) |
+| `25_preregistered_h38_ospc_submod_factorial_2026-10-25.md` | session 8 (committed pre-fit): ranked untried hypotheses `H38-1..H38-5` and frozen $2 \times 2$ `H38-OSPC × 300 m submodular skeleton` factorial design on fresh draws `[24, 25]` / `[26, 27]` |
+| `current_project_brief_2026-10-25_session8.md` | session 8 consolidated scope and acceptance criteria |

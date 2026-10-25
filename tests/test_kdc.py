@@ -94,7 +94,9 @@ def test_composition_is_base_plus_complement():
 
 
 def test_primary_revalidates_independently():
-    tmpl = ROOT / "data" / "sample_submission.tif"
+    from gems25.paths import data_dir
+
+    tmpl = data_dir() / "sample_submission.tif"
     if not tmpl.exists():
         pytest.skip("competition template not restored (run scripts/restore_data.py)")
     from gems25.submission import check_file
