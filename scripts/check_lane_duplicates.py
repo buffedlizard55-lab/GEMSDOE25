@@ -43,10 +43,18 @@ def sha256(p: Path) -> str:
 
 def registry_rasters() -> list[Path]:
     paths = []
-    for sub in ("scored", "calibration"):
+    for sub in ("scored", "calibration", "registry_top"):
         paths += sorted((data_dir() / sub).glob("*.tif")) if (data_dir() / sub).exists() else []
     paths += sorted((ROOT / "docs" / "downloads").glob("*.tif"))
-    return paths
+    seen: set[str] = set()
+    unique = []
+    for p in paths:
+        digest = sha256(p)
+        if digest in seen:
+            continue
+        seen.add(digest)
+        unique.append(p)
+    return unique
 
 
 def main() -> None:

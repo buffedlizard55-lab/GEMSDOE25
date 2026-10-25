@@ -80,7 +80,7 @@ def verdict_banner(p: dict, prefix: str, exec_page: bool = False) -> str:
     title = "Executive summary &amp; submission guide" if exec_page else "Download the unique, format-valid GeoTIFF"
     return f"""<div class="hero"><h1>{title}</h1>
 <div class="stats"><div class="stat"><b style="color:#15803d">OK to download: {dl}</b><span>for local testing: unique by content · all hard format checks pass · values in [0,1] · no NaN inside the footprint</span></div>
-<div class="stat"><b style="color:#b91c1c">OK to spend a weekly slot: {slot}</b><span>verdict <b>{e(p.get('verdict', 'n/a'))}</b>: not slot-approved — DO NOT SUBMIT (strict lane gate and pre-registered holdout gate both fail)</span></div>
+<div class="stat"><b style="color:#b91c1c">OK to spend a weekly slot: {slot}</b><span>verdict <b>{e(p.get('verdict', 'n/a'))}</b>: {'eligible for the separate owner selector step — still not slot-approved' if p.get('ok_to_submit_slot') else 'not slot-approved — DO NOT SUBMIT'} ({e(p.get('slot_reason') or 'see registry')})</span></div>
 <div class="stat"><b>{e(p.get('expected_range') or 'n/a')}</b><span>model projection for this file versus the owner-reported 0.2778 best — not a score</span></div></div>
 <p class="lead"><b>{e(p['title'])}.</b> The download card below has the {'file, checksum, and submission note' if p.get('ok_to_submit_slot') else 'local-testing file, checksum, and research identifier (not for the competition form)'}.</p>
 <p class="small"><b>Status:</b> {e(p['status'])}. <b>Lane:</b> {e(p.get('lane_summary', 'n/a'))}. <b>Run card:</b> <code>{e(p.get('run_card', ''))}</code>.
