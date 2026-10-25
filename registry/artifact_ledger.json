@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "generated_utc": "2026-10-03T01:17:00Z",
+ "generated_utc": "2026-10-25T20:10:49Z",
  "generated_by": "scripts/restore_artifacts.py",
  "warning": "Every SHA-256 below was computed from fetched bytes in this run; every score was matched to those bytes through the owner's own hash<->score ledger snapshot or is explicitly marked as brief-only. Scores are user/owner-reported public-leaderboard values, NOT DrivenData receipts, and a hash match proves mirror consistency, not that the organizer scored these bytes. drivendata.org was never contacted.",
  "score_snapshot": {
