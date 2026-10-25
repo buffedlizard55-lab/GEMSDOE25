@@ -270,5 +270,9 @@
  "note_chars": 99,
  "why_02778_answer": "knowledge/23_h36_h37_outcomes_2026-10-25.md (OWNER-reported chain, not ORGANIZER-CONFIRMED)",
  "verdict": "negative",
- "verdict_reason": "Both new feature blocks failed the frozen same-run holdout gate (TZC -0.0013, 2/4 folds; SEIS -0.0021, 1/4 folds); strict lane duplicate/stop on final dots. Unique TIF built only as a downloadable testing artifact under the owner's highest-urgency mandate (KDC precedent, IR noted in registry/irregularities.json). DO NOT SUBMIT."
+ "verdict_reason": "Both new feature blocks failed the frozen same-run holdout gate (TZC -0.0013, 2/4 folds; SEIS -0.0021, 1/4 folds); strict lane duplicate/stop on final dots. Unique TIF built only as a downloadable testing artifact under the owner's highest-urgency mandate (KDC precedent, IR noted in registry/irregularities.json). DO NOT SUBMIT.",
+ "post_merge_addendum": {
+  "date_utc": "2026-10-25",
+  "note": "Merged with origin/main (XG1 + CF1 parallel sessions, PRs #23/#24). The H36 entries were demoted to alternate in registry/submissions.json (XG1 stays featured primary; both files are negative / DO NOT SUBMIT). Lane receipt re-run on the merged tree with the updated checker: worst overlap unchanged (H35 92.2%), and the XG1 download (same H35-base lineage) also overlaps 91.8% - reinforcing the duplicate-lane stop. Verdict unchanged: negative."
+ }
 }

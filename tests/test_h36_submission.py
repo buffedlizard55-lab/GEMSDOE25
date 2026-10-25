@@ -9,7 +9,8 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 SUBS = json.loads((ROOT / "registry" / "submissions.json").read_text())["files"]
-PRIMARY = next(s for s in SUBS if s["role"] == "primary")
+# H36 artifact by id (featured primary on its session branch; an alternate after the main merge featured XG1)
+PRIMARY = next(s for s in SUBS if s["id"] == "h36-tzc")
 CARD = json.loads((ROOT / "registry" / "run_card_h36_h37_2026-10-25.json").read_text())
 RECEIPT = json.loads((ROOT / "docs" / "downloads" / PRIMARY["receipt"]).read_text())
 

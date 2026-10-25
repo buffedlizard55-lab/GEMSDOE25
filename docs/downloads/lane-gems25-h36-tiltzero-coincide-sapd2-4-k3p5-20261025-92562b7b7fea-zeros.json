@@ -8,10 +8,11 @@
   "dist_px": 3.0
  },
  "sha_in_artifact_ledger": false,
- "registry_checked": 26,
+ "registry_checked": 28,
  "registry_complete": true,
  "flagged": [
   "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+  "gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
   "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
   "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
   "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
@@ -19,7 +20,9 @@
   "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
   "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
   "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
-  "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif"
+  "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif",
+  "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-nan.tif",
+  "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.tif"
  ],
  "verdict": "DUPLICATE/LANE OVERLAP - do not package",
  "rows": [
@@ -156,15 +159,15 @@
    "density_caveat": "registry raster is dense (>= 1 dot per 25 px); candidate-side overlap is not discriminative"
   },
   {
-   "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
-   "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+   "file": "gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
+   "sha256": "a0b58cca87ad98f9579c8744e6dd216b7eb4a3e5b075a4bd7af3cf3004ab5cf0",
    "byte_identical": false,
-   "spearman": 0.018017,
-   "dots_within_3px": 0.343093,
-   "registry_dots_within_3px_of_candidate": 0.373826,
-   "registry_dots": 44090,
+   "spearman": 0.246225,
+   "dots_within_3px": 0.88471,
+   "registry_dots_within_3px_of_candidate": 0.884392,
+   "registry_dots": 48777,
    "flag_rank": false,
-   "flag_overlap": false,
+   "flag_overlap": true,
    "density_caveat": ""
   },
   {
@@ -333,6 +336,30 @@
    "registry_dots": 55374,
    "flag_rank": false,
    "flag_overlap": false,
+   "density_caveat": ""
+  },
+  {
+   "file": "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-nan.tif",
+   "sha256": "15073e72f04a6371d8f4169a93d7ffd9e98f546bc436a53c7b47d32e0502e032",
+   "byte_identical": false,
+   "spearman": 0.320083,
+   "dots_within_3px": 0.917959,
+   "registry_dots_within_3px_of_candidate": 0.917031,
+   "registry_dots": 48669,
+   "flag_rank": false,
+   "flag_overlap": true,
+   "density_caveat": ""
+  },
+  {
+   "file": "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.tif",
+   "sha256": "e1b144f0351ce857579cfdb7696cc0d89ce2aa34eecefd0c88fde71c642c289d",
+   "byte_identical": false,
+   "spearman": 0.320083,
+   "dots_within_3px": 0.917959,
+   "registry_dots_within_3px_of_candidate": 0.917031,
+   "registry_dots": 48669,
+   "flag_rank": false,
+   "flag_overlap": true,
    "density_caveat": ""
   }
  ],

@@ -137,7 +137,7 @@ def main() -> None:
                     receipt=receipt_path.name, lane_receipt=lane_path.name, outside="nan",
                     status="template-convention twin (NaN outside); identical footprint values; unscored; not slot-approved",
                     title="NaN-outside twin of the H35 primary (same dots)",
-                    summary="Identical prediction values inside the template footprint; NaN instead of 0.0 outside, matching the template convention. Upload the zeros primary first (strictest [0,1] validator); use this twin only if the portal rejects zeros.",
+                    summary="Identical prediction values inside the template footprint; NaN instead of 0.0 outside, matching the template convention. Research/testing twin only: strict lane failed, so do not upload either H35 file.",
                     expected_range=primary["expected_range"], note=nan_note, parent="primary",
                     transform="outside=nan", slot_approved=False, do_not_resubmit=False)
     others = [s for s in files if s["id"] not in ("primary", "primary-nan", "primary-zeros")]

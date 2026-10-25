@@ -1,0 +1,49 @@
+{
+  "hypothesis": "CF-1 transverse RTP / isostatic gravity gradient, single method lane",
+  "mechanism": "gradient-direction orthogonality weighted by weaker normalized field edge; concealed transverse structure",
+  "non_fault_mimic": "crossing lithologic contacts or sedimentary basin margins",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI only; not organizer-confirmed",
+    "evaluator": "gems25.metric.dti_binary via Cell.evaluate, alpha=.2 beta=.8 R=3px",
+    "draws": [
+      21
+    ],
+    "n_withheld_positives": 11060,
+    "candidate": 0.13865135121092664,
+    "same_run_control": 0.13805206533194514,
+    "paired_gain": 0.0005992858789815314,
+    "gain_95pct_fold_t_ci": [
+      -0.009787922332707607,
+      0.01098649409067067
+    ],
+    "positive_folds": 2,
+    "leakage_canary_max_abs_auc": 0.5683789562608559,
+    "gate_passed": false
+  },
+  "registry_comparison": {
+    "surface_preplacement_abs_rho_max": 0.15206,
+    "raw_feature_abs_rho_max": 0.068434,
+    "final_rho_abs_max": 0.367417,
+    "dots_within_3px_max": 1.0,
+    "lattice_overlap": 1.0,
+    "h31_control_overlap": 0.928286,
+    "checked_rasters": 26,
+    "duplicate": true,
+    "registry_incomplete_for_all_sibling_sites": true
+  },
+  "raster_sha256": "a0b58cca87ad98f9579c8744e6dd216b7eb4a3e5b075a4bd7af3cf3004ab5cf0",
+  "validator": {
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_matches": true,
+    "shape_matches": true,
+    "transform_matches": true,
+    "whole_array_no_nan": true,
+    "hard_failures": [],
+    "template_provenance": "owner mirror, integrity-pinned only"
+  },
+  "submission_name": "gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
+  "note": "G25 CF1 transverse | negative, strict lane FAIL; no slot, unscored, not slot-approved | id 22e2f9eddad9",
+  "verdict": "negative \u2014 format green but holdout and strict lane fail; DO NOT SUBMIT; no weekly slot used",
+  "deviation": "Built a diagnostic after screen failure to meet owner request for unique TIFF; not packaged as a slot candidate. Stop after duplicate detection."
+}

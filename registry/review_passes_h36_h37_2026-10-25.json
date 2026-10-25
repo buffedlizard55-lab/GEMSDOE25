@@ -42,6 +42,7 @@
    "unique name + short note": "content-addressed file name; 105-char note in registry, receipt and site (test-enforced <=120)",
    "no hallucinations / verify / flag irregularities": "two new flags IR-25-H36-DERIVATIVE-BAND-SCALES and IR-25-H36-BUILD-DESPITE-FAILED-GATE; sources in knowledge/21 (USGS GeoDAWN DOI 10.5066/P93LGLVQ, Miller & Singh 1994) with verification status; no DrivenData access"
   },
-  "verdict": "negative - no candidate beat the current comparable holdout best; the unique TIF is a testing artifact (DO NOT SUBMIT), not a slot candidate"
+  "verdict": "negative - no candidate beat the current comparable holdout best; the unique TIF is a testing artifact (DO NOT SUBMIT), not a slot candidate",
+  "post_merge": "PR #26 conflicted with main (parallel XG1/CF1 sessions had merged). Resolved by union-merging registry/submissions.json and registry/irregularities.json (H36 entries demoted to alternate; XG1 remains featured primary), taking main's build_readme/test_kdc resolutions plus an added H36/H37 session line, regenerating README + site, re-running the lane checker on the merged tree (H35 92.2%, XG1 91.8%), and re-running the full suite (158 passed)."
  }
 }
