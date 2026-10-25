@@ -38,9 +38,10 @@ emission on the same fitted model, on the spatially blocked hide-and-recover hol
 
 ## 5. Gate (frozen before running)
 
-* **Reproduction check (void rule):** C's screen-draw DTI must be within 1e-6 of the H28 recomputed comparator for the
-  same cells in this environment, `evidence/h28_holdout/results.json` (`score`, 2.4 px, 3.5 %, the 0.149667509 row). If
-  not, the run is void. Note this compares against the H28 mean over draws 0–1, not the frozen 0.152003389 (IR-25-COMPARATOR-DRIFT).
+* **Reproduction check (void rule):** for each of the 8 screen cells, C's DTI must match the per-cell value of the same
+  arm (`score`, 2.4 px, kfrac 0.035, same fold and draw) in `evidence/h28_holdout/cells.jsonl` within 1e-6. If any cell
+  differs, the run is void and nothing is promoted. (The H28 run's fold-mean check against the frozen 0.152003389 already
+  FAILED, IR-25-COMPARATOR-DRIFT; H31 therefore uses the per-cell match, not that frozen number.)
 * **Screen pass:** mean paired gain > +0.001, at least 3 of 4 folds with positive gain, and worst fold ≥ −0.010.
 * **Confirmation (draws 2, 3, fresh draws; only if the screen passes):** the same three conditions must hold again.
 * **Verdict:** pass both → `promote` (eligible only for the separate slot selector step plus the exact-file audit).
