@@ -1,54 +1,50 @@
 {
-  "run_card_version": 1,
+  "run_card_version": 2,
   "review_date_utc": "2026-10-25",
-  "hypothesis": "No new model hypothesis tested in this review. Audit whether the previously generated GEM-1 blind-magnetics artifact is eligible under the strict parallel-run uniqueness rule.",
-  "mechanism": "GEM-1 combines RTP magnetic-edge strength with low local topographic relief to target concealed structures; this review evaluates artifact eligibility, not geological predictive performance.",
-  "named_non_fault_process_that_could_mimic_it": "Dense 5-px lattice coverage makes many spatially distinct dot sets lie within 3 px of a registry dot; basin-margin/terrain edges can also produce magnetic-gradient and relief contrasts without faults.",
+  "session_branch": "arena/bbd595e8-gemsdoe25",
+  "hypothesis": "No experiment executed. Ranked exploratory hypothesis for a later pre-registered test: directional multi-scale conductive-edge continuity linking GDR 1391 Quaternary volcanic vents (vent-to-vent / vent-to-structure bearings) using cond_surf and depth_to_base_surf, distinct from the previously tested radial vent-proximity × conductivity-gradient GEM-2 product.",
+  "mechanism": "A blind permeable fault may connect geothermal manifestations while lacking a Quaternary surface trace; an oriented conductive-boundary network could provide an independent structural cue. This is a testable geological inference, not an observed result.",
+  "named_non_fault_process_that_could_mimic_it": "Lithologic conductivity contacts or volcanic flow margins aligned with vent clusters; shallow groundwater flow can also generate conductive/thermal patterns without a fault.",
   "holdout_dti": {
     "label": "HOLDOUT-DTI",
     "status": "NOT RUN in this review",
-    "evaluator_version": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3 px / 300 m), as required by the registered harness",
+    "evaluator_version": "gems25.metric.dti_binary via shared gems25.holdout / Cell.evaluate (alpha=0.2, beta=0.8, 300 m triangular kernel); no fresh evaluation was performed",
     "mean": null,
     "ci95": null,
     "withheld_positive_count": null,
-    "reason": "data/ contains only .gitkeep; sample template, labels and cached feature stack are absent. Existing holdout outputs were not recomputed."
+    "reason": "data/ contains only .gitkeep; required labels, template, feature stack and shared cache are absent. No experiment was preregistered or fitted in this review."
   },
   "correlation_overlap_vs_registry": {
     "label": "LANE-CHECK (not a score)",
+    "status": "NO CURRENT SURFACE OR FINAL DOTS; no fresh lane check",
     "strict_rule": "absolute Spearman >0.90 OR >70% of candidate dots within 3 px of any one registry raster => duplicate and stop",
-    "historical_gem1_abs_spearman": 0.0717,
-    "historical_dense_lattice_dot_overlap": 1.0,
-    "historical_validation_report_lattice_overlap": 0.8890153671,
-    "verdict": "FAIL / STOP: both recorded overlaps exceed the strict 0.70 threshold; no density exception is authorized",
-    "fresh_computation": false
+    "current_candidate_surface_rank_correlation": null,
+    "current_candidate_final_dot_overlap": null,
+    "historical_reference_only": {
+      "artifact": "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-zeros.tif",
+      "stored_r13_lattice_candidate_dot_overlap": 0.9994,
+      "stored_worst_other_registry_overlap": 0.68,
+      "fresh_computation": false,
+      "verdict": "FAIL / duplicate-lane stop; existing artifact is DO NOT SUBMIT"
+    },
+    "verdict": "No new lane clearance; candidate/experiment must stop before placement until exact lane is preregistered and the full registry is available."
   },
   "raster": {
-    "status": "existing tracked artifact; no new raster generated",
-    "file": "gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif",
-    "sha256": "51d0b3414896a18de24de969467c6e8947678d80e32ab12d2812a1f6b2bed467",
-    "content_id": "279a305b80d2"
+    "status": "NO NEW RASTER GENERATED",
+    "sha256": null,
+    "submission_name": null,
+    "reason": "Fail-closed: missing shared inputs/cache, no frozen lane method, and no fresh holdout/format/lane validation."
   },
   "validator_output": {
-    "status": "NOT freshly run: owner-mirror sample_submission.tif absent",
-    "historical_receipt": "docs/downloads/checks-gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.json",
-    "historical_checks": "receipt reports no NaN inside the footprint, values in [0,1], EPSG:32611, expected shape and transform; source template is an owner mirror and not organizer-authenticated",
-    "current_verdict": "FORMAT RECEIPT ONLY; strict lane gate fails; do not submit"
+    "status": "NOT RUN in this review; sample_submission.tif absent",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "fresh_template_based_validation": false,
+    "historical_receipt_caveat": "Past tracked owner-mirror receipts are not fresh checks and do not authenticate organizer files or portal acceptance."
   },
-  "submission_name": "gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan",
-  "submission_note": "GEMSDOE25 GEM-1 | lane FAIL; unscored; no slot; do not submit | id 279a305b80d2",
-  "submission_note_characters": 79,
-  "verdict": "negative — no new TIFF or model run; existing candidates including GEM-FUSE1 fail or lack strict lane clearance; do not submit.",
-  "additional_existing_artifacts": [
-    {
-      "file": "gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif",
-      "sha256": "ad4bc4933d0b7636f0f32918c1fd8b8b08cd1964aee32d69e45419a9b54178a7",
-      "source": "merged PR #13 on origin/main; not generated in this review",
-      "lane_label": "LANE-CHECK (not a score)",
-      "recorded_candidate_dot_overlap_with_r13_lattice": 1.0,
-      "strict_limit": 0.7,
-      "verdict": "DUPLICATE LANE / STOP; no density exception; testing only; do not submit",
-      "fresh_computation": false
-    }
-  ],
-  "overall_submission_allowed": false
+  "submission_name": null,
+  "submission_note": null,
+  "submission_note_character_limit": 140,
+  "verdict": "negative — no new TIFF, no holdout result, no slot approval; all current downloads remain testing-only / DO NOT SUBMIT."
 }

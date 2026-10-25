@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "generated_by": "scripts/build_site.py updated with GEM-FUSE1 primary 2026-10-25",
+ "generated_by": "scripts/register_h37_submission.py (session 7, 2026-10-25)",
  "files": [
   {
    "id": "mscr-multiscale-crest",
@@ -140,7 +140,8 @@
    "note": "GEMSDOE25 MSCR-1 sapd2.4 k3.5% | holdout gate FAIL; no slot; unscored; not slot-approved | id dd2bb4b09cd2",
    "title": "MSCR-1 multi-scale crest (BEST detector + 3 multi-scale crest columns) \u2014 unique content, holdout gate FAILED, strict lane stop; testing only, do not submit",
    "summary": "Session candidate (knowledge/21-22): the H35-B holdout-best detector (BDE + 7 add-ons + H27_tip + 3 H34 columns) plus 3 multi-scale crest columns from det_elev (400 m crest, cross-scale persistence, 400 m trough), 3-draw averaged, ridge-NMS -> top 3.5% -> score-ordered dots at 2.4 px; 48,442 dots, 0 on catalogue pixels. Pre-registered holdout screen (draws 22-23) FAILED: HOLDOUT-DTI pooled 0.161954 vs same-run BEST 0.161968, paired -0.000373 (1/4 folds); Experiment 1 (GMCE-1 gravity-magnetic coherent edge, draws 20-21) also FAILED (paired -0.001209, 1/4 folds). Leakage canaries passed (max AUC 0.654 / 0.560 <= 0.90). Surface and final-dot rank correlation <= 0.90 vs every compared raster; dots overlap <= 0.38 vs the sparse 9-site focus winners, but the literal strict lane gate fails vs dense rasters (r13 lattice 100%) and this repo's own H31/H35 lineage (0.76-0.92). HOLDOUT-DTI is a research proxy, not a competition score. Download for local testing; do not submit.",
-   "parent": "H35-B detector config (BDE+7+tip+H34) + MSCR-1 columns; no previous submission's dots are copied (new full-catalogue fit)"
+   "parent": "H35-B detector config (BDE+7+tip+H34) + MSCR-1 columns; no previous submission's dots are copied (new full-catalogue fit)",
+   "slot_reason": "strict lane gate and pre-registered holdout gate both fail (GMCE -0.0012, MSCR -0.0004)"
   },
   {
    "id": "mscr-multiscale-crest-nan",
@@ -279,7 +280,197 @@
    "note": "GEMSDOE25 MSCR-1 sapd2.4 k3.5% | holdout gate FAIL; no slot; unscored; not slot-approved | id dd2bb4b09cd2",
    "title": "MSCR-1 with NaN outside the footprint (official template convention); testing only, do not submit",
    "summary": "Session candidate (knowledge/21-22): the H35-B holdout-best detector (BDE + 7 add-ons + H27_tip + 3 H34 columns) plus 3 multi-scale crest columns from det_elev (400 m crest, cross-scale persistence, 400 m trough), 3-draw averaged, ridge-NMS -> top 3.5% -> score-ordered dots at 2.4 px; 48,442 dots, 0 on catalogue pixels. Pre-registered holdout screen (draws 22-23) FAILED: HOLDOUT-DTI pooled 0.161954 vs same-run BEST 0.161968, paired -0.000373 (1/4 folds); Experiment 1 (GMCE-1 gravity-magnetic coherent edge, draws 20-21) also FAILED (paired -0.001209, 1/4 folds). Leakage canaries passed (max AUC 0.654 / 0.560 <= 0.90). Surface and final-dot rank correlation <= 0.90 vs every compared raster; dots overlap <= 0.38 vs the sparse 9-site focus winners, but the literal strict lane gate fails vs dense rasters (r13 lattice 100%) and this repo's own H31/H35 lineage (0.76-0.92). HOLDOUT-DTI is a research proxy, not a competition score. Download for local testing; do not submit.",
-   "parent": "H35-B detector config (BDE+7+tip+H34) + MSCR-1 columns; no previous submission's dots are copied (new full-catalogue fit)"
+   "parent": "H35-B detector config (BDE+7+tip+H34) + MSCR-1 columns; no previous submission's dots are copied (new full-catalogue fit)",
+   "slot_reason": "strict lane gate and pre-registered holdout gate both fail (GMCE -0.0012, MSCR -0.0004)"
+  },
+  {
+   "id": "xg1-crossgrad",
+   "role": "alternate",
+   "file": "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.tif",
+   "path": "docs/downloads/gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.tif",
+   "bytes": 846196,
+   "sha256": "e1b144f0351ce857579cfdb7696cc0d89ce2aa34eecefd0c88fde71c642c289d",
+   "content_id": "52e65fb521f9",
+   "positive_pixels": 48669,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "np.nanmin/np.nanmax over the whole array",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.json",
+   "lane_receipt": "lane-gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.json",
+   "outside": "zero",
+   "status": "UNIQUE BY CONTENT \u00b7 FORMAT-VALID \u00b7 verdict negative \u00b7 DO NOT SUBMIT (holdout gate: screen FAIL, confirmation not run (screen failed); substantive lane flags (own lineage): h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5, h31-aniso-scarp-b2-d2-8-20261025-c213681203f6, h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268, h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719; strict lane gate (literal) vs the dense r13 lattice: 100.0% of dots within 3 px (IR-25-LANE-DENSITY))",
+   "title": "XG1 cross-gradient + H35 base (48,669 dots) \u2014 unique file; verdict negative; DO NOT SUBMIT",
+   "summary": "XG1 cross-gradient block (knowledge/21): gravity/RTP/log-depth-to-base gradient-alignment ridges added to the validated H35 base (BDE+7 + directed tip + H34 RESMAG-FLEX), 3-draw HGB average, score-ordered dots at 2.4 px, 3.5% candidate budget, catalogue pixels excluded, no B=2 prune. screen draws 14-15 gain -0.0008 (1/4 folds); confirmation not run (frozen rule: only after a screen pass). Combined/stage result: HOLDOUT-DTI X 0.1499 (95% CI 0.1380\u20130.1618; pooled 0.1492) vs same-run best control B35 0.1507 (pooled 0.1500); paired gain -0.0008 (95% CI -0.0019\u2013+0.0004), 1/4 folds, worst -0.0014, withheld positives per fold [1905, 2333, 3689, 3164]. HOLDOUT-DTI is a catalogue-gap proxy, not a competition score. Leakage canary max effective single-feature AUC 0.547 (cap 0.90). Primary file is zeros-outside (every cell finite in [0,1], no NaN anywhere); the NaN twin has identical footprint values. Lane: strict lane gate (literal) vs the dense r13 lattice: 100.0% of dots within 3 px; vs 42 substantive registry rasters worst 3-px dot overlap 0.932 (gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif), worst final-dot |Spearman| 0.363, pre-placement surface worst |Spearman| 0.152; overlap vs GEMSDOE32 B2 (0.2778) 0.314; FLAGGED (own unscored lineage): h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5, h31-aniso-scarp-b2-d2-8-20261025-c213681203f6, h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268, h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719. Verdict: negative.",
+   "zip": "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.zip",
+   "zip_bundle": {
+    "file": "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.zip",
+    "path": "docs/downloads/gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.zip",
+    "bytes": 209763
+   },
+   "transform": "ridge-NMS top-K (3.5%) -> score-ordered dots 2.4 px, 3-draw HGB average (BDE+7+tip+H34+XG1), catalogue pixels excluded, 0.0 outside footprint",
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": false,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "slot_reason": "holdout gate: screen FAIL, confirmation not run (screen failed); substantive lane flags (own lineage): h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5, h31-aniso-scarp-b2-d2-8-20261025-c213681203f6, h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268, h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719; strict lane gate (literal) vs the dense r13 lattice: 100.0% of dots within 3 px (IR-25-LANE-DENSITY)",
+   "expected_range": "no live projection (HOLDOUT-DTI 0.1499 only; not a score)",
+   "lane": {
+    "lane_clear": false,
+    "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+    "lattice_overlap": 1.0,
+    "worst_other_registry_overlap": 0.931825,
+    "worst_other_registry_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+    "worst_abs_spearman_final": 0.3626,
+    "worst_abs_spearman_surface": 0.152019,
+    "overlap_vs_gemsdoe32_b2": 0.313937,
+    "flagged_substantive": [
+     "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+     "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
+     "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+     "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+     "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+     "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
+     "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+     "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif"
+    ],
+    "registry_checked": 43
+   },
+   "lane_summary": "strict lane gate (literal) vs the dense r13 lattice: 100.0% of dots within 3 px; vs 42 substantive registry rasters worst 3-px dot overlap 0.932 (gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif), worst final-dot |Spearman| 0.363, pre-placement surface worst |Spearman| 0.152; overlap vs GEMSDOE32 B2 (0.2778) 0.314; FLAGGED (own unscored lineage): h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5, h31-aniso-scarp-b2-d2-8-20261025-c213681203f6, h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268, h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719",
+   "run_card": "registry/run_card_xg1_2026-10-25.json",
+   "note": "GEMSDOE25 XG1 crossgrad sapd2.4 k3.5% | holdout FAIL -0.0008; unscored; not slot-approved; no slot | id 52e65fb521f9",
+   "parent": "H35 arm B detector (BDE+7+H27_tip+H34) + XG1 cross-gradient block (knowledge/21)"
+  },
+  {
+   "id": "xg1-crossgrad-nan",
+   "role": "fallback",
+   "file": "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-nan.tif",
+   "path": "docs/downloads/gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-nan.tif",
+   "bytes": 1612116,
+   "sha256": "15073e72f04a6371d8f4169a93d7ffd9e98f546bc436a53c7b47d32e0502e032",
+   "content_id": "52e65fb521f9",
+   "positive_pixels": 48669,
+   "format_ok": true,
+   "checks": {},
+   "receipt": "checks-gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.json",
+   "lane_receipt": "lane-gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.json",
+   "outside": "nan",
+   "status": "template-convention twin (NaN outside); identical footprint values; unscored; not slot-approved; DO NOT SUBMIT",
+   "title": "XG1 with NaN outside the footprint (official template convention); same dots as primary",
+   "summary": "Identical prediction values inside the template footprint; NaN instead of 0.0 outside. Format-convention twin kept for local testing only; same negative verdict as the zeros primary.",
+   "transform": "outside=nan",
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": false,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "slot_reason": "holdout gate: screen FAIL, confirmation not run (screen failed); substantive lane flags (own lineage): h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5, h31-aniso-scarp-b2-d2-8-20261025-c213681203f6, h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268, h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719; strict lane gate (literal) vs the dense r13 lattice: 100.0% of dots within 3 px (IR-25-LANE-DENSITY)",
+   "expected_range": "no live projection (HOLDOUT-DTI 0.1499 only; not a score)",
+   "lane": {
+    "lane_clear": false,
+    "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+    "lattice_overlap": 1.0,
+    "worst_other_registry_overlap": 0.931825,
+    "worst_other_registry_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+    "worst_abs_spearman_final": 0.3626,
+    "worst_abs_spearman_surface": 0.152019,
+    "overlap_vs_gemsdoe32_b2": 0.313937,
+    "flagged_substantive": [
+     "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+     "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
+     "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+     "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+     "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+     "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
+     "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+     "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif"
+    ],
+    "registry_checked": 43
+   },
+   "lane_summary": "strict lane gate (literal) vs the dense r13 lattice: 100.0% of dots within 3 px; vs 42 substantive registry rasters worst 3-px dot overlap 0.932 (gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif), worst final-dot |Spearman| 0.363, pre-placement surface worst |Spearman| 0.152; overlap vs GEMSDOE32 B2 (0.2778) 0.314; FLAGGED (own unscored lineage): h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5, h31-aniso-scarp-b2-d2-8-20261025-c213681203f6, h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268, h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719",
+   "run_card": "registry/run_card_xg1_2026-10-25.json",
+   "note": "GEMSDOE25 XG1 nan twin fallback | unscored; not slot-approved; no slot | id 52e65fb521f9",
+   "parent": "H35 arm B detector (BDE+7+H27_tip+H34) + XG1 cross-gradient block (knowledge/21)"
   },
   {
    "id": "kdc-b2-complement",
@@ -529,12 +720,12 @@
    "outside": "nan",
    "status": "VALIDATED UNIQUE H31-1 CANDIDATE (15/15 format checks PASS, HOLDOUT-DTI 0.156523 PASS in 4/4 folds, sparse/symmetric uniqueness PASS <= 0.6707); strict 5-px lattice lane flag open (IR-25-LANE-DENSITY; do not submit without owner lattice waiver)",
    "title": "H31-1 Anisotropic Along-Strike Continuation + 100 m 3DEP LiDAR Strike Coherence + B=2 (200 m) Digitization-Shadow Guard (43,771 px)",
-   "summary": "H31-1 Anisotropic fault-tip continuation + 100 m 3DEP LiDAR-DEM strike coherence + 200 m (B=2 px) digitization-shadow guard + d=2.8 px Poisson-disk thinning (43,771 px, content_id c213681203f6). Passed all 15 hard format checks, single-feature leakage canary (max AUC = 0.8419 <= 0.90), 8-cell holdout promotion gate (HOLDOUT-DTI = 0.156523, +0.008838 vs BASE in 4/4 folds, +0.005717 vs T_BASE in 4/4 folds; beats the comparable same-run holdout best and historical 0.152003389 comparator; holdout proxy is not a competition score), and comparable-detector uniqueness (max rank-corr 0.1697 <= 0.90, max symmetric 3-px overlap 0.5837 <= 0.70, max sparse-detector 3-px overlap 0.6707 <= 0.70, 31.75% vs GEMSDOE32 0.2778). Under the literal strict lane gate against the 5-px r13 calibration lattice (100% of any in-footprint pixel lies within sqrt(8)=2.83 < 3 px of a 5x5 grid; IR-25-LANE-DENSITY), slot_approved remains false (do not submit without owner lattice waiver).",
+   "summary": "H31-1 Anisotropic fault-tip continuation + 100 m 3DEP LiDAR-DEM strike coherence + 200 m (B=2 px) digitization-shadow guard + d=2.8 px Poisson-disk thinning (43,771 px, content_id c213681203f6). Passed all 15 hard format checks, single-feature leakage canary (max AUC = 0.8419 <= 0.90), 8-cell holdout promotion gate (HOLDOUT-DTI = 0.156523, +0.008838 vs BASE in 4/4 folds, +0.005717 vs T_BASE in 4/4 folds; beats the comparable same-run holdout control; historical absolute comparator 0.152003389 is not comparable across environments (IR-25-COMPARATOR-DRIFT); holdout proxy is not a competition score), and comparable-detector uniqueness (max rank-corr 0.1697 <= 0.90, max symmetric 3-px overlap 0.5837 <= 0.70, max sparse-detector 3-px overlap 0.6707 <= 0.70, 31.75% vs GEMSDOE32 0.2778). Under the literal strict lane gate against the 5-px r13 calibration lattice (100% of any in-footprint pixel lies within sqrt(8)=2.83 < 3 px of a 5x5 grid; IR-25-LANE-DENSITY), slot_approved remains false (do not submit without owner lattice waiver).",
    "expected_range": "HOLDOUT-DTI pooled 0.156013, cell mean 0.156523 (95% CI [0.141886, 0.171160], 22,317 withheld positives across draws 10,11; not a competition score)",
    "note": "GEMSDOE25 H31-B2 | HOLDOUT-DTI 0.1565 (+0.0088); unscored; not slot-approved; no slot | id c213681203f6",
    "parent": "trained out-of-fold in GEMSDOE25: families BDE + X1_K, X1_ThK, X1_UK, X2_compat, X2_compat_coh, X3_gm, X3_gd, H27_tip, H31_a_along, H31_d_par, H31_d_perp, H31_k_aniso, H31_lidar_dem_compat, H31_lidar_cat_compat, 3 hide-and-recover draws (seeds [10, 11, 12])",
    "transform": "Hessian ridge NMS -> top 3.20 % -> score-ordered Poisson-disk (d=2.8 px) -> B=2.0 px (200 m) digitization-shadow flank exclusion",
-   "gate_summary": "PROMOTED (HOLDOUT-DTI pooled 0.156013, cell mean 0.156523, 95% CI [0.141886, 0.171160], 22,317 withheld positives across draws 10,11; +0.008838 vs BASE in 4/4 folds, +0.005717 vs T_BASE in 4/4 folds; exceeds historical 0.152003 comparator; max registry rank-corr 0.1697 <= 0.90, max 3-px dot overlap 0.5837 <= 0.70).",
+   "gate_summary": "HISTORICAL HOLDOUT-DTI RESEARCH RESULT (not current promotion / not slot approval; pooled 0.156013, cell mean 0.156523, 95% CI [0.141886, 0.171160], 22,317 withheld positives across draws 10,11; +0.008838 vs BASE in 4/4 folds, +0.005717 vs T_BASE in 4/4 folds; historical absolute comparator 0.152003 is not comparable across environments (IR-25-COMPARATOR-DRIFT); max registry rank-corr 0.1697 <= 0.90, max 3-px dot overlap 0.5837 <= 0.70).",
    "zip_bundle": {
     "file": "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6.zip",
     "path": "docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6.zip",
@@ -1514,7 +1705,7 @@
    "outside": "nan",
    "status": "UNIQUE FILE - DO NOT SUBMIT under the merged strict lane policy (literal r13 lattice stop; 82-89% dot overlap with the H31-lineage lane); frozen holdout gate PASSED in screen + confirmation; unscored; not slot-approved",
    "title": "H35 RESMAG+tip dots (NaN outside) \u2014 holdout gate passed; strict-lane DO NOT SUBMIT",
-   "summary": "Identical prediction values inside the template footprint; NaN instead of 0.0 outside, matching the template convention. Upload the zeros primary first (strictest [0,1] validator); use this twin only if the portal rejects zeros.",
+   "summary": "Identical prediction values inside the template footprint; NaN instead of 0.0 outside, matching the template convention. Research/testing twin only: strict lane failed, so do not upload either H35 file.",
    "expected_range": "no competition estimate (HOLDOUT-DTI only: 0.1476, 95% CI 0.1317\u20130.1635)",
    "note": "GEMSDOE25 H35 R+T nan twin fallback | unscored; not slot-approved; no slot | id d5d4cde1e719",
    "parent": "primary",
@@ -1536,6 +1727,453 @@
     "lattice_overlap": 1.0,
     "overlap_vs_h31_aniso": 0.753
    }
+  },
+  {
+   "id": "cf1-transverse-negative",
+   "role": "alternate",
+   "verdict": "negative",
+   "file": "gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
+   "path": "docs/downloads/gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
+   "bytes": 846366,
+   "sha256": "a0b58cca87ad98f9579c8744e6dd216b7eb4a3e5b075a4bd7af3cf3004ab5cf0",
+   "content_id": "22e2f9eddad9",
+   "positive_pixels": 48777,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "np.nanmin/np.nanmax over the whole array",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.json",
+   "lane_receipt": "evidence/crossfield_2026-10-25/lane.json",
+   "outside": "zero",
+   "status": "NEGATIVE \u2014 DO NOT SUBMIT: 2/4 holdout folds; 100% overlap with r13 lattice; 92.83% overlap with H31-C",
+   "title": "CF-1 transverse magnetic\u2013gravity diagnostic (new content; NOT submit-eligible)",
+   "summary": "Independent transverse gradient feature on RTP and gravity; HOLDOUT-DTI 0.138651 versus same-run 0.138052 (seed 21; 11,060 withheld positives), paired gain +0.000599 (95% fold-t CI \u22120.009788 to +0.010986); 2/4 folds positive, gate failed. Strict 3-px overlap fails vs registered r13 lattice (100%) and H31-C (92.83%). Format verified against pinned owner template, not organizer authenticated. No organizer score. Download for audit only; DO NOT SUBMIT.",
+   "expected_range": null,
+   "note": "G25 CF1 transverse | negative, strict lane FAIL; no slot, unscored, not slot-approved | id 22e2f9eddad9",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "holdout_gate_passed": false,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "lane": {
+    "lane_clear": false,
+    "lattice_overlap": 1.0,
+    "worst_overlap": 1.0,
+    "worst_abs_spearman": 0.367417,
+    "preplacement_surface_abs_rho": 0.15206
+   }
+  },
+  {
+   "id": "h36-tzc",
+   "role": "alternate",
+   "verdict": "negative",
+   "slot_approved": false,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "do_not_resubmit": true,
+   "file": "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.tif",
+   "path": "docs/downloads/gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.tif",
+   "bytes": 846128,
+   "sha256": "8bbddbb4c9eaf1fa6de59d4a5717089dfe57bc2a37e2a8936ec06cb770b64ba5",
+   "content_id": "92562b7b7fea",
+   "positive_pixels": 48634,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "np.nanmin/np.nanmax over the whole array",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.json",
+   "outside": "zero",
+   "status": "UNIQUE BY CONTENT \u00b7 FORMAT-VALID \u00b7 HOLDOUT GATE FAILED \u00b7 STRICT LANE FAIL (lattice + own-lineage) \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "zip": "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.zip",
+   "run_card": "registry/run_card_h36_h37_2026-10-25.json",
+   "lane": {
+    "lane_clear": false,
+    "strict_verdict": "DUPLICATE LANE / STOP (r13 lattice + own-lineage H35/H31 overlap)",
+    "lattice_overlap": 1.0,
+    "worst_other_registry_overlap": 0.922297,
+    "worst_abs_spearman_final": 0.340159,
+    "worst_abs_spearman_surface": 0.151401,
+    "flagged_substantive": [
+     "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+     "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
+     "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+     "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+     "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+     "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
+     "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+     "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif"
+    ]
+   },
+   "lane_summary": "STRICT lane gate: FAIL \u2014 vs the dense r13 lattice 100.0% of dots within 3 px (70% cap) under the literal any-registry-raster rule; vs all other registry rasters combined: worst 3-px dot overlap 92.2%, worst final-dot |Spearman| 0.340, pre-placement surface worst |Spearman| 0.151 (caps 70% / 0.90); own-lineage overlap vs the H35/H31-C downloads reaches 92.2% (same base detector \u2014 a substantive duplicate-lane stop, not only the lattice); substantive flags: ['gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif', 'gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif', 'gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif', 'gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif', 'gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif', 'gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif', 'gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif', 'gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif'].",
+   "expected_range": "no live projection (HOLDOUT-DTI only; gate failed)",
+   "note": "GEMSDOE25 H36-TZC sapd2.4 k3.5% | gate FAIL; unscored; not slot-approved; no slot | id 92562b7b7fea",
+   "title": "H36-TZC tilt-zero coincidence dots (zeros outside) \u2014 unique testing file, DO NOT SUBMIT",
+   "summary": "H36-TZC full-footprint build (knowledge/21): BDE+7 + directed tip + H34 RESMAG-FLEX + three coincident tilt-zero contact columns (spectral tilt of TMI and isostatic gravity, THDR-gated zero lines), 3-draw average, score-ordered dots at 2.4 px, 3.5% candidate budget, catalogue pixels excluded. HOLDOUT-DTI (hide-and-recover, draws 30-31, [1917, 2341, 3759, 3166] withheld positives per fold NW/NE/SW/SE): TZC 0.1527 (95% CI 0.1344-0.1710) vs same-run BEST 0.1540; paired gain -0.0013 (95% CI -0.0119 to +0.0094), 2/4 folds \u2014 frozen gate FAILED, no confirmation run. HOLDOUT-DTI is a catalogue-gap proxy, not a competition score. Experiment 2 (H37 seismicity alignment, knowledge/22) also failed its screen (-0.0021, 1/4 folds). Strict lane gate fails on the dense r13 lattice (100.0% within 3 px) AND on substantive own-lineage overlaps (worst 92.2% vs the H35/H31 downloads \u2014 the shared BDE+tip+H34 base detector dominates dot placement); worst final-dot |Spearman| 0.340, pre-placement surface worst |Spearman| 0.151. Download for local testing only; do not submit. No live score exists for this file; nothing here is a projection of one.",
+   "parent": "H36-TZC arm (knowledge/21) on H35 arm-B detector (BDE+7 + tip + H34)"
+  },
+  {
+   "id": "h36-tzc-nan",
+   "role": "alternate",
+   "verdict": "negative",
+   "slot_approved": false,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "do_not_resubmit": true,
+   "file": "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-nan.tif",
+   "path": "docs/downloads/gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-nan.tif",
+   "bytes": 1611936,
+   "sha256": "ee71642cd603418ceaf6c789ab05a9d742d8dce096ee9816118fdeb90a475a73",
+   "content_id": "92562b7b7fea",
+   "positive_pixels": 48634,
+   "format_ok": true,
+   "checks": {},
+   "receipt": "checks-gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.json",
+   "outside": "nan",
+   "status": "NaN-outside twin of the H36-TZC file (same dots); same verdict: holdout gate failed, strict lane fail; DO NOT SUBMIT",
+   "run_card": "registry/run_card_h36_h37_2026-10-25.json",
+   "lane": {
+    "lane_clear": false,
+    "strict_verdict": "DUPLICATE LANE / STOP (r13 lattice + own-lineage H35/H31 overlap)",
+    "lattice_overlap": 1.0,
+    "worst_other_registry_overlap": 0.922297,
+    "worst_abs_spearman_final": 0.340159,
+    "worst_abs_spearman_surface": 0.151401,
+    "flagged_substantive": [
+     "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+     "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
+     "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+     "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+     "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+     "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
+     "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+     "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif"
+    ]
+   },
+   "lane_summary": "STRICT lane gate: FAIL \u2014 vs the dense r13 lattice 100.0% of dots within 3 px (70% cap) under the literal any-registry-raster rule; vs all other registry rasters combined: worst 3-px dot overlap 92.2%, worst final-dot |Spearman| 0.340, pre-placement surface worst |Spearman| 0.151 (caps 70% / 0.90); own-lineage overlap vs the H35/H31-C downloads reaches 92.2% (same base detector \u2014 a substantive duplicate-lane stop, not only the lattice); substantive flags: ['gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif', 'gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif', 'gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif', 'gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif', 'gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif', 'gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif', 'gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif', 'gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif'].",
+   "expected_range": "no live projection (HOLDOUT-DTI only; gate failed)",
+   "note": "GEMSDOE25 H36-TZC nan twin fallback | unscored; not slot-approved; no slot | id 92562b7b7fea",
+   "title": "H36-TZC with NaN outside the footprint (official template convention); testing only, do not submit",
+   "summary": "Identical prediction values inside the template footprint; NaN instead of 0.0 outside. Same negative verdict as the zeros primary; do not submit.",
+   "parent": "h36-tzc"
+  },
+  {
+   "id": "h37-doc-dipoffset",
+   "role": "alternate",
+   "verdict": "negative",
+   "file": "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-zeros.tif",
+   "path": "docs/downloads/gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-zeros.tif",
+   "bytes": 846106,
+   "sha256": "099fe8c1a853c4158bbf8ea3e2bdfab74a0283dc8c6d22054737e5a43204349a",
+   "content_id": "558c08ce13bf",
+   "positive_pixels": 48662,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "np.nanmin/np.nanmax over the whole array",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-zeros.json",
+   "lane_receipt": "lane-gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-zeros.json",
+   "lane_summary": "vs other-site substantive scored rasters: worst 3-px overlap 0.682, worst final |rho| 0.047, worst pre-placement surface |rho| 0.152 (caps 0.70/0.90) -- clean; vs H33-2-B2 (0.2778 file) overlap 0.312 (reverse 0.375); dense r13 lattice: literal overlap 1.000 but halo coverage 0.9987 (a random file scores the same; symmetric-min 0.186); own lineage (same detector family): worst overlap 0.928 vs gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif -- duplicate lane vs superseded H31/H35 lineage, never submit alongside them",
+   "outside": "zero",
+   "status": "UNIQUE FILE BY CONTENT - DO NOT SUBMIT: both pre-registered holdout screens failed (H37-1 DOC paired -0.0009, 2/4 folds; H37-2 SPR +0.00094 vs +0.001 gate, 3/4 folds); lane-duplicate vs own H31/H35 lineage; unscored; not slot-approved",
+   "title": "H37 DOC down-dip offset dots (zeros outside) - holdout gates failed; DO NOT SUBMIT",
+   "summary": "Session-7 file (knowledge/22-24): H35 arm-B detector (BDE+7 + directed tip + H34 RESMAG-FLEX) plus six DOC down-dip offset concordance columns (gravity/magnetic/conductive-base ridge fields sampled 200-400 m downhill of the candidate trace), 3-draw HGB average, ridge-NMS top-K 3.5%, score-ordered dots at 2.4 px, catalogue pixels excluded. HOLDOUT-DTI screen (draws 14-15, withheld positives per fold [1905, 2333, 3689, 3164]): A37 0.1498 (pooled 0.1493) vs same-run H35-B control 0.1507; paired gain -0.0009 (95% CI -0.0069 to +0.0052), 2/4 folds -> frozen gate FAILED; leakage canary max AUC 0.560 (no leakage). Second pre-registered experiment H37-2 (spring-line alignment ridge, draws 18-19): paired gain +0.00094 vs the +0.001 gate, 3/4 folds, canary 0.522 -> gate FAILED (near-miss is not a pass). HOLDOUT-DTI is a catalogue-gap proxy, not a competition score; no live effect is claimed. Lane: vs other-site substantive scored rasters: worst 3-px overlap 0.682, worst final |rho| 0.047, worst pre-placement surface |rho| 0.152 (caps 0.70/0.90) -- clean; vs H33-2-B2 (0.2778 file) overlap 0.312 (reverse 0.375); dense r13 lattice: literal overlap 1.000 but halo coverage 0.9987 (a random file scores the same; symmetric-min 0.186); own lineage (same detector family): worst overlap 0.928 vs gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif -- duplicate lane vs superseded H31/H35 lineage, never submit alongside them. Zeros-outside primary has every cell finite in [0,1]; NaN twin identical in-footprint. Download for local testing only; do not spend a weekly slot.",
+   "expected_range": "no competition estimate (HOLDOUT-DTI only: A37 0.1498, 95% CI 0.1374-0.1622; same-run control 0.1507)",
+   "note": "GEMSDOE25 H37 DOC sapd2.4 k3.5% | unscored; not slot-approved; no slot (holdout gates failed) | id 558c08ce13bf",
+   "parent": "H37-1 DOC arm (knowledge/22) on H35 arm B; H37-2 SPR (knowledge/23) also negative, no SPR file built",
+   "transform": "ridge-NMS top-K (3.5%) -> score-ordered dots 2.4 px, 3-draw HGB average, catalogue pixels excluded, 0.0 outside footprint",
+   "slot_approved": false,
+   "do_not_resubmit": false,
+   "holdout_gate_passed": false,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "run_card": "registry/run_card_h37_2026-10-25.json",
+   "lane": {
+    "lane_clear": false,
+    "policy": "knowledge/22 section 4: literal + density-aware (halo coverage + symmetric-min for coverage>=0.70 rasters)",
+    "worst_overlap_substantive_scored": 0.682401,
+    "worst_abs_spearman_substantive_scored": 0.046872,
+    "worst_abs_spearman_surface": 0.151776,
+    "vs_h33_2_b2": {
+     "overlap": 0.3121532201717973,
+     "reverse": 0.37486057258193023,
+     "halo_coverage": 0.15085344139081888
+    },
+    "lattice": {
+     "literal_overlap": 1.0,
+     "halo_coverage": 0.998713,
+     "symmetric_min": 0.185761
+    },
+    "worst_overlap_own_lineage": 0.928075,
+    "worst_lineage_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif"
+   },
+   "zip": "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-zeros.zip"
+  },
+  {
+   "id": "h37-doc-dipoffset-nan",
+   "role": "fallback",
+   "verdict": "negative",
+   "file": "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-nan.tif",
+   "path": "docs/downloads/gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-nan.tif",
+   "bytes": 1612062,
+   "sha256": "4c35c74a34ce97671d3f2be158574726c6f5775a4da29467f0757bc19dd75e37",
+   "content_id": "558c08ce13bf",
+   "positive_pixels": 48662,
+   "format_ok": true,
+   "checks": {},
+   "receipt": "checks-gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-zeros.json",
+   "lane_receipt": "lane-gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-zeros.json",
+   "outside": "nan",
+   "status": "template-convention twin (NaN outside); identical footprint values; unscored; not slot-approved; DO NOT SUBMIT",
+   "title": "NaN-outside twin of the H37 DOC file (same dots) - DO NOT SUBMIT",
+   "summary": "Identical prediction values inside the template footprint; NaN instead of 0.0 outside, matching the template convention. Research/testing twin only: holdout gates failed, so do not upload either H37 file.",
+   "expected_range": "no competition estimate (HOLDOUT-DTI only: A37 0.1498, 95% CI 0.1374-0.1622; same-run control 0.1507)",
+   "note": "GEMSDOE25 H37 DOC nan twin fallback | unscored; not slot-approved; no slot | id 558c08ce13bf",
+   "parent": "h37-doc-dipoffset",
+   "transform": "outside=nan",
+   "slot_approved": false,
+   "do_not_resubmit": false,
+   "holdout_gate_passed": false,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "run_card": "registry/run_card_h37_2026-10-25.json",
+   "lane_summary": "vs other-site substantive scored rasters: worst 3-px overlap 0.682, worst final |rho| 0.047, worst pre-placement surface |rho| 0.152 (caps 0.70/0.90) -- clean; vs H33-2-B2 (0.2778 file) overlap 0.312 (reverse 0.375); dense r13 lattice: literal overlap 1.000 but halo coverage 0.9987 (a random file scores the same; symmetric-min 0.186); own lineage (same detector family): worst overlap 0.928 vs gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif -- duplicate lane vs superseded H31/H35 lineage, never submit alongside them"
   }
  ]
 }

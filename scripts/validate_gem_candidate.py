@@ -243,23 +243,52 @@ def lane_check(ctx, emitted: np.ndarray, surface: np.ndarray, registry: list[dic
         if finite.sum() >= 1000:
             corr = float(spearmanr(surf_finite[finite], reg_flat[finite], nan_policy="omit").statistic)
         overlap = 0.0
-        if my_dots.size:
-            reg_dots = np.flatnonzero((reg["arr"] > 0).ravel() & foot.ravel())
-            if reg_dots.size:
-                reg_rc = np.column_stack([reg_dots // W, reg_dots % W])
-                dist = cKDTree(reg_rc).query(my_rc, k=1)[0]
-                overlap = float((dist <= LANE_RADIUS_PX).mean())
+        reverse_overlap = 0.0
+        coverage = 0.0
+        reg_n = 0
+        reg_mask = (reg["arr"] > 0) & foot
+        reg_n = int(reg_mask.sum())
+        if reg_n:
+            dist_to_reg = distance_transform_edt(~reg_mask)
+            coverage = float(((dist_to_reg <= LANE_RADIUS_PX) & foot).sum() / max(int(foot.sum()), 1))
+        if my_dots.size and reg_n:
+            reg_dots = np.flatnonzero(reg_mask.ravel())
+            reg_rc = np.column_stack([reg_dots // W, reg_dots % W])
+            dist = cKDTree(reg_rc).query(my_rc, k=1)[0]
+            overlap = float((dist <= LANE_RADIUS_PX).mean())
+            rdist = cKDTree(my_rc).query(reg_rc, k=1)[0]
+            reverse_overlap = float((rdist <= LANE_RADIUS_PX).mean())
         rho_flag = not math.isnan(corr) and abs(corr) > LANE_CORR_CAP
         overlap_flag = overlap > LANE_OVERLAP_CAP
+        # Density-aware companion (pre-registered knowledge/22 section 4): a registry
+        # raster whose own 3-px halo covers >= 70% of the footprint fails *any* dot
+        # set (including a uniformly random one, whose expected overlap is the halo
+        # coverage), so for those rasters the symmetric statistic decides. The
+        # literal flag above is kept unchanged and always reported.
+        dense_nondiscriminative = bool(coverage >= LANE_OVERLAP_CAP)
+        sym_min = float(min(overlap, reverse_overlap))
+        lane_overlap_flag = bool(sym_min > LANE_OVERLAP_CAP) if dense_nondiscriminative else bool(overlap_flag)
         results.append(dict(file=reg["file"], spearman=corr, abs_spearman=abs(corr) if not math.isnan(corr) else None,
                             overlap_within_3px=overlap, flag_rank=rho_flag, flag_overlap=overlap_flag,
-                            duplicate=bool(rho_flag or overlap_flag)))
+                            duplicate=bool(rho_flag or overlap_flag),
+                            registry_dots=reg_n, halo_coverage_3px=coverage,
+                            reverse_overlap_within_3px=reverse_overlap,
+                            symmetric_min_overlap_3px=sym_min,
+                            excess_overlap_over_coverage=float(overlap - coverage),
+                            non_discriminative_dense=dense_nondiscriminative,
+                            flag_overlap_lane=lane_overlap_flag,
+                            duplicate_lane=bool(rho_flag or lane_overlap_flag)))
     return results
 
 
 def lane_is_clear(results: list[dict]) -> bool:
     """A missing/unreadable registry is not evidence of uniqueness."""
     return bool(results) and all(not row.get("duplicate", True) for row in results)
+
+
+def lane_is_clear_density_aware(results: list[dict]) -> bool:
+    """Density-aware lane verdict (knowledge/22 section 4); fails closed like lane_is_clear."""
+    return bool(results) and all(not row.get("duplicate_lane", True) for row in results)
 
 
 def full_footprint_emission(surface: np.ndarray, foot: np.ndarray, labels: np.ndarray,
