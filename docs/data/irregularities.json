@@ -479,7 +479,7 @@
    "severity": "info",
    "status": "disclosed",
    "issue": "H37-2 SPR screen paired gain +0.000937 vs the frozen >+0.001 gate (miss by 0.000063), 3/4 folds positive, pooled +0.00096, 95% CI includes zero. There is a standing temptation to round, add the confirmation draws anyway, or re-read the gate.",
-   "evidence": "evidence/h37_2_screen/analysis.json (gate.passed=false); knowledge/23 frozen gate; SPR ridge nonzero on 5.7% of the footprint (sparse support); one of eight cells emitted identical dots with/without the SPR columns.",
+   "evidence": "evidence/h37_2_screen/analysis.json (gate.passed=false); knowledge/23 frozen gate; SPR ridge nonzero on 5.7% of the footprint (sparse support); one of eight cells produced identical TP/FP/emitted counts with/without the SPR columns.",
    "resolution_or_action": "Recorded as NEGATIVE; confirmation draws 20-21 were NOT run; no SPR file built. Any follow-up must be a new pre-registration that owns this near-miss (knowledge/24 section 6 item 5)."
   }
  ]

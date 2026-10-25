@@ -93,7 +93,7 @@
  ],
  "current_turn_review": {
   "date_utc": "2026-10-25",
-  "session_focus": "Forensic cross-site analysis of GEMSDOE24–36 (why GEMSDOE32 achieved 0.2778), preregistration of 4 ranked geological hypotheses (H31-1–H31-4), execution of the single-lane 3-experiment H31-1 protocol on untouched draws 10,11 (22,317 withheld positives), single-feature leakage canary, build and automatic verification of a genuinely unique promoted GeoTIFF submission (content_id c213681203f6, 43,771 px), 41-raster uniqueness audit, JSON RUN CARD, site/README/ledger regeneration, and PR/merge.",
+  "session_focus": "Forensic cross-site analysis of GEMSDOE24\u201336 (why GEMSDOE32 achieved 0.2778), preregistration of 4 ranked geological hypotheses (H31-1\u2013H31-4), execution of the single-lane 3-experiment H31-1 protocol on untouched draws 10,11 (22,317 withheld positives), single-feature leakage canary, build and automatic verification of a genuinely unique promoted GeoTIFF submission (content_id c213681203f6, 43,771 px), 41-raster uniqueness audit, JSON RUN CARD, site/README/ledger regeneration, and PR/merge.",
   "pass_1_implementation_and_verification": {
    "done": [
     "Restored all competition rasters, external data, 11 scored rasters, 19 sibling artifacts, and 11 focus-site rasters from GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, and 36; verified SHA-256 pins and work caches.",
@@ -143,7 +143,7 @@
   {
    "date_utc": "2026-10-25",
    "session_branch": "arena/bbd595e8-gemsdoe25",
-   "focus": "Repository review of GEMSDOE24–36 owner-mirrored evidence, why GEMSDOE32 B2 is reported highest, current download/slot wording, and safe next-hypothesis selection.",
+   "focus": "Repository review of GEMSDOE24\u201336 owner-mirrored evidence, why GEMSDOE32 B2 is reported highest, current download/slot wording, and safe next-hypothesis selection.",
    "pass_1_implement_and_verify": {
     "completed": [
      "Read AGENTS.md and the full README, then audited current input availability, the submission writer/holdout, current run cards, the source registry, focus-site forensics, and generated site.",
@@ -176,7 +176,7 @@
     },
     "open_limitations": [
      "data/ contains only .gitkeep; no fresh experiment, shared feature-stack reuse, template-based validation, or strict full-registry lane check is possible.",
-     "No new TIFF was generated, by design. This review fails the user’s highest-priority file-generation request rather than bypassing the required gates.",
+     "No new TIFF was generated, by design. This review fails the user\u2019s highest-priority file-generation request rather than bypassing the required gates.",
      "The exact intended parallel lane is not unambiguously specified in the message.",
      "All current downloads fail or lack strict lane clearance; no competition slot is approved.",
      "External 3DEP raw-channel and GDR probe/stress bytes and target-region coverage have not been verified as obtainable from this runner."
@@ -234,7 +234,7 @@
      "New provenance path: registry/artifact_mirrors.json (locations read from GitHub tree listings only) + scripts/restore_artifacts.py (fetch through api.github.com, hash locally, match scores through the owner's own hash<->score ledger) -> registry/artifact_ledger.json with 30 rows, 25 hash-linked and usable.",
      "New module src/gems25/livecal.py: exact E[TP] = N<pi, m_p>, Poisson-saturating E[FP] with the exact step decomposition of the kernel-disc count, distance-bin machinery, closed-form inversion of the DTI for N, weighted-reservoir truth sampler, greedy disjoint design and the marginal-rule budget curve. 12 unit tests, including Monte-Carlo parity against metric.dti_binary/dti_exact and an exact check that Psi's first-order term equals KERNEL_VOLUME / V(R).",
      "Pre-registered knowledge/10 (design, model family, fitting rule, acceptance criteria C1-C5, design rule, holdout gate, decision rules, falsification conditions) BEFORE running anything; amendments D1-D3 were each written before the run they justify and log the reason.",
-     "Ran it: uniform truth is falsified for four of the group's surfaces (no finite N can produce their reported scores); pi ∝ exp(-d(H19-5)/1.85 px) makes all five anchors imply one N (12,498/12,472/12,893/13,358/12,691, spread 5.3 %) -> N = 12,691, agreeing with the blind-lattice-only 12,348 and the repo's earlier independent 12,503. Checks A1-A4, C3 (masking) and C5 (Monte Carlo <= 0.0020) all PASS.",
+     "Ran it: uniform truth is falsified for four of the group's surfaces (no finite N can produce their reported scores); pi \u221d exp(-d(H19-5)/1.85 px) makes all five anchors imply one N (12,498/12,472/12,893/13,358/12,691, spread 5.3 %) -> N = 12,691, agreeing with the blind-lattice-only 12,348 and the repo's earlier independent 12,503. Checks A1-A4, C3 (masking) and C5 (Monte Carlo <= 0.0020) all PASS.",
      "The calibrated model predicts lattice-s5 0.0914 vs 0.0904 reported, h19-5 0.1904 vs 0.1922, d1-5 0.2437 vs 0.2477, and d2-8 0.25104 - and the ceiling sweep shows d = 2.4 px / 44,090 px (exactly the shipped file) is the argmax of its whole family.",
      "Refutations recorded rather than hidden: the 6 px kernel-disjoint design beats d1-5 in 0/9 and the shipped file in 0/9 sensitivity cells; the distance-to-known-faults habitat model fails C1/C2/C4 (LOO RMSE 0.070-0.081); the two-band mixture fails both D3 adoption criteria and was not adopted.",
      "30-arm holdout factorial (value field x spacing x budget, 4 folds x draws 0,1, one shared fit per cell, 240 paired cells): spacing optimum 2.4-3.0 px, 6 px costs 0.045 DTI, habitat ranking +0.0003 (p = 0.76), habitat x score +0.0012 (p = 0.25); promotion gate FAIL on both criteria -> no arm slot-eligible, nothing new packaged.",
@@ -280,8 +280,8 @@
    "pass_1_implementation_and_verification": {
     "done": [
      "Reviewed current feature families and ranked four fresh, repository-distinct geology hypotheses in knowledge/09 before implementing H27-1; documented official pages and direct-binary limitations.",
-     "Implemented visible-catalogue directed endpoint continuation, cross-scale DEM/LiDAR scarp support, an explicit T×S feature, a randomized 2² runner, and contrast/gate analysis.",
-     "Ran the frozen H27 screen on draws 4,5 across four spatial folds (32 complete cells). Results: T +0.008120, S -0.000196, T×S -0.001622; combined TS DTI 0.151064 vs historical holdout best 0.152003389.",
+     "Implemented visible-catalogue directed endpoint continuation, cross-scale DEM/LiDAR scarp support, an explicit T\u00d7S feature, a randomized 2\u00b2 runner, and contrast/gate analysis.",
+     "Ran the frozen H27 screen on draws 4,5 across four spatial folds (32 complete cells). Results: T +0.008120, S -0.000196, T\u00d7S -0.001622; combined TS DTI 0.151064 vs historical holdout best 0.152003389.",
      "Paired TS-vs-base criteria passed (+0.007924; 4/4 folds; worst +0.002447; hug-share +0.0123), but the required absolute comparator failed. Per preregistration, no confirmation was run, no H27 TIFF was packaged, and no slot was used.",
      "Updated generated README/site, score/source/evidence records and the executive guide to distinguish format validation from holdout/slot eligibility.",
      "Re-audited score provenance: local pixel identity for the 0.2477-labelled raster is reproducible, but 0.2477 and 0.3195 remain user/owner-provided, unverified claims; updated the analysis generator, conditional model, evidence JSON, registries and site wording so no owner mirror is presented as organizer evidence.",
@@ -292,12 +292,12 @@
    "pass_2_bug_edge_case_review": {
     "found_and_fixed": [
      "Source-feed redirect review found requests could auto-follow redirects in the HEAD-to-GET fallback, ScienceBase JSON and GitHub API paths. Added a shared manual redirect policy and regression tests proving a DrivenData redirect target is not requested.",
-     "README called already-run H26 hypotheses “not yet tried”; changed to historical outcomes and added the current H27 register/results.",
+     "README called already-run H26 hypotheses \u201cnot yet tried\u201d; changed to historical outcomes and added the current H27 register/results.",
      "Site previously suggested spending weekly slots on unvalidated D2.8/exploratory files and treated a shared-mask diagnostic as a holdout gate. Removed the slot suggestion; both available surfaces are explicitly not slot-approved until a specific candidate beats 0.152003389 under the frozen holdout rule.",
      "Existing score ledger implied that user-provided 0.2477 and 0.3195 were independently verified. Marked them unverified, corrected the leaderboard source record, and separated local pixel-identity verification from competition-score verification.",
-     "Added tests for directed endpoint behavior, edge-clipped traces, empty catalogues, 2² contrasts, strict promotion gating, and redirect chains.",
+     "Added tests for directed endpoint behavior, edge-clipped traces, empty catalogues, 2\u00b2 contrasts, strict promotion gating, and redirect chains.",
      "Found stale 'portal accepted/live score' wording and organizer-template attribution in historical evidence/tests; corrected it to distinguish local file identity and owner-mirror checks from unverified organizer score/file identity.",
-     "Found an unregistered, still-tracked BDE+X1–X3 GeoTIFF whose proxy score only equalled the current 0.152003389 comparator; removed the stale downloadable artifact and added an integrity test requiring every shipped TIF to be registered and every current item to remain not slot-approved.",
+     "Found an unregistered, still-tracked BDE+X1\u2013X3 GeoTIFF whose proxy score only equalled the current 0.152003389 comparator; removed the stale downloadable artifact and added an integrity test requiring every shipped TIF to be registered and every current item to remain not slot-approved.",
      "Closed the optional exploratory-package bypass: packaging now fails closed unless a receipt records a passed fresh confirmation above the current holdout best and binds the gate to the exact TIFF SHA-256; added tests for missing, failed, tied, mismatched, non-finite and malformed receipts.",
      "Made the generated submission note itself state 'not holdout-promoted vs 0.152003389 | no slot' within the 120-character limit.",
      "Final edge review found the directed-tip feature could mutate its caller's boolean catalogue and accept fractional chunk sizes/indices through coercion; copied inputs, required integer indices/positive integer chunks, and added regressions.",
@@ -313,10 +313,10 @@
    },
    "pass_3_final_request_review": {
     "mapping": {
-     "fractional factorial and paired interactions": "Frozen 2^(5-1) family design and prior results remain; new H27 screen estimates T, S and T×S contrasts on spatial folds.",
+     "fractional factorial and paired interactions": "Frozen 2^(5-1) family design and prior results remain; new H27 screen estimates T, S and T\u00d7S contrasts on spatial folds.",
      "0.2477 and 0.3195 claims": "Local pixel identity is reproducible; scores remain unverified because no organizer page/receipt was accessed.",
      "valid download, site and upload guide": "The D2.8 file remains format-checked (receipt retained), downloadable prominently with a unique note; site warns it is not slot-approved.",
-     "ranked novel hypotheses and free official data": "Four hypotheses are ranked with layers, physical signature, missing-fault rationale, differences, planning ΔDTI/cost; official source pages and failed direct-binary retrieval are recorded.",
+     "ranked novel hypotheses and free official data": "Four hypotheses are ranked with layers, physical signature, missing-fault rationale, differences, planning \u0394DTI/cost; official source pages and failed direct-binary retrieval are recorded.",
      "holdout promotion rule": "Current 0.152003389 proxy comparator and absolute-plus-paired gate are explicit; H27 combined candidate fails absolute gate, confirmation/TIFF/slot are withheld.",
      "research base, README charter, feed": "knowledge/09 and review pass log updated; README generator/source links updated; feed redirect paths hardened and tests added.",
      "remaining limitations": "No verified live score, no external binary/schema/license validation for H27-2/3/4, no H27 TIFF, no new weekly submission.",
@@ -341,7 +341,7 @@
     "done": [
      "Read the complete README (including the verbatim owner brief), current continuation brief, and AGENTS.md; fetched origin, compared branch state, checked open PRs and remote Arena refs. origin/main had advanced to 67a4561 via a source-feed refresh; rebased only the fixed session branch onto it and kept the later 55-item feed refresh generated at 05:29 UTC.",
      "Corrected H28 language that treated conditional model implications as observed hidden-label truth or a global ceiling; separated owner-reported anchors, conditional predictions, computed diagnostics, and inference in knowledge/10, registry/irregularities.json, knowledge/00_INDEX.md, README, and generated site pages.",
-     "Preserved the committed H30-1 preregistration: paired cross-strike bridges between distinct visible components × fixed LiDAR scarp persistence; ranked three distinct hypotheses; fixed draws 6,7 for screen and 8,9 for confirmation; fixed BDE + X1–X3 + H27 tip control, 2² response contrasts, same-run controls, and the paired promotion gate.",
+     "Preserved the committed H30-1 preregistration: paired cross-strike bridges between distinct visible components \u00d7 fixed LiDAR scarp persistence; ranked three distinct hypotheses; fixed draws 6,7 for screen and 8,9 for confirmation; fixed BDE + X1\u2013X3 + H27 tip control, 2\u00b2 response contrasts, same-run controls, and the paired promotion gate.",
      "Implemented H30 paired-tip/scarp features, lazy feature gathering, frozen runner/analyzer, real-data engineering smoke script, and design/feature tests. The feature smoke built aligned Xtr=(309985,83) and Xq=(1154738,83), with finite H30 fields and pinned input/cache hashes; model_fit_executed=false and dti_evaluated=false.",
      "Regenerated README and Pages site from tracked evidence; the existing D2.8 remains format-validated but unscored and not slot-approved. No new submission raster or DrivenData access/upload was made.",
      "Ran only the registered H30-1 sequence: screen draws 6,7 (40 cells) passed the frozen same-run gate; because the screen passed, ran only confirmation draws 8,9 (40 cells), which failed. Confirmation P+S mean DTI was 0.148330 vs best same-run controls 0.149605 (gain -0.001275), positive in 1/4 folds, worst fold -0.003842, mean hug-share change +0.007223. The preregistered primary candidate stops; no new TIFF or slot is authorized."
@@ -368,8 +368,8 @@
     "method": "Re-read README owner brief and continuation brief line by line; map each request to existing artifacts and the remaining registered gate.",
     "mapping": {
      "easy one-click TIF, prominent start-of-site download, unique note, range/CRS/grid/geotransform checks, and executive guide": "Existing D2.8 download and audit receipt remain prominent and format-validated only; it is explicitly unscored/not slot-approved. No new TIF was created.",
-     "replace OFAT with five-family designed factorial and retain all prior evidence": "The completed A–E Resolution V record remains tracked and separate; H30 is an additional preregistered 2², not a rerun or substitute.",
-     "rank 3–5 genuinely new geological hypotheses with layers/signature/missing-fault rationale/differences/gain bracket/cost/data status": "Three H30 hypotheses and their novelty/rationale, uncertain planning brackets, costs, source limits, and data status are recorded in knowledge/11; H30-1 is the registered top candidate.",
+     "replace OFAT with five-family designed factorial and retain all prior evidence": "The completed A\u2013E Resolution V record remains tracked and separate; H30 is an additional preregistered 2\u00b2, not a rerun or substitute.",
+     "rank 3\u20135 genuinely new geological hypotheses with layers/signature/missing-fault rationale/differences/gain bracket/cost/data status": "Three H30 hypotheses and their novelty/rationale, uncertain planning brackets, costs, source limits, and data status are recorded in knowledge/11; H30-1 is the registered top candidate.",
      "validate before a weekly slot; confirmation only after screen; exact-file audit": "The screen passed, so only registered confirmation draws 8,9 were run; confirmation failed its mean-gain and fold-count gates. H30-1 is stopped; no TIF/slot was created or approved, and no diagnostic arm is promoted. Any future candidate requires a new preregistration, comparable same-run win, and exact-file audit.",
      "official sources, owner claims, computed values, inference, and unknowns kept separate": "H30 sources and limitations are cited in knowledge/11 and registry; H28 scope corrections are propagated; owner mirrors/scores remain explicitly unverified.",
      "current feed and clean site; never automate DrivenData": "Source feed/site/README regenerated; feed policy excludes DrivenData requests and no competition endpoint was contacted.",
@@ -454,12 +454,12 @@
    "scope": "Restore data (core+external+scored), rebuild features, forensic why H33 scored, rank 5 hypotheses, preregister GEM-FUSE1, validate on holdout, build unique TIF, lane check, update site/README/run card",
    "done": [
     "Restored 22 pinned inputs (419 MB raster + labels + template + 2 external + 11 scored) via gh api, sha256 verified; built features (64 static + 5 addons) in 29s",
-    "Forensic of 0.2778: D2.8 (44,090) -> B=1 (40,199) removes 3,891 dots within 1px, B=2 (37,654) removes 2,545 within 1<d≤2; live inversion shows shells earn 0.002-0.016 credit/dot vs 0.0556 break-even (DTI=0.2778), so deletion is denominator reduction (COMPUTED, GEMSDOE32 arena41_forensic.json replicated)",
-    "5 new hypotheses ranked in knowledge/17 (GEM-FUSE1 tops: blind magnetics × low relief + B2 prune; GEM-CURV multi-scale curvature persistence; GEM-XGRAD strain×basement; GEM-SCARP-FREE; GEM-HYDRO blocked on external fetch verification)",
-    "Preregistered GEM-FUSE1 (knowledge/18) before any fit: surface GEM-1 + prune2 emission, 4 folds × draws 0,1 screen → 2,3 confirm, paired gate >+0.001 3/4 folds worst -0.01, AUC ≤0.90, lane >0.90/>70%",
+    "Forensic of 0.2778: D2.8 (44,090) -> B=1 (40,199) removes 3,891 dots within 1px, B=2 (37,654) removes 2,545 within 1<d\u22642; live inversion shows shells earn 0.002-0.016 credit/dot vs 0.0556 break-even (DTI=0.2778), so deletion is denominator reduction (COMPUTED, GEMSDOE32 arena41_forensic.json replicated)",
+    "5 new hypotheses ranked in knowledge/17 (GEM-FUSE1 tops: blind magnetics \u00d7 low relief + B2 prune; GEM-CURV multi-scale curvature persistence; GEM-XGRAD strain\u00d7basement; GEM-SCARP-FREE; GEM-HYDRO blocked on external fetch verification)",
+    "Preregistered GEM-FUSE1 (knowledge/18) before any fit: surface GEM-1 + prune2 emission, 4 folds \u00d7 draws 0,1 screen \u2192 2,3 confirm, paired gate >+0.001 3/4 folds worst -0.01, AUC \u22640.90, lane >0.90/>70%",
     "Validated HOLDOUT-DTI screen 0.036808 vs control 0.018636 gain +0.01817 4/4 worst +0.010, confirm 0.042441 vs 0.020595 gain +0.02185 4/4 worst +0.010, AUC 0.53 (no leakage)",
-    "Built unique TIF gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif 46,181 dots (49,373 before prune), sha256 ad4bc49..., 0 NaN inside, [0,1], EPSG:32611 3730×3292 100m, outside NaN, 12/12 hard checks PASS",
-    "Prior PR #13 interpretation, superseded by current strict review: lane check vs 11 rasters showed max Spearman 0.023 and substantive overlap ≤44.6%, but lattice overlap was 100%; this triggers DUPLICATE LANE / STOP under the literal >70% rule. Reverse overlap and density interpretation do not waive the threshold.",
+    "Built unique TIF gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif 46,181 dots (49,373 before prune), sha256 ad4bc49..., 0 NaN inside, [0,1], EPSG:32611 3730\u00d73292 100m, outside NaN, 12/12 hard checks PASS",
+    "Prior PR #13 interpretation, superseded by current strict review: lane check vs 11 rasters showed max Spearman 0.023 and substantive overlap \u226444.6%, but lattice overlap was 100%; this triggers DUPLICATE LANE / STOP under the literal >70% rule. Reverse overlap and density interpretation do not waive the threshold.",
     "Updated registry/submissions.json primary to new file, README hero, index.html hero, executive-summary callout with OK-to-download vs slot-review banners, run card registry/run_card_gem_fuse1_2026-10-25.json"
    ]
   },
@@ -483,11 +483,11 @@
   },
   "pass_3": {
    "recheck_against_brief": {
-    "unique TIF with obvious OK-to-download/submit labeling": "README hero + index.html hero + executive-summary callout all show ✅ OK to download — format-validated, holdout-validated (4/4 folds, AUC 0.53, lane-clean) and ⚠️ NOT organizer-scored / slot requires selector review; note ≤97 chars; lane receipt and format receipt linked",
-    "why/how 0.2778 and can we beat it": "knowledge/17 §1-2: forensic with shell counts, live inversion, break-even 0.0556, credit 0.002-0.016 vs 0.0556, B=2 is denominator reduction, limit is detector credit density +25% needed for 0.3262 (from H28 model 0.140 vs 0.1084)",
-    "3-5 hypotheses with layers/signature/rationale/difference/ranking/validatable": "knowledge/17 table 5 hypotheses with all required columns, expected ΔDTI brackets, cost, validatable yes/no, external fetch check for GEM-HYDRO (Waterservices API not verified → deferred)",
+    "unique TIF with obvious OK-to-download/submit labeling": "README hero + index.html hero + executive-summary callout all show \u2705 OK to download \u2014 format-validated, holdout-validated (4/4 folds, AUC 0.53, lane-clean) and \u26a0\ufe0f NOT organizer-scored / slot requires selector review; note \u226497 chars; lane receipt and format receipt linked",
+    "why/how 0.2778 and can we beat it": "knowledge/17 \u00a71-2: forensic with shell counts, live inversion, break-even 0.0556, credit 0.002-0.016 vs 0.0556, B=2 is denominator reduction, limit is detector credit density +25% needed for 0.3262 (from H28 model 0.140 vs 0.1084)",
+    "3-5 hypotheses with layers/signature/rationale/difference/ranking/validatable": "knowledge/17 table 5 hypotheses with all required columns, expected \u0394DTI brackets, cost, validatable yes/no, external fetch check for GEM-HYDRO (Waterservices API not verified \u2192 deferred)",
     "validate top candidate before slot": "GEM-FUSE1 pre-registered (knowledge/18) then validated on spatial holdout before any packaging; lane and leakage canaries run before trusting result; no weekly slot spent (site says selector review required)",
-    "line-by-line verified sources": "registry/sources.json + knowledge/17 §4 with direct links (metric page 967, staff masking thread, GeoDAWN DOI, GDR 1391, pinned mirrors); no hallucinations; irregularities flagged",
+    "line-by-line verified sources": "registry/sources.json + knowledge/17 \u00a74 with direct links (metric page 967, staff masking thread, GeoDAWN DOI, GDR 1391, pinned mirrors); no hallucinations; irregularities flagged",
     "deep research stored": "knowledge/17 forensic + 5 hypotheses + knowledge/18 preregistration + evidence/gem_fuse1_validation.json + evidence/arena41_forensic replication",
     "prompt in README core values": "README still contains Maximize P(Win) / Own the Outcome header and verbatim brief reference unchanged",
     "current feed without manual checking": "site feed still blocks drivendata.org (AGENTS.md rule 3); no automation added",
@@ -568,5 +568,33 @@
    ]
   },
   "post_merge_note": "Merged with origin/main PRs #13-#16 in PR #18: adopted strict literal lane policy; H35 slot verdict amended to negative (run card addendum); KDC remains primary; H35 registered as alternate testing download."
+ },
+ "current_turn_review_2026_10_25_h37": {
+  "session_branch": "arena/97b7bf66-gemsdoe25",
+  "pass_1_implement_and_verify": [
+   "Read AGENTS.md + full README (owner brief), checked open PRs and parallel arena/* branches; fast-forwarded the session branch to origin/main (PR #19/#20) before writing.",
+   "Restored all 22 pinned inputs autonomously (scripts/restore_data.py --group all; SHA-256 verified) and rebuilt caches bit-identical to evidence/work_cache_hashes.json (static_ABCD + addons, all 6 pins OK) -- resolving the 'data placement' blocker cited by the parallel review session (knowledge/21) without DrivenData access.",
+   "Pre-registered before any fit (knowledge/22 commit 7618687; knowledge/23 commit 75696c8): 5 ranked untried hypotheses, single lane, frozen gate/draws, density-aware lane rule, automated OK-to-submit rule.",
+   "Re-verified the 0.2778 explanation line by line: fetched GEMSDOE28/32/36 rasters, required SHA-256 == focus pins, recomputed B1==D2.8&d>1, B2==D2.8&d>2 (XOR 0), GEMSDOE36==B2+1200 (evidence/h37_b2_recheck.json).",
+   "Ran 2 pre-registered hide-and-recover experiments with leakage canaries (DOC max AUC 0.560; SPR 0.522): E1 paired -0.0009 2/4 folds NEGATIVE; E2 +0.00094 vs +0.001 gate 3/4 folds NEGATIVE. No confirmation draws, no tuning on outcomes, no submission slot touched.",
+   "Built the unique session TIF (48,662 dots, content 558c08ce13bf) with the shared writer; surface Spearman checked before placement (worst |rho| 0.152) and final dots after (clean vs other-site substantive rasters, worst 0.682; duplicate vs own H31/H35 lineage 0.928); zeros-outside passes the strictest whole-array [0,1] validator.",
+   "Registered file + run card (registry/run_card_h37_2026-10-25.json) programmatically from receipts; regenerated README + site; verdict negative, OK-to-download YES / OK-to-submit NO stated at the top."
+  ],
+  "pass_2_bugs_assumptions_edge_cases": [
+   "Fixed a wrong training-matrix column slice in scripts/build_h37_candidate.py (tip index out of gather width) by matching build_h35's explicit tip column.",
+   "Test failure exposed exact-integer-lag sampling of a delta ridge; corrected the synthetic test to the smoothed ridge the real fields have (no design change).",
+   "Investigated the one identical H37-2 cell: n_cols 59 vs 61 proves SPR columns were in the fit; identical TP/FP follow from HGB not splitting on 5.7%-support columns there. Softened two text claims from 'byte-identical dots' to the actually measured 'identical TP/FP/emitted counts'.",
+   "Corrected registry/sources.json SGMC entry: its 'verification' was a hash pin, not a page read, and the 1:500,000 scale claim did not match the USGS page read this session (1:50,000-1:1,000,000; CC0; 2026 GeMS update DOI 10.5066/P1A3DQZK).",
+   "Fixed README generator still saying 'Note to paste' for a DO-NOT-SUBMIT featured file (site was fixed in PR #19; README now says research identifier only).",
+   "Ruff E702 semicolons in tests fixed; full suite 146 passed; site regeneration is timestamp-only non-idempotent (pre-existing).",
+   "Independently recomputed content_id from the shipped TIF (558c08ce13bf matches), verified ZIP holds exactly the single TIF bytes, and zeros/NaN twins agree on all footprint pixels."
+  ],
+  "pass_3_recheck_against_the_original_brief": [
+   "Unique TIF generated (not a copy; new content id; lane-clean vs other sites incl. B2 0.312) with obvious automated verdict: DO NOT SUBMIT because both holdout screens failed and it is lineage-duplicate -- exactly the honest outcome of the mandated gates.",
+   "Why-0.2778 answered quantitatively with re-verified pixel identities and break-even algebra; 'can we beat it' answered as not demonstrated, with the credit-density arithmetic and the contradictory leaderboard figures left flagged (IR-25-LEADERBOARD-CONFLICT).",
+   "3-5 ranked novel hypotheses with layers/signatures/mimics/costs in knowledge/22; top two validated on fresh-draw holdouts before any slot question; blocked external ideas named with free official sources and egress checked.",
+   "Every number labelled HOLDOUT-DTI / OWNER / projection; no score promised; DrivenData never automated; upload remains a manual owner selector step within the weekly cap.",
+   "Remaining risks recorded as irregularities (IR-25-H37-AMENDMENT, IR-25-H37-SPR-NEAR-MISS) and next steps ranked by P(Win) in knowledge/24 section 6."
+  ]
  }
 }

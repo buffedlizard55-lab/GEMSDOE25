@@ -21,7 +21,8 @@ def test_downhill_unit_points_downhill_and_is_unit():
 def test_downhill_unit_flat_is_zero_and_rejects_nan():
     u_r, u_c = downhill_unit(np.zeros((21, 21)))
     assert np.all(u_r == 0) and np.all(u_c == 0)
-    bad = np.zeros((5, 5)); bad[2, 2] = np.nan
+    bad = np.zeros((5, 5))
+    bad[2, 2] = np.nan
     with pytest.raises(ValueError):
         downhill_unit(bad)
 
@@ -73,9 +74,11 @@ def test_h37_grids_names_finite_and_nan_input_filled():
     shape = (61, 53)
     elev = np.repeat(-np.arange(shape[0])[:, None].astype(np.float32), shape[1], axis=1)
     elev[0, 0] = np.nan
-    grav = np.abs(rng.normal(size=shape)).astype(np.float32); grav[3, 3] = np.nan
+    grav = np.abs(rng.normal(size=shape)).astype(np.float32)
+    grav[3, 3] = np.nan
     tmi = np.abs(rng.normal(size=shape)).astype(np.float32) + 0.1
-    depth = (100 + 50 * rng.random(shape)).astype(np.float32); depth[5, 5] = np.nan
+    depth = (100 + 50 * rng.random(shape)).astype(np.float32)
+    depth[5, 5] = np.nan
     out = h37_grids(elev, grav, tmi, depth)
     assert list(out) == H37_NAMES
     for v in out.values():

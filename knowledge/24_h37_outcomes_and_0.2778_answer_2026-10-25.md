@@ -71,7 +71,7 @@ mostly re-reads the same ridge) — southern folds positive, northern negative,
 with no hug movement (+0.0006); (ii) the spring-alignment signal is small and
 consistent in sign (3/4 folds, worst −0.0002, pooled +0.0010) but its support is
 sparse (SPR ridge nonzero on 5.7 % of the footprint; one of eight cells emitted
-byte-identical dots with/without the columns) and it **missed the frozen gate by
+identical TP/FP/emitted counts with/without the columns) and it **missed the frozen gate by
 0.000063**. A near-miss is not a pass: no confirmation draws were run, no lags,
 sigmas or point subsets were retried. Any SPR follow-up needs a new
 pre-registration that owns this near-miss in advance.
