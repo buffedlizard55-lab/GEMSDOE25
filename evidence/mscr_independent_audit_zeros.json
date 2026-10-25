@@ -1,0 +1,57 @@
+{
+ "file": "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.tif",
+ "bytes": 845772,
+ "sha256": "0c8b7e91d7a4402e8fc9e6e840b5533669de1a17f1c1acc941c0c3bde0db7ea5",
+ "meta": {
+  "count": 1,
+  "dtypes": [
+   "float32"
+  ],
+  "crs": "EPSG:32611",
+  "epsg": 32611,
+  "shape": [
+   3730,
+   3292
+  ],
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "nodata": null
+ },
+ "footprint_px": 5167373,
+ "positive_pixels": 48442,
+ "distinct_values": [
+  0.0,
+  1.0
+ ],
+ "outside_convention": "zeros",
+ "checks": {
+  "template_footprint_px_is_5167373": true,
+  "single_band": true,
+  "dtype_float32": true,
+  "crs_epsg_32611_and_equals_template": true,
+  "shape_equals_template": true,
+  "transform_equals_template": true,
+  "transform_is_100m_243350_4508550": true,
+  "footprint_all_finite": true,
+  "footprint_values_in_0_1": true,
+  "outside_all_zero": true,
+  "outside_all_nan": false,
+  "strict_whole_array_0_le_x_le_1": true,
+  "no_emission_on_catalogue": true
+ },
+ "all_hard_checks_pass": true,
+ "zip": {
+  "file": "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.zip",
+  "sha256": "65153a8d001482fe1aa56a2399fe1162eb48ed8147fcb832a6f9cafb3d8725f8",
+  "members": [
+   "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.tif"
+  ],
+  "contains_exactly_candidate_bytes": true
+ }
+}
