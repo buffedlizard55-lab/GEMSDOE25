@@ -1,0 +1,293 @@
+{
+ "metric_type": "HOLDOUT-DTI (spatially blocked hide-and-recover proxy; NOT an organizer competition score)",
+ "evaluator_version": "gems25.holdout.Holdout(v1,4-quadrant,collar=15px,hide_frac=0.20,erode=12)+gems25.metric.dti_binary(alpha=0.2,beta=0.8,R=3.0px)",
+ "source_dirs": [
+  "evidence/h36_screen"
+ ],
+ "draws": [
+  20,
+  21
+ ],
+ "n_cells_per_arm": 8,
+ "withheld_positives_per_draw": {
+  "20": 11172,
+  "21": 11060
+ },
+ "withheld_positives_total_cell_evaluations": 22232,
+ "leakage_canary_cap": 0.9,
+ "leakage_canary_all_pass": true,
+ "leakage_canary": {
+  "H27_tip": {
+   "mean_raw_auc": 0.570317,
+   "mean_canary_auc": 0.570317,
+   "max_canary_auc": 0.635473,
+   "pass_cap_0p90": true
+  },
+  "H36_burial_regime": {
+   "mean_raw_auc": 0.475766,
+   "mean_canary_auc": 0.537192,
+   "max_canary_auc": 0.617049,
+   "pass_cap_0p90": true
+  },
+  "H36_chem_diseq": {
+   "mean_raw_auc": 0.528459,
+   "mean_canary_auc": 0.544758,
+   "max_canary_auc": 0.583563,
+   "pass_cap_0p90": true
+  },
+  "H36_gm_strike_concord": {
+   "mean_raw_auc": 0.498113,
+   "mean_canary_auc": 0.507963,
+   "max_canary_auc": 0.518461,
+   "pass_cap_0p90": true
+  },
+  "H36_grav_spi_k": {
+   "mean_raw_auc": 0.514048,
+   "mean_canary_auc": 0.526274,
+   "max_canary_auc": 0.541954,
+   "pass_cap_0p90": true
+  },
+  "H36_mag_spi_k": {
+   "mean_raw_auc": 0.507689,
+   "mean_canary_auc": 0.514018,
+   "max_canary_auc": 0.529532,
+   "pass_cap_0p90": true
+  },
+  "H36_transtension_iq": {
+   "mean_raw_auc": 0.500546,
+   "mean_canary_auc": 0.511038,
+   "max_canary_auc": 0.526879,
+   "pass_cap_0p90": true
+  },
+  "H36_up150_persist": {
+   "mean_raw_auc": 0.498994,
+   "mean_canary_auc": 0.528495,
+   "max_canary_auc": 0.56499,
+   "pass_cap_0p90": true
+  }
+ },
+ "arms": {
+  "C0_BDE_ctrl": {
+   "metric_label": "HOLDOUT-DTI",
+   "n_cells": 8,
+   "withheld_positives_sum_across_cells": 22232,
+   "pooled_dti": 0.142882,
+   "pooled_dti_bootstrap_ci95": [
+    0.133568,
+    0.151472
+   ],
+   "mean_emitted_per_cell": 11623.1,
+   "mean_hug": 0.0718,
+   "mean_auc": 0.792537,
+   "fold_means": {
+    "NE": 0.145568,
+    "NW": 0.143123,
+    "SE": 0.147965,
+    "SW": 0.136016
+   },
+   "mean_fold_dti": 0.143168,
+   "fold_t_ci95": [
+    0.134955,
+    0.151381
+   ]
+  },
+  "C1_Sub_ctrl": {
+   "metric_label": "HOLDOUT-DTI",
+   "n_cells": 8,
+   "withheld_positives_sum_across_cells": 22232,
+   "pooled_dti": 0.126284,
+   "pooled_dti_bootstrap_ci95": [
+    0.113513,
+    0.140203
+   ],
+   "mean_emitted_per_cell": 11038.2,
+   "mean_hug": 0.0868,
+   "mean_auc": 0.757236,
+   "fold_means": {
+    "NE": 0.111862,
+    "NW": 0.149771,
+    "SE": 0.122069,
+    "SW": 0.125206
+   },
+   "mean_fold_dti": 0.127227,
+   "fold_t_ci95": [
+    0.101652,
+    0.152802
+   ]
+  },
+  "H36_PoE_sapd": {
+   "metric_label": "HOLDOUT-DTI",
+   "n_cells": 8,
+   "withheld_positives_sum_across_cells": 22232,
+   "pooled_dti": 0.143115,
+   "pooled_dti_bootstrap_ci95": [
+    0.129246,
+    0.157415
+   ],
+   "mean_emitted_per_cell": 11122.0,
+   "mean_hug": 0.0928,
+   "mean_auc": 0.788169,
+   "fold_means": {
+    "NE": 0.131754,
+    "NW": 0.167911,
+    "SE": 0.142158,
+    "SW": 0.136088
+   },
+   "mean_fold_dti": 0.144478,
+   "fold_t_ci95": [
+    0.118708,
+    0.170247
+   ]
+  },
+  "H36_PoE_submod": {
+   "metric_label": "HOLDOUT-DTI",
+   "n_cells": 8,
+   "withheld_positives_sum_across_cells": 22232,
+   "pooled_dti": 0.14064,
+   "pooled_dti_bootstrap_ci95": [
+    0.123004,
+    0.157171
+   ],
+   "mean_emitted_per_cell": 8900.8,
+   "mean_hug": 0.0402,
+   "mean_auc": 0.788169,
+   "fold_means": {
+    "NE": 0.129971,
+    "NW": 0.166258,
+    "SE": 0.141675,
+    "SW": 0.130702
+   },
+   "mean_fold_dti": 0.142151,
+   "fold_t_ci95": [
+    0.115198,
+    0.169105
+   ]
+  },
+  "H36_S_submod": {
+   "metric_label": "HOLDOUT-DTI",
+   "n_cells": 8,
+   "withheld_positives_sum_across_cells": 22232,
+   "pooled_dti": 0.12759,
+   "pooled_dti_bootstrap_ci95": [
+    0.111289,
+    0.145487
+   ],
+   "mean_emitted_per_cell": 8900.8,
+   "mean_hug": 0.0375,
+   "mean_auc": 0.762498,
+   "fold_means": {
+    "NE": 0.113501,
+    "NW": 0.158189,
+    "SE": 0.11919,
+    "SW": 0.125105
+   },
+   "mean_fold_dti": 0.128996,
+   "fold_t_ci95": [
+    0.097124,
+    0.160868
+   ]
+  }
+ },
+ "comparisons": {
+  "primary_H36_PoE_submod_vs_C0_BDE_ctrl": {
+   "mean_fold_gain": -0.001017,
+   "pooled_dti_gain": -0.002242,
+   "pooled_dti_gain_ci95": [
+    -0.0144,
+    0.011063
+   ],
+   "fold_gains": {
+    "NE": -0.015597,
+    "NW": 0.023134,
+    "SE": -0.00629,
+    "SW": -0.005314
+   },
+   "folds_positive": 1,
+   "n_folds": 4,
+   "cells_positive": 4,
+   "n_cells": 8,
+   "worst_fold_gain": -0.015597,
+   "gate_pass": false
+  },
+  "subsurface_H36_S_submod_vs_C1_Sub_ctrl": {
+   "mean_fold_gain": 0.001769,
+   "pooled_dti_gain": 0.001306,
+   "pooled_dti_gain_ci95": [
+    -0.003521,
+    0.006192
+   ],
+   "fold_gains": {
+    "NE": 0.001639,
+    "NW": 0.008418,
+    "SE": -0.002878,
+    "SW": -0.000102
+   },
+   "folds_positive": 2,
+   "n_folds": 4,
+   "cells_positive": 6,
+   "n_cells": 8,
+   "worst_fold_gain": -0.002878,
+   "gate_pass": false
+  },
+  "subsurface_H36_S_submod_vs_C0_BDE_ctrl": {
+   "mean_fold_gain": -0.014172,
+   "pooled_dti_gain": -0.015292,
+   "pooled_dti_gain_ci95": [
+    -0.030344,
+    0.000517
+   ],
+   "fold_gains": {
+    "NE": -0.032067,
+    "NW": 0.015065,
+    "SE": -0.028774,
+    "SW": -0.010911
+   },
+   "folds_positive": 1,
+   "n_folds": 4,
+   "cells_positive": 3,
+   "n_cells": 8,
+   "worst_fold_gain": -0.032067,
+   "gate_pass": false
+  },
+  "ablation_submod300_vs_sapd24_on_s_PoE": {
+   "mean_fold_gain": -0.002327,
+   "pooled_dti_gain": -0.002475,
+   "pooled_dti_gain_ci95": [
+    -0.006909,
+    0.001018
+   ],
+   "fold_gains": {
+    "NE": -0.001783,
+    "NW": -0.001654,
+    "SE": -0.000483,
+    "SW": -0.005386
+   },
+   "folds_positive": 0,
+   "n_folds": 4,
+   "cells_positive": 2,
+   "n_cells": 8,
+   "worst_fold_gain": -0.005386,
+   "gate_pass": false
+  },
+  "ablation_H36_PoE_sapd_vs_C0_BDE_ctrl": {
+   "mean_fold_gain": 0.00131,
+   "pooled_dti_gain": 0.000233,
+   "pooled_dti_gain_ci95": [
+    -0.010722,
+    0.012613
+   ],
+   "fold_gains": {
+    "NE": -0.013815,
+    "NW": 0.024788,
+    "SE": -0.005807,
+    "SW": 7.2e-05
+   },
+   "folds_positive": 2,
+   "n_folds": 4,
+   "cells_positive": 4,
+   "n_cells": 8,
+   "worst_fold_gain": -0.013815,
+   "gate_pass": false
+  }
+ }
+}

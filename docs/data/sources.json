@@ -448,6 +448,62 @@
    "caveats": "Owner-reported scores only. Its assertion that catalogue-adjacent dots earn zero credit conflicts with the staff wording recorded in knowledge/03 (corrections within 300 m); treated as sibling inference.",
    "license": "",
    "reachable_from_sandbox_bash": false
+  },
+  {
+   "id": "owner-mirror-gemsdoe70",
+   "title": "GEMSDOE70 repository & shipped dual-population submodular GeoTIFF (gems70, owner-reported 0.2478)",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
+   "publisher": "Owner public GitHub repository (buffedlizard55-lab/GEMSDOE70)",
+   "kind": "sibling repository",
+   "used_for": "Highest-scoring non-H19-5 independent lane comparison (37,654 binary off-catalogue dots, sha256 prefix d0e41ce9..., 21.23% 3-px overlap vs H36_S_submod)",
+   "verified": true,
+   "verified_utc": "2026-10-25",
+   "how_verified": "Fetched README.md via authenticated gh api and GeoTIFF bytes via scripts/fetch_top_scorers.py (verified SHA-256 against registry/top_scorer_sources.json)",
+   "caveats": "The 0.2478 competition score is an owner-reported claim, not an organizer receipt.",
+   "license": "",
+   "reachable_from_sandbox_bash": true
+  },
+  {
+   "id": "thurston-smith-1997-spi",
+   "title": "Thurston, J. B., & Smith, R. S. (1997), Automatic conversion of magnetic data to depth, dip, and susceptibility contrast using the SPI (TM) method, Geophysics 62(3), 807-813",
+   "url": "https://doi.org/10.1190/1.1444190",
+   "publisher": "Society of Exploration Geophysicists (SEG)",
+   "kind": "peer-reviewed geophysics",
+   "used_for": "Physical derivation of local potential-field source wavenumber k = ||grad T|| / |A| (H36_mag_spi_k, H36_grav_spi_k) in src/gems25/h36_spigm.py",
+   "verified": false,
+   "verified_utc": null,
+   "how_verified": "Standard published SEG Geophysics citation; doi.org is blocked by sandbox network egress allowlist so DOI landing page was not fetched in bash",
+   "caveats": "External DOI host unreachable from sandbox bash.",
+   "license": "",
+   "reachable_from_sandbox_bash": false
+  },
+  {
+   "id": "elkan-2001-prior-shift",
+   "title": "Elkan, C. (2001), The Foundations of Cost-Sensitive Learning, Proceedings of IJCAI-01, 973-978",
+   "url": "https://www.ijcai.org/Proceedings/01/IJCAI-01-145.pdf",
+   "publisher": "International Joint Conferences on Artificial Intelligence (IJCAI)",
+   "kind": "peer-reviewed machine learning",
+   "used_for": "Exact Bayes prior-shift calibration mapping balanced-subsample HGB probabilities p_bal to pixel-scale fault probabilities p_cal (elkan_calibrate in src/gems25/h36_spigm.py)",
+   "verified": false,
+   "verified_utc": null,
+   "how_verified": "Standard published IJCAI-01 equation (Theorem 2); ijcai.org is blocked by sandbox network egress allowlist",
+   "caveats": "External host unreachable from sandbox bash.",
+   "license": "",
+   "reachable_from_sandbox_bash": false
+  },
+  {
+   "id": "minoux-1978-lazy-submodular",
+   "title": "Minoux, M. (1978), Accelerated greedy algorithms for maximizing submodular set functions, Optimization Techniques (Lecture Notes in Control and Information Sciences, vol. 7), Springer, 234-243",
+   "url": "https://doi.org/10.1007/BFb0006528",
+   "publisher": "Springer",
+   "kind": "peer-reviewed optimization",
+   "used_for": "Exact CELF / lazy-greedy maximization of the monotone submodular dilated-Tversky expected numerator on the 29-pixel 300 m kernel (submod300_emit in src/gems25/h36_spigm.py)",
+   "verified": false,
+   "verified_utc": null,
+   "how_verified": "Standard published submodular optimization algorithm (with (1 - 1/e) guarantee from Nemhauser, Wolsey & Fisher 1978); doi.org blocked in sandbox bash",
+   "caveats": "External DOI host unreachable from sandbox bash.",
+   "license": "",
+   "reachable_from_sandbox_bash": false
   }
  ]
 }

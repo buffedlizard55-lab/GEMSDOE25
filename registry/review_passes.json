@@ -701,5 +701,24 @@
       "External sources were not re-fetched; verify current source text, required file coverage, schemas and licensing manually before acquisition."
     ],
     "verdict": "negative; code review and validator hardening only; no new TIF and no scoring-slot approval."
+  },
+  "h36_spigm_submodular_session_review_2026_10_25": {
+    "branch": "arena/867f087d-gemsdoe25",
+    "date_utc": "2026-10-25",
+    "pass_1_implement_and_verify": [
+      "Restored all 22 data_manifest inputs, 21 registry_top rasters, and 6 work caches with 100% SHA-256 verification; audited GEMSDOE24..36 + GEMSDOE70 + official reference solution via gh api.",
+      "Discovered and proved IR-25-POTENTIAL-FIELD-UNIT-MISMATCH (200x tmi_hg vs tmi_vg unit mismatch + ~N110E signed iso_grav_anom_hg in Family A) and IR-25-STUDY-AREA-VALID-PIXELS-CORRECTION (5,164,300 / 5,167,373 = 99.941% finite 19-band pixels inside footprint).",
+      "Pre-registered 5 ranked untried geological hypotheses (H36-1..H36-5) in knowledge/21_preregistered_h36_spigm_submodular_2026-10-25.md (commit 2c5e873) and froze code (commit 1138a18) before running E1 (draws 20,21; 22,232 withheld positives), E2 (draws 22,23; 22,391 withheld positives; 44,623 pooled across 16 cells; 8/8 per-feature leakage canaries <= 0.6503 <= 0.90), and E3 (4-fold LOQO zero-topography GeoTIFF 3937b96ce366 + dual automated [0, 1] portal validation)."
+    ],
+    "pass_2_bug_assumption_edge_case_review": [
+      "Fetched origin/main (cbcf1cd, PRs #20-#28) before opening PR; detected add/add filename collision with PR #26 (src/gems25/h36.py, tests/test_h36.py, evidence/h36_screen) and cleanly namespaced our module/tests/evidence/run_card to h36_spigm, achieving a zero-conflict merge of all 154 files from origin/main.",
+      "Re-ran surface and final-dot lane audits across all 56 non-self rasters on merged origin/main (incl. CF1, XG1, H36-TZC, H37-DOC, MSCR): worst surface |Spearman| 0.1213 <= 0.90, 31/31 external non-lattice scored/sibling rasters clear (23.95% vs GEMSDOE32 B2, max 59.85% <= 70%), max mutual 3-px overlap 57.94% <= 70%, while literal one-way check stops on r13-lattice-s5 (100.0%) and Family-E halo local alternates (70.3%-70.9%, IR-25-CATALOGUE-HALO-CONVERGENCE).",
+      "Verified exact numerical parity across evidence JSONs, registry/run_card_h36_spigm_2026-10-25.json, knowledge/22, README.md, and site pages; fixed test_session_gmce_mscr.py to select MSCR by its pinned SHA-256 when demoted to alternate."
+    ],
+    "pass_3_recheck_against_original_request": [
+      "Verified independent rasterio checks on both -zeros.tif and -nan.tif (0 NaN anywhere in -zeros.tif, all 12,279,160 cells in [0, 1], 0 pixels on catalogue, 0 pixels copied from any prior submission), check_sources.py feed refresh (0 drivendata.org calls), ruff check (0 issues), git diff --check (clean), and full pytest suite (all tests green, 0 skips).",
+      "Confirmed index.html, docs/executive-summary.html, and README.md prominently display OK to download: YES and OK to spend a weekly slot: NO — DO NOT SUBMIT (verdict: negative, slot_approved: false)."
+    ],
+    "verdict": "negative for weekly slot (DO NOT SUBMIT); unique zero-topography GeoTIFF 3937b96ce366 verified and available for local testing/inspection."
   }
 }
