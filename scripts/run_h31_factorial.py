@@ -110,7 +110,8 @@ def canonical_rows() -> list[dict]:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--stage", choices=tuple(DRAWS), default="screen")
-    ap.add_argument("--out", default=None, help="run directory; refuses to overwrite any existing run")
+    ap.add_argument("--out", default=None, help="run directory; refuses to overwrite any existing run unless --resume")
+    ap.add_argument("--resume", action="store_true", help="resume an interrupted run from complete 5-arm cells")
     args = ap.parse_args()
     revision = frozen_git_revision()
     draws = DRAWS[args.stage]
@@ -120,10 +121,18 @@ def main() -> None:
         verify_passing_screen(ROOT / "evidence" / "h31_screen")
 
     out = Path(args.out) if args.out else ROOT / "evidence" / f"h31_{args.stage}"
-    if out.exists() and (not out.is_dir() or any(out.iterdir())):
-        raise SystemExit(f"refusing to overwrite a nonempty H31 run directory: {out}; choose a fresh directory")
+    if out.exists() and (not out.is_dir() or any(out.iterdir())) and not args.resume:
+        raise SystemExit(f"refusing to overwrite a nonempty H31 run directory: {out}; choose a fresh directory or --resume")
     out.mkdir(parents=True, exist_ok=True)
     design_path, cells_path, canary_path = out / "design.json", out / "cells.jsonl", out / "canary.json"
+    existing_by_cell: dict[tuple[int, int], list[dict]] = {}
+    resume_src = cells_path if cells_path.exists() else (work_dir() / f"_h31_{args.stage}_resume.jsonl")
+    if args.resume and resume_src.exists():
+        for line in resume_src.read_text().splitlines():
+            if line.strip():
+                r = json.loads(line)
+                existing_by_cell.setdefault((int(r["fold"]), int(r["draw"])), []).append(r)
+        existing_by_cell = {k: v for k, v in existing_by_cell.items() if len(v) == 5}
 
     work = work_dir()
     cache_hashes = verified_cache_hashes(work)
@@ -224,6 +233,18 @@ def main() -> None:
                             f"{c_res['canary_auc']:.4f} > {CANARY_MAX_AUC} in fold {fold} draw {draw_seed}"
                         )
                 canary_by_cell.append({"fold": fold, "fold_name": FOLDS[fold], "draw": draw_seed, "features": cell_canary})
+
+                if (fold, draw_seed) in existing_by_cell:
+                    for row in existing_by_cell[(fold, draw_seed)]:
+                        sink.write(json.dumps(row) + "\n")
+                    sink.flush()
+                    print(
+                        f"[{args.stage} fold {fold} draw {draw_seed} RESUMED 5/5 rows] "
+                        f"elapsed={time.time() - t_all:.0f}s",
+                        flush=True,
+                    )
+                    del cell
+                    continue
 
                 # 2. Fit the 3 unique HGB models for this cell
                 preds: dict[str, tuple[np.ndarray, dict]] = {}
