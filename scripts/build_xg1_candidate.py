@@ -72,16 +72,19 @@ def main() -> None:
         neg = rng.choice(cand, size=min(N_NEG, cand.size), replace=False)
         idx = np.sort(np.concatenate([pos, neg]))
         y = np.isin(idx, pos).astype(np.int8)
+        xg_idx = np.asarray(xg[:, idx]).T
+        if not np.isfinite(xg_idx).all():
+            raise SystemExit("non-finite XG1 feature value in training matrix; refusing to fit")
         X = np.hstack(
             [
                 gather_columns(ctx, E, idx, True)[:, cols],
                 tip_vis[idx].astype(np.float32)[:, None],
                 np.asarray(h34[:, idx]).T,
-                np.asarray(xg[:, idx]).T,
+                xg_idx,
             ]
         )
-        if not np.isfinite(X).all():
-            raise SystemExit("non-finite feature value in training matrix; refusing to fit")
+        # NOTE: the shared static stack intentionally carries NaN (nodata-inside + LiDAR
+        # no-data), which HistGradientBoosting treats as missing — harness convention.
         model = HistGradientBoostingClassifier(random_state=m, **HGB_PARAMS).fit(X, y)
         print(f"[{time.time() - t0:.0f}s] draw {m}: fit on {idx.size:,} rows ({int(y.sum()):,} positives)", flush=True)
         del X, E, tip_vis

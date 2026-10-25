@@ -56,10 +56,16 @@ def fit_arm(cell: Cell, base_cols, tip_col, h34_sidecar, xg_sidecar, flags, seed
         Xtr = np.hstack([Xtr, np.asarray(h34_sidecar[:, cell.train_idx]).T])
         Xq = np.hstack([Xq, np.asarray(h34_sidecar[:, cell.q]).T])
     if use_x:
-        Xtr = np.hstack([Xtr, np.asarray(xg_sidecar[:, cell.train_idx]).T])
-        Xq = np.hstack([Xq, np.asarray(xg_sidecar[:, cell.q]).T])
-    if not np.isfinite(Xtr).all() or not np.isfinite(Xq).all():
-        raise SystemExit("non-finite feature value reached the model; refusing to fit")
+        # Only the NEW XG1 columns are required finite (checked again at sidecar build).
+        # The shared static stack intentionally carries NaN (3,060 nodata-inside px/band and
+        # LiDAR no-data), which HistGradientBoosting treats as missing values — the harness
+        # convention since the factorial (gems25.experiment.fit_predict has no finite gate).
+        xg_tr = np.asarray(xg_sidecar[:, cell.train_idx]).T
+        xg_q = np.asarray(xg_sidecar[:, cell.q]).T
+        if not np.isfinite(xg_tr).all() or not np.isfinite(xg_q).all():
+            raise SystemExit("non-finite XG1 feature value reached the model; refusing to fit")
+        Xtr = np.hstack([Xtr, xg_tr])
+        Xq = np.hstack([Xq, xg_q])
     t0 = time.time()
     model = HistGradientBoostingClassifier(random_state=seed, **HGB_PARAMS).fit(Xtr, cell.y)
     t_fit = time.time() - t0
