@@ -142,3 +142,86 @@ def load_h37_sidecar(work: Path, footprint_idx: np.ndarray) -> np.ndarray:
     if names != H37_NAMES or arr.shape != (len(H37_NAMES), np.asarray(footprint_idx).size):
         raise ValueError(f"H37 sidecar mismatch: names={names} shape={arr.shape}")
     return arr
+
+
+# --- H37-2 SPR: spring-line alignment ridge (pre-registered knowledge/23) --------
+
+SPR_NAMES = ["SPR_kde_ridge", "SPR_ridge_x_elong"]
+SPR_KDE_SIGMA = 3.0
+SPR_TENSOR_SMOOTH = 2.0
+
+
+def spring_kde(rows: np.ndarray, cols: np.ndarray, shape: tuple, footprint: np.ndarray) -> np.ndarray:
+    """Gaussian KDE (sigma=3 px) of point counts, normalized by its footprint max."""
+    cnt = np.zeros(shape, np.float32)
+    r = np.asarray(rows)
+    c = np.asarray(cols)
+    ok = (r >= 0) & (r < shape[0]) & (c >= 0) & (c < shape[1])
+    np.add.at(cnt, (r[ok], c[ok]), 1.0)
+    k = gaussian_filter(cnt, SPR_KDE_SIGMA)
+    foot = np.asarray(footprint, bool)
+    mx = float(k[foot].max()) if foot.any() else 0.0
+    return (k / mx if mx > 0 else k).astype(np.float32)
+
+
+def structure_coherence(k: np.ndarray) -> np.ndarray:
+    """Structure-tensor coherence of the smoothed field, in [0, 1]; 0 where flat."""
+    s = gaussian_filter(np.asarray(k, dtype=np.float64), SPR_TENSOR_SMOOTH)
+    gy, gx = np.gradient(s)
+    jxx = gaussian_filter(gx * gx, SPR_TENSOR_SMOOTH)
+    jyy = gaussian_filter(gy * gy, SPR_TENSOR_SMOOTH)
+    jxy = gaussian_filter(gx * gy, SPR_TENSOR_SMOOTH)
+    trace = jxx + jyy
+    coh = np.sqrt((jxx - jyy) ** 2 + 4.0 * jxy**2) / (trace + 1e-12)
+    return np.where(trace > 0, np.clip(coh, 0.0, 1.0), 0.0).astype(np.float32)
+
+
+def spr_grids(rows: np.ndarray, cols: np.ndarray, footprint: np.ndarray) -> dict[str, np.ndarray]:
+    """The two frozen SPR grids (knowledge/23) from hot-spring point coordinates."""
+    foot = np.asarray(footprint, bool)
+    k = spring_kde(rows, cols, foot.shape, foot)
+    ridge = ridge_strength(k, RIDGE_SIGMA)
+    elong = structure_coherence(k)
+    return {SPR_NAMES[0]: ridge, SPR_NAMES[1]: (ridge * elong).astype(np.float32)}
+
+
+def build_spr_sidecar(csv_path: Path, footprint: np.ndarray, footprint_idx: np.ndarray,
+                      out_path: Path) -> list[str]:
+    """Build (2, n_footprint) float32 SPR sidecar from the pinned GDR 1391 CSV.
+
+    Only ``thermalclass == "Hot"`` points are used; the CSV's label-derived
+    ``dist_known_fault_px`` column is never read into a feature.
+    """
+    import pandas as pd
+
+    df = pd.read_csv(csv_path)
+    hot = df[df.thermalclass.astype(str).str.strip() == "Hot"]
+    grids = spr_grids(hot.row.to_numpy(), hot.col.to_numpy(), np.asarray(footprint, bool))
+    fi = np.asarray(footprint_idx)
+    mm = np.lib.format.open_memmap(Path(out_path), mode="w+", dtype=np.float32,
+                                   shape=(len(SPR_NAMES), fi.size))
+    for j, name in enumerate(SPR_NAMES):
+        v = np.asarray(grids[name], dtype=np.float32).ravel()[fi]
+        if not np.isfinite(v).all():
+            raise ValueError(f"SPR column {name} has non-finite values inside the footprint")
+        mm[j] = v
+    mm.flush()
+    Path(str(out_path) + ".names.json").write_text(json.dumps(SPR_NAMES))
+    return list(SPR_NAMES)
+
+
+def load_spr_sidecar(work: Path, footprint_idx: np.ndarray) -> np.ndarray:
+    """Load the SPR sidecar, building it from the pinned CSV if absent. (2, n_foot)."""
+    from .paths import data_dir
+
+    work = Path(work)
+    path = work / "h37_spr_columns.npy"
+    if not path.exists():
+        foot = np.load(work / "bands" / "_footprint.npy")
+        build_spr_sidecar(data_dir() / "external" / "gdr_wellspring_in_footprint.csv",
+                          foot, footprint_idx, path)
+    arr = np.load(path, mmap_mode="r")
+    names = json.loads(Path(str(path) + ".names.json").read_text())
+    if names != SPR_NAMES or arr.shape != (len(SPR_NAMES), np.asarray(footprint_idx).size):
+        raise ValueError(f"SPR sidecar mismatch: names={names} shape={arr.shape}")
+    return arr

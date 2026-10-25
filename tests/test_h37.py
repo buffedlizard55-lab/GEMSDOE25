@@ -80,3 +80,35 @@ def test_h37_grids_names_finite_and_nan_input_filled():
     assert list(out) == H37_NAMES
     for v in out.values():
         assert v.shape == shape and np.isfinite(v).all()
+
+
+# --- H37-2 SPR (knowledge/23) -------------------------------------------------
+from gems25.h37 import SPR_NAMES, spr_grids, spring_kde, structure_coherence  # noqa: E402
+
+
+def test_spr_collinear_points_make_a_ridge_on_the_line():
+    foot = np.ones((81, 81), bool)
+    cols = np.arange(10, 71, 3)
+    rows = np.full(cols.shape, 40)
+    out = spr_grids(rows, cols, foot)
+    assert list(out) == SPR_NAMES
+    for v in out.values():
+        assert np.isfinite(v).all()
+    assert out["SPR_kde_ridge"][40, 40] > out["SPR_kde_ridge"][5, 5] == 0.0
+    coh = structure_coherence(spring_kde(rows, cols, foot.shape, foot))
+    assert 0.0 <= float(coh.min()) and float(coh.max()) <= 1.0
+    # along the flanks of a straight line the tensor is rank-1: high coherence
+    assert float(coh[43, 40]) > 0.5
+
+
+def test_spr_empty_points_are_finite_zeros():
+    foot = np.ones((31, 31), bool)
+    out = spr_grids(np.array([], dtype=int), np.array([], dtype=int), foot)
+    for v in out.values():
+        assert np.isfinite(v).all() and float(np.abs(v).max()) == 0.0
+
+
+def test_spr_kde_normalized_and_out_of_bounds_ignored():
+    foot = np.ones((41, 41), bool)
+    k = spring_kde(np.array([20, -5, 100]), np.array([20, 20, 20]), foot.shape, foot)
+    assert float(k.max()) == pytest.approx(1.0)
