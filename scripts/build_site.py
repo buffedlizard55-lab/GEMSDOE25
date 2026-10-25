@@ -164,7 +164,7 @@ is not a lane clearance. Format verification is against an owner-mirrored templa
 <p class="small">SHA-256 <code>{cf1['sha256']}</code> · EPSG:32611 · 3730×3292 · no NaN inside footprint · all values [0,1] · <a href="{prefix}executive-summary.html">submission eligibility guide</a> · note (≤140 chars): <code>{e(cf1['note'])}</code></p></section>'''
 
     def home(prefix: str) -> str:
-        hero = latest_diagnostic(prefix) + verdict_banner(primary, prefix)
+        hero = verdict_banner(primary, prefix) + latest_diagnostic(prefix)  # featured unique file first (owner mandate); CF-1 diagnostic directly below
         cards = dl_card(primary, prefix)
         alt = "".join(f"""<div class="card"><b>{e(o['title'])}</b> {badge(o['status'], 'ok' if o['status']=='scored' else 'warn')}
 <p class="small" style="margin:.3em 0">{e(o['summary'])}</p><a class="btn alt small" href="{prefix}downloads/{o['file']}" download>↓ {e(o['file'])}</a>
