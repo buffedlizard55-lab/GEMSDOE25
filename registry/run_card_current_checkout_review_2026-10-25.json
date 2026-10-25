@@ -1,0 +1,49 @@
+{
+  "run_card_version": 1,
+  "review_date_utc": "2026-10-25",
+  "session_branch": "arena/e7df9bae-gemsdoe25",
+  "hypothesis": "No new experiment executed. Ranked follow-up hypothesis: directional, multi-scale continuity of conductive-boundary ridges aligned with bearings between GDR 1391 Quaternary vents, using cond_surf and depth_to_base_surf; distinct from the previously tested radial vent-proximity × conductivity-gradient product.",
+  "mechanism": "A blind permeable structure may connect hydrothermal manifestations without a mapped Quaternary surface trace. The proposed signal is orientation-compatible, multi-scale conductive-edge continuity, not vent distance alone. This is a testable inference, not a discovery or result.",
+  "named_non_fault_process_that_could_mimic_it": "Lithologic conductivity contacts, volcanic flow margins, shallow groundwater pathways, and non-tectonic clustering of vents.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "status": "NOT RUN",
+    "evaluator_version": "gems25.metric.dti_binary / shared gems25.holdout; alpha=0.2, beta=0.8, 300 m triangular kernel; no fresh evaluation in this review",
+    "mean": null,
+    "ci95": null,
+    "withheld_positive_count": null,
+    "reason": "No inputs/cache under data/ (only .gitkeep); no lane paragraph uniquely specified; no pre-registration or experiment run in this review."
+  },
+  "correlation_overlap_vs_registry": {
+    "label": "LANE-CHECK (not a score)",
+    "status": "NO CURRENT SURFACE OR DOTS CHECKED",
+    "strict_rule": "absolute Spearman >0.90 OR >70% of candidate dots within 3 px of any one registry raster => duplicate and stop",
+    "candidate_surface_abs_spearman": null,
+    "candidate_final_dot_overlap": null,
+    "historical_reference_only": {
+      "artifact": "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-zeros.tif",
+      "stored_overlap_with_r13_lattice": 0.9994,
+      "fresh_computation": false,
+      "status": "historical stored measurement; strict duplicate/stop; do not submit"
+    },
+    "verdict": "No current candidate lane clearance; no submission raster generated."
+  },
+  "raster": {
+    "status": "NO NEW RASTER GENERATED",
+    "sha256": null,
+    "submission_name": null,
+    "reason": "No fresh experiment or template validation; strict lane method is unspecified in the prompt and local input/registry files are absent."
+  },
+  "validator_output": {
+    "status": "NOT RUN; sample_submission.tif absent",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "fresh_template_based_validation": false,
+    "historical_receipts_are_not_fresh": true
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "submission_note_character_limit": 140,
+  "verdict": "negative — review only; no new TIF, no fresh HOLDOUT-DTI, no slot approval. Existing submission artifacts remain testing-only / DO NOT SUBMIT."
+}
