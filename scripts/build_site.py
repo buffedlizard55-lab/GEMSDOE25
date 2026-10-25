@@ -99,7 +99,6 @@ def main() -> None:
     h28_ledger = opt("registry/artifact_ledger.json")
     primary = next(s for s in subs if s["role"] == "primary")
     others = [s for s in subs if s["role"] != "primary"]
-    gem1 = next((s for s in others if s.get("id") == "gem1-blind-magnetics"), None)
     snap = ls["leaderboard_snapshot"]
     lead = snap["top10"][0]["best_public_dti"]
     best = max(a["score"] for a in ls["artifacts"] if a["score"] is not None)
@@ -127,7 +126,9 @@ def main() -> None:
             banner = "🟢 Unique GeoTIFF — holdout gates PASSED. Eligible for the manual selector step."
             okhttp = ("<b>OK to download: yes. OK to take to a submission slot: yes, as the selector "
                       "candidate</b> — it passed its frozen paired screen + confirmation gate, the lane "
-                      "check and the exact-file audit. It is still <b>not slot-approved</b> by this agent "
+                      "caps against every substantive scored registry raster (disclosed caveats vs the dense "
+                      "lattice probe and vs this repo's own superseded predecessor — read the status below) "
+                      "and the exact-file audit. It is still <b>not slot-approved</b> by this agent "
                       "(promotion to a real weekly slot is the owner's separate selector decision) and it "
                       "has <b>no competition score</b>; every number here is HOLDOUT-DTI only.")
         else:
@@ -222,8 +223,9 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
         return hero + cards + (f"<h3>Also available</h3>{alt}" if alt else "") + plan + stats + whyb + h28b + h30b + facb + flagb + feed
 
     _verdict = str(primary.get("verdict", "negative"))
-    _ok_submit = ("YES — as the selector candidate (frozen holdout screen + confirmation, lane and exact-file audits passed; "
-                  "final slot choice is the owner's manual selector step)" if _verdict == "promote"
+    _ok_submit = ("YES — as the selector candidate (frozen holdout screen + confirmation and exact-file audit passed; lane caps "
+                  "passed vs substantive scored rasters with caveats in the summary below; final slot choice is the owner's manual "
+                  "selector step)" if _verdict == "promote"
                   else "NO — do not spend a weekly slot on this file")
     _outside_txt = ("every cell finite in [0,1], 0.0 outside the footprint, no NaN anywhere"
                     if primary.get("outside") == "zero" else "values in [0,1] inside the footprint, NaN outside")

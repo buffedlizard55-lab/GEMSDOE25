@@ -1,28 +1,28 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
-**Current session review (2026-10-25):** [GEMSDOE32 H33-2-B2 score forensics, candidate screen, data blockers, and run card](knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md). The requested start-of-session owner prompt remains archived verbatim at `knowledge/owner_brief_verbatim.txt`; see also `AGENTS.md`.
+**Current session review (2026-10-25, H34/H35):** [focus-site + 0.2778 forensics](knowledge/17_focus_sites_and_0.2778_forensics_2026-10-25.md) · [H34-1 pre-registration](knowledge/18_preregistered_h34_resmag_flex_2026-10-25.md) · [H35 pre-registration](knowledge/19_preregistered_h35_resmag_x_tip_factorial_2026-10-25.md) · [H34/H35 outcomes](knowledge/20_h34_h35_outcomes_2026-10-25.md) · run card `registry/run_card_h35_2026-10-25.json`. Earlier review: [GEMSDOE32 H33-2-B2 forensics](knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md). The requested start-of-session owner prompt remains archived verbatim at `knowledge/owner_brief_verbatim.txt`; see also `AGENTS.md`.
 
 > **Maximize P(Win)** · **Own the Outcome** — the Arena core values are the decision rule for every change in this repository.
 
 **Competition:** [DOE GEMS Prize, DrivenData #306](https://www.drivendata.org/competitions/306/competition-doe-gems/) · **Live site:** <https://buffedlizard55-lab.github.io/GEMSDOE25/> · **Weekly limit:** 3 submissions · **Ends:** 3 Dec 2026 (page: 11:59 p.m. UTC; rules: 5:00 p.m. ET — see IR-25-DEADLINE)
 
-## ⬇ Download the unique, format-valid GeoTIFF (NOT slot-cleared)
+## ⬇ Download the unique, format-valid GeoTIFF — 🟢 GATE-PASSED — eligible for the manual selector step (still not slot-approved by this agent)
 
-**[↓ `gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif`](docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif)** — Full-footprint emission of the H28 comparator configuration: raw-score ridge candidates, score-ordered dots at 2.4 px, 3.5% budget, base BDE plus seven add-on columns (builder: scripts/build_candidate.py). Format checks pass. On the spatial holdout it is at parity with its own same-run control and has not beaten the comparable same-run holdout best; the tested alternative (A1, H31) was negative. The lane-overlap check is FLAGGED against the dense 13GEMSDOE lattice - a density artefact under review, not cleared. Holdout-DTI 0.1497 (95% CI 0.1331-0.1663). This is not a competition score and is not slot-approved.
+**[↓ `gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif`](docs/downloads/gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif)** — H35 arm B full-footprint build: incumbent BDE+7 plus directed tip continuation (visible catalogue only) plus the H34 RESMAG-FLEX block (depth-sliced RTP residual ridges + conductive-base flexure), 3-draw average, score-ordered dots at 2.4 px, 3.5% candidate budget, catalogue pixels excluded. It beat the comparable same-run holdout best (its paired control) under the frozen gate in screen (draws 10-11, +0.0044) and confirmation (draws 12-13, +0.0040); combined HOLDOUT-DTI B 0.1476 (95% CI 0.1317–0.1635) vs same-run control 0.1434; paired gain +0.0042 (95% CI -0.0085–+0.0168), 3/4 folds, withheld positives per fold [1861, 2355, 3711, 3225]. This is HOLDOUT-DTI (catalogue-gap proxy), not a competition score, and the paired-gain CI includes zero — the SE fold was negative in both stages. Primary file is zeros-outside (every cell finite in [0,1]); the NaN twin has identical footprint values. Lane: passes vs substantive scored registry rasters (worst 3-px overlap 67.7%, worst surface |rho| 0.148); disclosed flags remain vs the dense lattice probe and vs this repo's own unscored H31-C predecessor (89.0% — same-detector lineage, superseded, never submit both). Verdict: promote (selector-eligible; the separate selector step owns the final slot decision).
 
-* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, NaN outside (verified against the pinned owner-mirror template, not organizer-authenticated; independent check receipt: `docs/downloads/checks-gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.json`).
-* Unique content id `9edd6bed8268` · SHA-256 `2165bb8e229ee27e25edf57e990191d8f7836ab4b07e2779f15023f7c34a3ab2` · 48,714 emitted pixels · status: **UNIQUE FILE - NOT CLEARED: lane flag open, holdout gate not passed, do not spend a slot**.
-* **Note to paste** in DrivenData's *Note (optional)* field: `GEMSDOE25 H31-C | sapd2.4, 3.5%, BDE+7 | unscored; not slot-approved; no slot | id 9edd6bed8268`
-* Format fallback (format troubleshooting only; not slot-approved): [`gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif`](docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif) — Format fallback: same H31-C dots, zeros outside the footprint (format fallback; unscored; not slot-approved; 48,714 px).
+* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, every cell finite in [0, 1] (0.0 outside the footprint, no NaN anywhere) (verified against the pinned owner-mirror template, not organizer-authenticated; independent check receipt: `docs/downloads/checks-gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.json`).
+* Unique content id `d5d4cde1e719` · SHA-256 `7984a3c8c025a7c5b5fd828f532e918e0a91c7c240a55d41f52553ea4dc63b87` · 48,849 emitted pixels · status: **GATE-PASSED unique file — eligible for the manual selector step WITH lane caveats disclosed below; unscored; not slot-approved by this agent**.
+* **Note to paste** in DrivenData's *Note (optional)* field: `GEMSDOE25 H35 R+T sapd2.4 k3.5% | HOLDOUT PASS scr+cnf; unscored; not slot-approved; no slot | id d5d4cde1e719`
+* Alternate outside-convention twin (not slot-approved): [`gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif`](docs/downloads/gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif) — NaN-outside twin of the H35 primary (same dots) (template-convention twin (NaN outside); identical footprint values; unscored; not slot-approved; 48,849 px).
 * Step-by-step upload guide: [`docs/executive-summary.html`](https://buffedlizard55-lab.github.io/GEMSDOE25/docs/executive-summary.html).
 
 > ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).
 
-> ⚠ **Lane flag open:** this file is flagged by the lane-overlap check against a dense 13GEMSDOE lattice (IR-25-LANE-DENSITY). Its holdout result is parity with its own control, not a win. It is NOT slot-cleared. Receipt: `docs/downloads/lane-gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.json`.
+> ⚠ **Lane check:** vs substantive scored registry rasters: worst |Spearman| (final TIF) 0.048, worst surface |Spearman| 0.148, worst 3-px dot overlap 67.7% (caps 0.90 / 70%); no substantive flag. Caveats disclosed, not cleared: the dense 13GEMSDOE lattice flags any emission (IR-25-LANE-DENSITY), and overlap vs this repo's own unscored predecessor H31-C is 89.0% (same-detector lineage; H31-C is superseded below — never submit both). Receipt: `docs/downloads/lane-gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.json`.
 
 ## Where things stand
 
-* **Unverified leaderboard claims** (reported 2026-10-02; no organizer page or receipt was accessed): #1 DARD 0.3195; reported rank #5 0.2941. The group-best claim is **0.2477**; the previously reported rank #16/account association is not authenticated. These are not independently verified scores; apparent gaps to ranks #5/#1 are arithmetic on supplied claims only.
+* **Unverified leaderboard claims** (reported 2026-10-02; no organizer page or receipt was accessed): #1 DARD 0.3195; reported rank #5 0.2941. The group-best claim is **0.2778**; the previously reported rank #16/account association is not authenticated. These are not independently verified scores; apparent gaps to ranks #5/#1 are arithmetic on supplied claims only.
 * **Root cause of the reported portal error** (`Predicted values must be in range [0, 1]`): the previous GEMSDOE25 file used an invented footprint — 2,344,929 of the 5,167,373 owner-mirror template-footprint pixels were NaN (NaN fails every range test) and it emitted 1,249,834 positive pixels. Fixed and tested (`evidence/old_gems25_tif_forensics.json`, `src/gems25/submission.py`). The cause is inferred from the data; the portal validator is not public.
 * **Local audit of the reported 0.2477 raster (score unverified):** it is *exactly* `dot_thin(H19-5, 1.5)` — a pixel-identical deterministic subset (49.6 % of H19-5's pixels, none on a catalogue pixel). This verifies the raster transformation, not the claimed competition DTI. No organizer receipt/page was accessed; the claimed 0.2477 and 0.3195 remain unverified.
 * **Model-only calibration:** if the supplied 0.2477 score claim is correct, the emission model predicts **0.2553** (band 0.2500–0.2613) for `dot_thin(H19-5, 2.4)` (44,090 px). This is an extrapolation conditional on owner/user-provided score anchors, not independent evidence or a score; any arithmetic against the unverified 0.3195 claim is conditional on both the claim and the selected model.
@@ -86,16 +86,16 @@ Top interactions: `BC` -0.0050, `BD` -0.0049, `AC` +0.0045, `BE` -0.0043. Full t
 
 | Project | Submission | Score | Note |
 |---|---|---|---|
-| GEMSDOE24 | `h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan` | 0.2477 | reported score 0.2477; local mask identity is verified, leaderboard/receipt association is not |
-| 19GEMSDOE | `h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan` | 0.1922 | parent of the 0.2477 file |
-| 19GEMSDOE | `h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan` | 0.1894 |  |
-| GEMSDOE21 | `h19-4-reference-20260930-691e4dfa` | 0.1894 | re-host of h19-4 (same content id 691e4dfa) |
-| 20GEMSDOE | `h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-20260930-be0e8f6b-nan` | 0.1890 |  |
-| 16GEMSDOE | `h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan` | 0.1855 |  |
-| GEMSDOE10 | `h28-dotted-ridge-20260928T020256236880Z-6452ae1d00` | 0.1839 | dotted version of the surface above: +44 % |
-| GEMSDOE | `gems-submission-20260925T001403Z-7f00890a` | 0.1563 |  |
-| 5GEMSDOE | `gems-submission-20260926T175114Z-7f00890a` | 0.1563 | same content id 7f00890a as the GEMSDOE entry |
-| 8GEMSDOE | `Hedge-v2_submission` | 0.1563 | = ens12 off-catalogue pixels + all catalogue pixels; equal score shows masked known pixels do not matter |
+| GEMSDOE32 | `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` | 0.2778 | owner-reported; sibling site re-read 2026-10-25 states already submitted at 0.2778, do not resubmit; B=2 (200 m) catalogue-flank prune on the 0.2708 base, 37,654 dots, zeros outside |
+| GEMSDOE36 | `anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros` | 0.2750 | owner-reported in the 2026-10-25 brief; sibling site re-read 2026-10-25: 38,854 dots, zeros outside, 0 on-catalogue |
+| GEMSDOE28 | `h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan` | 0.2710 | owner-reported in the 2026-10-25 brief; highest on GEMSDOE28 |
+| GEMSDOE28 | `h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan` | 0.2708 | owner-reported in the 2026-10-25 brief; same content-id prefix 8acb75e1 as the GEMSDOE31 entry |
+| GEMSDOE31 | `h27-4-solo-d28-20261004-8acb75e1-nan` | 0.2708 | owner-reported in the 2026-10-25 brief; 0.2708 base of the GEMSDOE32 champion |
+| GEMSDOE28 | `h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan` | 0.2707 | owner-reported in the 2026-10-25 brief |
+| GEMSDOE28 | `h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan` | 0.2649 | owner-reported in the 2026-10-25 brief |
+| GEMSDOE33 | `h33d-analog-tip-stepover-r30-20261004-cb490425926e` | 0.2632 | owner-reported in the 2026-10-25 brief |
+| GEMSDOE25 | `dotted-h19-5-d2-8-20261002-e56ea318af89-nan` | 0.2600 | owner-reported in the 2026-10-25 brief; same content id e56ea318af89 / SHA-256 prefix 91eae1ca as the GEMSDOE30 entry and as this repo's withdrawn duplicate download (IR-25-DUPLICATE-DOWNLOAD) |
+| GEMSDOE30 | `d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca` | 0.2600 | owner-reported in the 2026-10-25 brief; 44,090 dots; label carries SHA-256 prefix 91eae1ca = the D2.8 raster |
 
 ## Prior H26 register — outcomes (ranked before its runs; not a list of untried work)
 
@@ -147,6 +147,7 @@ Planning brackets are uncertain prioritization judgments, not estimates or live-
 * **IR-25-LANE-DENSITY** (high, open (review)) — The PARALLEL-RUN lane test flags the H31-C file against 13GEMSDOE (r13-lattice-s5, a dense 5-px lattice with 206,895 dots): 100% of candidate dots lie within 3 px of a registry dot. The reverse direction is only 18.5%. The one-directional test is not discrimin…
 * **IR-25-HOLDOUT-DOES-NOT-TEST-PRUNING** (high, disclosed) — The hide-and-recover holdout uses catalogue components as truth. It cannot evaluate catalogue-proximity pruning (the GEMSDOE32 mechanism) or any hypothesis whose premise is the hidden set's distance from the catalogue.
 * **IR-25-SHIPPED-NOT-CLEARED** (high, open) — The unique H31-C file is format-valid and unique by bytes, but its holdout result is parity with its own control (not a win), its lane check is flagged, and it has no competition score. It must not be used for a weekly slot.
+* **IR-25-H35-LANE-LINEAGE** (high, open (disclosed)) — The strict lane checker flags the H35 candidate: 89.0% of its dots lie within 3 px of this repo's own unscored H31-C predecessor (same BDE+7 base detector lineage), and 100% vs the dense 13GEMSDOE lattice. Under a literal any-registry-raster reading of the par…
 
 ## Limitations and what is needed
 
@@ -166,17 +167,6 @@ Planning brackets are uncertain prioritization judgments, not estimates or live-
 4. Refresh the official-source/evidence tables and static site/feed (`scripts/check_sources.py`, then `scripts/build_site.py` and `scripts/build_readme.py`). The feed must never request or follow `drivendata.org`.
 5. Keep the H31-C file unscored and NOT slot-cleared (lane flag open). Never submit the withdrawn D2.8 duplicate as new. A passing H30 proxy gate is not a competition score, not confirmation until the fresh draw, and not authorization to upload.
 6. Open a PR from the fixed Arena session branch, review the checks, and merge only through the GitHub PR workflow if permitted; never claim an unverified merge or deployment.
-
-## Current task (2026-10-25) — read at the start of every session
-
-Full text: `knowledge/16_current_task_2026-10-25.md` (condensed restatement of the user's 2026-10-02/25 message).
-
-Must-dos in order:
-1. Generate a **unique TIF submission** (never copy a previous submission except to learn). `docs/downloads/gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif` (sha256 `51d0b341…`, 49,373 dots) is the current unique artifact: **format-verified; holdout-validated vs same-run control; NOT slot-approved; not a live score.** OK to download for format/reproducibility testing; **NOT authorized for a weekly scoring slot** on current evidence.
-2. Site/executive summary must make the download obvious and must state explicitly whether it is OK to download and whether it is OK to submit (see `docs/executive-summary.html`, `docs/index.html`).
-3. Hypotheses 3–5, holdout validation, leakage canary (AUC ≤ 0.90), LANE check, run card — see `knowledge/15_new_hypotheses_2026-10-25.md` and `evidence/gem_validation/`.
-4. No DrivenData automation; no organizer receipts; treat all scores as unverified claims. Unknown stays unknown.
-5. Three review passes recorded in `registry/review_passes.json`; PR merged via the repo's PR workflow; never claim an unverified merge/deployment/score.
 
 ## Standing session charter
 

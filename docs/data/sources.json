@@ -7,7 +7,7 @@
  "sources": [
   {
    "id": "dd-home",
-   "title": "GEMS Prize Challenge — competition page",
+   "title": "GEMS Prize Challenge \u2014 competition page",
    "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/",
    "publisher": "DrivenData / U.S. DOE Office of Geothermal (+NLR)",
    "kind": "official",
@@ -39,7 +39,7 @@
    "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/",
    "publisher": "DrivenData",
    "kind": "official",
-   "used_for": "sponsor, GeoDAWN context, citations (Mattéo 2021, Hermant 2025)",
+   "used_for": "sponsor, GeoDAWN context, citations (Matt\u00e9o 2021, Hermant 2025)",
    "verified": true,
    "verified_utc": "2026-10-02",
    "how_verified": "page text read",
@@ -70,7 +70,7 @@
    "used_for": "single GeoTIFF at 100 m, 3 submissions/week, one final submission per entity, AI-use disclosure in the narrative, finalists deliver code, deadline wording",
    "verified": true,
    "verified_utc": "2026-10-02",
-   "how_verified": "§1.1, §2, §3.1-3.6, A.1 read (chunks 0-3 of 7); remaining appendices not read",
+   "how_verified": "\u00a71.1, \u00a72, \u00a73.1-3.6, A.1 read (chunks 0-3 of 7); remaining appendices not read",
    "caveats": "Only the sections cited here were read.",
    "license": "",
    "reachable_from_sandbox_bash": false
@@ -315,7 +315,7 @@
   },
   {
    "id": "gemsdoe27-score-ledger",
-   "title": "GEMSDOE27 registry/live_scores.json — the owner's SHA-256 <-> reported-score ledger",
+   "title": "GEMSDOE27 registry/live_scores.json \u2014 the owner's SHA-256 <-> reported-score ledger",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "publisher": "buffedlizard55-lab (sibling agent session)",
    "kind": "secondary quote of owner-reported scores",
@@ -329,7 +329,7 @@
   },
   {
    "id": "dd-reference-solution",
-   "title": "Official reference solution — U-Net with Monte-Carlo cross-validation (Prof. John Lipor, Portland State University)",
+   "title": "Official reference solution \u2014 U-Net with Monte-Carlo cross-validation (Prof. John Lipor, Portland State University)",
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "publisher": "DrivenData (organizer) on GitHub; notebook author John Lipor",
    "kind": "official",
@@ -338,7 +338,7 @@
    "verified_utc": "2026-10-03",
    "how_verified": "README.md and all 21 notebook cells (unet-mc-cv-reference-solution.ipynb, 1,578,736 B) read through api.github.com from this sandbox; the channel-4 claim was then tested against the restored mirror's own per-band non-finite masks",
    "caveats": "This is github.com/drivendataorg, NOT drivendata.org, so reading it does not touch the host whose Terms of Use bar automatic access (AGENTS.md rule 3); no competition page, leaderboard or data-download page was requested. The repo carries no licence file, so quote it, do not vendor it. The notebook's data file is named data/numeric_features.tif; the owner mirror of the same 19-band raster is gems-geodawn-numerical-features.tif (418,912,844 B). The reference solution's own score is not published anywhere in the repo.",
-   "license": "no licence file in the repository (all rights reserved by default) — cite, do not copy",
+   "license": "no licence file in the repository (all rights reserved by default) \u2014 cite, do not copy",
    "reachable_from_sandbox_bash": true
   },
   {
@@ -380,6 +380,34 @@
    "verified_utc": "2026-10-03",
    "how_verified": "USGS fact sheet 2004-3033 HTML page fetched; database scope and listed fields read directly.",
    "caveats": "Published March 2004; this page describes the database at that time and is not a current coverage/status audit or evidence about the competition hidden labels.",
+   "license": "",
+   "reachable_from_sandbox_bash": false
+  },
+  {
+   "id": "sibling-gemsdoe32-site",
+   "title": "GEMSDOE32 project site (sibling; H33-2-B2 champion, Arena41/H32-WIN lanes)",
+   "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+   "publisher": "buffedlizard55-lab (owner sibling repo)",
+   "kind": "sibling-claims",
+   "used_for": "0.2778 mechanism (B=2 prune on 0.2708 base, 37,654 dots), portal-error mechanisms, current lane landscape",
+   "verified": true,
+   "verified_utc": "2026-10-25",
+   "how_verified": "page text read via agent page fetch (chunks 0-1) this session",
+   "caveats": "All scores on it are owner-reported claims, not organizer receipts; its leaderboard read is dated 2026-10-04 on the page.",
+   "license": "",
+   "reachable_from_sandbox_bash": false
+  },
+  {
+   "id": "sibling-gemsdoe36-site",
+   "title": "GEMSDOE36 project site (sibling; Anderson-PINN 0.2750 claim)",
+   "url": "https://buffedlizard55-lab.github.io/GEMSDOE36/docs/",
+   "publisher": "buffedlizard55-lab (owner sibling repo)",
+   "kind": "sibling-claims",
+   "used_for": "focus-site comparison; zeros-outside portal contract; B=2 rationale as asserted there",
+   "verified": true,
+   "verified_utc": "2026-10-25",
+   "how_verified": "page text read via agent page fetch (chunk 0) this session",
+   "caveats": "Owner-reported scores only. Its assertion that catalogue-adjacent dots earn zero credit conflicts with the staff wording recorded in knowledge/03 (corrections within 300 m); treated as sibling inference.",
    "license": "",
    "reachable_from_sandbox_bash": false
   }

@@ -46,7 +46,12 @@ def main() -> None:
     L = []
     A = L.append
     A("# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize\n")
-    A("**Current session review (2026-10-25):** [GEMSDOE32 H33-2-B2 score forensics, candidate screen, data blockers, and run card](knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md). The requested start-of-session owner prompt remains archived verbatim at `knowledge/owner_brief_verbatim.txt`; see also `AGENTS.md`.\n")
+    A("**Current session review (2026-10-25, H34/H35):** [focus-site + 0.2778 forensics](knowledge/17_focus_sites_and_0.2778_forensics_2026-10-25.md) · "
+      "[H34-1 pre-registration](knowledge/18_preregistered_h34_resmag_flex_2026-10-25.md) · "
+      "[H35 pre-registration](knowledge/19_preregistered_h35_resmag_x_tip_factorial_2026-10-25.md) · "
+      "[H34/H35 outcomes](knowledge/20_h34_h35_outcomes_2026-10-25.md) · run card `registry/run_card_h35_2026-10-25.json`. "
+      "Earlier review: [GEMSDOE32 H33-2-B2 forensics](knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md). "
+      "The requested start-of-session owner prompt remains archived verbatim at `knowledge/owner_brief_verbatim.txt`; see also `AGENTS.md`.\n")
     A("> **Maximize P(Win)** · **Own the Outcome** — the Arena core values are the decision rule for every change in this repository.\n")
     A("**Competition:** [DOE GEMS Prize, DrivenData #306](https://www.drivendata.org/competitions/306/competition-doe-gems/) · "
       "**Live site:** <https://buffedlizard55-lab.github.io/GEMSDOE25/> · **Weekly limit:** 3 submissions · "
@@ -67,7 +72,8 @@ def main() -> None:
             A(f"* Alternate outside-convention twin (not slot-approved): [`{o['file']}`](docs/downloads/{o['file']}) — {o['title']} ({o['status']}; {o['positive_pixels']:,} px).")
     A("* Step-by-step upload guide: [`docs/executive-summary.html`](https://buffedlizard55-lab.github.io/GEMSDOE25/docs/executive-summary.html).\n")
     A("> ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).\n")
-    A(f"> ⚠ **Lane flag open:** this file is flagged by the lane-overlap check against a dense 13GEMSDOE lattice (IR-25-LANE-DENSITY). Its holdout result is parity with its own control, not a win. It is NOT slot-cleared. Receipt: `docs/downloads/lane-{primary['file'][:-4]}.json`.\n")
+    if primary.get("lane_summary"):
+        A(f"> ⚠ **Lane check:** {primary['lane_summary']} Receipt: `docs/downloads/{primary.get('lane_receipt', '')}`.\n")
     A("## Where things stand\n")
     A(f"* **Unverified leaderboard claims** (reported {snap['reported_utc']}; no organizer page or receipt was accessed): #1 {snap['top10'][0]['participant']} {snap['top10'][0]['best_public_dti']:.4f}; reported rank #5 {snap['top10'][4]['best_public_dti']:.4f}. "
       f"The group-best claim is **{best:.4f}**; the previously reported rank #16/account association is not authenticated. These are not independently verified scores; apparent gaps to ranks #5/#1 are arithmetic on supplied claims only.")

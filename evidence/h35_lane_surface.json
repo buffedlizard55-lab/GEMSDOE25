@@ -1,0 +1,90 @@
+{
+ "scores": "data/work/h35_full_scores.npy",
+ "sample": 400000,
+ "rho_max": 0.9,
+ "worst_abs_spearman": 0.148344,
+ "flagged": [],
+ "rows": [
+  {
+   "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "spearman_surface": 0.003448,
+   "flag_rank": false
+  },
+  {
+   "file": "8GEMSDOE_Hedge-v2_submission.tif",
+   "spearman_surface": 0.014589,
+   "flag_rank": false
+  },
+  {
+   "file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+   "spearman_surface": 0.111179,
+   "flag_rank": false
+  },
+  {
+   "file": "gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+   "spearman_surface": 0.071411,
+   "flag_rank": false
+  },
+  {
+   "file": "gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+   "spearman_surface": 0.071745,
+   "flag_rank": false
+  },
+  {
+   "file": "gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+   "spearman_surface": 0.071319,
+   "flag_rank": false
+  },
+  {
+   "file": "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+   "spearman_surface": 0.071355,
+   "flag_rank": false
+  },
+  {
+   "file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+   "spearman_surface": 0.047285,
+   "flag_rank": false
+  },
+  {
+   "file": "gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "spearman_surface": 0.041834,
+   "flag_rank": false
+  },
+  {
+   "file": "gemsdoe-ens12-adopted-7f00890a.tif",
+   "spearman_surface": 0.084055,
+   "flag_rank": false
+  },
+  {
+   "file": "gemsdoe9-PLACEHOLDER-2314b599.tif",
+   "spearman_surface": 0.001777,
+   "flag_rank": false
+  },
+  {
+   "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "spearman_surface": 0.041834,
+   "flag_rank": false
+  },
+  {
+   "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+   "spearman_surface": 0.041834,
+   "flag_rank": false
+  },
+  {
+   "file": "gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif",
+   "spearman_surface": 0.024982,
+   "flag_rank": false
+  },
+  {
+   "file": "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+   "spearman_surface": 0.148344,
+   "flag_rank": false
+  },
+  {
+   "file": "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
+   "spearman_surface": 0.148344,
+   "flag_rank": false
+  }
+ ],
+ "note": "Registry rasters are binary/near-binary, so Spearman has heavy ties; this is the protocol's rank screen, not a Pearson correlation."
+}

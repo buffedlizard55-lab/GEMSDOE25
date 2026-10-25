@@ -281,6 +281,38 @@
    "issue": "The unique H31-C file is format-valid and unique by bytes, but its holdout result is parity with its own control (not a win), its lane check is flagged, and it has no competition score. It must not be used for a weekly slot.",
    "evidence": "registry/run_card_h31_2026-10-25.json; evidence/h31_screen/analysis.json.",
    "resolution_or_action": "The site and README label it 'UNIQUE FILE - NOT CLEARED'. A slot needs a passing confirmation, a cleared lane check, and the exact-file audit."
+  },
+  {
+   "id": "IR-25-FOCUS-SCORES-2026-10-25",
+   "severity": "medium",
+   "status": "flagged",
+   "issue": "The 2026-10-25 brief's score list assigns 0.2600 to the same D2.8 raster under three names (GEMSDOE25 dotted-h19-5-d2-8 e56ea318af89, GEMSDOE30 d28-poisson300m-offcat-44090-91eae1ca, and this repo's withdrawn duplicate download), and 0.2708 to the same content-id prefix 8acb75e1 on GEMSDOE28 and GEMSDOE31. Re-hosted copies can look like independent confirmations.",
+   "evidence": "knowledge/17_focus_sites_and_0.2778_forensics_2026-10-25.md section 5; registry/live_scores.json notes added 2026-10-25; IR-25-DUPLICATE-DOWNLOAD.",
+   "resolution_or_action": "Recorded as OWNER-reported with cross-references; the raster remains 'do not submit as new' here. Owner to confirm against submission-page receipts which physical upload each score belongs to."
+  },
+  {
+   "id": "IR-25-H35-LANE-LINEAGE",
+   "severity": "high",
+   "status": "open (disclosed)",
+   "issue": "The strict lane checker flags the H35 candidate: 89.0% of its dots lie within 3 px of this repo's own unscored H31-C predecessor (same BDE+7 base detector lineage), and 100% vs the dense 13GEMSDOE lattice. Under a literal any-registry-raster reading of the parallel-run protocol this is a duplicate flag; vs every substantive SCORED registry raster the caps pass (worst 67.7% overlap, worst surface |rho| 0.148).",
+   "evidence": "docs/downloads/lane-gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.json; evidence/h35_lane_surface.json; registry/run_card_h35_2026-10-25.json correlation_overlap_vs_registry.",
+   "resolution_or_action": "H31-C demoted to superseded alternate (never submit both); verdict is promote-eligible for the separate selector step with caveats in the site/README status. Selector must consciously accept the lineage overlap. IR-25-LANE-DENSITY (two-sided density-normalised statistic) would resolve the lattice half."
+  },
+  {
+   "id": "IR-25-H35-SE-FOLD-NEGATIVE",
+   "severity": "medium",
+   "status": "disclosed",
+   "issue": "H35's SE fold paired gain is negative in screen (-0.0023) and confirmation (-0.0054), and both stages' paired-gain 95% CIs include zero. The frozen gate passed, but the effect is geographically concentrated (NW contributes most).",
+   "evidence": "evidence/h35_screen/analysis.json; evidence/h35_confirm/analysis.json; combined_analysis.json.",
+   "resolution_or_action": "Disclosed in knowledge/20 and the run card. No post-hoc regional gating (that would be tuning on outcomes). Any regional-interaction hypothesis needs a fresh pre-registration and fresh draws."
+  },
+  {
+   "id": "IR-25-GEMSDOE32-NEW-LANES-UNCHECKED",
+   "severity": "medium",
+   "status": "open",
+   "issue": "GEMSDOE32's site (re-read 2026-10-25) now carries newer unscored lanes (Arena41 PF-only, gates failed; H32-WIN-46090) whose rasters are not in this repo's pinned registry/data manifest, so H34/H35 lane checks could not include them.",
+   "evidence": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html (fetched 2026-10-25, two chunks); registry/data_manifest.json has no 2026-10-25 GEMSDOE32 entries.",
+   "resolution_or_action": "Pin those rasters by SHA-256 into registry/data_manifest.json (owner mirrors) and re-run scripts/check_lane_duplicates.py before any future packaging in this lane family."
   }
  ]
 }
