@@ -630,6 +630,37 @@
    "Remaining risks recorded as irregularities (IR-25-H37-AMENDMENT, IR-25-H37-SPR-NEAR-MISS) and next steps ranked by P(Win) in knowledge/24 section 6."
   ]
  },
+ "gmce_mscr_session_review_2026_10_25": {
+  "branch": "arena/58bd9d81-gemsdoe25",
+  "review": {
+   "date_utc": "2026-10-25",
+   "branch": "arena/58bd9d81-gemsdoe25",
+   "pass_1_implement_and_verify": [
+    "Read AGENTS.md + full README incl. verbatim owner brief, knowledge/17 focus-site forensics and the 9-site winners; restored all SHA-pinned data groups, 30-raster artefact ledger and 21 top-scorer mirrors; rebuilt work caches bit-identical to all six 2026-10-03 pins.",
+    "Pre-registered knowledge/21 (8198a31, before any fit): 5 ranked untried hypotheses, GMCE-1 design, frozen gate (mean>0.001, >=3/4 folds, worst>=-0.01, canary<=0.90) vs same-run recomputed BEST control on frozen fresh draws.",
+    "GMCE-1 screen draws 20-21 NEGATIVE (paired -0.001209, 1/4 folds; candidate pooled HOLDOUT-DTI 0.150125 CI 0.1386-0.1616 vs BEST 0.151492; canary 0.560). No confirmation, no retune.",
+    "Pre-registered knowledge/22 (b9c5a5e) before any MSCR fit; MSCR-1 screen draws 22-23 NEGATIVE (paired -0.000373 CI -0.012393..+0.011646, 1/4 folds; pooled 0.161954 vs 0.161968; canary 0.654). No confirmation per frozen rule; 2/3 experiments used.",
+    "Re-verified the 0.2778 chain pixel-exactly on hash-pinned mirrors (scripts/verify_b2_chain.py, 12/12 identities) incl. the new finding that D1.5->D2.8 is a non-nested re-thinning (IR-25-THINNING-NONNESTED).",
+    "Built the session's unique TIF from the MSCR arm only (48,442 dots, sha256 0c8b7e91.., content id dd2bb4b09cd2) via the shared writer; zeros primary + NaN twin + single-TIF zip; independent plain-rasterio audits pass both twins; strict lane receipt = DUPLICATE/LANE OVERLAP and extended lane (50 external rows + lattice + own lineage) agrees -> verdict negative, DO NOT SUBMIT.",
+    "Registered MSCR as featured primary (KDC demoted to alternate, labels unchanged), regenerated README + 4 site pages + root mirror from registry; one JSON run card assembled solely from tracked evidence JSONs. Full suite: 153 passed."
+   ],
+   "pass_2_bugs_assumptions_edge_cases": [
+    "tests/test_kdc.py coupled KDC-specific assertions to role==primary; repointed them to the KDC entry by id (generic primary checks now exercise the MSCR file).",
+    "build_site.py stale subtexts fixed: expected-range no longer called a 'model projection'; slot-discipline callout no longer calls KDC the featured file. build_readme.py 'latest session' header now describes this session (knowledge/23).",
+    "Independent-audit script bugs (not TIF defects) found and fixed: bare-NaN JSON emission and a list-vs-tuple dtype comparison; final audits pass on both twins.",
+    "Run-card lane grouping reviewed: 'registry_top' rows (21) kept distinct from the 9 named focus winners; sparse-focus cleanliness (worst 0.38 dots) disclosed alongside, never instead of, the literal strict FAIL.",
+    "Checked generated outputs for stale KDC numbers (55,374 / 0.25-0.31 appear only in KDC rows); verified over HTTP: root, executive-summary and the TIF itself (200, 845,772 bytes).",
+    "Assumption audit: OWNER score claims (0.2778 chain, leader 0.3195 vs 0.4413) stay labelled OWNER, never ORGANIZER-CONFIRMED; HOLDOUT-DTI always labelled with evaluator, withheld counts and 95% CI; no live projection computed for the MSCR file."
+   ],
+   "pass_3_recheck_against_the_original_brief": [
+    "Focus sites GEMSDOE24/25/27/28/30/31/32/33/36 highest scorers reviewed; why/how h33-h33-2-b2 reached 0.2778 answered with re-computed pixel identities and credit-per-dot inversion (knowledge/23 S1). Can-we-beat-it answered quantitatively and empirically: not demonstrated (23 S2).",
+    "UNIQUE TIF generated (new full fit, no copied dots; 31.5% of dots within 3px of B2), unique content-addressed name + 106-char note, featured at the very start of README/site/executive-summary with OK-to-download YES for testing and OK-to-submit NO, both generated from automated evidence, no human inspection step.",
+    "Protocol honoured: one lane, surface checked before placement and final dots after, shared holdout/writer reused, canaries run, JSON run card emitted, 2 of 3 experiments, agent spent no slot and never touched drivendata.org.",
+    "Owner prompt stored (condensed, honestly labelled; verbatim copy remains in README from earlier sessions); executive-summary subpage gives exact upload steps conditioned on future approval; limitations and needed access itemised in knowledge/23 S5.",
+    "Remaining work: fetch one blocked official external layer on a networked runner (GDR 1391 / USGS heat flow), build distance-stratified holdout variant, owner decision on dense-raster lane policy and organizer receipts for scores."
+   ]
+  }
+ },
   "current_checkout_review_2026_10_25_arena_e7df9bae": {
     "session_branch": "arena/e7df9bae-gemsdoe25",
     "focus": "Review current repository against the latest user brief; fix lane-validator registry coverage and enforce pre-placement surface lane checks.",
@@ -660,7 +691,7 @@
       "holdout_dti": "NOT RUN; no fresh evaluator output, withheld-positive count, or CI",
       "raster": "NO NEW TIFF; sha256 null",
       "validator": "NOT RUN; competition sample template absent",
-      "pull_request": "not yet created at review-record time"
+      "pull_request": "PR #28 opened from arena/e7df9bae-gemsdoe25; origin/main advanced with PR #27 while this review was underway, so the session branch integrated that main update before merge-ready verification."
     },
     "open_limitations": [
       "data/ contains only .gitkeep; pinned public owner mirrors are not organizer-authenticated and no data were restored in this review.",

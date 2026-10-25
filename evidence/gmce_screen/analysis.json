@@ -1,0 +1,106 @@
+{
+ "label": "HOLDOUT-DTI",
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px/300m) via gems25.experiment.Cell.evaluate",
+ "stage": "screen",
+ "runs": [
+  "evidence/gmce_screen"
+ ],
+ "draws": [
+  20,
+  21
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "withheld_positives": {
+  "per_fold": [
+   2011,
+   2308,
+   3634,
+   3162
+  ],
+  "pooled_cells_total": 22232
+ },
+ "arms": {
+  "BEST": {
+   "fold_means": [
+    0.157311469302702,
+    0.14986150771041512,
+    0.14215811829753083,
+    0.1592497132190736
+   ],
+   "mean": 0.15214520213243038,
+   "ci95": [
+    0.13974895690034464,
+    0.16454144736451612
+   ],
+   "pooled_dti": 0.15149191402408538,
+   "pooled_ci95": [
+    0.13898366780306196,
+    0.1640001602451088
+   ]
+  },
+  "GMCE": {
+   "fold_means": [
+    0.15689206901434402,
+    0.15450239112756542,
+    0.14063456166976704,
+    0.1517174350771947
+   ],
+   "mean": 0.1509366142222178,
+   "ci95": [
+    0.1395033787525964,
+    0.16236984969183918
+   ],
+   "pooled_dti": 0.15012470683932896,
+   "pooled_ci95": [
+    0.13860116671464404,
+    0.1616482469640139
+   ]
+  }
+ },
+ "paired_GMCE_vs_BEST": {
+  "per_fold": [
+   -0.0004194002883579906,
+   0.004640883417150299,
+   -0.0015235566277637946,
+   -0.007532278141878901
+  ],
+  "mean": -0.0012085879102125968,
+  "ci95": [
+   -0.009159736511349293,
+   0.006742560690924099
+  ],
+  "folds_positive": 1,
+  "worst_fold": -0.007532278141878901,
+  "hug_per_fold": [
+   0.003632842313523066,
+   -0.002714292623018949,
+   -0.0021137833293397024,
+   -0.0038964389574007025
+  ],
+  "hug_mean": -0.001272918149059072
+ },
+ "leakage_canary": {
+  "cap": 0.9,
+  "columns": [
+   "GMCE_par_min",
+   "GMCE_signed_min",
+   "GMCE_ridge_par"
+  ],
+  "max_feature_auc": 0.5603680909521553,
+  "passed": true,
+  "context_h34_max_auc": 0.5830832054318649
+ },
+ "gate": {
+  "mean_gain_gt": 0.001,
+  "folds_positive_min": 3,
+  "worst_fold_min": -0.01,
+  "passed": false
+ },
+ "verdict": "NEGATIVE",
+ "formatted": "HOLDOUT-DTI GMCE pooled 0.150125 (fold-pooled 95% CI 0.1386-0.1616) vs BEST pooled 0.151492; paired mean gain -0.001209 (1/4 folds, worst -0.007532); withheld positives (pooled cells) 22232; evaluator gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px/300m) via gems25.experiment.Cell.evaluate"
+}

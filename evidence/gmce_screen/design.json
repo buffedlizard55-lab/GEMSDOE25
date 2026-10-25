@@ -1,0 +1,61 @@
+{
+ "hypothesis": "GMCE-1: BEST (H35-B recomputed) vs BEST + 3 gravity-magnetic coherent-edge columns",
+ "preregistration": "knowledge/21_preregistered_gmce_2026-10-25.md",
+ "draws": [
+  20,
+  21
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "arms": {
+  "BEST": {
+   "use_GMCE": false
+  },
+  "GMCE": {
+   "use_GMCE": true
+  }
+ },
+ "min_dist": 2.4,
+ "kfrac": 0.035,
+ "model": {
+  "base": "BDE",
+  "extras": [
+   "X1_K",
+   "X1_ThK",
+   "X1_UK",
+   "X2_compat",
+   "X2_compat_coh",
+   "X3_gm",
+   "X3_gd"
+  ],
+  "h34_columns": [
+   "H34_resmag_shallow_ridge",
+   "H34_resmag_mid_ridge",
+   "H34_baseflex_ridge"
+  ],
+  "tip_column": "H27_tip",
+  "gmce_columns": [
+   "GMCE_par_min",
+   "GMCE_signed_min",
+   "GMCE_ridge_par"
+  ],
+  "fit_seed": "draw"
+ },
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px) via gems25.experiment.Cell.evaluate",
+ "leakage_auc_cap": 0.9,
+ "leakage_canary_columns": [
+  "GMCE_par_min",
+  "GMCE_signed_min",
+  "GMCE_ridge_par"
+ ],
+ "gate": {
+  "arm": "GMCE vs BEST",
+  "mean_gain_gt": 0.001,
+  "folds_positive_min": 3,
+  "worst_fold_min": -0.01
+ }
+}

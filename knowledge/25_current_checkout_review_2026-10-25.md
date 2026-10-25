@@ -57,7 +57,9 @@ These are ranked for feasibility and scientific distinctiveness, not as scores o
 
 ### Test result
 
-`.venv/bin/python -m pytest -q`: **166 passed, 5 skipped**. The skipped cases require restored scored rasters or the sample-submission template. `.venv/bin/ruff check src scripts tests`: passed. `git diff --check`: passed.
+`.venv/bin/python -m pytest -q`: **166 passed, 5 skipped** at the end of the original review changes. After integrating the concurrently merged main update, the suite passed **184 passed, 5 skipped**; the skipped cases require restored scored rasters or the sample-submission template. `.venv/bin/ruff check src scripts tests`: passed after integration. `git diff --check`: passed.
+
+The integration also brought in the GMCE/MSCR lane's new experiment evidence and testing-only GeoTIFF from PR #27. Per its recorded run card, those two holdout screens were negative and the literal lane rule fails; the file is explicitly **DO NOT SUBMIT**. This review did not generate or revalidate that artifact.
 
 ## Sources and provenance
 
