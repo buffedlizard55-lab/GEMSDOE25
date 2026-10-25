@@ -26,7 +26,7 @@ DTI = TP_w / (TP_w + 0.2 FP_w + 0.8 FN_w) with triangular kernel k(d)=max(1-d/30
 
 - Pruning helps IFF hidden truth rarely lies within 200 m of a mapped trace. That prior is untestable from public data (IR-32-PROXY-01, IR-25-PROXY-LIMITS). The hide-and-recover holdout truth IS the catalogue, so it cannot validate or falsify flank pruning — it rewards hugging the catalogue.
 - The 0.2778 projection (0.2747) vs owner-claim 0.2778 differ by 0.0031, within model noise; no organizer receipt exists for either. The current organizer leader (0.4413, OWNER-CLAIM from sibling site reading drivendata leaderboard via human snapshot) would need +25% credit density (0.0652 vs 0.0520) — pruning alone cannot reach it (INFERENCE, GEMSDOE32 §4).
-- The lattice raster (13GEMSDOE, 206k dots, 5-px grid) gives 100% dot-overlap for ANY emission — a density artefact, not a lane violation (IR-25-LANE-DENSITY, logged).
+- The lattice raster (13GEMSDOE, 206k dots, 5-px grid) gives 100% candidate-dot overlap. Although the prior analysis called this a density artefact, the active user protocol makes >70% an unconditional duplicate/stop; no density exception is authorized. GEM-FUSE1 is therefore not lane-cleared and must not be submitted (IR-25-LANE-DENSITY).
 
 ## 2. Can we beat 0.2778? Honest answer (COMPUTED + INFERENCE)
 
@@ -62,4 +62,3 @@ Ranking rationale: GEM-FUSE1 ranks first by combined expected gain and immediate
 1. Validate GEM-FUSE1 on spatially-blocked hide-and-recover (folds NW/NE/SW/SE × draws 0,1 screen → 2,3 confirmation if screen passes). Response: pooled DTI α0.2 β0.8 R=3 px. Leakage canary AUC ≤0.90 per feature alone before fit. Lane check vs registry (Spearman>0.90 or >70% dots within 3 px = duplicate → stop). Gate: mean paired gain vs same-run B_crest control >+0.001, ≥3/4 folds positive, worst ≥-0.01. No weekly slot unless gate passes on exact artifact plus `src/gems25/submission.py::check_file` audit (CRS/shape/transform match, 5,167,373 footprint pixels finite in [0,1], NaN outside).
 2. Do not rebuild GEMSDOE32's H33 file; the lane check forbids >0.90 correlation or >70% dot overlap with any registry raster (PARALLEL-RUN PROTOCOL lane 1).
 3. Budget: 3 experiments / 2 h. End with one JSON run card (hypothesis; mechanism; mimicking non-fault process; holdout DTI+CI; correlation/overlap vs registry; raster sha256; validator output; submission name+≤140ch note; verdict promote/negative). Negative is a deliverable.
-

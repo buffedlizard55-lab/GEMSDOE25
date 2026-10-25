@@ -39,4 +39,3 @@ Does combining the holdout-validated blind-magnetics surface (GEM-1: norm(|grad 
 - Holdout truth = catalogue components (IR-25-PROXY-LIMITS); cannot test whether B=2 pruning would hurt if real hidden truth lies within 200 m of a mapped trace (IR-32-PROXY-01). Proxy↔live Spearman +0.33 (n=24, n.s.) — proxy win is necessary, not sufficient.
 - No new external data; bands are from competition raster + 3DEP LiDAR descriptors (both already pinned).
 - Budget 3 experiments / 2 h (protocol rule 6).
-

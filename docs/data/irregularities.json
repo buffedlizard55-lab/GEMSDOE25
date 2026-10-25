@@ -1,286 +1,302 @@
 {
- "schema_version": 3,
- "review_date_utc": "2026-10-25",
- "issues": [
-  {
-   "id": "IR-25-NAN-FOOTPRINT",
-   "severity": "critical",
-   "status": "fixed",
-   "issue": "The first GEMSDOE25 'recommended' submission (gems25-factorial-best-v1-nan.tif, sha256 fbef100f...) used an invented footprint: 2,344,929 of the 5,167,373 pixels in the pinned owner-mirror template footprint are NaN and 2,832,257 pixels outside it are finite. NaN fails every 0<=x<=1 test, consistent with the user-reported portal message 'Predicted values must be in range [0, 1]'.",
-   "evidence": "evidence/old_gems25_tif_forensics.json (recomputed from git history, commit 9b01f27, against the pinned owner-mirror template; not organizer-authenticated)",
-   "resolution_or_action": "File removed. src/gems25/submission.py takes the footprint from the template mirror, refuses NaN inside it, and check_file() reproduces the local failure (tests/test_submission.py). Cause is an inference from mirrored data, not confirmed by DrivenData; neither the template nor portal validator is organizer-authenticated here."
-  },
-  {
-   "id": "IR-25-OVER-EMISSION",
-   "severity": "critical",
-   "status": "fixed",
-   "issue": "The same file emitted 1,249,834 positive pixels (624,029 inside the footprint = 12.1 % of it; 625,805 outside it), roughly 10x the 2.34 % budget of H19-5 and 21x the dotted file's 60,069 pixels. At the measured truth density the false-positive term would swamp the score. The old site nevertheless said 'FORMAT VERIFIED' and the README credited the dot-thinning of the 0.2477 file.",
-   "evidence": "evidence/old_gems25_tif_forensics.json; evidence/why_0_2477.json",
-   "resolution_or_action": "Replaced by files whose emission is justified by the metric algebra and the hide-and-recover results."
-  },
-  {
-   "id": "IR-25-FAKE-PIPELINE",
-   "severity": "high",
-   "status": "fixed",
-   "issue": "Previous scripts were non-functional or misleading: generate_submission.py wrote synthetic diagonal stripes inside an elliptical made-up footprint; ridge_detector.py was a toy; factorial_design.py never ran (no data); the README listed src/feature_families.py, src/emission_policies.py and reference_solution/ that did not exist; the page's 'Footprint all finite / All checks pass' described a file that failed them.",
-   "evidence": "git show 9b01f27 (scripts/, README.md, docs/index.html)",
-   "resolution_or_action": "Removed from the working tree (kept in history). Replaced by tested modules under src/gems25 and executed experiments."
-  },
-  {
-   "id": "IR-25-DTI-KERNEL",
-   "severity": "high",
-   "status": "fixed",
-   "issue": "The old scripts/dti_metric.py used kernel 1 - d/(R+0.5) with R = 3 px (support 3.5 px). The official kernel is max(1 - d/R, 0) with R = 300 m = 3 px.",
-   "evidence": "scripts/dti_metric.py @ 9b01f27 vs https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
-   "resolution_or_action": "src/gems25/metric.py implements the published equations; tests compare it with a brute-force transcription."
-  },
-  {
-   "id": "IR-25-TC-BAND",
-   "severity": "high",
-   "status": "flagged",
-   "issue": "Band 6 'tc' of the mirrored training_features.tif is described as 'Tilt angle or total curvature - magnetic field derivative for edge detection', but its values (3.7-70.6, positive) equal the official GeoDAWN radiometric total count channel: Spearman 0.9999 against the USGS-release TC grid (and 0.89/0.91/0.72 with K/Th/U).",
-   "evidence": "evidence/band_semantics.json (computed)",
-   "resolution_or_action": "Band treated as radiometric TC and placed in family D (geochemical). The embedded description is wrong; do not rely on other descriptions without checking."
-  },
-  {
-   "id": "IR-25-BAND-ALIASES",
-   "severity": "medium",
-   "status": "open",
-   "issue": "Other band descriptions disagree with the organizers' page: 'deq_n100a15' = 'Distance to earthquake' vs official 'Density of earthquakes' (and two earthquake bands vs one official layer); 'depth_to_base_surf' = 'Depth to basement surface' vs official 'depth to conductive base surface'; no band is named as the 'top-of-crustal magnetic source depth estimate' (mag_anom is an nT anomaly).",
-   "evidence": "registry/data_manifest.json; https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
-   "resolution_or_action": "Family assignment (A potential-field, C strain/seismicity, D conductivity) is a design choice and documented in src/gems25/families.py. Semantics unverified."
-  },
-  {
-   "id": "IR-25-FOOTPRINT-MISMATCH",
-   "severity": "medium",
-   "status": "disclosed",
-   "issue": "The feature raster's valid mask differs from the template footprint: 3,061 in-footprint pixels are nodata and 1,540 pixels outside the footprint are finite (the same anomaly seen in early 5GEMSDOE files).",
-   "evidence": "evidence/band_semantics.json",
-   "resolution_or_action": "Features are NaN-aware; every submission uses the template footprint and is finite in [0,1] at all 5,167,373 footprint pixels."
-  },
-  {
-   "id": "IR-25-TEMPLATE",
-   "severity": "medium",
-   "status": "disclosed",
-   "issue": "The mirrored sample_submission.tif has 60,988 pixels equal to 1 exactly on the labelled fault pixels; the page says the sample 'predicts total fault absence'.",
-   "evidence": "registry/data_manifest.json; scripts/restore_data.py",
-   "resolution_or_action": "Used only as grid/footprint template; its values are never used as predictions."
-  },
-  {
-   "id": "IR-25-PROVENANCE",
-   "severity": "high",
-   "status": "open",
-   "issue": "Every competition raster here is an owner mirror (hash-pinned), not organizer-authenticated; the DrivenData data page is login-walled and the Dropbox links in the brief are unreachable from the sandbox, so byte-identity with the originals is not verified.",
-   "evidence": "registry/sources.json (dropbox-links, owner-mirror-*)",
-   "resolution_or_action": "State this in any narrative. If the owner can download the originals, run scripts/restore_data.py --verify-against <folder> (planned) or compare SHA-256 manually."
-  },
-  {
-   "id": "IR-25-PUBLIC-DATA",
-   "severity": "medium",
-   "status": "open",
-   "issue": "The owner's public sibling repositories host copies of competition data (training_features parts, labels, template). The DrivenData data terms and rules A.4/A.5 on redistribution were not read (login-walled / not retrieved).",
-   "evidence": "registry/data_manifest.json",
-   "resolution_or_action": "Owner should confirm that public hosting of competition files is permitted, or make those repos private."
-  },
-  {
-   "id": "IR-25-SCORE-IDENTITY",
-   "severity": "medium",
-   "status": "open",
-   "issue": "All competition DTI values and leaderboard/account associations in this record are user/owner-reported claims. The 0.2477 file-to-score association, 0.3195 leader claim, and previously described leaderboard rows are not independently verified: no organizer leaderboard page or receipt was accessed. File identity cannot be established by matching rounded values or owner-hosted pages.",
-   "evidence": "registry/live_scores.json (claims explicitly unverified); owner-hosted project pages are not organizer records; official organizer receipt/page not accessed.",
-   "resolution_or_action": "Do not use these values as live-score evidence, promotion evidence, or account-identity evidence. No inference about account ownership is made. Apply the current no-slot-without-a-specific holdout win policy; seek only a user-provided organizer receipt for score authentication, without automated DrivenData access."
-  },
-  {
-   "id": "IR-25-TOU",
-   "severity": "medium",
-   "status": "open",
-   "issue": "DrivenData's Terms of Use prohibit 'any robot, spider or other automatic device, process or means to access the Website for any purpose, including monitoring', and also 'any manual process to monitor or copy any of the material on the Website ... without our prior written consent'.",
-   "evidence": "https://www.drivendata.org/termsofuse/ (Prohibited Uses, read 2026-10-02)",
-   "resolution_or_action": "The feed (scripts/check_sources.py) never contacts drivendata.org (enforced by tests). The agent's one-off, user-directed page reads are recorded in registry/sources.json. Owner may wish to ask info@drivendata.org / gemsprize@nlr.gov whether recording human-read snapshots is acceptable."
-  },
-  {
-   "id": "IR-25-DEADLINE",
-   "severity": "medium",
-   "status": "open",
-   "issue": "Competition page: 'Dec. 3, 2026, 11:59 p.m. UTC'; rules A.1: 'by 5:00 p.m. ET on the prize submission deadline date'.",
-   "evidence": "https://www.drivendata.org/competitions/306/competition-doe-gems/ ; https://docs.nlr.gov/docs/fy26osti/96647.pdf",
-   "resolution_or_action": "Different time conventions for one date; confirm with gemsprize@nlr.gov. No conversion is assumed."
-  },
-  {
-   "id": "IR-25-PROXY-LIMITS",
-   "severity": "high",
-   "status": "disclosed",
-   "issue": "The hide-and-recover holdout is a catalogue-gap proxy (hidden = catalogue components), not new-fault truth. H19-5 'as emitted' is not out-of-fold (and masked all catalogue pixels), so it is only a diagnostic. Family E may be flattered by the simulation. GEMSDOE24 measured Spearman +0.33 (n=24, n.s.) between catalogue proxies and live scores.",
-   "evidence": "knowledge/04_preregistered_factorial_2026-10-02.md section 7; GEMSDOE24 knowledge/05",
-   "resolution_or_action": "Every gate result is labelled necessary-not-sufficient; hug-share is reported to detect the catalogue-hugging failure signature."
-  },
-  {
-   "id": "IR-25-LICENSE-GEODAWN",
-   "severity": "low",
-   "status": "open",
-   "issue": "The ScienceBase page text read this session shows DOI/citation but no explicit licence line; sibling docs assert CC0.",
-   "evidence": "registry/sources.json (usgs-geodawn)",
-   "resolution_or_action": "Verify at the usgs.gov data page cited by the competition before redistributing derived rasters or shipping them to the sponsor."
-  },
-  {
-   "id": "IR-25-DEM-TILES",
-   "severity": "medium",
-   "status": "open",
-   "issue": "The LiDAR scarp descriptors come from 706 of 716 3DEP tiles; the tile inventory was OCR-recovered from the competition PDF (the CSV is login-walled); 10 tiles failed; 24.7 % of the footprint has no descriptors.",
-   "evidence": "data/external/lidar_scarp_features.json in the sibling repo (owner receipt)",
-   "resolution_or_action": "Treated as a derived mirror. A raw-tile rebuild on a networked runner is the next-session upgrade."
-  },
-  {
-   "id": "IR-25-FORUM-11527",
-   "severity": "low",
-   "status": "open",
-   "issue": "The staff statement that test-fault sources/types/coverage are not disclosed (thread 11527) is carried from GEMSDOE24; staff post bodies were collapsed in this session's read.",
-   "evidence": "registry/sources.json (dd-forum-11527)",
-   "resolution_or_action": "Unverified here; do not rely on it."
-  },
-  {
-   "id": "IR-25-PAGES-ROOT",
-   "severity": "high",
-   "status": "fixed",
-   "issue": "GitHub Pages is built from main:/ (legacy), but the old site lived in docs/ with no root index.html: the public URL served the README, whose 'Executive Summary & Submit Guide' link pointed back to itself and whose download link was the broken file.",
-   "evidence": "fetch of https://buffedlizard55-lab.github.io/GEMSDOE25/ on 2026-10-02; gh api repos/.../pages",
-   "resolution_or_action": "A root index.html now carries the first-screen download; docs/executive-summary.html is the dedicated guide."
-  },
-  {
-   "id": "IR-25-DOTTED-IDENTITY",
-   "severity": "info",
-   "status": "verified",
-   "issue": "The local owner-mirrored raster labelled 0.2477 is pixel-for-pixel dot_thin(H19-5, 1.5): 60,069 of 121,131 pixels, a strict subset, zero NaN inside the owner-mirror template footprint, no emission on a catalogue pixel. This verifies only a transformation between local mirrors, not organizer file identity or its score. The local unscored alternate equals dot_thin(H19-5, 2.4) (44,090 px). The 0.2477 score and 0.3195 leaderboard claim remain unverified.",
-   "evidence": "evidence/why_0_2477.json; tests/test_group_reproduction.py; registry/live_scores.json",
-   "resolution_or_action": "Describe only local mask/pixel identity as verified; do not describe either reported DTI as independently verified. Re-uploading a parent or file is not evidence of a score. A user-provided organizer receipt is needed to authenticate a score without automated site access."
-  },
-  {
-   "id": "IR-25-FEED-SCHEDULE",
-   "severity": "medium",
-   "status": "open",
-   "issue": "The source-feed workflow has run once on GitHub (push to main after PR #2, run succeeded and the bot committed docs/data/feed.json), but no *scheduled* (cron) run has been observed yet; GitHub only runs scheduled workflows from the default branch, so the first cron run can only happen after the merge. The ScienceBase 'lastUpdated' field was empty in that first run (reader fixed afterwards, untestable from the sandbox).",
-   "evidence": "gh run list --branch main (source-feed, success); git log origin/main (github-actions[bot] 'chore(feed): refresh source feed')",
-   "resolution_or_action": "Check the Actions tab for a scheduled run within 6 hours of the merge; until then treat docs/data/feed.json's timestamp as authoritative."
-  },
-  {
-   "id": "IR-25-COMPARATOR-DRIFT",
-   "severity": "high",
-   "status": "open",
-   "issue": "The frozen hide-and-recover comparator 0.15200338908786984 (evidence/addons/emk_extension.json, variant sapd2.4 at kfrac 0.035, base BDE + the seven add-ons, draws 0-1) does NOT reproduce in this environment. Re-running that exact arm here gives 0.149667509 (fold 0 identical to 9 decimals; folds 1-3 differ by +0.0023, -0.0042, -0.0074). Re-running a single cell in isolation reproduces this session's value bit-for-bit, so this session's pipeline is deterministic; the drift is environmental. data/work is a gitignored derived cache (static_ABCD.npy, addons.npy, bands/) that this session rebuilt with numpy 2.4.6, scipy 1.17.1, scikit-learn 1.9.1, rasterio 1.4.4, and no hash of it was ever recorded, so the previous cache cannot be compared.",
-   "evidence": "evidence/h28_holdout/results.json (reproduction_check), evidence/work_cache_hashes.json (SHA-256 of every derived cache plus library versions), scripts/run_h28_holdout.py, scripts/analyze_h28_holdout.py",
-   "resolution_or_action": "Policy change recorded in knowledge/10 section 12.5: absolute comparators do not transfer between environments, so a promotion gate must recompute its comparator in the same run as the candidate. evidence/work_cache_hashes.json now exists so the next session can detect a rebuilt cache immediately. The frozen 0.152003389 is retained as the historical record and no arm was promoted on the strength of this drift."
-  },
-  {
-   "id": "IR-25-ARTEFACT-SCORE-LINK",
-   "severity": "medium",
-   "status": "open",
-   "issue": "Four of the 30 competition rasters in registry/artifact_ledger.json carry a score that appears only in the owner's brief list and has no row in the owner's own hash<->score ledger (GEMSDOE27/registry/live_scores.json): hedge-v2 (0.1563), h18-4-geologic-map-faults-gap (0.0360), h20-1 (0.1890) and h23-a-6pct (0.1002). Their bytes are verified, but the file-to-score link is not, so they are excluded from every fit.",
-   "evidence": "registry/artifact_ledger.json (rows with fit=false and score_source naming the gap), scripts/restore_artifacts.py",
-   "resolution_or_action": "Excluded from the H28 calibration (25 of 30 rows are hash-linked and used). hedge-v2 is kept as the masking validation because its statistics are provably identical to ens12's, which is hash-linked. Ask the owner to confirm these four file-to-score pairs; until then they are diagnostics only."
-  },
-  {
-   "id": "IR-25-PLACEHOLDER-OUTSIDE-FOOTPRINT",
-   "severity": "low",
-   "status": "open",
-   "issue": "The GEMSDOE9 raster whose file name says PLACEHOLDER (sha256 2314b599..., owner-reported 0.0107) holds 196,132 pixels of value 1.0 OUTSIDE the owner-mirror template footprint, plus 6,915,655 zeros; it has no NaN. This repo's verifier rejects it on outside_footprint_is_nan_or_zero, yet the owner's ledger reports a score for those exact bytes.",
-   "evidence": "COMPUTED by scripts/run_h28.py / src/gems25/submission.check_file on the fetched mirror; the score is an OWNER-reported claim",
-   "resolution_or_action": "INFERENCE, not verified: the organizer's validator does not appear to enforce a NaN-outside convention, and out-of-footprint pixels appear not to be scored (a 1.0-valued 196k-pixel overspill still scored 0.0107, consistent with only in-footprint pixels counting). Keep shipping NaN-outside (the template's own convention) - it satisfies both readings."
-  },
-  {
-   "id": "IR-25-HABITAT-MISSPECIFIED",
-   "severity": "medium",
-   "status": "closed",
-   "issue": "A single-band truth-intensity model based only on distance to known faults does not fit 25 hash-linked owner-reported DTI anchors: leave-one-artifact-out RMSE 0.0705\u20130.0812 (pre-registered threshold 0.020), blind-lattice prediction 0.2057 vs owner-reported 0.0904, and worst residual \u22120.1787. The score claims remain unverified; residuals indicate model misspecification relative to these claims and cannot be attributed solely to detector skill.",
-   "evidence": "evidence/h28_calibration/habitat_fit.json, knowledge/10 sections 5, 11 (D1) and 12.6",
-   "resolution_or_action": "Closed as a conditional negative result: the tested distance-to-known-faults habitat model did not satisfy its adoption rule, and no submission was designed from it. The fitted model does not support \"hug the known-fault halo\" as a promotion strategy. The anchor-based calibration remains conditional on unverified owner-reported scores and does not identify actual hidden-label locations."
-  },
-  {
-   "id": "IR-25-LIVE-MODEL-SCOPE",
-   "severity": "medium",
-   "status": "open",
-   "issue": "The single-band model fitted conditionally on 25 hash-linked owner-reported scores matches several in-band claims and the blind lattice within 0.004 DTI, but under-predicts owner-mirrored off-band surfaces: h25-ctx-ridge 0.0907 predicted vs 0.1280 reported, h28-dotted-ridge 0.1251 vs 0.1839, and lidarscarp-top2pct has model-implied N 22,893 vs 12,691 for the H19-5 family. These residuals show model-scope/misspecification risk relative to unverified claims; they do not establish where actual hidden labels lie or validate off-band scores. The two-band mixture was not identified (nine-anchor spread 0.514 vs 0.053; mean absolute residual worse, 0.0335 vs 0.0172).",
-   "evidence": "evidence/h28_calibration/design.json (reference_rows_under_calibrated_pi), evidence/h28_calibration/mixture.json (adoption_rule)",
-   "resolution_or_action": "Print this scope limit wherever predictions appear (README, site, knowledge/10). Treat off-band surfaces only as conditional-model exploration priorities, not evidence that hidden truth exists there. The current H30 register is separate and requires its own paired catalogue-gap proxy test."
-  },
-  {
-   "id": "IR-25-REFSOL-CHANNEL4",
-   "severity": "info",
-   "status": "closed",
-   "issue": "The official reference solution keeps a patch only where 'valid elevation data (channel 4)' is finite, i.e. channel INDEX 4 = the 5th band. In the owner mirror the 5th band's own TIFF tag reads 'Isostatic gravity anomaly slope' (category gravity_data) and detrended elevation is band 12. Read literally that would mean the mirror's band order does not match the organizer's file, which would shift every feature-family assignment in this repository.",
-   "evidence": "COMPUTED this session: per-band non-finite masks of all 19 cached bands are IDENTICAL for 18 of 19 bands (7,112,688 non-finite pixels each, i.e. exactly the area outside the 5,167,373-px footprint); the single exception is band 6 ('tc'), which differs from band 5 by 12 pixels of 12,279,292. Source: github.com/drivendataorg/gems-prize-reference-solution, notebook cell 12.",
-   "resolution_or_action": "Closed: channel 4 in the reference is a data-validity proxy, not an elevation claim - because the non-finite mask is the same for every band, testing channel 4 is equivalent to testing any channel. No band-order discrepancy exists; the mirror's own per-band tags (which the reference solution itself reads) remain the band semantics of record (evidence/band_semantics.json, knowledge/08)."
-  },
-  {
-   "id": "IR-25-REFSOL-FORMAT",
-   "severity": "low",
-   "status": "open",
-   "issue": "The official reference solution writes its submission as a single-band float32 GeoTIFF using the labels' CRS and transform and sets NO nodata tag, so its file is finite everywhere (zeros outside the study area). This repository's primary download instead writes NaN outside the footprint to match the owner-mirrored sample_submission.tif, and ships a zeros-outside fallback. The two conventions differ and the portal's validator is not public.",
-   "evidence": "github.com/drivendataorg/gems-prize-reference-solution notebook cell 19 (rasterio.open(..., 'w', dtype=y_final.dtype, crs=..., transform=...); no nodata= argument); the owner-mirrored template has NaN outside the footprint; the GEMSDOE9 PLACEHOLDER mirror holds 196,132 pixels of value 1.0 outside the footprint and is nonetheless reported scored (IR-25-PLACEHOLDER-OUTSIDE-FOOTPRINT).",
-   "resolution_or_action": "Both files are already published on the download page: the NaN-outside primary (matching the template) and the zeros-outside fallback (matching the official reference's convention). If the portal ever rejects one, submit the other; neither has been organizer-verified. No change to the shipped bytes was made on this evidence."
-  },
-  {
-   "id": "IR-25-REFSOL-THRESHOLD-HINT",
-   "severity": "info",
-   "status": "closed",
-   "issue": "The official reference solution submits continuous averaged probabilities and its author notes 'it may be advantageous to threshold this map for better scoring'. This repository proves a stronger statement and had already been shipping binary emissions.",
-   "evidence": "notebook cells 17 and 20 (y_final continuous; the third panel plots y_final > 0.1); the binary-optimality lemma recorded in evidence/h28_calibration/design.json ('binary_optimality_lemma'): for a fixed support the DTI is a linear-fractional function of p, so the optimum is bang-bang and soft values in (0,1) cannot beat a binary emission.",
-   "resolution_or_action": "Closed as corroboration: the organizer's own benchmark points the same way as the algebra. Every file this repo ships is binary 0/1, and the lemma is now stated wherever the emission design is described."
-  },
-  {
-   "id": "IR-25-FACTORIAL-STATE",
-   "severity": "medium",
-   "status": "flagged",
-   "issue": "The condensed session handoff says the required five-family fractional factorial remains unrun, but the tracked repository contains a complete earlier run: evidence/factorial/cells.jsonl has 152 rows (16 registered model arms \u00d7 8 fold/draw cells plus 3 reference arms \u00d7 8), design.json specifies the 16-run Resolution V design, and results.json reports 16 runs with no deviations. Re-running the registered analyzer reproduces results.json/results.md byte-for-byte. H30 is a separate follow-on experiment and does not replace this five-family design.",
-   "evidence": "evidence/factorial/design.json; evidence/factorial/cells.jsonl (152 JSONL rows); evidence/factorial/results.json (16 runs, 8 cells per run, deviations=[]); evidence/factorial/results.md; scripts/analyze_factorial.py (rerun 2026-10-03, output hashes unchanged).",
-   "resolution_or_action": "Treat the five-family experiment as already executed from the available, internally reproducible evidence unless stronger provenance evidence invalidates it. Do not overwrite/rerun it merely because the handoff says unrun. Preserve it as a separate registered result; H30 remains an additional experiment. The local JSONL lacks a fit timestamp, so the exact original run date/environment should not be inferred."
-  },
-  {
-   "id": "IR-25-DUPLICATE-DOWNLOAD",
-   "severity": "critical",
-   "status": "fixed (withdrawn)",
-   "issue": "The front-page 'format-validated' download gems25-dotted-h19-5-d2-8-\u2026-e56ea318af89-nan.tif (SHA-256 91eae1ca\u2026) is byte-identical to a raster the group already lists (GEMSDOE24 d2-8 alternate in registry/artifact_ledger.json and the GEMSDOE30 entry tagged 91eae1ca, 0.2600 claim). The brief requires a unique file.",
-   "evidence": "registry/submissions.json (role now 'duplicate'); scripts/check_lane_duplicates.py on the file: byte_identical=True vs data/scored/gems24-\u2026d2-8\u2026; registry/artifact_ledger.json.",
-   "resolution_or_action": "Withdrawn as primary. Replaced by the unique H31-C file (docs/downloads/gems25-h31-control-\u2026-nan.tif). The old file stays in git history and is labelled DUPLICATE. Do not submit it as new."
-  },
-  {
-   "id": "IR-25-LANE-DENSITY",
-   "severity": "high",
-   "status": "open (review)",
-   "issue": "The PARALLEL-RUN lane test flags the H31-C file against 13GEMSDOE (r13-lattice-s5, a dense 5-px lattice with 206,895 dots): 100% of candidate dots lie within 3 px of a registry dot. The reverse direction is only 18.5%. The one-directional test is not discriminative against dense registry rasters.",
-   "evidence": "docs/downloads/lane-gems25-h31-control-\u2026-nan.json (rows: 13gems_20261001_r13\u2026); computed in this session.",
-   "resolution_or_action": "Left flagged, not overridden. Human review needed: decide whether to use a two-sided or density-normalised overlap test. Until cleared, the file is NOT slot-eligible."
-  },
-  {
-   "id": "IR-25-LEADERBOARD-CONFLICT",
-   "severity": "medium",
-   "status": "flagged",
-   "issue": "The 2026-10-25 brief gives conflicting leaderboard figures: 'Current competition leaderboard GEMSDOE high score: 0.4413', then '0.3195 is the highest score right now'. The GEMSDOE32 page lists #1 0.3262, #2 DARD 0.3195, #3 0.3042 ('read 2026-10-04'). None verified here (drivendata not accessed per AGENTS.md).",
-   "evidence": "owner brief 2026-10-25; https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html (leaderboard section).",
-   "resolution_or_action": "Owner to confirm the current figures from the official leaderboard page. The repo uses no leaderboard number as a target without this."
-  },
-  {
-   "id": "IR-25-BREAKEVEN-SHORTHAND",
-   "severity": "low",
-   "status": "flagged",
-   "issue": "GEMSDOE32 gives a break-even credit of 0.0548 'from 0.2\u00b70.26 = 0.0520'. The repo's metric gives marginal_inclusion_ratio(0.26) = 0.05485 (the ratio form \u03b1D/(1\u2212\u03b1D)); the linear 0.2\u00b7D shorthand is 0.0520.",
-   "evidence": "gems25.metric.marginal_inclusion_ratio; knowledge/14_gemsdoe32_analysis_and_hypotheses_2026-10-25.md \u00a72.",
-   "resolution_or_action": "Use the ratio form. The 0.0548 figure is consistent with it."
-  },
-  {
-   "id": "IR-25-HOLDOUT-DOES-NOT-TEST-PRUNING",
-   "severity": "high",
-   "status": "disclosed",
-   "issue": "The hide-and-recover holdout uses catalogue components as truth. It cannot evaluate catalogue-proximity pruning (the GEMSDOE32 mechanism) or any hypothesis whose premise is the hidden set's distance from the catalogue.",
-   "evidence": "src/gems25/holdout.py docstring; GEMSDOE32 IR-32-PROXY-01; knowledge/14 \u00a73.",
-   "resolution_or_action": "Propose a new holdout whose truth is restricted to components at least 200 m from the visible traces, pre-registered before use (H32-1). Not run."
-  },
-  {
-   "id": "IR-25-SHIPPED-NOT-CLEARED",
-   "severity": "high",
-   "status": "open",
-   "issue": "The unique H31-C file is format-valid and unique by bytes, but its holdout result is parity with its own control (not a win), its lane check is flagged, and it has no competition score. It must not be used for a weekly slot.",
-   "evidence": "registry/run_card_h31_2026-10-25.json; evidence/h31_screen/analysis.json.",
-   "resolution_or_action": "The site and README label it 'UNIQUE FILE - NOT CLEARED'. A slot needs a passing confirmation, a cleared lane check, and the exact-file audit."
-  }
- ]
+  "schema_version": 3,
+  "review_date_utc": "2026-10-25",
+  "issues": [
+    {
+      "id": "IR-25-NAN-FOOTPRINT",
+      "severity": "critical",
+      "status": "fixed",
+      "issue": "The first GEMSDOE25 'recommended' submission (gems25-factorial-best-v1-nan.tif, sha256 fbef100f...) used an invented footprint: 2,344,929 of the 5,167,373 pixels in the pinned owner-mirror template footprint are NaN and 2,832,257 pixels outside it are finite. NaN fails every 0<=x<=1 test, consistent with the user-reported portal message 'Predicted values must be in range [0, 1]'.",
+      "evidence": "evidence/old_gems25_tif_forensics.json (recomputed from git history, commit 9b01f27, against the pinned owner-mirror template; not organizer-authenticated)",
+      "resolution_or_action": "File removed. src/gems25/submission.py takes the footprint from the template mirror, refuses NaN inside it, and check_file() reproduces the local failure (tests/test_submission.py). Cause is an inference from mirrored data, not confirmed by DrivenData; neither the template nor portal validator is organizer-authenticated here."
+    },
+    {
+      "id": "IR-25-OVER-EMISSION",
+      "severity": "critical",
+      "status": "fixed",
+      "issue": "The same file emitted 1,249,834 positive pixels (624,029 inside the footprint = 12.1 % of it; 625,805 outside it), roughly 10x the 2.34 % budget of H19-5 and 21x the dotted file's 60,069 pixels. At the measured truth density the false-positive term would swamp the score. The old site nevertheless said 'FORMAT VERIFIED' and the README credited the dot-thinning of the 0.2477 file.",
+      "evidence": "evidence/old_gems25_tif_forensics.json; evidence/why_0_2477.json",
+      "resolution_or_action": "Replaced by files whose emission is justified by the metric algebra and the hide-and-recover results."
+    },
+    {
+      "id": "IR-25-FAKE-PIPELINE",
+      "severity": "high",
+      "status": "fixed",
+      "issue": "Previous scripts were non-functional or misleading: generate_submission.py wrote synthetic diagonal stripes inside an elliptical made-up footprint; ridge_detector.py was a toy; factorial_design.py never ran (no data); the README listed src/feature_families.py, src/emission_policies.py and reference_solution/ that did not exist; the page's 'Footprint all finite / All checks pass' described a file that failed them.",
+      "evidence": "git show 9b01f27 (scripts/, README.md, docs/index.html)",
+      "resolution_or_action": "Removed from the working tree (kept in history). Replaced by tested modules under src/gems25 and executed experiments."
+    },
+    {
+      "id": "IR-25-DTI-KERNEL",
+      "severity": "high",
+      "status": "fixed",
+      "issue": "The old scripts/dti_metric.py used kernel 1 - d/(R+0.5) with R = 3 px (support 3.5 px). The official kernel is max(1 - d/R, 0) with R = 300 m = 3 px.",
+      "evidence": "scripts/dti_metric.py @ 9b01f27 vs https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "resolution_or_action": "src/gems25/metric.py implements the published equations; tests compare it with a brute-force transcription."
+    },
+    {
+      "id": "IR-25-TC-BAND",
+      "severity": "high",
+      "status": "flagged",
+      "issue": "Band 6 'tc' of the mirrored training_features.tif is described as 'Tilt angle or total curvature - magnetic field derivative for edge detection', but its values (3.7-70.6, positive) equal the official GeoDAWN radiometric total count channel: Spearman 0.9999 against the USGS-release TC grid (and 0.89/0.91/0.72 with K/Th/U).",
+      "evidence": "evidence/band_semantics.json (computed)",
+      "resolution_or_action": "Band treated as radiometric TC and placed in family D (geochemical). The embedded description is wrong; do not rely on other descriptions without checking."
+    },
+    {
+      "id": "IR-25-BAND-ALIASES",
+      "severity": "medium",
+      "status": "open",
+      "issue": "Other band descriptions disagree with the organizers' page: 'deq_n100a15' = 'Distance to earthquake' vs official 'Density of earthquakes' (and two earthquake bands vs one official layer); 'depth_to_base_surf' = 'Depth to basement surface' vs official 'depth to conductive base surface'; no band is named as the 'top-of-crustal magnetic source depth estimate' (mag_anom is an nT anomaly).",
+      "evidence": "registry/data_manifest.json; https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "resolution_or_action": "Family assignment (A potential-field, C strain/seismicity, D conductivity) is a design choice and documented in src/gems25/families.py. Semantics unverified."
+    },
+    {
+      "id": "IR-25-FOOTPRINT-MISMATCH",
+      "severity": "medium",
+      "status": "disclosed",
+      "issue": "The feature raster's valid mask differs from the template footprint: 3,061 in-footprint pixels are nodata and 1,540 pixels outside the footprint are finite (the same anomaly seen in early 5GEMSDOE files).",
+      "evidence": "evidence/band_semantics.json",
+      "resolution_or_action": "Features are NaN-aware; every submission uses the template footprint and is finite in [0,1] at all 5,167,373 footprint pixels."
+    },
+    {
+      "id": "IR-25-TEMPLATE",
+      "severity": "medium",
+      "status": "disclosed",
+      "issue": "The mirrored sample_submission.tif has 60,988 pixels equal to 1 exactly on the labelled fault pixels; the page says the sample 'predicts total fault absence'.",
+      "evidence": "registry/data_manifest.json; scripts/restore_data.py",
+      "resolution_or_action": "Used only as grid/footprint template; its values are never used as predictions."
+    },
+    {
+      "id": "IR-25-PROVENANCE",
+      "severity": "high",
+      "status": "open",
+      "issue": "Every competition raster here is an owner mirror (hash-pinned), not organizer-authenticated; the DrivenData data page is login-walled and the Dropbox links in the brief are unreachable from the sandbox, so byte-identity with the originals is not verified.",
+      "evidence": "registry/sources.json (dropbox-links, owner-mirror-*)",
+      "resolution_or_action": "State this in any narrative. If the owner can download the originals, run scripts/restore_data.py --verify-against <folder> (planned) or compare SHA-256 manually."
+    },
+    {
+      "id": "IR-25-PUBLIC-DATA",
+      "severity": "medium",
+      "status": "open",
+      "issue": "The owner's public sibling repositories host copies of competition data (training_features parts, labels, template). The DrivenData data terms and rules A.4/A.5 on redistribution were not read (login-walled / not retrieved).",
+      "evidence": "registry/data_manifest.json",
+      "resolution_or_action": "Owner should confirm that public hosting of competition files is permitted, or make those repos private."
+    },
+    {
+      "id": "IR-25-SCORE-IDENTITY",
+      "severity": "medium",
+      "status": "open",
+      "issue": "All competition DTI values and leaderboard/account associations in this record are user/owner-reported claims. The 0.2477 file-to-score association, 0.3195 leader claim, and previously described leaderboard rows are not independently verified: no organizer leaderboard page or receipt was accessed. File identity cannot be established by matching rounded values or owner-hosted pages.",
+      "evidence": "registry/live_scores.json (claims explicitly unverified); owner-hosted project pages are not organizer records; official organizer receipt/page not accessed.",
+      "resolution_or_action": "Do not use these values as live-score evidence, promotion evidence, or account-identity evidence. No inference about account ownership is made. Apply the current no-slot-without-a-specific holdout win policy; seek only a user-provided organizer receipt for score authentication, without automated DrivenData access."
+    },
+    {
+      "id": "IR-25-TOU",
+      "severity": "medium",
+      "status": "open",
+      "issue": "DrivenData's Terms of Use prohibit 'any robot, spider or other automatic device, process or means to access the Website for any purpose, including monitoring', and also 'any manual process to monitor or copy any of the material on the Website ... without our prior written consent'.",
+      "evidence": "https://www.drivendata.org/termsofuse/ (Prohibited Uses, read 2026-10-02)",
+      "resolution_or_action": "The feed (scripts/check_sources.py) never contacts drivendata.org (enforced by tests). The agent's one-off, user-directed page reads are recorded in registry/sources.json. Owner may wish to ask info@drivendata.org / gemsprize@nlr.gov whether recording human-read snapshots is acceptable."
+    },
+    {
+      "id": "IR-25-DEADLINE",
+      "severity": "medium",
+      "status": "open",
+      "issue": "Competition page: 'Dec. 3, 2026, 11:59 p.m. UTC'; rules A.1: 'by 5:00 p.m. ET on the prize submission deadline date'.",
+      "evidence": "https://www.drivendata.org/competitions/306/competition-doe-gems/ ; https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "resolution_or_action": "Different time conventions for one date; confirm with gemsprize@nlr.gov. No conversion is assumed."
+    },
+    {
+      "id": "IR-25-PROXY-LIMITS",
+      "severity": "high",
+      "status": "disclosed",
+      "issue": "The hide-and-recover holdout is a catalogue-gap proxy (hidden = catalogue components), not new-fault truth. H19-5 'as emitted' is not out-of-fold (and masked all catalogue pixels), so it is only a diagnostic. Family E may be flattered by the simulation. GEMSDOE24 measured Spearman +0.33 (n=24, n.s.) between catalogue proxies and live scores.",
+      "evidence": "knowledge/04_preregistered_factorial_2026-10-02.md section 7; GEMSDOE24 knowledge/05",
+      "resolution_or_action": "Every gate result is labelled necessary-not-sufficient; hug-share is reported to detect the catalogue-hugging failure signature."
+    },
+    {
+      "id": "IR-25-LICENSE-GEODAWN",
+      "severity": "low",
+      "status": "open",
+      "issue": "The ScienceBase page text read this session shows DOI/citation but no explicit licence line; sibling docs assert CC0.",
+      "evidence": "registry/sources.json (usgs-geodawn)",
+      "resolution_or_action": "Verify at the usgs.gov data page cited by the competition before redistributing derived rasters or shipping them to the sponsor."
+    },
+    {
+      "id": "IR-25-DEM-TILES",
+      "severity": "medium",
+      "status": "open",
+      "issue": "The LiDAR scarp descriptors come from 706 of 716 3DEP tiles; the tile inventory was OCR-recovered from the competition PDF (the CSV is login-walled); 10 tiles failed; 24.7 % of the footprint has no descriptors.",
+      "evidence": "data/external/lidar_scarp_features.json in the sibling repo (owner receipt)",
+      "resolution_or_action": "Treated as a derived mirror. A raw-tile rebuild on a networked runner is the next-session upgrade."
+    },
+    {
+      "id": "IR-25-FORUM-11527",
+      "severity": "low",
+      "status": "open",
+      "issue": "The staff statement that test-fault sources/types/coverage are not disclosed (thread 11527) is carried from GEMSDOE24; staff post bodies were collapsed in this session's read.",
+      "evidence": "registry/sources.json (dd-forum-11527)",
+      "resolution_or_action": "Unverified here; do not rely on it."
+    },
+    {
+      "id": "IR-25-PAGES-ROOT",
+      "severity": "high",
+      "status": "fixed",
+      "issue": "GitHub Pages is built from main:/ (legacy), but the old site lived in docs/ with no root index.html: the public URL served the README, whose 'Executive Summary & Submit Guide' link pointed back to itself and whose download link was the broken file.",
+      "evidence": "fetch of https://buffedlizard55-lab.github.io/GEMSDOE25/ on 2026-10-02; gh api repos/.../pages",
+      "resolution_or_action": "A root index.html now carries the first-screen download; docs/executive-summary.html is the dedicated guide."
+    },
+    {
+      "id": "IR-25-DOTTED-IDENTITY",
+      "severity": "info",
+      "status": "verified",
+      "issue": "The local owner-mirrored raster labelled 0.2477 is pixel-for-pixel dot_thin(H19-5, 1.5): 60,069 of 121,131 pixels, a strict subset, zero NaN inside the owner-mirror template footprint, no emission on a catalogue pixel. This verifies only a transformation between local mirrors, not organizer file identity or its score. The local unscored alternate equals dot_thin(H19-5, 2.4) (44,090 px). The 0.2477 score and 0.3195 leaderboard claim remain unverified.",
+      "evidence": "evidence/why_0_2477.json; tests/test_group_reproduction.py; registry/live_scores.json",
+      "resolution_or_action": "Describe only local mask/pixel identity as verified; do not describe either reported DTI as independently verified. Re-uploading a parent or file is not evidence of a score. A user-provided organizer receipt is needed to authenticate a score without automated site access."
+    },
+    {
+      "id": "IR-25-FEED-SCHEDULE",
+      "severity": "medium",
+      "status": "open",
+      "issue": "The source-feed workflow has run once on GitHub (push to main after PR #2, run succeeded and the bot committed docs/data/feed.json), but no *scheduled* (cron) run has been observed yet; GitHub only runs scheduled workflows from the default branch, so the first cron run can only happen after the merge. The ScienceBase 'lastUpdated' field was empty in that first run (reader fixed afterwards, untestable from the sandbox).",
+      "evidence": "gh run list --branch main (source-feed, success); git log origin/main (github-actions[bot] 'chore(feed): refresh source feed')",
+      "resolution_or_action": "Check the Actions tab for a scheduled run within 6 hours of the merge; until then treat docs/data/feed.json's timestamp as authoritative."
+    },
+    {
+      "id": "IR-25-COMPARATOR-DRIFT",
+      "severity": "high",
+      "status": "open",
+      "issue": "The frozen hide-and-recover comparator 0.15200338908786984 (evidence/addons/emk_extension.json, variant sapd2.4 at kfrac 0.035, base BDE + the seven add-ons, draws 0-1) does NOT reproduce in this environment. Re-running that exact arm here gives 0.149667509 (fold 0 identical to 9 decimals; folds 1-3 differ by +0.0023, -0.0042, -0.0074). Re-running a single cell in isolation reproduces this session's value bit-for-bit, so this session's pipeline is deterministic; the drift is environmental. data/work is a gitignored derived cache (static_ABCD.npy, addons.npy, bands/) that this session rebuilt with numpy 2.4.6, scipy 1.17.1, scikit-learn 1.9.1, rasterio 1.4.4, and no hash of it was ever recorded, so the previous cache cannot be compared.",
+      "evidence": "evidence/h28_holdout/results.json (reproduction_check), evidence/work_cache_hashes.json (SHA-256 of every derived cache plus library versions), scripts/run_h28_holdout.py, scripts/analyze_h28_holdout.py",
+      "resolution_or_action": "Policy change recorded in knowledge/10 section 12.5: absolute comparators do not transfer between environments, so a promotion gate must recompute its comparator in the same run as the candidate. evidence/work_cache_hashes.json now exists so the next session can detect a rebuilt cache immediately. The frozen 0.152003389 is retained as the historical record and no arm was promoted on the strength of this drift."
+    },
+    {
+      "id": "IR-25-ARTEFACT-SCORE-LINK",
+      "severity": "medium",
+      "status": "open",
+      "issue": "Four of the 30 competition rasters in registry/artifact_ledger.json carry a score that appears only in the owner's brief list and has no row in the owner's own hash<->score ledger (GEMSDOE27/registry/live_scores.json): hedge-v2 (0.1563), h18-4-geologic-map-faults-gap (0.0360), h20-1 (0.1890) and h23-a-6pct (0.1002). Their bytes are verified, but the file-to-score link is not, so they are excluded from every fit.",
+      "evidence": "registry/artifact_ledger.json (rows with fit=false and score_source naming the gap), scripts/restore_artifacts.py",
+      "resolution_or_action": "Excluded from the H28 calibration (25 of 30 rows are hash-linked and used). hedge-v2 is kept as the masking validation because its statistics are provably identical to ens12's, which is hash-linked. Ask the owner to confirm these four file-to-score pairs; until then they are diagnostics only."
+    },
+    {
+      "id": "IR-25-PLACEHOLDER-OUTSIDE-FOOTPRINT",
+      "severity": "low",
+      "status": "open",
+      "issue": "The GEMSDOE9 raster whose file name says PLACEHOLDER (sha256 2314b599..., owner-reported 0.0107) holds 196,132 pixels of value 1.0 OUTSIDE the owner-mirror template footprint, plus 6,915,655 zeros; it has no NaN. This repo's verifier rejects it on outside_footprint_is_nan_or_zero, yet the owner's ledger reports a score for those exact bytes.",
+      "evidence": "COMPUTED by scripts/run_h28.py / src/gems25/submission.check_file on the fetched mirror; the score is an OWNER-reported claim",
+      "resolution_or_action": "INFERENCE, not verified: the organizer's validator does not appear to enforce a NaN-outside convention, and out-of-footprint pixels appear not to be scored (a 1.0-valued 196k-pixel overspill still scored 0.0107, consistent with only in-footprint pixels counting). Keep shipping NaN-outside (the template's own convention) - it satisfies both readings."
+    },
+    {
+      "id": "IR-25-HABITAT-MISSPECIFIED",
+      "severity": "medium",
+      "status": "closed",
+      "issue": "A single-band truth-intensity model based only on distance to known faults does not fit 25 hash-linked owner-reported DTI anchors: leave-one-artifact-out RMSE 0.0705–0.0812 (pre-registered threshold 0.020), blind-lattice prediction 0.2057 vs owner-reported 0.0904, and worst residual −0.1787. The score claims remain unverified; residuals indicate model misspecification relative to these claims and cannot be attributed solely to detector skill.",
+      "evidence": "evidence/h28_calibration/habitat_fit.json, knowledge/10 sections 5, 11 (D1) and 12.6",
+      "resolution_or_action": "Closed as a conditional negative result: the tested distance-to-known-faults habitat model did not satisfy its adoption rule, and no submission was designed from it. The fitted model does not support \"hug the known-fault halo\" as a promotion strategy. The anchor-based calibration remains conditional on unverified owner-reported scores and does not identify actual hidden-label locations."
+    },
+    {
+      "id": "IR-25-LIVE-MODEL-SCOPE",
+      "severity": "medium",
+      "status": "open",
+      "issue": "The single-band model fitted conditionally on 25 hash-linked owner-reported scores matches several in-band claims and the blind lattice within 0.004 DTI, but under-predicts owner-mirrored off-band surfaces: h25-ctx-ridge 0.0907 predicted vs 0.1280 reported, h28-dotted-ridge 0.1251 vs 0.1839, and lidarscarp-top2pct has model-implied N 22,893 vs 12,691 for the H19-5 family. These residuals show model-scope/misspecification risk relative to unverified claims; they do not establish where actual hidden labels lie or validate off-band scores. The two-band mixture was not identified (nine-anchor spread 0.514 vs 0.053; mean absolute residual worse, 0.0335 vs 0.0172).",
+      "evidence": "evidence/h28_calibration/design.json (reference_rows_under_calibrated_pi), evidence/h28_calibration/mixture.json (adoption_rule)",
+      "resolution_or_action": "Print this scope limit wherever predictions appear (README, site, knowledge/10). Treat off-band surfaces only as conditional-model exploration priorities, not evidence that hidden truth exists there. The current H30 register is separate and requires its own paired catalogue-gap proxy test."
+    },
+    {
+      "id": "IR-25-REFSOL-CHANNEL4",
+      "severity": "info",
+      "status": "closed",
+      "issue": "The official reference solution keeps a patch only where 'valid elevation data (channel 4)' is finite, i.e. channel INDEX 4 = the 5th band. In the owner mirror the 5th band's own TIFF tag reads 'Isostatic gravity anomaly slope' (category gravity_data) and detrended elevation is band 12. Read literally that would mean the mirror's band order does not match the organizer's file, which would shift every feature-family assignment in this repository.",
+      "evidence": "COMPUTED this session: per-band non-finite masks of all 19 cached bands are IDENTICAL for 18 of 19 bands (7,112,688 non-finite pixels each, i.e. exactly the area outside the 5,167,373-px footprint); the single exception is band 6 ('tc'), which differs from band 5 by 12 pixels of 12,279,292. Source: github.com/drivendataorg/gems-prize-reference-solution, notebook cell 12.",
+      "resolution_or_action": "Closed: channel 4 in the reference is a data-validity proxy, not an elevation claim - because the non-finite mask is the same for every band, testing channel 4 is equivalent to testing any channel. No band-order discrepancy exists; the mirror's own per-band tags (which the reference solution itself reads) remain the band semantics of record (evidence/band_semantics.json, knowledge/08)."
+    },
+    {
+      "id": "IR-25-REFSOL-FORMAT",
+      "severity": "low",
+      "status": "open",
+      "issue": "The official reference solution writes its submission as a single-band float32 GeoTIFF using the labels' CRS and transform and sets NO nodata tag, so its file is finite everywhere (zeros outside the study area). This repository's primary download instead writes NaN outside the footprint to match the owner-mirrored sample_submission.tif, and ships a zeros-outside fallback. The two conventions differ and the portal's validator is not public.",
+      "evidence": "github.com/drivendataorg/gems-prize-reference-solution notebook cell 19 (rasterio.open(..., 'w', dtype=y_final.dtype, crs=..., transform=...); no nodata= argument); the owner-mirrored template has NaN outside the footprint; the GEMSDOE9 PLACEHOLDER mirror holds 196,132 pixels of value 1.0 outside the footprint and is nonetheless reported scored (IR-25-PLACEHOLDER-OUTSIDE-FOOTPRINT).",
+      "resolution_or_action": "Both files are already published on the download page: the NaN-outside primary (matching the template) and the zeros-outside fallback (matching the official reference's convention). If the portal ever rejects one, submit the other; neither has been organizer-verified. No change to the shipped bytes was made on this evidence."
+    },
+    {
+      "id": "IR-25-REFSOL-THRESHOLD-HINT",
+      "severity": "info",
+      "status": "closed",
+      "issue": "The official reference solution submits continuous averaged probabilities and its author notes 'it may be advantageous to threshold this map for better scoring'. This repository proves a stronger statement and had already been shipping binary emissions.",
+      "evidence": "notebook cells 17 and 20 (y_final continuous; the third panel plots y_final > 0.1); the binary-optimality lemma recorded in evidence/h28_calibration/design.json ('binary_optimality_lemma'): for a fixed support the DTI is a linear-fractional function of p, so the optimum is bang-bang and soft values in (0,1) cannot beat a binary emission.",
+      "resolution_or_action": "Closed as corroboration: the organizer's own benchmark points the same way as the algebra. Every file this repo ships is binary 0/1, and the lemma is now stated wherever the emission design is described."
+    },
+    {
+      "id": "IR-25-FACTORIAL-STATE",
+      "severity": "medium",
+      "status": "flagged",
+      "issue": "The condensed session handoff says the required five-family fractional factorial remains unrun, but the tracked repository contains a complete earlier run: evidence/factorial/cells.jsonl has 152 rows (16 registered model arms × 8 fold/draw cells plus 3 reference arms × 8), design.json specifies the 16-run Resolution V design, and results.json reports 16 runs with no deviations. Re-running the registered analyzer reproduces results.json/results.md byte-for-byte. H30 is a separate follow-on experiment and does not replace this five-family design.",
+      "evidence": "evidence/factorial/design.json; evidence/factorial/cells.jsonl (152 JSONL rows); evidence/factorial/results.json (16 runs, 8 cells per run, deviations=[]); evidence/factorial/results.md; scripts/analyze_factorial.py (rerun 2026-10-03, output hashes unchanged).",
+      "resolution_or_action": "Treat the five-family experiment as already executed from the available, internally reproducible evidence unless stronger provenance evidence invalidates it. Do not overwrite/rerun it merely because the handoff says unrun. Preserve it as a separate registered result; H30 remains an additional experiment. The local JSONL lacks a fit timestamp, so the exact original run date/environment should not be inferred."
+    },
+    {
+      "id": "IR-25-DUPLICATE-DOWNLOAD",
+      "severity": "critical",
+      "status": "fixed (withdrawn)",
+      "issue": "The front-page 'format-validated' download gems25-dotted-h19-5-d2-8-…-e56ea318af89-nan.tif (SHA-256 91eae1ca…) is byte-identical to a raster the group already lists (GEMSDOE24 d2-8 alternate in registry/artifact_ledger.json and the GEMSDOE30 entry tagged 91eae1ca, 0.2600 claim). The brief requires a unique file.",
+      "evidence": "registry/submissions.json (role now 'duplicate'); scripts/check_lane_duplicates.py on the file: byte_identical=True vs data/scored/gems24-…d2-8…; registry/artifact_ledger.json.",
+      "resolution_or_action": "Withdrawn as primary. Replaced by the unique H31-C file (docs/downloads/gems25-h31-control-…-nan.tif). The old file stays in git history and is labelled DUPLICATE. Do not submit it as new. The legacy script that could recreate the duplicate as primary is disabled (IR-25-LEGACY-PACKAGER-DUPLICATE)."
+    },
+    {
+      "id": "IR-25-LANE-DENSITY",
+      "severity": "high",
+      "status": "fixed (strict duplicate/stop applied; no density exception)",
+      "issue": "The 5-px lattice registry raster flags candidate dots under the literal protocol: 88.9% of the stored holdout-candidate emission and 100% of the full-footprint GEM-1 emission lie within 3 px of lattice dots. The saved result had incorrectly treated the dense lattice as a degenerate exception and marked GEM-1 lane-clean. The GEM-FUSE1 receipt added by merged PR #13 also records 100% of candidate dots within 3 px of the r13 lattice; its density-artifact explanation does not supersede this literal threshold.",
+      "evidence": "evidence/gem_validation/results.json (stored lattice overlap 0.889015); evidence/gem_validation/lane_gem1.json (full-footprint overlap 1.0); scripts/validate_gem_candidate.py; docs/downloads/lane-gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.json (candidate-side overlap 1.0)",
+      "resolution_or_action": "Applied the protocol verbatim: either overlap exceeds 70%, so GEM-1 and H31-C are duplicate-lane stops and are download-for-testing only; do not submit. No density-normalized exception is authorized. Corrected saved decision and site labels; new validation code fails closed and checks each candidate full-footprint raster. GEM-FUSE1 is now explicitly marked DUPLICATE LANE / STOP, testing-only, do not submit; reverse overlap and density interpretation do not waive the user-set threshold. The GEM-FUSE1 builder is disabled and regression-tested to prevent recreating this known duplicate. The H31-C registry writer is also disabled and regression-tested to prevent restoring that known lane duplicate as primary."
+    },
+    {
+      "id": "IR-25-LEADERBOARD-CONFLICT",
+      "severity": "medium",
+      "status": "flagged",
+      "issue": "The 2026-10-25 brief gives conflicting leaderboard figures: 'Current competition leaderboard GEMSDOE high score: 0.4413', then '0.3195 is the highest score right now'. The GEMSDOE32 page lists #1 0.3262, #2 DARD 0.3195, #3 0.3042 ('read 2026-10-04'). None verified here (drivendata not accessed per AGENTS.md).",
+      "evidence": "owner brief 2026-10-25; https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html (leaderboard section).",
+      "resolution_or_action": "Owner to confirm the current figures from the official leaderboard page. The repo uses no leaderboard number as a target without this."
+    },
+    {
+      "id": "IR-25-BREAKEVEN-SHORTHAND",
+      "severity": "low",
+      "status": "flagged",
+      "issue": "GEMSDOE32 gives a break-even credit of 0.0548 'from 0.2·0.26 = 0.0520'. The repo's metric gives marginal_inclusion_ratio(0.26) = 0.05485 (the ratio form αD/(1−αD)); the linear 0.2·D shorthand is 0.0520.",
+      "evidence": "gems25.metric.marginal_inclusion_ratio; knowledge/14_gemsdoe32_analysis_and_hypotheses_2026-10-25.md §2.",
+      "resolution_or_action": "Use the ratio form. The 0.0548 figure is consistent with it."
+    },
+    {
+      "id": "IR-25-HOLDOUT-DOES-NOT-TEST-PRUNING",
+      "severity": "high",
+      "status": "disclosed",
+      "issue": "The hide-and-recover holdout uses catalogue components as truth. It cannot evaluate catalogue-proximity pruning (the GEMSDOE32 mechanism) or any hypothesis whose premise is the hidden set's distance from the catalogue.",
+      "evidence": "src/gems25/holdout.py docstring; GEMSDOE32 IR-32-PROXY-01; knowledge/14 §3.",
+      "resolution_or_action": "Propose a new holdout whose truth is restricted to components at least 200 m from the visible traces, pre-registered before use (H32-1). Not run."
+    },
+    {
+      "id": "IR-25-SHIPPED-NOT-CLEARED",
+      "severity": "high",
+      "status": "open",
+      "issue": "The unique H31-C file is format-valid and unique by bytes, but its holdout result is parity with its own control (not a win), its lane check is flagged, and it has no competition score. It must not be used for a weekly slot.",
+      "evidence": "registry/run_card_h31_2026-10-25.json; evidence/h31_screen/analysis.json.",
+      "resolution_or_action": "The site and README label it 'UNIQUE FILE - NOT CLEARED'. A slot needs a passing confirmation, a cleared lane check, and the exact-file audit."
+    },
+    {
+      "id": "IR-25-LANE-GATE-MISAPPLICATION",
+      "severity": "critical",
+      "status": "fixed (decision corrected)",
+      "issue": "Prior stored GEM-1 validation marked the candidate lane-clean and package_tif=true despite a stored lattice overlap of 0.889015 and a separate full-footprint GEM-1 lane receipt of 1.0. The validator used one lane result for an independently selected candidate and its holdout emission was crop-indexed against full-grid rasters. This could falsely clear an unrelated candidate.",
+      "evidence": "evidence/gem_validation/results.json; evidence/gem_validation/lane_gem1.json; prior scripts/validate_gem_candidate.py code; corrected tests/test_lane_protocol.py",
+      "resolution_or_action": "Now check each candidate surface and exact full-footprint emission separately, use absolute Spearman, require a nonempty readable registry, and require lane clearance in the per-candidate promotion gate. Corrected the stored decision to package_tif=false. Raw inputs are absent, so the corrected algorithm has unit tests but no fresh full-data run."
+    },
+    {
+      "id": "IR-25-LEGACY-PACKAGER-DUPLICATE",
+      "severity": "high",
+      "status": "fixed (disabled)",
+      "issue": "scripts/package_submissions.py could regenerate the previously identified D2.8 file (content id e56ea318af89; SHA-256 91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8) and rewrite registry/submissions.json with it as primary, despite the duplicate finding and no new candidate gate.",
+      "evidence": "prior scripts/package_submissions.py; IR-25-DUPLICATE-DOWNLOAD; tests/test_packaging_gate.py",
+      "resolution_or_action": "Retired the legacy CLI; it now exits before accessing data or writing artifacts. Retained a same-run exact-SHA promotion-receipt validator for tests/future safe packager code. README reproduction instructions now warn against invoking it."
+    }
+  ]
 }

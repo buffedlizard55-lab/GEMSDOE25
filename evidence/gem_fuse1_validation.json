@@ -1,14 +1,127 @@
 {
-  "design": {"draws_screen": [0,1], "draws_confirm": [2,3], "folds": 4, "hide_frac": 0.20, "kfrac": 0.0245, "dot_min_dist": 1.5, "prune_px": 2.0, "gate": {"min_gain": 0.001, "min_folds_positive": 3, "worst_fold": -0.01}, "leakage_auc_cap": 0.90, "lane": {"corr_cap": 0.90, "overlap_cap": 0.70, "radius_px": 3.0}},
+  "design": {
+    "draws_screen": [
+      0,
+      1
+    ],
+    "draws_confirm": [
+      2,
+      3
+    ],
+    "folds": 4,
+    "hide_frac": 0.2,
+    "kfrac": 0.0245,
+    "dot_min_dist": 1.5,
+    "prune_px": 2.0,
+    "gate": {
+      "min_gain": 0.001,
+      "min_folds_positive": 3,
+      "worst_fold": -0.01
+    },
+    "leakage_auc_cap": 0.9,
+    "lane": {
+      "corr_cap": 0.9,
+      "overlap_cap": 0.7,
+      "radius_px": 3.0
+    }
+  },
   "screen_draws_0_1": {
-    "control_B_crest": {"by_fold": [0.02147642852250007, 0.00505817573095782, 0.028570682049971482, 0.01943811307736934], "mean_dti": 0.018636, "worst_auc": 0.527},
-    "GEM-1_blind_magnetics": {"by_fold": [0.03219633902353241, 0.01608527907416327, 0.05390156134976379, 0.044445516393334314], "mean_dti": 0.036657, "worst_auc": 0.526, "paired_vs_control": {"mean_gain": 0.018021, "folds_positive": 4, "worst_fold": 0.010458, "passed": true}},
-    "GEM-FUSE1_prune2": {"by_fold": [0.03192150956313194, 0.01607390142993531, 0.05407990003173301, 0.04515859199460218], "mean_dti": 0.036808, "worst_auc": 0.526, "paired_vs_control": {"mean_gain": 0.018173, "folds_positive": 4, "worst_fold": 0.01045, "passed": true}, "paired_vs_gem1": {"mean_gain": 0.000151, "folds_positive": 2, "worst_fold": -0.00027}}
+    "control_B_crest": {
+      "by_fold": [
+        0.02147642852250007,
+        0.00505817573095782,
+        0.028570682049971482,
+        0.01943811307736934
+      ],
+      "mean_dti": 0.018636,
+      "worst_auc": 0.527
+    },
+    "GEM-1_blind_magnetics": {
+      "by_fold": [
+        0.03219633902353241,
+        0.01608527907416327,
+        0.05390156134976379,
+        0.044445516393334314
+      ],
+      "mean_dti": 0.036657,
+      "worst_auc": 0.526,
+      "paired_vs_control": {
+        "mean_gain": 0.018021,
+        "folds_positive": 4,
+        "worst_fold": 0.010458,
+        "passed": true
+      }
+    },
+    "GEM-FUSE1_prune2": {
+      "by_fold": [
+        0.03192150956313194,
+        0.01607390142993531,
+        0.05407990003173301,
+        0.04515859199460218
+      ],
+      "mean_dti": 0.036808,
+      "worst_auc": 0.526,
+      "paired_vs_control": {
+        "mean_gain": 0.018173,
+        "folds_positive": 4,
+        "worst_fold": 0.01045,
+        "passed": true
+      },
+      "paired_vs_gem1": {
+        "mean_gain": 0.000151,
+        "folds_positive": 2,
+        "worst_fold": -0.00027
+      }
+    }
   },
   "confirm_draws_2_3": {
-    "control_B_crest": {"by_fold": [0.03605038618325984, 0.004950996445625872, 0.02307476635105654, 0.018302473303032776], "mean_dti": 0.020595, "worst_auc": 0.563},
-    "GEM-1_blind_magnetics": {"by_fold": [0.04628830887899705, 0.017665709682142566, 0.05668707023864661, 0.048140418194957055], "mean_dti": 0.042195, "worst_auc": 0.561, "paired_vs_control": {"mean_gain": 0.021601, "folds_positive": 4, "worst_fold": 0.01024, "passed": true}},
-    "GEM-FUSE1_prune2": {"by_fold": [0.04644587757096667, 0.01788577278880952, 0.05648398842468494, 0.048948749542103306], "mean_dti": 0.042441, "worst_auc": 0.561, "paired_vs_control": {"mean_gain": 0.021846, "folds_positive": 4, "worst_fold": 0.01040, "passed": true}, "paired_vs_gem1": {"mean_gain": 0.000246, "folds_positive": 3, "worst_fold": -0.00020}}
+    "control_B_crest": {
+      "by_fold": [
+        0.03605038618325984,
+        0.004950996445625872,
+        0.02307476635105654,
+        0.018302473303032776
+      ],
+      "mean_dti": 0.020595,
+      "worst_auc": 0.563
+    },
+    "GEM-1_blind_magnetics": {
+      "by_fold": [
+        0.04628830887899705,
+        0.017665709682142566,
+        0.05668707023864661,
+        0.048140418194957055
+      ],
+      "mean_dti": 0.042195,
+      "worst_auc": 0.561,
+      "paired_vs_control": {
+        "mean_gain": 0.021601,
+        "folds_positive": 4,
+        "worst_fold": 0.01024,
+        "passed": true
+      }
+    },
+    "GEM-FUSE1_prune2": {
+      "by_fold": [
+        0.04644587757096667,
+        0.01788577278880952,
+        0.05648398842468494,
+        0.048948749542103306
+      ],
+      "mean_dti": 0.042441,
+      "worst_auc": 0.561,
+      "paired_vs_control": {
+        "mean_gain": 0.021846,
+        "folds_positive": 4,
+        "worst_fold": 0.0104,
+        "passed": true
+      },
+      "paired_vs_gem1": {
+        "mean_gain": 0.000246,
+        "folds_positive": 3,
+        "worst_fold": -0.0002
+      }
+    }
   },
   "lane_vs_registry": {
     "checker": "scripts/build_gem_fuse1.py (spearman 400k sample + dot overlap 3px)",
@@ -18,9 +131,31 @@
     "spearman_max": 0.023,
     "dots_within_3px_max_substantive": 0.446,
     "flagged_substantive": [],
-    "lattice_density_artefact": {"file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif", "overlap": 1.0, "registry_dots": 206895, "note": "5-px full-footprint lattice; 100% overlap is density artefact of one-directional test, not lane drift (IR-25-LANE-DENSITY); reverse overlap 12.2% (only 12% of lattice dots near candidate)"},
+    "lattice_density_artefact": {
+      "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "overlap": 1.0,
+      "registry_dots": 206895,
+      "note": "Literal protocol: 100% of candidate dots are within 3 px of this registry raster (>70% stop threshold). DUPLICATE LANE / STOP. No density exception is authorized; reverse overlap does not waive the candidate-side rule.",
+      "protocol_verdict": "DUPLICATE LANE / STOP",
+      "protocol_threshold_dots_within_3px_max": 0.7,
+      "protocol_observed_candidate_dot_overlap": 1.0,
+      "submission_allowed": false,
+      "slot_approved": false
+    },
     "verdict": "UNIQUE vs registry (lane-clean vs all substantive rasters; lattice artefact logged, not cleared as duplicate)"
   },
-  "leakage_canary": {"feature": "GEM-1 surface alone vs hidden test (not control)", "auc_screen": 0.526, "auc_confirm": 0.561, "cap": 0.90, "verdict": "no leakage (AUC << 0.90)"},
-  "decision": {"package_tif": true, "package_candidate": "GEM-FUSE1_prune2", "reason": "FUSE1 passes paired holdout gate on screen (+0.01817 4/4) and confirmation (+0.02185 4/4) vs same-run B_crest control, no leakage, lane-clean vs substantive registry (lattice artefact only). It is the holdout-validated detector (GEM-1) plus the live-validated H33-2 pruning (B=2) which on the live inversion earns <0.016 credit/dot <<0.0556 break-even. It does not beat the frozen 0.152003389 comparator (which does not reproduce here, IR-25-COMPARATOR-DRIFT) and has no organizer score; published as format-validated unique file, no slot spent without selector review."}
+  "leakage_canary": {
+    "feature": "GEM-1 surface alone vs hidden test (not control)",
+    "auc_screen": 0.526,
+    "auc_confirm": 0.561,
+    "cap": 0.9,
+    "verdict": "no leakage (AUC << 0.90)"
+  },
+  "decision": {
+    "package_tif": false,
+    "package_candidate": null,
+    "submission_allowed": false,
+    "slot_approved": false,
+    "reason": "Do not promote or submit: the tracked lane receipt records 100% of candidate dots within 3 px of the r13 lattice, exceeding the literal 70% stop threshold. The density-artifact interpretation and reverse-overlap figure do not authorize an exception. Existing HOLDOUT-DTI results remain proxy research only; no organizer score is established."
+  }
 }

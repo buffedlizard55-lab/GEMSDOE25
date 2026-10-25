@@ -99,7 +99,7 @@ def main() -> None:
     h28_ledger = opt("registry/artifact_ledger.json")
     primary = next(s for s in subs if s["role"] == "primary")
     others = [s for s in subs if s["role"] != "primary"]
-    gem1 = next((s for s in others if s.get("id") == "gem1-blind-magnetics"), None)
+    selected = primary
     snap = ls["leaderboard_snapshot"]
     lead = snap["top10"][0]["best_public_dti"]
     best = max(a["score"] for a in ls["artifacts"] if a["score"] is not None)
@@ -122,8 +122,8 @@ def main() -> None:
         h30_status = "registered screen draws 6,7; real-data feature smoke passed, no model fit or DTI yet"
 
     def home(prefix: str) -> str:
-        hero = """<div class="hero"><h1>Download the unique, format-valid GeoTIFF. It is NOT cleared for a slot.</h1>
-<p class="lead">One click gets a <b>single-band float32 GeoTIFF with finite [0,1] predictions throughout the footprint</b>, checked against the pinned template. This establishes file-format validity only—not holdout promotion or a competition score. This file is <b>unique</b> and format-valid, but it is <b>NOT cleared for a slot</b> and is <b>not slot-approved</b>: its lane-overlap check is flagged and it has not beaten its same-run holdout control. The former D2.8 download was byte-identical to a listed submission and has been <b>withdrawn</b> (IR-25-DUPLICATE-DOWNLOAD). The frozen holdout comparator 0.152003389 does not reproduce in this environment (IR-25-COMPARATOR-DRIFT), so the same-run control is used instead. The earlier range error was caused by NaNs inside the footprint (inferred from the file; the portal validator is not public); that defect is fixed.</p></div>"""
+        hero = """<div class="hero"><h1>Testing download only — no artifact is cleared for a slot.</h1>
+<p class="lead">One click gets a <b>single-band float32 GeoTIFF with finite [0,1] predictions throughout the footprint</b>, according to a tracked owner-mirror format receipt. This establishes format validity only—not a competition score or slot eligibility. The GEM-FUSE1 file is unique by content, but its lane receipt records <b>100% of candidate dots within 3 px of the r13 lattice</b>, above the literal 70% stop threshold. This is a duplicate-lane stop; <b>do not submit this file</b>. The density-artifact interpretation and reverse-overlap figure do not create an exception. This file is <b>not slot-approved</b>; the frozen 0.152003389 comparator does not reproduce in this environment (IR-25-COMPARATOR-DRIFT), so same-run controls remain required. Download only for local testing. The former D2.8 download was byte-identical to a listed submission and has been <b>withdrawn</b> (IR-25-DUPLICATE-DOWNLOAD). No organizer score is verified.</p></div>"""
         cards = dl_card(primary, prefix)
         alt = "".join(f"""<div class="card"><b>{e(o['title'])}</b> {badge(o['status'], 'ok' if o['status']=='scored' else 'warn')}
 <p class="small" style="margin:.3em 0">{e(o['summary'])}</p><a class="btn alt small" href="{prefix}downloads/{o['file']}" download>↓ {e(o['file'])}</a>
@@ -131,7 +131,7 @@ def main() -> None:
         stats = f"""<div class="stats"><div class="stat"><b>{lead:.4f}</b><span>Unverified #1 leaderboard claim · reported {snap['reported_utc']}</span></div>
 <div class="stat"><b>{best:.4f}</b><span>Unverified group-best score claim · rank association not authenticated</span></div>
 <div class="stat"><b>+{snap['gap_to_rank5']:.3f}</b><span>arithmetic gap to the supplied #5 claim ({snap['top10'][4]['best_public_dti']:.4f}); +{snap['gap_to_rank1']:.3f} (+{100*snap['relative_gain_needed_for_rank1']:.0f} %) to the supplied #1 claim</span></div>
-<div class="stat"><b>{primary['expected_range'] if primary.get('expected_range') else 'n/a'}</b><span>model expectation for the primary file — a model, not a score</span></div></div>"""
+<div class="stat"><b>DUPLICATE LANE / STOP</b><span>strict lane rule: do not submit; all current downloads are testing-only</span></div></div>"""
         r = why["relations"]
         px15 = next(v["positive_px"] for k, v in why["rasters"].items() if "d1-5" in k)
         px195 = next(v["positive_px"] for k, v in why["rasters"].items() if "h19-5" in k and "dotted" not in k and "d1-5" not in k and "d2-8" not in k)
@@ -200,28 +200,30 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
                 'Nothing is submitted or monitored automatically.</div>')
         return hero + cards + (f"<h3>Also available</h3>{alt}" if alt else "") + plan + stats + whyb + h28b + h30b + facb + flagb + feed
 
-    exec_body = f"""<div class="hero"><h1>Executive summary &amp; submission guide</h1><p class="lead">One click downloads a <b>single-band float32 GeoTIFF with finite [0,1] predictions throughout the footprint</b>, checked against the pinned template. This establishes file-format validity only—not holdout promotion or a competition score.</p></div>
-<div class="callout"><b>New unique submission candidate: {e(gem1['file'] if gem1 else primary['file'])}.</b> <b>OK to download: yes</b> — format-verified, all hard checks pass, values in [0,1] inside the footprint, NaN outside, template CRS/shape/geotransform match. <b>OK to submit to a weekly scoring slot: NO on current evidence</b> — it is <b>not slot-approved</b>. The holdout is a catalogue-gap proxy, not new-fault truth, and this candidate does not beat the frozen 0.152003389 comparator (which itself does not reproduce here, IR-25-COMPARATOR-DRIFT). Spend a slot only after a candidate passes its frozen paired/confirmation gate and exact-file audit.</div>
-{dl_card(gem1 if gem1 else primary, '')}
-<h2>Manual upload steps (only for a candidate that has passed its holdout gate)</h2><ol class="steps">
-<li><b>Download</b> <code>{e((gem1 or primary)['file'])}</code> with the green button above. Optional: check <code>sha256sum</code> starts with <code>{(gem1 or primary)['sha256'][:16]}</code>.</li>
-<li><b>Open the competition and sign in</b> — <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition page</a>, then click <b>Submit</b> in the sidebar and <b>Make new submission</b> (wording from the competition page; this opens the "New submission" form).</li>
-<li><b>File to submit:</b> choose the <code>.tif</code>. The form says: "You can submit a single-band GeoTIFF (.tif) file, or a .zip file containing a single GeoTIFF ... It must match the submission format's CRS, shape, and geotransform." This page offers the plain <code>.tif</code>.</li>
-<li><b>Note (optional):</b> paste the note above. It is {len(primary['note'])} characters; the form says "A short comment to help you or your team tell submissions apart later".</li>
-<li><b>Submit</b>, wait for the score, then record it for the ledger: <code>python scripts/record_live_score.py --file {e(primary['content_id'])} --score 0.xxxx</code> and re-run <code>python scripts/build_site.py</code>.</li></ol>
-<h2>What was verified about this exact file</h2>
-<table><thead><tr><th>Check</th><th>Result</th><th>Detail</th></tr></thead><tbody>{''.join(f"<tr><td>{e(k)}</td><td>{badge('pass', 'ok') if v['pass_'] else (badge('FAIL', 'bad') if v['hard'] else badge('informational', 'info'))}</td><td class='small'>{e(v['detail'])}</td></tr>" for k, v in primary['checks'].items())}</tbody></table>
-<p class="small">Independent plain-rasterio check (<code>src/gems25/submission.py::check_file</code>) against the pinned owner-mirror template (sha256 prefix 2176d08e…). Its footprint also matches the owner-mirrored raster labelled 0.2477; that score/portal status is not independently verified. Format-check receipt: <a href="downloads/{primary['receipt']}">{primary['receipt']}</a>.</p>
-<div class="callout"><b>If the portal says "Predicted values must be in range [0, 1]"</b><ol><li>Make sure you uploaded <i>this</i> file (name and SHA-256 above), not the old <code>gems25-factorial-best-v1-*.tif</code>.</li>
-<li>That earlier file had 2,344,929 NaN pixels <i>inside</i> the 5,167,373-pixel footprint (see <code>evidence/old_gems25_tif_forensics.json</code>); this one has 0.</li>
-<li>Do not use either file for a weekly slot unless this specific candidate beats the current comparable same-run holdout best and passes its registered confirmation gate and exact-file audit. The zeros-outside variant is only a format fallback; organizer acceptance is unverified. If a future gate-cleared file is rejected, email <a href="mailto:info@drivendata.org">info@drivendata.org</a> with the exact message; do not re-upload repeatedly.</li></ol></div>
+    exec_body = f"""<div class="hero"><h1>Executive summary &amp; submission guide</h1><p class="lead">Download a single-band float32 GeoTIFF for local review. Format validation is separate from scientific promotion, uniqueness, and organizer acceptance.</p></div>
+<div class="callout"><b>Current unique research artifact: {e(selected['file'])}.</b> <b>OK to download for inspection/reproduction: YES.</b> Its tracked receipt reports format checks passing against an owner-mirrored template; this is not a fresh check in this checkout. <b>OK to submit to a competition scoring slot: NO.</b> The strict parallel-run lane gate is triggered: more than 70% of candidate dots are within 3 px of a registry lattice raster. Treat this as a duplicate-lane stop. No available TIFF is currently eligible for a weekly scoring slot; do not upload it.</div>
+{dl_card(selected, '')}
+<h2>Competition upload instructions — for a future gate-cleared candidate only</h2>
+<div class="callout"><b>Do not follow these steps with the current downloadable TIFF.</b> They describe the competition form, not authorization to submit. First require a fresh pre-registered holdout win, feature-alone leakage canaries, strict pre-placement and final-dot lane clearance, and exact-file format validation.</div>
+<ol class="steps">
+<li>After all gates pass and the separate selector approves a slot, download the selector-approved <code>.tif</code>; verify its SHA-256 against its own receipt.</li>
+<li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition page</a> and sign in. The competition form provides the upload control.</li>
+<li>Select a single-band GeoTIFF (<code>.tif</code>) or a ZIP containing exactly one GeoTIFF. Confirm the approved artifact matches the submission format's CRS, shape, and geotransform.</li>
+<li>Enter the copy-ready note registered for that exact artifact in the form's optional Note field (short comment).</li>
+<li>Only after authorized upload and receipt, the owner may record the organizer-confirmed result using <code>python scripts/record_live_score.py --file &lt;exact-file-or-content-id&gt; --score &lt;receipt-score&gt;</code>. Do not enter a projection or proxy value.</li></ol>
+<h2>What the tracked format receipt says about this exact file (not freshly revalidated)</h2>
+<table><thead><tr><th>Check</th><th>Recorded result</th><th>Detail</th></tr></thead><tbody>{''.join(f"<tr><td>{e(k)}</td><td>{badge('pass', 'ok') if v['pass_'] else (badge('FAIL', 'bad') if v['hard'] else badge('informational', 'info'))}</td><td class='small'>{e(v['detail'])}</td></tr>" for k, v in selected['checks'].items())}</tbody></table>
+<p class="small">Historical receipt uses <code>src/gems25/submission.py::check_file</code> against an owner-mirrored template (sha256 prefix 2176d08e…). The template and validator are not organizer-authenticated. Format-check receipt: <a href="downloads/{selected['receipt']}">{selected['receipt']}</a>.</p>
+<div class="callout"><b>If an approved future file is rejected for "Predicted values must be in range [0, 1]"</b><ol><li>Confirm you uploaded the exact selector-approved file and compare its SHA-256 with its receipt.</li>
+<li>Run the local exact-file validator against the matching official-format template; confirm all footprint values are finite and in [0,1], and CRS, shape, transform match.</li>
+<li>Do not use a fallback or another artifact unless its own receipt and exact-file checks pass. Organizer acceptance remains unknown until a receipt is issued.</li></ol></div>
 {''.join(dl_card(o, '', False) if o['role'] == 'fallback' else '' for o in others)}
 <h2>Rules that matter (read on the official pages)</h2><ul>
 <li>Up to <b>3 submissions per week</b> per entity; <b>one final submission</b> per entity must be chosen before the deadline (<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">rules §3.2, §3.4</a>).</li>
 <li>Generative-AI use is allowed but must be described in the narrative (<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">§3.2</a>); a draft is in <code>AI_DISCLOSURE.md</code>.</li>
 <li>Known USGS/INGENIOUS pixels are masked and pixel-exact; predictions on them do not matter (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4">staff</a>).</li>
 <li>Deadline wording differs between the page (11:59 p.m. UTC, 3 Dec 2026) and the rules (5:00 p.m. ET): confirm with <a href="mailto:gemsprize@nlr.gov">gemsprize@nlr.gov</a>.</li></ul>
-<div class="callout"><b>Slot discipline.</b> This file's old paired diagnostic compared it to the dotted 0.2477-labelled raster on a shared mask family; it is not evidence against the current comparable same-run holdout best. The current D2.8 download is therefore not slot-approved. A specific candidate must beat the current spatially blocked holdout comparator before any weekly slot is considered; no proxy result is a live score.</div>"""
+<div class="callout"><b>Slot discipline.</b> All current downloads are research artifacts only. The strict lane test disqualifies the GEM-1 candidate; H31-C is also lane-flagged and its holdout experiment was negative. Do not upload either. A future candidate needs a fresh passing holdout, leakage canaries, lane clearance, and exact-file audit; no proxy result is a live score.</div>"""
 
     # ------------------------------------------------------------------ research page
     effs = fac["effects_dti"]

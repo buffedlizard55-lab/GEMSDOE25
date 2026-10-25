@@ -1,0 +1,54 @@
+{
+  "run_card_version": 1,
+  "review_date_utc": "2026-10-25",
+  "hypothesis": "No new model hypothesis tested in this review. Audit whether the previously generated GEM-1 blind-magnetics artifact is eligible under the strict parallel-run uniqueness rule.",
+  "mechanism": "GEM-1 combines RTP magnetic-edge strength with low local topographic relief to target concealed structures; this review evaluates artifact eligibility, not geological predictive performance.",
+  "named_non_fault_process_that_could_mimic_it": "Dense 5-px lattice coverage makes many spatially distinct dot sets lie within 3 px of a registry dot; basin-margin/terrain edges can also produce magnetic-gradient and relief contrasts without faults.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "status": "NOT RUN in this review",
+    "evaluator_version": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3 px / 300 m), as required by the registered harness",
+    "mean": null,
+    "ci95": null,
+    "withheld_positive_count": null,
+    "reason": "data/ contains only .gitkeep; sample template, labels and cached feature stack are absent. Existing holdout outputs were not recomputed."
+  },
+  "correlation_overlap_vs_registry": {
+    "label": "LANE-CHECK (not a score)",
+    "strict_rule": "absolute Spearman >0.90 OR >70% of candidate dots within 3 px of any one registry raster => duplicate and stop",
+    "historical_gem1_abs_spearman": 0.0717,
+    "historical_dense_lattice_dot_overlap": 1.0,
+    "historical_validation_report_lattice_overlap": 0.8890153671,
+    "verdict": "FAIL / STOP: both recorded overlaps exceed the strict 0.70 threshold; no density exception is authorized",
+    "fresh_computation": false
+  },
+  "raster": {
+    "status": "existing tracked artifact; no new raster generated",
+    "file": "gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif",
+    "sha256": "51d0b3414896a18de24de969467c6e8947678d80e32ab12d2812a1f6b2bed467",
+    "content_id": "279a305b80d2"
+  },
+  "validator_output": {
+    "status": "NOT freshly run: owner-mirror sample_submission.tif absent",
+    "historical_receipt": "docs/downloads/checks-gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.json",
+    "historical_checks": "receipt reports no NaN inside the footprint, values in [0,1], EPSG:32611, expected shape and transform; source template is an owner mirror and not organizer-authenticated",
+    "current_verdict": "FORMAT RECEIPT ONLY; strict lane gate fails; do not submit"
+  },
+  "submission_name": "gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan",
+  "submission_note": "GEMSDOE25 GEM-1 | lane FAIL; unscored; no slot; do not submit | id 279a305b80d2",
+  "submission_note_characters": 79,
+  "verdict": "negative — no new TIFF or model run; existing candidates including GEM-FUSE1 fail or lack strict lane clearance; do not submit.",
+  "additional_existing_artifacts": [
+    {
+      "file": "gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif",
+      "sha256": "ad4bc4933d0b7636f0f32918c1fd8b8b08cd1964aee32d69e45419a9b54178a7",
+      "source": "merged PR #13 on origin/main; not generated in this review",
+      "lane_label": "LANE-CHECK (not a score)",
+      "recorded_candidate_dot_overlap_with_r13_lattice": 1.0,
+      "strict_limit": 0.7,
+      "verdict": "DUPLICATE LANE / STOP; no density exception; testing only; do not submit",
+      "fresh_computation": false
+    }
+  ],
+  "overall_submission_allowed": false
+}
