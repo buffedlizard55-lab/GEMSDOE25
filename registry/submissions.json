@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "generated_by": "scripts/register_xg1_submission.py (XG1 session 2026-10-25)",
+ "generated_by": "merge of XG1 (main) + H36/H37 session 2026-10-25; union by id, H36 entries demoted to alternate (XG1 stays primary)",
  "files": [
   {
    "id": "xg1-crossgrad",
@@ -1560,6 +1560,178 @@
     "worst_abs_spearman": 0.367417,
     "preplacement_surface_abs_rho": 0.15206
    }
+  },
+  {
+   "id": "h36-tzc",
+   "role": "alternate",
+   "verdict": "negative",
+   "slot_approved": false,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "do_not_resubmit": true,
+   "file": "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.tif",
+   "path": "docs/downloads/gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.tif",
+   "bytes": 846128,
+   "sha256": "8bbddbb4c9eaf1fa6de59d4a5717089dfe57bc2a37e2a8936ec06cb770b64ba5",
+   "content_id": "92562b7b7fea",
+   "positive_pixels": 48634,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "np.nanmin/np.nanmax over the whole array",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.json",
+   "outside": "zero",
+   "status": "UNIQUE BY CONTENT \u00b7 FORMAT-VALID \u00b7 HOLDOUT GATE FAILED \u00b7 STRICT LANE FAIL (lattice + own-lineage) \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "zip": "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.zip",
+   "run_card": "registry/run_card_h36_h37_2026-10-25.json",
+   "lane": {
+    "lane_clear": false,
+    "strict_verdict": "DUPLICATE LANE / STOP (r13 lattice + own-lineage H35/H31 overlap)",
+    "lattice_overlap": 1.0,
+    "worst_other_registry_overlap": 0.922297,
+    "worst_abs_spearman_final": 0.340159,
+    "worst_abs_spearman_surface": 0.151401,
+    "flagged_substantive": [
+     "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+     "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
+     "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+     "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+     "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+     "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
+     "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+     "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif"
+    ]
+   },
+   "lane_summary": "STRICT lane gate: FAIL \u2014 vs the dense r13 lattice 100.0% of dots within 3 px (70% cap) under the literal any-registry-raster rule; vs all other registry rasters combined: worst 3-px dot overlap 92.2%, worst final-dot |Spearman| 0.340, pre-placement surface worst |Spearman| 0.151 (caps 70% / 0.90); own-lineage overlap vs the H35/H31-C downloads reaches 92.2% (same base detector \u2014 a substantive duplicate-lane stop, not only the lattice); substantive flags: ['gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif', 'gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif', 'gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif', 'gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif', 'gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif', 'gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif', 'gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif', 'gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif'].",
+   "expected_range": "no live projection (HOLDOUT-DTI only; gate failed)",
+   "note": "GEMSDOE25 H36-TZC sapd2.4 k3.5% | gate FAIL; unscored; not slot-approved; no slot | id 92562b7b7fea",
+   "title": "H36-TZC tilt-zero coincidence dots (zeros outside) \u2014 unique testing file, DO NOT SUBMIT",
+   "summary": "H36-TZC full-footprint build (knowledge/21): BDE+7 + directed tip + H34 RESMAG-FLEX + three coincident tilt-zero contact columns (spectral tilt of TMI and isostatic gravity, THDR-gated zero lines), 3-draw average, score-ordered dots at 2.4 px, 3.5% candidate budget, catalogue pixels excluded. HOLDOUT-DTI (hide-and-recover, draws 30-31, [1917, 2341, 3759, 3166] withheld positives per fold NW/NE/SW/SE): TZC 0.1527 (95% CI 0.1344-0.1710) vs same-run BEST 0.1540; paired gain -0.0013 (95% CI -0.0119 to +0.0094), 2/4 folds \u2014 frozen gate FAILED, no confirmation run. HOLDOUT-DTI is a catalogue-gap proxy, not a competition score. Experiment 2 (H37 seismicity alignment, knowledge/22) also failed its screen (-0.0021, 1/4 folds). Strict lane gate fails on the dense r13 lattice (100.0% within 3 px) AND on substantive own-lineage overlaps (worst 92.2% vs the H35/H31 downloads \u2014 the shared BDE+tip+H34 base detector dominates dot placement); worst final-dot |Spearman| 0.340, pre-placement surface worst |Spearman| 0.151. Download for local testing only; do not submit. No live score exists for this file; nothing here is a projection of one.",
+   "parent": "H36-TZC arm (knowledge/21) on H35 arm-B detector (BDE+7 + tip + H34)"
+  },
+  {
+   "id": "h36-tzc-nan",
+   "role": "alternate",
+   "verdict": "negative",
+   "slot_approved": false,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "do_not_resubmit": true,
+   "file": "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-nan.tif",
+   "path": "docs/downloads/gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-nan.tif",
+   "bytes": 1611936,
+   "sha256": "ee71642cd603418ceaf6c789ab05a9d742d8dce096ee9816118fdeb90a475a73",
+   "content_id": "92562b7b7fea",
+   "positive_pixels": 48634,
+   "format_ok": true,
+   "checks": {},
+   "receipt": "checks-gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.json",
+   "outside": "nan",
+   "status": "NaN-outside twin of the H36-TZC file (same dots); same verdict: holdout gate failed, strict lane fail; DO NOT SUBMIT",
+   "run_card": "registry/run_card_h36_h37_2026-10-25.json",
+   "lane": {
+    "lane_clear": false,
+    "strict_verdict": "DUPLICATE LANE / STOP (r13 lattice + own-lineage H35/H31 overlap)",
+    "lattice_overlap": 1.0,
+    "worst_other_registry_overlap": 0.922297,
+    "worst_abs_spearman_final": 0.340159,
+    "worst_abs_spearman_surface": 0.151401,
+    "flagged_substantive": [
+     "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+     "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
+     "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+     "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+     "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+     "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
+     "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+     "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif"
+    ]
+   },
+   "lane_summary": "STRICT lane gate: FAIL \u2014 vs the dense r13 lattice 100.0% of dots within 3 px (70% cap) under the literal any-registry-raster rule; vs all other registry rasters combined: worst 3-px dot overlap 92.2%, worst final-dot |Spearman| 0.340, pre-placement surface worst |Spearman| 0.151 (caps 70% / 0.90); own-lineage overlap vs the H35/H31-C downloads reaches 92.2% (same base detector \u2014 a substantive duplicate-lane stop, not only the lattice); substantive flags: ['gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif', 'gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif', 'gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif', 'gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif', 'gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif', 'gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif', 'gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif', 'gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif'].",
+   "expected_range": "no live projection (HOLDOUT-DTI only; gate failed)",
+   "note": "GEMSDOE25 H36-TZC nan twin fallback | unscored; not slot-approved; no slot | id 92562b7b7fea",
+   "title": "H36-TZC with NaN outside the footprint (official template convention); testing only, do not submit",
+   "summary": "Identical prediction values inside the template footprint; NaN instead of 0.0 outside. Same negative verdict as the zeros primary; do not submit.",
+   "parent": "h36-tzc"
   }
  ]
 }

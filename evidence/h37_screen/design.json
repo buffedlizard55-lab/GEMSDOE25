@@ -1,0 +1,60 @@
+{
+ "hypothesis": "H37-SEISALIGN: seismicity structure-tensor alignment columns on H35 arm-B detector",
+ "preregistration": "knowledge/22_preregistered_h37_seisalign_2026-10-25.md",
+ "draws": [
+  40,
+  41
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "arms": {
+  "BEST": {
+   "use_tip": true,
+   "use_h34": true,
+   "use_h37": false
+  },
+  "SEIS": {
+   "use_tip": true,
+   "use_h34": true,
+   "use_h37": true
+  }
+ },
+ "min_dist": 2.4,
+ "kfrac": 0.035,
+ "model": {
+  "base": "BDE",
+  "extras": [
+   "X1_K",
+   "X1_ThK",
+   "X1_UK",
+   "X2_compat",
+   "X2_compat_coh",
+   "X3_gm",
+   "X3_gd"
+  ],
+  "h34_columns": [
+   "H34_resmag_shallow_ridge",
+   "H34_resmag_mid_ridge",
+   "H34_baseflex_ridge"
+  ],
+  "h37_columns": [
+   "H37_seis_deq_coh",
+   "H37_seis_deq_alignridge",
+   "H37_seis_ieq_alignridge"
+  ],
+  "tip_column": "H27_tip",
+  "fit_seed": "draw"
+ },
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px) via gems25.experiment.Cell.evaluate",
+ "leakage_auc_cap": 0.9,
+ "gate": {
+  "arm": "SEIS vs BEST",
+  "mean_gain_gt": 0.001,
+  "folds_positive_min": 3,
+  "worst_fold_min": -0.01
+ }
+}

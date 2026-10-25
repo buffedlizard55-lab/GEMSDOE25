@@ -1,0 +1,278 @@
+{
+ "run_card_version": 1,
+ "date_utc": "2026-10-25",
+ "session_branch": "arena/6589f793-gemsdoe25",
+ "hypothesis": "H36-TZC (Exp.1): coincident magnetic+gravity tilt-zero contact lines catch buried basement faults missing from USGS/INGENIOUS. H37-SEISALIGN (Exp.2): structure-tensor alignment of earthquake density traces buried seismogenic faults. Both added to the H35 arm-B detector (BDE+7+tip+H34).",
+ "mechanism": "Tilt angle of TMI / isostatic gravity (spectral, 200 m upward continuation) crosses zero at a vertical contact; THDR-median-gated zero lines from both physics coinciding mark a buried block boundary. Seismicity coherence/alignment ridge marks an active buried fault plane projection.",
+ "non_fault_process_that_could_mimic_it": "Lithologic contacts / volcanic flow margins and basin-margin facies pinch-outs produce identical coincident tilt-zero lines with no fault; survey levelling artefacts produce straight segments. For H37: aftershock/swarm elongation, induced seismicity, location-error smearing, and the provider density kernel's own 15-degree azimuth parameter.",
+ "pre_registration": [
+  "knowledge/21_preregistered_h36_tiltzero_coincidence_2026-10-25.md (commits d40ae7d, eed5ce9, 7960179, 96c5ed7 - amendments pre-fit)",
+  "knowledge/22_preregistered_h37_seisalign_2026-10-25.md (commit d271ba0)"
+ ],
+ "experiments": [
+  {
+   "id": "H36-TZC screen (Experiment 1 of max 3)",
+   "draws": [
+    30,
+    31
+   ],
+   "folds": [
+    "NW",
+    "NE",
+    "SW",
+    "SE"
+   ],
+   "control_BEST_holdout_dti_mean": 0.1539638882945442,
+   "control_BEST_ci95": [
+    0.12563882276935126,
+    0.18228895381973712
+   ],
+   "candidate_TZC_holdout_dti_mean": 0.15267979723940883,
+   "candidate_TZC_ci95": [
+    0.1344053676438746,
+    0.17095422683494307
+   ],
+   "paired_gain": {
+    "per_fold": [
+     -0.008122921922598808,
+     0.0018621658858689605,
+     0.006508585333636879,
+     -0.005384193517448371
+    ],
+    "mean": -0.0012840910551353349,
+    "ci95": [
+     -0.011925379152365951,
+     0.009357197042095282
+    ],
+    "folds_positive": 2,
+    "worst_fold": -0.008122921922598808,
+    "hug_per_fold": [
+     -0.0016865396045375597,
+     0.00030737347627318723,
+     -0.0023028708503435302,
+     0.010382591366679988
+    ],
+    "hug_mean": 0.0016751385970180215
+   },
+   "leakage_canary": {
+    "worst_abs_auc": 0.5884679985905567,
+    "per_column": {
+     "H36_tzc_mag_prox": 0.5558941525857655,
+     "H36_tzc_grav_prox": 0.5884679985905567,
+     "H36_tzc_coincide": 0.5636523263355522
+    },
+    "cap": 0.9,
+    "passed": true
+   },
+   "gate_passed": false,
+   "confirmation_run": "not run (screen failed, per frozen design)",
+   "evidence": "evidence/h36_screen/"
+  },
+  {
+   "id": "H37-SEISALIGN screen (Experiment 2 of max 3)",
+   "draws": [
+    40,
+    41
+   ],
+   "folds": [
+    "NW",
+    "NE",
+    "SW",
+    "SE"
+   ],
+   "control_BEST_holdout_dti_mean": 0.1608898575905557,
+   "control_BEST_ci95": [
+    0.14128842065268687,
+    0.18049129452842455
+   ],
+   "candidate_SEIS_holdout_dti_mean": 0.15876317451892696,
+   "candidate_SEIS_ci95": [
+    0.14131928490563433,
+    0.1762070641322196
+   ],
+   "paired_gain": {
+    "per_fold": [
+     -0.0058244886394353546,
+     0.0017834999522284845,
+     -0.0008984656736586161,
+     -0.0035672779256495923
+    ],
+    "mean": -0.0021266830716287696,
+    "ci95": [
+     -0.00736710063625417,
+     0.0031137344929966304
+    ],
+    "folds_positive": 1,
+    "worst_fold": -0.0058244886394353546,
+    "hug_per_fold": [
+     -0.001404465865013249,
+     0.004806275777094304,
+     0.0006763891234591313,
+     0.005662596378576162
+    ],
+    "hug_mean": 0.002435198853529087
+   },
+   "leakage_canary": {
+    "worst_abs_auc": 0.5363180056598152,
+    "per_column": {
+     "H37_seis_deq_coh": 0.5229897770064164,
+     "H37_seis_deq_alignridge": 0.5363180056598152,
+     "H37_seis_ieq_alignridge": 0.5356915038603558
+    },
+    "cap": 0.9,
+    "passed": true
+   },
+   "gate_passed": false,
+   "confirmation_run": "not run (screen failed, per frozen design)",
+   "evidence": "evidence/h37_screen/"
+  }
+ ],
+ "holdout_dti": {
+  "label": "HOLDOUT-DTI",
+  "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px/300m) via gems25.experiment.Cell.evaluate",
+  "value_candidate_TZC_screen": 0.15267979723940883,
+  "ci95_candidate_TZC_screen": [
+   0.1344053676438746,
+   0.17095422683494307
+  ],
+  "withheld_positives_per_fold_TZC_screen": [
+   1917,
+   2341,
+   3759,
+   3166
+  ],
+  "withheld_positives_total_TZC_screen": 11183,
+  "note": "Catalogue-gap proxy only (truth = withheld catalogue components); proxy-vs-live Spearman +0.33 n.s. (n=24, GEMSDOE24 record). Never a competition score; no projection written as a score."
+ },
+ "correlation_overlap_vs_registry": {
+  "checker": "scripts/check_lane_surface.py + scripts/check_lane_duplicates.py (Spearman 400k sample seed 0; dots within 3 px)",
+  "surface_worst_abs_spearman": 0.151401,
+  "surface_flagged": [],
+  "final_worst_abs_spearman_substantive": 0.340159,
+  "final_flagged": [
+   "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+   "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
+   "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+   "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+   "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+   "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
+   "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+   "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif"
+  ],
+  "lattice_r13_dots_within_3px": 1.0,
+  "h35_dots_within_3px": 0.922297,
+  "h31c_dots_within_3px": 0.889357,
+  "interpretation": "Surface passes (<=0.90). Final dots FAIL the literal rule twice: 100% vs the dense r13 lattice and 92.2% vs this repo's own H35 download (shared base detector). Logged as DUPLICATE LANE / STOP; no promotion.",
+  "receipt": "docs/downloads/lane-gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.json"
+ },
+ "raster": {
+  "file": "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.tif",
+  "sha256": "8bbddbb4c9eaf1fa6de59d4a5717089dfe57bc2a37e2a8936ec06cb770b64ba5",
+  "content_id": "92562b7b7fea",
+  "positive_pixels": 48634,
+  "nan_twin_sha256": "ee71642cd603418ceaf6c789ab05a9d742d8dce096ee9816118fdeb90a475a73",
+  "submission_allowed": false,
+  "slot_approved": false,
+  "ok_to_download": true,
+  "ok_to_submit_slot": false
+ },
+ "validator_output": {
+  "tool": "gems25.submission.check_file vs pinned owner-mirror template data/sample_submission.tif (sha256 2176d08e...)",
+  "zeros_hard_failures": [],
+  "nan_hard_failures": [],
+  "checks_zeros": {
+   "template_matches_expected_grid_and_footprint": {
+    "pass_": true,
+    "detail": "(3730, 3292), footprint 5,167,373 px",
+    "hard": true
+   },
+   "single_band": {
+    "pass_": true,
+    "detail": "count=1",
+    "hard": true
+   },
+   "dtype_float32": {
+    "pass_": true,
+    "detail": "dtypes=('float32',)",
+    "hard": true
+   },
+   "crs_epsg_32611": {
+    "pass_": true,
+    "detail": "32611",
+    "hard": true
+   },
+   "shape_matches_template": {
+    "pass_": true,
+    "detail": "(3730, 3292) vs (3730, 3292)",
+    "hard": true
+   },
+   "geotransform_matches_template": {
+    "pass_": true,
+    "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+    "hard": true
+   },
+   "footprint_all_finite": {
+    "pass_": true,
+    "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+    "hard": true
+   },
+   "footprint_values_in_0_1": {
+    "pass_": true,
+    "detail": "min=0.0 max=1.0",
+    "hard": true
+   },
+   "outside_footprint_is_nan_official": {
+    "pass_": false,
+    "detail": "0/7,111,787 NaN",
+    "hard": false
+   },
+   "outside_footprint_is_nan_or_zero": {
+    "pass_": true,
+    "detail": "NaN (official) or 0 (fallback) outside",
+    "hard": true
+   },
+   "nan_mask_identical_to_template": {
+    "pass_": true,
+    "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+    "hard": true
+   },
+   "nodata_tag": {
+    "pass_": true,
+    "detail": "nodata=None",
+    "hard": false
+   },
+   "variant_nan_aware_whole_array": {
+    "pass_": true,
+    "detail": "np.nanmin/np.nanmax over the whole array",
+    "hard": true
+   },
+   "variant_masked_read": {
+    "pass_": true,
+    "detail": "rasterio masked read",
+    "hard": true
+   },
+   "variant_strict_whole_array_no_nan": {
+    "pass_": true,
+    "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+    "hard": false
+   },
+   "profile_matches_template": {
+    "pass_": true,
+    "detail": "compress=lzw (template lzw)",
+    "hard": false
+   }
+  },
+  "summary": "single-band float32, EPSG:32611, shape (3730,3292), transform matches template; 0 NaN/Inf inside 5,167,373-px footprint; footprint values in [0,1]; zeros variant finite over the whole array (strictest [0,1] read passes) - the reported portal 'Predicted values must be in range [0, 1]' error cannot recur on values."
+ },
+ "submission_name": "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.tif",
+ "note": "GEMSDOE25 H36-TZC sapd2.4 k3.5% | gate FAIL; unscored; not slot-approved; no slot | id 92562b7b7fea",
+ "note_chars": 99,
+ "why_02778_answer": "knowledge/23_h36_h37_outcomes_2026-10-25.md (OWNER-reported chain, not ORGANIZER-CONFIRMED)",
+ "verdict": "negative",
+ "verdict_reason": "Both new feature blocks failed the frozen same-run holdout gate (TZC -0.0013, 2/4 folds; SEIS -0.0021, 1/4 folds); strict lane duplicate/stop on final dots. Unique TIF built only as a downloadable testing artifact under the owner's highest-urgency mandate (KDC precedent, IR noted in registry/irregularities.json). DO NOT SUBMIT.",
+ "post_merge_addendum": {
+  "date_utc": "2026-10-25",
+  "note": "Merged with origin/main (XG1 + CF1 parallel sessions, PRs #23/#24). The H36 entries were demoted to alternate in registry/submissions.json (XG1 stays featured primary; both files are negative / DO NOT SUBMIT). Lane receipt re-run on the merged tree with the updated checker: worst overlap unchanged (H35 92.2%), and the XG1 download (same H35-base lineage) also overlaps 91.8% - reinforcing the duplicate-lane stop. Verdict unchanged: negative."
+ }
+}
