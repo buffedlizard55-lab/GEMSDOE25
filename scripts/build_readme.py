@@ -46,6 +46,7 @@ def main() -> None:
     L = []
     A = L.append
     A("# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize\n")
+    A("**Current session review (2026-10-25):** [GEMSDOE32 H33-2-B2 score forensics, candidate screen, data blockers, and run card](knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md). The requested start-of-session owner prompt remains archived verbatim at `knowledge/owner_brief_verbatim.txt`; see also `AGENTS.md`.\n")
     A("> **Maximize P(Win)** · **Own the Outcome** — the Arena core values are the decision rule for every change in this repository.\n")
     A("**Competition:** [DOE GEMS Prize, DrivenData #306](https://www.drivendata.org/competitions/306/competition-doe-gems/) · "
       "**Live site:** <https://buffedlizard55-lab.github.io/GEMSDOE25/> · **Weekly limit:** 3 submissions · "
