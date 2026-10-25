@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-25T23:35:32Z",
+ "generated_utc": "2026-10-25T23:52:59Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"9c0cec6fff5210b1985ccb6af618e9e3\""
+   "detail": "HTTP 200; ETag: W/\"fd0d121a3896ab982cbc8518edceffd6\""
   },
   {
    "kind": "source",
@@ -105,7 +105,7 @@
    "url": "https://www.usgs.gov/3d-elevation-program",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 23:35:03 GMT; ETag: W/\"1792971303\""
+   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 23:52:36 GMT; ETag: W/\"1792972356\""
   },
   {
    "kind": "source",
@@ -145,7 +145,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"e6966fc49c3ecd4da102ed38979458e4\""
+   "detail": "HTTP 200; ETag: W/\"aefa2943be31fa32d905db4b5c09ce2a\""
   },
   {
    "kind": "source",
@@ -153,7 +153,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"10d43b2842c7d3a8b57365c0b6d11a8f\""
+   "detail": "HTTP 200; ETag: W/\"666da4b898913bf5793f80967faa4b82\""
   },
   {
    "kind": "source",
@@ -177,7 +177,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"f6a3914c741e9172fa4b1067b01cd84f\""
+   "detail": "HTTP 200; ETag: W/\"9954011deaebb6d65e12576bedd33674\""
   },
   {
    "kind": "source",
@@ -185,7 +185,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"8fd534e90e60c296dd4ffea3fe836672\""
+   "detail": "HTTP 200; ETag: W/\"761c8daf1541f588b6da1a06b5a0a12c\""
   },
   {
    "kind": "source",
@@ -193,7 +193,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"9c0cec6fff5210b1985ccb6af618e9e3\""
+   "detail": "HTTP 200; ETag: W/\"fd0d121a3896ab982cbc8518edceffd6\""
   },
   {
    "kind": "source",
@@ -209,7 +209,7 @@
    "url": "https://www.usgs.gov/data/quaternary-fault-mapping-zapata-and-blanca-sections-sangre-de-cristo-fault-zone-high",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 23:35:09 GMT; ETag: W/\"1792971309\""
+   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 23:52:44 GMT; ETag: W/\"1792972364\""
   },
   {
    "kind": "source",
@@ -225,7 +225,7 @@
    "url": "https://www.usgs.gov/data/state-geologic-map-compilation-sgmc-geodatabase-conterminous-united-states",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 23:35:19 GMT; ETag: W/\"1792971319\""
+   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 23:52:46 GMT; ETag: W/\"1792972366\""
   },
   {
    "kind": "source",
@@ -233,7 +233,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"04af571443c93ec876642d10ebd53db4\""
+   "detail": "HTTP 200; ETag: W/\"bdd0e8e2ff962bcd1843a6ab1de460de\""
   },
   {
    "kind": "source",
@@ -241,7 +241,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE36",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"3ce067bf4fad89f27f15b2988474ac47\""
+   "detail": "HTTP 200; ETag: W/\"0478b7553a5d5462fc671b8f7d8f3a05\""
   },
   {
    "kind": "source",
@@ -249,7 +249,7 @@
    "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 21:56:49 GMT; Content-Length: 9424; ETag: W/\"6ade7b21-631c\""
+   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 23:46:01 GMT; Content-Length: 9948; ETag: W/\"6ade94b9-692e\""
   },
   {
    "kind": "source",
@@ -257,7 +257,7 @@
    "url": "https://buffedlizard55-lab.github.io/GEMSDOE36/docs/",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Sun, 04 Oct 2026 21:18:00 GMT; Content-Length: 5715; ETag: W/\"6ac2c288-442d\""
+   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 23:42:47 GMT; Content-Length: 2419; ETag: W/\"6ade93f7-144a\""
   },
   {
    "kind": "source",
@@ -265,7 +265,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"2e78a43911ae7d715d8b3cf44ef4cb50\""
+   "detail": "HTTP 200; ETag: W/\"39e37098bd2a209165c56a87ab9741d9\""
   },
   {
    "kind": "source",
@@ -289,7 +289,23 @@
    "url": "https://doi.org/10.1007/BFb0006528",
    "verified_in_repo": false,
    "status": "ok",
-   "detail": "HTTP 200; ETag: \"d8afda5c3a7e649e552643c14180f881\""
+   "detail": "HTTP 200; ETag: \"d397e5baae912a220e12b2a41bb1d065\""
+  },
+  {
+   "kind": "source",
+   "title": "GEMSDOE70 repository (sibling; dual-submodular OOF HGB 0.2478 owner-reported claim & 2026-10-20 0.4413 leaderboard read)",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
+   "verified_in_repo": true,
+   "status": "ok",
+   "detail": "HTTP 200; ETag: W/\"39e37098bd2a209165c56a87ab9741d9\""
+  },
+  {
+   "kind": "source",
+   "title": "NASA JPL/Caltech ARIA & ASF DAAC Sentinel-1 Geocoded Unwrapped Interferogram / Velocity Open Data",
+   "url": "https://aria.jpl.nasa.gov/",
+   "verified_in_repo": false,
+   "status": "unreachable",
+   "detail": "ConnectionError"
   },
   {
    "kind": "sciencebase",
