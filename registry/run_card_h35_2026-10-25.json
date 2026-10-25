@@ -356,5 +356,20 @@
   "experiments_used": 2,
   "experiments_limit": 3,
   "note": "third experiment not used: no further pre-registered hypothesis with a stronger prior was available without tuning on H35 outcomes"
+ },
+ "post_merge_addendum": {
+  "date_utc": "2026-10-25",
+  "event": "origin/main advanced during the session (PRs #13-#16, parallel sessions) and adopted the literal strict lane policy: the dense r13 lattice counts as a registry raster, so no dotted file is lane_clear; slot labels must say DO NOT SUBMIT (tests/test_lane_protocol.py, tests/test_kdc.py).",
+  "effect_on_this_card": "The original verdict 'promote' (selector-eligible) is SUPERSEDED for slot purposes by the merged policy. H35 is re-registered as alternate, verdict negative, ok_to_submit_slot False, lane_clear False. The experiment result (frozen holdout gate passed twice) is unchanged and remains the strongest same-run holdout evidence in the repo.",
+  "post_merge_lane_vs_parallel_downloads": {
+   "gems25-kdc-b2-plus-hgb-complement (main primary)": 0.434,
+   "gems25-gem-fuse1": 0.18,
+   "gems25-h31-1-flank-subscarp": 0.823,
+   "gems25-h31-control": 0.89,
+   "13gems r13 lattice": 1.0,
+   "checker": "scripts/check_lane_duplicates.py re-run on merged tree; receipt docs/downloads/lane-gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.json"
+  },
+  "superseded_verdict_field": "verdict (below) kept for provenance; see verdict_merged_policy",
+  "verdict_merged_policy": "negative"
  }
 }

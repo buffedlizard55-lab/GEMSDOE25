@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Register the H35 candidate in registry/submissions.json from evidence + lane receipts.
+"""HISTORICAL (pre-merge state of PR #18): do not re-run on the merged tree.
+
+This registered H35 as primary under this session's substantive-lane reading. The
+merged origin/main strict literal lane policy superseded that registration; the
+merged registry/submissions.json was then hand-reconciled (H35 = alternate,
+DO NOT SUBMIT; see registry/run_card_h35_2026-10-25.json post_merge_addendum).
+
+Register the H35 candidate in registry/submissions.json from evidence + lane receipts.
 
 Verdict rule (knowledge/18-19): ``promote`` (eligible for the owner's separate selector
 step; ``slot_approved`` stays False — this agent never approves/uploads a slot) only if

@@ -1,0 +1,107 @@
+{
+  "candidate": "gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif",
+  "sha256": "ad4bc4933d0b7636f0f32918c1fd8b8b08cd1964aee32d69e45419a9b54178a7",
+  "candidate_dots": 46181,
+  "thresholds": {
+    "spearman_max": 0.9,
+    "dots_within_3px_max": 0.7,
+    "dist_px": 3.0
+  },
+  "flagged": [
+    "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
+  ],
+  "rows": [
+    {
+      "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "spearman": -0.001382,
+      "dots_within_3px": 1.0,
+      "registry_dots_within_3px_of_candidate": 0.122497,
+      "registry_dots": 206895,
+      "flag": true
+    },
+    {
+      "file": "8GEMSDOE_Hedge-v2_submission.tif",
+      "spearman": 0.015467,
+      "dots_within_3px": 0.445833,
+      "registry_dots_within_3px_of_candidate": 0.188324,
+      "registry_dots": 227507,
+      "flag": false
+    },
+    {
+      "file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+      "spearman": 0.004073,
+      "dots_within_3px": 0.324982,
+      "registry_dots_within_3px_of_candidate": 0.150082,
+      "registry_dots": 174232,
+      "flag": false
+    },
+    {
+      "file": "gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+      "spearman": 0.002313,
+      "dots_within_3px": 0.349992,
+      "registry_dots_within_3px_of_candidate": 0.158817,
+      "registry_dots": 69281,
+      "flag": false
+    },
+    {
+      "file": "gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+      "spearman": 0.002378,
+      "dots_within_3px": 0.263117,
+      "registry_dots_within_3px_of_candidate": 0.147411,
+      "registry_dots": 123939,
+      "flag": false
+    },
+    {
+      "file": "gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+      "spearman": 0.002835,
+      "dots_within_3px": 0.252636,
+      "registry_dots_within_3px_of_candidate": 0.145736,
+      "registry_dots": 123779,
+      "flag": false
+    },
+    {
+      "file": "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+      "spearman": 0.003225,
+      "dots_within_3px": 0.245231,
+      "registry_dots_within_3px_of_candidate": 0.146874,
+      "registry_dots": 121131,
+      "flag": false
+    },
+    {
+      "file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "spearman": 0.002751,
+      "dots_within_3px": 0.224595,
+      "registry_dots_within_3px_of_candidate": 0.149362,
+      "registry_dots": 60069,
+      "flag": false
+    },
+    {
+      "file": "gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "spearman": 0.001546,
+      "dots_within_3px": 0.213053,
+      "registry_dots_within_3px_of_candidate": 0.151077,
+      "registry_dots": 44090,
+      "flag": false
+    },
+    {
+      "file": "gemsdoe-ens12-adopted-7f00890a.tif",
+      "spearman": 0.02324,
+      "dots_within_3px": 0.433447,
+      "registry_dots_within_3px_of_candidate": 0.234243,
+      "registry_dots": 172974,
+      "flag": false
+    },
+    {
+      "file": "gemsdoe9-PLACEHOLDER-2314b599.tif",
+      "spearman": 0.000545,
+      "dots_within_3px": 0.072952,
+      "registry_dots_within_3px_of_candidate": 0.142886,
+      "registry_dots": 147684,
+      "flag": false
+    }
+  ],
+  "verdict": "DUPLICATE LANE / STOP",
+  "submission_allowed": false,
+  "slot_approved": false,
+  "protocol_note": "Literal lane protocol applies: candidate-side dots_within_3px=1.0 for the r13 lattice exceeds the 0.70 threshold. Reverse overlap does not waive it; no density exception is authorized."
+}

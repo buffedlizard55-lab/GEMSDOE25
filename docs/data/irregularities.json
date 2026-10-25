@@ -240,15 +240,15 @@
    "status": "fixed (withdrawn)",
    "issue": "The front-page 'format-validated' download gems25-dotted-h19-5-d2-8-\u2026-e56ea318af89-nan.tif (SHA-256 91eae1ca\u2026) is byte-identical to a raster the group already lists (GEMSDOE24 d2-8 alternate in registry/artifact_ledger.json and the GEMSDOE30 entry tagged 91eae1ca, 0.2600 claim). The brief requires a unique file.",
    "evidence": "registry/submissions.json (role now 'duplicate'); scripts/check_lane_duplicates.py on the file: byte_identical=True vs data/scored/gems24-\u2026d2-8\u2026; registry/artifact_ledger.json.",
-   "resolution_or_action": "Withdrawn as primary. Replaced by the unique H31-C file (docs/downloads/gems25-h31-control-\u2026-nan.tif). The old file stays in git history and is labelled DUPLICATE. Do not submit it as new."
+   "resolution_or_action": "Withdrawn as primary. Replaced by the unique H31-C file (docs/downloads/gems25-h31-control-\u2026-nan.tif). The old file stays in git history and is labelled DUPLICATE. Do not submit it as new. The legacy script that could recreate the duplicate as primary is disabled (IR-25-LEGACY-PACKAGER-DUPLICATE)."
   },
   {
    "id": "IR-25-LANE-DENSITY",
    "severity": "high",
-   "status": "open (review)",
-   "issue": "The PARALLEL-RUN lane test flags the H31-C file against 13GEMSDOE (r13-lattice-s5, a dense 5-px lattice with 206,895 dots): 100% of candidate dots lie within 3 px of a registry dot. The reverse direction is only 18.5%. The one-directional test is not discriminative against dense registry rasters.",
-   "evidence": "docs/downloads/lane-gems25-h31-control-\u2026-nan.json (rows: 13gems_20261001_r13\u2026); computed in this session.",
-   "resolution_or_action": "Left flagged, not overridden. Human review needed: decide whether to use a two-sided or density-normalised overlap test. Until cleared, the file is NOT slot-eligible."
+   "status": "fixed (strict duplicate/stop applied; no density exception)",
+   "issue": "The 5-px lattice registry raster flags candidate dots under the literal protocol: 88.9% of the stored holdout-candidate emission and 100% of the full-footprint GEM-1 emission lie within 3 px of lattice dots. The saved result had incorrectly treated the dense lattice as a degenerate exception and marked GEM-1 lane-clean. The GEM-FUSE1 receipt added by merged PR #13 also records 100% of candidate dots within 3 px of the r13 lattice; its density-artifact explanation does not supersede this literal threshold.",
+   "evidence": "evidence/gem_validation/results.json (stored lattice overlap 0.889015); evidence/gem_validation/lane_gem1.json (full-footprint overlap 1.0); scripts/validate_gem_candidate.py; docs/downloads/lane-gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.json (candidate-side overlap 1.0)",
+   "resolution_or_action": "Applied the protocol verbatim: either overlap exceeds 70%, so GEM-1 and H31-C are duplicate-lane stops and are download-for-testing only; do not submit. No density-normalized exception is authorized. Corrected saved decision and site labels; new validation code fails closed and checks each candidate full-footprint raster. GEM-FUSE1 is now explicitly marked DUPLICATE LANE / STOP, testing-only, do not submit; reverse overlap and density interpretation do not waive the user-set threshold. The GEM-FUSE1 builder is disabled and regression-tested to prevent recreating this known duplicate. The H31-C registry writer is also disabled and regression-tested to prevent restoring that known lane duplicate as primary."
   },
   {
    "id": "IR-25-LEADERBOARD-CONFLICT",
@@ -283,6 +283,118 @@
    "resolution_or_action": "The site and README label it 'UNIQUE FILE - NOT CLEARED'. A slot needs a passing confirmation, a cleared lane check, and the exact-file audit."
   },
   {
+   "id": "IR-25-LANE-GATE-MISAPPLICATION",
+   "severity": "critical",
+   "status": "fixed (decision corrected)",
+   "issue": "Prior stored GEM-1 validation marked the candidate lane-clean and package_tif=true despite a stored lattice overlap of 0.889015 and a separate full-footprint GEM-1 lane receipt of 1.0. The validator used one lane result for an independently selected candidate and its holdout emission was crop-indexed against full-grid rasters. This could falsely clear an unrelated candidate.",
+   "evidence": "evidence/gem_validation/results.json; evidence/gem_validation/lane_gem1.json; prior scripts/validate_gem_candidate.py code; corrected tests/test_lane_protocol.py",
+   "resolution_or_action": "Now check each candidate surface and exact full-footprint emission separately, use absolute Spearman, require a nonempty readable registry, and require lane clearance in the per-candidate promotion gate. Corrected the stored decision to package_tif=false. Raw inputs are absent, so the corrected algorithm has unit tests but no fresh full-data run."
+  },
+  {
+   "id": "IR-25-LEGACY-PACKAGER-DUPLICATE",
+   "severity": "high",
+   "status": "fixed (disabled)",
+   "issue": "scripts/package_submissions.py could regenerate the previously identified D2.8 file (content id e56ea318af89; SHA-256 91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8) and rewrite registry/submissions.json with it as primary, despite the duplicate finding and no new candidate gate.",
+   "evidence": "prior scripts/package_submissions.py; IR-25-DUPLICATE-DOWNLOAD; tests/test_packaging_gate.py",
+   "resolution_or_action": "Retired the legacy CLI; it now exits before accessing data or writing artifacts. Retained a same-run exact-SHA promotion-receipt validator for tests/future safe packager code. README reproduction instructions now warn against invoking it."
+  },
+  {
+   "id": "IR-25-RESTORE-API-RATELIMIT",
+   "severity": "medium",
+   "status": "fixed",
+   "issue": "scripts/restore_data.py and scripts/restore_artifacts.py previously relied on gh api (GitHub REST API, 5,000 req/hr shared across parallel sessions) with fallback to raw.githubusercontent.com (outside the sandbox network allowlist). When the REST API quota hit 0 during parallel runs on 2026-10-25, gh api failed with HTTP 403.",
+   "evidence": "gh api rate_limit (core remaining=0); scripts/restore_data.py; scripts/restore_artifacts.py; PR #10 (knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md)",
+   "resolution_or_action": "Fixed in scripts/restore_data.py and scripts/restore_artifacts.py by adding _git_fetch_blob (git fetch --depth=1 --filter=blob:none + git show FETCH_HEAD:<path> over https://github.com/), which is inside the sandbox allowlist, uses zero REST API quota, and restored all 22 manifest files + 30 artifact rasters + 13 focus-site rasters with 100% SHA-256 verification."
+  },
+  {
+   "id": "IR-25-GEMSDOE32-B2-PARADOX",
+   "severity": "high",
+   "status": "verified",
+   "issue": "Pixel-exact forensics across the 9 focus sites proves GEMSDOE28 r1 (0.2708, 40,199 px) is D2.8 & (d(cat)>1 px), GEMSDOE32 H33-2-B2 (0.2778, 37,654 px) is D2.8 & (d(cat)>2 px), and GEMSDOE36 (0.2750, 38,854 px) is B2 + 1,200 extra dots. Evaluating the pre-built full-catalogue B2 raster directly on Holdout (where hidden_test is a subset of labels) yields an artificial 0.0041 DTI because B2 masked d(labels)<=2.0 (including hidden_test), whereas applying lateral-flank shielding strictly to draw.visible inside each out-of-fold Holdout cell (Factor C) is positive in 8/8 fold-blocks across screen and confirmation.",
+   "evidence": "evidence/focus_sites_forensics.json; evidence/h31_flank_screen/results.json; evidence/h31_flank_confirm/results.json",
+   "resolution_or_action": "Never evaluate a post-hoc full-catalogue collar-pruned raster against hidden_test subset of labels; always apply flank shielding strictly to draw.visible inside each out-of-fold Holdout cell (src/gems25/h31.py::candidates_flank_shielded)."
+  },
+  {
+   "id": "IR-25-GEM1-WEAK-CONTROL",
+   "severity": "high",
+   "status": "disclosed",
+   "issue": "PR #12 described GEM-1 (blind magnetics) as holdout-validated, but its comparison was against a weak control (B_crest, holdout DTI \u22480.02). Used as a complement to the 0.15 same-run control in E1, GEM-1 dots were random-level (R 0.167 vs uniform-random 0.183; paired \u22120.0197, 0/4 folds).",
+   "evidence": "evidence/kdc_screen/analysis.json gate.K_gem1 and gate.K_rand; registry/run_card_kdc_2026-10-25.json.",
+   "resolution_or_action": "GEM-1 download marked SUPERSEDED / NOT RECOMMENDED in registry/submissions.json and on the site. Future comparisons must use the best same-run control (AGENTS rule)."
+  },
+  {
+   "id": "IR-25-KDC-FIRST-BUILD-LANE-DUPLICATE",
+   "severity": "medium",
+   "status": "fixed",
+   "issue": "The first KDC build (content id 0cfdb8977088) failed the parallel-run lane rule: 75.5 % of its dots lay within 3 px of GEMSDOE63 cvarlw dots and 70.0 % within 3 px of GEMSDOE48. Off-H19-5 real estate is shared with those sites.",
+   "evidence": "evidence/kdc_build/withdrawn-lane-duplicate-checks-0cfdb8977088.json.",
+   "resolution_or_action": "Logged as a duplicate and withdrawn (files deleted from docs/downloads). Rebuilt with --exclude-registry (complement > 3 px from every other-site registry raster): worst overlap 0.680 against the 31 other-site registry rasters (37 checked incl. the lattice and 5 GEMSDOE25 files). Under main's strict-lane policy (PR #14) the rebuild still fails on the dense r13 lattice (99.9 %), as every file does, so it is DO NOT SUBMIT."
+  },
+  {
+   "id": "IR-25-REGISTRY-HALO-COST",
+   "severity": "high",
+   "status": "open",
+   "issue": "The 3-px halos of 30 other-site registry rasters cover 59.1 % of the footprint and 93.7 % of this repo's top-3.5 % model ridge pixels. Any lane-compliant unique file must place \u226530 % of its dots in lower-value terrain; the lane-compliant complement's median model score is 0.205 versus 0.458 for the unconstrained one.",
+   "evidence": "evidence/kdc_build/registry_halo_cost.json; scripts/build_kdc_submission.py composition fields.",
+   "resolution_or_action": "Disclosed on the site and run card. Uniqueness and score are in tension for every derivative of the shared HGB/DEM stack; only a genuinely new detector (for example, 1 m lidar scarp mapping) escapes this."
+  },
+  {
+   "id": "IR-25-BRIEF-RECONSTRUCTED",
+   "severity": "medium",
+   "status": "open",
+   "issue": "This session's owner brief was archived after context condensation, so knowledge/owner_brief_2026-10-25_s6_RECONSTRUCTED.txt is an agent reconstruction and is not guaranteed verbatim.",
+   "evidence": "File header; the 21 owner-reported scores in registry/top_scorer_sources.json all appear in it (21/21). A parallel session merged knowledge/owner_brief_2026-10-25_verbatim.txt (9.5 KB) via PR #13\u201315. It lacks lines present in the owner-reported score list (for example GEMSDOE88 and the gems91 S18 entry), so it also looks abridged. Neither copy is authoritative.",
+   "resolution_or_action": "Owner: paste the original message over the file to make it authoritative."
+  },
+  {
+   "id": "IR-25-CODE-SEARCH-INDEX",
+   "severity": "low",
+   "status": "disclosed",
+   "issue": "The GitHub code-search API returns incomplete results for the buffedlizard55-lab repositories (and `gh search code --owner` is unsupported), so the novelty audit of hypotheses relied on fetched repo trees and docs rather than exhaustive code search.",
+   "evidence": "gh api search/code queries during this session returned hits for only a subset of known files.",
+   "resolution_or_action": "Novelty claims in knowledge/17\u201319 are limited to what the trees and documents show; an absent hit is not proof that something was never implemented."
+  },
+  {
+   "id": "IR-25-REGISTRY-TOP-LEDGER",
+   "severity": "low",
+   "status": "disclosed",
+   "issue": "21 top-scoring registry rasters were downloaded from the GEMSDOE24\u201392 GitHub repositories for forensics and lane checks. Their scores are OWNER-REPORTED claims matched to filenames, not organizer receipts.",
+   "evidence": "registry/top_scorer_sources.json (raw URLs + sha256); scripts/fetch_top_scorers.py restores them; data/registry_top/ is not committed.",
+   "resolution_or_action": "Rasters are not committed (AGENTS rule); the restore script verifies the pinned SHA-256."
+  },
+  {
+   "id": "IR-25-BUILD-DESPITE-FAILED-GATE",
+   "severity": "high",
+   "status": "disclosed",
+   "issue": "The pre-registration (knowledge/17 \u00a73) allows the live KDC build only after the screen and confirmation pass. Both screens failed, but the owner's brief makes a unique TIF the highest-urgency deliverable, so the file was built anyway.",
+   "evidence": "registry/run_card_kdc_2026-10-25.json deviation_from_preregistration; evidence/kdc_screen/analysis.json; evidence/kdc5_screen/analysis.json.",
+   "resolution_or_action": "The file is labelled verdict negative / NOT slot-cleared on the site, in the README and in the registry. The selector should not spend a slot on it under AGENTS rule 5. No performance parameter was tuned after the screens."
+  },
+  {
+   "id": "IR-25-GEM-FUSE1-WEAK-CONTROL",
+   "severity": "high",
+   "status": "open",
+   "issue": "GEM-FUSE1 (PR #13, content id c2097a554ef2) is described as 'blind magnetics + B2 prune, holdout-validated (screen +0.0182 4/4, confirm +0.0218 4/4)'. Its gate compared it with control_B_crest (HOLDOUT-DTI 0.019\u20130.021), not with the best same-run control of this harness (\u22480.15). Its own HOLDOUT-DTI is 0.037\u20130.042. The file keeps only 465 of B2's 37,654 dots (1.2 %): 'B2 prune' means B2's \u22642 px catalogue-prune rule applied to magnetics dots, not B2's dots.",
+   "evidence": "evidence/gem_fuse1_validation.json (control_B_crest by_fold); evidence/kdc_build/candidates_vs_b2.json; evidence/kdc_screen/analysis.json gate.K_gem1 (GEM-1 ranking random-level as a complement).",
+   "resolution_or_action": "GEM-FUSE1 is demoted from featured to alternate; its strict-lane DO NOT SUBMIT label is kept. Any future GEM-family gate must use the best same-run control (AGENTS rule 'recompute comparator in the same run')."
+  },
+  {
+   "id": "IR-25-PARALLEL-SESSION-COLLISIONS",
+   "severity": "medium",
+   "status": "disclosed",
+   "issue": "Three parallel sessions merged PRs #13\u2013#15 into main while this session was running. Collisions: two different experiments are both named 'H31-1' (credit-field emission, negative, knowledge/13 in PR #11; flank-shielded sub-scarp factorial, PR #15). Knowledge file numbers 17 and 18 are each used by two sessions. Each session also re-pointed the site's featured download.",
+   "evidence": "git log 2a279dd..origin/main; knowledge/13\u201319 file names; registry/submissions.json history.",
+   "resolution_or_action": "Merged without deleting any parallel work. Files are disambiguated by full name (the numbers are not unique). Proposed rule for AGENTS.md: claim a hypothesis ID and knowledge number in registry/ before running."
+  },
+  {
+   "id": "IR-25-FEATURED-DOWNLOAD-RATIONALE",
+   "severity": "medium",
+   "status": "disclosed",
+   "issue": "The site needs one featured download, and every current file is DO NOT SUBMIT under the strict lane policy. The KDC file is featured because it is the only unique file that keeps all 37,654 dots of the owner-reported 0.2778 file. GEM-FUSE1 keeps 1.2 % and H31-1 flank keeps 3.6 %. Its model projection is 0.25\u20130.31, which is not a score.",
+   "evidence": "evidence/kdc_build/candidates_vs_b2.json; evidence/kdc_build/projection.json.",
+   "resolution_or_action": "Featuring a file is not slot approval; slot selection remains with the separate selector (owner)."
+  },
+  {
    "id": "IR-25-FOCUS-SCORES-2026-10-25",
    "severity": "medium",
    "status": "flagged",
@@ -293,10 +405,10 @@
   {
    "id": "IR-25-H35-LANE-LINEAGE",
    "severity": "high",
-   "status": "open (disclosed)",
+   "status": "resolved-by-merged-strict-policy (slot verdict negative)",
    "issue": "The strict lane checker flags the H35 candidate: 89.0% of its dots lie within 3 px of this repo's own unscored H31-C predecessor (same BDE+7 base detector lineage), and 100% vs the dense 13GEMSDOE lattice. Under a literal any-registry-raster reading of the parallel-run protocol this is a duplicate flag; vs every substantive SCORED registry raster the caps pass (worst 67.7% overlap, worst surface |rho| 0.148).",
    "evidence": "docs/downloads/lane-gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.json; evidence/h35_lane_surface.json; registry/run_card_h35_2026-10-25.json correlation_overlap_vs_registry.",
-   "resolution_or_action": "H31-C demoted to superseded alternate (never submit both); verdict is promote-eligible for the separate selector step with caveats in the site/README status. Selector must consciously accept the lineage overlap. IR-25-LANE-DENSITY (two-sided density-normalised statistic) would resolve the lattice half."
+   "resolution_or_action": "Post-merge (origin/main PRs #13-#16 adopted the literal strict lane policy incl. the r13 lattice), H35 is registered DO NOT SUBMIT with lane_clear=False; it also overlaps the parallel H31-1 flank file 82.3% (same H31 lineage). Holdout PASS stands as an experiment result. Revisit only if the project adopts a density-normalised two-sided lane statistic."
   },
   {
    "id": "IR-25-H35-SE-FOLD-NEGATIVE",
@@ -310,7 +422,7 @@
    "id": "IR-25-GEMSDOE32-NEW-LANES-UNCHECKED",
    "severity": "medium",
    "status": "open",
-   "issue": "GEMSDOE32's site (re-read 2026-10-25) now carries newer unscored lanes (Arena41 PF-only, gates failed; H32-WIN-46090) whose rasters are not in this repo's pinned registry/data manifest, so H34/H35 lane checks could not include them.",
+   "issue": "GEMSDOE32's site (re-read 2026-10-25) now carries newer unscored lanes (Arena41 PF-only, gates failed; H32-WIN-46090) whose rasters are not in this repo's pinned registry/data manifest, so H34/H35 lane checks could not include them. Post-merge note: H35 was lane-checked vs the merged parallel-session downloads (KDC 43.4%, GEM-FUSE1 18.0% - distinct; H31-1 82.3% - same lane).",
    "evidence": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html (fetched 2026-10-25, two chunks); registry/data_manifest.json has no 2026-10-25 GEMSDOE32 entries.",
    "resolution_or_action": "Pin those rasters by SHA-256 into registry/data_manifest.json (owner mirrors) and re-run scripts/check_lane_duplicates.py before any future packaging in this lane family."
   }

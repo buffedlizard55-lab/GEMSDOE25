@@ -93,31 +93,33 @@
  ],
  "current_turn_review": {
   "date_utc": "2026-10-25",
-  "branch": "arena/a499a7dc-gemsdoe25",
-  "pass_1_implement_and_verify": [
-   "Read README/AGENTS/owner brief, knowledge/00-16, registries and runnable code; fetched sibling GEMSDOE32/36 sites (public claims) via page fetch. Wrote knowledge/17 (why 0.2778 leads: deletion economics on a strong surface) and registered the 12 focus-site OWNER-reported scores in registry/live_scores.json (46 artifacts, gaps recomputed with gap_basis).",
-   "Restored pinned inputs from owner GitHub mirrors and rebuilt caches: evidence/work_cache_hashes.json all MATCH (bit-identical to prior sessions).",
-   "Ranked 5 pre-registered hypotheses (knowledge/18) before any fit; implemented H34-1 RESMAG-FLEX (src/gems25/h34.py + synthetic tests) inside the existing harness with per-fold visible-only refits.",
-   "H34-1 screen = NEGATIVE (+0.002332 paired, 2/4 folds; frozen gate FAIL; canary 0.544; control reproduced H28 8/8 exactly). No confirmation, no relabel (commit 94df062).",
-   "Pre-registered H35 2x2 (knowledge/19, commit 8bf9643 before fit). Screen draws 10-11 PASS (+0.004351, 3/4 folds, canary 0.638); fresh confirmation draws 12-13 PASS (+0.003970, 3/4, canary 0.620). Combined B 0.147602 (CI 0.1317-0.1635) vs control 0.143442; factorial T +0.004350, R -0.000189, RxT +0.002321.",
-   "Built the unique full-footprint TIF per the frozen rule (scripts/build_h35_candidate.py): 48,849 dots, zeros-outside, every cell finite in [0,1]; lane checks pre/post (surface rho<=0.148; final vs substantive scored worst overlap 67.7%, rho<=0.048); registered via scripts/register_h35_submission.py (verdict promote = selector-eligible, slot_approved False); exact-file audit re-read independently (EPSG:32611 3730x3292, 0 NaN, 0 dots on catalogue)."
-  ],
-  "pass_2_bugs_assumptions_edge_cases": [
-   "BUG found: two parallel same-file edits clobbered each other (lost README session-review line, lane-summary block, register status text). Re-applied sequentially, regenerated, and verified by grep. The stale README also briefly printed the obsolete 'parity with its own control' lane warning for the new file -- removed.",
-   "BUG found: register_h35_submission.py was not idempotent (a re-run would demote the new primary). Demotion now requires the h31-control file stem; re-run verified.",
-   "Over-claim fixed: homepage/executive text said 'the lane check passed'; corrected to lane caps vs substantive scored rasters WITH disclosed caveats (dense lattice 100%, own unscored H31-C predecessor 89.0%). IR-25-H35-LANE-LINEAGE opened (high).",
-   "Edge cases re-verified: template-hash pin before write (submission.py), duplicate-of-template/registry hash refusal in build, catalogue pixels cleared from emission (0 dots on label), note lengths (primary 110 <=120 internal cap, <=140 brief), whole-array ((a>=0)&(a<=1)).all() on the zeros primary passes the strictest portal interpretation.",
-   "Leakage audit: per-fold refit uses train-only imputation stats; tip layer built from visible catalogue only per draw; canary single-feature AUCs <=0.638 (H35) / 0.544 (H34) -- no feature smells like truth.",
-   "Ruff clean after removing an unused variable introduced by the generator edits; full pytest 111 passed."
-  ],
-  "pass_3_recheck_against_the_original_brief": [
-   "Focus sites GEMSDOE24/25/27/28/30/31/32/33/36 studied line-by-line from the OWNER-reported list + GEMSDOE32/36 sites fetched 2026-10-25 (knowledge/17); every number labelled OFFICIAL/OWNER/COMPUTED/INFERENCE; no DrivenData access, no invented receipts.",
-   "Why/how 0.2778: decomposed into surface ladder + emission ladder + B=2 flank deletion with the exact DTI break-even (marginal credit ~0.055-0.059 per pixel); mechanism explicitly unresolved vs the staff 'corrections within 300 m' wording.",
-   "Unique TIF generated (new content id d5d4cde1e719, not a copy/relabel), downloadable at the very top of README and the homepage + executive summary, with OK-to-download / OK-to-submit status stated unambiguously (selector candidate, not slot-approved, unscored) and a 110-char DrivenData note.",
-   "Holdout rule honoured: 2 of 3 experiment budget used; only the twice-passing candidate is selector-eligible; H34 negative kept as a deliverable; no live-score claim beyond HOLDOUT-DTI.",
-   "Run card registry/run_card_h35_2026-10-25.json carries hypothesis, mechanism, named non-fault mimics, HOLDOUT-DTI with CIs (including that the paired CI includes zero and SE is negative twice), registry overlap, sha256, validator output, note, and verdict promote.",
-   "Remaining risks/limitations, in order: proxy-live transfer is historically weak (+0.33 n.s.) so >0.2778 is NOT demonstrated; lane lineage overlap vs H31-C needs the selector's conscious acceptance; GEMSDOE32's 2026-10-25 lanes are not yet pinned for lane checks (IR-25-GEMSDOE32-NEW-LANES-UNCHECKED); leaderboard conflict 0.4413 vs 0.3195 unresolved without an owner read; live scores list remains unverified owner claims."
-  ]
+  "session_branch": "arena/d6aa679e-gemsdoe25",
+  "focus": "Resolve PR #14 conflicts against newly merged main while enforcing the literal lane threshold on the GEM-FUSE1 artifact added by PR #13; keep all current artifacts testing-only and unsubmitted.",
+  "pass_1": {
+   "completed": [
+    "Resolved all nine PR #14 merge conflicts by preserving current main additions and re-applying strict lane conclusions to shared evidence and generated pages.",
+    "Marked GEM-FUSE1 duplicate/stop: its tracked lane receipt records 100% of candidate dots within 3 px of the r13 lattice, exceeding the 70% limit; no density exception.",
+    "Updated README, registry, run card, receipts and site. Retired the GEM-FUSE1 builder so it cannot recreate the known lane duplicate."
+   ]
+  },
+  "pass_2": {
+   "completed": [
+    "Reconciled the owner-mirror format receipt (format pass only) with separate lane/slot authorization; all primary/fallback notes and pages now say testing only, no slot, do not submit.",
+    "Checked retained artifact bytes against its recorded SHA-256; exact match.",
+    "Added regression coverage for the disabled builder and retained strict-lane decision."
+   ]
+  },
+  "pass_3": {
+   "completed": [
+    "Rechecked owner constraints: no new model run, TIFF, upload, score claim, or slot selection; strict lane rule applied literally.",
+    "Three-pass review notes and the GEM-FUSE1 run card remain tracked.",
+    "Local verification after merge resolution: 110 passed, 3 skipped; Ruff passed; git diff --check passed."
+   ],
+   "pending": [
+    "Push resolved merge and verify GitHub checks; PR #14 remains unmerged."
+   ]
+  },
+  "verdict": "negative for slot: no current artifact is cleared for submission. GEM-FUSE1 is unique by content but fails the literal lane rule. Testing downloads only; no organizer score verified."
  },
  "prior_turn_reviews": [
   {
@@ -337,7 +339,131 @@
      "README updated: knowledge/16_current_task_2026-10-25.md stored + current-task section added."
     ]
    },
-   "verdict": "negative-for-slot / positive-for-format-download: GEM-1 passes its paired holdout gate but does not beat the frozen 0.152003389 comparator (which does not reproduce here, IR-25-COMPARATOR-DRIFT), so it is NOT slot-approved. The unique TIF is published as a format-verified download only; no weekly slot is spent and no submission is uploaded (DrivenData automation prohibited)."
+   "verdict": "negative-for-slot / positive-for-format-download: GEM-1 passes its paired holdout gate but does not beat the frozen 0.152003389 comparator (which does not reproduce here, IR-25-COMPARATOR-DRIFT), so it is NOT slot-approved. The unique TIF is published as a format-verified download only; no weekly slot is spent and no submission is uploaded (DrivenData automation prohibited).",
+   "superseded_by": "current_turn_review_2026_10_25_arena_d6aa679e"
   }
- ]
+ ],
+ "current_turn_review_2026_10_25_arena_a139b467": {
+  "date_utc": "2026-10-25",
+  "session_branch": "arena/a139b467-gemsdoe25",
+  "focus": "GEMSDOE32 H33-2-B2 (0.2778) forensic + 5 new hypotheses + build GEM-FUSE1 unique TIF (blind magnetics + B2 prune) with full holdout validation",
+  "pass_1": {
+   "scope": "Restore data (core+external+scored), rebuild features, forensic why H33 scored, rank 5 hypotheses, preregister GEM-FUSE1, validate on holdout, build unique TIF, lane check, update site/README/run card",
+   "done": [
+    "Restored 22 pinned inputs (419 MB raster + labels + template + 2 external + 11 scored) via gh api, sha256 verified; built features (64 static + 5 addons) in 29s",
+    "Forensic of 0.2778: D2.8 (44,090) -> B=1 (40,199) removes 3,891 dots within 1px, B=2 (37,654) removes 2,545 within 1<d\u22642; live inversion shows shells earn 0.002-0.016 credit/dot vs 0.0556 break-even (DTI=0.2778), so deletion is denominator reduction (COMPUTED, GEMSDOE32 arena41_forensic.json replicated)",
+    "5 new hypotheses ranked in knowledge/17 (GEM-FUSE1 tops: blind magnetics \u00d7 low relief + B2 prune; GEM-CURV multi-scale curvature persistence; GEM-XGRAD strain\u00d7basement; GEM-SCARP-FREE; GEM-HYDRO blocked on external fetch verification)",
+    "Preregistered GEM-FUSE1 (knowledge/18) before any fit: surface GEM-1 + prune2 emission, 4 folds \u00d7 draws 0,1 screen \u2192 2,3 confirm, paired gate >+0.001 3/4 folds worst -0.01, AUC \u22640.90, lane >0.90/>70%",
+    "Validated HOLDOUT-DTI screen 0.036808 vs control 0.018636 gain +0.01817 4/4 worst +0.010, confirm 0.042441 vs 0.020595 gain +0.02185 4/4 worst +0.010, AUC 0.53 (no leakage)",
+    "Built unique TIF gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif 46,181 dots (49,373 before prune), sha256 ad4bc49..., 0 NaN inside, [0,1], EPSG:32611 3730\u00d73292 100m, outside NaN, 12/12 hard checks PASS",
+    "Prior PR #13 interpretation, superseded by current strict review: lane check vs 11 rasters showed max Spearman 0.023 and substantive overlap \u226444.6%, but lattice overlap was 100%; this triggers DUPLICATE LANE / STOP under the literal >70% rule. Reverse overlap and density interpretation do not waive the threshold.",
+    "Updated registry/submissions.json primary to new file, README hero, index.html hero, executive-summary callout with OK-to-download vs slot-review banners, run card registry/run_card_gem_fuse1_2026-10-25.json"
+   ]
+  },
+  "pass_2": {
+   "bugs_found_and_fixed": [
+    "Fixed README download block still pointing to old H31-C primary; replaced with FUSE1 block and lane status",
+    "Fixed executive-summary hard-coded GEM-1 callout (was not using registry primary); patched to show FUSE1 primary with correct checks and lane receipts",
+    "Fixed scripts/build_gem_fuse1.py KeyError on content_id (used chk['content_id'] not cid)",
+    "Fixed duplicate id primary-zeros in registry/submissions.json after promoting new primary (deduplicated to h31-control-fallback-zeros)",
+    "Verified validator output: footprint_all_finite PASS (0 NaN), values_in_0_1 PASS (0.0-1.0), outside NaN official PASS 7,111,787/7,111,787, hard_failures []",
+    "Verified lane vs registry: no substantive duplicate, lattice artefact correctly logged as IR-25-LANE-DENSITY not a lane violation",
+    "Verified holdout reproduction: control cells match prior GEM-1 control within 1e-6 (holdout deterministic)",
+    "Checked that executive-summary download steps filename and sha prefix now match new file (ad4bc493, not old 51d0b3)"
+   ],
+   "known_residual": [
+    "Holdout is catalogue-gap proxy (IR-25-PROXY-LIMITS, IR-32-PROXY-01); B2 pruning cannot be validated on proxy (it removes catalogue-proximal dots that proxy truth rewards); live premise (hidden truth rarely within 200m of mapped trace) remains untested from public data",
+    "No organizer score exists for any artifact in this repo; all leaderboard claims are OWNER-CLAIM unverified; no drivendata.org page fetched",
+    "Frozen comparator 0.152003389 does not reproduce here (IR-25-COMPARATOR-DRIFT); gate uses same-run paired control (valid per AGENTS.md rule 5)",
+    "Owner-mirror template/validator not organizer-authenticated (IR-25-PROVENANCE)"
+   ]
+  },
+  "pass_3": {
+   "recheck_against_brief": {
+    "unique TIF with obvious OK-to-download/submit labeling": "README hero + index.html hero + executive-summary callout all show \u2705 OK to download \u2014 format-validated, holdout-validated (4/4 folds, AUC 0.53, lane-clean) and \u26a0\ufe0f NOT organizer-scored / slot requires selector review; note \u226497 chars; lane receipt and format receipt linked",
+    "why/how 0.2778 and can we beat it": "knowledge/17 \u00a71-2: forensic with shell counts, live inversion, break-even 0.0556, credit 0.002-0.016 vs 0.0556, B=2 is denominator reduction, limit is detector credit density +25% needed for 0.3262 (from H28 model 0.140 vs 0.1084)",
+    "3-5 hypotheses with layers/signature/rationale/difference/ranking/validatable": "knowledge/17 table 5 hypotheses with all required columns, expected \u0394DTI brackets, cost, validatable yes/no, external fetch check for GEM-HYDRO (Waterservices API not verified \u2192 deferred)",
+    "validate top candidate before slot": "GEM-FUSE1 pre-registered (knowledge/18) then validated on spatial holdout before any packaging; lane and leakage canaries run before trusting result; no weekly slot spent (site says selector review required)",
+    "line-by-line verified sources": "registry/sources.json + knowledge/17 \u00a74 with direct links (metric page 967, staff masking thread, GeoDAWN DOI, GDR 1391, pinned mirrors); no hallucinations; irregularities flagged",
+    "deep research stored": "knowledge/17 forensic + 5 hypotheses + knowledge/18 preregistration + evidence/gem_fuse1_validation.json + evidence/arena41_forensic replication",
+    "prompt in README core values": "README still contains Maximize P(Win) / Own the Outcome header and verbatim brief reference unchanged",
+    "current feed without manual checking": "site feed still blocks drivendata.org (AGENTS.md rule 3); no automation added",
+    "limitations": "README + run card + site all state limits: proxy vs live, no organizer score, provenance, comparator drift",
+    "data placement blocker solved": "scripts/restore_data.py + prepare_data + build_features all verified working (22 files, 1.4G work cache)",
+    "clean UI site": "root index.html + docs/*.html rebuilt via build_site.py then patched; one-click download buttons with sha/content_id/note copy",
+    "multiple passes": "this file is pass 3; three cumulative passes documented here",
+    "PR and merge": "to be done from arena/a139b467-gemsdoe25 via gh pr create + merge (see next steps)"
+   },
+   "later_correction": "The prior density-artifact judgment is superseded: strict user threshold treats 100% candidate overlap as DUPLICATE LANE / STOP; no density exception. See current_turn_review_2026_10_25_arena_d6aa679e."
+  },
+  "superseded_by": "current_turn_review_2026_10_25_arena_d6aa679e"
+ },
+ "current_turn_review_2026_10_25_arena_d6aa679e": {
+  "date_utc": "2026-10-25",
+  "session_branch": "arena/d6aa679e-gemsdoe25",
+  "focus": "Resolve PR #14 conflicts against newly merged main while enforcing the literal lane threshold on the GEM-FUSE1 artifact added by PR #13; keep all current artifacts testing-only and unsubmitted.",
+  "pass_1": {
+   "completed": [
+    "Resolved all nine PR #14 merge conflicts by preserving current main additions and re-applying strict lane conclusions to shared evidence and generated pages.",
+    "Marked GEM-FUSE1 duplicate/stop: its tracked lane receipt records 100% of candidate dots within 3 px of the r13 lattice, exceeding the 70% limit; no density exception.",
+    "Updated README, registry, run card, receipts and site. Retired the GEM-FUSE1 builder so it cannot recreate the known lane duplicate."
+   ]
+  },
+  "pass_2": {
+   "completed": [
+    "Reconciled the owner-mirror format receipt (format pass only) with separate lane/slot authorization; all primary/fallback notes and pages now say testing only, no slot, do not submit.",
+    "Checked retained artifact bytes against its recorded SHA-256; exact match.",
+    "Added regression coverage for the disabled builder and retained strict-lane decision."
+   ]
+  },
+  "pass_3": {
+   "completed": [
+    "Rechecked owner constraints: no new model run, TIFF, upload, score claim, or slot selection; strict lane rule applied literally.",
+    "Three-pass review notes and the GEM-FUSE1 run card remain tracked.",
+    "Local verification after merge resolution: 109 passed, 3 skipped; Ruff passed; git diff --check passed."
+   ],
+   "pending": [
+    "Push resolved merge and verify GitHub checks; PR #14 remains unmerged."
+   ]
+  },
+  "verdict": "negative for slot: no current artifact is cleared for submission. GEM-FUSE1 is unique by content but fails the literal lane rule. Testing downloads only; no organizer score verified."
+ },
+ "h31_flank_subscarp_session_review_2026_10_25": {
+  "branch": "arena/30eec392-gemsdoe25",
+  "pass_1": "Restored all 22 manifest inputs, 6 derived caches, 30 registry rasters, and 13 focus-site rasters; ran pixel-exact 9-site forensics (evidence/focus_sites_forensics.json); preregistered and executed H31-1 2x2 factorial screen (draws 10,11) and confirmation (draws 12,13) with Leakage Canary; built unique GeoTIFF 40bfe1d5b1c5.",
+  "pass_2": "Fixed GitHub REST API rate-limit fallback in restore_data.py and restore_artifacts.py (_git_fetch_blob); fixed streaming memory footprint in check_duplicate_lane_against_registry; resolved merge conflicts with parallel sessions PRs #11-#14 by placing H31-1 flank-shielded evidence in evidence/h31_flank_screen/ and evidence/h31_flank_confirm/.",
+  "pass_3": "Verified all 115 pytest tests pass, ruff check passes with 0 errors, git diff --check is clean, and all Parallel-Run Protocol requirements and Run Card fields are present."
+ },
+ "h34_h35_session_review_2026_10_25": {
+  "branch": "arena/a499a7dc-gemsdoe25",
+  "review": {
+   "date_utc": "2026-10-25",
+   "branch": "arena/a499a7dc-gemsdoe25",
+   "pass_1_implement_and_verify": [
+    "Read README/AGENTS/owner brief, knowledge/00-16, registries and runnable code; fetched sibling GEMSDOE32/36 sites (public claims) via page fetch. Wrote knowledge/17 (why 0.2778 leads: deletion economics on a strong surface) and registered the 12 focus-site OWNER-reported scores in registry/live_scores.json (46 artifacts, gaps recomputed with gap_basis).",
+    "Restored pinned inputs from owner GitHub mirrors and rebuilt caches: evidence/work_cache_hashes.json all MATCH (bit-identical to prior sessions).",
+    "Ranked 5 pre-registered hypotheses (knowledge/18) before any fit; implemented H34-1 RESMAG-FLEX (src/gems25/h34.py + synthetic tests) inside the existing harness with per-fold visible-only refits.",
+    "H34-1 screen = NEGATIVE (+0.002332 paired, 2/4 folds; frozen gate FAIL; canary 0.544; control reproduced H28 8/8 exactly). No confirmation, no relabel (commit 94df062).",
+    "Pre-registered H35 2x2 (knowledge/19, commit 8bf9643 before fit). Screen draws 10-11 PASS (+0.004351, 3/4 folds, canary 0.638); fresh confirmation draws 12-13 PASS (+0.003970, 3/4, canary 0.620). Combined B 0.147602 (CI 0.1317-0.1635) vs control 0.143442; factorial T +0.004350, R -0.000189, RxT +0.002321.",
+    "Built the unique full-footprint TIF per the frozen rule (scripts/build_h35_candidate.py): 48,849 dots, zeros-outside, every cell finite in [0,1]; lane checks pre/post (surface rho<=0.148; final vs substantive scored worst overlap 67.7%, rho<=0.048); registered via scripts/register_h35_submission.py (verdict promote = selector-eligible, slot_approved False); exact-file audit re-read independently (EPSG:32611 3730x3292, 0 NaN, 0 dots on catalogue)."
+   ],
+   "pass_2_bugs_assumptions_edge_cases": [
+    "BUG found: two parallel same-file edits clobbered each other (lost README session-review line, lane-summary block, register status text). Re-applied sequentially, regenerated, and verified by grep. The stale README also briefly printed the obsolete 'parity with its own control' lane warning for the new file -- removed.",
+    "BUG found: register_h35_submission.py was not idempotent (a re-run would demote the new primary). Demotion now requires the h31-control file stem; re-run verified.",
+    "Over-claim fixed: homepage/executive text said 'the lane check passed'; corrected to lane caps vs substantive scored rasters WITH disclosed caveats (dense lattice 100%, own unscored H31-C predecessor 89.0%). IR-25-H35-LANE-LINEAGE opened (high).",
+    "Edge cases re-verified: template-hash pin before write (submission.py), duplicate-of-template/registry hash refusal in build, catalogue pixels cleared from emission (0 dots on label), note lengths (primary 110 <=120 internal cap, <=140 brief), whole-array ((a>=0)&(a<=1)).all() on the zeros primary passes the strictest portal interpretation.",
+    "Leakage audit: per-fold refit uses train-only imputation stats; tip layer built from visible catalogue only per draw; canary single-feature AUCs <=0.638 (H35) / 0.544 (H34) -- no feature smells like truth.",
+    "Ruff clean after removing an unused variable introduced by the generator edits; full pytest 111 passed."
+   ],
+   "pass_3_recheck_against_the_original_brief": [
+    "Focus sites GEMSDOE24/25/27/28/30/31/32/33/36 studied line-by-line from the OWNER-reported list + GEMSDOE32/36 sites fetched 2026-10-25 (knowledge/17); every number labelled OFFICIAL/OWNER/COMPUTED/INFERENCE; no DrivenData access, no invented receipts.",
+    "Why/how 0.2778: decomposed into surface ladder + emission ladder + B=2 flank deletion with the exact DTI break-even (marginal credit ~0.055-0.059 per pixel); mechanism explicitly unresolved vs the staff 'corrections within 300 m' wording.",
+    "Unique TIF generated (new content id d5d4cde1e719, not a copy/relabel), downloadable at the very top of README and the homepage + executive summary, with OK-to-download / OK-to-submit status stated unambiguously (selector candidate, not slot-approved, unscored) and a 110-char DrivenData note.",
+    "Holdout rule honoured: 2 of 3 experiment budget used; only the twice-passing candidate is selector-eligible; H34 negative kept as a deliverable; no live-score claim beyond HOLDOUT-DTI.",
+    "Run card registry/run_card_h35_2026-10-25.json carries hypothesis, mechanism, named non-fault mimics, HOLDOUT-DTI with CIs (including that the paired CI includes zero and SE is negative twice), registry overlap, sha256, validator output, note, and verdict promote.",
+    "Remaining risks/limitations, in order: proxy-live transfer is historically weak (+0.33 n.s.) so >0.2778 is NOT demonstrated; lane lineage overlap vs H31-C needs the selector's conscious acceptance; GEMSDOE32's 2026-10-25 lanes are not yet pinned for lane checks (IR-25-GEMSDOE32-NEW-LANES-UNCHECKED); leaderboard conflict 0.4413 vs 0.3195 unresolved without an owner read; live scores list remains unverified owner claims."
+   ]
+  },
+  "post_merge_note": "Merged with origin/main PRs #13-#16 in PR #18: adopted strict literal lane policy; H35 slot verdict amended to negative (run card addendum); KDC remains primary; H35 registered as alternate testing download."
+ }
 }
