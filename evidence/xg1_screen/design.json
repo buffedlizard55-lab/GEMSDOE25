@@ -1,0 +1,71 @@
+{
+ "hypothesis": "XG1 cross-gradient alignment block (3 cols) added to the H35 base (BDE+7+tip+H34); primary arm X vs B35",
+ "preregistration": "knowledge/21_preregistered_xg1_cross_gradient_2026-10-25.md",
+ "draws": [
+  14,
+  15
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "arms": {
+  "C": {
+   "use_tip": false,
+   "use_H34": false,
+   "use_XG": false
+  },
+  "B35": {
+   "use_tip": true,
+   "use_H34": true,
+   "use_XG": false
+  },
+  "X": {
+   "use_tip": true,
+   "use_H34": true,
+   "use_XG": true
+  },
+  "Xonly": {
+   "use_tip": false,
+   "use_H34": false,
+   "use_XG": true
+  }
+ },
+ "min_dist": 2.4,
+ "kfrac": 0.035,
+ "model": {
+  "base": "BDE",
+  "extras": [
+   "X1_K",
+   "X1_ThK",
+   "X1_UK",
+   "X2_compat",
+   "X2_compat_coh",
+   "X3_gm",
+   "X3_gd"
+  ],
+  "h34_columns": [
+   "H34_resmag_shallow_ridge",
+   "H34_resmag_mid_ridge",
+   "H34_baseflex_ridge"
+  ],
+  "tip_column": "H27_tip",
+  "xg_columns": [
+   "XG_gm_align_ridge",
+   "XG_gd_align_ridge",
+   "XG_md_align_ridge"
+  ],
+  "fit_seed": "draw"
+ },
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px) via gems25.experiment.Cell.evaluate",
+ "leakage_auc_cap": 0.9,
+ "gate": {
+  "arm": "X vs B35",
+  "mean_gain_gt": 0.001,
+  "folds_positive_min": 3,
+  "worst_fold_min": -0.01,
+  "mean_hug_increase_max": 0.1
+ }
+}
