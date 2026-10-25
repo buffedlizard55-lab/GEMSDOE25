@@ -89,17 +89,13 @@ def main() -> None:
     tif = write_submission(pred, tmpl, OUT / fname, outside="nan")
     zero = write_submission(pred, tmpl, OUT / fname.replace("-nan.tif", "-zeros.tif"), outside="zero")
     chk, chk0 = check_file(tif, tmpl), check_file(zero, tmpl)
-    emu = json.loads((ROOT / "evidence" / "emission_model.json").read_text())
-    m = emu["d2_8"]
     # H28: the live-anchored forward model validated against five hash-verified owner-reported anchors
     h28 = json.loads((ROOT / "evidence" / "h28_calibration" / "design.json").read_text())
-    anch = json.loads((ROOT / "evidence" / "h28_calibration" / "anchors.json").read_text())
     h28_pred = h28["reference_rows_under_calibrated_pi"]["d2-8"]["dti"]
     h28_ceiling = h28["ceiling_best"]
     h28_resid = [abs(v["dti"] - v["reported"]) for k, v in h28["reference_rows_under_calibrated_pi"].items()
                  if v["reported"] is not None and k in ("h19-5", "d1-5", "lattice-s5")]
     h28_band = (h28_pred - max(h28_resid), h28_pred + max(h28_resid))
-    h28_target = h28["targets_credit_density"]["table"]["0.3195"][str(int(h28_ceiling["mass"]))]
     assert abs(h28_ceiling["min_dist"] - 2.4) < 1e-9 and int(h28_ceiling["mass"]) == chk["positive_pixels"], (
         "H28 says the shipped file is no longer the ceiling of its family; update the summary before packaging")
     hr = json.loads((ROOT / "evidence" / "harness_references.json").read_text())
@@ -123,23 +119,16 @@ def main() -> None:
         dict(id="primary", role="primary", file=tif.name, path=f"docs/downloads/{tif.name}", bytes=tif.stat().st_size, sha256=chk["sha256"],
              content_id=cid, positive_pixels=chk["positive_pixels"], format_ok=chk["ok_to_upload"], checks=chk["checks"], receipt=f"checks-{tif.stem}.json",
              outside="nan", status="format-validated; unscored; not slot-approved", title="Research download: dotted H19-5, wider spacing (D2.8)",
-             summary=("The owner-mirrored H19-5 raster thinned by deterministic Poisson-disk dotting to 44,090 pixels — 73 % of the pixels of the 0.2477-labelled mirror, 36 % of H19-5. "
-                      f"H28 live-anchored model: {h28_pred:.4f}, the ceiling of the whole dot_thin(H19-5, d) family (sweep optimum d = {h28_ceiling['min_dist']:.1f} px). "
-                      f"That model is calibrated on {anch['selected']['n_hat']:,.0f} hidden-truth pixels and a {anch['selected']['lambda_hat_px']} px concentration scale, and it reproduces three "
-                      f"hash-verified owner-reported anchors within {max(h28_resid):.4f} DTI (Monte-Carlo check of the algebra ≤ 0.0020); earlier two-anchor emission-model estimate {m['model_dti']:.3f}. "
-                      f"Reaching the reported #1 (0.3195) at this budget needs {h28_target['vs_best_current_c_per_px']:.2f}× the credit density of this file, i.e. a better detector, not better geometry. "
-                      "This file is byte-identical to an owner-mirrored unscored alternate. It has not demonstrated a win over the frozen 0.152003389 spatially blocked holdout comparator (which itself does not "
-                      "reproduce in this environment — IR-25-COMPARATOR-DRIFT) and is not slot-approved."),
-             expected_range=f"{h28_band[0]:.3f}–{h28_band[1]:.3f} (live-anchored model; earlier estimate {m['model_dti_low']:.3f}–{m['model_dti_high']:.3f})", note=note,
-             parent="H19-5 (owner-reported 0.1922); byte-identical (same SHA-256) to the group's unscored GEMSDOE24 alternate e56ea318af89, which this repo's writer reproduces exactly",
+             summary=("Owner-mirrored H19-5 raster thinned by deterministic Poisson-disk dotting to 44,090 pixels (73% of the 0.2477-labelled mirror; 36% of H19-5). "
+                      f"Conditional on unverified owner-reported score anchors, the H28 model estimates DTI {h28_pred:.4f} and this file is its best point in the tested dot_thin(H19-5, d) sweep (d=1.8–4.0 px); "
+                      "this is a model output, not a competition score. The model-implied 12,691 truth count and 1.85-px concentration are fitted latent parameters, not verified hidden labels. "
+                      "In the 2026-10-25 prompt, this content id (e56ea318af89 / 91eae1ca) is listed with an unverified owner-reported score of 0.2600, and pixel-exact forensics proves GEMSDOE28 r1 (0.2708) is D2.8 & (d(cat)>1 px) and GEMSDOE32 H33-2-B2 (0.2778) is D2.8 & (d(cat)>2 px). "
+                      "It has not demonstrated a win over a comparable same-run holdout best and remains unscored/not slot-approved; the historical 0.152003389 comparator does not reproduce (IR-25-COMPARATOR-DRIFT)."),
+             expected_range=f"{h28_band[0]:.3f}–{h28_band[1]:.3f} (conditional H28 model; owner claims unverified; not a score)", note=note,
+             parent="H19-5 (owner-reported 0.1922); byte-identical (same SHA-256) to the group's GEMSDOE24/30 D2.8 file",
              transform="dot_thin(H19-5, min_dist 2.4) == dot_thin(H19-5, 2.8) (integer lattice)",
              paired_harness_gate_vs_d1_5=gate,
-             gate_summary=("Conditional model and shared-mask paired diagnostic only; the diagnostic compares D2.8 with the 0.2477-labelled owner mirror, "
-                           "not with the current spatial holdout best. It is not a promotion/slot gate. "
-                           f"Paired delta {gate['mean_gain']:+.4f}, {gate['folds_positive']}/4 folds, worst {gate['worst_fold']:+.4f}; "
-                           "the candidate does not beat 0.152003389 on the required holdout. The H28 30-arm holdout factorial "
-                           "(evidence/h28_holdout/results.json) found no emission arm that beats this file's geometry: spacing 2.4-3.0 px is optimal, "
-                           "6 px costs 0.045 DTI, and the habitat-ranked value field adds +0.0003 (p = 0.25)."),
+             gate_summary=("Conditional model and shared-mask paired diagnostic only; duplicated in GEMSDOE24/GEMSDOE30 (100% dot overlap)."),
              slot_approved=False, do_not_resubmit=False),
         dict(id="primary-zeros", role="fallback", file=zero.name, path=f"docs/downloads/{zero.name}", bytes=zero.stat().st_size, sha256=chk0["sha256"],
              content_id=cid, positive_pixels=chk0["positive_pixels"], format_ok=chk0["ok_to_upload"], checks=chk0["checks"], receipt=f"checks-{tif.stem}.json",
@@ -148,6 +137,90 @@ def main() -> None:
              expected_range="same as primary", note=zero_note, parent="primary", transform="outside=zero",
              slot_approved=False, do_not_resubmit=False),
     ]
+
+    h31_receipt_path = OUT / "checks-gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.json"
+    if h31_receipt_path.exists():
+        h31 = json.loads(h31_receipt_path.read_text())
+        h31_fb = h31["fallback"]
+        h31_dup = h31["duplicate_lane_check"]
+        h31_scr = json.loads((ROOT / "evidence" / "h31_screen" / "results.json").read_text())
+        h31_cnf = json.loads((ROOT / "evidence" / "h31_confirm" / "results.json").read_text())
+        scr_p = h31_scr["arms"]["M1_C1"]["pooled"]
+        cnf_p = h31_cnf["arms"]["M1_C1"]["pooled"]
+        scr_g = h31_scr["paired_promotion_gate"]
+        cnf_g = h31_cnf["paired_promotion_gate"]
+        h31_files = [
+            dict(
+                id="h31-candidate",
+                role="candidate",
+                file=h31["file"],
+                path=h31["path"],
+                bytes=h31["bytes"],
+                sha256=h31["sha256"],
+                content_id=h31["content_id"],
+                positive_pixels=h31["positive_pixels"],
+                format_ok=h31["format_ok"],
+                checks=h31["checks"],
+                receipt=h31_receipt_path.name,
+                outside="nan",
+                status="unique GEMSDOE25 H31-1 candidate; format/canary/lane-verified; unscored; not slot-approved (verdict: negative)",
+                title="Unique GEMSDOE25 GeoTIFF: H31-1 Tip-Preserved Flank-Shielded Sub-Scarp Concordance (sapd2.4)",
+                summary=(
+                    "Genuinely unique GeoTIFF trained from scratch in GEMSDOE25 (H31-1 arm M1_C1: families BDE + H26 add-ons + H27_tip + "
+                    "H31_subscarp_concord + H31_offflank_tip_halo, emitted via Hessian ridge NMS -> tip-preserved lateral-flank shield "
+                    "d(catalogue)>2.5 px or H27_tip>=0.05 -> top 3.5% -> score-ordered Poisson-disk dotting at min_dist=2.4 px; 49,041 emitted dots, "
+                    "0 on catalogue, 0 within 100 m of catalogue, only 432 tip-cone dots in 100–200 m). "
+                    f"Passes all 16 format checks, the Protocol Rule 4 Leakage Canary (max standalone feature AUC 0.8386 <= 0.90), and the Protocol Rule 1 "
+                    f"Duplicate-Lane check against 57 registry/focus rasters (max surface Spearman {h31_dup['max_spearman_surface']['value']:.4f} <= 0.90; "
+                    f"max dotted/focus 3-px overlap {h31_dup['max_dot_share_within_3px']['value']:.4f} <= 0.70, and only 0.3183 vs GEMSDOE32 0.2778). "
+                    f"On the spatially-blocked hide-and-recover holdout, screen (draws 10,11) PASSED with {scr_p['formatted_label']} "
+                    f"(4-fold mean 0.154190 > historical 0.152003389, paired gain {scr_g['mean_gain_vs_best_paired_control']:+.6f} in {scr_g['folds_positive']}/4 folds, "
+                    f"catalogue-hugging reduced -0.0243). Fresh-draw confirmation (draws 12,13) achieved {cnf_p['formatted_label']} "
+                    f"(+{h31_cnf['pooled_comparison']['pooled_gain_vs_best_control']:.6f} pooled gain; 3/4 folds positive vs M0_C0 and 3/4 vs CTRL_NO_TIP, "
+                    f"Factor C positive in 8/8 screen+confirm fold-blocks), but hit {cnf_g['folds_positive']}/4 folds against the strict pointwise max of the two controls "
+                    f"(paired gain {cnf_g['mean_gain_vs_best_paired_control']:+.6f}). This holdout measurement is not a competition score; because the strict 3/4 "
+                    "pointwise-max confirmation gate over the comparable same-run holdout best did not pass (verdict: negative) and weekly slot selection is a separate "
+                    "selector step, this file is unscored and not slot-approved."
+                ),
+                expected_range="HOLDOUT-DTI screen 0.1532 [0.1327, 0.1737], confirm 0.1449 [0.1196, 0.1703] (proxy holdout, not a competition score)",
+                note=h31["note"],
+                parent="Trained from scratch in GEMSDOE25 (scripts/build_h31_submission.py, 3 hide-and-recover draws on full catalogue)",
+                transform="HGB(BDE+H26+H27_tip+H31) -> ridge_nms(1.0) -> flank_shield(d>2.5 or tip>=0.05) -> top 3.5% -> score_ordered_dots(2.4)",
+                gate_summary=(
+                    f"Format gate: PASS (16/16) | Leakage canary: PASS (max AUC 0.8386 <= 0.90) | Duplicate-lane gate: PASS "
+                    f"(max Spearman {h31_dup['max_spearman_surface']['value']:.4f} <= 0.90, max dotted 3-px overlap {h31_dup['max_dot_share_within_3px']['value']:.4f} <= 0.70) | "
+                    f"Screen gate (draws 10,11): PASS ({scr_g['mean_gain_vs_best_paired_control']:+.6f}, {scr_g['folds_positive']}/4 folds) | "
+                    f"Confirm gate (draws 12,13): FAIL on strict pointwise-max fold count ({cnf_g['mean_gain_vs_best_paired_control']:+.6f}, {cnf_g['folds_positive']}/4 folds vs pointwise max; "
+                    "3/4 folds vs M0_C0 alone and 3/4 vs CTRL_NO_TIP alone) -> Run Card verdict: negative (do not spend a weekly competition slot)."
+                ),
+                slot_approved=False,
+                do_not_resubmit=False,
+            ),
+            dict(
+                id="h31-candidate-zeros",
+                role="candidate-fallback",
+                file=h31_fb["file"],
+                path=h31_fb["path"],
+                bytes=h31_fb["bytes"],
+                sha256=h31_fb["sha256"],
+                content_id=h31["content_id"],
+                positive_pixels=h31_fb["positive_pixels"],
+                format_ok=h31_fb["format_ok"],
+                checks=h31["checks"],
+                receipt=h31_receipt_path.name,
+                outside="zero",
+                status="format fallback (H31-1 zeros outside); unscored; not slot-approved",
+                title="Format fallback: Unique GEMSDOE25 H31-1 with zeros outside the footprint",
+                summary="Identical 49,041 prediction pixels to the unique H31-1 candidate inside the 5,167,373-pixel footprint; 0.0 instead of NaN outside.",
+                expected_range="same as unique H31-1 candidate",
+                note=h31_fb["note"],
+                parent="h31-candidate",
+                transform="outside=zero",
+                slot_approved=False,
+                do_not_resubmit=False,
+            ),
+        ]
+        files = files + h31_files
     if a.exploratory_receipt:
         r = json.loads(Path(a.exploratory_receipt).read_text())
         if not promotion_receipt_valid(r):

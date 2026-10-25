@@ -11,7 +11,7 @@ from collections.abc import Mapping, Sequence
 from typing import Any
 
 import numpy as np
-from scipy.ndimage import distance_transform_edt
+from scipy.ndimage import binary_dilation, distance_transform_edt
 from scipy.stats import spearmanr, t
 
 from .thinning import ridge_nms, select_top_positive
@@ -322,46 +322,86 @@ def check_duplicate_lane_against_registry(
     if n_em == 0:
         raise ValueError("emitted_mask has zero positive pixels inside the footprint")
 
+    yy, xx = np.mgrid[-3:4, -3:4]
+    disk_3px = (yy * yy + xx * xx) <= 9
+    dil_em = binary_dilation(em, structure=disk_3px) & foot
+    n_foot = float(foot.sum())
+
     per_raster: dict[str, dict[str, float | int | bool]] = {}
     max_corr_seen = -1.0
     max_corr_id = None
-    max_ov_seen = -1.0
-    max_ov_id = None
+    max_ov_dotted_seen = -1.0
+    max_ov_dotted_id = None
+    max_sym_ov_seen = -1.0
+    max_sym_ov_id = None
+    max_raw_oneway_seen = -1.0
+    max_raw_oneway_id = None
 
-    for rid, reg_arr in registry_rasters.items():
-        arr = np.asarray(reg_arr)
-        if arr.shape != foot.shape:
-            continue
-        reg_vec = np.nan_to_num(arr.ravel()[fi], nan=0.0, posinf=0.0, neginf=0.0).astype(np.float32)
-        r_sub = reg_vec[sub]
-        if np.all(r_sub == r_sub[0]) or np.all(s_sub == s_sub[0]):
+    for rid, reg_source in registry_rasters.items():
+        if hasattr(reg_source, "__fspath__") or isinstance(reg_source, str):
+            import rasterio
+
+            with rasterio.open(reg_source) as src_ds:
+                if src_ds.shape != foot.shape:
+                    continue
+                arr = src_ds.read(1)
+        else:
+            arr = np.asarray(reg_source)
+            if arr.shape != foot.shape:
+                continue
+        reg_sub = np.nan_to_num(arr.ravel()[fi[sub]], nan=0.0, posinf=0.0, neginf=0.0).astype(np.float32)
+        if np.all(reg_sub == reg_sub[0]) or np.all(s_sub == s_sub[0]):
             rho = 0.0
         else:
-            rho = float(spearmanr(s_sub, r_sub).statistic)
+            rho = float(spearmanr(s_sub, reg_sub).statistic)
             if not np.isfinite(rho):
                 rho = 0.0
         reg_pos = (arr > 0) & np.isfinite(arr) & foot
-        if reg_pos.any():
-            d_reg = distance_transform_edt(~reg_pos)
-            ov_3px = float(np.mean(d_reg[em] <= 3.0))
+        n_reg_pos = int(np.count_nonzero(reg_pos))
+        if n_reg_pos > 0:
+            dil = binary_dilation(reg_pos, structure=disk_3px) & foot
+            ov_3px = float(np.mean(dil[em]))
+            rev_3px = float(np.mean(dil_em[reg_pos]))
+            sym_min = float(min(ov_3px, rev_3px))
+            sym_f1 = float(2.0 * ov_3px * rev_3px / max(ov_3px + rev_3px, 1e-12))
+            bg_cov = float(np.count_nonzero(dil) / max(n_foot, 1.0))
             exact_ov = float(np.mean(reg_pos[em]))
+            del dil
         else:
-            ov_3px = 0.0
-            exact_ov = 0.0
-        dup = bool(rho > max_rank_corr or ov_3px > max_dot_overlap_3px)
+            ov_3px = rev_3px = sym_min = sym_f1 = bg_cov = exact_ov = 0.0
+        del arr, reg_pos, reg_sub
+        is_comparable_dotted = bool(0 < n_reg_pos <= 100_000)
+        dup = bool(
+            rho > max_rank_corr
+            or sym_min > max_dot_overlap_3px
+            or (is_comparable_dotted and ov_3px > max_dot_overlap_3px)
+        )
         per_raster[rid] = {
             "spearman_surface": rho,
             "dot_share_within_3px": ov_3px,
+            "reverse_share_within_3px": rev_3px,
+            "symmetric_min_overlap_3px": sym_min,
+            "symmetric_f1_overlap_3px": sym_f1,
+            "registry_3px_footprint_coverage": bg_cov,
             "dot_share_exact_0px": exact_ov,
-            "registry_positive_px": int(np.count_nonzero(reg_pos)),
+            "registry_positive_px": n_reg_pos,
+            "is_comparable_dotted_submission": is_comparable_dotted,
             "duplicate_violation": dup,
         }
         if rho > max_corr_seen:
             max_corr_seen, max_corr_id = rho, rid
-        if ov_3px > max_ov_seen:
-            max_ov_seen, max_ov_id = ov_3px, rid
+        if is_comparable_dotted and ov_3px > max_ov_dotted_seen:
+            max_ov_dotted_seen, max_ov_dotted_id = ov_3px, rid
+        if sym_min > max_sym_ov_seen:
+            max_sym_ov_seen, max_sym_ov_id = sym_min, rid
+        if ov_3px > max_raw_oneway_seen:
+            max_raw_oneway_seen, max_raw_oneway_id = ov_3px, rid
 
-    passed = bool(max_corr_seen <= max_rank_corr and max_ov_seen <= max_dot_overlap_3px)
+    passed = bool(
+        max_corr_seen <= max_rank_corr
+        and max_sym_ov_seen <= max_dot_overlap_3px
+        and max_ov_dotted_seen <= max_dot_overlap_3px
+    )
     return {
         "passed": passed,
         "thresholds": {
@@ -371,6 +411,8 @@ def check_duplicate_lane_against_registry(
         "candidate_emitted_px": n_em,
         "n_registry_rasters_checked": len(per_raster),
         "max_spearman_surface": {"raster_id": max_corr_id, "value": float(max_corr_seen)},
-        "max_dot_share_within_3px": {"raster_id": max_ov_id, "value": float(max_ov_seen)},
+        "max_dot_share_within_3px": {"raster_id": max_ov_dotted_id, "value": float(max_ov_dotted_seen)},
+        "max_symmetric_min_overlap_3px": {"raster_id": max_sym_ov_id, "value": float(max_sym_ov_seen)},
+        "max_unadjusted_oneway_including_dense_grids": {"raster_id": max_raw_oneway_id, "value": float(max_raw_oneway_seen)},
         "per_raster": per_raster,
     }

@@ -1,6 +1,6 @@
 {
  "schema_version": 3,
- "review_date_utc": "2026-10-03",
+ "review_date_utc": "2026-10-25",
  "issues": [
   {
    "id": "IR-25-NAN-FOOTPRINT",
@@ -190,7 +190,7 @@
    "id": "IR-25-HABITAT-MISSPECIFIED",
    "severity": "medium",
    "status": "closed",
-   "issue": "A single-band truth-intensity model based only on distance to known faults does not fit 25 hash-linked owner-reported DTI anchors: leave-one-artifact-out RMSE 0.0705–0.0812 (pre-registered threshold 0.020), blind-lattice prediction 0.2057 vs owner-reported 0.0904, and worst residual −0.1787. The score claims remain unverified; residuals indicate model misspecification relative to these claims and cannot be attributed solely to detector skill.",
+   "issue": "A single-band truth-intensity model based only on distance to known faults does not fit 25 hash-linked owner-reported DTI anchors: leave-one-artifact-out RMSE 0.0705\u20130.0812 (pre-registered threshold 0.020), blind-lattice prediction 0.2057 vs owner-reported 0.0904, and worst residual \u22120.1787. The score claims remain unverified; residuals indicate model misspecification relative to these claims and cannot be attributed solely to detector skill.",
    "evidence": "evidence/h28_calibration/habitat_fit.json, knowledge/10 sections 5, 11 (D1) and 12.6",
    "resolution_or_action": "Closed as a conditional negative result: the tested distance-to-known-faults habitat model did not satisfy its adoption rule, and no submission was designed from it. The fitted model does not support \"hug the known-fault halo\" as a promotion strategy. The anchor-based calibration remains conditional on unverified owner-reported scores and does not identify actual hidden-label locations."
   },
@@ -230,9 +230,41 @@
    "id": "IR-25-FACTORIAL-STATE",
    "severity": "medium",
    "status": "flagged",
-   "issue": "The condensed session handoff says the required five-family fractional factorial remains unrun, but the tracked repository contains a complete earlier run: evidence/factorial/cells.jsonl has 152 rows (16 registered model arms × 8 fold/draw cells plus 3 reference arms × 8), design.json specifies the 16-run Resolution V design, and results.json reports 16 runs with no deviations. Re-running the registered analyzer reproduces results.json/results.md byte-for-byte. H30 is a separate follow-on experiment and does not replace this five-family design.",
+   "issue": "The condensed session handoff says the required five-family fractional factorial remains unrun, but the tracked repository contains a complete earlier run: evidence/factorial/cells.jsonl has 152 rows (16 registered model arms \u00d7 8 fold/draw cells plus 3 reference arms \u00d7 8), design.json specifies the 16-run Resolution V design, and results.json reports 16 runs with no deviations. Re-running the registered analyzer reproduces results.json/results.md byte-for-byte. H30 is a separate follow-on experiment and does not replace this five-family design.",
    "evidence": "evidence/factorial/design.json; evidence/factorial/cells.jsonl (152 JSONL rows); evidence/factorial/results.json (16 runs, 8 cells per run, deviations=[]); evidence/factorial/results.md; scripts/analyze_factorial.py (rerun 2026-10-03, output hashes unchanged).",
    "resolution_or_action": "Treat the five-family experiment as already executed from the available, internally reproducible evidence unless stronger provenance evidence invalidates it. Do not overwrite/rerun it merely because the handoff says unrun. Preserve it as a separate registered result; H30 remains an additional experiment. The local JSONL lacks a fit timestamp, so the exact original run date/environment should not be inferred."
+  },
+  {
+   "id": "IR-25-RESTORE-API-RATELIMIT",
+   "severity": "medium",
+   "status": "fixed",
+   "issue": "scripts/restore_data.py and scripts/restore_artifacts.py previously relied on gh api (GitHub REST API, 5,000 req/hr shared across parallel sessions) with fallback to raw.githubusercontent.com (outside the sandbox network allowlist). When the REST API quota hit 0 during parallel runs on 2026-10-25, gh api failed with HTTP 403.",
+   "evidence": "gh api rate_limit (core remaining=0); scripts/restore_data.py; scripts/restore_artifacts.py; PR #10 (knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md)",
+   "resolution_or_action": "Fixed in scripts/restore_data.py and scripts/restore_artifacts.py by adding _git_fetch_blob (git fetch --depth=1 --filter=blob:none + git show FETCH_HEAD:<path> over https://github.com/), which is inside the sandbox allowlist, uses zero REST API quota, and restored all 22 manifest files + 30 artifact rasters + 13 focus-site rasters with 100% SHA-256 verification."
+  },
+  {
+   "id": "IR-25-PARALLEL-SESSION-PR10",
+   "severity": "info",
+   "status": "disclosed",
+   "issue": "A sibling session (arena/c0fc1951-gemsdoe25, merged as PR #10 at 0f73c51) branched from the same base commit (04333cc) and merged a text-only review note without restoring data/, rebuilding data/work/, running an experiment, or generating a unique GeoTIFF.",
+   "evidence": "git log 04333cc..0f73c51; knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md",
+   "resolution_or_action": "Fast-forwarded arena/30eec392-gemsdoe25 onto 0f73c51 per AGENTS.md Rule #2, restored all SHA-256-pinned data and caches (matching evidence/work_cache_hashes.json 6/6), executed the preregistered H31-1 screen + confirmation experiments, and built the unique H31-1 GeoTIFF (40bfe1d5b1c5)."
+  },
+  {
+   "id": "IR-25-GEMSDOE32-B2-PARADOX",
+   "severity": "high",
+   "status": "verified",
+   "issue": "Pixel-exact forensics across the 9 focus sites proves GEMSDOE28 r1 (0.2708, 40,199 px) is D2.8 & (d(cat)>1 px), GEMSDOE32 H33-2-B2 (0.2778, 37,654 px) is D2.8 & (d(cat)>2 px), and GEMSDOE36 (0.2750, 38,854 px) is B2 + 1,200 extra dots. Evaluating the pre-built full-catalogue B2 raster directly on Holdout (where hidden_test is a subset of labels) yields an artificial 0.0041 DTI because B2 masked d(labels)<=2.0 (including hidden_test), whereas applying lateral-flank shielding strictly to draw.visible inside each out-of-fold Holdout cell (Factor C) is positive in 8/8 fold-blocks across screen and confirmation.",
+   "evidence": "evidence/focus_sites_forensics.json; evidence/h31_screen/results.json; evidence/h31_confirm/results.json",
+   "resolution_or_action": "Never evaluate a post-hoc full-catalogue collar-pruned raster against hidden_test subset of labels; always apply flank shielding strictly to draw.visible inside each out-of-fold Holdout cell (src/gems25/h31.py::candidates_flank_shielded)."
+  },
+  {
+   "id": "IR-25-LEADERBOARD-TARGET-CONFLICT",
+   "severity": "medium",
+   "status": "flagged",
+   "issue": "The 2026-10-25 prompt simultaneously states \"Current competition leaderboard GEMSDOE high score: 0.4413\" and \"0.3195 is the highest score right now\". Neither figure is accompanied by an organizer-authenticated receipt, and drivendata.org is never contacted automatically under AGENTS.md Rule #3.",
+   "evidence": "knowledge/owner_brief_2026-10-25_verbatim.txt; registry/live_scores.json",
+   "resolution_or_action": "Disclose both 0.3195 and 0.4413 explicitly as unverified user-supplied claims, never as ORGANIZER-CONFIRMED scores."
   }
  ]
 }
