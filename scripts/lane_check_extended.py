@@ -43,9 +43,10 @@ def groups(cand: Path):
     ext += [("registry_top", p) for p in sorted((d / "registry_top").glob("*.tif"))] if (d / "registry_top").exists() else []
     own = []
     seen = set()
+    cand_stem = cand.stem.replace("-zeros", "").replace("-nan", "")
     for p in sorted((ROOT / "docs" / "downloads").glob("*.tif")):
         stem = p.stem.replace("-zeros", "").replace("-nan", "")
-        if p.resolve() == cand.resolve() or stem in seen or "mscr" in p.stem:
+        if p.resolve() == cand.resolve() or stem == cand_stem or stem in seen:
             seen.add(stem)
             continue
         seen.add(stem)
