@@ -660,5 +660,46 @@
     "Remaining work: fetch one blocked official external layer on a networked runner (GDR 1391 / USGS heat flow), build distance-stratified holdout variant, owner decision on dense-raster lane policy and organizer receipts for scores."
    ]
   }
- }
+ },
+  "current_checkout_review_2026_10_25_arena_e7df9bae": {
+    "session_branch": "arena/e7df9bae-gemsdoe25",
+    "focus": "Review current repository against the latest user brief; fix lane-validator registry coverage and enforce pre-placement surface lane checks.",
+    "pass_1_implement_and_verify": [
+      "Read AGENTS.md and README.md plus the current project briefs, focus-site forensics, source/data registries, holdout, writer, validator, and stored score/run-card evidence.",
+      "Confirmed data/ contains only .gitkeep and no fresh template, labels, work cache, or restored registry; no new experiment, TIF, submission slot, or DrivenData access was used.",
+      "Fixed validate_gem_candidate.load_registry_rasters to include data/registry_top and deduplicate index entries by SHA-256 without retaining all decoded full-grid rasters in memory.",
+      "Added strict surface lane preflight before holdout prediction placement and before full-footprint candidate emission; absent registry, undefined correlation, >0.90 absolute Spearman, and shape mismatch fail closed.",
+      "Added tests/test_lane_preflight.py for absolute correlation, undefined correlation, empty registry, top-scorer registry discovery, and lazy raster loading."
+    ],
+    "pass_2_bug_assumption_edge_case_review": [
+      "Verified the existing final-dot lane gate remains literal; no density-aware override was wired into the promotion decision.",
+      "Ran focused lane tests: 8 passed. Ran full suite: 166 passed, 5 skipped; skipped tests require restored scored rasters or sample_submission.tif.",
+      "Ruff passed for src scripts tests; git diff --check passed.",
+      "Flagged a remaining protocol gap: the shared validator scores composite-surface AUC but does not guarantee an isolated canary for every raw input feature; a future candidate must add that gate before fitting/promotion.",
+      "Checked candidate external-data provenance; GDR/USGS official links remain manual-review references, and data availability/schema/licensing were not freshly checked from this runner."
+    ],
+    "pass_3_recheck_against_original_request": [
+      "Rechecked the full request: no organizer-confirmed score is claimed; supplied scores remain owner-reported; no projection is written as a result.",
+      "Ranked four follow-up hypotheses in knowledge/25, named layers, signatures, missing-catalogue rationale, prior-work differences, mimics, planning-only gain brackets, cost and data status.",
+      "Top candidate was not fit because the shared data/cache and full registry are absent and the prompt does not uniquely identify the method lane; strict lane protocol therefore prevents a safe experiment or new TIFF.",
+      "README links the current review and run card. Existing TIFFs remain testing-only and are not slot-approved."
+    ],
+    "verification": {
+      "pytest": "166 passed, 5 skipped",
+      "ruff": "ruff check src scripts tests passed",
+      "git_diff_check": "passed",
+      "holdout_dti": "NOT RUN; no fresh evaluator output, withheld-positive count, or CI",
+      "raster": "NO NEW TIFF; sha256 null",
+      "validator": "NOT RUN; competition sample template absent",
+      "pull_request": "PR #28 opened from arena/e7df9bae-gemsdoe25; origin/main advanced with PR #27 while this review was underway, so the session branch integrated that main update before merge-ready verification."
+    },
+    "open_limitations": [
+      "data/ contains only .gitkeep; pinned public owner mirrors are not organizer-authenticated and no data were restored in this review.",
+      "No new method lane is unambiguously specified in the prompt; current strict lane protocol is binding.",
+      "The shared validator still needs per-feature leakage canaries for every raw predictor before combination.",
+      "No fresh holdout, strict full-registry lane audit, exact-template raster validation, or organizer-confirmed score exists for this review.",
+      "External sources were not re-fetched; verify current source text, required file coverage, schemas and licensing manually before acquisition."
+    ],
+    "verdict": "negative; code review and validator hardening only; no new TIF and no scoring-slot approval."
+  }
 }
