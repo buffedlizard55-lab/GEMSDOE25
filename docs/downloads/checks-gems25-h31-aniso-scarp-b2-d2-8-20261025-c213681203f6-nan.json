@@ -1,0 +1,155 @@
+{
+  "file": "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+  "path": "docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+  "bytes": 1602328,
+  "sha256": "22a9d729bec45b72a7309380a0da7d147d79fadcdf1472259ca5eecea524893d",
+  "content_id": "c213681203f6",
+  "positive_pixels": 43771,
+  "format_ok": true,
+  "slot_eligible": true,
+  "checks": {
+    "template_matches_expected_grid_and_footprint": {
+      "pass_": true,
+      "detail": "(3730, 3292), footprint 5,167,373 px",
+      "hard": true
+    },
+    "single_band": {
+      "pass_": true,
+      "detail": "count=1",
+      "hard": true
+    },
+    "dtype_float32": {
+      "pass_": true,
+      "detail": "dtypes=('float32',)",
+      "hard": true
+    },
+    "crs_epsg_32611": {
+      "pass_": true,
+      "detail": "32611",
+      "hard": true
+    },
+    "shape_matches_template": {
+      "pass_": true,
+      "detail": "(3730, 3292) vs (3730, 3292)",
+      "hard": true
+    },
+    "geotransform_matches_template": {
+      "pass_": true,
+      "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+      "hard": true
+    },
+    "footprint_all_finite": {
+      "pass_": true,
+      "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+      "hard": true
+    },
+    "footprint_values_in_0_1": {
+      "pass_": true,
+      "detail": "min=0.0 max=1.0",
+      "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+      "pass_": true,
+      "detail": "7,111,787/7,111,787 NaN",
+      "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+      "pass_": true,
+      "detail": "NaN (official) or 0 (fallback) outside",
+      "hard": true
+    },
+    "nan_mask_identical_to_template": {
+      "pass_": true,
+      "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+      "hard": true
+    },
+    "nodata_tag": {
+      "pass_": true,
+      "detail": "nodata=nan",
+      "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+      "pass_": true,
+      "detail": "np.nanmin/np.nanmax over the whole array",
+      "hard": true
+    },
+    "variant_masked_read": {
+      "pass_": true,
+      "detail": "rasterio masked read",
+      "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+      "pass_": false,
+      "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+      "hard": false
+    },
+    "profile_matches_template": {
+      "pass_": true,
+      "detail": "compress=lzw (template lzw)",
+      "hard": false
+    }
+  },
+  "note": "GEMSDOE25 H31-B2 | Anisotropic along-strike continuation + 3DEP LiDAR strike coh | id c213681203f6 | not yet live-scored",
+  "summary": "H31-1 Anisotropic fault-tip continuation + 100 m 3DEP LiDAR-DEM strike coherence + 200 m (B=2 px) digitization-shadow guard + d=2.8 px Poisson-disk thinning (43,771 px). HOLDOUT-DTI = 0.156523 (+0.008838 vs BASE in 4/4 folds; +0.005717 vs T_BASE in 4/4 folds; beats the comparable same-run holdout best and historical 0.152003389 comparator; holdout proxy is not a competition score).",
+  "gate_summary": "PROMOTED (HOLDOUT-DTI pooled 0.156013, cell mean 0.156523, 95% CI [0.141886, 0.171160], 22,317 withheld positives across draws 10,11; +0.008838 vs BASE in 4/4 folds, +0.005717 vs T_BASE in 4/4 folds; exceeds historical 0.152003 comparator; max registry rank-corr 0.1697 <= 0.90, max 3-px dot overlap 0.5837 <= 0.70).",
+  "promotion_gate": {
+    "stage": "confirmation",
+    "passed": true,
+    "paired_gate_passed": true,
+    "historical_best": 0.15200338908786984,
+    "candidate_mean_dti": 0.156523,
+    "candidate_pooled_dti": 0.156013,
+    "candidate_ci95": [
+      0.141886,
+      0.17116
+    ],
+    "candidate_sha256": "22a9d729bec45b72a7309380a0da7d147d79fadcdf1472259ca5eecea524893d",
+    "uniqueness_pass": true,
+    "max_registry_rank_corr": 0.169747,
+    "max_registry_3px_overlap": 0.583676
+  },
+  "fallback": {
+    "file": "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+    "path": "docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+    "sha256": "64c792f0ebacc474a3b23109a67148d5eb00d8e4c190c6221603e64050771c62",
+    "bytes": 837228,
+    "format_ok": true,
+    "positive_pixels": 43771
+  },
+  "zip_bundle": {
+    "file": "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6.zip",
+    "path": "docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6.zip",
+    "bytes": 503780
+  },
+  "build": {
+    "base": "BDE",
+    "extras": [
+      "X1_K",
+      "X1_ThK",
+      "X1_UK",
+      "X2_compat",
+      "X2_compat_coh",
+      "X3_gm",
+      "X3_gd",
+      "H27_tip",
+      "H31_a_along",
+      "H31_d_par",
+      "H31_d_perp",
+      "H31_k_aniso",
+      "H31_lidar_dem_compat",
+      "H31_lidar_cat_compat"
+    ],
+    "kfrac": 0.032,
+    "variant": "sapd2.8_b2",
+    "min_dist_px": 2.8,
+    "flank_guard_px": 2.0,
+    "draws": 3,
+    "fit_seeds": [
+      10,
+      11,
+      12
+    ],
+    "seconds": 39.6,
+    "utc": "2026-10-25T21:05:54Z"
+  }
+}

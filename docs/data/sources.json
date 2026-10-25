@@ -7,7 +7,7 @@
  "sources": [
   {
    "id": "dd-home",
-   "title": "GEMS Prize Challenge — competition page",
+   "title": "GEMS Prize Challenge \u2014 competition page",
    "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/",
    "publisher": "DrivenData / U.S. DOE Office of Geothermal (+NLR)",
    "kind": "official",
@@ -39,7 +39,7 @@
    "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/",
    "publisher": "DrivenData",
    "kind": "official",
-   "used_for": "sponsor, GeoDAWN context, citations (Mattéo 2021, Hermant 2025)",
+   "used_for": "sponsor, GeoDAWN context, citations (Matt\u00e9o 2021, Hermant 2025)",
    "verified": true,
    "verified_utc": "2026-10-02",
    "how_verified": "page text read",
@@ -70,7 +70,7 @@
    "used_for": "single GeoTIFF at 100 m, 3 submissions/week, one final submission per entity, AI-use disclosure in the narrative, finalists deliver code, deadline wording",
    "verified": true,
    "verified_utc": "2026-10-02",
-   "how_verified": "§1.1, §2, §3.1-3.6, A.1 read (chunks 0-3 of 7); remaining appendices not read",
+   "how_verified": "\u00a71.1, \u00a72, \u00a73.1-3.6, A.1 read (chunks 0-3 of 7); remaining appendices not read",
    "caveats": "Only the sections cited here were read.",
    "license": "",
    "reachable_from_sandbox_bash": false
@@ -315,7 +315,7 @@
   },
   {
    "id": "gemsdoe27-score-ledger",
-   "title": "GEMSDOE27 registry/live_scores.json — the owner's SHA-256 <-> reported-score ledger",
+   "title": "GEMSDOE27 registry/live_scores.json \u2014 the owner's SHA-256 <-> reported-score ledger",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "publisher": "buffedlizard55-lab (sibling agent session)",
    "kind": "secondary quote of owner-reported scores",
@@ -329,7 +329,7 @@
   },
   {
    "id": "dd-reference-solution",
-   "title": "Official reference solution — U-Net with Monte-Carlo cross-validation (Prof. John Lipor, Portland State University)",
+   "title": "Official reference solution \u2014 U-Net with Monte-Carlo cross-validation (Prof. John Lipor, Portland State University)",
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "publisher": "DrivenData (organizer) on GitHub; notebook author John Lipor",
    "kind": "official",
@@ -338,7 +338,7 @@
    "verified_utc": "2026-10-03",
    "how_verified": "README.md and all 21 notebook cells (unet-mc-cv-reference-solution.ipynb, 1,578,736 B) read through api.github.com from this sandbox; the channel-4 claim was then tested against the restored mirror's own per-band non-finite masks",
    "caveats": "This is github.com/drivendataorg, NOT drivendata.org, so reading it does not touch the host whose Terms of Use bar automatic access (AGENTS.md rule 3); no competition page, leaderboard or data-download page was requested. The repo carries no licence file, so quote it, do not vendor it. The notebook's data file is named data/numeric_features.tif; the owner mirror of the same 19-band raster is gems-geodawn-numerical-features.tif (418,912,844 B). The reference solution's own score is not published anywhere in the repo.",
-   "license": "no licence file in the repository (all rights reserved by default) — cite, do not copy",
+   "license": "no licence file in the repository (all rights reserved by default) \u2014 cite, do not copy",
    "reachable_from_sandbox_bash": true
   },
   {
@@ -382,6 +382,42 @@
    "caveats": "Published March 2004; this page describes the database at that time and is not a current coverage/status audit or evidence about the competition hidden labels.",
    "license": "",
    "reachable_from_sandbox_bash": false
+  },
+  {
+   "id": "usgs-sgmc-ds1052",
+   "title": "State Geologic Map Compilation (SGMC) Geodatabase of the Conterminous United States (USGS DS 1052)",
+   "publisher": "U.S. Geological Survey",
+   "kind": "official dataset",
+   "url": "https://pubs.usgs.gov/ds/1052/",
+   "verified": true,
+   "verified_utc": "2026-10-25",
+   "used_for": "H31-3 SGMC lithologic contact / structural juxtaposition rasters (sgmc_contact_100m.tif, sgmc_fault_dist_100m.tif, sgmc_unit_id_100m.tif in data/external/)",
+   "how_verified": "Local raster SHA-256 pins verified via scripts/restore_data.py against registry/data_manifest.json",
+   "caveats": "1:500,000 compilation scale; contact boundaries have +-250 m positional uncertainty."
+  },
+  {
+   "id": "owner-mirror-gemsdoe32",
+   "title": "GEMSDOE32 repository & shipped B=2 GeoTIFF (h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif)",
+   "publisher": "Owner public GitHub repository (buffedlizard55-lab/GEMSDOE32)",
+   "kind": "sibling repository",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
+   "verified": true,
+   "verified_utc": "2026-10-25",
+   "used_for": "Byte-and-pixel forensic audit of the 0.2778 owner-reported group-best submission (37,654 px, content_id 4311d7454b8e, sha256 c55bafc470054e82...)",
+   "how_verified": "Fetched README.md and GeoTIFF bytes via authenticated gh api; verified exact pixel subset relationship (d2.8 minus 6,436 d_cat <= 2 px dots)",
+   "caveats": "The 0.2778 competition score is an owner-reported claim, not an organizer receipt."
+  },
+  {
+   "id": "owner-mirror-gemsdoe36",
+   "title": "GEMSDOE36 repository & shipped Anderson-Geothermal PINN GeoTIFF",
+   "publisher": "Owner public GitHub repository (buffedlizard55-lab/GEMSDOE36)",
+   "kind": "sibling repository",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE36",
+   "verified": true,
+   "verified_utc": "2026-10-25",
+   "used_for": "Byte-and-pixel forensic audit of the 0.2750 owner-reported submission (38,854 px = GEMSDOE32 37,654 px + 1,200 GDR/stepover dots)",
+   "how_verified": "Fetched README.md and GeoTIFF bytes via authenticated gh api; verified exact 1,200-pixel superset over GEMSDOE32",
+   "caveats": "The 0.2750 competition score is an owner-reported claim, not an organizer receipt."
   }
  ]
 }

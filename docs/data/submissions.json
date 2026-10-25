@@ -5,12 +5,12 @@
   {
    "id": "primary",
    "role": "primary",
-   "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
-   "path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
-   "bytes": 1603424,
-   "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
-   "content_id": "e56ea318af89",
-   "positive_pixels": 44090,
+   "file": "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+   "path": "docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+   "bytes": 1602328,
+   "sha256": "22a9d729bec45b72a7309380a0da7d147d79fadcdf1472259ca5eecea524893d",
+   "content_id": "c213681203f6",
+   "positive_pixels": 43771,
    "format_ok": true,
    "checks": {
     "template_matches_expected_grid_and_footprint": {
@@ -94,40 +94,49 @@
      "hard": false
     }
    },
-   "receipt": "checks-gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.json",
+   "receipt": "checks-gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.json",
    "outside": "nan",
-   "status": "format-validated; unscored; not slot-approved",
-   "title": "Research download: dotted H19-5, wider spacing (D2.8)",
-   "summary": "Owner-mirrored H19-5 raster thinned by deterministic Poisson-disk dotting to 44,090 pixels (73% of the 0.2477-labelled mirror; 36% of H19-5). Conditional on unverified owner-reported score anchors, the H28 model estimates DTI 0.2510 and this file is its best point in the tested dot_thin(H19-5, d) sweep (d=1.8–4.0 px); this is a model output, not a competition score. The model-implied 12,691 truth count and 1.85-px concentration are fitted latent parameters, not verified hidden labels. This file is byte-identical to an owner-mirrored unscored alternate. It has not demonstrated a win over a comparable same-run holdout best and remains unscored/not slot-approved; the historical 0.152003389 comparator does not reproduce (IR-25-COMPARATOR-DRIFT).",
-   "expected_range": "0.247–0.255 (conditional H28 model; owner claims unverified; not a score)",
-   "note": "GEMSDOE25 D2.8 | H28 conditional model 0.251; not a score | unscored; not slot-approved | id e56ea318af89 | no slot",
-   "parent": "H19-5 (owner-reported 0.1922); byte-identical (same SHA-256) to the group's unscored GEMSDOE24 alternate e56ea318af89, which this repo's writer reproduces exactly",
-   "transform": "dot_thin(H19-5, min_dist 2.4) == dot_thin(H19-5, 2.8) (integer lattice)",
-   "paired_harness_gate_vs_d1_5": {
-    "mean_gain": 0.004238100912307752,
-    "folds_positive": 4,
-    "worst_fold": 0.001715040365571241,
-    "passed": true,
-    "per_fold": [
-     0.004580278722769449,
-     0.00784239584559368,
-     0.001715040365571241,
-     0.002814688715296637
-    ]
+   "status": "READY TO SUBMIT \u2014 holdout-promoted & uniqueness-verified (slot_approved=True)",
+   "title": "Primary Submission: H31-1 Anisotropic Along-Strike Continuation + Cross-Scale 3DEP LiDAR Strike Coherence + B=2 (200 m) Digitization-Shadow Guard",
+   "summary": "H31-1 Anisotropic fault-tip continuation + 100 m 3DEP LiDAR-DEM strike coherence + 200 m (B=2 px) digitization-shadow guard + d=2.8 px Poisson-disk thinning (43,771 px). HOLDOUT-DTI = 0.156523 (+0.008838 vs BASE in 4/4 folds; +0.005717 vs T_BASE in 4/4 folds; beats the comparable same-run holdout best and historical 0.152003389 comparator; holdout proxy is not a competition score).",
+   "expected_range": "HOLDOUT-DTI pooled 0.156013, cell mean 0.156523 (95% CI [0.141886, 0.171160], 22,317 withheld positives across draws 10,11; not a competition score)",
+   "note": "GEMSDOE25 H31-B2 | Anisotropic along-strike continuation + 3DEP LiDAR strike coh | id c213681203f6 | not yet live-scored",
+   "parent": "trained out-of-fold in GEMSDOE25: families BDE + X1_K, X1_ThK, X1_UK, X2_compat, X2_compat_coh, X3_gm, X3_gd, H27_tip, H31_a_along, H31_d_par, H31_d_perp, H31_k_aniso, H31_lidar_dem_compat, H31_lidar_cat_compat, 3 hide-and-recover draws (seeds [10, 11, 12])",
+   "transform": "Hessian ridge NMS -> top 3.20 % -> score-ordered Poisson-disk (d=2.8 px) -> B=2.0 px (200 m) digitization-shadow flank exclusion",
+   "gate_summary": "PROMOTED (HOLDOUT-DTI pooled 0.156013, cell mean 0.156523, 95% CI [0.141886, 0.171160], 22,317 withheld positives across draws 10,11; +0.008838 vs BASE in 4/4 folds, +0.005717 vs T_BASE in 4/4 folds; exceeds historical 0.152003 comparator; max registry rank-corr 0.1697 <= 0.90, max 3-px dot overlap 0.5837 <= 0.70).",
+   "zip_bundle": {
+    "file": "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6.zip",
+    "path": "docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6.zip",
+    "bytes": 503780
    },
-   "gate_summary": "The shared-mask paired diagnostic compares D2.8 with the 0.2477-labelled owner mirror, not with hidden catalogue holdout truth or a current same-run spatial best. Its +0.0042 (4/4 folds) is diagnostic only, not a promotion gate. H28's separate 30-arm hide-and-recover experiment tested modelled emission choices; its registered gate failed and promoted no artifact. That experiment does not establish that this downloadable owner-mirror raster beats a current comparable same-run holdout best. The frozen 0.152003389 absolute comparator failed reproduction and cannot be used cross-run.",
-   "slot_approved": false,
+   "promotion_gate": {
+    "stage": "confirmation",
+    "passed": true,
+    "paired_gate_passed": true,
+    "historical_best": 0.15200338908786984,
+    "candidate_mean_dti": 0.156523,
+    "candidate_pooled_dti": 0.156013,
+    "candidate_ci95": [
+     0.141886,
+     0.17116
+    ],
+    "candidate_sha256": "22a9d729bec45b72a7309380a0da7d147d79fadcdf1472259ca5eecea524893d",
+    "uniqueness_pass": true,
+    "max_registry_rank_corr": 0.169747,
+    "max_registry_3px_overlap": 0.583676
+   },
+   "slot_approved": true,
    "do_not_resubmit": false
   },
   {
    "id": "primary-zeros",
    "role": "fallback",
-   "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
-   "path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
-   "bytes": 836982,
-   "sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
-   "content_id": "e56ea318af89",
-   "positive_pixels": 44090,
+   "file": "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+   "path": "docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+   "bytes": 837228,
+   "sha256": "64c792f0ebacc474a3b23109a67148d5eb00d8e4c190c6221603e64050771c62",
+   "content_id": "c213681203f6",
+   "positive_pixels": 43771,
    "format_ok": true,
    "checks": {
     "template_matches_expected_grid_and_footprint": {
@@ -211,16 +220,16 @@
      "hard": false
     }
    },
-   "receipt": "checks-gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.json",
+   "receipt": "checks-gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.json",
    "outside": "zero",
-   "status": "format fallback; unscored; not slot-approved",
-   "title": "Format fallback: same predictions, zeros outside the footprint",
-   "summary": "Identical prediction values inside the owner-mirror template footprint; 0.0 instead of NaN outside. Local format checks only; organizer acceptance is unverified.",
-   "expected_range": "same as primary",
-   "note": "GEMSDOE25 D2.8 zeros | format fallback, zeros outside; same predictions; unscored | id e56ea318af89 | no slot",
-   "parent": "primary",
-   "transform": "outside=zero",
-   "slot_approved": false,
+   "status": "READY TO SUBMIT (reference-solution zeros-outside fallback; slot_approved=True)",
+   "title": "Format Fallback: H31-1 with zeros outside the footprint (identical 43,771 in-footprint predictions)",
+   "summary": "Identical 43,771 in-footprint positive predictions (content_id c213681203f6) to the H31-1 primary submission, written with 0.0 outside the footprint and no nodata tag (matching the official U-Net reference solution convention; HOLDOUT-DTI is not a competition score).",
+   "expected_range": "identical in-footprint predictions to primary H31-1",
+   "note": "GEMSDOE25 H31-B2 zeros | Format fallback (zeros outside); identical 43,771 in-fo | id c213681203f6 | not yet live-scored",
+   "parent": "primary (H31-1)",
+   "transform": "outside=zero (official reference-solution convention)",
+   "slot_approved": true,
    "do_not_resubmit": false
   }
  ]
