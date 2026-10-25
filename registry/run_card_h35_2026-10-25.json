@@ -1,0 +1,376 @@
+{
+ "run_card_version": 1,
+ "date_utc": "2026-10-25",
+ "session_branch": "arena/a499a7dc-gemsdoe25",
+ "experiments_used": "2 of 3 (H34-1 screen = negative, no confirmation per preregistration; H35 screen+confirmation = pass)",
+ "hypothesis": "H35 (primary, preregistered knowledge/19): adding directed tip continuation (T) AND the H34 RESMAG-FLEX depth-sliced potential-field block (R) to the incumbent BDE+7 HGB detector raises hide-and-recover DTI at fixed emission (sapd2.4, kfrac 0.035). H34-1 (R alone, knowledge/18) is the session's first, negative experiment.",
+ "mechanism": "R: FFT upward-continuation residuals of RTP (400 m / 1200 m) + conductive-base flexure ridge locate subsurface potential-field edges of faults buried under cover with no scarp. T: directed continuation beyond visible catalogue endpoints locates fault tips/relay gaps (Faulds & Hinz settings in knowledge/03/09). The HGB combines them with DEM/LiDAR + thermal + catalogue geometry; emission is frozen so the contrast is detector-only.",
+ "non_fault_process_that_could_mimic_it": "R: lithologic contacts and lava-flow/intrusion margins (identical magnetic edges without faulting), depositional basin-margin pinch-out (base gradient ridge without a fault), survey levelling lineaments. T: catalogue fragmentation/digitisation endpoints (map artefacts, not fault tips); the holdout also rewards reconnecting hidden catalogue segments, which genuinely-new faults may not resemble (hug mean +0.0176, within the +0.10 guard).",
+ "pre_registrations": [
+  "knowledge/18_preregistered_h34_resmag_flex_2026-10-25.md (commit 41a5519, before any fit)",
+  "knowledge/19_preregistered_h35_resmag_x_tip_factorial_2026-10-25.md (commit 8bf9643, after H34 result, before H35 fit)"
+ ],
+ "holdout_dti": {
+  "label": "HOLDOUT-DTI (never a competition score)",
+  "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px/300m) via gems25.experiment.Cell.evaluate",
+  "h34_R_alone_screen_draws_0_1": {
+   "candidate_mean": 0.1519997053429797,
+   "candidate_ci95": [
+    0.13649373356338865,
+    0.16750567712257078
+   ],
+   "control_mean": 0.14966750882109,
+   "paired_gain": {
+    "per_fold": [
+     -0.0010826032801760643,
+     -0.0011415487202078856,
+     0.006739491079710447,
+     0.0048134470082323855
+    ],
+    "mean": 0.0023321965218897206,
+    "ci95": [
+     -0.004117970276970291,
+     0.008782363320749732
+    ],
+    "folds_positive": 2,
+    "worst_fold": -0.0011415487202078856
+   },
+   "gate_passed": false,
+   "leakage_canary_max_auc": 0.5439727741935484,
+   "withheld_positives_per_fold": [
+    1869,
+    2375,
+    3761,
+    3184
+   ],
+   "control_reproduction_vs_h28": "8/8 cells exact (max abs diff 0.0); caches bit-identical to evidence/work_cache_hashes.json",
+   "evidence": "evidence/h34_screen/"
+  },
+  "h35_screen_draws_10_11": {
+   "B_mean": 0.15203566925476622,
+   "B_ci95": [
+    0.13101035881608142,
+    0.17306097969345102
+   ],
+   "C_mean": 0.14768469166082776,
+   "paired_gain": {
+    "per_fold": [
+     0.012078188609517537,
+     0.0009040421225883777,
+     0.006753120637180587,
+     -0.002331440993532663
+    ],
+    "mean": 0.00435097759393846,
+    "ci95": [
+     -0.005795568560901588,
+     0.014497523748778508
+    ],
+    "folds_positive": 3,
+    "worst_fold": -0.002331440993532663,
+    "hug_per_fold": [
+     0.014232786735186888,
+     0.018892642070224647,
+     0.025459092855620064,
+     0.014718590424939226
+    ],
+    "hug_mean": 0.018325778021492704
+   },
+   "gate_passed": true,
+   "leakage_canary_max_auc": 0.6380946969696969,
+   "withheld_positives_per_fold": [
+    1825,
+    2352,
+    3761,
+    3220
+   ],
+   "evidence": "evidence/h35_screen/"
+  },
+  "h35_confirmation_draws_12_13": {
+   "B_mean": 0.1431691045446202,
+   "B_ci95": [
+    0.12709478856856996,
+    0.15924342052067045
+   ],
+   "C_mean": 0.13919865453846142,
+   "paired_gain": {
+    "per_fold": [
+     0.017928386847201244,
+     0.0022999367600131104,
+     0.0010845335080242324,
+     -0.005431057090603458
+    ],
+    "mean": 0.003970450006158782,
+    "ci95": [
+     -0.011788522520429869,
+     0.019729422532747433
+    ],
+    "folds_positive": 3,
+    "worst_fold": -0.005431057090603458,
+    "hug_per_fold": [
+     0.006141493481393354,
+     0.023867444159528475,
+     0.017422354907817558,
+     0.019667120980308414
+    ],
+    "hug_mean": 0.01677460338226195
+   },
+   "gate_passed": true,
+   "leakage_canary_max_auc": 0.6204273953576865,
+   "withheld_positives_per_fold": [
+    1898,
+    2358,
+    3662,
+    3230
+   ],
+   "evidence": "evidence/h35_confirm/"
+  },
+  "h35_combined_4_draws": {
+   "B_mean": 0.1476023868996932,
+   "B_ci95": [
+    0.1316700798740404,
+    0.16353469392534603
+   ],
+   "C_mean": 0.1434416730996446,
+   "paired_gain": {
+    "per_fold": [
+     0.015003287728359377,
+     0.001601989441300744,
+     0.00391882707260241,
+     -0.0038812490420680745
+    ],
+    "mean": 0.004160713800048614,
+    "ci95": [
+     -0.008462116008038943,
+     0.01678354360813617
+    ],
+    "folds_positive": 3,
+    "worst_fold": -0.0038812490420680745,
+    "hug_per_fold": [
+     0.010187140108290124,
+     0.021380043114876554,
+     0.021440723881718804,
+     0.017192855702623813
+    ],
+    "hug_mean": 0.017550190701877324
+   },
+   "factorial_effects": {
+    "R_main": {
+     "per_fold": [
+      -0.0012865553275346747,
+      0.0008879354307954196,
+      0.002916438292125817,
+      -0.0032739711001953803
+     ],
+     "mean": -0.00018903817620220462,
+     "ci95": [
+      -0.004450741996491397,
+      0.004072665644086987
+     ]
+    },
+    "T_main": {
+     "per_fold": [
+      0.01628984305589405,
+      0.0007140540105053245,
+      0.001002388780476593,
+      -0.0006072779418726942
+     ],
+     "mean": 0.004349751976250819,
+     "ci95": [
+      -0.008363690688809235,
+      0.017063194641310873
+     ]
+    },
+    "RxT_diff_in_diff": {
+     "per_fold": [
+      0.008205902516605662,
+      -0.0031548109843161087,
+      0.0037703766049969056,
+      0.0004628990725439597
+     ],
+     "mean": 0.0023210918024576047,
+     "ci95": [
+      -0.005373484638494157,
+      0.010015668243409367
+     ]
+    }
+   },
+   "withheld_positives_per_fold": [
+    1861,
+    2355,
+    3711,
+    3225
+   ],
+   "note": "Paired-gain 95% CI includes zero and the SE fold is negative in both stages; gates passed on mean/folds/worst/hug criteria, which is weaker evidence than the CI suggests. R main effect combined is ~0 (-0.0002); B's gain is mostly T main (+0.0043) + RxT (+0.0023 diff-in-diff)."
+  }
+ },
+ "organizer_confirmed_scores": "none. Every competition DTI cited this session (0.2778 etc.) is OWNER-reported from the 2026-10-25 brief / sibling sites (registry/live_scores.json). No DrivenData page was accessed.",
+ "correlation_overlap_vs_registry": {
+  "checker_final_dots": "scripts/check_lane_duplicates.py -> docs/downloads/lane-...-zeros.json",
+  "checker_surface": "scripts/check_lane_surface.py -> evidence/h35_lane_surface.json",
+  "surface_worst_abs_spearman": 0.148344,
+  "final_tif_worst_abs_spearman_vs_substantive_scored": 0.048278,
+  "final_dots_worst_overlap_within_3px_vs_substantive_scored": 0.677373,
+  "worst_substantive_raster": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+  "caps": {
+   "spearman": 0.9,
+   "dots_within_3px": 0.7
+  },
+  "strict_checker_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+  "flagged_by_strict_checker": [
+   "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+   "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif"
+  ],
+  "disclosed_caveats": "Flags are (1) the dense 13GEMSDOE 5-px lattice probe (206,895 dots; 100% one-directional overlap for ANY emission, 18.6% reverse \u2014 IR-25-LANE-DENSITY, pre-existing) and (2) this repo's own unscored/unsubmitted H31-C predecessor (89.0% \u2014 same base detector lineage; superseded in registry/submissions.json, never submit both). Vs every substantive scored registry raster the caps pass. Newest GEMSDOE32 files (Arena41/H32-WIN, 2026-10-25) are not in the pinned registry and could not be lane-checked.",
+  "sha_in_artifact_ledger": false
+ },
+ "raster": {
+  "primary_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif",
+  "sha256": "7984a3c8c025a7c5b5fd828f532e918e0a91c7c240a55d41f52553ea4dc63b87",
+  "content_id": "d5d4cde1e719",
+  "positive_pixels": 48849,
+  "outside": "0.0 (zeros); every cell finite",
+  "nan_twin": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif (identical footprint values)",
+  "build": "scripts/build_h35_candidate.py, 3 draws (seeds 424200+m), scores cache data/work/h35_full_scores.npy (gitignored); H34 sidecar data/work/h34_columns.npy sha256 3a2db05cff8c90f4e6a5cd8b34d79e29998486f2550ea250b7281bd730a53433"
+ },
+ "validator_output": {
+  "tool": "gems25.submission.check_file vs data/sample_submission.tif (pinned sha256 2176d08e...) + independent rasterio re-read in-session",
+  "primary_ok_to_upload": true,
+  "primary_hard_failures": [],
+  "nan_twin_ok_to_upload": true,
+  "nan_twin_hard_failures": [],
+  "exact_audit": {
+   "single_band_float32": true,
+   "crs_epsg": 32611,
+   "shape": [
+    3730,
+    3292
+   ],
+   "geotransform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "nodata_primary": null,
+   "whole_array_finite_primary": true,
+   "whole_array_min_max": [
+    0.0,
+    1.0
+   ],
+   "strict_whole_array_0_1_primary": true,
+   "nan_inside_footprint": 0,
+   "dots_on_catalogue_pixels": 0
+  },
+  "checks_primary": {
+   "template_matches_expected_grid_and_footprint": {
+    "pass_": true,
+    "detail": "(3730, 3292), footprint 5,167,373 px",
+    "hard": true
+   },
+   "single_band": {
+    "pass_": true,
+    "detail": "count=1",
+    "hard": true
+   },
+   "dtype_float32": {
+    "pass_": true,
+    "detail": "dtypes=('float32',)",
+    "hard": true
+   },
+   "crs_epsg_32611": {
+    "pass_": true,
+    "detail": "32611",
+    "hard": true
+   },
+   "shape_matches_template": {
+    "pass_": true,
+    "detail": "(3730, 3292) vs (3730, 3292)",
+    "hard": true
+   },
+   "geotransform_matches_template": {
+    "pass_": true,
+    "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+    "hard": true
+   },
+   "footprint_all_finite": {
+    "pass_": true,
+    "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+    "hard": true
+   },
+   "footprint_values_in_0_1": {
+    "pass_": true,
+    "detail": "min=0.0 max=1.0",
+    "hard": true
+   },
+   "outside_footprint_is_nan_official": {
+    "pass_": false,
+    "detail": "0/7,111,787 NaN",
+    "hard": false
+   },
+   "outside_footprint_is_nan_or_zero": {
+    "pass_": true,
+    "detail": "NaN (official) or 0 (fallback) outside",
+    "hard": true
+   },
+   "nan_mask_identical_to_template": {
+    "pass_": true,
+    "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+    "hard": true
+   },
+   "nodata_tag": {
+    "pass_": true,
+    "detail": "nodata=None",
+    "hard": false
+   },
+   "variant_nan_aware_whole_array": {
+    "pass_": true,
+    "detail": "np.nanmin/np.nanmax over the whole array",
+    "hard": true
+   },
+   "variant_masked_read": {
+    "pass_": true,
+    "detail": "rasterio masked read",
+    "hard": true
+   },
+   "variant_strict_whole_array_no_nan": {
+    "pass_": true,
+    "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+    "hard": false
+   },
+   "profile_matches_template": {
+    "pass_": true,
+    "detail": "compress=lzw (template lzw)",
+    "hard": false
+   }
+  }
+ },
+ "submission_name": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros",
+ "submission_note": "GEMSDOE25 H35 R+T sapd2.4 k3.5% | HOLDOUT PASS scr+cnf; unscored; not slot-approved; no slot | id d5d4cde1e719",
+ "note_length": 110,
+ "verdict": "promote",
+ "verdict_qualification": "Promote = eligible for the owner's separate manual selector step ONLY (protocol item 6). slot_approved stays False; this agent never uploads. Promotion rests on: frozen gate passed twice on fresh draws, leakage canary <=0.638, substantive-scored lane caps passed, exact-file audit passed. It does NOT establish a live score >0.2778 (proxy-live Spearman +0.33 n.s. historically); expected live effect of a +0.004 holdout gain is unknown.",
+ "budget": {
+  "experiments_used": 2,
+  "experiments_limit": 3,
+  "note": "third experiment not used: no further pre-registered hypothesis with a stronger prior was available without tuning on H35 outcomes"
+ },
+ "post_merge_addendum": {
+  "date_utc": "2026-10-25",
+  "event": "origin/main advanced during the session (PRs #13-#16, parallel sessions) and adopted the literal strict lane policy: the dense r13 lattice counts as a registry raster, so no dotted file is lane_clear; slot labels must say DO NOT SUBMIT (tests/test_lane_protocol.py, tests/test_kdc.py).",
+  "effect_on_this_card": "The original verdict 'promote' (selector-eligible) is SUPERSEDED for slot purposes by the merged policy. H35 is re-registered as alternate, verdict negative, ok_to_submit_slot False, lane_clear False. The experiment result (frozen holdout gate passed twice) is unchanged and remains the strongest same-run holdout evidence in the repo.",
+  "post_merge_lane_vs_parallel_downloads": {
+   "gems25-kdc-b2-plus-hgb-complement (main primary)": 0.434,
+   "gems25-gem-fuse1": 0.18,
+   "gems25-h31-1-flank-subscarp": 0.823,
+   "gems25-h31-control": 0.89,
+   "13gems r13 lattice": 1.0,
+   "checker": "scripts/check_lane_duplicates.py re-run on merged tree; receipt docs/downloads/lane-gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.json",
+   "gems25-h31-aniso-scarp (PR #17, merged during PR #18)": 0.753
+  },
+  "superseded_verdict_field": "verdict (below) kept for provenance; see verdict_merged_policy",
+  "verdict_merged_policy": "negative"
+ }
+}

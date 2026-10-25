@@ -418,6 +418,34 @@
    "used_for": "Byte-and-pixel forensic audit of the 0.2750 owner-reported submission (38,854 px = GEMSDOE32 37,654 px + 1,200 GDR/stepover dots)",
    "how_verified": "Fetched README.md and GeoTIFF bytes via authenticated gh api; verified exact 1,200-pixel superset over GEMSDOE32",
    "caveats": "The 0.2750 competition score is an owner-reported claim, not an organizer receipt."
+  },
+  {
+   "id": "sibling-gemsdoe32-site",
+   "title": "GEMSDOE32 project site (sibling; H33-2-B2 champion, Arena41/H32-WIN lanes)",
+   "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+   "publisher": "buffedlizard55-lab (owner sibling repo)",
+   "kind": "sibling-claims",
+   "used_for": "0.2778 mechanism (B=2 prune on 0.2708 base, 37,654 dots), portal-error mechanisms, current lane landscape",
+   "verified": true,
+   "verified_utc": "2026-10-25",
+   "how_verified": "page text read via agent page fetch (chunks 0-1) this session",
+   "caveats": "All scores on it are owner-reported claims, not organizer receipts; its leaderboard read is dated 2026-10-04 on the page.",
+   "license": "",
+   "reachable_from_sandbox_bash": false
+  },
+  {
+   "id": "sibling-gemsdoe36-site",
+   "title": "GEMSDOE36 project site (sibling; Anderson-PINN 0.2750 claim)",
+   "url": "https://buffedlizard55-lab.github.io/GEMSDOE36/docs/",
+   "publisher": "buffedlizard55-lab (owner sibling repo)",
+   "kind": "sibling-claims",
+   "used_for": "focus-site comparison; zeros-outside portal contract; B=2 rationale as asserted there",
+   "verified": true,
+   "verified_utc": "2026-10-25",
+   "how_verified": "page text read via agent page fetch (chunk 0) this session",
+   "caveats": "Owner-reported scores only. Its assertion that catalogue-adjacent dots earn zero credit conflicts with the staff wording recorded in knowledge/03 (corrections within 300 m); treated as sibling inference.",
+   "license": "",
+   "reachable_from_sandbox_bash": false
   }
  ]
 }

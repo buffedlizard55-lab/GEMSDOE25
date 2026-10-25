@@ -425,6 +425,38 @@
    "issue": "The competition raster grid is 3730 x 3292 pixels at 100 m (122,792.9 km2 bounding box, matching the INGENIOUS Great Basin region in GDR 1391), of which 5,167,373 pixels (51,673.7 km2) are inside the submission footprint and 1,154,738 pixels (11,547.4 km2) have valid 19-band training features.",
    "evidence": "COMPUTED from data/training_features.tif, data/sample_submission.tif, and data/external/geodawn_ald.tif.",
    "resolution_or_action": "Documented in knowledge/08 and knowledge/13: predictions are emitted on the 1,154,738 valid-feature pixels inside the 5,167,373-pixel submission footprint, with 0.0 on the remaining footprint pixels and NaN (primary) or 0.0 (fallback) outside the footprint."
+  },
+  {
+   "id": "IR-25-FOCUS-SCORES-2026-10-25",
+   "severity": "medium",
+   "status": "flagged",
+   "issue": "The 2026-10-25 brief's score list assigns 0.2600 to the same D2.8 raster under three names (GEMSDOE25 dotted-h19-5-d2-8 e56ea318af89, GEMSDOE30 d28-poisson300m-offcat-44090-91eae1ca, and this repo's withdrawn duplicate download), and 0.2708 to the same content-id prefix 8acb75e1 on GEMSDOE28 and GEMSDOE31. Re-hosted copies can look like independent confirmations.",
+   "evidence": "knowledge/17_focus_sites_and_0.2778_forensics_2026-10-25.md section 5; registry/live_scores.json notes added 2026-10-25; IR-25-DUPLICATE-DOWNLOAD.",
+   "resolution_or_action": "Recorded as OWNER-reported with cross-references; the raster remains 'do not submit as new' here. Owner to confirm against submission-page receipts which physical upload each score belongs to."
+  },
+  {
+   "id": "IR-25-H35-LANE-LINEAGE",
+   "severity": "high",
+   "status": "resolved-by-merged-strict-policy (slot verdict negative)",
+   "issue": "The strict lane checker flags the H35 candidate: 89.0% of its dots lie within 3 px of this repo's own unscored H31-C predecessor (same BDE+7 base detector lineage), and 100% vs the dense 13GEMSDOE lattice. Under a literal any-registry-raster reading of the parallel-run protocol this is a duplicate flag; vs every substantive SCORED registry raster the caps pass (worst 67.7% overlap, worst surface |rho| 0.148).",
+   "evidence": "docs/downloads/lane-gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.json; evidence/h35_lane_surface.json; registry/run_card_h35_2026-10-25.json correlation_overlap_vs_registry.",
+   "resolution_or_action": "Post-merge (origin/main PRs #13-#16 adopted the literal strict lane policy incl. the r13 lattice), H35 is registered DO NOT SUBMIT with lane_clear=False; it also overlaps the parallel H31-1 flank file 82.3% (same H31 lineage). Holdout PASS stands as an experiment result. Revisit only if the project adopts a density-normalised two-sided lane statistic."
+  },
+  {
+   "id": "IR-25-H35-SE-FOLD-NEGATIVE",
+   "severity": "medium",
+   "status": "disclosed",
+   "issue": "H35's SE fold paired gain is negative in screen (-0.0023) and confirmation (-0.0054), and both stages' paired-gain 95% CIs include zero. The frozen gate passed, but the effect is geographically concentrated (NW contributes most).",
+   "evidence": "evidence/h35_screen/analysis.json; evidence/h35_confirm/analysis.json; combined_analysis.json.",
+   "resolution_or_action": "Disclosed in knowledge/20 and the run card. No post-hoc regional gating (that would be tuning on outcomes). Any regional-interaction hypothesis needs a fresh pre-registration and fresh draws."
+  },
+  {
+   "id": "IR-25-GEMSDOE32-NEW-LANES-UNCHECKED",
+   "severity": "medium",
+   "status": "open",
+   "issue": "GEMSDOE32's site (re-read 2026-10-25) now carries newer unscored lanes (Arena41 PF-only, gates failed; H32-WIN-46090) whose rasters are not in this repo's pinned registry/data manifest, so H34/H35 lane checks could not include them. Post-merge note: H35 was lane-checked vs the merged parallel-session downloads (KDC 43.4%, GEM-FUSE1 18.0% - distinct; H31-1 82.3% - same lane).",
+   "evidence": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html (fetched 2026-10-25, two chunks); registry/data_manifest.json has no 2026-10-25 GEMSDOE32 entries.",
+   "resolution_or_action": "Pin those rasters by SHA-256 into registry/data_manifest.json (owner mirrors) and re-run scripts/check_lane_duplicates.py before any future packaging in this lane family."
   }
  ]
 }

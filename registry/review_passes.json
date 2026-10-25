@@ -481,5 +481,37 @@
   "pass_1": "Restored all 22 manifest inputs, 6 derived caches, 30 registry rasters, and 13 focus-site rasters; ran pixel-exact 9-site forensics (evidence/focus_sites_forensics.json); preregistered and executed H31-1 2x2 factorial screen (draws 10,11) and confirmation (draws 12,13) with Leakage Canary; built unique GeoTIFF 40bfe1d5b1c5.",
   "pass_2": "Fixed GitHub REST API rate-limit fallback in restore_data.py and restore_artifacts.py (_git_fetch_blob); fixed streaming memory footprint in check_duplicate_lane_against_registry; resolved merge conflicts with parallel sessions PRs #11-#14 by placing H31-1 flank-shielded evidence in evidence/h31_flank_screen/ and evidence/h31_flank_confirm/.",
   "pass_3": "Verified all 115 pytest tests pass, ruff check passes with 0 errors, git diff --check is clean, and all Parallel-Run Protocol requirements and Run Card fields are present."
+ },
+ "h34_h35_session_review_2026_10_25": {
+  "branch": "arena/a499a7dc-gemsdoe25",
+  "review": {
+   "date_utc": "2026-10-25",
+   "branch": "arena/a499a7dc-gemsdoe25",
+   "pass_1_implement_and_verify": [
+    "Read README/AGENTS/owner brief, knowledge/00-16, registries and runnable code; fetched sibling GEMSDOE32/36 sites (public claims) via page fetch. Wrote knowledge/17 (why 0.2778 leads: deletion economics on a strong surface) and registered the 12 focus-site OWNER-reported scores in registry/live_scores.json (46 artifacts, gaps recomputed with gap_basis).",
+    "Restored pinned inputs from owner GitHub mirrors and rebuilt caches: evidence/work_cache_hashes.json all MATCH (bit-identical to prior sessions).",
+    "Ranked 5 pre-registered hypotheses (knowledge/18) before any fit; implemented H34-1 RESMAG-FLEX (src/gems25/h34.py + synthetic tests) inside the existing harness with per-fold visible-only refits.",
+    "H34-1 screen = NEGATIVE (+0.002332 paired, 2/4 folds; frozen gate FAIL; canary 0.544; control reproduced H28 8/8 exactly). No confirmation, no relabel (commit 94df062).",
+    "Pre-registered H35 2x2 (knowledge/19, commit 8bf9643 before fit). Screen draws 10-11 PASS (+0.004351, 3/4 folds, canary 0.638); fresh confirmation draws 12-13 PASS (+0.003970, 3/4, canary 0.620). Combined B 0.147602 (CI 0.1317-0.1635) vs control 0.143442; factorial T +0.004350, R -0.000189, RxT +0.002321.",
+    "Built the unique full-footprint TIF per the frozen rule (scripts/build_h35_candidate.py): 48,849 dots, zeros-outside, every cell finite in [0,1]; lane checks pre/post (surface rho<=0.148; final vs substantive scored worst overlap 67.7%, rho<=0.048); registered via scripts/register_h35_submission.py (verdict promote = selector-eligible, slot_approved False); exact-file audit re-read independently (EPSG:32611 3730x3292, 0 NaN, 0 dots on catalogue)."
+   ],
+   "pass_2_bugs_assumptions_edge_cases": [
+    "BUG found: two parallel same-file edits clobbered each other (lost README session-review line, lane-summary block, register status text). Re-applied sequentially, regenerated, and verified by grep. The stale README also briefly printed the obsolete 'parity with its own control' lane warning for the new file -- removed.",
+    "BUG found: register_h35_submission.py was not idempotent (a re-run would demote the new primary). Demotion now requires the h31-control file stem; re-run verified.",
+    "Over-claim fixed: homepage/executive text said 'the lane check passed'; corrected to lane caps vs substantive scored rasters WITH disclosed caveats (dense lattice 100%, own unscored H31-C predecessor 89.0%). IR-25-H35-LANE-LINEAGE opened (high).",
+    "Edge cases re-verified: template-hash pin before write (submission.py), duplicate-of-template/registry hash refusal in build, catalogue pixels cleared from emission (0 dots on label), note lengths (primary 110 <=120 internal cap, <=140 brief), whole-array ((a>=0)&(a<=1)).all() on the zeros primary passes the strictest portal interpretation.",
+    "Leakage audit: per-fold refit uses train-only imputation stats; tip layer built from visible catalogue only per draw; canary single-feature AUCs <=0.638 (H35) / 0.544 (H34) -- no feature smells like truth.",
+    "Ruff clean after removing an unused variable introduced by the generator edits; full pytest 111 passed."
+   ],
+   "pass_3_recheck_against_the_original_brief": [
+    "Focus sites GEMSDOE24/25/27/28/30/31/32/33/36 studied line-by-line from the OWNER-reported list + GEMSDOE32/36 sites fetched 2026-10-25 (knowledge/17); every number labelled OFFICIAL/OWNER/COMPUTED/INFERENCE; no DrivenData access, no invented receipts.",
+    "Why/how 0.2778: decomposed into surface ladder + emission ladder + B=2 flank deletion with the exact DTI break-even (marginal credit ~0.055-0.059 per pixel); mechanism explicitly unresolved vs the staff 'corrections within 300 m' wording.",
+    "Unique TIF generated (new content id d5d4cde1e719, not a copy/relabel), downloadable at the very top of README and the homepage + executive summary, with OK-to-download / OK-to-submit status stated unambiguously (selector candidate, not slot-approved, unscored) and a 110-char DrivenData note.",
+    "Holdout rule honoured: 2 of 3 experiment budget used; only the twice-passing candidate is selector-eligible; H34 negative kept as a deliverable; no live-score claim beyond HOLDOUT-DTI.",
+    "Run card registry/run_card_h35_2026-10-25.json carries hypothesis, mechanism, named non-fault mimics, HOLDOUT-DTI with CIs (including that the paired CI includes zero and SE is negative twice), registry overlap, sha256, validator output, note, and verdict promote.",
+    "Remaining risks/limitations, in order: proxy-live transfer is historically weak (+0.33 n.s.) so >0.2778 is NOT demonstrated; lane lineage overlap vs H31-C needs the selector's conscious acceptance; GEMSDOE32's 2026-10-25 lanes are not yet pinned for lane checks (IR-25-GEMSDOE32-NEW-LANES-UNCHECKED); leaderboard conflict 0.4413 vs 0.3195 unresolved without an owner read; live scores list remains unverified owner claims."
+   ]
+  },
+  "post_merge_note": "Merged with origin/main PRs #13-#16 in PR #18: adopted strict literal lane policy; H35 slot verdict amended to negative (run card addendum); KDC remains primary; H35 registered as alternate testing download."
  }
 }
