@@ -188,15 +188,12 @@ def test_kdc_run_card_does_not_clear_a_literal_lattice_lane_failure():
     assert card["validator_output"]["ok_to_submit_slot"] is False
 
 
-def test_negative_download_copy_never_recommends_uploading_a_fallback():
-    forbidden_copy = (
-        "upload the zeros primary first",
-        "use this twin only if the portal rejects",
-    )
+def test_negative_download_copy_never_instructs_upload():
+    forbidden = ("upload the", "submit this", "use this twin")
     for item in J("registry/submissions.json")["files"]:
         if item.get("ok_to_submit_slot") is False or item.get("verdict") == "negative":
-            copy = " ".join(str(item.get(key, "")) for key in ("title", "summary", "status")).lower()
-            assert not any(phrase in copy for phrase in forbidden_copy), (item["file"], copy)
+            copy = " ".join(str(item.get(k, "")) for k in ("title", "summary", "status")).lower()
+            assert not any(phrase in copy for phrase in forbidden), (item["file"], copy)
 
 
 def test_shipped_files_are_not_duplicates_of_already_scored_files():
