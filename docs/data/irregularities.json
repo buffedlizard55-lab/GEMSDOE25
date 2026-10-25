@@ -569,6 +569,14 @@
    "issue": "Even with zero DEM and zero 1 m LiDAR inputs, H36_S_submod (content_id 3937b96ce366, 37,654 off-catalogue dots, clearing all 31 non-lattice scored/sibling rasters with max 3-px overlap 59.85% and 23.95% vs GEMSDOE32 B2, and max mutual 3-px overlap 57.94% across all 55 non-lattice rasters) exhibits 70.3%-70.9% one-way 3-px dot overlap (55.7%-56.3% reverse) against this repo's unscored ~48,500-dot SAPD2.4 builds (H35, H36-TZC, H37-DOC, MSCR, XG1) because all share Family E visible-catalogue distance/density features (E_d_fault..E_dens_r50).",
    "evidence": "evidence/h36_spigm_build/lane_dots_sub.json; evidence/h36_spigm_lane_duplicates_canonical.json; registry/run_card_h36_spigm_2026-10-25.json.",
    "resolution_or_action": "Logged as a strict one-way lane stop (lane_clear=False, ok_to_submit_slot=False, DO NOT SUBMIT). Future non-topographic builds aiming for literal one-way clearance against dense local alternates should omit Family E or restrict emission to distal basin cover (d(catalogue) > 6 px)."
+  },
+  {
+   "id": "IR-25-H38-REGIME-SPLIT",
+   "severity": "medium",
+   "status": "disclosed",
+   "issue": "In the Session-8 H38-OSPC x SUBMOD 2x2 factorial (draws 24, 25), both OSPC geology (+0.0033) and 300 m submodular skeleton coverage (+0.0068; joint +0.00704) improved NW strongly (0.88% catalogue prevalence, 75.0% 3DEP 1 m LiDAR coverage), stayed flat in NE (-0.0014; 45.8% missing 3DEP tiles zero-filled instead of NaN), and lost in SW/SE (-0.0034/-0.0066; 1.44-1.54% dense Walker Lane / Sevier splays). Overall 4-fold mean gain was -0.0011 (1/4 folds positive), failing the frozen screen gate.",
+   "evidence": "evidence/h38_ospc_screen/analysis.json; knowledge/26_h38_outcomes_and_0.2778_phd_synthesis_2026-10-25.md section 2.2; registry/run_card_h38_ospc_2026-10-25.json.",
+   "resolution_or_action": "Confirmation draws 26-27 were NOT run per pre-registered stopping rule. Unique H38-OSPC GeoTIFF (680d62616417, 48,666 dots; 0/21 GEMSDOE27..91 top-scorers flagged, 96.5% 3-px overlap with own H35 lineage, 100% vs r13 lattice) is featured as primary testing-only download with ok_to_download=true, ok_to_submit_slot=false, DO NOT SUBMIT."
   }
  ]
 }

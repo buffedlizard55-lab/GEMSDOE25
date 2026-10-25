@@ -164,8 +164,9 @@ def test_h36_featured_deliverable_run_card_and_site_banners():
 
     root = Path(__file__).resolve().parents[1]
     subs = json.loads((root / "registry" / "submissions.json").read_text())["files"]
-    primary = next(s for s in subs if s["role"] == "primary")
-    fallback = next(s for s in subs if s["role"] == "fallback")
+    # Merge note (H38-OSPC session): pin the H36-SPIGM entries by ID when newer primary/fallback files are unioned.
+    primary = next(s for s in subs if s["id"] == "h36-spigm-subsurface")
+    fallback = next(s for s in subs if s["id"] == "h36-spigm-subsurface-nan")
     card = json.loads((root / "registry" / "run_card_h36_spigm_2026-10-25.json").read_text())
 
     assert primary["id"] == "h36-spigm-subsurface"
