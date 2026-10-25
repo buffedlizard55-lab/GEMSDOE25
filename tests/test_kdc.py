@@ -12,8 +12,12 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 SUBS = json.loads((ROOT / "registry" / "submissions.json").read_text())["files"]
 PRIMARY = next(s for s in SUBS if s["role"] == "primary")
+# KDC was the 2026-10-25 session-6 primary; it is an "alternate" since the GMCE/MSCR
+# session registered its own primary. KDC-specific assertions follow the KDC entry by id,
+# not whichever file is currently featured.
+KDC = next(s for s in SUBS if s.get("id") == "kdc-b2-complement")
 CARD = json.loads((ROOT / "registry" / "run_card_kdc_2026-10-25.json").read_text())
-RECEIPT = json.loads((ROOT / "docs" / "downloads" / PRIMARY["receipt"]).read_text())
+RECEIPT = json.loads((ROOT / "docs" / "downloads" / KDC["receipt"]).read_text())
 GATE_MIN_GAIN, GATE_MIN_POS, GATE_WORST, R_MIN = 0.001, 3, -0.01, 0.50  # knowledge/17 §2 (frozen)
 
 
@@ -32,10 +36,13 @@ def test_primary_files_exist_and_hashes_match_registry():
 
 
 def test_note_short_and_names_the_file():
+    # generic: the featured file's note follows the repo rule
     assert len(PRIMARY["note"]) <= 120
     assert all(t in PRIMARY["note"] for t in ("no slot", "unscored", "not slot-approved"))
     assert PRIMARY["content_id"] in PRIMARY["note"]
-    assert CARD["note"] == PRIMARY["note"] and CARD["note_chars"] == len(PRIMARY["note"])
+    # KDC-specific: its card note still describes the KDC entry
+    assert CARD["note"] == KDC["note"] and CARD["note_chars"] == len(KDC["note"])
+    assert KDC["content_id"] in KDC["note"]
 
 
 def recompute_gate(g: dict) -> bool:
@@ -54,10 +61,11 @@ def test_frozen_gate_recomputes_and_fails(path, arm):
 def test_slot_label_follows_gate_evidence():
     gates_passed = [e["gate"]["passed"] for e in CARD["experiments"]]
     slot_ok = any(gates_passed)
-    assert PRIMARY["ok_to_submit_slot"] is slot_ok is False
-    assert PRIMARY["slot_approved"] is False
-    assert PRIMARY["verdict"] == CARD["verdict"] == "negative"
-    assert "DO NOT SUBMIT" in PRIMARY["status"]
+    assert KDC["ok_to_submit_slot"] is slot_ok is False
+    assert KDC["slot_approved"] is False
+    assert KDC["verdict"] == CARD["verdict"] == "negative"
+    assert "DO NOT SUBMIT" in KDC["status"]
+    assert PRIMARY["ok_to_submit_slot"] is False and PRIMARY["slot_approved"] is False
 
 
 def test_download_label_follows_validator_and_strict_lane():
@@ -71,22 +79,22 @@ def test_download_label_follows_validator_and_strict_lane():
     # strict literal policy (PR #14): the dense r13 lattice counts, so the lane fails and the file must say DO NOT SUBMIT
     strict = RECEIPT["strict_lane"]
     assert strict["lattice_overlap"] > 0.70 and strict["lane_clear"] is False
-    assert PRIMARY["lane"]["lane_clear"] is False
-    assert "do not submit" in PRIMARY["status"].lower() and "strict lane" in PRIMARY["summary"].lower()
-    assert PRIMARY["ok_to_download"] is True and PRIMARY["ok_to_submit_slot"] is False
+    assert KDC["lane"]["lane_clear"] is False
+    assert "do not submit" in KDC["status"].lower() and "strict lane" in KDC["summary"].lower()
+    assert KDC["ok_to_download"] is True and KDC["ok_to_submit_slot"] is False
 
 
 def test_run_card_has_protocol_fields():
     for k in ("hypothesis", "mechanism", "non_fault_process_that_could_mimic_it", "holdout_dti", "correlation_overlap_vs_registry",
               "validator_output", "submission_name", "note", "verdict", "deviation_from_preregistration"):
         assert k in CARD, k
-    assert CARD["live_build"]["sha256"] == PRIMARY["sha256"]
+    assert CARD["live_build"]["sha256"] == KDC["sha256"]
     assert CARD["holdout_dti"]["label"] == "HOLDOUT-DTI"
 
 
 def test_composition_is_base_plus_complement():
     c = RECEIPT["composition"]
-    assert c["total_dots"] == c["base_h33_2_b2_dots"] + c["complement_dots"] == PRIMARY["positive_pixels"]
+    assert c["total_dots"] == c["base_h33_2_b2_dots"] + c["complement_dots"] == KDC["positive_pixels"]
     assert c["base_share"] <= 0.70  # >= 30 % of dots differ from the incumbent (lane rule)
     assert c["complement_min_dist_to_base_px"] > 3 and c["complement_min_dist_to_catalogue_px"] > 2
 

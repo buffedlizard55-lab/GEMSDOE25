@@ -3,8 +3,287 @@
  "generated_by": "scripts/build_site.py updated with GEM-FUSE1 primary 2026-10-25",
  "files": [
   {
-   "id": "kdc-b2-complement",
+   "id": "mscr-multiscale-crest",
    "role": "primary",
+   "file": "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.tif",
+   "path": "docs/downloads/gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.tif",
+   "bytes": 845772,
+   "sha256": "0c8b7e91d7a4402e8fc9e6e840b5533669de1a17f1c1acc941c0c3bde0db7ea5",
+   "content_id": "dd2bb4b09cd2",
+   "positive_pixels": 48442,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "np.nanmin/np.nanmax over the whole array",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.json",
+   "outside": "zero",
+   "status": "UNIQUE BY CONTENT \u00b7 FORMAT-VALID \u00b7 pre-registered holdout gates FAILED (GMCE -0.0012, MSCR -0.0004) \u00b7 STRICT LANE FAIL (literal rule) \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "zip": "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.zip",
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "expected_range": "no live projection computed \u2014 holdout gates FAILED (not a score)",
+   "lane": {
+    "lane_clear": false,
+    "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+    "lattice_overlap": 1.0,
+    "focus_winners": {
+     "n": 21,
+     "worst_cand_dots_within_3px": 0.5010321621733207,
+     "worst_abs_spearman_surface": 0.098303,
+     "b2_overlap": 0.3151397547582676
+    },
+    "external_sparse": {
+     "n": 50,
+     "worst_abs_spearman_surface": 0.181473,
+     "worst_surface_file": "h23-a-6pct.tif",
+     "worst_abs_spearman_final": 0.071076,
+     "worst_final_file": "h16-continuation.tif",
+     "worst_cand_dots_within_3px": 0.7894802031295157,
+     "worst_overlap_file": "pindrop-nodes.tif",
+     "lane_pass": false
+    },
+    "own_lineage": {
+     "n": 8,
+     "worst_abs_spearman_surface": 0.151043,
+     "worst_surface_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+     "worst_abs_spearman_final": 0.321838,
+     "worst_final_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+     "worst_cand_dots_within_3px": 0.9175715288386112,
+     "worst_overlap_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+     "lane_pass": false
+    }
+   },
+   "lane_summary": "Surface (pre-placement) and final-dot Spearman <= 0.90 vs every compared raster. Dot overlap <= 0.70 vs all sparse focus-site winners (worst 0.38) but > 0.70 vs dense rasters (r13 lattice 1.00, pindrop/h23/r7 103k-336k dots, reverse overlap 0.19-0.44, surface rho <= 0.18) and vs this repo's own H31/H35 HGB lineage (0.76-0.92). Under the repo's merged literal strict lane rule (no density exception) this is a DUPLICATE LANE / STOP.",
+   "run_card": "registry/run_card_session_2026-10-25_gmce_mscr.json",
+   "note": "GEMSDOE25 MSCR-1 sapd2.4 k3.5% | holdout gate FAIL; no slot; unscored; not slot-approved | id dd2bb4b09cd2",
+   "title": "MSCR-1 multi-scale crest (BEST detector + 3 multi-scale crest columns) \u2014 unique content, holdout gate FAILED, strict lane stop; testing only, do not submit",
+   "summary": "Session candidate (knowledge/21-22): the H35-B holdout-best detector (BDE + 7 add-ons + H27_tip + 3 H34 columns) plus 3 multi-scale crest columns from det_elev (400 m crest, cross-scale persistence, 400 m trough), 3-draw averaged, ridge-NMS -> top 3.5% -> score-ordered dots at 2.4 px; 48,442 dots, 0 on catalogue pixels. Pre-registered holdout screen (draws 22-23) FAILED: HOLDOUT-DTI pooled 0.161954 vs same-run BEST 0.161968, paired -0.000373 (1/4 folds); Experiment 1 (GMCE-1 gravity-magnetic coherent edge, draws 20-21) also FAILED (paired -0.001209, 1/4 folds). Leakage canaries passed (max AUC 0.654 / 0.560 <= 0.90). Surface and final-dot rank correlation <= 0.90 vs every compared raster; dots overlap <= 0.38 vs the sparse 9-site focus winners, but the literal strict lane gate fails vs dense rasters (r13 lattice 100%) and this repo's own H31/H35 lineage (0.76-0.92). HOLDOUT-DTI is a research proxy, not a competition score. Download for local testing; do not submit.",
+   "parent": "H35-B detector config (BDE+7+tip+H34) + MSCR-1 columns; no previous submission's dots are copied (new full-catalogue fit)"
+  },
+  {
+   "id": "mscr-multiscale-crest-nan",
+   "role": "fallback",
+   "file": "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-nan.tif",
+   "path": "docs/downloads/gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-nan.tif",
+   "bytes": 1611552,
+   "sha256": "672a14fb0023eeef64f36c63732e9ec7bda23a078810204882af7b434812156f",
+   "content_id": "dd2bb4b09cd2",
+   "positive_pixels": 48442,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": true,
+     "detail": "7,111,787/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=nan",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "np.nanmin/np.nanmax over the whole array",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": false,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.json",
+   "outside": "nan",
+   "status": "NaN-outside twin of the MSCR file (same dots); same verdict: holdout gates failed, strict lane fail; DO NOT SUBMIT",
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "expected_range": "no live projection computed \u2014 holdout gates FAILED (not a score)",
+   "lane": {
+    "lane_clear": false,
+    "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+    "lattice_overlap": 1.0,
+    "focus_winners": {
+     "n": 21,
+     "worst_cand_dots_within_3px": 0.5010321621733207,
+     "worst_abs_spearman_surface": 0.098303,
+     "b2_overlap": 0.3151397547582676
+    },
+    "external_sparse": {
+     "n": 50,
+     "worst_abs_spearman_surface": 0.181473,
+     "worst_surface_file": "h23-a-6pct.tif",
+     "worst_abs_spearman_final": 0.071076,
+     "worst_final_file": "h16-continuation.tif",
+     "worst_cand_dots_within_3px": 0.7894802031295157,
+     "worst_overlap_file": "pindrop-nodes.tif",
+     "lane_pass": false
+    },
+    "own_lineage": {
+     "n": 8,
+     "worst_abs_spearman_surface": 0.151043,
+     "worst_surface_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+     "worst_abs_spearman_final": 0.321838,
+     "worst_final_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+     "worst_cand_dots_within_3px": 0.9175715288386112,
+     "worst_overlap_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+     "lane_pass": false
+    }
+   },
+   "lane_summary": "Surface (pre-placement) and final-dot Spearman <= 0.90 vs every compared raster. Dot overlap <= 0.70 vs all sparse focus-site winners (worst 0.38) but > 0.70 vs dense rasters (r13 lattice 1.00, pindrop/h23/r7 103k-336k dots, reverse overlap 0.19-0.44, surface rho <= 0.18) and vs this repo's own H31/H35 HGB lineage (0.76-0.92). Under the repo's merged literal strict lane rule (no density exception) this is a DUPLICATE LANE / STOP.",
+   "run_card": "registry/run_card_session_2026-10-25_gmce_mscr.json",
+   "note": "GEMSDOE25 MSCR-1 sapd2.4 k3.5% | holdout gate FAIL; no slot; unscored; not slot-approved | id dd2bb4b09cd2",
+   "title": "MSCR-1 with NaN outside the footprint (official template convention); testing only, do not submit",
+   "summary": "Session candidate (knowledge/21-22): the H35-B holdout-best detector (BDE + 7 add-ons + H27_tip + 3 H34 columns) plus 3 multi-scale crest columns from det_elev (400 m crest, cross-scale persistence, 400 m trough), 3-draw averaged, ridge-NMS -> top 3.5% -> score-ordered dots at 2.4 px; 48,442 dots, 0 on catalogue pixels. Pre-registered holdout screen (draws 22-23) FAILED: HOLDOUT-DTI pooled 0.161954 vs same-run BEST 0.161968, paired -0.000373 (1/4 folds); Experiment 1 (GMCE-1 gravity-magnetic coherent edge, draws 20-21) also FAILED (paired -0.001209, 1/4 folds). Leakage canaries passed (max AUC 0.654 / 0.560 <= 0.90). Surface and final-dot rank correlation <= 0.90 vs every compared raster; dots overlap <= 0.38 vs the sparse 9-site focus winners, but the literal strict lane gate fails vs dense rasters (r13 lattice 100%) and this repo's own H31/H35 lineage (0.76-0.92). HOLDOUT-DTI is a research proxy, not a competition score. Download for local testing; do not submit.",
+   "parent": "H35-B detector config (BDE+7+tip+H34) + MSCR-1 columns; no previous submission's dots are copied (new full-catalogue fit)"
+  },
+  {
+   "id": "kdc-b2-complement",
+   "role": "alternate",
    "file": "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-zeros.tif",
    "path": "docs/downloads/gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-zeros.tif",
    "bytes": 856618,

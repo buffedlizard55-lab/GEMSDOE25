@@ -81,7 +81,7 @@ def verdict_banner(p: dict, prefix: str, exec_page: bool = False) -> str:
     return f"""<div class="hero"><h1>{title}</h1>
 <div class="stats"><div class="stat"><b style="color:#15803d">OK to download: {dl}</b><span>for local testing: unique by content · all hard format checks pass · values in [0,1] · no NaN inside the footprint</span></div>
 <div class="stat"><b style="color:#b91c1c">OK to spend a weekly slot: {slot}</b><span>verdict <b>{e(p.get('verdict', 'n/a'))}</b>: not slot-approved — DO NOT SUBMIT (strict lane gate and pre-registered holdout gate both fail)</span></div>
-<div class="stat"><b>{e(p.get('expected_range') or 'n/a')}</b><span>model projection for this file versus the owner-reported 0.2778 best — not a score</span></div></div>
+<div class="stat"><b>{e(p.get('expected_range') or 'n/a')}</b><span>live expectation stated for this file versus the owner-reported 0.2778 best — not a score (HOLDOUT-DTI proxy results are in the run card)</span></div></div>
 <p class="lead"><b>{e(p['title'])}.</b> The download card below has the file, checksum and the note to paste.</p>
 <p class="small"><b>Status:</b> {e(p['status'])}. <b>Lane:</b> {e(p.get('lane_summary', 'n/a'))}. <b>Run card:</b> <code>{e(p.get('run_card', ''))}</code>.
 Zip alternative: <a href="{prefix}downloads/{e(p.get('zip', ''))}" download>{e(p.get('zip', ''))}</a>. The earlier "Predicted values must be in range [0, 1]" error came from NaN pixels inside the footprint of an old file; this file has none (zeros outside, no NaN anywhere).
@@ -294,7 +294,7 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
 <li>Generative-AI use is allowed but must be described in the narrative (<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">§3.2</a>); a draft is in <code>AI_DISCLOSURE.md</code>.</li>
 <li>Known USGS/INGENIOUS pixels are masked and pixel-exact; predictions on them do not matter (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4">staff</a>).</li>
 <li>Deadline wording differs between the page (11:59 p.m. UTC, 3 Dec 2026) and the rules (5:00 p.m. ET): confirm with <a href="mailto:gemsprize@nlr.gov">gemsprize@nlr.gov</a>.</li></ul>
-<div class="callout"><b>Slot discipline.</b> All current downloads are research artifacts only. The strict lane test stops every current file (each has more than 70 % of its dots within 3 px of the dense r13 lattice). The featured KDC file additionally failed its pre-registered holdout gate; GEM-1/GEM-FUSE1 were gated against a weak control; H31-C and H31-1 were negative. Do not upload any of them. A future candidate needs a fresh passing holdout, leakage canaries, lane clearance, and exact-file audit; no proxy result is a live score.</div>"""
+<div class="callout"><b>Slot discipline.</b> All current downloads are research artifacts only. The strict lane test stops every current file (each has more than 70 % of its dots within 3 px of the dense r13 lattice). The featured file additionally failed its pre-registered holdout gate (see its run card); earlier files: KDC holdout FAIL, GEM-1/GEM-FUSE1 gated against a weak control, H31-C and H31-1 negative. Do not upload any of them. A future candidate needs a fresh passing holdout, leakage canaries, lane clearance, and exact-file audit; no proxy result is a live score.</div>"""
 
     # ------------------------------------------------------------------ research page
     effs = fac["effects_dti"]

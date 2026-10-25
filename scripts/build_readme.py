@@ -52,7 +52,7 @@ def main() -> None:
     L = []
     A = L.append
     A("# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize\n")
-    A("**Latest session (2026-10-25, session 6):** [why H33-2-B2 scored 0.2778, the KDC/flank holdout tests (both negative) and the unique KDC file](knowledge/19_kdc_results_2026-10-25.md) · "
+    A("**Latest session (2026-10-25, GMCE/MSCR):** [why H33-2-B2 scored 0.2778 (chain re-verified pixel-exactly), two fresh-draw detector experiments (GMCE-1, MSCR-1; both negative) and the unique MSCR file](knowledge/23_gmce_mscr_outcomes_2026-10-25.md) · run card `registry/run_card_session_2026-10-25_gmce_mscr.json` · pre-registrations `knowledge/21`, `knowledge/22` · previous session 6: [KDC results](knowledge/19_kdc_results_2026-10-25.md) · "
       "run card `registry/run_card_kdc_2026-10-25.json` · owner brief copies (neither guaranteed verbatim, IR-25-BRIEF-RECONSTRUCTED): "
       "[`knowledge/owner_brief_2026-10-25_verbatim.txt`](knowledge/owner_brief_2026-10-25_verbatim.txt) (parallel session, abridged) and "
       "[`knowledge/owner_brief_2026-10-25_s6_RECONSTRUCTED.txt`](knowledge/owner_brief_2026-10-25_s6_RECONSTRUCTED.txt) (full reconstruction) · older verbatim brief `knowledge/owner_brief_verbatim.txt` · `AGENTS.md`.\n")

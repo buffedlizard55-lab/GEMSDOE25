@@ -168,7 +168,7 @@
    "status": "open",
    "issue": "The frozen hide-and-recover comparator 0.15200338908786984 (evidence/addons/emk_extension.json, variant sapd2.4 at kfrac 0.035, base BDE + the seven add-ons, draws 0-1) does NOT reproduce in this environment. Re-running that exact arm here gives 0.149667509 (fold 0 identical to 9 decimals; folds 1-3 differ by +0.0023, -0.0042, -0.0074). Re-running a single cell in isolation reproduces this session's value bit-for-bit, so this session's pipeline is deterministic; the drift is environmental. data/work is a gitignored derived cache (static_ABCD.npy, addons.npy, bands/) that this session rebuilt with numpy 2.4.6, scipy 1.17.1, scikit-learn 1.9.1, rasterio 1.4.4, and no hash of it was ever recorded, so the previous cache cannot be compared.",
    "evidence": "evidence/h28_holdout/results.json (reproduction_check), evidence/work_cache_hashes.json (SHA-256 of every derived cache plus library versions), scripts/run_h28_holdout.py, scripts/analyze_h28_holdout.py",
-   "resolution_or_action": "Policy change recorded in knowledge/10 section 12.5: absolute comparators do not transfer between environments, so a promotion gate must recompute its comparator in the same run as the candidate. evidence/work_cache_hashes.json now exists so the next session can detect a rebuilt cache immediately. The frozen 0.152003389 is retained as the historical record and no arm was promoted on the strength of this drift."
+   "resolution_or_action": "Policy change recorded in knowledge/10 section 12.5: absolute comparators do not transfer between environments, so a promotion gate must recompute its comparator in the same run as the candidate. evidence/work_cache_hashes.json now exists so the next session can detect a rebuilt cache immediately. The frozen 0.152003389 is retained as the historical record and no arm was promoted on the strength of this drift. UPDATE (2026-10-25 GMCE/MSCR session): the work caches rebuilt in this sandbox (static_ABCD.npy, addons.npy, both names JSONs, bands/_footprint.npy, bands/_labels.npy) are bit-identical to all six SHA-256 pins in evidence/work_cache_hashes.json (generated 2026-10-03) under the same library versions, so cache drift is excluded for this session's numbers specifically; the same-run comparator policy was still followed."
   },
   {
    "id": "IR-25-ARTEFACT-SCORE-LINK",
@@ -390,8 +390,8 @@
    "id": "IR-25-FEATURED-DOWNLOAD-RATIONALE",
    "severity": "medium",
    "status": "disclosed",
-   "issue": "The site needs one featured download, and every current file is DO NOT SUBMIT under the strict lane policy. The KDC file is featured because it is the only unique file that keeps all 37,654 dots of the owner-reported 0.2778 file. GEM-FUSE1 keeps 1.2 % and H31-1 flank keeps 3.6 %. Its model projection is 0.25\u20130.31, which is not a score.",
-   "evidence": "evidence/kdc_build/candidates_vs_b2.json; evidence/kdc_build/projection.json.",
+   "issue": "The site needs one featured download, and every current file is DO NOT SUBMIT under the strict lane policy. Since the 2026-10-25 GMCE/MSCR session the featured file is the MSCR-1 candidate (gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.tif), featured because it is this session's unique, format-valid generated TIF with a full run card; it failed both pre-registered holdout gates and is testing-only. Previously the KDC file was featured because it was the only unique file keeping all 37,654 dots of the owner-reported 0.2778 file (its model projection 0.25-0.31 is not a score); it is now an alternate.",
+   "evidence": "registry/run_card_session_2026-10-25_gmce_mscr.json; evidence/kdc_build/candidates_vs_b2.json; evidence/kdc_build/projection.json.",
    "resolution_or_action": "Featuring a file is not slot approval; slot selection remains with the separate selector (owner)."
   },
   {
@@ -457,6 +457,14 @@
    "issue": "GEMSDOE32's site (re-read 2026-10-25) now carries newer unscored lanes (Arena41 PF-only, gates failed; H32-WIN-46090) whose rasters are not in this repo's pinned registry/data manifest, so H34/H35 lane checks could not include them. Post-merge note: H35 was lane-checked vs the merged parallel-session downloads (KDC 43.4%, GEM-FUSE1 18.0% - distinct; H31-1 82.3% - same lane).",
    "evidence": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html (fetched 2026-10-25, two chunks); registry/data_manifest.json has no 2026-10-25 GEMSDOE32 entries.",
    "resolution_or_action": "Pin those rasters by SHA-256 into registry/data_manifest.json (owner mirrors) and re-run scripts/check_lane_duplicates.py before any future packaging in this lane family."
+  },
+  {
+   "id": "IR-25-THINNING-NONNESTED",
+   "severity": "info",
+   "status": "verified",
+   "issue": "Chain narratives that describe D1.5 -> D2.8 as a deletion are imprecise: dot_thin is not nested across spacings on the h19-5 parent. Computed 2026-10-25: D2.8 == dot_thin(h19-5, 2.4) == dot_thin(h19-5, 2.8) exactly and is a subset of h19-5, but only 29,849 of its 44,090 dots are in D1.5 (14,241 are h19-5 pixels D1.5 had blocked). Only the R1 (d>1px) and B2 (d>2px) steps are exact deletions.",
+   "evidence": "evidence/gmce_session_b2_chain_verification.json (scripts/verify_b2_chain.py, hash-pinned mirrors)",
+   "resolution_or_action": "Session documents (knowledge/21, knowledge/23) describe D1.5->D2.8 as a re-thinning of the same parent, not a subset deletion. No score claim is affected (all are OWNER-reported)."
   }
  ]
 }
