@@ -1,0 +1,50 @@
+{
+ "hypothesis": "H38 greedy marginal-credit emission (A1 primary, A3 secondary) vs sapd2.4 (A0) on identical B35 surfaces; A2 = A0 with B=2 visible-catalogue prune (diagnostic)",
+ "preregistration": "knowledge/25_preregistered_h38_greedy_credit_emission_2026-10-25.md",
+ "draws": [
+  20,
+  21
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "arms": [
+  "A0",
+  "A1",
+  "A2",
+  "A3"
+ ],
+ "min_dist": 2.4,
+ "kfrac": 0.035,
+ "line_filter": {
+  "length": 15,
+  "orientations": 8
+ },
+ "model": {
+  "base": "BDE",
+  "extras": [
+   "X1_K",
+   "X1_ThK",
+   "X1_UK",
+   "X2_compat",
+   "X2_compat_coh",
+   "X3_gm",
+   "X3_gd"
+  ],
+  "tip_column": "H27_tip",
+  "h34_columns": "H34 3 cols",
+  "fit_seed": "draw"
+ },
+ "n_hat_rule": "0.20/0.80 * |visible catalogue pixels inside the eroded domain|",
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px) via gems25.experiment.Cell.evaluate",
+ "leakage_auc_cap": 0.9,
+ "gate": {
+  "arms": "A1 vs A0 (primary), A3 vs A0 (secondary)",
+  "mean_gain_gt": 0.001,
+  "folds_positive_min": 3,
+  "worst_fold_min": -0.01
+ }
+}

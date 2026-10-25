@@ -97,13 +97,14 @@ Inspecting footprint 3DEP 1 m LiDAR coverage (`lidar_scarp_features_u8.tif` band
   - **Single-TIFF zip:** `docs/downloads/gems25-h38-ospc-submod-20261025-680d62616417-zeros.zip`
   - **Automated Format Validator (`src/gems25/submission.py::check_file`):** **`16 / 16` checks PASS** (`EPSG:32611`, `3730 × 3292`, exact geotransform, `float32`, `48,666` binary dots in `{0.0, 1.0} ⊂ [0, 1]`, `0` NaN anywhere, `0` dots on known catalogue pixels).
   - **Research Identifier Note (`82` chars $\le 120$):** `GEMSDOE25 H38 ospc-submod | unscored; not slot-approved; no slot | id 680d62616417`
-- **Three-Tier Registry Uniqueness & Lane Audit (`50` unique rasters checked):**
-  1. **Continuous pre-placement surface Spearman (`400k` sample):** max `|rho| = 0.1525 <= 0.90` (**PASS**, `0 / 50` flagged).
-  2. **Final binary dot Spearman (`400k` sample):** max `|rho| = 0.1840 <= 0.90` (**PASS**, `0 / 50` flagged).
+- **Three-Tier Registry Uniqueness & Lane Audit (`56` unique rasters checked after merging parallel PRs #27–#30):**
+  1. **Continuous pre-placement surface Spearman (`400k` sample):** max `|rho| = 0.1582 <= 0.90` (**PASS**, `0 / 56` flagged).
+  2. **Final binary dot Spearman (`400k` sample):** max `|rho| = 0.1859 <= 0.90` (**PASS**, `0 / 56` flagged).
   3. **3-px dot overlap by tier:**
      - **21 sibling top-scorers (`GEMSDOE27..91`):** **`0 / 21` flagged!** Overlap vs `GEMSDOE32` (`0.2778`) = **`32.6%`**, vs `GEMSDOE70` (`0.2478` submodular) = **`27.1%`**, max across all 21 sibling top-scorers = **`51.9%`** (`g63_cvarlw_0.2303.tif`) $\le 70\%$.
+     - **Parallel subsurface lane (`H36-SPIGM` `3937b96ce366`):** `61.6% <= 70%` (**CLEAR**).
      - **Historical `data/scored/` rasters:** `gems10-h25-ctx-ridge` (`174,897` continuous ridge pixels) = `71.8%` (`rev = 44.1%`); `D2.8` = `35.2%`; `H19-5` = `38.8%`.
-     - **Own-repo `docs/downloads/` HGB lineage:** Exact pixel overlap vs `S0` on the same surface is only **`27.5%`** (`72.5%` of pixels relocated!), but 3-px halo overlap vs `H35`/`XG1`/`H37` is `96.0–96.5%` because along-ridge spacing shifts remain within 300 m of the shared `BDE+7+H34` ridge axes.
+     - **Own-repo `docs/downloads/` HGB lineage:** Exact pixel overlap vs `S0` on the same surface is only **`27.5%`** (`72.5%` of pixels relocated!), but 3-px halo overlap vs `H35`/`XG1`/`H37`/`MSCR`/`H38-greedy` is `95.8–96.6%` because along-ridge spacing shifts remain within 300 m of the shared `BDE+7+H34` ridge axes.
      - **Synthetic `r13` 5-px calibration lattice:** `100.0%` (`halo_coverage_3px = 99.87%`, `IR-25-LANE-DENSITY`).
 - **Automated Unmistakable Verdict:**
   - **OK TO DOWNLOAD (for local inspection / reproduction): `YES`** (`ok_to_download = true`).

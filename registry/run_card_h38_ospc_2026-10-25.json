@@ -218,10 +218,10 @@
     "overlap_vs_gemsdoe70_submod": 0.271072,
     "worst_historical_other_site_overlap": 0.717852,
     "worst_historical_other_site_file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
-    "worst_other_registry_overlap": 0.964698,
-    "worst_other_registry_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
-    "worst_abs_spearman_final": 0.183943,
-    "worst_abs_spearman_surface": 0.152507,
+    "worst_other_registry_overlap": 0.965869,
+    "worst_other_registry_file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+    "worst_abs_spearman_final": 0.186438,
+    "worst_abs_spearman_surface": 0.158247,
     "flagged_literal": [
       "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
       "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
@@ -238,6 +238,10 @@
       "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.tif",
       "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-nan.tif",
       "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-zeros.tif",
+      "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+      "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.tif",
+      "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-nan.tif",
+      "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.tif",
       "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-nan.tif",
       "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.tif"
     ],
@@ -256,6 +260,10 @@
       "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.tif",
       "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-nan.tif",
       "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-zeros.tif",
+      "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+      "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.tif",
+      "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-nan.tif",
+      "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.tif",
       "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-nan.tif",
       "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.tif"
     ],
@@ -273,6 +281,10 @@
       "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.tif",
       "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-nan.tif",
       "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-zeros.tif",
+      "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+      "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.tif",
+      "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-nan.tif",
+      "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.tif",
       "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-nan.tif",
       "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.tif"
     ],
@@ -280,12 +292,12 @@
       "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif"
     ],
     "flagged_sibling_top_scorers": [],
-    "registry_checked": 50,
+    "registry_checked": 56,
     "caps": {
       "spearman": 0.9,
       "overlap_3px": 0.7
     },
-    "lane_summary": "strict lane gate (literal) vs r13 5-px lattice: 100.0% within 3 px; 0/21 GEMSDOE27..91 top-scorers flagged (GEMSDOE32 0.2778 overlap 0.326, GEMSDOE70 submodular 0.2478 overlap 0.271, max sibling top-scorer 0.519 on g63_cvarlw_0.2303.tif); historical scored max 0.718 (gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif); own HGB lineage max 3-px overlap 0.965 (gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif; exact pixel overlap vs S0 on same surface only 0.275); worst final-dot |Spearman| 0.184, pre-placement surface worst |Spearman| 0.153",
+    "lane_summary": "strict lane gate (literal) vs r13 5-px lattice: 100.0% within 3 px; 0/21 GEMSDOE27..91 top-scorers flagged (GEMSDOE32 0.2778 overlap 0.326, GEMSDOE70 submodular 0.2478 overlap 0.271, max sibling top-scorer 0.519 on g63_cvarlw_0.2303.tif); historical scored max 0.718 (gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif); own HGB lineage max 3-px overlap 0.966 (gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif; exact pixel overlap vs S0 on same surface only 0.275); worst final-dot |Spearman| 0.186, pre-placement surface worst |Spearman| 0.158",
     "lane_receipt": "docs/downloads/lane-gems25-h38-ospc-submod-20261025-680d62616417-zeros.json",
     "surface_lane_receipt": "evidence/h38_ospc_build/surface_lane_h38.json"
   },
@@ -403,7 +415,7 @@
   "slot_approved": false,
   "ok_to_download": true,
   "ok_to_submit_slot": false,
-  "slot_reason": "holdout screen FAILED (-0.0011 fold-mean gain, 1/4 folds positive; confirmation not run per frozen stopping rule); strict lane gate flagged 17 rasters (r13 5-px lattice 1.000, gems10-h25 dense ridge 0.718, and own H31/H35/XG1/H37 HGB lineage 0.965; 0/21 GEMSDOE27..91 top-scorers flagged, max 0.519) (IR-25-LANE-DENSITY)",
+  "slot_reason": "holdout screen FAILED (-0.0011 fold-mean gain, 1/4 folds positive; confirmation not run per frozen stopping rule); strict lane gate flagged 21 rasters (r13 5-px lattice 1.000, gems10-h25 dense ridge 0.718, and own H31/H35/XG1/H37 HGB lineage 0.966; 0/21 GEMSDOE27..91 top-scorers flagged, max 0.519) (IR-25-LANE-DENSITY)",
   "experiments_run": 1,
   "budget_respected": true,
   "build": {

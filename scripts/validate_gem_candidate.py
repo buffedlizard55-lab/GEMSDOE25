@@ -192,14 +192,21 @@ def paired_gate(candidate: list[float], control: list[float]) -> dict:
 # LANE check vs registry rasters
 # ----------------------------------------------------------------------------------------------
 def load_registry_rasters() -> list[dict]:
-    """Load every local registry GeoTIFF available, including shipped downloads.
+    """Index every local registry GeoTIFF without retaining its pixels in RAM.
 
-    Do not silently ignore an unreadable raster: a partial registry is not a
-    lane clearance. The caller records/raises on a read failure.
+    The registry includes restored scored rasters, top-scorer mirrors,
+    calibration rasters, and shipped downloads. At 3730x3292, keeping dozens of
+    decoded rasters resident can consume multiple GiB; lane checks read one
+    raster at a time instead. Do not silently ignore an unreadable raster: a
+    partial registry is not a lane clearance.
     """
-    import rasterio
     paths = []
-    for directory in (REGISTRY_DIR, data_dir() / "calibration", ROOT / "docs" / "downloads"):
+    for directory in (
+        REGISTRY_DIR,
+        data_dir() / "calibration",
+        data_dir() / "registry_top",
+        ROOT / "docs" / "downloads",
+    ):
         if directory.exists():
             paths.extend(sorted(directory.glob("*.tif")))
     out = []
@@ -209,13 +216,59 @@ def load_registry_rasters() -> list[dict]:
         if digest in seen:
             continue
         seen.add(digest)
-        try:
-            with rasterio.open(p) as s:
-                arr = np.nan_to_num(s.read(1), nan=0.0).astype(np.float32)
-        except Exception as e:
-            raise RuntimeError(f"lane registry raster unreadable: {p}: {e}") from e
-        out.append(dict(file=p.name, arr=arr, sha256=digest))
+        out.append(dict(file=p.name, path=p, sha256=digest))
     return out
+
+
+def _registry_array(reg: dict) -> np.ndarray:
+    """Read one registry raster (test fixtures may pass a small in-memory array)."""
+    if "arr" in reg:
+        return np.nan_to_num(reg["arr"], nan=0.0).astype(np.float32)
+    import rasterio
+
+    path = reg.get("path")
+    if path is None:
+        raise RuntimeError(f"lane registry entry has no raster path: {reg.get('file', '<unknown>')}")
+    try:
+        with rasterio.open(path) as src:
+            return np.nan_to_num(src.read(1), nan=0.0).astype(np.float32)
+    except Exception as exc:
+        raise RuntimeError(f"lane registry raster unreadable: {path}: {exc}") from exc
+
+
+def surface_lane_check(ctx, surface: np.ndarray, registry: list[dict]) -> list[dict]:
+    """Check a candidate surface against the full registry before dot placement."""
+    foot, fi = ctx.foot, ctx.fi
+    if surface.shape != foot.shape:
+        raise ValueError("surface lane check requires a full-grid surface")
+    if not registry:
+        return []
+    candidate = np.where(foot, surface, np.nan).ravel()[fi]
+    results = []
+    for reg in registry:
+        reg_arr = _registry_array(reg)
+        if reg_arr.shape != foot.shape:
+            results.append(dict(file=reg["file"], skipped="shape differs", duplicate=True))
+            continue
+        reference = np.where(foot, reg_arr, np.nan).ravel()[fi]
+        finite = np.isfinite(candidate) & np.isfinite(reference)
+        corr = float("nan")
+        candidate_values = candidate[finite]
+        reference_values = reference[finite]
+        if (finite.sum() >= 1000 and candidate_values.min() != candidate_values.max()
+                and reference_values.min() != reference_values.max()):
+            corr = float(spearmanr(candidate_values, reference_values, nan_policy="omit").statistic)
+        # Undefined correlation cannot be treated as proof of surface uniqueness.
+        duplicate = not math.isfinite(corr) or abs(corr) > LANE_CORR_CAP
+        results.append(dict(file=reg["file"], spearman=corr,
+                            abs_spearman=abs(corr) if math.isfinite(corr) else None,
+                            flag_rank=bool(duplicate), duplicate=bool(duplicate)))
+    return results
+
+
+def surface_lane_is_clear(results: list[dict]) -> bool:
+    """A missing or incomplete registry cannot clear a candidate surface."""
+    return bool(results) and all(not row.get("duplicate", True) for row in results)
 
 
 def lane_check(ctx, emitted: np.ndarray, surface: np.ndarray, registry: list[dict]) -> dict:
@@ -234,10 +287,11 @@ def lane_check(ctx, emitted: np.ndarray, surface: np.ndarray, registry: list[dic
     my_rc = np.column_stack([my_dots // W, my_dots % W]) if my_dots.size else np.empty((0, 2), int)
     results = []
     for reg in registry:
-        if reg["arr"].shape != foot.shape:
+        reg_arr = _registry_array(reg)
+        if reg_arr.shape != foot.shape:
             results.append(dict(file=reg["file"], skipped="shape differs", duplicate=True))
             continue
-        reg_flat = np.where(foot, reg["arr"], np.nan).ravel()[fi]
+        reg_flat = np.where(foot, reg_arr, np.nan).ravel()[fi]
         finite = ~(np.isnan(surf_finite) | np.isnan(reg_flat))
         corr = float("nan")
         if finite.sum() >= 1000:
@@ -333,12 +387,36 @@ def main() -> None:
                                   "radius_px": LANE_RADIUS_PX}},
             "candidates": {}}
 
+    # The parallel-run contract requires the score surface to be checked before
+    # any candidate dots are placed. An absent registry or undefined correlation
+    # is not a uniqueness pass; those candidates are stopped before holdout
+    # emission and before any full-footprint raster is built.
+    surface_lane_by_candidate = {}
+    surface_lane_ok = {}
+    for label, surface in candidates.items():
+        rows = surface_lane_check(ctx, surface, registry)
+        surface_lane_by_candidate[label] = rows
+        surface_lane_ok[label] = surface_lane_is_clear(rows)
+        print(f"SURFACE LANE {label}: {'clear' if surface_lane_ok[label] else 'DUPLICATE / UNVERIFIED — stop before placement'}",
+              flush=True)
+
+    report["surface_lane_by_candidate"] = surface_lane_by_candidate
+    report["surface_lane_ok"] = surface_lane_ok
+
     control_res = evaluate_surface(ctx, control_surface, "control_B_crest")
     report["candidates"]["control_B_crest"] = {k: v for k, v in control_res.items() if k != "rows"}
     print(f"control mean DTI {control_res['mean_dti']:.6f} worst AUC {control_res['worst_auc']:.3f}",
           flush=True)
 
     for label, surface in candidates.items():
+        if not surface_lane_ok[label]:
+            report["candidates"][label] = {
+                "status": "stopped before holdout prediction placement: surface lane failed or unverified",
+                "surface_lane_ok": False,
+                "holdout_dti": None,
+                "leakage_auc": None,
+            }
+            continue
         restrict = restrict_gem3 if label.startswith("GEM-3") else None
         res = evaluate_surface(ctx, surface, label, restrict)
         report["candidates"][label] = {k: v for k, v in res.items() if k != "rows"}
@@ -355,6 +433,19 @@ def main() -> None:
     lane_by_candidate = {}
     per_candidate = {}
     for cand, surface in candidates.items():
+        if not surface_lane_ok[cand]:
+            lane_by_candidate[cand] = []
+            per_candidate[cand] = {
+                "surface_lane_ok": False,
+                "gate_passed": False,
+                "leakage_ok": False,
+                "lane_ok": False,
+                "eligible_for_artifact": False,
+                "lane_registry_checked": len(surface_lane_by_candidate[cand]),
+                "emitted_full_footprint": None,
+                "stop_reason": "surface lane failed or unverified before placement",
+            }
+            continue
         if cand == "GEM-3_off_trace_dots":
             restrict = off_trace_mask(lab, foot)
         else:
@@ -371,10 +462,11 @@ def main() -> None:
         gate = report["candidates"][cand]["paired_vs_control"]
         leakage_ok = report["candidates"][cand]["worst_auc"] <= LEAKAGE_AUC_CAP
         per_candidate[cand] = {
+            "surface_lane_ok": True,
             "gate_passed": bool(gate["passed"]),
             "leakage_ok": bool(leakage_ok),
             "lane_ok": bool(lane_ok),
-            "eligible_for_artifact": bool(gate["passed"] and leakage_ok and lane_ok),
+            "eligible_for_artifact": bool(surface_lane_ok[cand] and gate["passed"] and leakage_ok and lane_ok),
             "lane_registry_checked": len(lane_rows),
             "emitted_full_footprint": int(emitted.sum()),
         }
