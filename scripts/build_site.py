@@ -144,8 +144,27 @@ def main() -> None:
         h30_gate = None
         h30_status = "registered screen draws 6,7; real-data feature smoke passed, no model fit or DTI yet"
 
+    cf1 = next((s for s in subs if s['id'] == 'cf1-transverse-negative'), None)
+    cf1_card = opt('registry/run_card_cf1_2026-10-25.json')
+
+    def latest_diagnostic(prefix: str) -> str:
+        if cf1 is None or cf1_card is None:
+            return ''
+        hold = cf1_card['holdout_dti']
+        comp = cf1_card['registry_comparison']
+        # This is a duplicate-lane diagnostic, not a replacement primary or a slot candidate.
+        return f'''<section class="dl"><h2>Latest unique CF-1 research TIFF — DO NOT SUBMIT</h2>
+<p><b>OK to download for local testing: YES. OK to submit to DrivenData: NO.</b>
+HOLDOUT-DTI {hold['candidate']:.6f} ({hold['n_withheld_positives']:,} withheld positives; seed {hold['draws'][0]}, four folds) vs same-run control {hold['same_run_control']:.6f};
+paired gain {hold['paired_gain']:+.6f} (95% fold-t CI {hold['gain_95pct_fold_t_ci'][0]:+.6f}…{hold['gain_95pct_fold_t_ci'][1]:+.6f}), {hold['positive_folds']}/4 folds positive.
+Pre-registered screen failed; no confirmation or weekly slot. The strict lane check also fails:
+{comp['lattice_overlap']:.0%} of dots within 3 px of the registered r13 lattice; {comp['h31_control_overlap']:.2%} near H31-C. New SHA-256
+is not a lane clearance. Format verification is against an owner-mirrored template only.</p>
+<a class="btn" href="{prefix}downloads/{e(cf1['file'])}" download>↓ Download CF-1 diagnostic TIFF (testing only)</a>
+<p class="small">SHA-256 <code>{cf1['sha256']}</code> · EPSG:32611 · 3730×3292 · no NaN inside footprint · all values [0,1] · <a href="{prefix}executive-summary.html">submission eligibility guide</a> · note (≤140 chars): <code>{e(cf1['note'])}</code></p></section>'''
+
     def home(prefix: str) -> str:
-        hero = verdict_banner(primary, prefix)
+        hero = latest_diagnostic(prefix) + verdict_banner(primary, prefix)
         cards = dl_card(primary, prefix)
         alt = "".join(f"""<div class="card"><b>{e(o['title'])}</b> {badge(o['status'], 'ok' if o['status']=='scored' else 'warn')}
 <p class="small" style="margin:.3em 0">{e(o['summary'])}</p><a class="btn alt small" href="{prefix}downloads/{o['file']}" download>↓ {e(o['file'])}</a>
@@ -271,7 +290,7 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
 <p class="small">INFERENCE from owner-reported scores (<code>evidence/live_anchor_complement.json</code>); live break-even e ≈ 0.33–0.47. n/i = not identifiable (&lt;5 % off-incumbent dots).</p></div>"""
         return hero + cards + (f"<h3>Also available</h3>{alt}" if alt else "") + plan + kdcb + stats + h31_block + whyb + h28b + h30b + facb + flagb + feed
 
-    exec_body = f"""{verdict_banner(primary, '', exec_page=True)}
+    exec_body = f"""{latest_diagnostic('')}{verdict_banner(primary, '', exec_page=True)}
 <div class="callout"><b>Current unique research artifact: {e(selected['file'])}.</b> <b>OK to download for inspection/reproduction: YES.</b> Its tracked receipt reports format checks passing against an owner-mirrored template; this is not a fresh check in this checkout. <b>OK to submit to a competition scoring slot: NO.</b> The strict parallel-run lane gate is triggered: more than 70% of candidate dots are within 3 px of a registry lattice raster. Treat this as a duplicate-lane stop. No available TIFF is currently eligible for a weekly scoring slot; do not upload it.</div>
 {dl_card(selected, '')}
 <h2>Competition upload instructions — for a future gate-cleared candidate only</h2>

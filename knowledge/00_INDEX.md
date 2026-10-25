@@ -45,3 +45,5 @@
 | `22_preregistered_h37_doc_down_dip_offset_2026-10-25.md` | session 7: ranked H37-1..5 hypotheses, frozen H37-1 DOC design, density-aware lane rule (§4), automated submit decision (§5) |
 | `23_preregistered_h37_2_spring_line_2026-10-25.md` | session 7: H37-2 SPR pre-registration (experiment 2) with the stopping-sentence amendment disclosed |
 | `24_h37_outcomes_and_0.2778_answer_2026-10-25.md` | session 7 outcomes: B2 chain re-verified (XOR 0), E1/E2 both negative, unique H37 file `558c08ce13bf` (DO NOT SUBMIT), next steps ranked by P(Win) |
+| `21_preregistered_crossfield_2026-10-25.md` | parallel CF-1 lane: transverse potential-field pre-registration (note: knowledge numbers 21/22 are shared across parallel sessions) |
+| `22_crossfield_outcome_2026-10-25.md` | parallel CF-1 outcome: negative diagnostic (DO NOT SUBMIT); see `registry/run_card_cf1_2026-10-25.json` |

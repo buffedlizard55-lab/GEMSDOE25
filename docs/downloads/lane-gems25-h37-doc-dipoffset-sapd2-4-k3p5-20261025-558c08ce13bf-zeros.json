@@ -8,10 +8,11 @@
   "dist_px": 3.0
  },
  "sha_in_artifact_ledger": false,
- "registry_checked": 26,
+ "registry_checked": 27,
  "registry_complete": true,
  "flagged": [
   "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+  "gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
   "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
   "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
   "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
@@ -23,6 +24,7 @@
  ],
  "flagged_literal": [
   "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+  "gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
   "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
   "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
   "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
@@ -33,6 +35,7 @@
   "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif"
  ],
  "flagged_lane": [
+  "gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
   "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
   "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
   "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
@@ -230,6 +233,23 @@
    "symmetric_min_overlap_3px": 0.074761,
    "non_discriminative_dense": false,
    "flag_overlap_lane": false,
+   "density_caveat": ""
+  },
+  {
+   "file": "gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
+   "sha256": "a0b58cca87ad98f9579c8744e6dd216b7eb4a3e5b075a4bd7af3cf3004ab5cf0",
+   "byte_identical": false,
+   "spearman": 0.252392,
+   "dots_within_3px": 0.889565,
+   "registry_dots_within_3px_of_candidate": 0.889354,
+   "registry_dots": 48777,
+   "flag_rank": false,
+   "flag_overlap": true,
+   "halo_coverage_3px": 0.185477,
+   "excess_overlap_over_coverage": 0.704088,
+   "symmetric_min_overlap_3px": 0.889354,
+   "non_discriminative_dense": false,
+   "flag_overlap_lane": true,
    "density_caveat": ""
   },
   {

@@ -1259,6 +1259,120 @@
    }
   },
   {
+   "id": "cf1-transverse-negative",
+   "role": "alternate",
+   "verdict": "negative",
+   "file": "gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
+   "path": "docs/downloads/gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
+   "bytes": 846366,
+   "sha256": "a0b58cca87ad98f9579c8744e6dd216b7eb4a3e5b075a4bd7af3cf3004ab5cf0",
+   "content_id": "22e2f9eddad9",
+   "positive_pixels": 48777,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "np.nanmin/np.nanmax over the whole array",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.json",
+   "lane_receipt": "evidence/crossfield_2026-10-25/lane.json",
+   "outside": "zero",
+   "status": "NEGATIVE \u2014 DO NOT SUBMIT: 2/4 holdout folds; 100% overlap with r13 lattice; 92.83% overlap with H31-C",
+   "title": "CF-1 transverse magnetic\u2013gravity diagnostic (new content; NOT submit-eligible)",
+   "summary": "Independent transverse gradient feature on RTP and gravity; HOLDOUT-DTI 0.138651 versus same-run 0.138052 (seed 21; 11,060 withheld positives), paired gain +0.000599 (95% fold-t CI \u22120.009788 to +0.010986); 2/4 folds positive, gate failed. Strict 3-px overlap fails vs registered r13 lattice (100%) and H31-C (92.83%). Format verified against pinned owner template, not organizer authenticated. No organizer score. Download for audit only; DO NOT SUBMIT.",
+   "expected_range": null,
+   "note": "G25 CF1 transverse | negative, strict lane FAIL; no slot, unscored, not slot-approved | id 22e2f9eddad9",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "holdout_gate_passed": false,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "lane": {
+    "lane_clear": false,
+    "lattice_overlap": 1.0,
+    "worst_overlap": 1.0,
+    "worst_abs_spearman": 0.367417,
+    "preplacement_surface_abs_rho": 0.15206
+   }
+  },
+  {
    "id": "h37-doc-dipoffset",
    "role": "alternate",
    "verdict": "negative",

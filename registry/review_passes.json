@@ -192,7 +192,12 @@
      "git_diff_check": "passed",
      "site": "generated from merged registry and checked for DO NOT SUBMIT, non-submission note wording, H35 twin warning and lane-method irregularity"
     },
-    "pr20": "OPEN; merge not claimed. Updated branch must be pushed, checks re-run, and conflicts/merge status rechecked."
+    "pr20": "MERGED: https://github.com/buffedlizard55-lab/GEMSDOE25/pull/20; merge commit 3002787f02511ff140d15e9d9a06cc294206765f.",
+    "main_verification": {
+     "tests": "GitHub Actions tests succeeded on main commit 3002787f02511ff140d15e9d9a06cc294206765f (run 40237924632).",
+     "github_pages": "GitHub Pages build/deploy succeeded for main commit 3002787f02511ff140d15e9d9a06cc294206765f (run 40237924447); Pages API status built at 2026-10-25T21:58:11Z.",
+     "deployment_claim": "Workflow/API status verified; the hosted page was not independently fetched in this turn."
+    }
    }
   },
   {
