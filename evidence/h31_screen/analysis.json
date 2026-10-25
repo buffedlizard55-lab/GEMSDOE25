@@ -1,0 +1,65 @@
+{
+ "runs": [
+  "evidence/h31_screen"
+ ],
+ "reproduction": {
+  "cells_checked": 8,
+  "cells_total": 8,
+  "max_abs_diff": 0.0,
+  "verdict": "PASS"
+ },
+ "arms": {
+  "A1": {
+   "arm": "A1",
+   "per_fold_gain": [
+    0.001314,
+    1e-05,
+    -0.000375,
+    -0.003661
+   ],
+   "mean_gain": -0.0006777731394684329,
+   "ci95": [
+    -0.0040439092733034355,
+    0.0026883629943665692
+   ],
+   "folds_positive": 2,
+   "worst_fold": -0.0036605455994753316,
+   "n_folds": 4,
+   "n_truth_by_fold": [
+    1879,
+    2408,
+    3798,
+    3207
+   ],
+   "gate_passed": false
+  },
+  "A2": {
+   "arm": "A2",
+   "per_fold_gain": [
+    0.001143,
+    -0.004459,
+    -0.013797,
+    -0.01521
+   ],
+   "mean_gain": -0.00808095934462134,
+   "ci95": [
+    -0.020462578010925048,
+    0.004300659321682365
+   ],
+   "folds_positive": 1,
+   "worst_fold": -0.015209958407226776,
+   "n_folds": 4,
+   "n_truth_by_fold": [
+    1879,
+    2408,
+    3798,
+    3207
+   ],
+   "gate_passed": false
+  }
+ },
+ "C_mean_dti_holdout": 0.14966750882109,
+ "A1_mean_dti_holdout": 0.14898973568162155,
+ "verdict_primary": "NEGATIVE (screen)",
+ "label": "HOLDOUT-DTI (evaluator gems25.metric.dti_binary; withheld positives per fold in n_truth_by_fold; 95% CI = t on fold gains)"
+}

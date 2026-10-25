@@ -118,9 +118,9 @@ def main() -> None:
     if args.stage == "confirm":
         from scripts.analyze_h31_factorial import verify_passing_screen
 
-        verify_passing_screen(ROOT / "evidence" / "h31_screen")
+        verify_passing_screen(ROOT / "evidence" / "h31_flank_screen")
 
-    out = Path(args.out) if args.out else ROOT / "evidence" / f"h31_{args.stage}"
+    out = Path(args.out) if args.out else ROOT / "evidence" / f"h31_flank_{args.stage}"
     if out.exists() and (not out.is_dir() or any(out.iterdir())) and not args.resume:
         raise SystemExit(f"refusing to overwrite a nonempty H31 run directory: {out}; choose a fresh directory or --resume")
     out.mkdir(parents=True, exist_ok=True)

@@ -81,9 +81,9 @@ def verify_passing_screen(run: Path) -> dict:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--dir", default=None, help="run directory; defaults to evidence/h31_<stage>")
+    ap.add_argument("--dir", default=None, help="run directory; defaults to evidence/h31_flank_<stage>")
     args = ap.parse_args()
-    run = Path(args.dir) if args.dir else ROOT / "evidence" / "h31_screen"
+    run = Path(args.dir) if args.dir else ROOT / "evidence" / "h31_flank_screen"
     design_path, cells_path, canary_path = run / "design.json", run / "cells.jsonl", run / "canary.json"
     if not all(p.exists() for p in (design_path, cells_path, canary_path)):
         raise SystemExit(f"missing H31 design, canary, or raw cell file in {run}")
@@ -98,7 +98,7 @@ def main() -> None:
 
     screen = None
     if stage == "confirm":
-        screen = verify_passing_screen(ROOT / "evidence" / "h31_screen")
+        screen = verify_passing_screen(ROOT / "evidence" / "h31_flank_screen")
 
     rows = [json.loads(line) for line in cells_path.read_text().splitlines() if line.strip()]
     expected_keys = {(fold, draw, arm) for fold in range(4) for draw in EXPECTED_DRAWS[stage] for arm in EXPECTED_ARMS}

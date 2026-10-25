@@ -21,8 +21,7 @@ def opt(p):
 def main() -> None:
     subs = J("registry/submissions.json")["files"]
     primary = next(s for s in subs if s["role"] == "primary")
-    candidate = next((s for s in subs if s["role"] == "candidate"), None)
-    others = [s for s in subs if s["role"] not in ("primary", "candidate")]
+    others = [s for s in subs if s["role"] != "primary"]
     ls = J("registry/live_scores.json")
     snap = ls["leaderboard_snapshot"]
     fac = J("evidence/factorial/results.json")
@@ -40,75 +39,44 @@ def main() -> None:
     h27_confirm = opt("evidence/h27_confirm/results.json")
     h30_screen = opt("evidence/h30_relay_screen/results.json")
     h30_confirm = opt("evidence/h30_relay_confirm/results.json")
-    h31_screen = opt("evidence/h31_screen/results.json")
-    h31_confirm = opt("evidence/h31_confirm/results.json")
+    h31_flank_screen = opt("evidence/h31_flank_screen/results.json")
+    h31_flank_confirm = opt("evidence/h31_flank_confirm/results.json")
     h31_card = opt("evidence/h31_run_card_2026-10-25.json")
     focus_forensics = opt("evidence/focus_sites_forensics.json")
     irr = J("registry/irregularities.json")["issues"]
     best = max(a["score"] for a in ls["artifacts"] if a["score"] is not None)
     brief = (ROOT / "knowledge" / "owner_brief_verbatim.txt").read_text().rstrip()
     active_brief = (ROOT / "knowledge" / "current_project_brief_2026-10-03.md").read_text().rstrip()
-    brief_20261025_path = ROOT / "knowledge" / "owner_brief_2026-10-25_verbatim.txt"
-    brief_20261025 = brief_20261025_path.read_text().rstrip() if brief_20261025_path.exists() else ""
     L = []
     A = L.append
     A("# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize\n")
+    A("**Current session review (2026-10-25):** [GEMSDOE32 H33-2-B2 score forensics, candidate screen, data blockers, and run card](knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md). The requested start-of-session owner prompt remains archived verbatim at `knowledge/owner_brief_verbatim.txt`; see also `AGENTS.md`.\n")
     A("> **Maximize P(Win)** · **Own the Outcome** — the Arena core values are the decision rule for every change in this repository.\n")
     A("**Competition:** [DOE GEMS Prize, DrivenData #306](https://www.drivendata.org/competitions/306/competition-doe-gems/) · "
       "**Live site:** <https://buffedlizard55-lab.github.io/GEMSDOE25/> · **Weekly limit:** 3 submissions · "
       "**Ends:** 3 Dec 2026 (page: 11:59 p.m. UTC; rules: 5:00 p.m. ET — see IR-25-DEADLINE)\n")
-    A("## ⬇ Download the format-validated GeoTIFFs (not slot-approved)\n")
-    if candidate:
-        A(f"**[↓ `{candidate['file']}`](docs/downloads/{candidate['file']})** — {candidate['summary']}\n")
-        A(f"* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, NaN outside "
-          f"(independent check receipt: `docs/downloads/{candidate['receipt']}`).")
-        A(f"* Unique content id `{candidate['content_id']}` · SHA-256 `{candidate['sha256']}` · {candidate['positive_pixels']:,} emitted pixels · status: **{candidate['status']}**.")
-        A(f"* **Note to paste** in DrivenData's *Note (optional)* field: `{candidate['note']}`\n")
+    A("## ⬇ Download the unique, format-valid GeoTIFF (NOT slot-cleared)\n")
     A(f"**[↓ `{primary['file']}`](docs/downloads/{primary['file']})** — {primary['summary']}\n")
     A(f"* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, NaN outside "
       f"(verified against the pinned owner-mirror template, not organizer-authenticated; independent check receipt: `docs/downloads/{primary['receipt']}`).")
     A(f"* Unique content id `{primary['content_id']}` · SHA-256 `{primary['sha256']}` · {primary['positive_pixels']:,} emitted pixels · status: **{primary['status']}**.")
     A(f"* **Note to paste** in DrivenData's *Note (optional)* field: `{primary['note']}`")
     for o in others:
-        if o["role"] in ("fallback", "candidate-fallback"):
+        if o["role"] in ("fallback", "alternate"):
             A(f"* {o['title']}: [`{o['file']}`](docs/downloads/{o['file']}) ({o['status']}; {o['positive_pixels']:,} px).")
     A("* Step-by-step upload guide: [`docs/executive-summary.html`](https://buffedlizard55-lab.github.io/GEMSDOE25/docs/executive-summary.html).\n")
-    if h31_screen and h31_confirm and h31_card and candidate:
-        scr_g = h31_screen["paired_promotion_gate"]
-        cnf_g = h31_confirm["paired_promotion_gate"]
-        scr_p = h31_screen["arms"]["M1_C1"]["pooled"]
-        cnf_p = h31_confirm["arms"]["M1_C1"]["pooled"]
-        dup = h31_card["correlation_overlap_vs_registry"]
-        A("### Obvious Submission Validation Gate Checklist (`" + candidate["file"] + "`)\n")
-        A("* **Is this file a genuinely unique GEMSDOE25 GeoTIFF (not copied from any prior site)?** **YES** (`content_id = 40bfe1d5b1c5`, SHA-256 `41461ce0d0a6...`).")
-        A("* **Is it OK to download for local inspection / research / format verification?** **YES** (passes all 16 GeoTIFF format checks).")
-        A("* **Is it OK to submit to DrivenData (spend one of the 3 weekly competition slots)?** **NO** (`verdict: negative`; `not slot-approved`; `no slot`).\n")
-        A("| Validation Gate | Verdict | Measured Evidence |")
-        A("|---|---|---|")
-        A("| **1. Format & `[0, 1]` Range Gate** (`src/gems25/submission.py::check_file`) | **PASS (16/16)** | Single-band `float32`, `EPSG:32611`, `3730 × 3292`, `100 m`, `0` NaNs inside 5,167,373-px footprint, values in `[0.0, 1.0]`, `49,041` emitted dots, `0` on catalogue, `0` within 100 m of catalogue. |")
-        A("| **2. Leakage Canary Gate** (Protocol Rule 4: standalone AUC <= 0.90) | **PASS** | All 11 tested features alone across 4 spatial folds have ROC-AUC <= 0.90 (max `0.8386` screen, `0.8214` confirm; `H31_subscarp_concord` mean `0.5624`, `H31_offflank_tip_halo` mean `0.7310`). |")
-        A(f"| **3. Parallel-Lane / Registry Uniqueness Gate** (Protocol Rule 1: Spearman <= 0.90, 3-px dot overlap <= 70%) | **PASS (57/57)** | Max surface Spearman = `{dup['max_surface_spearman_rank_correlation']['value']:.4f}` (<= 0.90); max comparable dotted/focus 3-px dot overlap = `{dup['max_dotted_and_focus_3px_dot_overlap']['value']:.4f}` (<= 0.70); `{dup['overlap_vs_gemsdoe32_02778_b2']['dot_share_within_3px']:.4f}` (31.8%) vs GEMSDOE32 `0.2778` and `{dup['overlap_vs_gemsdoe25_02600_d28']['dot_share_within_3px']:.4f}` (34.5%) vs GEMSDOE25 `D2.8`. |")
-        A(f"| **4. Spatially Blocked Screen Gate** (draws 10, 11; 4 quadrants, 1.5 km collar) | **PASS** | `{scr_p['formatted_label']}`; 4-fold mean `0.154190` (> historical `0.152003389`); paired gain `{scr_g['mean_gain_vs_best_paired_control']:+.6f}` in `{scr_g['folds_positive']}/4` folds; catalogue-hugging reduced `{scr_g['mean_hug_share_delta']:+.4f}` (-27%). |")
-        A(f"| **5. Spatially Blocked Confirmation Gate** (fresh draws 12, 13) | **FAIL (2/4 vs pointwise max)** | `{cnf_p['formatted_label']}`; pooled gain `+0.003848` vs `M0_C0` (`+0.005898` vs `CTRL_NO_TIP`); `3/4` folds positive vs `M0_C0` (`+0.003550`) and `3/4` vs `CTRL_NO_TIP` (`+0.006808`); Factor `C` positive in `8/8` screen+confirm fold-blocks, but `{cnf_g['folds_positive']}/4` folds positive (`{cnf_g['mean_gain_vs_best_paired_control']:+.6f}`) against the strict pointwise max `max(CTRL_NO_TIP, M0_C0)` (requires >=3/4). |")
-        A("| **6. Weekly Competition Slot Gate** (Protocol Rule 6 & AGENTS.md Rule 5) | **NOT SLOT-APPROVED (`no slot`)** | Promotion to a real weekly slot is a separate selector step and requires passing the strict confirmation gate. Verdict: `negative`. |\n")
-    if focus_forensics:
+    A("> ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).\n")
+    A(f"> ⚠ **Lane flag open:** this file is flagged by the lane-overlap check against a dense 13GEMSDOE lattice (IR-25-LANE-DENSITY). Its holdout result is parity with its own control, not a win. It is NOT slot-cleared. Receipt: `docs/downloads/lane-{primary['file'][:-4]}.json`.\n")
+    if h31_flank_screen and h31_flank_confirm and h31_card and focus_forensics:
         inv = focus_forensics["nested_chain_inversion_conditional_on_reported_scores"]
         s1 = inv["d28_to_r1_delete_0_1px_collar"]
         s2 = inv["r1_to_b2_delete_1_2px_collar"]
-        s3 = inv["b2_to_g36_add_1200_anderson_pinn_dots"]
-        A("## PhD-level forensic analysis of the 9 focus sites (`GEMSDOE24..36`) and why `GEMSDOE32` `h33-h33-2-b2` scored `0.2778`\n")
-        A("All 13 candidate GeoTIFFs across `19GEMSDOE`, `GEMSDOE24`, `GEMSDOE25`, `GEMSDOE27`, `GEMSDOE28`, `GEMSDOE30`, `GEMSDOE31`, `GEMSDOE32`, `GEMSDOE33`, and `GEMSDOE36` were fetched from the owner's public GitHub repositories and verified pixel-by-pixel (`scripts/analyze_focus_sites.py` -> `evidence/focus_sites_forensics.json`). All competition DTI figures (`0.1922`, `0.2477`, `0.2600`, `0.2708`, `0.2750`, `0.2778`, `0.3195`, `0.4413`) are user/owner-reported claims, not organizer-confirmed receipts.\n")
-        A(f"1. **Exact pixel identity (`19GEMSDOE -> GEMSDOE24 -> GEMSDOE25/30 -> GEMSDOE28/31 -> GEMSDOE32 -> GEMSDOE36`):**\n"
-          f"   * `GEMSDOE25` / `GEMSDOE30` `D2.8` (reported `0.2600`, `44,090` px) is `dot_thin(H19-5, 2.4)`.\n"
-          f"   * `GEMSDOE28` `h27-4-r1-solo-d2-8` and `GEMSDOE31` `h27-4-solo-d28` (reported `0.2708`, `40,199` px) are **pixel-for-pixel identical** to `D2.8 & (d(catalogue) > 1.0 px)` — deleting `{s1['deleted_pixels']:,}` dots at 100 m orthogonal adjacency to mapped traces. Zero-credit-loss deletion under |G| ≈ 12,691 predicts `{s1['predicted_dti_if_zero_credit_lost']:.4f}` vs reported `0.2708` (implied credit per deleted dot: `{s1['implied_credit_per_deleted_px']:.5f}`, 57× below break-even τ = `{s1['break_even_tau_at_0_2600']:.4f}`).\n"
-          f"   * **`GEMSDOE32` `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` (reported `0.2778`, `37,654` px) is pixel-for-pixel identical to `D2.8 & (d(catalogue) > 2.0 px)`** — deleting an additional `{s2['deleted_pixels']:,}` dots in the 141–200 m collar (`6,436` total collar dots deleted from `D2.8`). Zero-credit-loss deletion from `D2.8` predicts `{s2['predicted_dti_if_zero_credit_lost_from_d28']:.4f}` vs reported `0.2778` (implied credit per deleted dot in 100–200 m: `{s2['implied_credit_per_deleted_px']:.5f}`, 11× below τ = `{s2['break_even_tau_at_0_2708']:.4f}`).\n"
-          f"   * `GEMSDOE36` `anderson-geothermal-pinn-38854` (reported `0.2750`, `38,854` px) is a **strict superset** of `GEMSDOE32` `B2` (`37,654` px) plus `{s3['added_pixels']:,}` extra dots that earned only `{s3['implied_credit_per_added_px']:.4f}` credit/px (< τ = `{s3['break_even_tau_at_0_2778']:.4f}`), lowering the score from `0.2778` to `0.2750`.\n"
-          "2. **Geophysical mechanism and why static deletion hits a ceiling (~0.278):** Mapped range-front faults generate a 100–250 m colluvial-wedge and Gaussian-filter side-lobe apron that triggers topographic/geophysical ridge detectors on the *already-mapped* fault without earning off-catalogue truth credit. However, static post-hoc deletion (`B2`) discovers zero new faults, leaves a 6,436-dot budget hole, and blindly deletes genuine along-strike fault-tip continuations. `H31-1` (`knowledge/14`, `knowledge/15`) addresses this by combining tip-preserved lateral-flank shielding (`d(visible) > 2.5 px` or `H27_tip >= 0.05`) with multi-physics sub-scarp concordance inside out-of-fold HGB training and top-K selection.\n")
-        A("| Site | Submission Label | SHA-256 (12) | Emitted px | Min d(cat) | Dots in (0,1] / (1,2] px | Reported DTI (unverified) |")
-        A("|---|---|---|---:|---:|---:|---:|")
-        for r_item in focus_forensics["focus_artifacts"]:
-            A(f"| {r_item['site']} | `{r_item['label']}` | `{r_item['sha256'][:12]}` | {r_item['emitted_pixels']:,} | {r_item['min_dist_to_catalogue_px']:.2f} px | {r_item['distance_shells_px']['d_in_0_1px']:,} / {r_item['distance_shells_px']['d_in_1_2px']:,} | {r_item['owner_reported_score']:.4f} |")
-        A("")
+        scr_p = h31_flank_screen["arms"]["M1_C1"]["pooled"]
+        cnf_p = h31_flank_confirm["arms"]["M1_C1"]["pooled"]
+        A("## 9-Site Forensics (`GEMSDOE24..36`) and H31-1 Tip-Preserved Flank-Shielded Sub-Scarp 2² Factorial (`knowledge/14`, `knowledge/15`)\n")
+        A(f"* **Why `GEMSDOE32` `h33-h33-2-b2` (reported `0.2778`, unverified claim) scored highest (`evidence/focus_sites_forensics.json`):** Pixel-exact forensics proves `GEMSDOE28`/`31` `r1` (`0.2708`, `40,199` px) is `D2.8 & (d(cat) > 1.0 px)` (`-{s1['deleted_pixels']:,}` dots at 100 m; implied credit `{s1['implied_credit_per_deleted_px']:.5f}`/px ≪ τ = `{s1['break_even_tau_at_0_2600']:.4f}`) and **`GEMSDOE32` `H33-2-B2` (`0.2778`, `37,654` px) is `D2.8 & (d(cat) > 2.0 px)`** (`-{s2['deleted_pixels']:,}` additional dots in 100–200 m; implied credit `{s2['implied_credit_per_deleted_px']:.5f}`/px ≪ τ = `{s2['break_even_tau_at_0_2708']:.4f}`), while `GEMSDOE36` (`0.2750`, `38,854` px) is `B2` + `1,200` extra dots.")
+        A(f"* **H31-1 2² Factorial (`evidence/h31_flank_screen/`, `evidence/h31_flank_confirm/`):** Leakage Canary PASSED (max standalone feature AUC `0.8386 <= 0.90`). Screen (draws 10,11) PASSED with `{scr_p['formatted_label']}` (4-fold mean `0.154190`, paired gain `+0.003384` in `3/4` folds, hug `-0.0243`). Confirmation (draws 12,13) achieved `{cnf_p['formatted_label']}` (`+0.003848` pooled gain; `3/4` folds + vs `M0_C0`, `3/4` vs `CTRL_NO_TIP`, Factor `C` positive in `8/8` screen+confirm fold-blocks, `2/4` vs strict pointwise max -> Run Card verdict: `negative`).")
+        A("* **Unique H31-1 GeoTIFF (`docs/downloads/gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif`):** `49,041` dots, SHA-256 `41461ce0d0a6cb2d765e53fa490114d3f6e6344ca6f459b811f55bddbf7d2858`, 16/16 format checks PASS, max surface Spearman `0.1826 <= 0.90`, comparable dotted/focus 3-px overlap `0.6544 <= 0.70` (`0.3183` vs GEMSDOE32 `0.2778`; literal 5-px lattice overlap `1.000` -> testing only, DO NOT SUBMIT). Full Run Card: `evidence/h31_run_card_2026-10-25.json`.\n")
     A("## Where things stand\n")
     A(f"* **Unverified leaderboard claims** (reported {snap['reported_utc']}; no organizer page or receipt was accessed): #1 {snap['top10'][0]['participant']} {snap['top10'][0]['best_public_dti']:.4f}; reported rank #5 {snap['top10'][4]['best_public_dti']:.4f}. "
       f"The group-best claim is **{best:.4f}**; the previously reported rank #16/account association is not authenticated. These are not independently verified scores; apparent gaps to ranks #5/#1 are arithmetic on supplied claims only.")
@@ -273,16 +241,6 @@ def main() -> None:
     A("| 2 | H30-2 | visible-fault junction / accommodation-zone branch field | 0 to +0.006 | registered only; not fitted |")
     A("| 3 | H30-3 | scale-persistent terrain lineament | 0 to +0.005 | registered only; not fitted |")
     A("\nPlanning brackets are uncertain prioritization judgments, not estimates or live-score forecasts. H30-1 screen draws are 6,7; confirmation draws 8,9 are allowed only after a screen pass. Screen/confirmation outcomes and the stop decision are recorded in `knowledge/12_h30_relay_factorial_outcomes_2026-10-03.md`. Even confirmation is only proxy evidence and cannot grant slot approval by itself.\n")
-    if h31_screen and h31_confirm and h31_card:
-        A("## Current ranked geological hypotheses and H31-1 2² factorial outcomes (`knowledge/14`, `knowledge/15`)\n")
-        A("| Rank | ID | Hypothesis | Layers & Physical Signature | Planning ΔDTI (HOLDOUT-DTI) | Status |")
-        A("|---:|---|---|---|---|---|")
-        A("| 1 | **H31-1** | **Tip-preserved lateral-flank shielding × multi-physics subdued-scarp concordance (`C` × `M`)** | `L_step_max`, `L_ex_mean`, `L_coh100`, `A_grav_hg_ridge`, `A_mag_hg_ridge`, `D_depth_base_grad`, `D_cond_grad`, `D_ThK_edge`, visible-only `d(visible)` & `H27_tip` | +0.0015 to +0.0060 | **Screen PASS** (`HOLDOUT-DTI 0.153199`, `+0.003384` paired gain, `3/4` folds +); **Confirm (`draws 12,13`)**: `HOLDOUT-DTI 0.144941` (`+0.003848` pooled gain; `3/4` folds + vs `M0_C0`, `3/4` vs `CTRL_NO_TIP`; `2/4` vs strict pointwise max) -> **`verdict: negative` (not slot-approved)** |")
-        A("| 2 | H31-2 | Anisotropic dip-asymmetric gravity–topography step | `12_det_elev`, `18_iso_grav_anom_hg`, `A_grav_tilt`, `L_downface_max`, `L_upface_max` | +0.0005 to +0.0040 | Registered in `knowledge/14`; not fitted |")
-        A("| 3 | H31-3 | Transtensional dilational strain-rate × K/Th alteration corridor | `07_geod_shearrate`, `08_geod_dilaterate`, `D_K`, `D_ThK`, `D_cond_grad` | 0.0000 to +0.0030 | Registered in `knowledge/14`; not fitted |")
-        A("| 4 | H31-4 | USGS 2022 heat-flow residual × slip/dilation-tendency stress prior | External USGS ScienceBase (`6297d2fad34ec53d276c5b28`, `6296974dd34ec53d276bb33d`) | Unknown | **BLOCKED / NOT VIABLE HERE**: external ScienceBase hosts outside sandbox network allowlist |\n")
-        A("### Protocol Rule 5 JSON Run Card (`evidence/h31_run_card_2026-10-25.json`)\n")
-        A("```json\n" + json.dumps(h31_card, indent=2) + "\n```\n")
     A("**Five-family factorial status:** the separate A–E Resolution V design is preserved in `evidence/factorial/`: 16 randomized design rows × 8 cells = 128 model cells, plus 24 reference cells (152 cell rows total). Its analyzer reproduced the tracked results byte-for-byte on 2026-10-03. H30 is additional, not a substitute. The handoff's 'unrun' note conflicts with these artifacts; see `IR-25-FACTORIAL-STATE`.\n")
     A("**H30 engineering smoke test:** one real-data fold/draw built aligned 83-column train/test matrices and finite, nonempty H30 features. That engineering smoke itself fit no model and computed no DTI; the separate registered screen/confirmation outcomes are summarized above. Full smoke diagnostics: `evidence/h30_feature_smoke.json`.\n")
     A("## Flagged for review (full list with evidence: [`registry/irregularities.json`](registry/irregularities.json))\n")
@@ -314,7 +272,7 @@ def main() -> None:
     A("2. Keep the prior five-family A–E Resolution V factorial separate: its complete `evidence/factorial/` record is present and was reproduced byte-for-byte; see `IR-25-FACTORIAL-STATE` for the handoff-state discrepancy. H30 is an additional hypothesis-specific 2², not a replacement.")
     A("3. Keep H26/H27/H29 outcomes and registrations labeled as prior work. H27-1 failed its gate; the old H29 list is registered already and must not be relabeled as novel.")
     A("4. Refresh the official-source/evidence tables and static site/feed (`scripts/check_sources.py`, then `scripts/build_site.py` and `scripts/build_readme.py`). The feed must never request or follow `drivendata.org`.")
-    A("5. Keep the existing D2.8 download format-validated but unscored/not slot-approved. A passing H30 proxy gate is not a competition score, not confirmation until the fresh draw, and not authorization to upload.")
+    A("5. Keep the H31-C file unscored and NOT slot-cleared (lane flag open). Never submit the withdrawn D2.8 duplicate as new. A passing H30 proxy gate is not a competition score, not confirmation until the fresh draw, and not authorization to upload.")
     A("6. Open a PR from the fixed Arena session branch, review the checks, and merge only through the GitHub PR workflow if permitted; never claim an unverified merge or deployment.\n")
     A("## Standing session charter\n")
     A("Read this README, both the verbatim owner brief and the current continuation brief below, then `AGENTS.md` at the start of every session. First commands: `git fetch origin`, compare with the fixed session branch, `gh pr list --state open`. Pre-register before fitting. No weekly slot unless the specific candidate beats the current comparable same-run holdout best and passes the exact-file audit; no exception is authorized here. Never automate `drivendata.org`. Review in three passes. Unknown stays unknown.\n")
@@ -354,6 +312,11 @@ def main() -> None:
     A("Set `GEMS_DATA_DIR` / `GEMS_WORK_DIR` to keep the 419 MB raster and the ~1.5 GB feature cache outside the checkout.\n")
     A("## Repository map\n")
     A("| Path | Role |\n|---|---|\n| `src/gems25/` | metric (official DTI + brute-force twin), hide-and-recover holdout, thinning/NMS, families & features, H30 relay/scarp add-ons, factorial engine, experiment cells, strict submission writer/checker |\n| `scripts/` | restore, build, run, analyse, package, site, README, feed, score recorder |\n| `registry/` | sources (with verification status), irregularities, score ledger, data pins, shipped submissions |\n| `evidence/` | machine-readable results and forensics |\n| `knowledge/` | pre-registrations, ranked hypotheses, verified research digest, the brief |\n| `docs/`, `index.html` | GitHub Pages site (root `index.html` is the landing page; Pages builds from `main:/`) |\n| `tests/` | unit, parity, integrity and reproduction tests |\n")
+    A("## Standing brief 2026-10-25 (consolidated restatement, not verbatim) — read every session\n")
+    A("Full text: [`knowledge/owner_brief_2026-10-25_consolidated.md`](knowledge/owner_brief_2026-10-25_consolidated.md). GEMSDOE32 0.2778 analysis and ranked next hypotheses: [`knowledge/14_gemsdoe32_analysis_and_hypotheses_2026-10-25.md`](knowledge/14_gemsdoe32_analysis_and_hypotheses_2026-10-25.md). H31 pre-registration: [`knowledge/13_preregistered_h31_credit_field_emission_2026-10-25.md`](knowledge/13_preregistered_h31_credit_field_emission_2026-10-25.md). Run card: `registry/run_card_h31_2026-10-25.json`.\n")
+    A("<details><summary><strong>Full text of the 2026-10-25 brief (consolidated)</strong></summary>\n")
+    A("~~~text\n" + (ROOT / "knowledge" / "owner_brief_2026-10-25_consolidated.md").read_text().rstrip() + "\n~~~\n")
+    A("</details>\n")
     A("## Owner brief (verbatim) — read every session\n")
     A("<details><summary><strong>Full text of the owner's brief for this session</strong> (copied from the task message of 2026-10-02; link markup and whitespace as pasted)</summary>\n")
     A("```text\n" + brief + "\n```\n")
@@ -363,11 +326,6 @@ def main() -> None:
     A("<details><summary><strong>Full continuation brief and current constraints</strong></summary>\n")
     A("~~~text\n" + active_brief + "\n~~~\n")
     A("</details>\n")
-    if brief_20261025:
-        A("## Current session prompt (2026-10-25 verbatim)\n")
-        A("<details><summary><strong>Full 2026-10-25 prompt and Parallel-Run Protocol</strong></summary>\n")
-        A("~~~text\n" + brief_20261025 + "\n~~~\n")
-        A("</details>\n")
     (ROOT / "README.md").write_text("\n".join(L))
     print("README.md written,", len("\n".join(L)), "chars")
 

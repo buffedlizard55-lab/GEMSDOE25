@@ -1,0 +1,136 @@
+{
+ "file": "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+ "path": "docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+ "bytes": 1612168,
+ "sha256": "2165bb8e229ee27e25edf57e990191d8f7836ab4b07e2779f15023f7c34a3ab2",
+ "content_id": "9edd6bed8268",
+ "positive_pixels": 48714,
+ "format_ok": true,
+ "checks": {
+  "template_matches_expected_grid_and_footprint": {
+   "pass_": true,
+   "detail": "(3730, 3292), footprint 5,167,373 px",
+   "hard": true
+  },
+  "single_band": {
+   "pass_": true,
+   "detail": "count=1",
+   "hard": true
+  },
+  "dtype_float32": {
+   "pass_": true,
+   "detail": "dtypes=('float32',)",
+   "hard": true
+  },
+  "crs_epsg_32611": {
+   "pass_": true,
+   "detail": "32611",
+   "hard": true
+  },
+  "shape_matches_template": {
+   "pass_": true,
+   "detail": "(3730, 3292) vs (3730, 3292)",
+   "hard": true
+  },
+  "geotransform_matches_template": {
+   "pass_": true,
+   "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+   "hard": true
+  },
+  "footprint_all_finite": {
+   "pass_": true,
+   "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+   "hard": true
+  },
+  "footprint_values_in_0_1": {
+   "pass_": true,
+   "detail": "min=0.0 max=1.0",
+   "hard": true
+  },
+  "outside_footprint_is_nan_official": {
+   "pass_": true,
+   "detail": "7,111,787/7,111,787 NaN",
+   "hard": false
+  },
+  "outside_footprint_is_nan_or_zero": {
+   "pass_": true,
+   "detail": "NaN (official) or 0 (fallback) outside",
+   "hard": true
+  },
+  "nan_mask_identical_to_template": {
+   "pass_": true,
+   "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+   "hard": true
+  },
+  "nodata_tag": {
+   "pass_": true,
+   "detail": "nodata=nan",
+   "hard": false
+  },
+  "variant_nan_aware_whole_array": {
+   "pass_": true,
+   "detail": "np.nanmin/np.nanmax over the whole array",
+   "hard": true
+  },
+  "variant_masked_read": {
+   "pass_": true,
+   "detail": "rasterio masked read",
+   "hard": true
+  },
+  "variant_strict_whole_array_no_nan": {
+   "pass_": false,
+   "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+   "hard": false
+  },
+  "profile_matches_template": {
+   "pass_": true,
+   "detail": "compress=lzw (template lzw)",
+   "hard": false
+  }
+ },
+ "note": "GEMSDOE25 H31-C | lane FAIL; unscored; no slot; not slot-approved; do not submit | id 9edd6bed8268",
+ "summary": "Full-footprint emission of the H28 comparator configuration (raw-score ridge candidates, score-ordered dots at 2.4 px, 3.5% budget, base BDE plus seven add-on columns), trained on 3 pseudo-hidden draws. Holdout: at parity with the same-run control (H31 screen, 8 cells).",
+ "gate_summary": "H31 screen: A1 negative; control itself is the reference; not slot-eligible",
+ "fallback": {
+  "file": "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
+  "sha256": "a6dcbca78105765cce6c346baaacbb0bdc1dbc72675e47fb3f8d6ab36f7a0f45",
+  "bytes": 846176,
+  "format_ok": true,
+  "positive_pixels": 48714
+ },
+ "build": {
+  "base": "BDE",
+  "extras": [
+   "X1_K",
+   "X1_ThK",
+   "X1_UK",
+   "X2_compat",
+   "X2_compat_coh",
+   "X3_gm",
+   "X3_gd"
+  ],
+  "kfrac": 0.035,
+  "variant": "sapd2.4",
+  "draws": 3,
+  "seconds": 120,
+  "utc": "2026-10-25T20:11:50.304833+00:00"
+ },
+ "note_limit_chars": 140,
+ "lane_check_receipt": "lane-gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.json",
+ "holdout": {
+  "label": "HOLDOUT-DTI (evaluator gems25.metric.dti_binary, same-run control C of H31)",
+  "value": 0.149668,
+  "ci95_fold_t": [
+   0.133069,
+   0.166266
+  ],
+  "withheld_positives_per_fold": [
+   1879,
+   2408,
+   3798,
+   3207
+  ],
+  "evidence": "evidence/h31_screen/analysis.json"
+ },
+ "slot_eligible": false
+}
