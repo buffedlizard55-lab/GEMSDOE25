@@ -20,6 +20,10 @@
 | `14_preregistered_h31_flank_shielded_subscarp_factorial_2026-10-25.md` | pixel-exact forensics across all 9 focus sites (`GEMSDOE24..36`), 4 ranked H31 hypotheses, and frozen H31-1 2² factorial design (`C × M`) |
 | `15_h31_outcomes_and_run_card_2026-10-25.md` | H31-1 leakage canary (`PASS`), screen (`PASS`), confirmation outcomes, unique H31-1 GeoTIFF (`40bfe1d5b1c5`) duplicate-lane audit, and Protocol Rule 5 JSON Run Card |
 | `owner_brief_2026-10-25_verbatim.txt` | verbatim 2026-10-25 task prompt and Parallel-Run Protocol (also embedded in `README.md`) |
+| `17_preregistered_kdc_kernel_disjoint_complement_2026-10-25.md` | session 6: G25-K1–K4 hypothesis register and the frozen KDC design (number 17 is shared with a parallel session) |
+| `18_preregistered_kdc_flank_fault_zone_multiplicity_2026-10-25.md` | session 6: G25-K5 flank pre-registration (number 18 is shared with a parallel session) |
+| `19_kdc_results_2026-10-25.md` | session 6: why B2 scored 0.2778, E1/E2 results (both negative), the KDC file, the uniqueness wall, next work |
+| `owner_brief_2026-10-25_s6_RECONSTRUCTED.txt` | session 6 brief, agent reconstruction (not guaranteed verbatim) |
 | `owner_brief_2026-10-25_consolidated.md` | the 2026-10-25 request, condensed and grouped (not verbatim) |
 | `current_project_brief_2026-10-03.md` | full active scope and acceptance criteria from the condensed handoff, labeled as a consolidated restatement rather than a verbatim prompt |
 | `../registry/*.json` | sources (with verification status), irregularities, score ledger, data pins, shipped submissions, **artefact ledger** (30 competition rasters with SHA-256 ↔ reported-score links), artefact mirrors |

@@ -1,0 +1,34 @@
+{
+ "hypothesis": "G25-K1 kernel-disjoint complement (KDC)",
+ "preregistration": "knowledge/17_preregistered_kdc_kernel_disjoint_complement_2026-10-25.md",
+ "draws": [
+  0,
+  1
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "kfrac": 0.035,
+ "min_dist": 2.4,
+ "cat_prune_px": 2.0,
+ "halo_px": 3.0,
+ "base_share": 0.68,
+ "m_factor": 0.4706,
+ "model": {
+  "base": "BDE",
+  "extras": [
+   "X1_K",
+   "X1_ThK",
+   "X1_UK",
+   "X2_compat",
+   "X2_compat_coh",
+   "X3_gm",
+   "X3_gd"
+  ],
+  "fit_seed": "draw"
+ },
+ "evaluator": "gems25.metric.dti_binary (alpha 0.2, beta 0.8, R = 3 px)"
+}

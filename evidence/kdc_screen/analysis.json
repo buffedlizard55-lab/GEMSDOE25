@@ -1,0 +1,256 @@
+{
+ "runs": [
+  "evidence/kdc_screen"
+ ],
+ "draws": [
+  0,
+  1
+ ],
+ "reproduction_vs_h28": {
+  "all_true": true,
+  "values": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ]
+ },
+ "arms": {
+  "C": {
+   "label": "HOLDOUT-DTI",
+   "evaluator": "gems25.metric.dti_binary (alpha 0.2, beta 0.8, R = 3 px) via gems25.experiment.Cell.evaluate",
+   "by_fold": [
+    0.148891,
+    0.153561,
+    0.135742,
+    0.160476
+   ],
+   "mean": 0.14966750882109,
+   "ci95": [
+    0.13306709539603126,
+    0.16626792224614875
+   ],
+   "withheld_positives_by_fold_mean_over_draws": [
+    1869,
+    2375,
+    3761,
+    3184
+   ],
+   "emitted_mean": 11595.125
+  },
+  "CB": {
+   "label": "HOLDOUT-DTI",
+   "evaluator": "gems25.metric.dti_binary (alpha 0.2, beta 0.8, R = 3 px) via gems25.experiment.Cell.evaluate",
+   "by_fold": [
+    0.148878,
+    0.15437,
+    0.135737,
+    0.160013
+   ],
+   "mean": 0.14974959340571958,
+   "ci95": [
+    0.13321870539548614,
+    0.16628048141595303
+   ],
+   "withheld_positives_by_fold_mean_over_draws": [
+    1869,
+    2375,
+    3761,
+    3184
+   ],
+   "emitted_mean": 11452.125
+  },
+  "K_self": {
+   "label": "HOLDOUT-DTI",
+   "evaluator": "gems25.metric.dti_binary (alpha 0.2, beta 0.8, R = 3 px) via gems25.experiment.Cell.evaluate",
+   "by_fold": [
+    0.138009,
+    0.142938,
+    0.14525,
+    0.170056
+   ],
+   "mean": 0.14906320058813638,
+   "ci95": [
+    0.12628112517964363,
+    0.17184527599662913
+   ],
+   "withheld_positives_by_fold_mean_over_draws": [
+    1869,
+    2375,
+    3761,
+    3184
+   ],
+   "emitted_mean": 16841.625
+  },
+  "K_gem1": {
+   "label": "HOLDOUT-DTI",
+   "evaluator": "gems25.metric.dti_binary (alpha 0.2, beta 0.8, R = 3 px) via gems25.experiment.Cell.evaluate",
+   "by_fold": [
+    0.122826,
+    0.125506,
+    0.128515,
+    0.143395
+   ],
+   "mean": 0.1300604752422313,
+   "ci95": [
+    0.11543931718821997,
+    0.14468163329624262
+   ],
+   "withheld_positives_by_fold_mean_over_draws": [
+    1869,
+    2375,
+    3761,
+    3184
+   ],
+   "emitted_mean": 16841.625
+  },
+  "K_rand": {
+   "label": "HOLDOUT-DTI",
+   "evaluator": "gems25.metric.dti_binary (alpha 0.2, beta 0.8, R = 3 px) via gems25.experiment.Cell.evaluate",
+   "by_fold": [
+    0.124024,
+    0.128641,
+    0.125658,
+    0.146315
+   ],
+   "mean": 0.13115945382583577,
+   "ci95": [
+    0.11479667488260656,
+    0.14752223276906498
+   ],
+   "withheld_positives_by_fold_mean_over_draws": [
+    1869,
+    2375,
+    3761,
+    3184
+   ],
+   "emitted_mean": 16841.625
+  }
+ },
+ "best_control": "CB",
+ "gate": {
+  "K_self": {
+   "paired_vs": "CB",
+   "per_fold_gain": [
+    -0.01087,
+    -0.011432,
+    0.009512,
+    0.010043
+   ],
+   "mean_gain": -0.0006863928175831965,
+   "gain_ci95": [
+    -0.01991961807190946,
+    0.018546832436743068
+   ],
+   "folds_positive": 2,
+   "worst_fold": -0.011431551236938758,
+   "G1_paired": false,
+   "efficiency_R_by_fold": [
+    0.3715,
+    0.3618,
+    0.637,
+    0.6008
+   ],
+   "efficiency_R_pooled": 0.5053262626322603,
+   "marginal_dTP_dFP_pooled": 0.031110554798488003,
+   "G2_efficiency": false,
+   "G3_informative_rand_R": 0.18252900026169974,
+   "G3_ok": true,
+   "G4_canary": true,
+   "passed": false
+  },
+  "K_gem1": {
+   "paired_vs": "CB",
+   "per_fold_gain": [
+    -0.026053,
+    -0.028863,
+    -0.007223,
+    -0.016618
+   ],
+   "mean_gain": -0.019689118163488256,
+   "gain_ci95": [
+    -0.03532066310582,
+    -0.004057573221156512
+   ],
+   "folds_positive": 0,
+   "worst_fold": -0.028863301608306108,
+   "G1_paired": false,
+   "efficiency_R_by_fold": [
+    0.0961,
+    0.0589,
+    0.3141,
+    0.1674
+   ],
+   "efficiency_R_pooled": 0.16691305547082555,
+   "marginal_dTP_dFP_pooled": 0.010276049639215164,
+   "G2_efficiency": false,
+   "G3_informative_rand_R": 0.18252900026169974,
+   "G3_ok": true,
+   "G4_canary": true,
+   "passed": false
+  },
+  "K_rand": {
+   "paired_vs": "CB",
+   "per_fold_gain": [
+    -0.024855,
+    -0.025729,
+    -0.010079,
+    -0.013698
+   ],
+   "mean_gain": -0.018590139579883792,
+   "gain_ci95": [
+    -0.031138699759869784,
+    -0.006041579399897801
+   ],
+   "folds_positive": 0,
+   "worst_fold": -0.025728548402806056,
+   "G1_paired": false,
+   "efficiency_R_by_fold": [
+    0.1179,
+    0.1129,
+    0.2599,
+    0.2141
+   ],
+   "efficiency_R_pooled": 0.18252900026169974,
+   "marginal_dTP_dFP_pooled": 0.011237449712933873,
+   "G2_efficiency": false,
+   "G3_informative_rand_R": 0.18252900026169974,
+   "G3_ok": true,
+   "G4_canary": true,
+   "passed": false
+  }
+ },
+ "leakage_canary": {
+  "max_single_feature_auc_star": 0.8045,
+  "model_auc_star": 0.8336157365591399,
+  "gem1_auc_star": 0.5693130121816168,
+  "cap": 0.9,
+  "ok": true,
+  "top5_features": [
+   [
+    "E_dist",
+    0.8045
+   ],
+   [
+    "E_dens5",
+    0.7726
+   ],
+   [
+    "E_dens20",
+    0.772
+   ],
+   [
+    "E_dens50",
+    0.7466
+   ],
+   [
+    "B_slope_grad",
+    0.6567
+   ]
+  ]
+ }
+}
