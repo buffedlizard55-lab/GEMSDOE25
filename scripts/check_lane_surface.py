@@ -44,7 +44,11 @@ def main() -> None:
     samp_vec = np.sort(rng.choice(fi.size, min(SAMPLE, fi.size), replace=False))
     samp_flat = fi[samp_vec]
     svals = np.asarray(scores, dtype=np.float64)[samp_vec]
-    paths = sorted((data_dir() / "scored").glob("*.tif")) + sorted((ROOT / "docs" / "downloads").glob("*.tif"))
+    paths = (
+        sorted((data_dir() / "scored").glob("*.tif"))
+        + (sorted((data_dir() / "registry_top").glob("*.tif")) if (data_dir() / "registry_top").exists() else [])
+        + sorted((ROOT / "docs" / "downloads").glob("*.tif"))
+    )
     rows = []
     for p in paths:
         if a.exclude_stem and a.exclude_stem in p.stem:
