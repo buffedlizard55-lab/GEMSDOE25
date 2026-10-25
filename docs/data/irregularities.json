@@ -240,15 +240,15 @@
    "status": "fixed (withdrawn)",
    "issue": "The front-page 'format-validated' download gems25-dotted-h19-5-d2-8-\u2026-e56ea318af89-nan.tif (SHA-256 91eae1ca\u2026) is byte-identical to a raster the group already lists (GEMSDOE24 d2-8 alternate in registry/artifact_ledger.json and the GEMSDOE30 entry tagged 91eae1ca, 0.2600 claim). The brief requires a unique file.",
    "evidence": "registry/submissions.json (role now 'duplicate'); scripts/check_lane_duplicates.py on the file: byte_identical=True vs data/scored/gems24-\u2026d2-8\u2026; registry/artifact_ledger.json.",
-   "resolution_or_action": "Withdrawn as primary. Replaced by the unique H31-C file (docs/downloads/gems25-h31-control-\u2026-nan.tif). The old file stays in git history and is labelled DUPLICATE. Do not submit it as new."
+   "resolution_or_action": "Withdrawn as primary. Replaced by the unique H31-C file (docs/downloads/gems25-h31-control-\u2026-nan.tif). The old file stays in git history and is labelled DUPLICATE. Do not submit it as new. The legacy script that could recreate the duplicate as primary is disabled (IR-25-LEGACY-PACKAGER-DUPLICATE)."
   },
   {
    "id": "IR-25-LANE-DENSITY",
    "severity": "high",
-   "status": "open (review)",
-   "issue": "The PARALLEL-RUN lane test flags the H31-C file against 13GEMSDOE (r13-lattice-s5, a dense 5-px lattice with 206,895 dots): 100% of candidate dots lie within 3 px of a registry dot. The reverse direction is only 18.5%. The one-directional test is not discriminative against dense registry rasters.",
-   "evidence": "docs/downloads/lane-gems25-h31-control-\u2026-nan.json (rows: 13gems_20261001_r13\u2026); computed in this session.",
-   "resolution_or_action": "Left flagged, not overridden. Human review needed: decide whether to use a two-sided or density-normalised overlap test. Until cleared, the file is NOT slot-eligible."
+   "status": "fixed (strict duplicate/stop applied)",
+   "issue": "The 5-px lattice registry raster flags candidate dots under the literal protocol: 88.9% of the stored holdout-candidate emission and 100% of the full-footprint GEM-1 emission lie within 3 px of lattice dots. The saved result had incorrectly treated the dense lattice as a degenerate exception and marked GEM-1 lane-clean.",
+   "evidence": "evidence/gem_validation/results.json (stored lattice overlap 0.889015); evidence/gem_validation/lane_gem1.json (full-footprint overlap 1.0); scripts/validate_gem_candidate.py",
+   "resolution_or_action": "Applied the protocol verbatim: either overlap exceeds 70%, so GEM-1 and H31-C are duplicate-lane stops and are download-for-testing only; do not submit. No density-normalized exception is authorized. Corrected saved decision and site labels; new validation code fails closed and checks each candidate full-footprint raster."
   },
   {
    "id": "IR-25-LEADERBOARD-CONFLICT",
@@ -281,6 +281,22 @@
    "issue": "The unique H31-C file is format-valid and unique by bytes, but its holdout result is parity with its own control (not a win), its lane check is flagged, and it has no competition score. It must not be used for a weekly slot.",
    "evidence": "registry/run_card_h31_2026-10-25.json; evidence/h31_screen/analysis.json.",
    "resolution_or_action": "The site and README label it 'UNIQUE FILE - NOT CLEARED'. A slot needs a passing confirmation, a cleared lane check, and the exact-file audit."
+  },
+  {
+   "id": "IR-25-LANE-GATE-MISAPPLICATION",
+   "severity": "critical",
+   "status": "fixed (decision corrected)",
+   "issue": "Prior stored GEM-1 validation marked the candidate lane-clean and package_tif=true despite a stored lattice overlap of 0.889015 and a separate full-footprint GEM-1 lane receipt of 1.0. The validator used one lane result for an independently selected candidate and its holdout emission was crop-indexed against full-grid rasters. This could falsely clear an unrelated candidate.",
+   "evidence": "evidence/gem_validation/results.json; evidence/gem_validation/lane_gem1.json; prior scripts/validate_gem_candidate.py code; corrected tests/test_lane_protocol.py",
+   "resolution_or_action": "Now check each candidate surface and exact full-footprint emission separately, use absolute Spearman, require a nonempty readable registry, and require lane clearance in the per-candidate promotion gate. Corrected the stored decision to package_tif=false. Raw inputs are absent, so the corrected algorithm has unit tests but no fresh full-data run."
+  },
+  {
+   "id": "IR-25-LEGACY-PACKAGER-DUPLICATE",
+   "severity": "high",
+   "status": "fixed (disabled)",
+   "issue": "scripts/package_submissions.py could regenerate the previously identified D2.8 file (content id e56ea318af89; SHA-256 91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8) and rewrite registry/submissions.json with it as primary, despite the duplicate finding and no new candidate gate.",
+   "evidence": "prior scripts/package_submissions.py; IR-25-DUPLICATE-DOWNLOAD; tests/test_packaging_gate.py",
+   "resolution_or_action": "Retired the legacy CLI; it now exits before accessing data or writing artifacts. Retained a same-run exact-SHA promotion-receipt validator for tests/future safe packager code. README reproduction instructions now warn against invoking it."
   }
  ]
 }

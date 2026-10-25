@@ -89,15 +89,19 @@ def main() -> None:
         rows.append(dict(file=p.name, sha256=sha256(p), byte_identical=sha256(p) == cand_sha,
                          spearman=round(rho, 6), dots_within_3px=round(ov, 6), registry_dots_within_3px_of_candidate=round(ov_rev, 6),
                          registry_dots=int(rdots.sum()),
-                         flag_rank=bool(rho > RHO_MAX), flag_overlap=bool(ov > OVERLAP_MAX),
+                         flag_rank=bool(abs(rho) > RHO_MAX), flag_overlap=bool(ov > OVERLAP_MAX),
                          density_caveat=("registry raster is dense (>= 1 dot per 25 px); candidate-side overlap is not discriminative"
                                          if rdots.sum() > 0.5 * cand_dots.sum() * 3 else "")))
     flagged = [r for r in rows if r.get("flag_rank") or r.get("flag_overlap") or r.get("byte_identical")]
     in_ledger = cand_sha in ledger_sha
+    registry_complete = bool(rows)
     rec = dict(candidate=cand.name, sha256=cand_sha, candidate_dots=int(cand_dots.sum()),
                thresholds=dict(spearman_max=RHO_MAX, dots_within_3px_max=OVERLAP_MAX, dist_px=OVERLAP_DIST),
-               sha_in_artifact_ledger=in_ledger, registry_checked=len(rows), flagged=[r["file"] for r in flagged],
-               verdict="DUPLICATE/LANE OVERLAP - do not package" if (flagged or in_ledger) else "UNIQUE vs registry",
+               sha_in_artifact_ledger=in_ledger, registry_checked=len(rows), registry_complete=registry_complete,
+               flagged=[r["file"] for r in flagged],
+               verdict=("UNVERIFIED - empty registry; fail closed" if not registry_complete
+                        else ("DUPLICATE/LANE OVERLAP - do not package" if (flagged or in_ledger)
+                              else "UNIQUE vs available registry")),
                rows=rows,
                note=("Spearman is computed on a 400k random footprint sample of raw values; binary rasters have heavy "
                      "ties, so rho is a conservative rank summary, not a continuous rank correlation."))

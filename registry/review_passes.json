@@ -107,16 +107,18 @@
     "GEM-3 passes the holdout gate (+0.070 DTI) but is a LANE duplicate: off-trace dots hug the catalogue (proxy artifact, IR-25-PROXY-LIMITS) and overlap the lattice registry raster at 100% (degenerate full-footprint lattice) -> correctly NOT packaged.",
     "GEM-2 fails (gain -0.003, worst fold -0.029) -> not packaged.",
     "build_site.py f-string nested-quote syntax error on Python 3.11 fixed; gem1 variable and homepage card condition re-added after a git checkout revert.",
-    "Submission note truncated mid-word -> widened make_note limit to 200 chars."
+    "Submission note truncated mid-word -> widened make_note limit to 200 chars.",
+    "Strict lane review corrected a false clearance: a dense 5-px lattice produces >70% candidate-dot overlap, which the written protocol explicitly treats as duplicate/stop; GEM-1 and H31-C are download-for-testing only, not slot-eligible."
    ]
   },
   "pass_3_recheck_against_the_original_brief": {
    "done": [
-    "GEM-1 validation: screen (draws 0,1) +0.0180 DTI, 4/4 folds, worst +0.0107, AUC 0.526; confirmation (draws 2,3) +0.0216, 4/4 folds, worst +0.0102, AUC 0.561. No leakage (AUC << 0.90).",
-    "LANE check GEM-1: worst |Spearman| vs 11 registry rasters = 0.072 (cap 0.90); dot overlap vs substantive registry rasters <= 48.2% (cap 70%); lattice raster 100% overlap logged as irregularity (degenerate check), not lane drift.",
+    "Historical GEM-1 screen/confirmation outputs were not recomputed in this review; the tracked GEM validation report lacks a complete CI/withheld-positive receipt, so they are not current promotion evidence.",
+    "Strict lane gate FAIL: recorded 100% full-footprint GEM-1 dot overlap with the dense lattice exceeds the 70% stop threshold. Do not submit; earlier \u201cdegenerate check\u201d exception was invalid.",
     "Built unique TIF gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif (sha256 51d0b3414896a18de24de969467c6e8947678d80e32ab12d2812a1f6b2bed467, 49,373 dots). check_file: all hard checks pass; values in [0,1] inside footprint; NaN outside; CRS/shape/geotransform match template.",
     "Added gem1 to registry/submissions.json (role alternate, slot_approved=False) and rebuilt the site; homepage + executive summary feature the GEM-1 download with explicit OK-to-download / NOT-OK-to-submit labeling and copy-ready note.",
-    "README updated: knowledge/16_current_task_2026-10-25.md stored + current-task section added."
+    "README updated: knowledge/16_current_task_2026-10-25.md stored + current-task section added.",
+    "Re-read the lane clause literally; no density exception is authorized. Updated the artifact registry, site source generator, validation gate, and saved decision to fail closed. Current checkout has no sample template/features, so no new model run or fresh TIFF audit was possible."
    ]
   },
   "verdict": "negative-for-slot / positive-for-format-download: GEM-1 passes its paired holdout gate but does not beat the frozen 0.152003389 comparator (which does not reproduce here, IR-25-COMPARATOR-DRIFT), so it is NOT slot-approved. The unique TIF is published as a format-verified download only; no weekly slot is spent and no submission is uploaded (DrivenData automation prohibited)."

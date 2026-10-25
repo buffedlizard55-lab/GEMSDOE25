@@ -29,6 +29,7 @@ Run: .venv/bin/python scripts/validate_gem_candidate.py
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import sys
@@ -191,28 +192,51 @@ def paired_gate(candidate: list[float], control: list[float]) -> dict:
 # LANE check vs registry rasters
 # ----------------------------------------------------------------------------------------------
 def load_registry_rasters() -> list[dict]:
+    """Load every local registry GeoTIFF available, including shipped downloads.
+
+    Do not silently ignore an unreadable raster: a partial registry is not a
+    lane clearance. The caller records/raises on a read failure.
+    """
     import rasterio
+    paths = []
+    for directory in (REGISTRY_DIR, data_dir() / "calibration", ROOT / "docs" / "downloads"):
+        if directory.exists():
+            paths.extend(sorted(directory.glob("*.tif")))
     out = []
-    if not REGISTRY_DIR.exists():
-        return out
-    for p in sorted(REGISTRY_DIR.glob("*.tif")):
+    seen = set()
+    for p in paths:
+        digest = hashlib.sha256(p.read_bytes()).hexdigest()
+        if digest in seen:
+            continue
+        seen.add(digest)
         try:
             with rasterio.open(p) as s:
                 arr = np.nan_to_num(s.read(1), nan=0.0).astype(np.float32)
-            out.append(dict(file=p.name, arr=arr))
         except Exception as e:
-            print(f"lane: could not read {p.name}: {e}")
+            raise RuntimeError(f"lane registry raster unreadable: {p}: {e}") from e
+        out.append(dict(file=p.name, arr=arr, sha256=digest))
     return out
 
 
 def lane_check(ctx, emitted: np.ndarray, surface: np.ndarray, registry: list[dict]) -> dict:
+    """Apply the literal parallel-lane rule to one full-footprint candidate.
+
+    ``emitted`` must be on the same full grid as the registry rasters. Failing
+    closed on cropped arrays prevents interpreting crop-local indices as global
+    coordinates; an empty registry cannot certify uniqueness.
+    """
     foot, fi = ctx.foot, ctx.fi
-    H, W = foot.shape
+    if emitted.shape != foot.shape or surface.shape != foot.shape:
+        raise ValueError("lane check requires full-grid emitted and surface arrays")
     surf_finite = np.where(foot, surface, np.nan).ravel()[fi]
-    my_dots = np.flatnonzero(emitted.ravel())
+    my_dots = np.flatnonzero((emitted > 0).ravel() & foot.ravel())
+    H, W = foot.shape
     my_rc = np.column_stack([my_dots // W, my_dots % W]) if my_dots.size else np.empty((0, 2), int)
     results = []
     for reg in registry:
+        if reg["arr"].shape != foot.shape:
+            results.append(dict(file=reg["file"], skipped="shape differs", duplicate=True))
+            continue
         reg_flat = np.where(foot, reg["arr"], np.nan).ravel()[fi]
         finite = ~(np.isnan(surf_finite) | np.isnan(reg_flat))
         corr = float("nan")
@@ -220,16 +244,29 @@ def lane_check(ctx, emitted: np.ndarray, surface: np.ndarray, registry: list[dic
             corr = float(spearmanr(surf_finite[finite], reg_flat[finite], nan_policy="omit").statistic)
         overlap = 0.0
         if my_dots.size:
-            reg_dots = np.flatnonzero((reg["arr"] > 0) & foot)
+            reg_dots = np.flatnonzero((reg["arr"] > 0).ravel() & foot.ravel())
             if reg_dots.size:
                 reg_rc = np.column_stack([reg_dots // W, reg_dots % W])
                 dist = cKDTree(reg_rc).query(my_rc, k=1)[0]
                 overlap = float((dist <= LANE_RADIUS_PX).mean())
-        results.append(dict(file=reg["file"], spearman=corr,
-                            overlap_within_3px=overlap,
-                            duplicate=bool((not math.isnan(corr) and corr > LANE_CORR_CAP)
-                                           or overlap > LANE_OVERLAP_CAP)))
+        rho_flag = not math.isnan(corr) and abs(corr) > LANE_CORR_CAP
+        overlap_flag = overlap > LANE_OVERLAP_CAP
+        results.append(dict(file=reg["file"], spearman=corr, abs_spearman=abs(corr) if not math.isnan(corr) else None,
+                            overlap_within_3px=overlap, flag_rank=rho_flag, flag_overlap=overlap_flag,
+                            duplicate=bool(rho_flag or overlap_flag)))
     return results
+
+
+def lane_is_clear(results: list[dict]) -> bool:
+    """A missing/unreadable registry is not evidence of uniqueness."""
+    return bool(results) and all(not row.get("duplicate", True) for row in results)
+
+
+def full_footprint_emission(surface: np.ndarray, foot: np.ndarray, labels: np.ndarray,
+                            restrict: np.ndarray | None = None) -> np.ndarray:
+    """Generate the exact full-grid emission used by the registered candidate recipe."""
+    k = int(round(KFRAC * int(foot.sum())))
+    return emit(surface, foot, labels, k, DOT_MIN_DIST, restrict)
 
 
 def main() -> None:
@@ -283,43 +320,45 @@ def main() -> None:
               f"worst {gate['worst_fold']:+.6f} -> {'PASS' if gate['passed'] else 'fail'}",
               flush=True)
 
-    # LANE check on the best non-control candidate, fold 0 draw 0 emission
-    best_label = max(((k, v) for k, v in report["candidates"].items() if k != "control_B_crest"),
-                     key=lambda kv: kv[1]["mean_dti"])[0]
-    H = Holdout(foot, lab, HIDE_FRAC)
-    d = H.draw(0, 0)
-    sl = d.bbox
-    surface = candidates[best_label]
-    restrict = restrict_gem3 if best_label.startswith("GEM-3") else None
-    restrict_c = None if restrict is None else restrict[sl]
-    surf_c = np.nan_to_num(surface[sl], nan=0.0).astype(np.float32)
-    k = int(round(KFRAC * int(d.quadrant[sl].sum())))
-    emitted = emit(surf_c, d.quadrant[sl], d.visible[sl], k, DOT_MIN_DIST, restrict_c)
-    lane = lane_check(ctx, emitted, surface, registry)
-    report["lane"] = lane
-    for lane_entry in lane:
-        print(f"LANE vs {lane_entry['file']}: spearman {lane_entry['spearman']:.3f} overlap {lane_entry['overlap_within_3px']:.3f} "
-              f"{'DUPLICATE' if lane_entry['duplicate'] else 'ok'}", flush=True)
-
+    # Lane checks are computed independently for EVERY candidate surface and its
+    # exact full-footprint emission. A fold-cropped emission is never passed into
+    # a full-grid proximity test.
+    lane_by_candidate = {}
     per_candidate = {}
-    for cand in report["candidates"]:
-        if cand == "control_B_crest":
-            continue
+    for cand, surface in candidates.items():
+        if cand == "GEM-3_off_trace_dots":
+            restrict = off_trace_mask(lab, foot)
+        else:
+            restrict = None
+        emitted = full_footprint_emission(surface, foot, lab, restrict)
+        lane_rows = lane_check(ctx, emitted, surface, registry)
+        lane_by_candidate[cand] = lane_rows
+        lane_ok = lane_is_clear(lane_rows)
+        for row in lane_rows:
+            print(f"LANE {cand} vs {row['file']}: "
+                  f"rho={row.get('spearman', float('nan')):+.3f} "
+                  f"overlap={row.get('overlap_within_3px', float('nan')):.3f} "
+                  f"{'DUPLICATE' if row.get('duplicate', True) else 'ok'}", flush=True)
         gate = report["candidates"][cand]["paired_vs_control"]
+        leakage_ok = report["candidates"][cand]["worst_auc"] <= LEAKAGE_AUC_CAP
         per_candidate[cand] = {
             "gate_passed": bool(gate["passed"]),
-            "leakage_ok": bool(report["candidates"][cand]["worst_auc"] <= LEAKAGE_AUC_CAP),
+            "leakage_ok": bool(leakage_ok),
+            "lane_ok": bool(lane_ok),
+            "eligible_for_artifact": bool(gate["passed"] and leakage_ok and lane_ok),
+            "lane_registry_checked": len(lane_rows),
+            "emitted_full_footprint": int(emitted.sum()),
         }
-    lane_ok = all(not lane_entry["duplicate"] for lane_entry in lane)
-    package_candidate = None
-    for cand, v in per_candidate.items():
-        if v["gate_passed"] and v["leakage_ok"]:
-            package_candidate = cand
-            break
-    report["decision"] = {"per_candidate": per_candidate, "lane_ok": bool(lane_ok),
-                          "package_tif": bool(package_candidate is not None and lane_ok),
-                          "package_candidate": package_candidate,
-                          "reason": "GEM-1 passes its paired holdout gate on screen and confirmation draws, has no leakage (AUC <= 0.561 << 0.90), and is lane-clean vs all substantive registry rasters. It is holdout-validated but NOT slot-approved: it does not beat the frozen 0.152003389 comparator, which itself does not reproduce here (IR-25-COMPARATOR-DRIFT). Published as a format-verified download only; no weekly slot spent; no upload (DrivenData automation prohibited)."}
+    report["lane_by_candidate"] = lane_by_candidate
+    eligible = [name for name, values in per_candidate.items() if values["eligible_for_artifact"]]
+    package_candidate = eligible[0] if eligible else None
+    report["decision"] = {
+        "per_candidate": per_candidate,
+        "package_tif": package_candidate is not None,
+        "package_candidate": package_candidate,
+        "reason": ("A candidate passed the paired holdout, leakage and strict lane checks." if package_candidate
+                   else "No candidate passed all gates. The parallel-run rule is literal: any absolute Spearman > 0.90 or >70% of candidate dots within 3 px of any single registry raster is a duplicate and stops packaging. An empty registry also fails closed."),
+    }
     print("DECISION:", json.dumps(report["decision"]), flush=True)
     (OUT_DIR / "results.json").write_text(json.dumps(report, indent=1) + "\n")
     print(f"wrote {OUT_DIR / 'results.json'}", flush=True)

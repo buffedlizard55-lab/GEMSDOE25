@@ -1,6 +1,6 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
-**Current session review (2026-10-25):** [GEMSDOE32 H33-2-B2 score forensics, candidate screen, data blockers, and run card](knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md). The requested start-of-session owner prompt remains archived verbatim at `knowledge/owner_brief_verbatim.txt`; see also `AGENTS.md`.
+**Current session review (2026-10-25):** [Strict lane eligibility, UX audit, findings, and run card](knowledge/17_repo_review_2026-10-25.md). The previous [GEMSDOE32 H33-2-B2 score forensics and hypotheses](knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md) remain as background. The start-of-session owner prompt is archived verbatim at `knowledge/owner_brief_verbatim.txt`; see also `AGENTS.md`. Current lane run card: `registry/run_card_repo_review_2026-10-25.json`. **Downloads are for testing only; do not submit: strict lane gate fails and required data are absent.**
 
 > **Maximize P(Win)** · **Own the Outcome** — the Arena core values are the decision rule for every change in this repository.
 
@@ -172,7 +172,7 @@ Planning brackets are uncertain prioritization judgments, not estimates or live-
 Full text: `knowledge/16_current_task_2026-10-25.md` (condensed restatement of the user's 2026-10-02/25 message).
 
 Must-dos in order:
-1. Generate a **unique TIF submission** (never copy a previous submission except to learn). `docs/downloads/gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif` (sha256 `51d0b341…`, 49,373 dots) is the current unique artifact: **format-verified; holdout-validated vs same-run control; NOT slot-approved; not a live score.** OK to download for format/reproducibility testing; **NOT authorized for a weekly scoring slot** on current evidence.
+1. The existing GEM-1 TIF (`docs/downloads/gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif`, SHA-256 `51d0b341…`) is byte/content-distinct, but **fails the literal lane gate** (recorded dot overlap with the dense registry lattice exceeds the 70% cutoff). It is OK to download for local testing only; **do not submit it**. No new artifact was created in the current review because the data/cache are absent and the lane gate requires a stop.
 2. Site/executive summary must make the download obvious and must state explicitly whether it is OK to download and whether it is OK to submit (see `docs/executive-summary.html`, `docs/index.html`).
 3. Hypotheses 3–5, holdout validation, leakage canary (AUC ≤ 0.90), LANE check, run card — see `knowledge/15_new_hypotheses_2026-10-25.md` and `evidence/gem_validation/`.
 4. No DrivenData automation; no organizer receipts; treat all scores as unverified claims. Unknown stays unknown.
@@ -214,7 +214,7 @@ git add evidence/h30_relay_screen && git commit -m 'Record H30 screen evidence'
 .venv/bin/python scripts/analyze_scored_rasters.py && .venv/bin/python scripts/emission_model.py && .venv/bin/python scripts/validate_emission_model.py && .venv/bin/python scripts/harness_references.py
 # files, site, README
 .venv/bin/python scripts/build_candidate.py --help            # train on the full catalogue, emit, verify (exploratory surface)
-.venv/bin/python scripts/package_submissions.py --exploratory-receipt docs/downloads/checks-<file>.json
+# scripts/package_submissions.py is retired and fails closed: it can only rebuild the known D2.8 duplicate.
 .venv/bin/python scripts/build_data_dictionary.py && .venv/bin/python scripts/build_site.py && .venv/bin/python scripts/build_readme.py
 .venv/bin/python -m pytest -q && .venv/bin/python -m ruff check src scripts tests
 ```

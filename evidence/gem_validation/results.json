@@ -59,8 +59,9 @@
    "verdict": {
     "gate_passed": true,
     "leakage_ok": true,
-    "lane_ok": true,
-    "note": "passes paired holdout gate screen +0.0180 / confirmation +0.0216, AUC <= 0.561, lane clean vs substantive registry rasters"
+    "lane_ok": false,
+    "note": "NOT LANE-CLEARED: the separate full-footprint GEM-1 receipt reports 100% dot overlap with the 5-px lattice, above the strict 70% stop threshold. Do not submit.",
+    "eligible_for_submission": false
    }
   },
   "GEM-2_vents_x_thermal": {
@@ -89,8 +90,9 @@
    "verdict": {
     "gate_passed": false,
     "leakage_ok": true,
-    "lane_ok": true,
-    "note": "fails paired gate (gain -0.0031, worst fold -0.0289) -> not packaged"
+    "lane_ok": null,
+    "note": "Candidate-specific full-footprint lane status is not established by this historical report; fail closed and do not package.",
+    "eligible_for_submission": false
    }
   },
   "GEM-3_off_trace_dots": {
@@ -119,8 +121,9 @@
    "verdict": {
     "gate_passed": true,
     "leakage_ok": true,
-    "lane_ok": false,
-    "note": "passes holdout gate but is a LANE duplicate (off-trace dots hug the catalogue = proxy artifact; lattice raster 100% overlap degenerate) -> not packaged, logged as irregularity"
+    "lane_ok": null,
+    "note": "Candidate-specific full-footprint lane status is not established by this historical report; fail closed and do not package.",
+    "eligible_for_submission": false
    }
   }
  },
@@ -193,8 +196,21 @@
   }
  ],
  "decision": {
-  "package_tif": true,
-  "package_candidate": "GEM-1_blind_magnetics",
-  "reason": "GEM-1 passes its paired holdout gate on both screen and confirmation draws, has no leakage (AUC <= 0.561 << 0.90), and is lane-clean vs all substantive registry rasters. GEM-2 fails its gate. GEM-3 passes its gate but is a LANE duplicate and is correctly not packaged. GEM-1 does NOT beat the frozen 0.152003389 comparator (which does not reproduce here, IR-25-COMPARATOR-DRIFT), so it is holdout-validated but NOT slot-approved: published as a format-verified download only, no weekly slot spent, no upload (DrivenData automation prohibited)."
+  "package_tif": false,
+  "package_candidate": null,
+  "lane_ok": false,
+  "reason": "Corrected in repo review: the separate full-footprint GEM-1 receipt records 1.0 dot overlap, exceeding the strict 0.70 protocol cap. The stored 0.889015 lattice row also exceeds the cap but is not relied on as a candidate-specific result here. No candidate has verified per-candidate full-footprint lane clearance.",
+  "correction": "The prior saved decision incorrectly treated the dense lattice as a degenerate exception and marked GEM-1 lane-clean. That exception is not in the user's protocol; the strict rule now governs."
+ },
+ "strict_lane_review": {
+  "thresholds": {
+   "absolute_spearman_gt": 0.9,
+   "candidate_dots_within_3px_gt": 0.7
+  },
+  "stored_validation_lattice_overlap": 0.8890153671030165,
+  "stored_validation_overlap_candidate_identity": "not confirmed in tracked report",
+  "gem1_full_footprint_overlap": 1.0,
+  "strict_verdict": "GEM-1 DUPLICATE LANE / STOP; other historical candidates lack per-candidate clearance",
+  "scope_note": "Correction of interpretation and eligibility from tracked evidence, not a fresh raster computation; source arrays and template are absent from this checkout."
  }
 }

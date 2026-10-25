@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "date_utc": "2026-10-25",
+  "session_branch": "arena/d6aa679e-gemsdoe25",
+  "passes": {
+    "pass_1_implement_and_verify": {
+      "completed": [
+        "Reviewed the standing README, verbatim owner brief, data/code layout, submission registry, H31/GEM-1 evidence, site generator, validator and packaging gate.",
+        "Changed the lane gate to apply the literal threshold to every candidate's full-footprint surface and emission; no empty-registry clearance.",
+        "Changed packaging eligibility to require a same-run paired comparator and exact candidate SHA, rather than the non-reproducing historical absolute score.",
+        "Retired the legacy D2.8 packager because it could restore a known sibling duplicate as primary; it now fails before reading or writing artifacts.",
+        "Updated generated website and registry labels: existing TIFFs are downloadable for testing only and explicitly not authorized for submission.",
+        "Recorded a negative review run card; no model experiment, new TIFF, or scoring slot was used."
+      ]
+    },
+    "pass_2_bug_assumption_edge_case_review": {
+      "completed": [
+        "Found and corrected the dense-lattice exception: tracked overlaps 0.889015 and 1.0 are both above the strict 0.70 rule.",
+        "Found and corrected candidate-mismatch/cropped-coordinate risks in lane validation; added unit tests for full-grid enforcement, absolute rank correlation, dense-lattice trigger, empty-registry fail-closed behavior, and saved-decision consistency.",
+        "Found and corrected executive-summary mismatch: the old page showed an unapproved TIF and then provided upload steps for that same file, with receipt/note fields drawn from a different artifact.",
+        "Checked missing-data and no-DrivenData-automation constraints; no fresh raster validation was claimed."
+      ]
+    },
+    "pass_3_recheck_original_request": {
+      "completed": [
+        "Rechecked the critical requirements: unique/downloadable file is explicitly for testing only; no existing file is described as slot-cleared; no new file was generated after a lane stop.",
+        "The current executive summary describes generic upload steps only for a future selector-approved candidate and labels current artifacts do-not-submit.",
+        "Current validation: 108 passed, 3 skipped (restored-data-dependent); Ruff passed; git diff --check passed.",
+        "Review notes explain why the reported GEMSDOE32 score is plausible but not proven by the sibling receipt/projection or current catalogue holdout."
+      ],
+      "open_limitations": [
+        "data/ has only .gitkeep; full feature/holdout/format/lane checks cannot be rerun in this checkout.",
+        "No organizer-confirmed score or live leaderboard snapshot was obtained; DrivenData automation remains prohibited.",
+        "Strict protocol flags candidate dots against the dense lattice. Do not introduce a density-normalized exception unless the written protocol is explicitly amended.",
+        "No PR, merge, deployment, or competition score is asserted until verified in GitHub/competition receipt."
+      ]
+    }
+  }
+}
