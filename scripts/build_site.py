@@ -122,8 +122,24 @@ def main() -> None:
         h30_status = "registered screen draws 6,7; real-data feature smoke passed, no model fit or DTI yet"
 
     def home(prefix: str) -> str:
-        hero = """<div class="hero"><h1>Download the unique, format-valid GeoTIFF. It is NOT cleared for a slot.</h1>
-<p class="lead">One click gets a <b>single-band float32 GeoTIFF with finite [0,1] predictions throughout the footprint</b>, checked against the pinned template. This establishes file-format validity only—not holdout promotion or a competition score. This file is <b>unique</b> and format-valid, but it is <b>NOT cleared for a slot</b> and is <b>not slot-approved</b>: its lane-overlap check is flagged and it has not beaten its same-run holdout control. The former D2.8 download was byte-identical to a listed submission and has been <b>withdrawn</b> (IR-25-DUPLICATE-DOWNLOAD). The frozen holdout comparator 0.152003389 does not reproduce in this environment (IR-25-COMPARATOR-DRIFT), so the same-run control is used instead. The earlier range error was caused by NaNs inside the footprint (inferred from the file; the portal validator is not public); that defect is fixed.</p></div>"""
+        verdict = str(primary.get("verdict", "negative"))
+        if verdict == "promote":
+            banner = "🟢 Unique GeoTIFF — holdout gates PASSED. Eligible for the manual selector step."
+            okhttp = ("<b>OK to download: yes. OK to take to a submission slot: yes, as the selector "
+                      "candidate</b> — it passed its frozen paired screen + confirmation gate, the lane "
+                      "check and the exact-file audit. It is still <b>not slot-approved</b> by this agent "
+                      "(promotion to a real weekly slot is the owner's separate selector decision) and it "
+                      "has <b>no competition score</b>; every number here is HOLDOUT-DTI only.")
+        else:
+            banner = "🔴 DO NOT SUBMIT — unique GeoTIFF for inspection only. Holdout gates NOT passed."
+            okhttp = ("<b>OK to download: yes (inspection/reproducibility). OK to submit: NO</b> — this "
+                      "file is <b>not slot-approved</b>: it has not passed the frozen holdout gate against "
+                      "the comparable same-run holdout best. Do not spend a weekly slot on it.")
+        outside_txt = ("every one of the 12,279,160 cells finite in [0,1] (0.0 outside the footprint, no NaN anywhere)"
+                       if primary.get("outside") == "zero"
+                       else "finite [0,1] predictions at all 5,167,373 footprint pixels, NaN outside")
+        hero = f"""<div class="hero"><h1>{e(banner)}</h1>
+<p class="lead">One click gets a <b>single-band float32 GeoTIFF with {outside_txt}</b>, checked against the pinned template (this fixes the reported <i>"Predicted values must be in range [0, 1]"</i> portal error, whose cause was NaNs inside the footprint; the portal validator is not public). {okhttp} Status: <b>{e(primary['status'])}</b>. The former D2.8 download was byte-identical to a listed submission and has been <b>withdrawn</b> (IR-25-DUPLICATE-DOWNLOAD). The frozen holdout comparator 0.152003389 does not reproduce as an absolute cross-session baseline, so gates use the same-run control recomputed in the same run.</p></div>"""
         cards = dl_card(primary, prefix)
         alt = "".join(f"""<div class="card"><b>{e(o['title'])}</b> {badge(o['status'], 'ok' if o['status']=='scored' else 'warn')}
 <p class="small" style="margin:.3em 0">{e(o['summary'])}</p><a class="btn alt small" href="{prefix}downloads/{o['file']}" download>↓ {e(o['file'])}</a>
@@ -193,18 +209,31 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
 <p class="small">All {len(irr)} items with evidence and actions: <a href="{prefix}sources.html#irregularities">Sources &amp; audit</a>.</p>"""
         feed = f"""<h2>Source feed</h2><div id="feed" data-base="{prefix}"><p class="small">Loading <code>data/feed.json</code> …</p></div>
 <p class="small">The feed blocks DrivenData requests and redirected targets. The displayed leaderboard values are user-provided, unverified claims—not live snapshots.</p>"""
-        plan = ('<div class="callout warn"><b>No weekly slot is approved for the downloadable H31-C file.</b> '
-                'It is format-validated but has not demonstrated a win over a comparable same-run spatial-holdout best. '
-                f'H30-1 status: {e(h30_status)}. Even a confirmed proxy win only permits a later full-data build and review; '
-                'that exact candidate must still beat the current comparable holdout best and pass the exact-file audit. '
-                'Nothing is submitted or monitored automatically.</div>')
+        if str(primary.get("verdict", "negative")) == "promote":
+            plan = ('<div class="callout"><b>This exact file passed its frozen holdout screen + confirmation, '
+                    'lane and exact-file audits.</b> Promotion to a real weekly slot remains the owner\'s separate '
+                    'selector step (weekly cap on the submission page); this agent never uploads. '
+                    'A holdout pass is proxy evidence, not a competition score.</div>')
+        else:
+            plan = ('<div class="callout warn"><b>No weekly slot is approved for the downloadable file above.</b> '
+                    f'Status: {e(primary["status"])}. A specific candidate must beat the comparable same-run '
+                    'spatial-holdout best and pass its confirmation + exact-file audit before a slot is '
+                    'considered. Nothing is submitted or monitored automatically.</div>')
         return hero + cards + (f"<h3>Also available</h3>{alt}" if alt else "") + plan + stats + whyb + h28b + h30b + facb + flagb + feed
 
-    exec_body = f"""<div class="hero"><h1>Executive summary &amp; submission guide</h1><p class="lead">One click downloads a <b>single-band float32 GeoTIFF with finite [0,1] predictions throughout the footprint</b>, checked against the pinned template. This establishes file-format validity only—not holdout promotion or a competition score.</p></div>
-<div class="callout"><b>New unique submission candidate: {e(gem1['file'] if gem1 else primary['file'])}.</b> <b>OK to download: yes</b> — format-verified, all hard checks pass, values in [0,1] inside the footprint, NaN outside, template CRS/shape/geotransform match. <b>OK to submit to a weekly scoring slot: NO on current evidence</b> — it is <b>not slot-approved</b>. The holdout is a catalogue-gap proxy, not new-fault truth, and this candidate does not beat the frozen 0.152003389 comparator (which itself does not reproduce here, IR-25-COMPARATOR-DRIFT). Spend a slot only after a candidate passes its frozen paired/confirmation gate and exact-file audit.</div>
-{dl_card(gem1 if gem1 else primary, '')}
-<h2>Manual upload steps (only for a candidate that has passed its holdout gate)</h2><ol class="steps">
-<li><b>Download</b> <code>{e((gem1 or primary)['file'])}</code> with the green button above. Optional: check <code>sha256sum</code> starts with <code>{(gem1 or primary)['sha256'][:16]}</code>.</li>
+    _verdict = str(primary.get("verdict", "negative"))
+    _ok_submit = ("YES — as the selector candidate (frozen holdout screen + confirmation, lane and exact-file audits passed; "
+                  "final slot choice is the owner's manual selector step)" if _verdict == "promote"
+                  else "NO — do not spend a weekly slot on this file")
+    _outside_txt = ("every cell finite in [0,1], 0.0 outside the footprint, no NaN anywhere"
+                    if primary.get("outside") == "zero" else "values in [0,1] inside the footprint, NaN outside")
+    _steps_h = ("Manual upload steps for this gate-passed candidate" if _verdict == "promote"
+                else "Manual upload steps (shown for completeness — do NOT upload this file; only a gate-passed candidate)")
+    exec_body = f"""<div class="hero"><h1>Executive summary &amp; submission guide</h1><p class="lead">One click downloads a <b>single-band float32 GeoTIFF ({_outside_txt})</b>, checked against the pinned template. Format validity is necessary, never sufficient: slot eligibility comes only from the frozen holdout gate below.</p></div>
+<div class="callout"><b>Unique submission file: {e(primary['file'])}.</b> <b>OK to download: yes.</b> <b>OK to submit: {_ok_submit}.</b> It is <b>not slot-approved</b> by this agent and has no competition score. Status: <b>{e(primary['status'])}</b>. The holdout is a catalogue-gap proxy, not new-fault truth; gates compare against the comparable same-run holdout best recomputed in the same run (not the frozen 0.152003389 absolute, IR-25-COMPARATOR-DRIFT).</div>
+{dl_card(primary, '')}
+<h2>{_steps_h}</h2><ol class="steps">
+<li><b>Download</b> <code>{e(primary['file'])}</code> with the button above. Optional: check <code>sha256sum</code> starts with <code>{primary['sha256'][:16]}</code>.</li>
 <li><b>Open the competition and sign in</b> — <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition page</a>, then click <b>Submit</b> in the sidebar and <b>Make new submission</b> (wording from the competition page; this opens the "New submission" form).</li>
 <li><b>File to submit:</b> choose the <code>.tif</code>. The form says: "You can submit a single-band GeoTIFF (.tif) file, or a .zip file containing a single GeoTIFF ... It must match the submission format's CRS, shape, and geotransform." This page offers the plain <code>.tif</code>.</li>
 <li><b>Note (optional):</b> paste the note above. It is {len(primary['note'])} characters; the form says "A short comment to help you or your team tell submissions apart later".</li>
@@ -214,14 +243,14 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
 <p class="small">Independent plain-rasterio check (<code>src/gems25/submission.py::check_file</code>) against the pinned owner-mirror template (sha256 prefix 2176d08e…). Its footprint also matches the owner-mirrored raster labelled 0.2477; that score/portal status is not independently verified. Format-check receipt: <a href="downloads/{primary['receipt']}">{primary['receipt']}</a>.</p>
 <div class="callout"><b>If the portal says "Predicted values must be in range [0, 1]"</b><ol><li>Make sure you uploaded <i>this</i> file (name and SHA-256 above), not the old <code>gems25-factorial-best-v1-*.tif</code>.</li>
 <li>That earlier file had 2,344,929 NaN pixels <i>inside</i> the 5,167,373-pixel footprint (see <code>evidence/old_gems25_tif_forensics.json</code>); this one has 0.</li>
-<li>Do not use either file for a weekly slot unless this specific candidate beats the current comparable same-run holdout best and passes its registered confirmation gate and exact-file audit. The zeros-outside variant is only a format fallback; organizer acceptance is unverified. If a future gate-cleared file is rejected, email <a href="mailto:info@drivendata.org">info@drivendata.org</a> with the exact message; do not re-upload repeatedly.</li></ol></div>
+<li>Upload the primary file named above first (every cell finite in [0,1] for the zeros-outside primary; the NaN-outside twin below has identical footprint values and follows the template convention). Organizer acceptance of either convention is unverified from here — scored sibling files exist in both conventions (owner-reported). Do not spend a slot unless this specific candidate's verdict above says its gates passed. If a gate-cleared file is rejected, email <a href="mailto:info@drivendata.org">info@drivendata.org</a> with the exact message; do not re-upload repeatedly.</li></ol></div>
 {''.join(dl_card(o, '', False) if o['role'] == 'fallback' else '' for o in others)}
 <h2>Rules that matter (read on the official pages)</h2><ul>
 <li>Up to <b>3 submissions per week</b> per entity; <b>one final submission</b> per entity must be chosen before the deadline (<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">rules §3.2, §3.4</a>).</li>
 <li>Generative-AI use is allowed but must be described in the narrative (<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">§3.2</a>); a draft is in <code>AI_DISCLOSURE.md</code>.</li>
 <li>Known USGS/INGENIOUS pixels are masked and pixel-exact; predictions on them do not matter (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4">staff</a>).</li>
 <li>Deadline wording differs between the page (11:59 p.m. UTC, 3 Dec 2026) and the rules (5:00 p.m. ET): confirm with <a href="mailto:gemsprize@nlr.gov">gemsprize@nlr.gov</a>.</li></ul>
-<div class="callout"><b>Slot discipline.</b> This file's old paired diagnostic compared it to the dotted 0.2477-labelled raster on a shared mask family; it is not evidence against the current comparable same-run holdout best. The current D2.8 download is therefore not slot-approved. A specific candidate must beat the current spatially blocked holdout comparator before any weekly slot is considered; no proxy result is a live score.</div>"""
+<div class="callout"><b>Slot discipline.</b> Current primary status: <b>{e(primary['status'])}</b>. {e(primary['summary'])} A specific candidate must beat the comparable same-run spatially blocked holdout best and pass confirmation + lane + exact-file audits before any weekly slot is considered; no proxy result is a live score, and this agent never uploads.</div>"""
 
     # ------------------------------------------------------------------ research page
     effs = fac["effects_dti"]

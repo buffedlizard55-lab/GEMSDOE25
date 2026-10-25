@@ -51,15 +51,20 @@ def main() -> None:
     A("**Competition:** [DOE GEMS Prize, DrivenData #306](https://www.drivendata.org/competitions/306/competition-doe-gems/) · "
       "**Live site:** <https://buffedlizard55-lab.github.io/GEMSDOE25/> · **Weekly limit:** 3 submissions · "
       "**Ends:** 3 Dec 2026 (page: 11:59 p.m. UTC; rules: 5:00 p.m. ET — see IR-25-DEADLINE)\n")
-    A("## ⬇ Download the unique, format-valid GeoTIFF (NOT slot-cleared)\n")
+    _verdict = str(primary.get("verdict", "negative"))
+    _banner = ("🟢 GATE-PASSED — eligible for the manual selector step (still not slot-approved by this agent)"
+               if _verdict == "promote" else "🔴 DO NOT SUBMIT — holdout gates not passed (download for inspection only)")
+    _outside = ("every cell finite in [0, 1] (0.0 outside the footprint, no NaN anywhere)"
+                if primary.get("outside") == "zero" else "values in [0, 1] at **all 5,167,373 footprint pixels**, NaN outside")
+    A(f"## ⬇ Download the unique, format-valid GeoTIFF — {_banner}\n")
     A(f"**[↓ `{primary['file']}`](docs/downloads/{primary['file']})** — {primary['summary']}\n")
-    A(f"* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, NaN outside "
+    A(f"* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, {_outside} "
       f"(verified against the pinned owner-mirror template, not organizer-authenticated; independent check receipt: `docs/downloads/{primary['receipt']}`).")
     A(f"* Unique content id `{primary['content_id']}` · SHA-256 `{primary['sha256']}` · {primary['positive_pixels']:,} emitted pixels · status: **{primary['status']}**.")
     A(f"* **Note to paste** in DrivenData's *Note (optional)* field: `{primary['note']}`")
     for o in others:
         if o["role"] == "fallback":
-            A(f"* Format fallback (format troubleshooting only; not slot-approved): [`{o['file']}`](docs/downloads/{o['file']}) — {o['title']} ({o['status']}; {o['positive_pixels']:,} px).")
+            A(f"* Alternate outside-convention twin (not slot-approved): [`{o['file']}`](docs/downloads/{o['file']}) — {o['title']} ({o['status']}; {o['positive_pixels']:,} px).")
     A("* Step-by-step upload guide: [`docs/executive-summary.html`](https://buffedlizard55-lab.github.io/GEMSDOE25/docs/executive-summary.html).\n")
     A("> ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).\n")
     A(f"> ⚠ **Lane flag open:** this file is flagged by the lane-overlap check against a dense 13GEMSDOE lattice (IR-25-LANE-DENSITY). Its holdout result is parity with its own control, not a win. It is NOT slot-cleared. Receipt: `docs/downloads/lane-{primary['file'][:-4]}.json`.\n")

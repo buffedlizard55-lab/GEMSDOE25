@@ -1,0 +1,62 @@
+{
+ "hypothesis": "H35 2x2 factorial: R (H34 RESMAG-FLEX) x T (H27_tip); primary arm B = R+T",
+ "preregistration": "knowledge/19_preregistered_h35_resmag_x_tip_factorial_2026-10-25.md",
+ "draws": [
+  10,
+  11
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "arms": {
+  "C": {
+   "use_R": false,
+   "use_T": false
+  },
+  "R": {
+   "use_R": true,
+   "use_T": false
+  },
+  "T": {
+   "use_R": false,
+   "use_T": true
+  },
+  "B": {
+   "use_R": true,
+   "use_T": true
+  }
+ },
+ "min_dist": 2.4,
+ "kfrac": 0.035,
+ "model": {
+  "base": "BDE",
+  "extras": [
+   "X1_K",
+   "X1_ThK",
+   "X1_UK",
+   "X2_compat",
+   "X2_compat_coh",
+   "X3_gm",
+   "X3_gd"
+  ],
+  "h34_columns": [
+   "H34_resmag_shallow_ridge",
+   "H34_resmag_mid_ridge",
+   "H34_baseflex_ridge"
+  ],
+  "tip_column": "H27_tip",
+  "fit_seed": "draw"
+ },
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px) via gems25.experiment.Cell.evaluate",
+ "leakage_auc_cap": 0.9,
+ "gate": {
+  "arm": "B vs C",
+  "mean_gain_gt": 0.001,
+  "folds_positive_min": 3,
+  "worst_fold_min": -0.01,
+  "mean_hug_increase_max": 0.1
+ }
+}
