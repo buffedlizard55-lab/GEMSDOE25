@@ -1,0 +1,83 @@
+{
+ "label": "HOLDOUT-DTI",
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px/300m) via gems25.experiment.Cell.evaluate",
+ "draws": [
+  0,
+  1
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "withheld_positives_per_fold": [
+  1869,
+  2375,
+  3761,
+  3184
+ ],
+ "control": {
+  "fold_means": [
+   0.14889148693299087,
+   0.15356086244575778,
+   0.1357417291462711,
+   0.16047595675934023
+  ],
+  "mean": 0.14966750882109,
+  "ci95": [
+   0.133069423432866,
+   0.166265594209314
+  ]
+ },
+ "candidate": {
+  "fold_means": [
+   0.1478088836528148,
+   0.1524193137255499,
+   0.14248122022598156,
+   0.16528940376757262
+  ],
+  "mean": 0.1519997053429797,
+  "ci95": [
+   0.13649373356338865,
+   0.16750567712257078
+  ]
+ },
+ "paired_gain": {
+  "per_fold": [
+   -0.0010826032801760643,
+   -0.0011415487202078856,
+   0.006739491079710447,
+   0.0048134470082323855
+  ],
+  "mean": 0.0023321965218897206,
+  "ci95": [
+   -0.004117970276970291,
+   0.008782363320749732
+  ],
+  "folds_positive": 2,
+  "worst_fold": -0.0011415487202078856
+ },
+ "gate": {
+  "mean_gain_gt": 0.001,
+  "folds_positive_min": 3,
+  "worst_fold_min": -0.01,
+  "passed": false
+ },
+ "leakage_canary": {
+  "max_feature_auc": 0.5439727741935484,
+  "cap": 0.9,
+  "passed": true
+ },
+ "reproduction_vs_h28": {
+  "cells_checked": 8,
+  "cells_exact": 8,
+  "control_mean": 0.14966750882109,
+  "h28_same_arm_mean": 0.14966750882109
+ },
+ "runs": [
+  "evidence/h34_screen"
+ ],
+ "stage": "screen",
+ "verdict": "NEGATIVE"
+}
