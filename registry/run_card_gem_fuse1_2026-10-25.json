@@ -1,0 +1,212 @@
+{
+  "run_card_version": 1,
+  "date_utc": "2026-10-25",
+  "session_branch": "arena/a139b467-gemsdoe25",
+  "hypothesis": "GEM-FUSE1: blind-magnetics detector (RTP edge strength × low relief) with H33-2 B=2 catalogue-pruned emission targets concealed faults missing from USGS/INGENIOUS catalogue",
+  "mechanism": "RTP horizontal-gradient magnitude peaks where magnetically different blocks juxtapose; low relief suppresses mapped scarps (family B) and isolates blind candidates. Emission: Hessian ridge NMS (σ1.0) → top-K 0.0245×domain → score-ordered Poisson-disk 1.5 px → delete dots ≤2 px (200 m) of visible catalogue traces. Pruned shell earns <0.016 credit/dot vs 0.0556 break-even at DTI 0.2778 (live inversion), so its removal raises DTI by denominator reduction.",
+  "non_fault_process_that_could_mimic_it": "Basin-margin facies changes and lithologic contacts produce RTP edges without a fault; low-relief sedimentary cover can mimic the blind-fault signature and earn no hidden truth credit. Also the catalogue-proximity credit deficit may not hold if hidden truth clusters near mapped traces (IR-32-PROXY-01).",
+  "pre_registration": "knowledge/18_preregistered_gem_fuse1_2026-10-25.md (committed before run, then knowledge/17_forensic)",
+  "experiment": {
+    "id": "GEM-FUSE1 screen+confirm",
+    "draws_screen": [
+      0,
+      1
+    ],
+    "draws_confirm": [
+      2,
+      3
+    ],
+    "folds": [
+      "NW",
+      "NE",
+      "SW",
+      "SE"
+    ],
+    "control": "B_crest (family B scarp, same emission without prune)",
+    "primary_arm": "GEM-FUSE1 RTP×low-relief → ridge NMS → top-K 0.0245 → dot 1.5px → prune ≤2px catalogue (46,181 dots)",
+    "reproduction": "PASS (control cells match prior GEM-1 control within 1e-6 per-cell; H31 C check also PASS in prior run)",
+    "screen_mean_paired_gain": 0.018173,
+    "screen_folds_positive": "4/4",
+    "screen_worst_fold": 0.01045,
+    "confirm_mean_paired_gain": 0.021846,
+    "confirm_folds_positive": "4/4",
+    "confirm_worst_fold": 0.0104,
+    "screen_gate": "PASS (>+0.001, ≥3/4 folds, worst ≥-0.01)",
+    "confirm_gate": "PASS",
+    "leakage_canary_AUC_screen": 0.526,
+    "leakage_canary_AUC_confirm": 0.561,
+    "leakage_cap": 0.9,
+    "leakage_verdict": "PASS (no leakage)",
+    "confirmation_run": "ran (screen passed, per pre-registration)",
+    "evidence": "evidence/gem_fuse1_validation.json + evidence/gem_validation/results.json"
+  },
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator": "gems25.metric.dti_binary (alpha 0.2, beta 0.8, R=3 px triangular kernel, hide_frac 0.20 whole components, 1.5 km collar, DOMAIN_ERODE 12), gems25.holdout.Holdout.score",
+    "mean_screen": 0.036808,
+    "ci95_screen": [
+      0.010475,
+      0.063142
+    ],
+    "ci_method": "t-interval over 4 fold means (t=3.182, df=3)",
+    "mean_confirm": 0.042441,
+    "ci95_confirm": [
+      0.015526,
+      0.069356
+    ],
+    "withheld_positives_per_fold_screen": [
+      1879,
+      2408,
+      3798,
+      3207
+    ],
+    "withheld_positives_per_fold_confirm": [
+      1879,
+      2408,
+      3798,
+      3207
+    ],
+    "note": "Holdout truth = catalogue components (proxy, not new-fault truth; IR-25-PROXY-LIMITS, IR-32-PROXY-01). Cannot validate live flank-pruning premise; proxy gain is from detector, not prune. Proxy↔live Spearman +0.33 n.s. (n=24).",
+    "withheld_positive_count_total": 11292
+  },
+  "correlation_overlap_vs_registry": {
+    "checker": "scripts/build_gem_fuse1.py + scripts/check_lane_duplicates.py logic (Spearman 400k sample, dot overlap 3px)",
+    "receipt": "docs/downloads/lane-gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.json",
+    "spearman_max": 0.023,
+    "dots_within_3px_max_substantive": 0.446,
+    "flagged_substantive": [],
+    "lattice_density_artefact": {
+      "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "overlap_within_3px": 1.0,
+      "registry_dots": 206895,
+      "reverse_overlap": 0.122,
+      "is_artefact": false,
+      "ir": "IR-25-LANE-DENSITY",
+      "protocol_interpretation": "100% candidate-side overlap exceeds the literal 70% stop threshold. No density exception; reverse overlap does not waive this.",
+      "prior_pr13_interpretation": "PR #13 described this as a density artefact; that interpretation does not waive the literal strict lane rule."
+    },
+    "lane_limit": "Literal rule: absolute rho >0.90 OR >70% of candidate dots within 3 px of any one raster => duplicate and stop. Observed lattice overlap=100%; triggered.",
+    "overall_verdict": "DUPLICATE LANE / STOP; no submission",
+    "protocol_verdict": "DUPLICATE LANE / STOP",
+    "strict_threshold_dots_within_3px_max": 0.7
+  },
+  "raster": {
+    "file": "gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif",
+    "sha256": "ad4bc4933d0b7636f0f32918c1fd8b8b08cd1964aee32d69e45419a9b54178a7",
+    "positive_pixels": 46181,
+    "dots_before_prune": 49373,
+    "pruned_B2": 3192,
+    "content_id": "c2097a554ef2",
+    "submission_allowed": false,
+    "slot_approved": false
+  },
+  "validator_output": {
+    "tool": "gems25.submission.check_file against owner-mirrored data/sample_submission.tif (sha256 2176d08e...); format-only, not lane/slot validation",
+    "hard_failures": [],
+    "checks": {
+      "template_matches_expected_grid_and_footprint": {
+        "pass_": true,
+        "detail": "(3730, 3292), footprint 5,167,373 px",
+        "hard": true
+      },
+      "single_band": {
+        "pass_": true,
+        "detail": "count=1",
+        "hard": true
+      },
+      "dtype_float32": {
+        "pass_": true,
+        "detail": "dtypes=('float32',)",
+        "hard": true
+      },
+      "crs_epsg_32611": {
+        "pass_": true,
+        "detail": "32611",
+        "hard": true
+      },
+      "shape_matches_template": {
+        "pass_": true,
+        "detail": "(3730, 3292) vs (3730, 3292)",
+        "hard": true
+      },
+      "geotransform_matches_template": {
+        "pass_": true,
+        "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+        "hard": true
+      },
+      "footprint_all_finite": {
+        "pass_": true,
+        "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+        "hard": true
+      },
+      "footprint_values_in_0_1": {
+        "pass_": true,
+        "detail": "min=0.0 max=1.0",
+        "hard": true
+      },
+      "outside_footprint_is_nan_official": {
+        "pass_": true,
+        "detail": "7,111,787/7,111,787 NaN",
+        "hard": false
+      },
+      "outside_footprint_is_nan_or_zero": {
+        "pass_": true,
+        "detail": "NaN (official) or 0 (fallback) outside",
+        "hard": true
+      },
+      "nan_mask_identical_to_template": {
+        "pass_": true,
+        "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+        "hard": true
+      },
+      "nodata_tag": {
+        "pass_": true,
+        "detail": "nodata=nan",
+        "hard": false
+      },
+      "variant_nan_aware_whole_array": {
+        "pass_": true,
+        "detail": "np.nanmin/np.nanmax over the whole array",
+        "hard": true
+      },
+      "variant_masked_read": {
+        "pass_": true,
+        "detail": "rasterio masked read",
+        "hard": true
+      },
+      "variant_strict_whole_array_no_nan": {
+        "pass_": false,
+        "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+        "hard": false
+      },
+      "profile_matches_template": {
+        "pass_": true,
+        "detail": "compress=lzw (template lzw)",
+        "hard": false
+      }
+    },
+    "note_on_check": "variant_strict_whole_array_no_nan = False by design: official format is NaN outside footprint; footprint itself has 0 NaN and values in [0,1].",
+    "format_validation_passed": true,
+    "format_validator_reported_ok_to_upload": true,
+    "overall_submission_allowed": false,
+    "authorization_note": "No: strict lane rule fails at 100% candidate dots within 3 px of r13 lattice (>70%). Format validation is not submission approval."
+  },
+  "submission_name": "gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan",
+  "submission_note": "GEMSDOE25 GEM-FUSE1 | strict lane FAIL; no slot; unscored; not slot-approved; DO NOT SUBMIT | id c2097a554ef2",
+  "note_length": 109,
+  "verdict": "DUPLICATE LANE / STOP — do not promote or submit; existing holdout values are HOLDOUT-DTI proxy evidence only, not an organizer-confirmed score.",
+  "limits": [
+    "Holdout truth = catalogue components (proxy, not new-fault truth; IR-25-PROXY-LIMITS, IR-32-PROXY-01); cannot test catalogue-proximity hypotheses live.",
+    "Competition score unknown; leaderboard figures are sibling claims (OWNER-CLAIM, not receipt).",
+    "Owner-mirror template and validator are not organizer-authenticated (IR-25-PROVENANCE).",
+    "Frozen comparator 0.152003389 does not reproduce here (IR-25-COMPARATOR-DRIFT); gate uses same-run paired control.",
+    "Strict user lane rule controls: the recorded 100% candidate-dot overlap with the r13 lattice exceeds the 70% threshold; no density exception is authorized. No new fitting, TIFF creation, holdout, upload, or slot selection occurred in this repository review."
+  ],
+  "budget": {
+    "experiments_used": 2,
+    "limit": 3,
+    "wall_clock_note": "~1.5h including data restore + validation + build"
+  },
+  "submission_allowed": false,
+  "slot_approved": false
+}

@@ -32,7 +32,8 @@ def test_primary_files_exist_and_hashes_match_registry():
 
 
 def test_note_short_and_names_the_file():
-    assert len(PRIMARY["note"]) <= 140
+    assert len(PRIMARY["note"]) <= 120
+    assert all(t in PRIMARY["note"] for t in ("no slot", "unscored", "not slot-approved"))
     assert PRIMARY["content_id"] in PRIMARY["note"]
     assert CARD["note"] == PRIMARY["note"] and CARD["note_chars"] == len(PRIMARY["note"])
 
@@ -56,17 +57,23 @@ def test_slot_label_follows_gate_evidence():
     assert PRIMARY["ok_to_submit_slot"] is slot_ok is False
     assert PRIMARY["slot_approved"] is False
     assert PRIMARY["verdict"] == CARD["verdict"] == "negative"
-    assert "NOT SLOT-CLEARED" in PRIMARY["status"]
+    assert "DO NOT SUBMIT" in PRIMARY["status"]
 
 
-def test_download_label_follows_validator_and_lane():
+def test_download_label_follows_validator_and_strict_lane():
     v = RECEIPT["validator"]["primary"]
     assert v["ok_to_upload"] and not v["hard_failures"]
     assert all(c["pass_"] for c in v["checks"].values() if c["hard"])
     lane = RECEIPT["lane"]
-    assert lane["lane_clean"] and lane["worst_overlap"] <= lane["caps"]["overlap"]
+    # substantive registry rasters: clean (lattice excluded only in this sub-check)
+    assert lane["worst_overlap"] <= lane["caps"]["overlap"]
     assert lane["worst_abs_spearman_final"] <= lane["caps"]["spearman"] and lane["worst_abs_spearman_surface"] <= lane["caps"]["spearman"]
-    assert PRIMARY["ok_to_download"] is True
+    # strict literal policy (PR #14): the dense r13 lattice counts, so the lane fails and the file must say DO NOT SUBMIT
+    strict = RECEIPT["strict_lane"]
+    assert strict["lattice_overlap"] > 0.70 and strict["lane_clear"] is False
+    assert PRIMARY["lane"]["lane_clear"] is False
+    assert "do not submit" in PRIMARY["status"].lower() and "strict lane" in PRIMARY["summary"].lower()
+    assert PRIMARY["ok_to_download"] is True and PRIMARY["ok_to_submit_slot"] is False
 
 
 def test_run_card_has_protocol_fields():

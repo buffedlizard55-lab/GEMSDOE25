@@ -13,8 +13,8 @@
   "ok": true
  },
  "content_id": "f74e9238cc1c",
- "note": "GEMSDOE25 KDC: B2+17720 off-registry dots | holdout FAIL, not slot-approved, no slot | unscored | id f74e9238cc1c",
- "note_chars": 113,
+ "note": "GEMSDOE25 KDC B2+17720 | strict lane FAIL, holdout FAIL; no slot; unscored; not slot-approved | id f74e9238cc1c",
+ "note_chars": 111,
  "verdict": "negative",
  "evidence": "evidence/kdc_screen/analysis.json",
  "composition": {
@@ -590,5 +590,14 @@
   "path": "data/work/kdc_full_scores.npy",
   "n": 5167373
  },
- "note_original": "GEMSDOE25 KDC | B2 37654 dots + 17720 new HGB dots off all registry dots | holdout gate FAIL | unscored | id f74e9238cc1c"
+ "note_original": "GEMSDOE25 KDC | B2 37654 dots + 17720 new HGB dots off all registry dots | holdout gate FAIL | unscored | id f74e9238cc1c",
+ "strict_lane": {
+  "policy": "literal 70 % / 3 px, no density exception (PR #14)",
+  "lattice_file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+  "lattice_overlap": 0.9994,
+  "lane_clear": false,
+  "strict_verdict": "DUPLICATE LANE / STOP (r13 lattice)",
+  "worst_other_registry_overlap": 0.68,
+  "other_registry_rasters": 31
+ }
 }

@@ -64,11 +64,32 @@ def sha256_file(p: Path) -> str:
     return h.hexdigest()
 
 
+def _git_fetch_blob(repo: str, ref: str, path: str, out_file) -> bool:
+    cache_dir = data_dir() / "raw" / "_git_cache" / f"{repo.replace('/', '__')}__{ref[:12]}"
+    if not (cache_dir / "HEAD").exists():
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        subprocess.run(["git", "init", "--bare", "-q"], cwd=cache_dir, check=True)
+        subprocess.run(["git", "remote", "add", "origin", f"https://github.com/{repo}.git"], cwd=cache_dir, check=True)
+    if not (cache_dir / "FETCH_HEAD").exists():
+        r = subprocess.run(
+            ["git", "fetch", "-q", "--depth=1", "--filter=blob:none", "origin", ref],
+            cwd=cache_dir, stderr=subprocess.PIPE,
+        )
+        if r.returncode != 0:
+            return False
+    r = subprocess.run(["git", "show", f"FETCH_HEAD:{path}"], cwd=cache_dir, stdout=out_file, stderr=subprocess.PIPE)
+    return r.returncode == 0
+
+
 def fetch(repo: str, ref: str, path: str, dest: Path) -> bool:
     dest.parent.mkdir(parents=True, exist_ok=True)
     tmp = dest.with_suffix(dest.suffix + ".partial")
     try:
-        if shutil.which("gh"):
+        ok = False
+        if shutil.which("git"):
+            with tmp.open("wb") as out:
+                ok = _git_fetch_blob(repo, ref, path, out) and tmp.stat().st_size > 0
+        if not ok and shutil.which("gh"):
             with tmp.open("wb") as out:
                 r = subprocess.run(
                     ["gh", "api", f"repos/{repo}/contents/{path}?ref={ref}",
@@ -78,7 +99,8 @@ def fetch(repo: str, ref: str, path: str, dest: Path) -> bool:
             if r.returncode != 0:
                 sys.stderr.write(f"  gh api failed for {repo}/{path}: {r.stderr.decode()[:200]}\n")
                 return False
-        else:  # pragma: no cover - the sandbox always has gh
+            ok = tmp.stat().st_size > 0
+        if not ok:  # pragma: no cover - fallback
             import requests
 
             url = f"https://raw.githubusercontent.com/{repo}/{ref}/{path}"

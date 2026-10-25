@@ -443,8 +443,8 @@
   }
  },
  "submission_name": "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-zeros.tif",
- "note": "GEMSDOE25 KDC: B2+17720 off-registry dots | holdout FAIL, not slot-approved, no slot | unscored | id f74e9238cc1c",
- "note_chars": 113,
+ "note": "GEMSDOE25 KDC B2+17720 | strict lane FAIL, holdout FAIL; no slot; unscored; not slot-approved | id f74e9238cc1c",
+ "note_chars": 111,
  "projection": {
   "label": "PROJECTION (not a score)",
   "range": "0.249\u20130.312 depending on live complement efficiency R (0.2\u20130.64) and truth-size assumptions",
@@ -452,6 +452,15 @@
   "evidence": "evidence/kdc_build/projection.json"
  },
  "verdict": "negative",
- "verdict_reason": "The pre-registered holdout gate failed for both the primary (K_self, paired \u22120.0007, 2/4 folds) and the E2 variant (K_flank, \u22120.0026). The file is unique, format-valid and lane-clean, but it is NOT slot-cleared; H33-2-B2 (0.2778, owner-reported) remains the strongest known file.",
- "deviation_from_preregistration": "knowledge/17 \u00a73 permits the live build only if E1 and E2 pass. Both failed, but the file was built anyway because the owner's brief makes a unique downloadable TIF the highest-urgency deliverable. It is labelled verdict negative / NOT slot-cleared everywhere; it is not a promoted candidate (IR-25-BUILD-DESPITE-FAILED-GATE)."
+ "verdict_reason": "The pre-registered holdout gate failed for both the primary (K_self, paired \u22120.0007, 2/4 folds) and the E2 variant (K_flank, \u22120.0026). The file is unique by content and format-valid, and lane-clean against the 31 other-site registry rasters (worst 0.680). Under the strict literal lane policy (PR #14) it fails on the dense r13 lattice (99.9 %), as every current file does. DO NOT SUBMIT; H33-2-B2 (owner-reported 0.2778) remains the strongest known file.",
+ "deviation_from_preregistration": "knowledge/17 \u00a73 permits the live build only if E1 and E2 pass. Both failed, but the file was built anyway because the owner's brief makes a unique downloadable TIF the highest-urgency deliverable. It is labelled verdict negative / NOT slot-cleared everywhere; it is not a promoted candidate (IR-25-BUILD-DESPITE-FAILED-GATE).",
+ "strict_lane": {
+  "policy": "literal 70 % / 3 px, no density exception (PR #14)",
+  "lattice_file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+  "lattice_overlap": 0.9994,
+  "lane_clear": false,
+  "strict_verdict": "DUPLICATE LANE / STOP (r13 lattice)",
+  "worst_other_registry_overlap": 0.68,
+  "other_registry_rasters": 31
+ }
 }

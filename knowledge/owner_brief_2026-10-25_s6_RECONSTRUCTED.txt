@@ -1,7 +1,7 @@
 PROVENANCE WARNING (IR-25-BRIEF-RECONSTRUCTED): this is the owner's 2026-10-25 brief as RECONSTRUCTED by the agent after
 its working context was condensed. It is NOT guaranteed to be verbatim (whitespace, link markup and possibly wording may differ).
 Cross-check: the 21 owner-reported scores independently transcribed into registry/top_scorer_sources.json all appear here (21/21).
-Owner action: paste the original message over this file to make it authoritative. Older verbatim brief: knowledge/owner_brief_verbatim.txt.
+Owner action: paste the original message over this file to make it authoritative. Older verbatim brief: knowledge/owner_brief_verbatim.txt. Shorter parallel-session copy: knowledge/owner_brief_2026-10-25_verbatim.txt.
 ==================================================================================================================
 Review the repo.
 

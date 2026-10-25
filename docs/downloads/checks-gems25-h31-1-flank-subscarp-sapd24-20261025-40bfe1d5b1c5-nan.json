@@ -1,0 +1,170 @@
+{
+ "file": "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+ "path": "docs/downloads/gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+ "bytes": 1612612,
+ "sha256": "41461ce0d0a6cb2d765e53fa490114d3f6e6344ca6f459b811f55bddbf7d2858",
+ "content_id": "40bfe1d5b1c5",
+ "positive_pixels": 49041,
+ "format_ok": true,
+ "hard_failures": [],
+ "official_nan_outside": true,
+ "footprint_pixels": 5167373,
+ "checks": {
+  "template_matches_expected_grid_and_footprint": {
+   "pass_": true,
+   "detail": "(3730, 3292), footprint 5,167,373 px",
+   "hard": true
+  },
+  "single_band": {
+   "pass_": true,
+   "detail": "count=1",
+   "hard": true
+  },
+  "dtype_float32": {
+   "pass_": true,
+   "detail": "dtypes=('float32',)",
+   "hard": true
+  },
+  "crs_epsg_32611": {
+   "pass_": true,
+   "detail": "32611",
+   "hard": true
+  },
+  "shape_matches_template": {
+   "pass_": true,
+   "detail": "(3730, 3292) vs (3730, 3292)",
+   "hard": true
+  },
+  "geotransform_matches_template": {
+   "pass_": true,
+   "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+   "hard": true
+  },
+  "footprint_all_finite": {
+   "pass_": true,
+   "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+   "hard": true
+  },
+  "footprint_values_in_0_1": {
+   "pass_": true,
+   "detail": "min=0.0 max=1.0",
+   "hard": true
+  },
+  "outside_footprint_is_nan_official": {
+   "pass_": true,
+   "detail": "7,111,787/7,111,787 NaN",
+   "hard": false
+  },
+  "outside_footprint_is_nan_or_zero": {
+   "pass_": true,
+   "detail": "NaN (official) or 0 (fallback) outside",
+   "hard": true
+  },
+  "nan_mask_identical_to_template": {
+   "pass_": true,
+   "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+   "hard": true
+  },
+  "nodata_tag": {
+   "pass_": true,
+   "detail": "nodata=nan",
+   "hard": false
+  },
+  "variant_nan_aware_whole_array": {
+   "pass_": true,
+   "detail": "np.nanmin/np.nanmax over the whole array",
+   "hard": true
+  },
+  "variant_masked_read": {
+   "pass_": true,
+   "detail": "rasterio masked read",
+   "hard": true
+  },
+  "variant_strict_whole_array_no_nan": {
+   "pass_": false,
+   "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+   "hard": false
+  },
+  "profile_matches_template": {
+   "pass_": true,
+   "detail": "compress=lzw (template lzw)",
+   "hard": false
+  }
+ },
+ "note": "GEMSDOE25 H31-1 | flank-shielded subscarp sapd2.4; unscored; not slot-approved | id 40bfe1d5b1c5 | no slot",
+ "fallback": {
+  "file": "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
+  "path": "docs/downloads/gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
+  "bytes": 846418,
+  "sha256": "db409d0dc8f636963548c8e575ec6acfde03ad8eec06f6a22fe0a869ebdbe092",
+  "positive_pixels": 49041,
+  "format_ok": true,
+  "note": "GEMSDOE25 H31-1 zeros | format fallback, zeros outside; unscored; not slot-approved | id 40bfe1d5b1c5 | no slot"
+ },
+ "distance_to_catalogue_profile": {
+  "on_catalogue_0px": 0,
+  "d_in_0_1px": 0,
+  "d_in_1_2px": 432,
+  "d_in_2_2p5px": 341,
+  "d_in_2p5_3px": 2661,
+  "d_gt_3px": 45607,
+  "min_dist_to_catalogue_px": 2.0,
+  "p5_dist_to_catalogue_px": 3.0,
+  "median_dist_to_catalogue_px": 6.082762530298219,
+  "hug_share_within_3px": 0.07002304194449542
+ },
+ "shield_diagnostics": {
+  "raw_ridge_candidates": 1097918,
+  "shielded_ridge_candidates": 1074233,
+  "flank_removed_ridges": 23685,
+  "tip_preserved_in_flank": 3498,
+  "selected_top_k": 180858
+ },
+ "offflank_halo_diagnostics": {
+  "visible_pixels": 60988,
+  "flank_suppressed_fraction": 0.04464047785983322,
+  "nonzero_fraction": 0.9439161833295178,
+  "mean_value": 0.24332484602928162,
+  "max_value": 0.9549776315689087
+ },
+ "duplicate_lane_check": {
+  "passed": true,
+  "n_registry_rasters_checked": 57,
+  "max_spearman_surface": {
+   "raster_id": "artifacts/h23-a-6pct.tif",
+   "value": 0.1825529031767792
+  },
+  "max_dot_share_within_3px": {
+   "raster_id": "scored/gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+   "value": 0.654370832568667
+  },
+  "thresholds": {
+   "max_spearman_surface": 0.9,
+   "max_dot_share_within_3px": 0.7
+  }
+ },
+ "build": {
+  "hypothesis": "H31-1 (M1_C1)",
+  "base_families": "BDE",
+  "addons": [
+   "X1_K",
+   "X1_ThK",
+   "X1_UK",
+   "X2_compat",
+   "X2_compat_coh",
+   "X3_gm",
+   "X3_gd"
+  ],
+  "extra_features": [
+   "H27_tip",
+   "H31_subscarp_concord",
+   "H31_offflank_tip_halo"
+  ],
+  "draws": 3,
+  "kfrac": 0.035,
+  "min_dist_px": 2.4,
+  "flank_radius_px": 2.5,
+  "tip_preserve_threshold": 0.05,
+  "seconds": 44.7
+ }
+}

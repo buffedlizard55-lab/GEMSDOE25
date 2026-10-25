@@ -1,5 +1,7 @@
 # GEMSDOE32 H33-2-B2: forensic review and safe next steps (2026-10-25)
 
+> **Update (2026-10-25 continuation on `arena/30eec392-gemsdoe25`):** After fixing the GitHub REST API rate-limit fallback in `scripts/restore_data.py` and `scripts/restore_artifacts.py` (`IR-25-RESTORE-API-RATELIMIT`), all 22 manifest inputs, all 6 derived caches (`evidence/work_cache_hashes.json` matched 6/6), 30 registry rasters, and 13 focus-site rasters (`GEMSDOE24..36`) were restored and verified on disk. See [`14_preregistered_h31_flank_shielded_subscarp_factorial_2026-10-25.md`](14_preregistered_h31_flank_shielded_subscarp_factorial_2026-10-25.md) for the pixel-exact 9-site forensic proof and H31-1 preregistration, and [`15_h31_outcomes_and_run_card_2026-10-25.md`](15_h31_outcomes_and_run_card_2026-10-25.md) for the completed H31-1 screen + confirmation holdout results, the unique H31-1 GeoTIFF (`40bfe1d5b1c5`), the 57-raster duplicate-lane audit, and the completed Protocol Rule 5 Run Card (`evidence/h31_run_card_2026-10-25.json`).
+
 ## Evidence boundary
 
 This note separates (1) the user-provided score claim, (2) the owner-published GEMSDOE32 repository artifacts, and (3) computations/results in this checkout. The official competition has not confirmed the score or artifact identity. No DrivenData page was contacted. Repository-hosted receipts and holdout values are secondary, owner-generated evidence, not organizer receipts.

@@ -88,7 +88,7 @@
    "hard": false
   }
  },
- "note": "GEMSDOE25 H31-C | sapd2.4, 3.5%, BDE+7 | unscored; not slot-approved; no slot | id 9edd6bed8268",
+ "note": "GEMSDOE25 H31-C | lane FAIL; unscored; no slot; not slot-approved; do not submit | id 9edd6bed8268",
  "summary": "Full-footprint emission of the H28 comparator configuration (raw-score ridge candidates, score-ordered dots at 2.4 px, 3.5% budget, base BDE plus seven add-on columns), trained on 3 pseudo-hidden draws. Holdout: at parity with the same-run control (H31 screen, 8 cells).",
  "gate_summary": "H31 screen: A1 negative; control itself is the reference; not slot-eligible",
  "fallback": {

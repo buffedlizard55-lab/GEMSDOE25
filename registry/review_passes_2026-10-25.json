@@ -70,6 +70,14 @@
      "No file beats 0.2778 on evidence; a new detector (1 m lidar) is needed and is blocked in this sandbox.",
      "The owner should replace the reconstructed brief with the original text."
     ]
+   },
+   "integration_with_parallel_prs_13_15": {
+    "done": [
+     "Merged origin/main (PRs #13\u2013#15 from parallel sessions); resolved 12 conflicts by taking main as the base and re-applying this session's changes; no parallel artifact deleted.",
+     "Adopted main's strict lane policy: the KDC file is DO NOT SUBMIT (r13 lattice 99.9 %); tests encode it.",
+     "Audited the parallel GEM-FUSE1: gated against a weak control; keeps 1.2 % of B2 (IR-25-GEM-FUSE1-WEAK-CONTROL).",
+     "Featured the KDC download on objective grounds (only file containing all B2 dots; IR-25-FEATURED-DOWNLOAD-RATIONALE)."
+    ]
    }
   }
  }
