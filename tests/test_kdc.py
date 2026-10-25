@@ -11,7 +11,9 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 SUBS = json.loads((ROOT / "registry" / "submissions.json").read_text())["files"]
-PRIMARY = next(s for s in SUBS if s["role"] == "primary")
+# The KDC file was the featured primary in session 6; session 7 features XG1 (also negative).
+# These tests are KDC-specific, so select the KDC registry entry by id, not by featured role.
+PRIMARY = next(s for s in SUBS if s["id"] == "kdc-b2-complement")
 CARD = json.loads((ROOT / "registry" / "run_card_kdc_2026-10-25.json").read_text())
 RECEIPT = json.loads((ROOT / "docs" / "downloads" / PRIMARY["receipt"]).read_text())
 GATE_MIN_GAIN, GATE_MIN_POS, GATE_WORST, R_MIN = 0.001, 3, -0.01, 0.50  # knowledge/17 §2 (frozen)

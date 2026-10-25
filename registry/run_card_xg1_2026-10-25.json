@@ -1,0 +1,283 @@
+{
+ "run_card_version": 1,
+ "date_utc": "2026-10-25",
+ "session_branch": "arena/60dab308-gemsdoe25",
+ "hypothesis": "XG1: a buried fault offsets density, magnetization and conductive-base depth across the same plane, so the horizontal gradients of gravity, RTP magnetics and log depth-to-base are co-located and parallel (cross-gradient ~ 0) even where alluvial cover removes every scarp; adding those three alignment-ridge columns to the validated H35 detector raises credit per emitted pixel on catalogue-missing faults.",
+ "mechanism": "DTI = TP/(0.2(TP+FP)+0.8N); at fixed emission (sapd2.4, 3.5% budget) only detector ranking changes. XG columns are ridge_strength(|cos between gradient vectors| x min p99-normalised gradient magnitude) for the (gravity,RTP), (gravity,depth), (RTP,depth) pairs at sigma=1.5 px \u2014 surface-free, catalogue-free.",
+ "non_fault_process_that_could_mimic_it": "Lithologic/intrusive contacts and caldera ring margins step gravity, magnetics and apparent basement depth along one boundary with parallel gradients and no fault offset; common flight-line levelling can also align gravity/RTP gradient artefacts.",
+ "pre_registration": "knowledge/21_preregistered_xg1_cross_gradient_2026-10-25.md (commit da478e6, before any fit)",
+ "holdout": {
+  "label": "HOLDOUT-DTI",
+  "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px/300m) via gems25.experiment.Cell.evaluate",
+  "stage_summaries": "screen draws 14-15 gain -0.0008 (1/4 folds); confirmation not run (frozen rule: only after a screen pass)",
+  "arms": {
+   "C": {
+    "fold_means": [
+     0.1507147727217618,
+     0.13014187023365814,
+     0.1435487425342165,
+     0.1545539498848961
+    ],
+    "mean": 0.14473983384363315,
+    "ci95": [
+     0.12764032104635945,
+     0.16183934664090685
+    ],
+    "pooled_dti": 0.14462937094511402
+   },
+   "B35": {
+    "fold_means": [
+     0.16168268340461445,
+     0.14528924073041305,
+     0.1454238321056693,
+     0.15034394858979638
+    ],
+    "mean": 0.1506849262076233,
+    "ci95": [
+     0.13843458911188788,
+     0.16293526330335872
+    ],
+    "pooled_dti": 0.1499574421858246
+   },
+   "X": {
+    "fold_means": [
+     0.16024573050456975,
+     0.14456215282657187,
+     0.14427962633089958,
+     0.15060290228253354
+    ],
+    "mean": 0.14992260298614368,
+    "ci95": [
+     0.1380305695559787,
+     0.16181463641630867
+    ],
+    "pooled_dti": 0.1491557607378471
+   },
+   "Xonly": {
+    "fold_means": [
+     0.15236997852485068,
+     0.13065033673883858,
+     0.14372929723310068,
+     0.1470229695415893
+    ],
+    "mean": 0.1434431455095948,
+    "ci95": [
+     0.12873919136980028,
+     0.15814709964938933
+    ],
+    "pooled_dti": 0.14320829173254143
+   }
+  },
+  "primary_X_vs_B35": {
+   "per_fold": [
+    -0.0014369529000446968,
+    -0.0007270879038411837,
+    -0.0011442057747697298,
+    0.00025895369273715163
+   ],
+   "mean": -0.0007623232214796147,
+   "ci95": [
+    -0.0019405256113474742,
+    0.00041587916838824483
+   ],
+   "folds_positive": 1,
+   "worst_fold": -0.0014369529000446968,
+   "hug_per_fold": [
+    0.007172469541195978,
+    0.002726764420009617,
+    -0.0018382695858938647,
+    -0.0003905574031794201
+   ],
+   "hug_mean": 0.0019176017430330775,
+   "pooled_delta": -0.0008016814479775147
+  },
+  "withheld_positives_per_fold": [
+   1905,
+   2333,
+   3689,
+   3164
+  ],
+  "withheld_positives_total": 22182,
+  "leakage_canary": {
+   "max_effective_feature_auc": 0.5470426741095162,
+   "by_feature": {
+    "XG_gm_align_ridge": 0.5390274131674443,
+    "XG_gd_align_ridge": 0.5469549086757991,
+    "XG_md_align_ridge": 0.5470426741095162
+   },
+   "cap": 0.9,
+   "passed": true
+  },
+  "screen_passed": false,
+  "confirmation_passed": null,
+  "note": "Catalogue-gap proxy (hidden = withheld catalogue components); not a competition score."
+ },
+ "correlation_overlap_vs_registry": {
+  "lane_clear": false,
+  "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+  "lattice_overlap": 1.0,
+  "worst_other_registry_overlap": 0.931825,
+  "worst_other_registry_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+  "worst_abs_spearman_final": 0.3626,
+  "worst_abs_spearman_surface": 0.152019,
+  "overlap_vs_gemsdoe32_b2": 0.313937,
+  "flagged_substantive": [
+   "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+   "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
+   "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+   "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+   "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+   "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
+   "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+   "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif"
+  ],
+  "registry_checked": 43,
+  "lane_summary": "strict lane gate (literal) vs the dense r13 lattice: 100.0% of dots within 3 px; vs 42 substantive registry rasters worst 3-px dot overlap 0.932 (gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif), worst final-dot |Spearman| 0.363, pre-placement surface worst |Spearman| 0.152; overlap vs GEMSDOE32 B2 (0.2778) 0.314; FLAGGED (own unscored lineage): h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5, h31-aniso-scarp-b2-d2-8-20261025-c213681203f6, h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268, h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719",
+  "lane_receipt": "docs/downloads/lane-gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.json"
+ },
+ "raster": {
+  "file": "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.tif",
+  "sha256": "e1b144f0351ce857579cfdb7696cc0d89ce2aa34eecefd0c88fde71c642c289d",
+  "content_id": "52e65fb521f9",
+  "positive_pixels": 48669,
+  "nan_twin": {
+   "file": "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-nan.tif",
+   "sha256": "15073e72f04a6371d8f4169a93d7ffd9e98f546bc436a53c7b47d32e0502e032"
+  },
+  "zip": {
+   "file": "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.zip",
+   "path": "docs/downloads/gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.zip",
+   "bytes": 209763
+  }
+ },
+ "validator": {
+  "hard_failures": [],
+  "ok_to_upload": true,
+  "checks": {
+   "template_matches_expected_grid_and_footprint": {
+    "pass_": true,
+    "detail": "(3730, 3292), footprint 5,167,373 px",
+    "hard": true
+   },
+   "single_band": {
+    "pass_": true,
+    "detail": "count=1",
+    "hard": true
+   },
+   "dtype_float32": {
+    "pass_": true,
+    "detail": "dtypes=('float32',)",
+    "hard": true
+   },
+   "crs_epsg_32611": {
+    "pass_": true,
+    "detail": "32611",
+    "hard": true
+   },
+   "shape_matches_template": {
+    "pass_": true,
+    "detail": "(3730, 3292) vs (3730, 3292)",
+    "hard": true
+   },
+   "geotransform_matches_template": {
+    "pass_": true,
+    "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+    "hard": true
+   },
+   "footprint_all_finite": {
+    "pass_": true,
+    "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+    "hard": true
+   },
+   "footprint_values_in_0_1": {
+    "pass_": true,
+    "detail": "min=0.0 max=1.0",
+    "hard": true
+   },
+   "outside_footprint_is_nan_official": {
+    "pass_": false,
+    "detail": "0/7,111,787 NaN",
+    "hard": false
+   },
+   "outside_footprint_is_nan_or_zero": {
+    "pass_": true,
+    "detail": "NaN (official) or 0 (fallback) outside",
+    "hard": true
+   },
+   "nan_mask_identical_to_template": {
+    "pass_": true,
+    "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+    "hard": true
+   },
+   "nodata_tag": {
+    "pass_": true,
+    "detail": "nodata=None",
+    "hard": false
+   },
+   "variant_nan_aware_whole_array": {
+    "pass_": true,
+    "detail": "np.nanmin/np.nanmax over the whole array",
+    "hard": true
+   },
+   "variant_masked_read": {
+    "pass_": true,
+    "detail": "rasterio masked read",
+    "hard": true
+   },
+   "variant_strict_whole_array_no_nan": {
+    "pass_": true,
+    "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+    "hard": false
+   },
+   "profile_matches_template": {
+    "pass_": true,
+    "detail": "compress=lzw (template lzw)",
+    "hard": false
+   }
+  },
+  "receipt": "docs/downloads/checks-gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.json"
+ },
+ "submission_name": "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.tif",
+ "driven_data_note": "GEMSDOE25 XG1 crossgrad sapd2.4 k3.5% | holdout FAIL -0.0008; unscored; not slot-approved; no slot | id 52e65fb521f9",
+ "note_chars": 116,
+ "verdict": "negative",
+ "slot_approved": false,
+ "ok_to_download": true,
+ "ok_to_submit_slot": false,
+ "slot_reason": "holdout gate: screen FAIL, confirmation not run (screen failed); substantive lane flags (own lineage): h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5, h31-aniso-scarp-b2-d2-8-20261025-c213681203f6, h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268, h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719; strict lane gate (literal) vs the dense r13 lattice: 100.0% of dots within 3 px (IR-25-LANE-DENSITY)",
+ "build": {
+  "base": "BDE",
+  "extras": [
+   "X1_K",
+   "X1_ThK",
+   "X1_UK",
+   "X2_compat",
+   "X2_compat_coh",
+   "X3_gm",
+   "X3_gd"
+  ],
+  "tip_column": "H27_tip",
+  "h34_columns": [
+   "H34_resmag_shallow_ridge",
+   "H34_resmag_mid_ridge",
+   "H34_baseflex_ridge"
+  ],
+  "xg_columns": [
+   "XG_gm_align_ridge",
+   "XG_gd_align_ridge",
+   "XG_md_align_ridge"
+  ],
+  "kfrac": 0.035,
+  "min_dist": 2.4,
+  "draws": 3,
+  "draw_seeds": [
+   424200,
+   424201,
+   424202
+  ],
+  "seconds": 215,
+  "utc": "2026-10-25T22:19:27.681356+00:00",
+  "scores": "data/work/xg1_full_scores.npy (gitignored cache)",
+  "preregistration": "knowledge/21_preregistered_xg1_cross_gradient_2026-10-25.md"
+ }
+}

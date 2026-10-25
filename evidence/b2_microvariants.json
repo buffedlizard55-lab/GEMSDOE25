@@ -1,0 +1,322 @@
+{
+ "generated_by": "scripts/analyze_b2_microvariants.py",
+ "evidence_class": "OWNER (scores are owner-reported claims in registry/live_scores.json; not organizer receipts)",
+ "anchor": {
+  "label": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+  "owner_reported_score": 0.2778,
+  "dots": 37654
+ },
+ "selection": "label contains -b2/-b25/-c25/b224, first 20YYMMDD date in label >= 20261005, scored, not the anchor",
+ "rehosts": [
+  {
+   "project": "GEMSDOE50",
+   "label": "h50-b2-d28-37654-20261005T195308Z-c55bafc4-zeros",
+   "owner_reported_score": 0.2778,
+   "delta_vs_b2": 0.0,
+   "dots_from_label": 37654,
+   "delta_dots_vs_b2": 0,
+   "note": "re-host of GEMSDOE32 B=2 (sha256 prefix c55bafc4)",
+   "status": "owner-reported",
+   "is_b2_rehost": true,
+   "independent_detector": false
+  },
+  {
+   "project": "GEMSDOE58",
+   "label": "h58-1-b2-200m-moat-d28-37654-20261010T012000Z-c55bafc4-zeros",
+   "owner_reported_score": 0.2778,
+   "delta_vs_b2": 0.0,
+   "dots_from_label": 37654,
+   "delta_dots_vs_b2": 0,
+   "note": "re-host of GEMSDOE32 B=2",
+   "status": "owner-reported",
+   "is_b2_rehost": true,
+   "independent_detector": false
+  }
+ ],
+ "micro_variants": [
+  {
+   "project": "GEMSDOE78",
+   "label": "h78-1-b2-tip-scarp-bridge-37758-20261018T220000Z-935455d1-zeros",
+   "owner_reported_score": 0.2775,
+   "delta_vs_b2": -0.0003,
+   "dots_from_label": 37758,
+   "delta_dots_vs_b2": 104,
+   "note": "B=2 base + 104 tip-scarp bridge dots",
+   "status": "owner-reported",
+   "is_b2_rehost": false,
+   "independent_detector": false
+  },
+  {
+   "project": "GEMSDOE81",
+   "label": "h81-1-b2-strict-relay-54-37708-20261020T060000Z-851c36de-zeros",
+   "owner_reported_score": 0.2775,
+   "delta_vs_b2": -0.0003,
+   "dots_from_label": 37708,
+   "delta_dots_vs_b2": 54,
+   "note": "B=2 base + 54 strict relay dots",
+   "status": "owner-reported",
+   "is_b2_rehost": false,
+   "independent_detector": false
+  },
+  {
+   "project": "GEMSDOE79",
+   "label": "h79-1-b2-scarp-tip-splay-37988-20261019T060000Z-87783287-zeros",
+   "owner_reported_score": 0.2773,
+   "delta_vs_b2": -0.0005,
+   "dots_from_label": 37988,
+   "delta_dots_vs_b2": 334,
+   "note": "",
+   "status": "owner-reported",
+   "is_b2_rehost": false,
+   "independent_detector": false
+  },
+  {
+   "project": "GEMSDOE68",
+   "label": "h68-3-b2-interior-3px-uncorrob-37451-20261014T150000Z-2fd09c17-zeros",
+   "owner_reported_score": 0.2768,
+   "delta_vs_b2": -0.001,
+   "dots_from_label": 37451,
+   "delta_dots_vs_b2": -203,
+   "note": "",
+   "status": "owner-reported",
+   "is_b2_rehost": false,
+   "independent_detector": false
+  },
+  {
+   "project": "GEMSDOE57",
+   "label": "h57-b2-splay-corrob-36869-20261009T193000Z-bb20c457-zeros",
+   "owner_reported_score": 0.2767,
+   "delta_vs_b2": -0.0011,
+   "dots_from_label": 36869,
+   "delta_dots_vs_b2": -785,
+   "note": "",
+   "status": "owner-reported",
+   "is_b2_rehost": false,
+   "independent_detector": false
+  },
+  {
+   "project": "GEMSDOE65",
+   "label": "h65-2-b224-r3-189-37465-20261013T030000Z-0d7b56a6-zeros",
+   "owner_reported_score": 0.2767,
+   "delta_vs_b2": -0.0011,
+   "dots_from_label": 37465,
+   "delta_dots_vs_b2": -189,
+   "note": "",
+   "status": "owner-reported",
+   "is_b2_rehost": false,
+   "independent_detector": false
+  },
+  {
+   "project": "GEMSDOE56",
+   "label": "h56-2-b2-aniso3-36459-20261009T120000Z-b2a9d03f-zeros",
+   "owner_reported_score": 0.2763,
+   "delta_vs_b2": -0.0015,
+   "dots_from_label": 36459,
+   "delta_dots_vs_b2": -1195,
+   "note": "",
+   "status": "owner-reported",
+   "is_b2_rehost": false,
+   "independent_detector": false
+  },
+  {
+   "project": "GEMSDOE52",
+   "label": "h52-b25-aniso-corrob-36345-20261007T222749Z-1ba501c5-zeros",
+   "owner_reported_score": 0.2762,
+   "delta_vs_b2": -0.0016,
+   "dots_from_label": 36345,
+   "delta_dots_vs_b2": -1309,
+   "note": "",
+   "status": "owner-reported",
+   "is_b2_rehost": false,
+   "independent_detector": false
+  },
+  {
+   "project": "GEMSDOE71",
+   "label": "h71-1-b2-flank-splay-prune-37401-20261015T120000Z-b769996d-zeros",
+   "owner_reported_score": 0.2762,
+   "delta_vs_b2": -0.0016,
+   "dots_from_label": 37401,
+   "delta_dots_vs_b2": -253,
+   "note": "",
+   "status": "owner-reported",
+   "is_b2_rehost": false,
+   "independent_detector": false
+  },
+  {
+   "project": "GEMSDOE66",
+   "label": "h66-1-b2-uncorrob-c0067-37010-20261013T183000Z-9197a296-zeros",
+   "owner_reported_score": 0.2761,
+   "delta_vs_b2": -0.0017,
+   "dots_from_label": 37010,
+   "delta_dots_vs_b2": -644,
+   "note": "",
+   "status": "owner-reported",
+   "is_b2_rehost": false,
+   "independent_detector": false
+  },
+  {
+   "project": "GEMSDOE67",
+   "label": "h67-1-b2-playa-uncorrob-prune-37246-20261014T023500Z-98cc8dc8-zeros",
+   "owner_reported_score": 0.2761,
+   "delta_vs_b2": -0.0017,
+   "dots_from_label": 37246,
+   "delta_dots_vs_b2": -408,
+   "note": "",
+   "status": "owner-reported",
+   "is_b2_rehost": false,
+   "independent_detector": false
+  },
+  {
+   "project": "GEMSDOE60",
+   "label": "h60-b2-d29-35790-20261010T184500Z-4ca90e26-zeros",
+   "owner_reported_score": 0.2755,
+   "delta_vs_b2": -0.0023,
+   "dots_from_label": 35790,
+   "delta_dots_vs_b2": -1864,
+   "note": "",
+   "status": "owner-reported",
+   "is_b2_rehost": false,
+   "independent_detector": false
+  },
+  {
+   "project": "GEMSDOE51",
+   "label": "h41-b25-aniso-scarp-corrob-20261007T161806Z-74bcfa6e-zeros",
+   "owner_reported_score": 0.2753,
+   "delta_vs_b2": -0.0025,
+   "dots_from_label": null,
+   "delta_dots_vs_b2": null,
+   "note": "",
+   "status": "owner-reported",
+   "is_b2_rehost": false,
+   "independent_detector": false
+  },
+  {
+   "project": "GEMSDOE53",
+   "label": "h53-scarp-corrob-c25-36339-20261008T180500Z-55ef5635-zeros",
+   "owner_reported_score": 0.2747,
+   "delta_vs_b2": -0.0031,
+   "dots_from_label": 36339,
+   "delta_dots_vs_b2": -1315,
+   "note": "",
+   "status": "owner-reported",
+   "is_b2_rehost": false,
+   "independent_detector": false
+  },
+  {
+   "project": "GEMSDOE59",
+   "label": "h59-b2-d31-aniso-33106-20261010T120000Z-aa0b7e91-zeros",
+   "owner_reported_score": 0.272,
+   "delta_vs_b2": -0.0058,
+   "dots_from_label": 33106,
+   "delta_dots_vs_b2": -4548,
+   "note": "",
+   "status": "owner-reported",
+   "is_b2_rehost": false,
+   "independent_detector": false
+  }
+ ],
+ "independent_detectors": [
+  {
+   "project": "GEMSDOE70",
+   "label": "h70-oof-lgbm-scarp-geophys-b2-d28-36863-20261015T060000Z-a91e882b-zeros",
+   "owner_reported_score": 0.2478,
+   "delta_vs_b2": -0.03,
+   "dots_from_label": 36863,
+   "delta_dots_vs_b2": -791,
+   "note": "independent OOF LightGBM detector with B=2 and d=2.8",
+   "status": "owner-reported",
+   "is_b2_rehost": false,
+   "independent_detector": true
+  },
+  {
+   "project": "GEMSDOE76",
+   "label": "h76-msgf-oof-b2-d28-37868-20261017T220000Z-d3478886-zeros",
+   "owner_reported_score": 0.2343,
+   "delta_vs_b2": -0.0435,
+   "dots_from_label": 37868,
+   "delta_dots_vs_b2": 214,
+   "note": "independent MSGF OOF detector",
+   "status": "owner-reported",
+   "is_b2_rehost": false,
+   "independent_detector": true
+  },
+  {
+   "project": "GEMSDOE91",
+   "label": "h91-hybrid-topo-geophys-d28-b2-37737-20261025T020000Z-f538baeb-zeros",
+   "owner_reported_score": 0.1823,
+   "delta_vs_b2": -0.0955,
+   "dots_from_label": 37737,
+   "delta_dots_vs_b2": 83,
+   "note": "independent hybrid topo-geophys detector (<70% overlap regime)",
+   "status": "owner-reported",
+   "is_b2_rehost": false,
+   "independent_detector": true
+  },
+  {
+   "project": "GEMSDOE92",
+   "label": "h92-tpcr-pinn-b2-d28-37939-20261025T120000Z-bc24350b-zeros",
+   "owner_reported_score": 0.1816,
+   "delta_vs_b2": -0.0962,
+   "dots_from_label": 37939,
+   "delta_dots_vs_b2": 285,
+   "note": "independent TPCR-PINN detector (<70% overlap regime)",
+   "status": "owner-reported",
+   "is_b2_rehost": false,
+   "independent_detector": true
+  }
+ ],
+ "summary": {
+  "micro_variants": {
+   "n": 15,
+   "delta_min": -0.0058,
+   "delta_max": -0.0003,
+   "all_below_b2": true
+  },
+  "independent_detectors": {
+   "n": 4,
+   "delta_min": -0.0962,
+   "delta_max": -0.03,
+   "all_below_b2": true
+  },
+  "rehosts_at_anchor_score": 2
+ },
+ "focus_sites_highest": {
+  "GEMSDOE24": {
+   "owner_reported_score": 0.2477,
+   "label": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan"
+  },
+  "GEMSDOE25": {
+   "owner_reported_score": 0.26,
+   "label": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan"
+  },
+  "GEMSDOE27": {
+   "owner_reported_score": 0.2449,
+   "label": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan"
+  },
+  "GEMSDOE28": {
+   "owner_reported_score": 0.271,
+   "label": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan"
+  },
+  "GEMSDOE30": {
+   "owner_reported_score": 0.26,
+   "label": "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca"
+  },
+  "GEMSDOE31": {
+   "owner_reported_score": 0.2708,
+   "label": "h27-4-solo-d28-20261004-8acb75e1-nan"
+  },
+  "GEMSDOE32": {
+   "owner_reported_score": 0.2778,
+   "label": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros"
+  },
+  "GEMSDOE33": {
+   "owner_reported_score": 0.2632,
+   "label": "h33d-analog-tip-stepover-r30-20261004-cb490425926e"
+  },
+  "GEMSDOE36": {
+   "owner_reported_score": 0.275,
+   "label": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros"
+  }
+ },
+ "marginal_note": "For a pure addition to / deletion from B2, the sign of the score change alone decides whether the changed set was below/above the break-even ratio tau = alpha*DTI/(1-alpha*DTI) (gems25.metric.marginal_inclusion_ratio); no truth-size assumption is needed for that sign claim."
+}

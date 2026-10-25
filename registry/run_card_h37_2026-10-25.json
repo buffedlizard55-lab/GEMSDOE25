@@ -136,7 +136,7 @@
    "overlap": 0.7,
    "radius_px": 3.0
   },
-  "registry_checked": 27,
+  "registry_checked": 46,
   "surface_worst_abs_spearman_before_placement": 0.151776,
   "substantive_scored_worst_overlap": 0.682401,
   "substantive_scored_worst_abs_spearman_final": 0.046872,
@@ -163,7 +163,9 @@
    "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
    "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
    "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
-   "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif"
+   "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif",
+   "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-nan.tif",
+   "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.tif"
   ],
   "flagged_lane_density_aware": [
    "gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
@@ -174,7 +176,9 @@
    "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
    "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
    "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
-   "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif"
+   "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif",
+   "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-nan.tif",
+   "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.tif"
   ],
   "sha_in_artifact_ledger": false,
   "lane_verdict": "UNIQUE BY CONTENT vs other-site substantive rasters; DUPLICATE LANE vs own H31/H35 lineage (same detector family) -- supersession tier, never submit alongside them; lattice literal flag is non-discriminative (coverage 0.9987)"
