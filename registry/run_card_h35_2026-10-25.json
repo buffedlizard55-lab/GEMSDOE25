@@ -367,7 +367,8 @@
    "gems25-h31-1-flank-subscarp": 0.823,
    "gems25-h31-control": 0.89,
    "13gems r13 lattice": 1.0,
-   "checker": "scripts/check_lane_duplicates.py re-run on merged tree; receipt docs/downloads/lane-gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.json"
+   "checker": "scripts/check_lane_duplicates.py re-run on merged tree; receipt docs/downloads/lane-gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.json",
+   "gems25-h31-aniso-scarp (PR #17, merged during PR #18)": 0.753
   },
   "superseded_verdict_field": "verdict (below) kept for provenance; see verdict_merged_policy",
   "verdict_merged_policy": "negative"

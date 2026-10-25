@@ -155,6 +155,236 @@
    "parent": "GEMSDOE32 H33-2-B2 (all dots) + GEMSDOE25 full-catalogue HGB complement"
   },
   {
+   "id": "h31-aniso-scarp-b2",
+   "role": "alternate",
+   "file": "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+   "path": "docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+   "bytes": 1602328,
+   "sha256": "22a9d729bec45b72a7309380a0da7d147d79fadcdf1472259ca5eecea524893d",
+   "content_id": "c213681203f6",
+   "positive_pixels": 43771,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": true,
+     "detail": "7,111,787/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=nan",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "np.nanmin/np.nanmax over the whole array",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": false,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.json",
+   "outside": "nan",
+   "status": "VALIDATED UNIQUE H31-1 CANDIDATE (15/15 format checks PASS, HOLDOUT-DTI 0.156523 PASS in 4/4 folds, sparse/symmetric uniqueness PASS <= 0.6707); strict 5-px lattice lane flag open (IR-25-LANE-DENSITY; do not submit without owner lattice waiver)",
+   "title": "H31-1 Anisotropic Along-Strike Continuation + 100 m 3DEP LiDAR Strike Coherence + B=2 (200 m) Digitization-Shadow Guard (43,771 px)",
+   "summary": "H31-1 Anisotropic fault-tip continuation + 100 m 3DEP LiDAR-DEM strike coherence + 200 m (B=2 px) digitization-shadow guard + d=2.8 px Poisson-disk thinning (43,771 px, content_id c213681203f6). Passed all 15 hard format checks, single-feature leakage canary (max AUC = 0.8419 <= 0.90), 8-cell holdout promotion gate (HOLDOUT-DTI = 0.156523, +0.008838 vs BASE in 4/4 folds, +0.005717 vs T_BASE in 4/4 folds; beats the comparable same-run holdout best and historical 0.152003389 comparator; holdout proxy is not a competition score), and comparable-detector uniqueness (max rank-corr 0.1697 <= 0.90, max symmetric 3-px overlap 0.5837 <= 0.70, max sparse-detector 3-px overlap 0.6707 <= 0.70, 31.75% vs GEMSDOE32 0.2778). Under the literal strict lane gate against the 5-px r13 calibration lattice (100% of any in-footprint pixel lies within sqrt(8)=2.83 < 3 px of a 5x5 grid; IR-25-LANE-DENSITY), slot_approved remains false (do not submit without owner lattice waiver).",
+   "expected_range": "HOLDOUT-DTI pooled 0.156013, cell mean 0.156523 (95% CI [0.141886, 0.171160], 22,317 withheld positives across draws 10,11; not a competition score)",
+   "note": "GEMSDOE25 H31-B2 | HOLDOUT-DTI 0.1565 (+0.0088); unscored; not slot-approved; no slot | id c213681203f6",
+   "parent": "trained out-of-fold in GEMSDOE25: families BDE + X1_K, X1_ThK, X1_UK, X2_compat, X2_compat_coh, X3_gm, X3_gd, H27_tip, H31_a_along, H31_d_par, H31_d_perp, H31_k_aniso, H31_lidar_dem_compat, H31_lidar_cat_compat, 3 hide-and-recover draws (seeds [10, 11, 12])",
+   "transform": "Hessian ridge NMS -> top 3.20 % -> score-ordered Poisson-disk (d=2.8 px) -> B=2.0 px (200 m) digitization-shadow flank exclusion",
+   "gate_summary": "PROMOTED (HOLDOUT-DTI pooled 0.156013, cell mean 0.156523, 95% CI [0.141886, 0.171160], 22,317 withheld positives across draws 10,11; +0.008838 vs BASE in 4/4 folds, +0.005717 vs T_BASE in 4/4 folds; exceeds historical 0.152003 comparator; max registry rank-corr 0.1697 <= 0.90, max 3-px dot overlap 0.5837 <= 0.70).",
+   "zip_bundle": {
+    "file": "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6.zip",
+    "path": "docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6.zip",
+    "bytes": 503780
+   },
+   "promotion_gate": {
+    "stage": "confirmation",
+    "passed": true,
+    "paired_gate_passed": true,
+    "historical_best": 0.15200338908786984,
+    "candidate_mean_dti": 0.156523,
+    "candidate_pooled_dti": 0.156013,
+    "candidate_ci95": [
+     0.141886,
+     0.17116
+    ],
+    "candidate_sha256": "22a9d729bec45b72a7309380a0da7d147d79fadcdf1472259ca5eecea524893d",
+    "uniqueness_pass": true,
+    "max_registry_rank_corr": 0.169747,
+    "max_registry_3px_overlap": 0.583676
+   },
+   "slot_approved": false,
+   "do_not_resubmit": false
+  },
+  {
+   "id": "h31-aniso-scarp-b2-zeros",
+   "role": "fallback",
+   "file": "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+   "path": "docs/downloads/gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+   "bytes": 837228,
+   "sha256": "64c792f0ebacc474a3b23109a67148d5eb00d8e4c190c6221603e64050771c62",
+   "content_id": "c213681203f6",
+   "positive_pixels": 43771,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "np.nanmin/np.nanmax over the whole array",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.json",
+   "outside": "zero",
+   "status": "Format fallback (zeros outside footprint; 43,771 px); inherits strict 5-px lattice lane flag; do not submit without owner lattice waiver",
+   "title": "Format Fallback: H31-1 with zeros outside the footprint (identical 43,771 in-footprint predictions)",
+   "summary": "Identical 43,771 in-footprint positive predictions (content_id c213681203f6) to the H31-1 primary submission, written with 0.0 outside the footprint and no nodata tag (matching the official U-Net reference solution convention; HOLDOUT-DTI is not a competition score).",
+   "expected_range": "identical in-footprint predictions to primary H31-1",
+   "note": "GEMSDOE25 H31-B2 zeros fallback | 43,771 px; unscored; not slot-approved; no slot | id c213681203f6",
+   "parent": "primary (H31-1)",
+   "transform": "outside=zero (official reference-solution convention)",
+   "slot_approved": false,
+   "do_not_resubmit": false
+  },
+  {
    "id": "primary-gem-fuse1",
    "role": "alternate",
    "file": "gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif",
@@ -984,7 +1214,8 @@
     "overlap_vs_gem_fuse1": 0.18,
     "overlap_vs_h31_1_flank": 0.823,
     "overlap_vs_h31_control": 0.89,
-    "lattice_overlap": 1.0
+    "lattice_overlap": 1.0,
+    "overlap_vs_h31_aniso": 0.753
    }
   },
   {
@@ -1023,7 +1254,8 @@
     "overlap_vs_gem_fuse1": 0.18,
     "overlap_vs_h31_1_flank": 0.823,
     "overlap_vs_h31_control": 0.89,
-    "lattice_overlap": 1.0
+    "lattice_overlap": 1.0,
+    "overlap_vs_h31_aniso": 0.753
    }
   }
  ]

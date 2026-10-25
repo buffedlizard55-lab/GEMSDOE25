@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-25T21:21:24Z",
+ "generated_utc": "2026-10-25T21:36:00Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"bf942f07f9e75f88e0d521e9c5f7fb44\""
+   "detail": "HTTP 200; ETag: W/\"24e1ef9730d25a6a41c1c9a107e8c2d5\""
   },
   {
    "kind": "source",
@@ -105,7 +105,7 @@
    "url": "https://www.usgs.gov/3d-elevation-program",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 21:21:11 GMT; ETag: W/\"1792963271\""
+   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 21:35:46 GMT; ETag: W/\"1792964146\""
   },
   {
    "kind": "source",
@@ -145,7 +145,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"dad5a05690697e1b3402453bcca956a0\""
+   "detail": "HTTP 200; ETag: W/\"e81e2099cb093981fcb35443cc281edc\""
   },
   {
    "kind": "source",
@@ -153,7 +153,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"45ea4999b0635ffea9e1623431fae8ec\""
+   "detail": "HTTP 200; ETag: W/\"0c9b511608fc6daffc1fda849ae5b22f\""
   },
   {
    "kind": "source",
@@ -177,7 +177,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"25451d7c1d1b5b950dee3d53ec57ed4f\""
+   "detail": "HTTP 200; ETag: W/\"dc3cca110836d4b88b9042bc8e592f39\""
   },
   {
    "kind": "source",
@@ -185,7 +185,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"81415741c4e2a1e97511c9d2d6d3179d\""
+   "detail": "HTTP 200; ETag: W/\"d5db730ed26bef6d91c78080dacb7972\""
   },
   {
    "kind": "source",
@@ -193,7 +193,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"bf942f07f9e75f88e0d521e9c5f7fb44\""
+   "detail": "HTTP 200; ETag: W/\"24e1ef9730d25a6a41c1c9a107e8c2d5\""
   },
   {
    "kind": "source",
@@ -209,7 +209,7 @@
    "url": "https://www.usgs.gov/data/quaternary-fault-mapping-zapata-and-blanca-sections-sangre-de-cristo-fault-zone-high",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 21:21:16 GMT; ETag: W/\"1792963276\""
+   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 21:35:51 GMT; ETag: W/\"1792964151\""
   },
   {
    "kind": "source",
@@ -218,6 +218,30 @@
    "verified_in_repo": true,
    "status": "ok",
    "detail": "HTTP 200"
+  },
+  {
+   "kind": "source",
+   "title": "State Geologic Map Compilation (SGMC) Geodatabase of the Conterminous United States (USGS DS 1052)",
+   "url": "https://pubs.usgs.gov/ds/1052/",
+   "verified_in_repo": true,
+   "status": "ok",
+   "detail": "HTTP 200"
+  },
+  {
+   "kind": "source",
+   "title": "GEMSDOE32 repository & shipped B=2 GeoTIFF (h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif)",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
+   "verified_in_repo": true,
+   "status": "ok",
+   "detail": "HTTP 200; ETag: W/\"a1cb1493366771819d313aff01c04daa\""
+  },
+  {
+   "kind": "source",
+   "title": "GEMSDOE36 repository & shipped Anderson-Geothermal PINN GeoTIFF",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE36",
+   "verified_in_repo": true,
+   "status": "ok",
+   "detail": "HTTP 200; ETag: W/\"49c40e96e519fe4de6b02a6d670ec418\""
   },
   {
    "kind": "sciencebase",

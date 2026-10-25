@@ -1,0 +1,507 @@
+{
+ "schema_version": 1,
+ "evaluator_version": "HOLDOUT-DTI-v1 (alpha=0.2, beta=0.8, R=300m triangular kernel, 20km blocks, 2km guard, 3px visible-collar, 12px domain erosion)",
+ "threshold_max_symmetric_auc": 0.9,
+ "n_features_checked": 62,
+ "all_features_pass": true,
+ "max_observed_symmetric_auc": 0.841905,
+ "max_observed_feature": "H31_d_perp",
+ "features": [
+  {
+   "feature": "H31_d_perp",
+   "mean_auc": 0.234163,
+   "mean_symmetric_auc": 0.765837,
+   "max_symmetric_auc": 0.841905,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "E_dist",
+   "mean_auc": 0.247106,
+   "mean_symmetric_auc": 0.752894,
+   "max_symmetric_auc": 0.822123,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "E_dens5",
+   "mean_auc": 0.731314,
+   "mean_symmetric_auc": 0.731314,
+   "max_symmetric_auc": 0.799288,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "E_dens20",
+   "mean_auc": 0.726381,
+   "mean_symmetric_auc": 0.726381,
+   "max_symmetric_auc": 0.769289,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "E_dens50",
+   "mean_auc": 0.687225,
+   "mean_symmetric_auc": 0.687225,
+   "max_symmetric_auc": 0.748096,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "H31_k_aniso",
+   "mean_auc": 0.60779,
+   "mean_symmetric_auc": 0.60779,
+   "max_symmetric_auc": 0.689809,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "H31_a_along",
+   "mean_auc": 0.607007,
+   "mean_symmetric_auc": 0.607007,
+   "max_symmetric_auc": 0.686102,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "B_slope_grad",
+   "mean_auc": 0.600495,
+   "mean_symmetric_auc": 0.600495,
+   "max_symmetric_auc": 0.642028,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "H27_tip",
+   "mean_auc": 0.568369,
+   "mean_symmetric_auc": 0.568369,
+   "max_symmetric_auc": 0.638095,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "X2_compat_coh",
+   "mean_auc": 0.58131,
+   "mean_symmetric_auc": 0.58131,
+   "max_symmetric_auc": 0.637393,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "B_lap2",
+   "mean_auc": 0.577166,
+   "mean_symmetric_auc": 0.577166,
+   "max_symmetric_auc": 0.625748,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "B_relief5",
+   "mean_auc": 0.560136,
+   "mean_symmetric_auc": 0.560136,
+   "max_symmetric_auc": 0.619371,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "D_K",
+   "mean_auc": 0.411361,
+   "mean_symmetric_auc": 0.588639,
+   "max_symmetric_auc": 0.618534,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "X2_compat",
+   "mean_auc": 0.575693,
+   "mean_symmetric_auc": 0.575693,
+   "max_symmetric_auc": 0.617379,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "B_tpi11",
+   "mean_auc": 0.42188,
+   "mean_symmetric_auc": 0.57812,
+   "max_symmetric_auc": 0.615698,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "B_trough",
+   "mean_auc": 0.585888,
+   "mean_symmetric_auc": 0.585888,
+   "max_symmetric_auc": 0.61129,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "H31_d_par",
+   "mean_auc": 0.422953,
+   "mean_symmetric_auc": 0.577047,
+   "max_symmetric_auc": 0.609903,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "tc",
+   "mean_auc": 0.425839,
+   "mean_symmetric_auc": 0.574161,
+   "max_symmetric_auc": 0.607198,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "L_lappos_max",
+   "mean_auc": 0.542734,
+   "mean_symmetric_auc": 0.547684,
+   "max_symmetric_auc": 0.605408,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "det_elev_slope",
+   "mean_auc": 0.551231,
+   "mean_symmetric_auc": 0.551231,
+   "max_symmetric_auc": 0.603685,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "L_upface_max",
+   "mean_auc": 0.554603,
+   "mean_symmetric_auc": 0.554603,
+   "max_symmetric_auc": 0.600795,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "L_downface_max",
+   "mean_auc": 0.549639,
+   "mean_symmetric_auc": 0.549984,
+   "max_symmetric_auc": 0.598519,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "L_cross_max",
+   "mean_auc": 0.546556,
+   "mean_symmetric_auc": 0.547833,
+   "max_symmetric_auc": 0.596612,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "D_Th",
+   "mean_auc": 0.437666,
+   "mean_symmetric_auc": 0.562334,
+   "max_symmetric_auc": 0.594648,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "L_ex_max",
+   "mean_auc": 0.533875,
+   "mean_symmetric_auc": 0.54092,
+   "max_symmetric_auc": 0.59451,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "D_UK",
+   "mean_auc": 0.556809,
+   "mean_symmetric_auc": 0.556809,
+   "max_symmetric_auc": 0.594206,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "B_lap1",
+   "mean_auc": 0.565729,
+   "mean_symmetric_auc": 0.565729,
+   "max_symmetric_auc": 0.593628,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "L_step_max",
+   "mean_auc": 0.53648,
+   "mean_symmetric_auc": 0.542724,
+   "max_symmetric_auc": 0.592132,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "L_relief",
+   "mean_auc": 0.540477,
+   "mean_symmetric_auc": 0.548828,
+   "max_symmetric_auc": 0.591568,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "D_UTh",
+   "mean_auc": 0.548545,
+   "mean_symmetric_auc": 0.548545,
+   "max_symmetric_auc": 0.590274,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "D_depth_base_grad",
+   "mean_auc": 0.521217,
+   "mean_symmetric_auc": 0.532134,
+   "max_symmetric_auc": 0.590201,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "E_coh20",
+   "mean_auc": 0.484382,
+   "mean_symmetric_auc": 0.535112,
+   "max_symmetric_auc": 0.590059,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "L_lapneg_max",
+   "mean_auc": 0.538158,
+   "mean_symmetric_auc": 0.543291,
+   "max_symmetric_auc": 0.588286,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "B_tpi5",
+   "mean_auc": 0.441555,
+   "mean_symmetric_auc": 0.558445,
+   "max_symmetric_auc": 0.583862,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "L_ex_mean",
+   "mean_auc": 0.526093,
+   "mean_symmetric_auc": 0.536294,
+   "max_symmetric_auc": 0.583724,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "D_U",
+   "mean_auc": 0.474031,
+   "mean_symmetric_auc": 0.532062,
+   "max_symmetric_auc": 0.580036,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "X3_gd",
+   "mean_auc": 0.516363,
+   "mean_symmetric_auc": 0.523691,
+   "max_symmetric_auc": 0.577057,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "D_ThK",
+   "mean_auc": 0.485481,
+   "mean_symmetric_auc": 0.522284,
+   "max_symmetric_auc": 0.573581,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "det_elev",
+   "mean_auc": 0.491159,
+   "mean_symmetric_auc": 0.526426,
+   "max_symmetric_auc": 0.573435,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "X1_ThK",
+   "mean_auc": 0.524542,
+   "mean_symmetric_auc": 0.525031,
+   "max_symmetric_auc": 0.572874,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "depth_to_base_surf",
+   "mean_auc": 0.510979,
+   "mean_symmetric_auc": 0.526576,
+   "max_symmetric_auc": 0.568073,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "cond_surf",
+   "mean_auc": 0.489698,
+   "mean_symmetric_auc": 0.535966,
+   "max_symmetric_auc": 0.565854,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "D_gdr_dist_hot",
+   "mean_auc": 0.524593,
+   "mean_symmetric_auc": 0.525639,
+   "max_symmetric_auc": 0.561671,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "D_gdr_quartz5km",
+   "mean_auc": 0.514692,
+   "mean_symmetric_auc": 0.521932,
+   "max_symmetric_auc": 0.555783,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "D_cond_grad",
+   "mean_auc": 0.49149,
+   "mean_symmetric_auc": 0.523308,
+   "max_symmetric_auc": 0.554849,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "D_gdr_kde2km",
+   "mean_auc": 0.502642,
+   "mean_symmetric_auc": 0.528653,
+   "max_symmetric_auc": 0.554634,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "L_strike_s2",
+   "mean_auc": 0.481799,
+   "mean_symmetric_auc": 0.520937,
+   "max_symmetric_auc": 0.550241,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "L_coh100",
+   "mean_auc": 0.491685,
+   "mean_symmetric_auc": 0.519836,
+   "max_symmetric_auc": 0.546051,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "E_sin2",
+   "mean_auc": 0.49525,
+   "mean_symmetric_auc": 0.524665,
+   "max_symmetric_auc": 0.544122,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "L_strike_c2",
+   "mean_auc": 0.481252,
+   "mean_symmetric_auc": 0.519171,
+   "max_symmetric_auc": 0.543249,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "X3_gm",
+   "mean_auc": 0.509199,
+   "mean_symmetric_auc": 0.517209,
+   "max_symmetric_auc": 0.541742,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "D_ThK_edge",
+   "mean_auc": 0.518532,
+   "mean_symmetric_auc": 0.519675,
+   "max_symmetric_auc": 0.541605,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "L_valid",
+   "mean_auc": 0.501959,
+   "mean_symmetric_auc": 0.520936,
+   "max_symmetric_auc": 0.5404,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "B_crest",
+   "mean_auc": 0.502178,
+   "mean_symmetric_auc": 0.516204,
+   "max_symmetric_auc": 0.539092,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "E_cos2",
+   "mean_auc": 0.500065,
+   "mean_symmetric_auc": 0.525456,
+   "max_symmetric_auc": 0.539023,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "D_gdr_tmax5km",
+   "mean_auc": 0.505815,
+   "mean_symmetric_auc": 0.518508,
+   "max_symmetric_auc": 0.536429,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "H31_lidar_cat_compat",
+   "mean_auc": 0.514721,
+   "mean_symmetric_auc": 0.524274,
+   "max_symmetric_auc": 0.534936,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "H31_lidar_dem_compat",
+   "mean_auc": 0.48866,
+   "mean_symmetric_auc": 0.517179,
+   "max_symmetric_auc": 0.534407,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "X1_K",
+   "mean_auc": 0.488239,
+   "mean_symmetric_auc": 0.518568,
+   "max_symmetric_auc": 0.534132,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "B_slope_ctx",
+   "mean_auc": 0.492328,
+   "mean_symmetric_auc": 0.512867,
+   "max_symmetric_auc": 0.527314,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "X1_UK",
+   "mean_auc": 0.502425,
+   "mean_symmetric_auc": 0.509349,
+   "max_symmetric_auc": 0.518661,
+   "threshold": 0.9,
+   "pass": true
+  },
+  {
+   "feature": "D_UK_edge",
+   "mean_auc": 0.499122,
+   "mean_symmetric_auc": 0.508142,
+   "max_symmetric_auc": 0.514083,
+   "threshold": 0.9,
+   "pass": true
+  }
+ ]
+}

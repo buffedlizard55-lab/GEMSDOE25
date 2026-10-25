@@ -25,6 +25,9 @@
 | `19_kdc_results_2026-10-25.md` | session 6: why B2 scored 0.2778, E1/E2 results (both negative), the KDC file, the uniqueness wall, next work |
 | `owner_brief_2026-10-25_s6_RECONSTRUCTED.txt` | session 6 brief, agent reconstruction (not guaranteed verbatim) |
 | `owner_brief_2026-10-25_consolidated.md` | the 2026-10-25 request, condensed and grouped (not verbatim) |
+| `13_preregistered_h31_anisotropic_scarp_coherence_2026-10-25.md` | cross-site forensic synthesis (`0.1922 -> 0.2477 -> 0.2600 -> 0.2708 -> 0.2778`), 4 ranked untried geological hypotheses (`H31-1` through `H31-4`), and preregistered single-lane `H31-1` 3-experiment suite (`E1: +ANISO4`, `E2: +COH2`, `E3: +B2`) on fresh draws `10,11` |
+| `14_h31_anisotropic_scarp_outcomes_2026-10-25.md` | completed `H31-1` post-run outcomes (`HOLDOUT-DTI = 0.156523`, `+0.008838` vs `BASE`, `4/4` folds), leakage canary (`max AUC = 0.8419 <= 0.90`), registry uniqueness audit across 41 rasters (`max corr = 0.1697`, `max overlap = 0.6707`), and JSON `RUN CARD` (`evidence/h31_experiments/run_card.json`) |
+| `current_project_brief_2026-10-25.md` | verbatim 2026-10-25 prompt and PARALLEL-RUN PROTOCOL |
 | `current_project_brief_2026-10-03.md` | full active scope and acceptance criteria from the condensed handoff, labeled as a consolidated restatement rather than a verbatim prompt |
 | `../registry/*.json` | sources (with verification status), irregularities, score ledger, data pins, shipped submissions, **artefact ledger** (30 competition rasters with SHA-256 ↔ reported-score links), artefact mirrors |
 | `../evidence/*` | machine-readable results (prior factorial/add-ons/H27/H28, H30 feature smoke plus registered screen/confirmation results, score-claim audit, emission model, forensics, work-cache hashes, and provenance) |

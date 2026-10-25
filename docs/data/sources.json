@@ -384,6 +384,42 @@
    "reachable_from_sandbox_bash": false
   },
   {
+   "id": "usgs-sgmc-ds1052",
+   "title": "State Geologic Map Compilation (SGMC) Geodatabase of the Conterminous United States (USGS DS 1052)",
+   "publisher": "U.S. Geological Survey",
+   "kind": "official dataset",
+   "url": "https://pubs.usgs.gov/ds/1052/",
+   "verified": true,
+   "verified_utc": "2026-10-25",
+   "used_for": "H31-3 SGMC lithologic contact / structural juxtaposition rasters (sgmc_contact_100m.tif, sgmc_fault_dist_100m.tif, sgmc_unit_id_100m.tif in data/external/)",
+   "how_verified": "Local raster SHA-256 pins verified via scripts/restore_data.py against registry/data_manifest.json",
+   "caveats": "1:500,000 compilation scale; contact boundaries have +-250 m positional uncertainty."
+  },
+  {
+   "id": "owner-mirror-gemsdoe32",
+   "title": "GEMSDOE32 repository & shipped B=2 GeoTIFF (h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif)",
+   "publisher": "Owner public GitHub repository (buffedlizard55-lab/GEMSDOE32)",
+   "kind": "sibling repository",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
+   "verified": true,
+   "verified_utc": "2026-10-25",
+   "used_for": "Byte-and-pixel forensic audit of the 0.2778 owner-reported group-best submission (37,654 px, content_id 4311d7454b8e, sha256 c55bafc470054e82...)",
+   "how_verified": "Fetched README.md and GeoTIFF bytes via authenticated gh api; verified exact pixel subset relationship (d2.8 minus 6,436 d_cat <= 2 px dots)",
+   "caveats": "The 0.2778 competition score is an owner-reported claim, not an organizer receipt."
+  },
+  {
+   "id": "owner-mirror-gemsdoe36",
+   "title": "GEMSDOE36 repository & shipped Anderson-Geothermal PINN GeoTIFF",
+   "publisher": "Owner public GitHub repository (buffedlizard55-lab/GEMSDOE36)",
+   "kind": "sibling repository",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE36",
+   "verified": true,
+   "verified_utc": "2026-10-25",
+   "used_for": "Byte-and-pixel forensic audit of the 0.2750 owner-reported submission (38,854 px = GEMSDOE32 37,654 px + 1,200 GDR/stepover dots)",
+   "how_verified": "Fetched README.md and GeoTIFF bytes via authenticated gh api; verified exact 1,200-pixel superset over GEMSDOE32",
+   "caveats": "The 0.2750 competition score is an owner-reported claim, not an organizer receipt."
+  },
+  {
    "id": "sibling-gemsdoe32-site",
    "title": "GEMSDOE32 project site (sibling; H33-2-B2 champion, Arena41/H32-WIN lanes)",
    "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",

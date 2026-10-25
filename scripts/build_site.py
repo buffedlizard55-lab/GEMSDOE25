@@ -109,6 +109,8 @@ def main() -> None:
     h31_flank_screen = opt("evidence/h31_flank_screen/results.json")
     h31_flank_confirm = opt("evidence/h31_flank_confirm/results.json")
     h31_card = opt("evidence/h31_run_card_2026-10-25.json")
+    h31_aniso_res = opt("evidence/h31_experiments/results.json")
+    h31_aniso_card = opt("evidence/h31_experiments/run_card.json")
     focus_forensics = opt("evidence/focus_sites_forensics.json")
     h28 = opt("evidence/h28_calibration/design.json")
     h28_anchors = opt("evidence/h28_calibration/anchors.json")
@@ -222,8 +224,20 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
             inv = focus_forensics["nested_chain_inversion_conditional_on_reported_scores"]
             s1 = inv["d28_to_r1_delete_0_1px_collar"]
             s2 = inv["r1_to_b2_delete_1_2px_collar"]
-            h31_block = f"""<h2>9-Site Pixel-Exact Forensics (GEMSDOE24..36) &amp; H31-1 Tip-Preserved Flank-Shielded Sub-Scarp 2&sup2; Factorial</h2>
+            h31_aniso_html = ""
+            if h31_aniso_res and h31_aniso_card:
+                h31_aniso_html = (
+                    "<p><b>H31-1 Anisotropic Along-Strike Continuation &times; 100 m 3DEP LiDAR Strike Coherence + B=2 Shadow Guard (<code>knowledge/13_preregistered_h31_anisotropic_scarp_coherence_2026-10-25.md</code>, <code>knowledge/14_h31_anisotropic_scarp_outcomes_2026-10-25.md</code>):</b> "
+                    "Evaluated on draws 10,11 (8 cells, 22,317 withheld positives). Single-feature leakage canary PASSED (max AUC = <code>0.8419</code> &le; <code>0.90</code>). "
+                    "<code>H31_E3_B2</code> achieved pooled <code>HOLDOUT-DTI = 0.156013</code>, cell mean <code>0.156523</code> (95% CI <code>[0.141886, 0.171160]</code>), "
+                    "beating <code>BASE</code> by <code>+0.008838</code> (<code>4/4</code> folds) and <code>T_BASE</code> by <code>+0.005717</code> (<code>4/4</code> folds) and exceeding <code>0.152003389</code>. "
+                    "Primary GeoTIFF: <code>gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif</code> (<code>43,771</code> dots, SHA-256 <code>22a9d729bec4…</code>, 15/15 hard format checks PASS, "
+                    "max rank-corr <code>0.1697</code> &le; <code>0.90</code>, max symmetric 3-px overlap <code>0.5837</code> &le; <code>0.70</code>, max sparse-detector 3-px overlap <code>0.6707</code> &le; <code>0.70</code>, <code>0.3175</code> vs GEMSDOE32 <code>0.2778</code>; "
+                    "literal r13 5-px lattice overlap <code>1.000</code> under IR-25-LANE-DENSITY). JSON Run Card: <code>evidence/h31_experiments/run_card.json</code>.</p>"
+                )
+            h31_block = f"""<h2>9-Site Pixel-Exact Forensics (GEMSDOE24..36) &amp; H31-1 Geological Experiments</h2>
 <div class="card"><p><b>Why GEMSDOE32 <code>h33-h33-2-b2</code> (owner-reported <code>0.2778</code>, unverified claim) scored highest:</b> Pixel-exact forensics across 13 fetched GeoTIFFs (<code>evidence/focus_sites_forensics.json</code>) proves that <code>GEMSDOE28</code>/<code>31</code> <code>r1</code> (<code>0.2708</code>, <code>40,199</code> px) is <b><code>D2.8 &amp; (d(catalogue) &gt; 1.0 px)</code></b> (deleting <code>{s1['deleted_pixels']:,}</code> collar dots at 100 m with implied credit <code>{s1['implied_credit_per_deleted_px']:.5f}</code>/px &ll; &tau; = <code>{s1['break_even_tau_at_0_2600']:.4f}</code>) and <b><code>GEMSDOE32</code> <code>H33-2-B2</code> (<code>0.2778</code>, <code>37,654</code> px) is <code>D2.8 &amp; (d(catalogue) &gt; 2.0 px)</code></b> (deleting an additional <code>{s2['deleted_pixels']:,}</code> collar dots in 100–200 m with implied credit <code>{s2['implied_credit_per_deleted_px']:.5f}</code>/px &ll; &tau; = <code>{s2['break_even_tau_at_0_2708']:.4f}</code>), while <code>GEMSDOE36</code> (<code>0.2750</code>, <code>38,854</code> px) is <code>B2</code> plus <code>1,200</code> extra dots.</p>
+{h31_aniso_html}
 <p><b>H31-1 2&sup2; Factorial (<code>knowledge/14_preregistered_h31_flank_shielded_subscarp_factorial_2026-10-25.md</code>, <code>knowledge/15_h31_outcomes_and_run_card_2026-10-25.md</code>):</b> Tested tip-preserved lateral-flank shielding (<code>Factor C</code>: <code>d(visible) &gt; 2.5 px</code> or <code>H27_tip &ge; 0.05</code>) &times; multi-physics subdued-scarp concordance (<code>Factor M</code>: <code>H31_subscarp_concord</code> + <code>H31_offflank_tip_halo</code>). Leakage Canary PASSED (all standalone features AUC &le; <code>0.8386</code> &le; <code>0.90</code>). Screen (draws 10,11) PASSED with <code>{e(h31_flank_screen['arms']['M1_C1']['pooled']['formatted_label'])}</code> (paired gain <code>+0.003384</code>, <code>3/4</code> folds +). Confirmation (draws 12,13) achieved <code>{e(h31_flank_confirm['arms']['M1_C1']['pooled']['formatted_label'])}</code> (<code>+0.003848</code> pooled gain; <code>3/4</code> folds + vs <code>M0_C0</code>, <code>3/4</code> vs <code>CTRL_NO_TIP</code>, Factor <code>C</code> positive in <code>8/8</code> fold-blocks, <code>2/4</code> vs strict pointwise max &rarr; Run Card verdict: <code>negative</code>). Unique GeoTIFF: <code>gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif</code> (<code>49,041</code> dots, SHA-256 <code>41461ce0d0a6…</code>, max surface Spearman <code>0.1826</code>, comparable dotted/focus 3-px overlap <code>0.6544</code> &le; <code>0.70</code>, <code>0.3183</code> vs GEMSDOE32 <code>0.2778</code>; literal r13 5-px lattice overlap <code>1.000</code> &rarr; testing only, DO NOT SUBMIT).</p></div>"""
         kdcb = ""
         if kdc:
