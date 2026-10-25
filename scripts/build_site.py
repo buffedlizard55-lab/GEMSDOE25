@@ -69,7 +69,7 @@ def dl_card(s: dict, prefix: str, big: bool = True) -> str:
 <div class="row"><a class="btn" href="{href}" download>↓ Download {e(s['file'])}</a></div>
 <div class="row">{badge(status, kind)}{badge(chk, 'ok' if s.get('format_ok') else 'bad')}{badge('float32 · [0,1] · ' + ('zeros outside footprint' if s.get('outside') == 'zero' else 'NaN outside footprint'), 'info')}{badge(f"{s['positive_pixels']:,} px emitted", 'info')}</div>
 <p class="small">{fmt_bytes(s['bytes'])} · unique content id <code>{s['content_id']}</code> · SHA-256 <code>{s['sha256'][:16]}…</code> · <a href="{prefix}executive-summary.html">exact upload steps</a></p>
-<p style="margin:10px 0 2px"><b>Note to paste in DrivenData's "Note (optional)" field</b> <button class="btn alt small" data-copy="{nid}">Copy note</button></p>
+<p style="margin:10px 0 2px"><b>{'Note to paste in DrivenData only if separately selector-approved' if s.get('ok_to_submit_slot') else 'Research note only — NOT for the competition form (DO NOT SUBMIT)'}</b> <button class="btn alt small" data-copy="{nid}">Copy {'submission note' if s.get('ok_to_submit_slot') else 'research identifier'}</button></p>
 <div class="note"><code id="{nid}">{e(s['note'])}</code></div></section>"""
 
 
@@ -230,7 +230,7 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
                     "<p><b>H31-1 Anisotropic Along-Strike Continuation &times; 100 m 3DEP LiDAR Strike Coherence + B=2 Shadow Guard (<code>knowledge/13_preregistered_h31_anisotropic_scarp_coherence_2026-10-25.md</code>, <code>knowledge/14_h31_anisotropic_scarp_outcomes_2026-10-25.md</code>):</b> "
                     "Evaluated on draws 10,11 (8 cells, 22,317 withheld positives). Single-feature leakage canary PASSED (max AUC = <code>0.8419</code> &le; <code>0.90</code>). "
                     "<code>H31_E3_B2</code> achieved pooled <code>HOLDOUT-DTI = 0.156013</code>, cell mean <code>0.156523</code> (95% CI <code>[0.141886, 0.171160]</code>), "
-                    "beating <code>BASE</code> by <code>+0.008838</code> (<code>4/4</code> folds) and <code>T_BASE</code> by <code>+0.005717</code> (<code>4/4</code> folds) and exceeding <code>0.152003389</code>. "
+                    "beating <code>BASE</code> by <code>+0.008838</code> (<code>4/4</code> folds) and <code>T_BASE</code> by <code>+0.005717</code> (<code>4/4</code> folds) while the historical absolute comparator <code>0.152003389</code> is not comparable across environments (IR-25-COMPARATOR-DRIFT). "
                     "Primary GeoTIFF: <code>gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif</code> (<code>43,771</code> dots, SHA-256 <code>22a9d729bec4…</code>, 15/15 hard format checks PASS, "
                     "max rank-corr <code>0.1697</code> &le; <code>0.90</code>, max symmetric 3-px overlap <code>0.5837</code> &le; <code>0.70</code>, max sparse-detector 3-px overlap <code>0.6707</code> &le; <code>0.70</code>, <code>0.3175</code> vs GEMSDOE32 <code>0.2778</code>; "
                     "literal r13 5-px lattice overlap <code>1.000</code> under IR-25-LANE-DENSITY). JSON Run Card: <code>evidence/h31_experiments/run_card.json</code>.</p>"
