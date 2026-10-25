@@ -99,8 +99,7 @@ def main() -> None:
     h28_ledger = opt("registry/artifact_ledger.json")
     primary = next(s for s in subs if s["role"] == "primary")
     others = [s for s in subs if s["role"] != "primary"]
-    gem1 = next((s for s in others if s.get("id") == "gem1-blind-magnetics"), None)
-    selected = gem1 if gem1 else primary
+    selected = primary
     snap = ls["leaderboard_snapshot"]
     lead = snap["top10"][0]["best_public_dti"]
     best = max(a["score"] for a in ls["artifacts"] if a["score"] is not None)
@@ -123,8 +122,8 @@ def main() -> None:
         h30_status = "registered screen draws 6,7; real-data feature smoke passed, no model fit or DTI yet"
 
     def home(prefix: str) -> str:
-        hero = """<div class="hero"><h1>Download the unique, format-valid GeoTIFF. It is NOT cleared for a slot.</h1>
-<p class="lead">One click gets a <b>single-band float32 GeoTIFF with finite [0,1] predictions throughout the footprint</b>, checked against the pinned template. This establishes file-format validity only—not holdout promotion or a competition score. This file is <b>unique</b> and format-valid, but it is <b>NOT cleared for a slot</b> and is <b>not slot-approved</b>: its lane-overlap check is flagged and it has not beaten its same-run holdout control. The strict lane rule is triggered against the dense registry lattice; this is a duplicate/stop, so <b>do not submit this file</b>. Download only for local testing. The former D2.8 download was byte-identical to a listed submission and has been <b>withdrawn</b> (IR-25-DUPLICATE-DOWNLOAD). The frozen holdout comparator 0.152003389 does not reproduce in this environment (IR-25-COMPARATOR-DRIFT), so same-run controls are required. The earlier range error was caused by NaNs inside the footprint (inferred from the file; the portal validator is not public); that defect is fixed.</p></div>"""
+        hero = """<div class="hero"><h1>Testing download only — no artifact is cleared for a slot.</h1>
+<p class="lead">One click gets a <b>single-band float32 GeoTIFF with finite [0,1] predictions throughout the footprint</b>, according to a tracked owner-mirror format receipt. This establishes format validity only—not a competition score or slot eligibility. The GEM-FUSE1 file is unique by content, but its lane receipt records <b>100% of candidate dots within 3 px of the r13 lattice</b>, above the literal 70% stop threshold. This is a duplicate-lane stop; <b>do not submit this file</b>. The density-artifact interpretation and reverse-overlap figure do not create an exception. This file is <b>not slot-approved</b>; the frozen 0.152003389 comparator does not reproduce in this environment (IR-25-COMPARATOR-DRIFT), so same-run controls remain required. Download only for local testing. The former D2.8 download was byte-identical to a listed submission and has been <b>withdrawn</b> (IR-25-DUPLICATE-DOWNLOAD). No organizer score is verified.</p></div>"""
         cards = dl_card(primary, prefix)
         alt = "".join(f"""<div class="card"><b>{e(o['title'])}</b> {badge(o['status'], 'ok' if o['status']=='scored' else 'warn')}
 <p class="small" style="margin:.3em 0">{e(o['summary'])}</p><a class="btn alt small" href="{prefix}downloads/{o['file']}" download>↓ {e(o['file'])}</a>
@@ -132,7 +131,7 @@ def main() -> None:
         stats = f"""<div class="stats"><div class="stat"><b>{lead:.4f}</b><span>Unverified #1 leaderboard claim · reported {snap['reported_utc']}</span></div>
 <div class="stat"><b>{best:.4f}</b><span>Unverified group-best score claim · rank association not authenticated</span></div>
 <div class="stat"><b>+{snap['gap_to_rank5']:.3f}</b><span>arithmetic gap to the supplied #5 claim ({snap['top10'][4]['best_public_dti']:.4f}); +{snap['gap_to_rank1']:.3f} (+{100*snap['relative_gain_needed_for_rank1']:.0f} %) to the supplied #1 claim</span></div>
-<div class="stat"><b>{primary['expected_range'] if primary.get('expected_range') else 'n/a'}</b><span>model expectation for the primary file — a model, not a score</span></div></div>"""
+<div class="stat"><b>DUPLICATE LANE / STOP</b><span>strict lane rule: do not submit; all current downloads are testing-only</span></div></div>"""
         r = why["relations"]
         px15 = next(v["positive_px"] for k, v in why["rasters"].items() if "d1-5" in k)
         px195 = next(v["positive_px"] for k, v in why["rasters"].items() if "h19-5" in k and "dotted" not in k and "d1-5" not in k and "d2-8" not in k)

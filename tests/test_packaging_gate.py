@@ -1,4 +1,6 @@
 from scripts.package_submissions import main as retired_packager_main, promotion_receipt_valid
+from scripts.build_gem_fuse1 import main as retired_fuse1_builder_main
+from scripts.register_h31_submission import main as retired_h31_registry_writer_main
 
 
 def receipt(**gate_overrides):
@@ -30,6 +32,16 @@ def test_legacy_duplicate_packager_fails_closed():
 
     with pytest.raises(SystemExit, match="known duplicate D2.8 artifact"):
         retired_packager_main()
+
+
+def test_known_gem_fuse1_lane_duplicate_builder_is_retired(capsys):
+    assert retired_fuse1_builder_main() == 2
+    assert "strict lane duplicate" in capsys.readouterr().err
+
+
+def test_h31_registry_writer_cannot_restore_lane_duplicate(capsys):
+    assert retired_h31_registry_writer_main() == 2
+    assert "strict lane rule" in capsys.readouterr().err
 
 
 def test_exploratory_packaging_requires_confirmed_holdout_win_for_exact_file():

@@ -6,19 +6,11 @@
 
 **Competition:** [DOE GEMS Prize, DrivenData #306](https://www.drivendata.org/competitions/306/competition-doe-gems/) · **Live site:** <https://buffedlizard55-lab.github.io/GEMSDOE25/> · **Weekly limit:** 3 submissions · **Ends:** 3 Dec 2026 (page: 11:59 p.m. UTC; rules: 5:00 p.m. ET — see IR-25-DEADLINE)
 
-## ⬇ Download the unique, format-valid GeoTIFF (NOT slot-cleared)
+## Current GeoTIFF — testing download only; DO NOT SUBMIT
 
-**[↓ `gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif`](docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif)** — Full-footprint emission of the H28 comparator configuration: raw-score ridge candidates, score-ordered dots at 2.4 px, 3.5% budget, base BDE plus seven add-on columns (builder: scripts/build_candidate.py). Format checks pass. On the spatial holdout it is at parity with its own same-run control and has not beaten the comparable same-run holdout best; the tested alternative (A1, H31) was negative. The lane-overlap check is FLAGGED against the dense 13GEMSDOE lattice - a density artefact under review, not cleared. Holdout-DTI 0.1497 (95% CI 0.1331-0.1663). This is not a competition score and is not slot-approved.
+A unique-by-content GEM-FUSE1 GeoTIFF is present from merged PR #13: [`gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif`](docs/downloads/gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif). It is format-checked against an owner-mirrored template, but the tracked lane receipt records **100% of candidate dots within 3 px of the r13 lattice**, above the literal 70% stop threshold. The strict rule applies: **DUPLICATE LANE / STOP; no density exception; do not submit**. The file is available only for local testing. No artifact in this repository is slot-approved.
 
-* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, NaN outside (verified against the pinned owner-mirror template, not organizer-authenticated; independent check receipt: `docs/downloads/checks-gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.json`).
-* Unique content id `9edd6bed8268` · SHA-256 `2165bb8e229ee27e25edf57e990191d8f7836ab4b07e2779f15023f7c34a3ab2` · 48,714 emitted pixels · status: **UNIQUE FILE - NOT CLEARED: lane flag open, holdout gate not passed, do not spend a slot**.
-* **Note to paste** in DrivenData's *Note (optional)* field: `GEMSDOE25 H31-C | sapd2.4, 3.5%, BDE+7 | unscored; not slot-approved; no slot | id 9edd6bed8268`
-* Format fallback (format troubleshooting only; not slot-approved): [`gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif`](docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif) — Format fallback: same H31-C dots, zeros outside the footprint (format fallback; unscored; not slot-approved; 48,714 px).
-* Step-by-step upload guide: [`docs/executive-summary.html`](https://buffedlizard55-lab.github.io/GEMSDOE25/docs/executive-summary.html).
-
-> ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).
-
-> ⚠ **Lane flag open:** this file is flagged by the lane-overlap check against a dense 13GEMSDOE lattice (IR-25-LANE-DENSITY). Its holdout result is parity with its own control, not a win. It is NOT slot-cleared. Receipt: `docs/downloads/lane-gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.json`.
+The recorded HOLDOUT-DTI results are proxy research, not an organizer-confirmed score; see [`registry/run_card_gem_fuse1_2026-10-25.json`](registry/run_card_gem_fuse1_2026-10-25.json) for evaluator context, withheld-positive counts and intervals. No live submission receipt or score was verified. The zeros-outside fallback inherits the same lane stop. The other listed candidates also remain uncleared; do not submit GEM-1, H31-C, or the withdrawn D2.8 duplicate.
 
 ## Where things stand
 

@@ -1,391 +1,510 @@
 {
- "schema_version": 1,
- "generated_by": "scripts/build_site.py (merged arena/228adaa9-gemsdoe25 + origin/main)",
- "files": [
-  {
-   "id": "primary",
-   "role": "primary",
-   "file": "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
-   "path": "docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
-   "bytes": 1612168,
-   "sha256": "2165bb8e229ee27e25edf57e990191d8f7836ab4b07e2779f15023f7c34a3ab2",
-   "content_id": "9edd6bed8268",
-   "positive_pixels": 48714,
-   "format_ok": true,
-   "checks": {
-    "template_matches_expected_grid_and_footprint": {
-     "pass_": true,
-     "detail": "(3730, 3292), footprint 5,167,373 px",
-     "hard": true
+  "schema_version": 1,
+  "generated_by": "scripts/build_site.py updated with GEM-FUSE1 primary 2026-10-25",
+  "files": [
+    {
+      "id": "primary",
+      "role": "primary",
+      "file": "gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif",
+      "path": "docs/downloads/gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif",
+      "bytes": 1606178,
+      "sha256": "ad4bc4933d0b7636f0f32918c1fd8b8b08cd1964aee32d69e45419a9b54178a7",
+      "content_id": "c2097a554ef2",
+      "positive_pixels": 46181,
+      "format_ok": true,
+      "checks": {
+        "template_matches_expected_grid_and_footprint": {
+          "pass_": true,
+          "detail": "(3730, 3292), footprint 5,167,373 px",
+          "hard": true
+        },
+        "single_band": {
+          "pass_": true,
+          "detail": "count=1",
+          "hard": true
+        },
+        "dtype_float32": {
+          "pass_": true,
+          "detail": "dtypes=('float32',)",
+          "hard": true
+        },
+        "crs_epsg_32611": {
+          "pass_": true,
+          "detail": "32611",
+          "hard": true
+        },
+        "shape_matches_template": {
+          "pass_": true,
+          "detail": "(3730, 3292) vs (3730, 3292)",
+          "hard": true
+        },
+        "geotransform_matches_template": {
+          "pass_": true,
+          "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+          "hard": true
+        },
+        "footprint_all_finite": {
+          "pass_": true,
+          "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+          "hard": true
+        },
+        "footprint_values_in_0_1": {
+          "pass_": true,
+          "detail": "min=0.0 max=1.0",
+          "hard": true
+        },
+        "outside_footprint_is_nan_official": {
+          "pass_": true,
+          "detail": "7,111,787/7,111,787 NaN",
+          "hard": false
+        },
+        "outside_footprint_is_nan_or_zero": {
+          "pass_": true,
+          "detail": "NaN (official) or 0 (fallback) outside",
+          "hard": true
+        },
+        "nan_mask_identical_to_template": {
+          "pass_": true,
+          "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+          "hard": true
+        },
+        "nodata_tag": {
+          "pass_": true,
+          "detail": "nodata=nan",
+          "hard": false
+        },
+        "variant_nan_aware_whole_array": {
+          "pass_": true,
+          "detail": "np.nanmin/np.nanmax over the whole array",
+          "hard": true
+        },
+        "variant_masked_read": {
+          "pass_": true,
+          "detail": "rasterio masked read",
+          "hard": true
+        },
+        "variant_strict_whole_array_no_nan": {
+          "pass_": false,
+          "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+          "hard": false
+        },
+        "profile_matches_template": {
+          "pass_": true,
+          "detail": "compress=lzw (template lzw)",
+          "hard": false
+        }
+      },
+      "receipt": "checks-gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.json",
+      "outside": "nan",
+      "status": "UNIQUE FILE BY CONTENT, BUT STRICT LANE FAIL / DUPLICATE STOP: 100% of candidate dots fall within 3 px of the r13 lattice (70% limit). Testing download only; DO NOT SUBMIT.",
+      "title": "GEM-FUSE1 — unique content, strict lane stop; testing only, do not submit",
+      "summary": "The strict lane gate fails: the tracked receipt records a 100% candidate-dot overlap with the registered r13 lattice, exceeding the literal 70% stop threshold. The lattice-density interpretation in the earlier review does not create an exception. HOLDOUT-DTI results are research proxies only; no organizer score or slot approval. Download only for local testing; do not submit.",
+      "expected_range": "Not a competition score; HOLDOUT-DTI proxy is not a live or organizer-confirmed score.",
+      "note": "GEMSDOE25 GEM-FUSE1 | strict lane FAIL; no slot; unscored; not slot-approved; DO NOT SUBMIT | id c2097a554ef2",
+      "parent": "GEM-1 surface (unsupervised physics, not HGB) + H33-2 B=2 emission pruning",
+      "transform": "norm(|grad RTP|)x(1-norm relief) -> ridge NMS σ1.0 -> top-K 0.0245 -> score_ordered_dots 1.5px -> prune ≤2px of catalogue (200m)",
+      "slot_approved": false,
+      "do_not_resubmit": true
     },
-    "single_band": {
-     "pass_": true,
-     "detail": "count=1",
-     "hard": true
+    {
+      "id": "primary-zeros",
+      "role": "fallback",
+      "file": "gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-zeros.tif",
+      "path": "docs/downloads/gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-zeros.tif",
+      "bytes": 840978,
+      "sha256": "307b15bc8b56266515382177bc98b5df4a9866c0c3e36f2e4f0a4f1830e0c58f",
+      "content_id": "c2097a554ef2",
+      "positive_pixels": 46181,
+      "format_ok": true,
+      "checks": {},
+      "receipt": "checks-gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.json",
+      "outside": "zero",
+      "status": "Format fallback only. Same candidate dots; inherits strict lane fail. Testing only; DO NOT SUBMIT.",
+      "title": "Format fallback: same GEM-FUSE1 dots, zeros outside footprint",
+      "summary": "Identical predictions inside footprint; zeros outside. Format troubleshooting only. The inherited candidate fails strict lane eligibility; do not submit either variant.",
+      "expected_range": "Not a competition score; inherits primary strict lane stop.",
+      "note": "GEMSDOE25 GEM-FUSE1 zeros fallback | lane FAIL; no slot; unscored; DO NOT SUBMIT | id c2097a554ef2",
+      "parent": "primary",
+      "transform": "outside=zero",
+      "slot_approved": false,
+      "do_not_resubmit": true
     },
-    "dtype_float32": {
-     "pass_": true,
-     "detail": "dtypes=('float32',)",
-     "hard": true
+    {
+      "id": "h31-control-fallback",
+      "role": "fallback",
+      "file": "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+      "path": "docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+      "bytes": 1612168,
+      "sha256": "2165bb8e229ee27e25edf57e990191d8f7836ab4b07e2779f15023f7c34a3ab2",
+      "content_id": "9edd6bed8268",
+      "positive_pixels": 48714,
+      "format_ok": true,
+      "checks": {
+        "template_matches_expected_grid_and_footprint": {
+          "pass_": true,
+          "detail": "(3730, 3292), footprint 5,167,373 px",
+          "hard": true
+        },
+        "single_band": {
+          "pass_": true,
+          "detail": "count=1",
+          "hard": true
+        },
+        "dtype_float32": {
+          "pass_": true,
+          "detail": "dtypes=('float32',)",
+          "hard": true
+        },
+        "crs_epsg_32611": {
+          "pass_": true,
+          "detail": "32611",
+          "hard": true
+        },
+        "shape_matches_template": {
+          "pass_": true,
+          "detail": "(3730, 3292) vs (3730, 3292)",
+          "hard": true
+        },
+        "geotransform_matches_template": {
+          "pass_": true,
+          "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+          "hard": true
+        },
+        "footprint_all_finite": {
+          "pass_": true,
+          "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+          "hard": true
+        },
+        "footprint_values_in_0_1": {
+          "pass_": true,
+          "detail": "min=0.0 max=1.0",
+          "hard": true
+        },
+        "outside_footprint_is_nan_official": {
+          "pass_": true,
+          "detail": "7,111,787/7,111,787 NaN",
+          "hard": false
+        },
+        "outside_footprint_is_nan_or_zero": {
+          "pass_": true,
+          "detail": "NaN (official) or 0 (fallback) outside",
+          "hard": true
+        },
+        "nan_mask_identical_to_template": {
+          "pass_": true,
+          "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+          "hard": true
+        },
+        "nodata_tag": {
+          "pass_": true,
+          "detail": "nodata=nan",
+          "hard": false
+        },
+        "variant_nan_aware_whole_array": {
+          "pass_": true,
+          "detail": "np.nanmin/np.nanmax over the whole array",
+          "hard": true
+        },
+        "variant_masked_read": {
+          "pass_": true,
+          "detail": "rasterio masked read",
+          "hard": true
+        },
+        "variant_strict_whole_array_no_nan": {
+          "pass_": false,
+          "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+          "hard": false
+        },
+        "profile_matches_template": {
+          "pass_": true,
+          "detail": "compress=lzw (template lzw)",
+          "hard": false
+        }
+      },
+      "receipt": "checks-gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.json",
+      "outside": "nan",
+      "status": "STRICT LANE STOP; holdout gate not passed; testing only; DO NOT SUBMIT.",
+      "title": "Fallback: H31-C score-ordered dots at 2.4 px (3.5% budget) — NOT slot-approved",
+      "summary": "Format-validated historical research artifact. Stored lane evidence flags the dense r13 lattice under the literal >70% rule; this is a duplicate-lane stop with no density exception. Its holdout gate also did not pass. Testing only; do not submit.",
+      "expected_range": "HOLDOUT-DTI proxy only; not a competition score; no slot.",
+      "note": "GEMSDOE25 H31-C | sapd2.4, 3.5%, BDE+7 | unscored; not slot-approved; no slot | id 9edd6bed8268",
+      "parent": "H28 comparator arm (sapd2.4, kfrac 0.035, BDE+7), rebuilt full-footprint",
+      "transform": "score-ordered dots (ridge NMS top-K, 2.4 px), 3-draw HGB average, catalogue pixels excluded",
+      "slot_approved": false,
+      "do_not_resubmit": true
     },
-    "crs_epsg_32611": {
-     "pass_": true,
-     "detail": "32611",
-     "hard": true
+    {
+      "id": "h31-control-fallback-zeros",
+      "role": "fallback",
+      "file": "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
+      "path": "docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
+      "bytes": 846176,
+      "sha256": "a6dcbca78105765cce6c346baaacbb0bdc1dbc72675e47fb3f8d6ab36f7a0f45",
+      "content_id": "9edd6bed8268",
+      "positive_pixels": 48714,
+      "format_ok": true,
+      "checks": {},
+      "receipt": "checks-gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.json",
+      "outside": "zero",
+      "status": "Format fallback only; inherits H31-C strict lane stop; DO NOT SUBMIT.",
+      "title": "Fallback zeros: H31-C same dots, zeros outside",
+      "summary": "Same H31-C predictions inside the footprint; zeros outside. Format troubleshooting only. Inherits the strict lane stop and failed holdout gate; do not submit.",
+      "expected_range": "same as primary",
+      "note": "GEMSDOE25 H31-C zeros | fallback, zeros outside | unscored; not slot-approved; no slot | id 9edd6bed8268",
+      "parent": "primary",
+      "transform": "outside=zero",
+      "slot_approved": false,
+      "do_not_resubmit": true
     },
-    "shape_matches_template": {
-     "pass_": true,
-     "detail": "(3730, 3292) vs (3730, 3292)",
-     "hard": true
+    {
+      "id": "gem1-blind-magnetics",
+      "role": "alternate",
+      "file": "gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif",
+      "path": "docs/downloads/gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif",
+      "bytes": 1612154,
+      "sha256": "51d0b3414896a18de24de969467c6e8947678d80e32ab12d2812a1f6b2bed467",
+      "content_id": "279a305b80d2",
+      "positive_pixels": 49373,
+      "format_ok": true,
+      "checks": {
+        "template_matches_expected_grid_and_footprint": {
+          "pass_": true,
+          "detail": "(3730, 3292), footprint 5,167,373 px",
+          "hard": true
+        },
+        "single_band": {
+          "pass_": true,
+          "detail": "count=1",
+          "hard": true
+        },
+        "dtype_float32": {
+          "pass_": true,
+          "detail": "dtypes=('float32',)",
+          "hard": true
+        },
+        "crs_epsg_32611": {
+          "pass_": true,
+          "detail": "32611",
+          "hard": true
+        },
+        "shape_matches_template": {
+          "pass_": true,
+          "detail": "(3730, 3292) vs (3730, 3292)",
+          "hard": true
+        },
+        "geotransform_matches_template": {
+          "pass_": true,
+          "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+          "hard": true
+        },
+        "footprint_all_finite": {
+          "pass_": true,
+          "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+          "hard": true
+        },
+        "footprint_values_in_0_1": {
+          "pass_": true,
+          "detail": "min=0.0 max=1.0",
+          "hard": true
+        },
+        "outside_footprint_is_nan_official": {
+          "pass_": true,
+          "detail": "7,111,787/7,111,787 NaN",
+          "hard": false
+        },
+        "outside_footprint_is_nan_or_zero": {
+          "pass_": true,
+          "detail": "NaN (official) or 0 (fallback) outside",
+          "hard": true
+        },
+        "nan_mask_identical_to_template": {
+          "pass_": true,
+          "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+          "hard": true
+        },
+        "nodata_tag": {
+          "pass_": true,
+          "detail": "nodata=nan",
+          "hard": false
+        },
+        "variant_nan_aware_whole_array": {
+          "pass_": true,
+          "detail": "np.nanmin/np.nanmax over the whole array",
+          "hard": true
+        },
+        "variant_masked_read": {
+          "pass_": true,
+          "detail": "rasterio masked read",
+          "hard": true
+        },
+        "variant_strict_whole_array_no_nan": {
+          "pass_": false,
+          "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+          "hard": false
+        },
+        "profile_matches_template": {
+          "pass_": true,
+          "detail": "compress=lzw (template lzw)",
+          "hard": false
+        }
+      },
+      "receipt": "checks-gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.json",
+      "outside": "nan",
+      "status": "STRICT LANE STOP: recorded lattice overlap exceeds 70%; testing only; DO NOT SUBMIT.",
+      "title": "Research download: GEM-1 blind-magnetics dots (holdout-validated, not slot-approved)",
+      "summary": "Existing research artifact; no slot approval. Stored lattice-overlap evidence exceeds the literal strict threshold; no density exception is authorized. Not an organizer score.",
+      "expected_range": "no live calibration",
+      "note": "GEMSDOE25 GEM-1 | holdout-validated, unscored, no slot | id 279a305b80d2 | not slot-approved",
+      "parent": "none (new surface; not derived from any earlier submission)",
+      "transform": "norm(|grad RTP|) x (1 - norm(relief)) -> ridge NMS -> drop catalogue -> score_ordered_dots k=0.0245",
+      "gate_summary": "Holdout paired gate PASSED vs same-run B_crest control (screen +0.0180, confirmation +0.0216, 4/4 folds each, worst fold +0.010). Does NOT beat the frozen 0.152003389 comparator, which does not reproduce here (IR-25-COMPARATOR-DRIFT). Not slot-approved.",
+      "slot_approved": false,
+      "do_not_resubmit": true,
+      "lane": {
+        "lane_clear": false,
+        "verdict": "DUPLICATE LANE / STOP",
+        "recorded_lattice_dots_within_3px": 1.0,
+        "threshold": 0.7,
+        "fresh_computation": false
+      }
     },
-    "geotransform_matches_template": {
-     "pass_": true,
-     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
-     "hard": true
+    {
+      "id": "withdrawn-d28-duplicate",
+      "role": "duplicate",
+      "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "bytes": 1603424,
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "content_id": "e56ea318af89",
+      "positive_pixels": 44090,
+      "format_ok": true,
+      "checks": {
+        "template_matches_expected_grid_and_footprint": {
+          "pass_": true,
+          "detail": "(3730, 3292), footprint 5,167,373 px",
+          "hard": true
+        },
+        "single_band": {
+          "pass_": true,
+          "detail": "count=1",
+          "hard": true
+        },
+        "dtype_float32": {
+          "pass_": true,
+          "detail": "dtypes=('float32',)",
+          "hard": true
+        },
+        "crs_epsg_32611": {
+          "pass_": true,
+          "detail": "32611",
+          "hard": true
+        },
+        "shape_matches_template": {
+          "pass_": true,
+          "detail": "(3730, 3292) vs (3730, 3292)",
+          "hard": true
+        },
+        "geotransform_matches_template": {
+          "pass_": true,
+          "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+          "hard": true
+        },
+        "footprint_all_finite": {
+          "pass_": true,
+          "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+          "hard": true
+        },
+        "footprint_values_in_0_1": {
+          "pass_": true,
+          "detail": "min=0.0 max=1.0",
+          "hard": true
+        },
+        "outside_footprint_is_nan_official": {
+          "pass_": true,
+          "detail": "7,111,787/7,111,787 NaN",
+          "hard": false
+        },
+        "outside_footprint_is_nan_or_zero": {
+          "pass_": true,
+          "detail": "NaN (official) or 0 (fallback) outside",
+          "hard": true
+        },
+        "nan_mask_identical_to_template": {
+          "pass_": true,
+          "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+          "hard": true
+        },
+        "nodata_tag": {
+          "pass_": true,
+          "detail": "nodata=nan",
+          "hard": false
+        },
+        "variant_nan_aware_whole_array": {
+          "pass_": true,
+          "detail": "np.nanmin/np.nanmax over the whole array",
+          "hard": true
+        },
+        "variant_masked_read": {
+          "pass_": true,
+          "detail": "rasterio masked read",
+          "hard": true
+        },
+        "variant_strict_whole_array_no_nan": {
+          "pass_": false,
+          "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+          "hard": false
+        },
+        "profile_matches_template": {
+          "pass_": true,
+          "detail": "compress=lzw (template lzw)",
+          "hard": false
+        }
+      },
+      "receipt": "checks-gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.json",
+      "outside": "nan",
+      "status": "DUPLICATE - byte-identical to a listed submission; do not submit",
+      "title": "Withdrawn primary: dotted H19-5 D2.8 (duplicate of a listed file)",
+      "summary": "Owner-mirrored H19-5 raster thinned by deterministic Poisson-disk dotting to 44,090 pixels (73% of the 0.2477-labelled mirror; 36% of H19-5). Conditional on unverified owner-reported score anchors, the H28 model estimates DTI 0.2510 and this file is its best point in the tested dot_thin(H19-5, d) sweep (d=1.8–4.0 px); this is a model output, not a competition score. The model-implied 12,691 truth count and 1.85-px concentration are fitted latent parameters, not verified hidden labels. This file is byte-identical to an owner-mirrored unscored alternate. It has not demonstrated a win over a comparable same-run holdout best and remains unscored/not slot-approved; the historical 0.152003389 comparator does not reproduce (IR-25-COMPARATOR-DRIFT).",
+      "expected_range": "0.247–0.255 (conditional H28 model; owner claims unverified; not a score)",
+      "note": "WITHDRAWN duplicate (IR-25-DUPLICATE-DOWNLOAD); do not submit",
+      "parent": "H19-5 (owner-reported 0.1922); byte-identical (same SHA-256) to the group's unscored GEMSDOE24 alternate e56ea318af89, which this repo's writer reproduces exactly",
+      "transform": "dot_thin(H19-5, min_dist 2.4) == dot_thin(H19-5, 2.8) (integer lattice)",
+      "paired_harness_gate_vs_d1_5": {
+        "mean_gain": 0.004238100912307752,
+        "folds_positive": 4,
+        "worst_fold": 0.001715040365571241,
+        "passed": true,
+        "per_fold": [
+          0.004580278722769449,
+          0.00784239584559368,
+          0.001715040365571241,
+          0.002814688715296637
+        ]
+      },
+      "gate_summary": "The shared-mask paired diagnostic compares D2.8 with the 0.2477-labelled owner mirror, not with hidden catalogue holdout truth or a current same-run spatial best. Its +0.0042 (4/4 folds) is diagnostic only, not a promotion gate. H28's separate 30-arm hide-and-recover experiment tested modelled emission choices; its registered gate failed and promoted no artifact. That experiment does not establish that this downloadable owner-mirror raster beats a current comparable same-run holdout best. The frozen 0.152003389 absolute comparator failed reproduction and cannot be used cross-run.",
+      "slot_approved": false,
+      "do_not_resubmit": true,
+      "withdrawal": "WITHDRAWN 2026-10-25: byte-identical to a raster the group lists as GEMSDOE24 (artifact ledger) and GEMSDOE30 (91eae1ca); do not submit as new (IR-25-DUPLICATE-DOWNLOAD)."
     },
-    "footprint_all_finite": {
-     "pass_": true,
-     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
-     "hard": true
-    },
-    "footprint_values_in_0_1": {
-     "pass_": true,
-     "detail": "min=0.0 max=1.0",
-     "hard": true
-    },
-    "outside_footprint_is_nan_official": {
-     "pass_": true,
-     "detail": "7,111,787/7,111,787 NaN",
-     "hard": false
-    },
-    "outside_footprint_is_nan_or_zero": {
-     "pass_": true,
-     "detail": "NaN (official) or 0 (fallback) outside",
-     "hard": true
-    },
-    "nan_mask_identical_to_template": {
-     "pass_": true,
-     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
-     "hard": true
-    },
-    "nodata_tag": {
-     "pass_": true,
-     "detail": "nodata=nan",
-     "hard": false
-    },
-    "variant_nan_aware_whole_array": {
-     "pass_": true,
-     "detail": "np.nanmin/np.nanmax over the whole array",
-     "hard": true
-    },
-    "variant_masked_read": {
-     "pass_": true,
-     "detail": "rasterio masked read",
-     "hard": true
-    },
-    "variant_strict_whole_array_no_nan": {
-     "pass_": false,
-     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
-     "hard": false
-    },
-    "profile_matches_template": {
-     "pass_": true,
-     "detail": "compress=lzw (template lzw)",
-     "hard": false
+    {
+      "id": "withdrawn-d28-zeros-duplicate",
+      "role": "duplicate",
+      "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+      "path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+      "bytes": 836982,
+      "sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+      "content_id": "e56ea318af89",
+      "positive_pixels": 44090,
+      "format_ok": true,
+      "checks": {},
+      "receipt": null,
+      "outside": "zero",
+      "status": "DUPLICATE - zeros twin of the withdrawn D2.8 file; do not submit",
+      "title": "Withdrawn zeros twin of the D2.8 duplicate",
+      "withdrawal": "WITHDRAWN 2026-10-25 with its NaN twin (IR-25-DUPLICATE-DOWNLOAD).",
+      "note": "WITHDRAWN duplicate (zeros twin); do not submit",
+      "slot_approved": false,
+      "do_not_resubmit": true
     }
-   },
-   "receipt": "checks-gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.json",
-   "outside": "nan",
-   "status": "UNIQUE BY CONTENT; strict lane gate FAIL; DOWNLOAD FOR TESTING ONLY; DO NOT SUBMIT",
-   "title": "New unique file: H31-C score-ordered dots at 2.4 px (3.5% budget)",
-   "summary": "H31-C is a format-audited control artifact only. Its prior H31 holdout screen did not pass the candidate gate; its strict lane gate fails under the literal dense-lattice overlap rule. Download for local testing only. Not a competition score and not slot-approved.",
-   "expected_range": "no competition estimate (holdout-DTI only: 0.1497, 95% CI 0.1331-0.1663)",
-   "note": "GEMSDOE25 H31-C | lane FAIL; unscored; no slot; not slot-approved; do not submit | id 9edd6bed8268",
-   "parent": "H28 comparator arm (sapd2.4, kfrac 0.035, BDE+7), rebuilt full-footprint",
-   "transform": "score-ordered dots (ridge NMS top-K, 2.4 px), 3-draw HGB average, catalogue pixels excluded",
-   "slot_approved": false,
-   "do_not_resubmit": false
-  },
-  {
-   "id": "primary-zeros",
-   "role": "fallback",
-   "file": "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
-   "path": "docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
-   "bytes": 846176,
-   "sha256": "a6dcbca78105765cce6c346baaacbb0bdc1dbc72675e47fb3f8d6ab36f7a0f45",
-   "content_id": "9edd6bed8268",
-   "positive_pixels": 48714,
-   "format_ok": true,
-   "checks": {},
-   "receipt": "checks-gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.json",
-   "outside": "zero",
-   "status": "Format fallback only; same lane-failing predictions; do not submit",
-   "title": "Format fallback: same H31-C dots, zeros outside the footprint",
-   "summary": "Format fallback for local troubleshooting only; same prediction dots as H31-C, which fails the strict lane rule. Do not submit.",
-   "expected_range": "same as primary",
-   "note": "GEMSDOE25 H31-C zeros | fallback; lane FAIL; unscored; no slot; do not submit | id 9edd6bed8268",
-   "parent": "primary",
-   "transform": "outside=zero",
-   "slot_approved": false,
-   "do_not_resubmit": false
-  },
-  {
-   "id": "gem1-blind-magnetics",
-   "role": "alternate",
-   "file": "gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif",
-   "path": "docs/downloads/gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif",
-   "bytes": 1612154,
-   "sha256": "51d0b3414896a18de24de969467c6e8947678d80e32ab12d2812a1f6b2bed467",
-   "content_id": "279a305b80d2",
-   "positive_pixels": 49373,
-   "format_ok": true,
-   "checks": {
-    "template_matches_expected_grid_and_footprint": {
-     "pass_": true,
-     "detail": "(3730, 3292), footprint 5,167,373 px",
-     "hard": true
-    },
-    "single_band": {
-     "pass_": true,
-     "detail": "count=1",
-     "hard": true
-    },
-    "dtype_float32": {
-     "pass_": true,
-     "detail": "dtypes=('float32',)",
-     "hard": true
-    },
-    "crs_epsg_32611": {
-     "pass_": true,
-     "detail": "32611",
-     "hard": true
-    },
-    "shape_matches_template": {
-     "pass_": true,
-     "detail": "(3730, 3292) vs (3730, 3292)",
-     "hard": true
-    },
-    "geotransform_matches_template": {
-     "pass_": true,
-     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
-     "hard": true
-    },
-    "footprint_all_finite": {
-     "pass_": true,
-     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
-     "hard": true
-    },
-    "footprint_values_in_0_1": {
-     "pass_": true,
-     "detail": "min=0.0 max=1.0",
-     "hard": true
-    },
-    "outside_footprint_is_nan_official": {
-     "pass_": true,
-     "detail": "7,111,787/7,111,787 NaN",
-     "hard": false
-    },
-    "outside_footprint_is_nan_or_zero": {
-     "pass_": true,
-     "detail": "NaN (official) or 0 (fallback) outside",
-     "hard": true
-    },
-    "nan_mask_identical_to_template": {
-     "pass_": true,
-     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
-     "hard": true
-    },
-    "nodata_tag": {
-     "pass_": true,
-     "detail": "nodata=nan",
-     "hard": false
-    },
-    "variant_nan_aware_whole_array": {
-     "pass_": true,
-     "detail": "np.nanmin/np.nanmax over the whole array",
-     "hard": true
-    },
-    "variant_masked_read": {
-     "pass_": true,
-     "detail": "rasterio masked read",
-     "hard": true
-    },
-    "variant_strict_whole_array_no_nan": {
-     "pass_": false,
-     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
-     "hard": false
-    },
-    "profile_matches_template": {
-     "pass_": true,
-     "detail": "compress=lzw (template lzw)",
-     "hard": false
-    }
-   },
-   "receipt": "checks-gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.json",
-   "outside": "nan",
-   "status": "UNIQUE BY CONTENT; strict lane gate FAIL; DOWNLOAD FOR TESTING ONLY; DO NOT SUBMIT",
-   "title": "Research download: GEM-1 blind magnetics (strict lane gate FAIL; do not submit)",
-   "summary": "GEM-1 blind-magnetics surface. Earlier local holdout records are historical and not independently re-run here. Strict LANE check fails: the recorded dense-lattice candidate-dot overlap is above the protocol cap; the full-footprint GEM-1 lane receipt reports 100% overlap. Format receipt is historical and based on an owner-mirror template. Download for testing only; do not use a competition scoring slot.",
-   "expected_range": "no live calibration",
-   "note": "GEMSDOE25 GEM-1 | lane FAIL; unscored; no slot; not slot-approved; do not submit | id 279a305b80d2",
-   "parent": "none (new surface; not derived from any earlier submission)",
-   "transform": "norm(|grad RTP|) x (1 - norm(relief)) -> ridge NMS -> drop catalogue -> score_ordered_dots k=0.0245",
-   "gate_summary": "Strict lane rule triggers duplicate/stop (>70% of candidate dots within 3 px of a registry raster). No submission slot.",
-   "slot_approved": false,
-   "do_not_resubmit": false,
-   "holdout_dti": {
-    "status": "historical record only; not freshly validated in this review",
-    "evaluator": "gems25.metric.dti_binary; alpha=0.2, beta=0.8, R=3 px (300 m)",
-    "mean": null,
-    "ci95": null,
-    "withheld_positive_count": null,
-    "reason": "Tracked report lacks a complete paired fold-level CI/withheld-positive receipt; data/cache absent."
-   },
-   "lane": {
-    "protocol": "strict literal rule: absolute Spearman >0.90 OR >70% candidate dots within 3 px of any registry raster => stop",
-    "worst_spearman_abs_recorded": 0.0717,
-    "lattice_overlap_recorded": 1.0,
-    "lane_clear": false,
-    "source_receipt": "evidence/gem_validation/lane_gem1.json"
-   }
-  },
-  {
-   "id": "withdrawn-d28-duplicate",
-   "role": "duplicate",
-   "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
-   "path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
-   "bytes": 1603424,
-   "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
-   "content_id": "e56ea318af89",
-   "positive_pixels": 44090,
-   "format_ok": true,
-   "checks": {
-    "template_matches_expected_grid_and_footprint": {
-     "pass_": true,
-     "detail": "(3730, 3292), footprint 5,167,373 px",
-     "hard": true
-    },
-    "single_band": {
-     "pass_": true,
-     "detail": "count=1",
-     "hard": true
-    },
-    "dtype_float32": {
-     "pass_": true,
-     "detail": "dtypes=('float32',)",
-     "hard": true
-    },
-    "crs_epsg_32611": {
-     "pass_": true,
-     "detail": "32611",
-     "hard": true
-    },
-    "shape_matches_template": {
-     "pass_": true,
-     "detail": "(3730, 3292) vs (3730, 3292)",
-     "hard": true
-    },
-    "geotransform_matches_template": {
-     "pass_": true,
-     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
-     "hard": true
-    },
-    "footprint_all_finite": {
-     "pass_": true,
-     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
-     "hard": true
-    },
-    "footprint_values_in_0_1": {
-     "pass_": true,
-     "detail": "min=0.0 max=1.0",
-     "hard": true
-    },
-    "outside_footprint_is_nan_official": {
-     "pass_": true,
-     "detail": "7,111,787/7,111,787 NaN",
-     "hard": false
-    },
-    "outside_footprint_is_nan_or_zero": {
-     "pass_": true,
-     "detail": "NaN (official) or 0 (fallback) outside",
-     "hard": true
-    },
-    "nan_mask_identical_to_template": {
-     "pass_": true,
-     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
-     "hard": true
-    },
-    "nodata_tag": {
-     "pass_": true,
-     "detail": "nodata=nan",
-     "hard": false
-    },
-    "variant_nan_aware_whole_array": {
-     "pass_": true,
-     "detail": "np.nanmin/np.nanmax over the whole array",
-     "hard": true
-    },
-    "variant_masked_read": {
-     "pass_": true,
-     "detail": "rasterio masked read",
-     "hard": true
-    },
-    "variant_strict_whole_array_no_nan": {
-     "pass_": false,
-     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
-     "hard": false
-    },
-    "profile_matches_template": {
-     "pass_": true,
-     "detail": "compress=lzw (template lzw)",
-     "hard": false
-    }
-   },
-   "receipt": "checks-gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.json",
-   "outside": "nan",
-   "status": "DUPLICATE - byte-identical to a listed submission; do not submit",
-   "title": "Withdrawn primary: dotted H19-5 D2.8 (duplicate of a listed file)",
-   "summary": "Owner-mirrored H19-5 raster thinned by deterministic Poisson-disk dotting to 44,090 pixels (73% of the 0.2477-labelled mirror; 36% of H19-5). Conditional on unverified owner-reported score anchors, the H28 model estimates DTI 0.2510 and this file is its best point in the tested dot_thin(H19-5, d) sweep (d=1.8\u20134.0 px); this is a model output, not a competition score. The model-implied 12,691 truth count and 1.85-px concentration are fitted latent parameters, not verified hidden labels. This file is byte-identical to an owner-mirrored unscored alternate. It has not demonstrated a win over a comparable same-run holdout best and remains unscored/not slot-approved; the historical 0.152003389 comparator does not reproduce (IR-25-COMPARATOR-DRIFT).",
-   "expected_range": "0.247\u20130.255 (conditional H28 model; owner claims unverified; not a score)",
-   "note": "WITHDRAWN duplicate (IR-25-DUPLICATE-DOWNLOAD); do not submit",
-   "parent": "H19-5 (owner-reported 0.1922); byte-identical (same SHA-256) to the group's unscored GEMSDOE24 alternate e56ea318af89, which this repo's writer reproduces exactly",
-   "transform": "dot_thin(H19-5, min_dist 2.4) == dot_thin(H19-5, 2.8) (integer lattice)",
-   "paired_harness_gate_vs_d1_5": {
-    "mean_gain": 0.004238100912307752,
-    "folds_positive": 4,
-    "worst_fold": 0.001715040365571241,
-    "passed": true,
-    "per_fold": [
-     0.004580278722769449,
-     0.00784239584559368,
-     0.001715040365571241,
-     0.002814688715296637
-    ]
-   },
-   "gate_summary": "The shared-mask paired diagnostic compares D2.8 with the 0.2477-labelled owner mirror, not with hidden catalogue holdout truth or a current same-run spatial best. Its +0.0042 (4/4 folds) is diagnostic only, not a promotion gate. H28's separate 30-arm hide-and-recover experiment tested modelled emission choices; its registered gate failed and promoted no artifact. That experiment does not establish that this downloadable owner-mirror raster beats a current comparable same-run holdout best. The frozen 0.152003389 absolute comparator failed reproduction and cannot be used cross-run.",
-   "slot_approved": false,
-   "do_not_resubmit": true,
-   "withdrawal": "WITHDRAWN 2026-10-25: byte-identical to a raster the group lists as GEMSDOE24 (artifact ledger) and GEMSDOE30 (91eae1ca); do not submit as new (IR-25-DUPLICATE-DOWNLOAD)."
-  },
-  {
-   "id": "withdrawn-d28-zeros-duplicate",
-   "role": "duplicate",
-   "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
-   "path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
-   "bytes": 836982,
-   "sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
-   "content_id": "e56ea318af89",
-   "positive_pixels": 44090,
-   "format_ok": true,
-   "checks": {},
-   "receipt": null,
-   "outside": "zero",
-   "status": "DUPLICATE - zeros twin of the withdrawn D2.8 file; do not submit",
-   "title": "Withdrawn zeros twin of the D2.8 duplicate",
-   "withdrawal": "WITHDRAWN 2026-10-25 with its NaN twin (IR-25-DUPLICATE-DOWNLOAD).",
-   "note": "WITHDRAWN duplicate (zeros twin); do not submit",
-   "slot_approved": false,
-   "do_not_resubmit": true
-  }
- ]
+  ]
 }

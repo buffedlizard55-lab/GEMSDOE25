@@ -37,5 +37,18 @@
   "submission_name": "gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan",
   "submission_note": "GEMSDOE25 GEM-1 | lane FAIL; unscored; no slot; do not submit | id 279a305b80d2",
   "submission_note_characters": 79,
-  "verdict": "negative"
+  "verdict": "negative — no new TIFF or model run; existing candidates including GEM-FUSE1 fail or lack strict lane clearance; do not submit.",
+  "additional_existing_artifacts": [
+    {
+      "file": "gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif",
+      "sha256": "ad4bc4933d0b7636f0f32918c1fd8b8b08cd1964aee32d69e45419a9b54178a7",
+      "source": "merged PR #13 on origin/main; not generated in this review",
+      "lane_label": "LANE-CHECK (not a score)",
+      "recorded_candidate_dot_overlap_with_r13_lattice": 1.0,
+      "strict_limit": 0.7,
+      "verdict": "DUPLICATE LANE / STOP; no density exception; testing only; do not submit",
+      "fresh_computation": false
+    }
+  ],
+  "overall_submission_allowed": false
 }
