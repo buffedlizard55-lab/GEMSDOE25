@@ -1,10 +1,262 @@
 {
  "schema_version": 1,
- "generated_by": "scripts/register_h37_submission.py (session 7, 2026-10-25)",
+ "generated_by": "scripts/register_h66_submission.py (2026-10-25, H66 MGD-F + SGMC-REACT session)",
  "files": [
   {
-   "id": "mscr-multiscale-crest",
+   "id": "h66-mgd-flank",
    "role": "primary",
+   "file": "gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif",
+   "path": "docs/downloads/gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif",
+   "bytes": 839064,
+   "sha256": "7503f4d498694c0107e0efad92cd06613b56d6fe402712532c1805e778166c1a",
+   "content_id": "da617550a0e9",
+   "positive_pixels": 44832,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "np.nanmin/np.nanmax over the whole array",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.json",
+   "outside": "zero",
+   "status": "UNIQUE BY CONTENT \u00b7 FORMAT-VALID \u00b7 H66-1 screen PASS (+0.0025, 4/4) / confirm FAIL (-0.0022) \u00b7 STRICT LANE FAIL (literal rule) \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "zip": "gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.zip",
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "expected_range": "no live projection computed \u2014 H66-1 confirmation gate FAILED (not a score)",
+   "lane": {
+    "lane_clear": false,
+    "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+    "lattice_overlap": 1.0,
+    "focus_winners": {
+     "n": 21,
+     "worst_cand_dots_within_3px": 0.48712972876516775,
+     "worst_overlap_file": "g63_cvarlw_0.2303.tif",
+     "worst_abs_spearman_surface": 0.096144,
+     "b2_overlap": 0.30384546752319774,
+     "b2_reverse_overlap": 0.3625378445849047,
+     "b2_spearman_surface": 0.052283,
+     "b2_spearman_final": 0.019646
+    },
+    "external_sparse": {
+     "n": 50,
+     "worst_abs_spearman_surface": 0.176946,
+     "worst_surface_file": "h23-a-6pct.tif",
+     "worst_abs_spearman_final": 0.062878,
+     "worst_final_file": "h16-continuation.tif",
+     "worst_cand_dots_within_3px": 0.7877185938615274,
+     "worst_overlap_file": "pindrop-nodes.tif",
+     "lane_pass": false
+    },
+    "own_lineage": {
+     "n": 13,
+     "worst_abs_spearman_surface": 0.145301,
+     "worst_surface_file": "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-nan.tif",
+     "worst_abs_spearman_final": 0.18008,
+     "worst_final_file": "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+     "worst_cand_dots_within_3px": 0.822470556745182,
+     "worst_overlap_file": "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+     "lane_pass": false
+    },
+    "receipt": "docs/downloads/lane-gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.json",
+    "extended_receipt": "evidence/h66_lane_extended.json",
+    "surface_receipt": "evidence/h66_lane_surface.json"
+   },
+   "lane_summary": "STRICT LANE FAIL (literal rule: 100.0% vs r13 5-px lattice, 71.7-78.8% vs >100k-dot early carpets, 74.9-82.2% vs own unscored HGB downloads). Vs all 21 focus/top-scorer submissions: max 3-px overlap 48.7% (30.4% vs GEMSDOE32 B2 0.2778), max |Spearman| 0.177 <= 0.90.",
+   "slot_reason": "H66-1 passed screen (+0.0025, 4/4 folds) but failed fresh-draw confirmation (-0.0022); H66-2 SGMC-REACT passed screen (+0.0138, 4/4 folds) at 3/3 budget cap without confirmation; strict literal lane rule also fails on r13 lattice and own HGB lineage",
+   "run_card": "registry/run_card_h66_2026-10-25.json",
+   "title": "H66-1 MGD-F + tip-preserved flank shield (sapd3.0, zeros outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
+   "summary": "Unique 2026-10-25 GeoTIFF (44,832 binary dots, min_dist=3.0 px) from pre-registered H66-1 G1_C1 (H35 base + 4 multi-geothermometer disequilibrium & Efimov K-alteration columns + tip-preserved flank shield r=2.5 px). Passed screen (+0.0025, 4/4 folds) and Factor C flank shielding was positive in 8/8 fold-blocks, but MGD-F failed fresh-draw confirmation (-0.0022) and strict lane gate fails on dense lattice / own HGB lineage. Zero outside footprint (prevents 'Predicted values must be in range [0, 1]'). Testing only \u2014 DO NOT SUBMIT.",
+   "note": "GEMSDOE25 H66-1 MGD-C sapd3.0 | confirm FAIL; no slot; unscored; not slot-approved | id da617550a0e9"
+  },
+  {
+   "id": "h66-mgd-flank-nan",
+   "role": "alternate",
+   "file": "gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-nan.tif",
+   "path": "docs/downloads/gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-nan.tif",
+   "bytes": 1604510,
+   "sha256": "a27a036ac86e468a47b492801fca0257417fd8ebbcdfea859a87c25193a477d8",
+   "content_id": "da617550a0e9",
+   "positive_pixels": 44832,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": true,
+     "detail": "7,111,787/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=nan",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "np.nanmin/np.nanmax over the whole array",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": false,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.json",
+   "outside": "nan",
+   "status": "UNIQUE BY CONTENT \u00b7 NaN-outside twin of H66-1 \u00b7 confirm FAIL \u00b7 STRICT LANE FAIL \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "run_card": "registry/run_card_h66_2026-10-25.json",
+   "title": "H66-1 MGD-F + tip-preserved flank shield (NaN-outside template twin) \u2014 DO NOT SUBMIT",
+   "summary": "Pixel-identical on the 5,167,373-pixel footprint to the H66-1 zeros-outside primary (content_id da617550a0e9, 44,832 dots), with NaN on the 7,111,787 outside-footprint grid cells matching sample_submission.tif. Use the zeros-outside twin if testing strict whole-array [0, 1] validators; DO NOT SUBMIT either file.",
+   "note": "GEMSDOE25 H66-1 MGD-C sapd3.0 | confirm FAIL; no slot; unscored; not slot-approved | id da617550a0e9"
+  },
+  {
+   "id": "mscr-multiscale-crest",
+   "role": "alternate",
    "file": "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.tif",
    "path": "docs/downloads/gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.tif",
    "bytes": 845772,

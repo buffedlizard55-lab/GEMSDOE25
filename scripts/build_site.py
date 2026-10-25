@@ -121,6 +121,7 @@ def main() -> None:
     primary = next(s for s in subs if s["role"] == "primary")
     others = [s for s in subs if s["role"] != "primary"]
     selected = primary
+    h66_card = opt("registry/run_card_h66_2026-10-25.json")
     kdc = opt("registry/run_card_kdc_2026-10-25.json")
     anchor = opt("evidence/live_anchor_complement.json")
     snap = ls["leaderboard_snapshot"]
@@ -163,9 +164,26 @@ is not a lane clearance. Format verification is against an owner-mirrored templa
 <a class="btn" href="{prefix}downloads/{e(cf1['file'])}" download>↓ Download CF-1 diagnostic TIFF (testing only)</a>
 <p class="small">SHA-256 <code>{cf1['sha256']}</code> · EPSG:32611 · 3730×3292 · no NaN inside footprint · all values [0,1] · <a href="{prefix}executive-summary.html">submission eligibility guide</a> · note (≤140 chars): <code>{e(cf1['note'])}</code></p></section>'''
 
+    def h66_summary_html(prefix: str) -> str:
+        if not h66_card:
+            return ""
+        e1 = h66_card["experiments"]["experiment_1_h66_1_screen"]
+        e2 = h66_card["experiments"]["experiment_2_h66_1_confirm"]
+        e3 = h66_card["experiments"]["experiment_3_h66_2_sgmc_react_screen"]
+        rc = h66_card["registry_correlation_and_overlap"]
+        fw = rc["focus_21_top_scorers"]
+        return f"""<section class="card"><h2>Latest 3-Experiment Pre-Registered Session: H66-1 (MGD-F &times; Flank Shield) &amp; H66-2 (SGMC-REACT)</h2>
+<p><b>Pre-registration:</b> <code>knowledge/25_preregistered_h66_mgd_and_sgmc_react_2026-10-25.md</code> · <b>Full PhD analysis:</b> <code>knowledge/26_h66_outcomes_2026-10-25.md</code> · <b>Run card:</b> <code>registry/run_card_h66_2026-10-25.json</code>.</p>
+<table><thead><tr><th>Experiment (3/3 budget)</th><th>Draws / Withheld Pos</th><th class="num">Canary max AUC</th><th class="num">Candidate Pooled HOLDOUT-DTI [95% CI]</th><th class="num">Same-Run H35 Control</th><th class="num">Paired &Delta;DTI (Folds +)</th><th>Stage Verdict</th></tr></thead><tbody>
+<tr><td><b>Exp 1: H66-1 Screen</b> (<code>G1_C1</code>)</td><td><code>{e(str(e1['draws']))}</code> / {e1['withheld_positives']:,}</td><td class="num">{e1['leakage_canary']['max_feature_auc']:.4f}</td><td class="num">{e1['candidate_pooled_holdout_dti']:.6f} [{e1['candidate_pooled_ci95'][0]:.4f}, {e1['candidate_pooled_ci95'][1]:.4f}]</td><td class="num">{e1['control_h35_pooled_holdout_dti']:.6f}</td><td class="num">{e1['gate']['mean_gain']:+.6f} ({e1['gate']['folds_positive']}/4)</td><td>{badge('SCREEN PASS', 'ok')}</td></tr>
+<tr><td><b>Exp 2: H66-1 Confirm</b> (<code>G1_C1</code>)</td><td><code>{e(str(e2['draws']))}</code> / {e2['withheld_positives']:,}</td><td class="num">{e2['leakage_canary']['max_feature_auc']:.4f}</td><td class="num">{e2['candidate_pooled_holdout_dti']:.6f} [{e2['candidate_pooled_ci95'][0]:.4f}, {e2['candidate_pooled_ci95'][1]:.4f}]</td><td class="num">{e2['control_h35_pooled_holdout_dti']:.6f}</td><td class="num">{e2['gate']['mean_gain']:+.6f} ({e2['gate']['folds_positive']}/4)</td><td>{badge('CONFIRM FAIL', 'bad')}</td></tr>
+<tr><td><b>Exp 3: H66-2 Screen</b> (<code>SGMC_REACT_ONLY</code>)</td><td><code>{e(str(e3['draws']))}</code> / {e3['withheld_positives']:,}</td><td class="num">{e3['leakage_canary']['max_feature_auc']:.4f}</td><td class="num">{e3['candidate_pooled_holdout_dti']:.6f} [{e3['candidate_pooled_ci95'][0]:.4f}, {e3['candidate_pooled_ci95'][1]:.4f}]</td><td class="num">{e3['control_h35_pooled_holdout_dti']:.6f}</td><td class="num">{e3['gate']['mean_gain']:+.6f} ({e3['gate']['folds_positive']}/4)</td><td>{badge('SCREEN PASS (unconfirmed)', 'warn')}</td></tr>
+</tbody></table>
+<p class="small"><b>Key scientific takeaways:</b> (1) <code>Factor C</code> (tip-preserved lateral-flank shielding, <code>r=2.5 px</code>, <code>H27_tip &ge; 0.05</code>) was positive in <code>4/4</code> screen AND <code>4/4</code> confirmation folds (<code>8/8</code> here; <b><code>16/16</code> fold-blocks</b> combined with H31-1). (2) Sparse 610-cell GDR geothermometry (<code>MGD-F</code>) is draw-dependent (<code>IR-25-MGD-SPARSE-DRAW-DEPENDENCE</code>); two-stage confirmation prevented a false-positive weekly slot spend. (3) Gating USGS SGMC bedrock faults by 3DEP LiDAR scarps &amp; geodetic strain jumped HOLDOUT-DTI by <code>+0.0138</code> (95% CI <code>[+0.0025, +0.0251]</code>, <code>4/4</code> folds+), held unpromoted at the 3-experiment budget cap with HGB positive-multiplier tree-inversion disclosed (<code>IR-25-SGMC-TREE-INVERSION</code>). (4) Primary GeoTIFF clears all {fw['n']} focus/top-scorer rasters (max 3-px overlap <code>{100*fw['worst_cand_dots_within_3px']:.1f}% &le; 70%</code>; <code>{100*fw['b2_overlap']:.1f}%</code> vs GEMSDOE32 B2 <code>0.2778</code>; max surface |&rho;| <code>{rc['surface_max_abs_spearman']:.4f} &le; 0.90</code>), held <b>DO NOT SUBMIT</b>.</p></section>"""
+
     def home(prefix: str) -> str:
-        hero = verdict_banner(primary, prefix) + latest_diagnostic(prefix)  # featured unique file first (owner mandate); CF-1 diagnostic directly below
-        cards = dl_card(primary, prefix)
+        hero = verdict_banner(primary, prefix)
+        cards = dl_card(primary, prefix) + h66_summary_html(prefix) + latest_diagnostic(prefix)
         alt = "".join(f"""<div class="card"><b>{e(o['title'])}</b> {badge(o['status'], 'ok' if o['status']=='scored' else 'warn')}
 <p class="small" style="margin:.3em 0">{e(o['summary'])}</p><a class="btn alt small" href="{prefix}downloads/{o['file']}" download>↓ {e(o['file'])}</a>
  <span class="small">· {o['positive_pixels']:,} px · <code>{o['content_id']}</code></span></div>""" for o in others if o["role"] in ("fallback", "alternate"))
@@ -290,9 +308,11 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
 <p class="small">INFERENCE from owner-reported scores (<code>evidence/live_anchor_complement.json</code>); live break-even e ≈ 0.33–0.47. n/i = not identifiable (&lt;5 % off-incumbent dots).</p></div>"""
         return hero + cards + (f"<h3>Also available</h3>{alt}" if alt else "") + plan + kdcb + stats + h31_block + whyb + h28b + h30b + facb + flagb + feed
 
-    exec_body = f"""{latest_diagnostic('')}{verdict_banner(primary, '', exec_page=True)}
-<div class="callout"><b>Current unique research artifact: {e(selected['file'])}.</b> <b>OK to download for inspection/reproduction: YES.</b> Its tracked receipt reports format checks passing against an owner-mirrored template; this is not a fresh check in this checkout. <b>OK to submit to a competition scoring slot: NO.</b> The strict parallel-run lane gate is triggered: more than 70% of candidate dots are within 3 px of a registry lattice raster. Treat this as a duplicate-lane stop. No available TIFF is currently eligible for a weekly scoring slot; do not upload it.</div>
+    exec_body = f"""{verdict_banner(primary, '', exec_page=True)}
 {dl_card(selected, '')}
+{h66_summary_html('')}
+<div class="callout"><b>Current unique research artifact: {e(selected['file'])}.</b> <b>OK to download for inspection/reproduction: YES.</b> Validated automatically via <code>gems25.submission.check_file</code> and plain-<code>rasterio</code> <code>scripts/verify_candidate_independent.py</code> against the pinned owner-mirror template (all 5,167,373 footprint pixels finite in [0, 1], zeros outside, 0 NaN anywhere). <b>OK to submit to a competition scoring slot: NO (DO NOT SUBMIT).</b> Pre-registered H66-1 failed fresh-draw confirmation (-0.0022), H66-2 SGMC-REACT is screen-only at the 3/3 budget cap, and the strict literal lane gate triggers on the dense r13 lattice and prior GEMSDOE25 HGB downloads.</div>
+{latest_diagnostic('')}
 <h2>Competition upload instructions — for a future gate-cleared candidate only</h2>
 <div class="callout"><b>Do not follow these steps with the current downloadable TIFF.</b> They describe the competition form, not authorization to submit. First require a fresh pre-registered holdout win, feature-alone leakage canaries, strict pre-placement and final-dot lane clearance, and exact-file format validation.</div>
 <ol class="steps">

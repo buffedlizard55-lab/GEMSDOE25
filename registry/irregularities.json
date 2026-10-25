@@ -390,8 +390,8 @@
    "id": "IR-25-FEATURED-DOWNLOAD-RATIONALE",
    "severity": "medium",
    "status": "disclosed",
-   "issue": "The site needs one featured download, and every current file is DO NOT SUBMIT under the strict lane policy. Since the 2026-10-25 GMCE/MSCR session the featured file is the MSCR-1 candidate (gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.tif), featured because it is this session's unique, format-valid generated TIF with a full run card; it failed both pre-registered holdout gates and is testing-only. Previously the KDC file was featured because it was the only unique file keeping all 37,654 dots of the owner-reported 0.2778 file (its model projection 0.25-0.31 is not a score); it is now an alternate.",
-   "evidence": "registry/run_card_session_2026-10-25_gmce_mscr.json; evidence/kdc_build/candidates_vs_b2.json; evidence/kdc_build/projection.json.",
+   "issue": "The site needs one featured download, and every current file is DO NOT SUBMIT under the strict lane policy. Since the 2026-10-25 H66 session (arena/66ca912a-gemsdoe25) the featured file is the H66-1 MGD-F + tip-preserved flank shield candidate (gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif, 44,832 dots), featured because it is this session's unique, format-valid generated TIF with a complete 3-experiment Run Card; it passed its screen (+0.0025, 4/4 folds) but failed fresh-draw confirmation (-0.0022) and is testing-only (DO NOT SUBMIT). Earlier featured files (MSCR-1, XG1, KDC) remain available as alternates.",
+   "evidence": "registry/run_card_h66_2026-10-25.json; registry/run_card_session_2026-10-25_gmce_mscr.json; evidence/kdc_build/candidates_vs_b2.json.",
    "resolution_or_action": "Featuring a file is not slot approval; slot selection remains with the separate selector (owner)."
   },
   {
@@ -545,6 +545,38 @@
    "issue": "Chain narratives that describe D1.5 -> D2.8 as a deletion are imprecise: dot_thin is not nested across spacings on the h19-5 parent. Computed 2026-10-25: D2.8 == dot_thin(h19-5, 2.4) == dot_thin(h19-5, 2.8) exactly and is a subset of h19-5, but only 29,849 of its 44,090 dots are in D1.5 (14,241 are h19-5 pixels D1.5 had blocked). Only the R1 (d>1px) and B2 (d>2px) steps are exact deletions.",
    "evidence": "evidence/gmce_session_b2_chain_verification.json (scripts/verify_b2_chain.py, hash-pinned mirrors)",
    "resolution_or_action": "Session documents (knowledge/21, knowledge/23) describe D1.5->D2.8 as a re-thinning of the same parent, not a subset deletion. No score claim is affected (all are OWNER-reported)."
+  },
+  {
+   "id": "IR-25-LANE-CHECK-MSCR-BUG-FIXED",
+   "severity": "medium",
+   "status": "fixed",
+   "issue": "scripts/lane_check_extended.py:49 hardcoded `if p.resolve() == cand.resolve() or 'mscr' in p.stem: continue`, which silently skipped the MSCR GeoTIFFs whenever checking any non-MSCR candidate against docs/downloads/.",
+   "evidence": "scripts/lane_check_extended.py (commit 0f6fc77); tests/test_h66_features.py::test_lane_check_extended_excludes_only_self_stem.",
+   "resolution_or_action": "Fixed in-place to exclude only `cand`'s own `-zeros` / `-nan` twin stem (`re.sub(r'-(zeros|nan)$', '', p.stem) == cand_base`), covered by unit test."
+  },
+  {
+   "id": "IR-25-MGD-SPARSE-DRAW-DEPENDENCE",
+   "severity": "medium",
+   "status": "disclosed",
+   "issue": "H66-1 MGD-F (multi-geothermometer SiO2 vs Na-K-Ca disequilibrium + 2-m probe upflow + Efimov F-parameter ridge) passed its frozen 2-draw screen on draws 50,51 (+0.002486 vs BEST_CTRL, 4/4 folds+, G_main=+0.002400) but reversed on fresh confirmation draws 52,53 (-0.002241 vs BEST_CTRL, 0/4 folds+, G_main=-0.001007), whereas Factor C (tip-preserved flank shielding) stayed positive in 4/4 folds on both runs (8/8 fold-blocks). Because GDR #1391 chemical geothermometry covers only 610 footprint grid cells (~1.5% halo support), screen draws whose 20% hidden fault components intersect sampled hydrothermal basins produce non-replicable positive gains.",
+   "evidence": "evidence/h66_1_screen/analysis.json; evidence/h66_1_confirm/analysis.json; registry/run_card_h66_2026-10-25.json.",
+   "resolution_or_action": "Two-stage screen + confirmation discipline caught the false positive before any weekly slot was touched. Verdict set to negative (DO NOT SUBMIT); Factor C (16/16 fold-blocks positive across H31-1 + H66-1) retained as a validated emission primitive."
+  },
+  {
+   "id": "IR-25-SGMC-TREE-INVERSION",
+   "severity": "high",
+   "status": "disclosed",
+   "issue": "In H66-2 (SGMC-REACT, draws 54,55), gating USGS SGMC bedrock fault proximity exp(-d_SGMC / 4 px) by strictly positive smooth strain * gravity-THDR (`H66_sgmc_strain_react`) yielded standalone AUC 0.7862 — nearly identical to raw `H66_sgmc_prox4` (0.7890) — whereas gating by binary-supported 3DEP LiDAR scarps (`H66_sgmc_scarp_compat`, zero where L_coh100==0 or cos 2dtheta<=0) yielded standalone AUC 0.5965. Gradient-boosted trees threshold strictly positive products near 1e-5 to recover the underlying SGMC proximity map, inheriting compilation overlap between 1:500k state bedrock maps and USGS QFFDB (`labels.tif`, 35.2% 3-px proximity).",
+   "evidence": "evidence/h66_2_screen/analysis.json (`leakage_canary.max_by_feature`); knowledge/26_h66_outcomes_2026-10-25.md.",
+   "resolution_or_action": "Even though SGMC_REACT_ONLY cleared the <0.90 canary and beat CTRL_H35_24 by +0.013794 (4/4 folds+, CI95 [+0.0025, +0.0251]), H66-2 was NOT promoted: 3-of-3 experiment cap reached without confirmation, and any future SGMC reactivation feature must use hard zero-support gating (e.g., `H66_sgmc_scarp_compat` alone or binarized top-decile strain) so trees cannot invert smooth positive multipliers."
+  },
+  {
+   "id": "IR-25-G87-STALE-PROMPT-CLAIM",
+   "severity": "medium",
+   "status": "flagged",
+   "issue": "Item #89 of the session prompt lists `GEMSDOE87/gems87-h96-wls-ridge-n34594-20261006T031000Z-26ca249c-zeros: 0.3195` alongside leaderboard high `0.4413`. Direct GitHub API inspection of `buffedlizard55-lab/GEMSDOE87` (`README.md`, `ledger/submissions.csv`, and `registry/historical_index.json` covering 98 scored files across 102 GEMSDOE repos) shows no such file or organizer receipt in `GEMSDOE87`, and `GEMSDOE87` itself flags `0.3195` as an unverified/superseded prompt claim while recording `GEMSDOE32` (`0.2778`) as the highest sibling claim and `#1 xiaofanhu = 0.4413` (`PUBLIC-LEADERBOARD-OBSERVATION`).",
+   "evidence": "buffedlizard55-lab/GEMSDOE87 README.md & registry/historical_index.json (inspected 2026-10-25); knowledge/26_h66_outcomes_2026-10-25.md.",
+   "resolution_or_action": "Quarantined as an unverified prompt claim (`IR-25-LEADERBOARD-CONFLICT`); never treated as an ORGANIZER-CONFIRMED score or calibration anchor."
   }
  ]
 }

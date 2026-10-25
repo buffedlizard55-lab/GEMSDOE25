@@ -660,5 +660,29 @@
     "Remaining work: fetch one blocked official external layer on a networked runner (GDR 1391 / USGS heat flow), build distance-stratified holdout variant, owner decision on dense-raster lane policy and organizer receipts for scores."
    ]
   }
+ },
+ "h66_mgd_sgmc_session_review_2026_10_25": {
+  "branch": "arena/66ca912a-gemsdoe25",
+  "date_utc": "2026-10-25",
+  "pass_1_implement_and_verify": [
+   "Read AGENTS.md, full README (including verbatim and consolidated owner briefs), registry/*.json, and evidence/*.json; synced fast-forward with origin/main (PR #27, 8c32763); restored all 22 SHA-pinned data files, 30 artifact mirrors, and 21 registry_top rasters; rebuilt and SHA-verified static_ABCD + addons work caches.",
+   "Re-verified pixel-exact identities across all 9 focus sites (GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36 -> evidence/h66_focus_sites_forensics.json): D2.8(g25)==D2.8(g30), R1(g28)==R1(g31)==D2.8&d>1, B2(g32)==R1&d>2 (37,654 px), G36==B2 union 1,200 PINN dots, and G33 (41,865 px) re-admitted 3,894 d<=2 collar dots; also inspected GEMSDOE87/92 via gh api and flagged stale prompt claim 0.3195 (IR-25-G87-STALE-PROMPT-CLAIM).",
+   "Pre-registered 5 ranked untried hypotheses and frozen H66-1 / H66-2 code before any holdout fit (knowledge/25_preregistered_h66_mgd_and_sgmc_react_2026-10-25.md, commit 0f6fc77).",
+   "Executed all 3 allowed holdout experiments on untouched draws 50..55: Exp 1 H66-1 screen (draws 50,51) PASSED (+0.002486, 4/4 folds+, canary 0.5858); Exp 2 H66-1 confirmation (draws 52,53) FAILED (-0.002241, 0/4 folds+, canary 0.5635; Factor C positive in 8/8 fold-blocks -> 16/16 combined with H31-1); Exp 3 H66-2 SGMC-REACT screen (draws 54,55) PASSED (+0.013794, CI95 [+0.0025, +0.0251], 4/4 folds+, canary 0.7890; stopped at 3/3 budget cap without confirmation).",
+   "Built unique full-catalogue GeoTIFFs from pure catalogue-free H66-1 G1_C1 per frozen pre-registration rule (gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif, 44,832 dots, SHA-256 7503f4d4..., plus -nan.tif twin and single-TIF .zip); verified automatically via gems25.submission.check_file + independent plain-rasterio verify_candidate_independent.py + 3 lane checkers."
+  ],
+  "pass_2_bugs_assumptions_edge_cases": [
+   "Caught and fixed scripts/lane_check_extended.py:49 hardcoded `'mscr' in p.stem` exclusion (IR-25-LANE-CHECK-MSCR-BUG-FIXED) so non-MSCR candidates are checked against MSCR GeoTIFFs, covered by unit test.",
+   "Caught and fixed band filename mismatch in build_h66_sgmc_sidecar (`04_geod_2ndinv.npy` instead of `10_geod_2ndinv.npy`) before any H66-2 cell fit (commit 822fb60).",
+   "Discovered HGB positive-multiplier tree inversion on USGS SGMC (`H66_sgmc_strain_react` standalone AUC 0.7862 vs raw `H66_sgmc_prox4` 0.7890 vs hard-zero-gated `H66_sgmc_scarp_compat` 0.5965) and disclosed as IR-25-SGMC-TREE-INVERSION rather than over-claiming raw SGMC gain.",
+   "Repointed tests/test_session_gmce_mscr.py to query `s['id'] == 'mscr-multiscale-crest'` and fixed `ROOT / 'data'` -> `data_dir()` in tests/test_h36_submission.py and tests/test_kdc.py so all 195 pytest tests execute with 0 skips when GEMS_DATA_DIR is set.",
+   "Reverted timestamp-only churn in registry/artifact_ledger.json and verified zero broken relative links across README.md, knowledge/25, and knowledge/26."
+  ],
+  "pass_3_recheck_against_the_original_brief": [
+   "Unique GeoTIFF generated (not a copy; content_id da617550a0e9; 30.4% 3-px overlap vs GEMSDOE32 B2; <=48.7% vs all 21 focus/top-scorer rasters; max surface |Spearman| 0.1769 <= 0.90) and placed first on README.md, index.html, and docs/executive-summary.html with unmistakable plain-language verdict (OK to download: YES · OK to spend a weekly slot: NO — DO NOT SUBMIT) and 100-char note.",
+   "Prevented 'Predicted values must be in range [0, 1]' via zeros-outside float32 encoding verified automatically by both project and independent plain-rasterio validators (strict whole-array 0<=x<=1 True, 0 NaN).",
+   "All 6 PARALLEL-RUN PROTOCOL rules satisfied: pre-placement surface + final-dot lane checks logged, shared template feature stack/holdout/writer reused, strict HOLDOUT-DTI vs OWNER-CLAIM labeling, single-feature <=0.90 leakage canaries, machine-verified JSON Run Card (registry/run_card_h66_2026-10-25.json), stopped at 3/3 experiments, 0 weekly slots spent.",
+   "Session prompt preserved in README.md alongside Arena Core Values (Maximize P(Win), Own the Outcome), verified official links table, flagged irregularities, limitations, and ranked next steps."
+  ]
  }
 }

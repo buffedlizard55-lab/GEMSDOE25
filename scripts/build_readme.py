@@ -45,6 +45,7 @@ def main() -> None:
     h31_aniso_res = opt("evidence/h31_experiments/results.json")
     h31_aniso_card = opt("evidence/h31_experiments/run_card.json")
     focus_forensics = opt("evidence/focus_sites_forensics.json")
+    h66_card = opt("registry/run_card_h66_2026-10-25.json")
     irr = J("registry/irregularities.json")["issues"]
     best = max(a["score"] for a in ls["artifacts"] if a["score"] is not None)
     brief = (ROOT / "knowledge" / "owner_brief_verbatim.txt").read_text().rstrip()
@@ -54,7 +55,9 @@ def main() -> None:
     A("# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize\n")
     A("## Start here every session — owner mandate, 2026-10-25\n")
     A("**MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.** The project's decision principles are **Maximize P(Win)** and **Own the Outcome**. Review the original owner prompt and this README each session; follow `AGENTS.md`. Test catalogue-free geological hypotheses on buffered, spatially blocked hide-and-recover folds; test each feature alone for leakage (AUC >0.90 is presumptive leakage); check surface and final dots against every available registry raster (|rank correlation| >0.90 or >70% within 3 pixels is a duplicate-lane stop). Report pooled HOLDOUT-DTI with withheld-positive count and 95% CI, never present a projection or owner-reported claim as an organizer-confirmed score. Never spend a weekly slot before a separate selector decision. Exact-file format checks do not imply submission approval. Read the complete historical owner brief at the bottom. The current owner's very long updated prompt is not claimed to be transcribed verbatim here; this section records its actionable protocol, not the complete message.\n")
-    A("**Latest session (2026-10-25, GMCE/MSCR lane):** [why H33-2-B2 scored 0.2778 (chain re-verified pixel-exactly incl. non-nested thinning), two fresh-draw detector experiments (GMCE-1 gravity-magnetic coherent edge, MSCR-1 multi-scale crest persistence; both negative) and the unique MSCR file (DO NOT SUBMIT)](knowledge/23_gmce_mscr_outcomes_2026-10-25.md) · "
+    A("**Latest session (2026-10-25, H66 MGD-F + SGMC-REACT lane, `arena/66ca912a-gemsdoe25`):** [PhD forensic deconstruction of GEMSDOE32 (`0.2778`) across focus sites `24–36` & `48–92`, 5 ranked untried hypotheses, and 3 pre-registered holdout experiments — `H66-1` screen PASS (`+0.0025`, `4/4` folds+) / confirm FAIL (`-0.0022`), `Factor C` flank shield `+8/8` (`16/16` combined), `H66-2` `SGMC-REACT` screen PASS (`+0.0138`, `4/4` folds+, unconfirmed at `3/3` cap) — unique H66-1 GeoTIFF built, OK TO DOWNLOAD · DO NOT SUBMIT](knowledge/26_h66_outcomes_2026-10-25.md) · "
+      "run card `registry/run_card_h66_2026-10-25.json` · pre-registration [`knowledge/25_preregistered_h66_mgd_and_sgmc_react_2026-10-25.md`](knowledge/25_preregistered_h66_mgd_and_sgmc_react_2026-10-25.md).\n")
+    A("**Parallel session (2026-10-25, GMCE/MSCR lane):** [why H33-2-B2 scored 0.2778 (chain re-verified pixel-exactly incl. non-nested thinning), two fresh-draw detector experiments (GMCE-1 gravity-magnetic coherent edge, MSCR-1 multi-scale crest persistence; both negative) and the unique MSCR file (DO NOT SUBMIT)](knowledge/23_gmce_mscr_outcomes_2026-10-25.md) · "
       "run card `registry/run_card_session_2026-10-25_gmce_mscr.json` · pre-registrations `knowledge/21_preregistered_gmce_2026-10-25.md`, `knowledge/22_preregistered_mscr_exp2_2026-10-25.md`.\n")
     A("**Latest session (2026-10-25, session 7, H37 lane):** [why H33-2-B2 scored 0.2778 (chain re-verified pixel-exact), two new pre-registered experiments (H37-1 DOC, H37-2 SPR — both negative), the density-aware lane audit and the unique H37 file (DO NOT SUBMIT)](knowledge/24_h37_outcomes_and_0.2778_answer_2026-10-25.md) · "
       "run card `registry/run_card_h37_2026-10-25.json` · pre-registrations `knowledge/22_preregistered_h37…`, `knowledge/23`.\n")
@@ -88,7 +91,19 @@ def main() -> None:
     A("> ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).\n")
     A(f"> **OK to download (local testing): {'YES' if primary.get('ok_to_download') else 'NO'} · OK to spend a weekly slot: {'YES' if primary.get('ok_to_submit_slot') else 'NO'} — DO NOT SUBMIT** "
       f"(verdict **{primary.get('verdict', 'n/a')}**). Projection: {primary.get('expected_range', 'n/a')}. Lane: {primary.get('lane_summary', 'n/a')}. "
-      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest known file. Why this negative file is featured: IR-25-XG1-FEATURED-NEGATIVE.\n")
+      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest known file. Why this negative file is featured: IR-25-FEATURED-DOWNLOAD-RATIONALE.\n")
+    if h66_card:
+        e1 = h66_card["experiments"]["experiment_1_h66_1_screen"]
+        e2 = h66_card["experiments"]["experiment_2_h66_1_confirm"]
+        e3 = h66_card["experiments"]["experiment_3_h66_2_sgmc_react_screen"]
+        fw = h66_card["registry_correlation_and_overlap"]["focus_21_top_scorers"]
+        A("## Latest Pre-Registered 3-Experiment Outcomes (`H66-1` MGD-F × Flank Shield & `H66-2` SGMC-REACT)\n")
+        A("| Experiment (`3/3` budget) | Draws / Withheld Pos | Canary max AUC | Candidate Pooled `HOLDOUT-DTI` (`95% CI`) | Same-Run `H35` Control | Paired ΔDTI (Folds +) | Stage Verdict |\n"
+          "| :--- | :---: | :---: | :---: | :---: | :---: | :---: |\n"
+          f"| **Exp 1: `H66-1` Screen** (`G1_C1`) | `{e1['draws']}` / `{e1['withheld_positives']:,}` | `{e1['leakage_canary']['max_feature_auc']:.4f}` | `{e1['candidate_pooled_holdout_dti']:.6f}` `[{e1['candidate_pooled_ci95'][0]:.4f}, {e1['candidate_pooled_ci95'][1]:.4f}]` | `{e1['control_h35_pooled_holdout_dti']:.6f}` | `{e1['gate']['mean_gain']:+.6f}` (`{e1['gate']['folds_positive']}/4`) | **SCREEN PASS** |\n"
+          f"| **Exp 2: `H66-1` Confirm** (`G1_C1`) | `{e2['draws']}` / `{e2['withheld_positives']:,}` | `{e2['leakage_canary']['max_feature_auc']:.4f}` | `{e2['candidate_pooled_holdout_dti']:.6f}` `[{e2['candidate_pooled_ci95'][0]:.4f}, {e2['candidate_pooled_ci95'][1]:.4f}]` | `{e2['control_h35_pooled_holdout_dti']:.6f}` | `{e2['gate']['mean_gain']:+.6f}` (`{e2['gate']['folds_positive']}/4`) | **CONFIRM FAIL** |\n"
+          f"| **Exp 3: `H66-2` Screen** (`SGMC_REACT_ONLY`) | `{e3['draws']}` / `{e3['withheld_positives']:,}` | `{e3['leakage_canary']['max_feature_auc']:.4f}` | `{e3['candidate_pooled_holdout_dti']:.6f}` `[{e3['candidate_pooled_ci95'][0]:.4f}, {e3['candidate_pooled_ci95'][1]:.4f}]` | `{e3['control_h35_pooled_holdout_dti']:.6f}` | `{e3['gate']['mean_gain']:+.6f}` (`{e3['gate']['folds_positive']}/4`) | **SCREEN PASS** *(unconfirmed at 3/3 cap)* |\n")
+        A(f"* **Mechanistic discoveries (`knowledge/26_h66_outcomes_2026-10-25.md`):** (1) `Factor C` (tip-preserved lateral-flank shielding, `r=2.5 px`, `H27_tip >= 0.05`) was positive in `4/4` screen and `4/4` confirmation folds (`8/8` here; **`16/16` fold-blocks** combined with `H31-1`). (2) Sparse 610-cell GDR geothermometry (`MGD-F`) is draw-dependent (`IR-25-MGD-SPARSE-DRAW-DEPENDENCE`); two-stage confirmation stopped a false-positive weekly slot spend. (3) Gating USGS SGMC bedrock faults by 3DEP LiDAR scarps & GPS strain jumped `HOLDOUT-DTI` by `+0.0138` (`95% CI [+0.0025, +0.0251]`, `4/4` folds+), held unpromoted at the 3-experiment cap with HGB smooth-multiplier tree inversion documented (`IR-25-SGMC-TREE-INVERSION`). (4) Built GeoTIFF clears all `{fw['n']}` focus/top-scorer submissions (max 3-px overlap `{100*fw['worst_cand_dots_within_3px']:.1f}% <= 70%`, `{100*fw['b2_overlap']:.1f}%` vs `GEMSDOE32` `B2` `0.2778`; max surface `|Spearman| = {h66_card['registry_correlation_and_overlap']['surface_max_abs_spearman']:.4f} <= 0.90`).\n")
     if h31_flank_screen and h31_flank_confirm and h31_card and focus_forensics:
         inv = focus_forensics["nested_chain_inversion_conditional_on_reported_scores"]
         s1 = inv["d28_to_r1_delete_0_1px_collar"]
@@ -357,6 +372,10 @@ def main() -> None:
     A("The current user message was condensed into the session handoff. The full active scope and acceptance criteria are preserved below, separately from the verbatim 2026-10-02 brief.\n")
     A("<details><summary><strong>Full continuation brief and current constraints</strong></summary>\n")
     A("~~~text\n" + active_brief + "\n~~~\n")
+    A("</details>\n")
+    A("## Active Session Brief (2026-10-25, `arena/66ca912a-gemsdoe25` — condensed handoff preserved verbatim) — read every session\n")
+    A("<details><summary><strong>Active condensed prompt &amp; protocol for session 66ca912a</strong></summary>\n")
+    A("~~~markdown\n" + (ROOT / "knowledge" / "current_session_brief_2026-10-25_66ca_CONDENSED.md").read_text().rstrip() + "\n~~~\n")
     A("</details>\n")
     (ROOT / "README.md").write_text("\n".join(L))
     print("README.md written,", len("\n".join(L)), "chars")
