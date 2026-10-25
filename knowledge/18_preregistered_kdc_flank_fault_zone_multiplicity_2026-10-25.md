@@ -39,3 +39,7 @@ its gate. This is a *new* hypothesis with its own gate; it does not rescue or re
   G4 leakage canary (AUC* ≤ 0.90).
 * Live build if and only if screen + confirmation pass: as knowledge/17 §3 but with the complement restricted to
   3 < d(H19-5) ≤ 8 px.
+
+
+---
+**Outcome (appended after the run; the frozen text above is unchanged):** NEGATIVE. See `knowledge/19_kdc_results_2026-10-25.md` and `registry/run_card_kdc_2026-10-25.json`.

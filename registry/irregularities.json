@@ -278,9 +278,65 @@
    "id": "IR-25-SHIPPED-NOT-CLEARED",
    "severity": "high",
    "status": "open",
-   "issue": "The unique H31-C file is format-valid and unique by bytes, but its holdout result is parity with its own control (not a win), its lane check is flagged, and it has no competition score. It must not be used for a weekly slot.",
-   "evidence": "registry/run_card_h31_2026-10-25.json; evidence/h31_screen/analysis.json.",
-   "resolution_or_action": "The site and README label it 'UNIQUE FILE - NOT CLEARED'. A slot needs a passing confirmation, a cleared lane check, and the exact-file audit."
+   "issue": "The primary download is now the KDC file (content id f74e9238cc1c): unique, format-valid and lane-clean, but its pre-registered holdout gate FAILED (paired \u22120.0007 vs best same-run control, 2/4 folds) and it has no competition score. It must not be used for a weekly slot under project rules. The earlier H31-C file is superseded.",
+   "evidence": "registry/run_card_kdc_2026-10-25.json; evidence/kdc_screen/analysis.json; evidence/kdc5_screen/analysis.json.",
+   "resolution_or_action": "The site and README show 'OK to download: YES \u00b7 OK to spend a slot: NO'. A slot needs a candidate that passes its frozen gate and the exact-file audit."
+  },
+  {
+   "id": "IR-25-GEM1-WEAK-CONTROL",
+   "severity": "high",
+   "status": "disclosed",
+   "issue": "PR #12 described GEM-1 (blind magnetics) as holdout-validated, but its comparison was against a weak control (B_crest, holdout DTI \u22480.02). Used as a complement to the 0.15 same-run control in E1, GEM-1 dots were random-level (R 0.167 vs uniform-random 0.183; paired \u22120.0197, 0/4 folds).",
+   "evidence": "evidence/kdc_screen/analysis.json gate.K_gem1 and gate.K_rand; registry/run_card_kdc_2026-10-25.json.",
+   "resolution_or_action": "GEM-1 download marked SUPERSEDED / NOT RECOMMENDED in registry/submissions.json and on the site. Future comparisons must use the best same-run control (AGENTS rule)."
+  },
+  {
+   "id": "IR-25-KDC-FIRST-BUILD-LANE-DUPLICATE",
+   "severity": "medium",
+   "status": "fixed",
+   "issue": "The first KDC build (content id 0cfdb8977088) failed the parallel-run lane rule: 75.5 % of its dots lay within 3 px of GEMSDOE63 cvarlw dots and 70.0 % within 3 px of GEMSDOE48. Off-H19-5 real estate is shared with those sites.",
+   "evidence": "evidence/kdc_build/withdrawn-lane-duplicate-checks-0cfdb8977088.json.",
+   "resolution_or_action": "Logged as a duplicate and withdrawn (files deleted from docs/downloads). Rebuilt with --exclude-registry (complement > 3 px from every other-site registry raster); the new file is lane-clean (worst overlap 0.680, worst Spearman 0.824). No performance parameter was changed."
+  },
+  {
+   "id": "IR-25-REGISTRY-HALO-COST",
+   "severity": "high",
+   "status": "open",
+   "issue": "The 3-px halos of 30 other-site registry rasters cover 59.1 % of the footprint and 93.7 % of this repo's top-3.5 % model ridge pixels. Any lane-compliant unique file must place \u226530 % of its dots in lower-value terrain; the lane-compliant complement's median model score is 0.205 versus 0.458 for the unconstrained one.",
+   "evidence": "evidence/kdc_build/registry_halo_cost.json; scripts/build_kdc_submission.py composition fields.",
+   "resolution_or_action": "Disclosed on the site and run card. Uniqueness and score are in tension for every derivative of the shared HGB/DEM stack; only a genuinely new detector (for example, 1 m lidar scarp mapping) escapes this."
+  },
+  {
+   "id": "IR-25-BRIEF-RECONSTRUCTED",
+   "severity": "medium",
+   "status": "open",
+   "issue": "This session's owner brief was archived after context condensation, so knowledge/owner_brief_2026-10-25_s6_RECONSTRUCTED.txt is an agent reconstruction and is not guaranteed verbatim.",
+   "evidence": "File header; the 21 owner-reported scores in registry/top_scorer_sources.json all appear in it (21/21).",
+   "resolution_or_action": "Owner: paste the original message over the file to make it authoritative."
+  },
+  {
+   "id": "IR-25-CODE-SEARCH-INDEX",
+   "severity": "low",
+   "status": "disclosed",
+   "issue": "The GitHub code-search API returns incomplete results for the buffedlizard55-lab repositories (and `gh search code --owner` is unsupported), so the novelty audit of hypotheses relied on fetched repo trees and docs rather than exhaustive code search.",
+   "evidence": "gh api search/code queries during this session returned hits for only a subset of known files.",
+   "resolution_or_action": "Novelty claims in knowledge/17\u201319 are limited to what the trees and documents show; an absent hit is not proof that something was never implemented."
+  },
+  {
+   "id": "IR-25-REGISTRY-TOP-LEDGER",
+   "severity": "low",
+   "status": "disclosed",
+   "issue": "21 top-scoring registry rasters were downloaded from the GEMSDOE24\u201392 GitHub repositories for forensics and lane checks. Their scores are OWNER-REPORTED claims matched to filenames, not organizer receipts.",
+   "evidence": "registry/top_scorer_sources.json (raw URLs + sha256); scripts/fetch_top_scorers.py restores them; data/registry_top/ is not committed.",
+   "resolution_or_action": "Rasters are not committed (AGENTS rule); the restore script verifies the pinned SHA-256."
+  },
+  {
+   "id": "IR-25-BUILD-DESPITE-FAILED-GATE",
+   "severity": "high",
+   "status": "disclosed",
+   "issue": "The pre-registration (knowledge/17 \u00a73) allows the live KDC build only after the screen and confirmation pass. Both screens failed, but the owner's brief makes a unique TIF the highest-urgency deliverable, so the file was built anyway.",
+   "evidence": "registry/run_card_kdc_2026-10-25.json deviation_from_preregistration; evidence/kdc_screen/analysis.json; evidence/kdc5_screen/analysis.json.",
+   "resolution_or_action": "The file is labelled verdict negative / NOT slot-cleared on the site, in the README and in the registry. The selector should not spend a slot on it under AGENTS rule 5. No performance parameter was tuned after the screens."
   }
  ]
 }

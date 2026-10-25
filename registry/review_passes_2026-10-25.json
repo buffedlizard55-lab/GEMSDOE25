@@ -39,5 +39,38 @@
    "Lane flag needs human review.",
    "No competition score exists for any file here."
   ]
+ },
+ "sessions": {
+  "s6_arena_1ec1611b": {
+   "pass_1_implement_and_verify": {
+    "done": [
+     "Fetched and SHA-pinned 21 top-scoring registry rasters; forensics show B2 = h27-4 minus dots within 2 px of the catalogue (XOR 0).",
+     "Pre-registered G25-K1 (d1be1c3) and G25-K5 (1e387f5) before running; E1 and E2 screens both NEGATIVE; no confirmation stage; 2 of 3 experiments used.",
+     "Rebuilt the full-catalogue HGB; it regenerated H31-C content id 9edd6bed8268 byte-identically.",
+     "Built the KDC file (B2 + 17,720 complement dots); validator ok; first build was a lane duplicate (withdrawn), and the rebuild is lane-clean."
+    ]
+   },
+   "pass_2_bugs_assumptions_edges": {
+    "done": [
+     "Independent verifier (scripts/verify_kdc_independent.py, no shared code): B2 is a subset, 17,720 complement dots, 0 catalogue pixels, NaN twin equal, zip SHA matches, worst overlap 0.680, no byte-identical registry file.",
+     "Fixed: a hard-coded byte_identical flag in the verifier; the duplicated hero/summary on the executive page; a stale H31-C lane-flag line in the README builder; the GEM-1 'holdout-validated' label (weak control).",
+     "Fixed the note to satisfy the repo integrity rule ('not slot-approved', 'no slot', 'unscored', <= 120 chars); the note is not embedded in the TIF, so the SHA is unchanged.",
+     "Corrected 'every top scorer is a >= 96.9 % H19-5 subset': GEMSDOE70 is the exception (14.3 %).",
+     "Corrected the gate description: K_self failed G1 on all three counts and also G2 (2/4 folds with R >= 0.50)."
+    ]
+   },
+   "pass_3_recheck_against_brief": {
+    "done": [
+     "Unique TIF: yes (lane-clean, not byte-identical). The site shows 'OK to download: YES \u00b7 OK to spend a weekly slot: NO' at the top of index and the executive summary.",
+     "Validation is automated: tests/test_kdc.py derives both labels from the evidence files; 115+ tests pass and ruff is clean.",
+     "Run card has every protocol field (registry/run_card_kdc_2026-10-25.json), including the disclosed deviation (built despite the failed gate).",
+     "README embeds this session's brief, flagged as an agent reconstruction (IR-25-BRIEF-RECONSTRUCTED)."
+    ],
+    "open": [
+     "No file beats 0.2778 on evidence; a new detector (1 m lidar) is needed and is blocked in this sandbox.",
+     "The owner should replace the reconstructed brief with the original text."
+    ]
+   }
+  }
  }
 }

@@ -1,0 +1,9 @@
+{
+ "footprint_frac_in_registry_halo": 0.5912871008150563,
+ "ridge_px_total": 1090419,
+ "topk_threshold_score": 0.2808828353881836,
+ "frac_topk_ridge_inside_registry_halo": 0.9374426345530747,
+ "complement_score_min": 0.1245977059006691,
+ "complement_score_median": 0.2048746943473816,
+ "complement_rank_percentile_of_min_among_ridges": 0.3451425552929654
+}

@@ -46,14 +46,17 @@ def main() -> None:
     L = []
     A = L.append
     A("# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize\n")
-    A("**Current session review (2026-10-25):** [GEMSDOE32 H33-2-B2 score forensics, candidate screen, data blockers, and run card](knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md). The requested start-of-session owner prompt remains archived verbatim at `knowledge/owner_brief_verbatim.txt`; see also `AGENTS.md`.\n")
+    A("**Latest session (2026-10-25, session 6):** [why H33-2-B2 scored 0.2778, the KDC/flank holdout tests (both negative) and the unique KDC file](knowledge/19_kdc_results_2026-10-25.md) · "
+      "run card `registry/run_card_kdc_2026-10-25.json` · this session's brief (agent reconstruction, see its header): "
+      "[`knowledge/owner_brief_2026-10-25_s6_RECONSTRUCTED.txt`](knowledge/owner_brief_2026-10-25_s6_RECONSTRUCTED.txt) · older verbatim brief `knowledge/owner_brief_verbatim.txt` · `AGENTS.md`.\n")
     A("> **Maximize P(Win)** · **Own the Outcome** — the Arena core values are the decision rule for every change in this repository.\n")
     A("**Competition:** [DOE GEMS Prize, DrivenData #306](https://www.drivendata.org/competitions/306/competition-doe-gems/) · "
       "**Live site:** <https://buffedlizard55-lab.github.io/GEMSDOE25/> · **Weekly limit:** 3 submissions · "
       "**Ends:** 3 Dec 2026 (page: 11:59 p.m. UTC; rules: 5:00 p.m. ET — see IR-25-DEADLINE)\n")
     A("## ⬇ Download the unique, format-valid GeoTIFF (NOT slot-cleared)\n")
     A(f"**[↓ `{primary['file']}`](docs/downloads/{primary['file']})** — {primary['summary']}\n")
-    A(f"* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, NaN outside "
+    outside_txt = "zeros outside (no NaN anywhere)" if primary.get("outside") == "zero" else "NaN outside"
+    A(f"* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, {outside_txt} "
       f"(verified against the pinned owner-mirror template, not organizer-authenticated; independent check receipt: `docs/downloads/{primary['receipt']}`).")
     A(f"* Unique content id `{primary['content_id']}` · SHA-256 `{primary['sha256']}` · {primary['positive_pixels']:,} emitted pixels · status: **{primary['status']}**.")
     A(f"* **Note to paste** in DrivenData's *Note (optional)* field: `{primary['note']}`")
@@ -62,7 +65,9 @@ def main() -> None:
             A(f"* Format fallback (format troubleshooting only; not slot-approved): [`{o['file']}`](docs/downloads/{o['file']}) — {o['title']} ({o['status']}; {o['positive_pixels']:,} px).")
     A("* Step-by-step upload guide: [`docs/executive-summary.html`](https://buffedlizard55-lab.github.io/GEMSDOE25/docs/executive-summary.html).\n")
     A("> ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).\n")
-    A(f"> ⚠ **Lane flag open:** this file is flagged by the lane-overlap check against a dense 13GEMSDOE lattice (IR-25-LANE-DENSITY). Its holdout result is parity with its own control, not a win. It is NOT slot-cleared. Receipt: `docs/downloads/lane-{primary['file'][:-4]}.json`.\n")
+    A(f"> **OK to download: {'YES' if primary.get('ok_to_download') else 'NO'} · OK to spend a weekly slot: {'YES' if primary.get('ok_to_submit_slot') else 'NO'}** "
+      f"(verdict **{primary.get('verdict', 'n/a')}**). Projection: {primary.get('expected_range', 'n/a')}. Lane: {primary.get('lane_summary', 'n/a')}. "
+      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest known file.\n")
     A("## Where things stand\n")
     A(f"* **Unverified leaderboard claims** (reported {snap['reported_utc']}; no organizer page or receipt was accessed): #1 {snap['top10'][0]['participant']} {snap['top10'][0]['best_public_dti']:.4f}; reported rank #5 {snap['top10'][4]['best_public_dti']:.4f}. "
       f"The group-best claim is **{best:.4f}**; the previously reported rank #16/account association is not authenticated. These are not independently verified scores; apparent gaps to ranks #5/#1 are arithmetic on supplied claims only.")
@@ -298,6 +303,12 @@ def main() -> None:
     A("Set `GEMS_DATA_DIR` / `GEMS_WORK_DIR` to keep the 419 MB raster and the ~1.5 GB feature cache outside the checkout.\n")
     A("## Repository map\n")
     A("| Path | Role |\n|---|---|\n| `src/gems25/` | metric (official DTI + brute-force twin), hide-and-recover holdout, thinning/NMS, families & features, H30 relay/scarp add-ons, factorial engine, experiment cells, strict submission writer/checker |\n| `scripts/` | restore, build, run, analyse, package, site, README, feed, score recorder |\n| `registry/` | sources (with verification status), irregularities, score ledger, data pins, shipped submissions |\n| `evidence/` | machine-readable results and forensics |\n| `knowledge/` | pre-registrations, ranked hypotheses, verified research digest, the brief |\n| `docs/`, `index.html` | GitHub Pages site (root `index.html` is the landing page; Pages builds from `main:/`) |\n| `tests/` | unit, parity, integrity and reproduction tests |\n")
+    A("## Owner brief 2026-10-25, session 6 (agent reconstruction, not guaranteed verbatim) — read every session\n")
+    A("Reconstructed after context condensation; the 21 owner-reported scores that were transcribed independently all match (IR-25-BRIEF-RECONSTRUCTED). "
+      "Owner: paste the original over the file to make it authoritative.\n")
+    A("<details><summary><strong>Full text</strong></summary>\n")
+    A("~~~text\n" + (ROOT / "knowledge" / "owner_brief_2026-10-25_s6_RECONSTRUCTED.txt").read_text().rstrip() + "\n~~~\n")
+    A("</details>\n")
     A("## Standing brief 2026-10-25 (consolidated restatement, not verbatim) — read every session\n")
     A("Full text: [`knowledge/owner_brief_2026-10-25_consolidated.md`](knowledge/owner_brief_2026-10-25_consolidated.md). GEMSDOE32 0.2778 analysis and ranked next hypotheses: [`knowledge/14_gemsdoe32_analysis_and_hypotheses_2026-10-25.md`](knowledge/14_gemsdoe32_analysis_and_hypotheses_2026-10-25.md). H31 pre-registration: [`knowledge/13_preregistered_h31_credit_field_emission_2026-10-25.md`](knowledge/13_preregistered_h31_credit_field_emission_2026-10-25.md). Run card: `registry/run_card_h31_2026-10-25.json`.\n")
     A("<details><summary><strong>Full text of the 2026-10-25 brief (consolidated)</strong></summary>\n")

@@ -3,8 +3,140 @@
  "generated_by": "scripts/build_site.py (merged arena/228adaa9-gemsdoe25 + origin/main)",
  "files": [
   {
-   "id": "primary",
+   "id": "kdc-b2-complement",
    "role": "primary",
+   "file": "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-zeros.tif",
+   "path": "docs/downloads/gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-zeros.tif",
+   "bytes": 856618,
+   "sha256": "910bb326f4f5be7ca4aac3c0c69000543c98657f4098117f866fb29d4636f62b",
+   "content_id": "f74e9238cc1c",
+   "positive_pixels": 55374,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "np.nanmin/np.nanmax over the whole array",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c.json",
+   "outside": "zero",
+   "status": "UNIQUE \u00b7 FORMAT-VALID \u00b7 LANE-CLEAN \u00b7 NOT SLOT-CLEARED (pre-registered holdout gate failed; verdict negative)",
+   "title": "New unique file: H33-2-B2 (37,654 dots) + 17,720 new model dots placed away from every registry raster",
+   "summary": "Additive complement design (G25-K1, knowledge/17): keep every dot of the 0.2778 H33-2-B2 file and add 17,720 score-ordered dots from this repo's full-catalogue HGB surface (BDE + 7 add-ons; reproduces H31-C content id 9edd6bed8268) on ridge pixels > 3 px from B2/H19-5, > 2 px from the catalogue and > 3 px from every other-site registry raster's dots (lane rule). B2 share 68 %. Holdout analogue failed its frozen gate (paired \u22120.0007 vs best same-run control, 2/4 folds; R 0.505). Format and lane checks pass. Format validity is not a competition score, and this file has not beaten the comparable same-run holdout best.",
+   "zip": "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-zeros.zip",
+   "verdict": "negative",
+   "slot_approved": false,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "expected_range": "0.25\u20130.31 (projection, not a score)",
+   "lane_summary": "worst dot overlap 0.680 (cap 0.70) vs g19_h19-5_0.1922.tif; worst final-dot Spearman 0.824; pre-placement surface Spearman \u2264 0.153 (cap 0.90); 37 registry rasters; 13GEMSDOE lattice treated as degenerate (IR-25-LANE-DENSITY)",
+   "run_card": "registry/run_card_kdc_2026-10-25.json",
+   "note": "GEMSDOE25 KDC: B2+17720 off-registry dots | holdout FAIL, not slot-approved, no slot | unscored | id f74e9238cc1c"
+  },
+  {
+   "id": "kdc-b2-complement-nan",
+   "role": "fallback",
+   "file": "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-nan.tif",
+   "path": "docs/downloads/gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-nan.tif",
+   "bytes": 1624634,
+   "sha256": "77990b107784119d68feb63f61314cf5c5403d6c35cfa9226f3840bf30387399",
+   "content_id": "f74e9238cc1c",
+   "positive_pixels": 55374,
+   "format_ok": true,
+   "checks": {},
+   "receipt": "checks-gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c.json",
+   "outside": "nan",
+   "status": "NaN-outside twin of the primary (same dots, official NaN convention); same verdict: NOT slot-cleared",
+   "title": "Same file with NaN outside the footprint (official template convention)",
+   "summary": "Identical predictions inside the footprint; use only if the zeros file is rejected.",
+   "verdict": "negative",
+   "slot_approved": false,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "expected_range": "0.25\u20130.31 (projection, not a score)",
+   "lane_summary": "worst dot overlap 0.680 (cap 0.70) vs g19_h19-5_0.1922.tif; worst final-dot Spearman 0.824; pre-placement surface Spearman \u2264 0.153 (cap 0.90); 37 registry rasters; 13GEMSDOE lattice treated as degenerate (IR-25-LANE-DENSITY)",
+   "run_card": "registry/run_card_kdc_2026-10-25.json",
+   "note": "GEMSDOE25 KDC: B2+17720 off-registry dots | holdout FAIL, not slot-approved, no slot | unscored | id f74e9238cc1c"
+  },
+  {
+   "id": "primary",
+   "role": "superseded",
    "file": "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
    "path": "docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
    "bytes": 1612168,
@@ -96,7 +228,7 @@
    },
    "receipt": "checks-gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.json",
    "outside": "nan",
-   "status": "UNIQUE FILE - NOT CLEARED: lane flag open, holdout gate not passed, do not spend a slot",
+   "status": "SUPERSEDED 2026-10-25 by the KDC file; unique and format-valid but parity with its holdout control; NOT slot-cleared",
    "title": "New unique file: H31-C score-ordered dots at 2.4 px (3.5% budget)",
    "summary": "Full-footprint emission of the H28 comparator configuration: raw-score ridge candidates, score-ordered dots at 2.4 px, 3.5% budget, base BDE plus seven add-on columns (builder: scripts/build_candidate.py). Format checks pass. On the spatial holdout it is at parity with its own same-run control and has not beaten the comparable same-run holdout best; the tested alternative (A1, H31) was negative. The lane-overlap check is FLAGGED against the dense 13GEMSDOE lattice - a density artefact under review, not cleared. Holdout-DTI 0.1497 (95% CI 0.1331-0.1663). This is not a competition score and is not slot-approved.",
    "expected_range": "no competition estimate (holdout-DTI only: 0.1497, 95% CI 0.1331-0.1663)",
@@ -108,7 +240,7 @@
   },
   {
    "id": "primary-zeros",
-   "role": "fallback",
+   "role": "superseded",
    "file": "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
    "path": "docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
    "bytes": 846176,
@@ -119,7 +251,7 @@
    "checks": {},
    "receipt": "checks-gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.json",
    "outside": "zero",
-   "status": "format fallback; unscored; not slot-approved",
+   "status": "SUPERSEDED 2026-10-25 by the KDC file; unique and format-valid but parity with its holdout control; NOT slot-cleared",
    "title": "Format fallback: same H31-C dots, zeros outside the footprint",
    "summary": "Identical prediction values inside the template footprint; 0.0 instead of NaN outside. Format troubleshooting only.",
    "expected_range": "same as primary",
@@ -131,7 +263,7 @@
   },
   {
    "id": "gem1-blind-magnetics",
-   "role": "alternate",
+   "role": "superseded",
    "file": "gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif",
    "path": "docs/downloads/gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif",
    "bytes": 1612154,
@@ -223,7 +355,7 @@
    },
    "receipt": "checks-gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.json",
    "outside": "nan",
-   "status": "format-validated; holdout-validated vs same-run control; NOT slot-approved; not a live score",
+   "status": "SUPERSEDED / NOT RECOMMENDED: its PR #12 holdout comparison used a weak control (B_crest, 0.02); as a complement to the 0.15 control it was random-level (E1 K_gem1 R 0.167 vs K_rand 0.183; IR-25-GEM1-WEAK-CONTROL)",
    "title": "Research download: GEM-1 blind-magnetics dots (holdout-validated, not slot-approved)",
    "summary": "New unique surface: blind-magnetics indicator (RTP edge x low relief) emitted as score-ordered dots (H26-0). Holdout: +0.018 DTI screen / +0.022 DTI confirmation vs same-run control, 4/4 folds both stages, AUC 0.56 (no leakage). Not a competition score; proxy only.",
    "expected_range": "no live calibration",

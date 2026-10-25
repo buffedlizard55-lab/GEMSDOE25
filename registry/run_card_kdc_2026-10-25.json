@@ -1,0 +1,457 @@
+{
+ "run_card_version": 1,
+ "date_utc": "2026-10-25",
+ "session_branch": "arena/1ec1611b-gemsdoe25",
+ "hypothesis": "G25-K1 kernel-disjoint complement (KDC): ADD model dots that lie outside the 300 m kernel of the incumbent dots (H33-2-B2 live / same-run control in holdout); added dots collect only new truth, so DTI rises iff their marginal credit/FP ratio exceeds the incumbent break-even.",
+ "mechanism": "DTI = TP/(0.2(TP+FP)+0.8N). Adding m dots with ratio dTP/dFP above 0.2\u00b7DTI/(1\u22120.2\u00b7DTI) raises DTI; under the lane rule (\u226530 % of dots must differ) adding beats swapping because B2's average dot is above break-even (knowledge/17 \u00a71).",
+ "non_fault_process_that_could_mimic_it": "Range-front shoreline/wave-cut benches of pluvial Lake Lahontan (1318\u20131341 m highstand; Adams & Wesnousky 1998) and fluvial terrace risers produce linear slope breaks that an HGB on DEM derivatives ranks like scarps; in holdout the catalogue-gap proxy also rewards dots near visible traces (IR-32-PROXY-01).",
+ "pre_registration": [
+  "knowledge/17_preregistered_kdc_kernel_disjoint_complement_2026-10-25.md (commit d1be1c3, before E1)",
+  "knowledge/18_preregistered_kdc_flank_fault_zone_multiplicity_2026-10-25.md (commit 1e387f5, before E2)"
+ ],
+ "experiments": [
+  {
+   "id": "E1 G25-K1 screen",
+   "evidence": "evidence/kdc_screen/",
+   "draws": [
+    0,
+    1
+   ],
+   "folds": 4,
+   "best_control": "CB",
+   "primary_arm": "K_self",
+   "gate": {
+    "paired_vs": "CB",
+    "per_fold_gain": [
+     -0.01087,
+     -0.011432,
+     0.009512,
+     0.010043
+    ],
+    "mean_gain": -0.0006863928175831965,
+    "gain_ci95": [
+     -0.01991961807190946,
+     0.018546832436743068
+    ],
+    "folds_positive": 2,
+    "worst_fold": -0.011431551236938758,
+    "G1_paired": false,
+    "efficiency_R_by_fold": [
+     0.3715,
+     0.3618,
+     0.637,
+     0.6008
+    ],
+    "efficiency_R_pooled": 0.5053262626322603,
+    "marginal_dTP_dFP_pooled": 0.031110554798488003,
+    "G2_efficiency": false,
+    "G3_informative_rand_R": 0.18252900026169974,
+    "G3_ok": true,
+    "G4_canary": true,
+    "passed": false
+   },
+   "verdict": "FAIL",
+   "other_arms": {
+    "K_gem1": {
+     "paired_vs": "CB",
+     "per_fold_gain": [
+      -0.026053,
+      -0.028863,
+      -0.007223,
+      -0.016618
+     ],
+     "mean_gain": -0.019689118163488256,
+     "gain_ci95": [
+      -0.03532066310582,
+      -0.004057573221156512
+     ],
+     "folds_positive": 0,
+     "worst_fold": -0.028863301608306108,
+     "G1_paired": false,
+     "efficiency_R_by_fold": [
+      0.0961,
+      0.0589,
+      0.3141,
+      0.1674
+     ],
+     "efficiency_R_pooled": 0.16691305547082555,
+     "marginal_dTP_dFP_pooled": 0.010276049639215164,
+     "G2_efficiency": false,
+     "G3_informative_rand_R": 0.18252900026169974,
+     "G3_ok": true,
+     "G4_canary": true,
+     "passed": false
+    },
+    "K_rand": {
+     "paired_vs": "CB",
+     "per_fold_gain": [
+      -0.024855,
+      -0.025729,
+      -0.010079,
+      -0.013698
+     ],
+     "mean_gain": -0.018590139579883792,
+     "gain_ci95": [
+      -0.031138699759869784,
+      -0.006041579399897801
+     ],
+     "folds_positive": 0,
+     "worst_fold": -0.025728548402806056,
+     "G1_paired": false,
+     "efficiency_R_by_fold": [
+      0.1179,
+      0.1129,
+      0.2599,
+      0.2141
+     ],
+     "efficiency_R_pooled": 0.18252900026169974,
+     "marginal_dTP_dFP_pooled": 0.011237449712933873,
+     "G2_efficiency": false,
+     "G3_informative_rand_R": 0.18252900026169974,
+     "G3_ok": true,
+     "G4_canary": true,
+     "passed": false
+    }
+   }
+  },
+  {
+   "id": "E2 G25-K5 flank screen",
+   "evidence": "evidence/kdc5_screen/",
+   "draws": [
+    0,
+    1
+   ],
+   "folds": 4,
+   "best_control": "CB",
+   "primary_arm": "K_flank",
+   "gate": {
+    "paired_vs": "CB",
+    "per_fold_gain": [
+     -0.012513,
+     -0.012217,
+     0.007162,
+     0.007104
+    ],
+    "mean_gain": -0.0026161308540053885,
+    "gain_ci95": [
+     -0.020529929508637287,
+     0.01529766780062651
+    ],
+    "folds_positive": 2,
+    "worst_fold": -0.012513162978135595,
+    "G1_paired": false,
+    "efficiency_R_by_fold": [
+     0.3414,
+     0.3483,
+     0.5914,
+     0.5526
+    ],
+    "efficiency_R_pooled": 0.4702360198324817,
+    "marginal_dTP_dFP_pooled": 0.028950214039968582,
+    "G2_efficiency": false,
+    "G3_informative_rand_R": 0.18252900026169974,
+    "G3_ok": true,
+    "G4_canary": true,
+    "passed": false
+   },
+   "verdict": "FAIL",
+   "other_arms": {
+    "K_self": {
+     "paired_vs": "CB",
+     "per_fold_gain": [
+      -0.01087,
+      -0.011432,
+      0.009512,
+      0.010043
+     ],
+     "mean_gain": -0.0006863928175831965,
+     "gain_ci95": [
+      -0.01991961807190946,
+      0.018546832436743068
+     ],
+     "folds_positive": 2,
+     "worst_fold": -0.011431551236938758,
+     "G1_paired": false,
+     "efficiency_R_by_fold": [
+      0.3715,
+      0.3618,
+      0.637,
+      0.6008
+     ],
+     "efficiency_R_pooled": 0.5053262626322603,
+     "marginal_dTP_dFP_pooled": 0.031110554798488003,
+     "G2_efficiency": false,
+     "G3_informative_rand_R": 0.18252900026169974,
+     "G3_ok": true,
+     "G4_canary": true,
+     "passed": false
+    },
+    "K_far": {
+     "paired_vs": "CB",
+     "per_fold_gain": [
+      -0.014508,
+      -0.018474,
+      0.003481,
+      -0.001575
+     ],
+     "mean_gain": -0.0077688070788903135,
+     "gain_ci95": [
+      -0.024329516862845988,
+      0.008791902705065361
+     ],
+     "folds_positive": 1,
+     "worst_fold": -0.018474128171106413,
+     "G1_paired": false,
+     "efficiency_R_by_fold": [
+      0.3049,
+      0.2392,
+      0.52,
+      0.4102
+     ],
+     "efficiency_R_pooled": 0.376874324734459,
+     "marginal_dTP_dFP_pooled": 0.02320237478004776,
+     "G2_efficiency": false,
+     "G3_informative_rand_R": 0.18252900026169974,
+     "G3_ok": true,
+     "G4_canary": true,
+     "passed": false
+    },
+    "K_rand": {
+     "paired_vs": "CB",
+     "per_fold_gain": [
+      -0.024855,
+      -0.025729,
+      -0.010079,
+      -0.013698
+     ],
+     "mean_gain": -0.018590139579883792,
+     "gain_ci95": [
+      -0.031138699759869784,
+      -0.006041579399897801
+     ],
+     "folds_positive": 0,
+     "worst_fold": -0.025728548402806056,
+     "G1_paired": false,
+     "efficiency_R_by_fold": [
+      0.1179,
+      0.1129,
+      0.2599,
+      0.2141
+     ],
+     "efficiency_R_pooled": 0.18252900026169974,
+     "marginal_dTP_dFP_pooled": 0.011237449712933873,
+     "G2_efficiency": false,
+     "G3_informative_rand_R": 0.18252900026169974,
+     "G3_ok": true,
+     "G4_canary": true,
+     "passed": false
+    },
+    "K_rand_flank": {
+     "paired_vs": "CB",
+     "per_fold_gain": [
+      -0.016973,
+      -0.015852,
+      0.001794,
+      -0.00265
+     ],
+     "mean_gain": -0.008420389338338843,
+     "gain_ci95": [
+      -0.023403930383384973,
+      0.006563151706707288
+     ],
+     "folds_positive": 1,
+     "worst_fold": -0.016973129382144014,
+     "G1_paired": false,
+     "efficiency_R_by_fold": [
+      0.2605,
+      0.2846,
+      0.4874,
+      0.3934
+     ],
+     "efficiency_R_pooled": 0.3661226468005749,
+     "marginal_dTP_dFP_pooled": 0.02254044467612753,
+     "G2_efficiency": false,
+     "G3_informative_rand_R": 0.18252900026169974,
+     "G3_ok": true,
+     "G4_canary": true,
+     "passed": false
+    }
+   }
+  }
+ ],
+ "experiments_used": "2 of 3 (budget); confirmation stages not run because both screens failed (per pre-registration)",
+ "holdout_dti": {
+  "label": "HOLDOUT-DTI",
+  "evaluator": "gems25.metric.dti_binary (alpha 0.2, beta 0.8, 300 m triangular kernel), hide-and-recover, 4 spatial folds x draws 0,1",
+  "withheld_positives_per_fold": "1,860\u20133,798",
+  "arms": {
+   "C": {
+    "mean": 0.14967,
+    "ci95": [
+     0.1331,
+     0.1663
+    ]
+   },
+   "CB": {
+    "mean": 0.14975,
+    "ci95": [
+     0.1332,
+     0.1663
+    ]
+   },
+   "K_self": {
+    "mean": 0.14906,
+    "ci95": [
+     0.1263,
+     0.1718
+    ]
+   },
+   "K_flank": {
+    "mean": 0.14713,
+    "ci95": [
+     0.1254,
+     0.1688
+    ]
+   },
+   "K_far": {
+    "mean": 0.14198,
+    "ci95": [
+     0.1242,
+     0.1597
+    ]
+   },
+   "K_rand": {
+    "mean": 0.13116,
+    "ci95": [
+     0.1148,
+     0.1475
+    ]
+   },
+   "K_rand_flank": {
+    "mean": 0.14133,
+    "ci95": [
+     0.1237,
+     0.159
+    ]
+   }
+  },
+  "reproduction": "control C reproduces evidence/h28_holdout cells 8/8; E1 and E2 agree on all 32 common cells (max |diff| 0.0)"
+ },
+ "leakage_canary": {
+  "max_single_feature_auc_star": 0.8045,
+  "model_auc_star": 0.8336157365591399,
+  "gem1_auc_star": 0.5693130121816168,
+  "cap": 0.9,
+  "ok": true,
+  "top5_features": [
+   [
+    "E_dist",
+    0.8045
+   ],
+   [
+    "E_dens5",
+    0.7726
+   ],
+   [
+    "E_dens20",
+    0.772
+   ],
+   [
+    "E_dens50",
+    0.7466
+   ],
+   [
+    "B_slope_grad",
+    0.6567
+   ]
+  ]
+ },
+ "live_build": {
+  "file": "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-zeros.tif",
+  "sha256": "910bb326f4f5be7ca4aac3c0c69000543c98657f4098117f866fb29d4636f62b",
+  "nan_twin": {
+   "file": "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-nan.tif",
+   "sha256": "77990b107784119d68feb63f61314cf5c5403d6c35cfa9226f3840bf30387399",
+   "ok": true
+  },
+  "zip": {
+   "file": "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-zeros.zip",
+   "bytes": 244876
+  },
+  "content_id": "f74e9238cc1c",
+  "composition": {
+   "total_dots": 55374,
+   "base_h33_2_b2_dots": 37654,
+   "complement_dots": 17720,
+   "base_share": 0.68,
+   "flank_band": false,
+   "exclude_registry": true,
+   "complement_min_dist_to_base_px": 3.1622776601683795,
+   "complement_min_dist_to_h19_5_px": 3.1622776601683795,
+   "complement_min_dist_to_catalogue_px": 3.1622776601683795,
+   "complement_score_min": 0.1245977059006691,
+   "complement_score_median": 0.2048746943473816
+  },
+  "excluded_registry_rasters_n": 31,
+  "scores_source": "scripts/build_candidate.py full-catalogue HGB (reproduces H31-C content id 9edd6bed8268, sha256 2165bb8e\u2026)",
+  "first_build_withdrawn": "content id 0cfdb8977088 was a LANE DUPLICATE (75.5 % of dots within 3 px of GEMSDOE63 cvarlw; 70.0 % vs GEMSDOE48); withdrawn, receipt evidence/kdc_build/withdrawn-lane-duplicate-checks-0cfdb8977088.json. Rebuilt with complement > 3 px from every other-site registry raster (uniqueness rule only; no performance parameter changed).",
+  "registry_halo_cost": {
+   "footprint_frac_in_registry_halo": 0.5912871008150563,
+   "ridge_px_total": 1090419,
+   "topk_threshold_score": 0.2808828353881836,
+   "frac_topk_ridge_inside_registry_halo": 0.9374426345530747,
+   "complement_score_min": 0.1245977059006691,
+   "complement_score_median": 0.2048746943473816,
+   "complement_rank_percentile_of_min_among_ridges": 0.3451425552929654
+  }
+ },
+ "correlation_overlap_vs_registry": {
+  "caps": {
+   "spearman": 0.9,
+   "overlap": 0.7,
+   "radius_px": 3.0
+  },
+  "spearman_sample_pixels": 1500000,
+  "n_registry": 37,
+  "worst_abs_spearman_final": 0.8237,
+  "worst_abs_spearman_surface": 0.1533,
+  "worst_overlap": 0.68,
+  "worst_overlap_file": "g19_h19-5_0.1922.tif",
+  "lane_clean": true
+ },
+ "validator_output": {
+  "ok_to_upload": true,
+  "hard_failures": [],
+  "positive_pixels": 55374,
+  "checks": {
+   "template_matches_expected_grid_and_footprint": true,
+   "single_band": true,
+   "dtype_float32": true,
+   "crs_epsg_32611": true,
+   "shape_matches_template": true,
+   "geotransform_matches_template": true,
+   "footprint_all_finite": true,
+   "footprint_values_in_0_1": true,
+   "outside_footprint_is_nan_official": false,
+   "outside_footprint_is_nan_or_zero": true,
+   "nan_mask_identical_to_template": true,
+   "nodata_tag": true,
+   "variant_nan_aware_whole_array": true,
+   "variant_masked_read": true,
+   "variant_strict_whole_array_no_nan": true,
+   "profile_matches_template": true
+  }
+ },
+ "submission_name": "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-zeros.tif",
+ "note": "GEMSDOE25 KDC: B2+17720 off-registry dots | holdout FAIL, not slot-approved, no slot | unscored | id f74e9238cc1c",
+ "note_chars": 113,
+ "projection": {
+  "label": "PROJECTION (not a score)",
+  "range": "0.249\u20130.312 depending on live complement efficiency R (0.2\u20130.64) and truth-size assumptions",
+  "break_even_R": "0.33\u20130.47",
+  "evidence": "evidence/kdc_build/projection.json"
+ },
+ "verdict": "negative",
+ "verdict_reason": "The pre-registered holdout gate failed for both the primary (K_self, paired \u22120.0007, 2/4 folds) and the E2 variant (K_flank, \u22120.0026). The file is unique, format-valid and lane-clean, but it is NOT slot-cleared; H33-2-B2 (0.2778, owner-reported) remains the strongest known file.",
+ "deviation_from_preregistration": "knowledge/17 \u00a73 permits the live build only if E1 and E2 pass. Both failed, but the file was built anyway because the owner's brief makes a unique downloadable TIF the highest-urgency deliverable. It is labelled verdict negative / NOT slot-cleared everywhere; it is not a promoted candidate (IR-25-BUILD-DESPITE-FAILED-GATE)."
+}

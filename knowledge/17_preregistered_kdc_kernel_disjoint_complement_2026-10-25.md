@@ -85,3 +85,7 @@ tip/step-over additions (GEMSDOE28/33), swap-at-fixed-budget (GEMSDOE49/70/76/82
   finite in [0, 1]). Primary file = **zeros outside the footprint (no NaN anywhere)** because the scored H33-2-B2 upload was the
   `-zeros` variant.
 * Verdict "promote" means: OK to download and eligible for the separate selector step. It never means an upload was made.
+
+
+---
+**Outcome (appended after the run; the frozen text above is unchanged):** NEGATIVE. See `knowledge/19_kdc_results_2026-10-25.md` and `registry/run_card_kdc_2026-10-25.json`.

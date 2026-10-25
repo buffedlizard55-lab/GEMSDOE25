@@ -32,7 +32,7 @@ def ci95(x: np.ndarray) -> list[float]:
 def main() -> None:
     dirs = [Path(p) for p in sys.argv[1:]]
     rows = [json.loads(line) for d in dirs for line in (d / "cells.jsonl").read_text().splitlines()]
-    arms = sorted({r["arm"] for r in rows}, key=["C", "CB", "K_self", "K_gem1", "K_rand"].index)
+    arms = sorted({r["arm"] for r in rows}, key=["C", "CB", "K_self", "K_gem1", "K_flank", "K_far", "K_rand", "K_rand_flank"].index)
     folds = sorted({r["fold"] for r in rows})
     by = {(r["arm"], r["fold"], r["draw"]): r for r in rows}
     draws = sorted({r["draw"] for r in rows})

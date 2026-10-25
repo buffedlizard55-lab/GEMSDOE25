@@ -41,6 +41,7 @@ CAT_PRUNE_PX = 2.0
 HALO_PX = 3.0
 BASE_SHARE = 0.68
 M_FACTOR = round((1 - BASE_SHARE) / BASE_SHARE, 4)  # 0.4706
+FLANK_PX = 8.0  # experiment 2 (knowledge/18): flank band 3 < d(raw top-K) <= 8 px
 H28_CELLS = ROOT / "evidence" / "h28_holdout" / "cells.jsonl"
 
 
@@ -78,6 +79,8 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--draws", type=int, nargs="+", default=[0, 1])
     ap.add_argument("--out", required=True)
+    ap.add_argument("--design", choices=["k1", "k5"], default="k1",
+                    help="k1 = experiment 1 arms (knowledge/17); k5 = experiment 2 flank arms (knowledge/18)")
     a = ap.parse_args()
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -85,8 +88,10 @@ def main() -> None:
     if cells_path.exists() or design_path.exists():
         raise SystemExit(f"refusing to overwrite {out}; choose a fresh --out")
     design = dict(
-        hypothesis="G25-K1 kernel-disjoint complement (KDC)",
-        preregistration="knowledge/17_preregistered_kdc_kernel_disjoint_complement_2026-10-25.md",
+        hypothesis="G25-K1 kernel-disjoint complement (KDC)" if a.design == "k1" else "G25-K5 fault-zone multiplicity flank complement",
+        preregistration=("knowledge/17_preregistered_kdc_kernel_disjoint_complement_2026-10-25.md" if a.design == "k1"
+                         else "knowledge/18_preregistered_kdc_flank_fault_zone_multiplicity_2026-10-25.md"),
+        design_id=a.design, flank_px=FLANK_PX,
         draws=a.draws, folds=[0, 1, 2, 3], kfrac=KFRAC, min_dist=MIN_DIST, cat_prune_px=CAT_PRUNE_PX, halo_px=HALO_PX,
         base_share=BASE_SHARE, m_factor=M_FACTOR, model={"base": BASE, "extras": EXTRAS, "fit_seed": "draw"},
         evaluator="gems25.metric.dti_binary (alpha 0.2, beta 0.8, R = 3 px)",
@@ -115,11 +120,24 @@ def main() -> None:
                 eligible = ~x_zone
                 m = int(round(M_FACTOR * em_cb.sum()))
                 rng = np.random.default_rng(90_000 + 100 * fold + draw)
-                comps = {
-                    "K_self": complement(s_crop, eligible, cell.dom_c, m),
-                    "K_gem1": complement(gem1_full[cell.sl], eligible, cell.dom_c, m),
-                    "K_rand": complement(rng.random(s_crop.shape).astype(np.float32), eligible, cell.dom_c, m, ridge=False),
-                }
+                if a.design == "k1":
+                    comps = {
+                        "K_self": complement(s_crop, eligible, cell.dom_c, m),
+                        "K_gem1": complement(gem1_full[cell.sl], eligible, cell.dom_c, m),
+                        "K_rand": complement(rng.random(s_crop.shape).astype(np.float32), eligible, cell.dom_c, m, ridge=False),
+                    }
+                else:
+                    d_top = distance_transform_edt(~top)
+                    flank = eligible & (d_top <= FLANK_PX)
+                    far = eligible & (d_top > FLANK_PX)
+                    rnd = rng.random(s_crop.shape).astype(np.float32)  # same first draw as k1's K_rand
+                    comps = {
+                        "K_self": complement(s_crop, eligible, cell.dom_c, m),
+                        "K_flank": complement(s_crop, flank, cell.dom_c, m),
+                        "K_far": complement(s_crop, far, cell.dom_c, m),
+                        "K_rand": complement(rnd, eligible, cell.dom_c, m, ridge=False),
+                        "K_rand_flank": complement(rnd, flank, cell.dom_c, m, ridge=False),
+                    }
                 arms = {"C": em_c, "CB": em_cb}
                 for name, kmask in comps.items():
                     assert not (kmask & x_zone).any()
