@@ -6,19 +6,26 @@
 
 **Competition:** [DOE GEMS Prize, DrivenData #306](https://www.drivendata.org/competitions/306/competition-doe-gems/) · **Live site:** <https://buffedlizard55-lab.github.io/GEMSDOE25/> · **Weekly limit:** 3 submissions · **Ends:** 3 Dec 2026 (page: 11:59 p.m. UTC; rules: 5:00 p.m. ET — see IR-25-DEADLINE)
 
-## ⬇ Download the unique, format-valid GeoTIFF (NOT slot-cleared)
+## ⬇ Download the unique, format-valid GeoTIFF — ✅ OK to download, ⚠️ slot requires selector review
 
-**[↓ `gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif`](docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif)** — Full-footprint emission of the H28 comparator configuration: raw-score ridge candidates, score-ordered dots at 2.4 px, 3.5% budget, base BDE plus seven add-on columns (builder: scripts/build_candidate.py). Format checks pass. On the spatial holdout it is at parity with its own same-run control and has not beaten the comparable same-run holdout best; the tested alternative (A1, H31) was negative. The lane-overlap check is FLAGGED against the dense 13GEMSDOE lattice - a density artefact under review, not cleared. Holdout-DTI 0.1497 (95% CI 0.1331-0.1663). This is not a competition score and is not slot-approved.
+**[↓ `gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif`](docs/downloads/gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif)** — **NEW UNIQUE** — blind-magnetics indicator (norm(|grad RTP|) × (1-norm(relief))) emitted as score-ordered dots (kfrac 0.0245, 1.5 px) then pruned within 200 m of catalogue (H33-2 mechanism on new detector). This synthesis of the two best levers targets concealed faults without a scarp + deletes low-credit flank mass (<0.016 credit/dot vs 0.0556 break-even at 0.2778). Format 12/12 PASS. Holdout-validated vs same-run B_crest control: screen +0.0182 (0.0368 vs 0.0186, 4/4 folds, worst +0.010) and confirmation +0.0218 (0.0424 vs 0.0206, 4/4 folds, worst +0.010), AUC 0.53 (no leakage). Lane-clean vs substantive registry (max Spearman 0.023 <0.90, overlap ≤44.6% <70%); lattice 100% is density artefact (206k-dot 5px grid, reverse 12.2%).
 
-* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, NaN outside (verified against the pinned owner-mirror template, not organizer-authenticated; independent check receipt: `docs/downloads/checks-gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.json`).
-* Unique content id `9edd6bed8268` · SHA-256 `2165bb8e229ee27e25edf57e990191d8f7836ab4b07e2779f15023f7c34a3ab2` · 48,714 emitted pixels · status: **UNIQUE FILE - NOT CLEARED: lane flag open, holdout gate not passed, do not spend a slot**.
-* **Note to paste** in DrivenData's *Note (optional)* field: `GEMSDOE25 H31-C | sapd2.4, 3.5%, BDE+7 | unscored; not slot-approved; no slot | id 9edd6bed8268`
-* Format fallback (format troubleshooting only; not slot-approved): [`gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif`](docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif) — Format fallback: same H31-C dots, zeros outside the footprint (format fallback; unscored; not slot-approved; 48,714 px).
+* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, NaN outside (verified against pinned owner-mirror template, not organizer-authenticated; receipt: `docs/downloads/checks-gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.json`).
+
+* Unique content id `c2097a554ef2` · SHA-256 `ad4bc4933d0b7636f0f32918c1fd8b8b08cd1964aee32d69e45419a9b54178a7` · 46,181 emitted pixels (49,373 before 3,192-dot B2 prune) · status: **✅ UNIQUE FILE — format-validated + holdout-validated vs same-run control (screen & confirmation PASS) — ⚠️ NOT organizer-scored; weekly slot requires selector review.**
+
+* **Note to paste** in DrivenData's *Note (optional)* field: `GEMSDOE25 GEM-FUSE1 | blind magnetics + B2 prune2 2.45% 46k dots | id c2097a554ef2 | holdout-validated, unscored` (97 chars)
+
+* Format fallback (troubleshooting only): [`gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-zeros.tif`](docs/downloads/gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-zeros.tif) — same 46,181 dots, zeros outside footprint.
+
 * Step-by-step upload guide: [`docs/executive-summary.html`](https://buffedlizard55-lab.github.io/GEMSDOE25/docs/executive-summary.html).
 
 > ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).
 
-> ⚠ **Lane flag open:** this file is flagged by the lane-overlap check against a dense 13GEMSDOE lattice (IR-25-LANE-DENSITY). Its holdout result is parity with its own control, not a win. It is NOT slot-cleared. Receipt: `docs/downloads/lane-gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.json`.
+> ✅ **Lane status:** substantive registry overlap ≤44.6% (cap 70%), Spearman ≤0.023 (cap 0.90) — **UNIQUE vs registry**. Lattice 100% is density artefact (IR-25-LANE-DENSITY): 5-px full-footprint grid, reverse overlap 12.2%. Receipt: `docs/downloads/lane-gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.json`.
+
+> 📋 **Previous fallback:** H31-C (`9edd6bed8268`, 48,714 px) remains available as fallback; format-validated but holdout-negative (parity vs control, lane flagged lattice).
+
 
 ## Where things stand
 
