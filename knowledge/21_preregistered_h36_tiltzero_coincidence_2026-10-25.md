@@ -132,3 +132,15 @@ the tilt-zero line is the sign-change adjacency itself — every pixel with a
 4-neighbour of opposite sign (both sides of the contour, a 1–2 px line); the
 |θ| ≤ 0.05 tolerance is dropped. Column names, proximity/coincidence definitions,
 arms, draws and gate are unchanged. Still before the first holdout fit.
+
+## Amendment 3 (2026-10-25, before any holdout fit — gradient-strength gate on crossings)
+
+With Amendments 1–2 the magnetic tilt-zero set covers 23.4% of the footprint
+(gravity 10.7%): in gradient-free areas the tilt sign is numerically meaningless
+and flips pixel-to-pixel, so the ungated set is a speckle web, not contact lines.
+**Frozen fix:** a sign-change pixel is retained only where its total horizontal
+derivative (THDR, from the same spectral operator) is at or above the footprint
+median THDR of that field — a scale-free rule with no tuned percentile. The tilt
+zero remains the contact locator (Miller & Singh); the THDR gate only removes
+crossings where there is no measurable edge to locate. Still before the first
+holdout fit; arms, draws, columns and gate unchanged.
