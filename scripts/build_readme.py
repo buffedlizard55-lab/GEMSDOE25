@@ -44,16 +44,24 @@ def main() -> None:
     h31_card = opt("evidence/h31_run_card_2026-10-25.json")
     h31_aniso_res = opt("evidence/h31_experiments/results.json")
     h31_aniso_card = opt("evidence/h31_experiments/run_card.json")
+    h38_card = opt("registry/run_card_h38_2026-10-25.json")
     focus_forensics = opt("evidence/focus_sites_forensics.json")
     irr = J("registry/irregularities.json")["issues"]
     best = max(a["score"] for a in ls["artifacts"] if a["score"] is not None)
     brief = (ROOT / "knowledge" / "owner_brief_verbatim.txt").read_text().rstrip()
     active_brief = (ROOT / "knowledge" / "current_project_brief_2026-10-03.md").read_text().rstrip()
+    session8_brief = (ROOT / "knowledge" / "current_project_brief_2026-10-25_session8.md").read_text().rstrip()
     L = []
     A = L.append
     A("# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize\n")
     A("## Start here every session — owner mandate, 2026-10-25\n")
     A("**MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.** The project's decision principles are **Maximize P(Win)** and **Own the Outcome**. Review the original owner prompt and this README each session; follow `AGENTS.md`. Test catalogue-free geological hypotheses on buffered, spatially blocked hide-and-recover folds; test each feature alone for leakage (AUC >0.90 is presumptive leakage); check surface and final dots against every available registry raster (|rank correlation| >0.90 or >70% within 3 pixels is a duplicate-lane stop). Report pooled HOLDOUT-DTI with withheld-positive count and 95% CI, never present a projection or owner-reported claim as an organizer-confirmed score. Never spend a weekly slot before a separate selector decision. Exact-file format checks do not imply submission approval. Read the complete historical owner brief at the bottom. The current owner's very long updated prompt is not claimed to be transcribed verbatim here; this section records its actionable protocol, not the complete message.\n")
+    if h38_card:
+        hd38 = h38_card["holdout_dti"]
+        g38 = hd38["primary_contrast_G1_S1_vs_G0_S0"]
+        A("**Current Session 8 (2026-10-25, H38 OSPC × 300 m Submodular Skeleton 2² Factorial — featured download above/below):** "
+          f"[PhD proof of why `GEMSDOE32` `H33-2-B2` achieved `0.2778` across all 9 focus sites, 5 ranked untried hypotheses (`H38-1..H38-5`), and `H38` 2² factorial outcomes — `HOLDOUT-DTI` NEGATIVE overall (`{g38['mean']:+.6f}` fold-mean gain, `{g38['folds_positive']}/4` folds positive, `NW {g38['per_fold']['NW']:+.6f}` vs `SW/SE {g38['per_fold']['SW']:+.6f}/{g38['per_fold']['SE']:+.6f}` structural regime split), unique GeoTIFF `680d62616417` (`0/21` sibling top-scorers flagged; OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT)](knowledge/26_h38_outcomes_and_0.2778_phd_synthesis_2026-10-25.md) · "
+          "pre-registration [`knowledge/25`](knowledge/25_preregistered_h38_ospc_submod_factorial_2026-10-25.md) (commit `c9c7e76`, pre-fit) · run card `registry/run_card_h38_2026-10-25.json`.\n")
     A("**Latest session (2026-10-25, session 7, H37 lane):** [why H33-2-B2 scored 0.2778 (chain re-verified pixel-exact), two new pre-registered experiments (H37-1 DOC, H37-2 SPR — both negative), the density-aware lane audit and the unique H37 file (DO NOT SUBMIT)](knowledge/24_h37_outcomes_and_0.2778_answer_2026-10-25.md) · "
       "run card `registry/run_card_h37_2026-10-25.json` · pre-registrations `knowledge/22_preregistered_h37…`, `knowledge/23`.\n")
     A("**Latest session (2026-10-25, XG1 lane):** [why H33-2-B2 scored 0.2778 at PhD level, five ranked untried hypotheses, and the pre-registered XG1 cross-gradient test — HOLDOUT-DTI NEGATIVE (−0.0008 vs the same-run H35 base), unique file built, DO NOT SUBMIT](knowledge/22_xg1_outcome_2026-10-25.md) · "
@@ -84,9 +92,9 @@ def main() -> None:
             A(f"* {o['title']}: [`{o['file']}`](docs/downloads/{o['file']}) ({o['status']}; {o['positive_pixels']:,} px).")
     A("* Step-by-step upload guide: [`docs/executive-summary.html`](https://buffedlizard55-lab.github.io/GEMSDOE25/docs/executive-summary.html).\n")
     A("> ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).\n")
-    A(f"> **OK to download (local testing): {'YES' if primary.get('ok_to_download') else 'NO'} · OK to spend a weekly slot: {'YES' if primary.get('ok_to_submit_slot') else 'NO'} — DO NOT SUBMIT** "
+    A("> **OK to download (local testing): " + ("YES" if primary.get("ok_to_download") else "NO") + " · OK to spend a weekly slot: " + ("YES" if primary.get("ok_to_submit_slot") else "NO") + " — DO NOT SUBMIT** "
       f"(verdict **{primary.get('verdict', 'n/a')}**). Projection: {primary.get('expected_range', 'n/a')}. Lane: {primary.get('lane_summary', 'n/a')}. "
-      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest known file. Why this negative file is featured: IR-25-XG1-FEATURED-NEGATIVE.\n")
+      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest known file. Why this negative file is featured: IR-25-H38-REGIME-SPLIT / IR-25-XG1-FEATURED-NEGATIVE.\n")
     if h31_flank_screen and h31_flank_confirm and h31_card and focus_forensics:
         inv = focus_forensics["nested_chain_inversion_conditional_on_reported_scores"]
         s1 = inv["d28_to_r1_delete_0_1px_collar"]
@@ -350,6 +358,11 @@ def main() -> None:
     A("## Owner brief (verbatim) — read every session\n")
     A("<details><summary><strong>Full text of the owner's brief for this session</strong> (copied from the task message of 2026-10-02; link markup and whitespace as pasted)</summary>\n")
     A("```text\n" + brief + "\n```\n")
+    A("</details>\n")
+    A("## Current Session 8 consolidated brief (2026-10-25; consolidated restatement, not verbatim)\n")
+    A("Full text: [`knowledge/current_project_brief_2026-10-25_session8.md`](knowledge/current_project_brief_2026-10-25_session8.md).\n")
+    A("<details><summary><strong>Full Session 8 active scope and acceptance criteria</strong></summary>\n")
+    A("~~~text\n" + session8_brief + "\n~~~\n")
     A("</details>\n")
     A("## Current continuation task (2026-10-03; consolidated restatement, not a verbatim quote)\n")
     A("The current user message was condensed into the session handoff. The full active scope and acceptance criteria are preserved below, separately from the verbatim 2026-10-02 brief.\n")

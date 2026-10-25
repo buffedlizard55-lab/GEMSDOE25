@@ -50,4 +50,5 @@
 | `21_preregistered_h36_tiltzero_coincidence_2026-10-25.md` | parallel session: H36-TZC pre-registration (negative; see `registry/run_card_h36_h37_2026-10-25.json`) |
 | `22_preregistered_h37_seisalign_2026-10-25.md` | parallel session: H37-SEISALIGN pre-registration — a DIFFERENT hypothesis from this session's H37 DOC/SPR lane (knowledge/24 §8) |
 | `25_preregistered_h38_ospc_submod_factorial_2026-10-25.md` | session 8 (committed pre-fit): ranked untried hypotheses `H38-1..H38-5` and frozen $2 \times 2$ `H38-OSPC × 300 m submodular skeleton` factorial design on fresh draws `[24, 25]` / `[26, 27]` |
+| `26_h38_outcomes_and_0.2778_phd_synthesis_2026-10-25.md` | session 8 outcomes: PhD proof of `GEMSDOE32` `0.2778` across all 9 focus sites, `H38` $2 \times 2$ factorial results (negative overall `-0.0011`, `NW +0.0070` vs `SW/SE -0.0034/-0.0066` structural regime split), unique `H38` GeoTIFF `680d62616417` (`0/21` sibling top-scorers flagged; DO NOT SUBMIT) |
 | `current_project_brief_2026-10-25_session8.md` | session 8 consolidated scope and acceptance criteria |

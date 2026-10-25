@@ -537,6 +537,14 @@
    "issue": "H37-2 SPR screen paired gain +0.000937 vs the frozen >+0.001 gate (miss by 0.000063), 3/4 folds positive, pooled +0.00096, 95% CI includes zero. There is a standing temptation to round, add the confirmation draws anyway, or re-read the gate.",
    "evidence": "evidence/h37_2_screen/analysis.json (gate.passed=false); knowledge/23 frozen gate; SPR ridge nonzero on 5.7% of the footprint (sparse support); one of eight cells produced identical TP/FP/emitted counts with/without the SPR columns.",
    "resolution_or_action": "Recorded as NEGATIVE; confirmation draws 20-21 were NOT run; no SPR file built. Any follow-up must be a new pre-registration that owns this near-miss (knowledge/24 section 6 item 5)."
+  },
+  {
+   "id": "IR-25-H38-REGIME-SPLIT",
+   "severity": "medium",
+   "status": "disclosed",
+   "issue": "In the Session-8 H38 2x2 factorial (draws 24, 25), both OSPC geology (+0.0033) and 300 m submodular skeleton coverage (+0.0068; joint +0.00704) improved NW strongly (0.88% catalogue prevalence, 75.0% 3DEP 1 m LiDAR coverage), stayed flat in NE (-0.0014; 45.8% missing 3DEP tiles zero-filled instead of NaN), and lost in SW/SE (-0.0034/-0.0066; 1.44-1.54% dense Walker Lane / Sevier splays). Overall 4-fold mean gain was -0.0011 (1/4 folds positive), failing the frozen screen gate.",
+   "evidence": "evidence/h38_screen/analysis.json; knowledge/26_h38_outcomes_and_0.2778_phd_synthesis_2026-10-25.md section 2.2; registry/run_card_h38_2026-10-25.json.",
+   "resolution_or_action": "Confirmation draws 26-27 were NOT run per pre-registered stopping rule. Unique H38 GeoTIFF (680d62616417, 48,666 dots; 0/21 GEMSDOE27..91 top-scorers flagged, 96.5% 3-px overlap with own H35 lineage, 100% vs r13 lattice) is featured as primary testing-only download with ok_to_download=true, ok_to_submit_slot=false, DO NOT SUBMIT."
   }
  ]
 }

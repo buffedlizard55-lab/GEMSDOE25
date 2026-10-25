@@ -146,26 +146,45 @@ def main() -> None:
 
     cf1 = next((s for s in subs if s['id'] == 'cf1-transverse-negative'), None)
     cf1_card = opt('registry/run_card_cf1_2026-10-25.json')
+    h38_card = opt('registry/run_card_h38_2026-10-25.json')
 
     def latest_diagnostic(prefix: str) -> str:
         if cf1 is None or cf1_card is None:
             return ''
         hold = cf1_card['holdout_dti']
         comp = cf1_card['registry_comparison']
-        # This is a duplicate-lane diagnostic, not a replacement primary or a slot candidate.
-        return f'''<section class="dl"><h2>Latest unique CF-1 research TIFF — DO NOT SUBMIT</h2>
+        # Historical parallel-lane diagnostic kept below the primary featured H38 card.
+        return f'''<section class="dl"><h2>Prior parallel-lane CF-1 research TIFF — DO NOT SUBMIT</h2>
 <p><b>OK to download for local testing: YES. OK to submit to DrivenData: NO.</b>
 HOLDOUT-DTI {hold['candidate']:.6f} ({hold['n_withheld_positives']:,} withheld positives; seed {hold['draws'][0]}, four folds) vs same-run control {hold['same_run_control']:.6f};
 paired gain {hold['paired_gain']:+.6f} (95% fold-t CI {hold['gain_95pct_fold_t_ci'][0]:+.6f}…{hold['gain_95pct_fold_t_ci'][1]:+.6f}), {hold['positive_folds']}/4 folds positive.
 Pre-registered screen failed; no confirmation or weekly slot. The strict lane check also fails:
 {comp['lattice_overlap']:.0%} of dots within 3 px of the registered r13 lattice; {comp['h31_control_overlap']:.2%} near H31-C. New SHA-256
 is not a lane clearance. Format verification is against an owner-mirrored template only.</p>
-<a class="btn" href="{prefix}downloads/{e(cf1['file'])}" download>↓ Download CF-1 diagnostic TIFF (testing only)</a>
+<a class="btn alt small" href="{prefix}downloads/{e(cf1['file'])}" download>↓ Download CF-1 diagnostic TIFF (testing only)</a>
 <p class="small">SHA-256 <code>{cf1['sha256']}</code> · EPSG:32611 · 3730×3292 · no NaN inside footprint · all values [0,1] · <a href="{prefix}executive-summary.html">submission eligibility guide</a> · note (≤140 chars): <code>{e(cf1['note'])}</code></p></section>'''
 
+    def h38_summary_card(prefix: str) -> str:
+        if not h38_card:
+            return ''
+        hd = h38_card['holdout_dti']
+        c_arm = hd['candidate_G1_S1']
+        b_arm = hd['same_run_control_G0_S0']
+        g_con = hd['primary_contrast_G1_S1_vs_G0_S0']
+        fe = hd['factorial_effects']
+        ov = h38_card['correlation_overlap_vs_registry']
+        kbase = "../knowledge" if not prefix else "knowledge"
+        return f'''<div class="card"><h2>Session 8 — H38 OSPC × 300 m Submodular Multi-Scale Skeleton 2&sup2; Factorial (Pre-Registered Pre-Fit)</h2>
+<p><b>Pre-registration:</b> <a href="{kbase}/25_preregistered_h38_ospc_submod_factorial_2026-10-25.md"><code>knowledge/25</code></a> (commit <code>c9c7e76</code>) · <b>Full PhD synthesis &amp; 0.2778 proof:</b> <a href="{kbase}/26_h38_outcomes_and_0.2778_phd_synthesis_2026-10-25.md"><code>knowledge/26</code></a> · <b>Run card:</b> <code>registry/run_card_h38_2026-10-25.json</code>.</p>
+<ul>
+<li><b>HOLDOUT-DTI (<code>{e(hd['evaluator_version'])}</code>, draws <code>{hd['draws_evaluated']}</code>, <code>{hd['withheld_positives_total']:,}</code> withheld positives):</b> Primary <code>G1_S1</code> fold-mean <code>{c_arm['fold_mean_dti']:.6f}</code> (95% CI <code>[{c_arm['ci95_fold_mean'][0]:.6f}, {c_arm['ci95_fold_mean'][1]:.6f}]</code>; pooled <code>{c_arm['pooled_dti']:.6f}</code>) vs same-run H35 arm-B control <code>G0_S0</code> <code>{b_arm['fold_mean_dti']:.6f}</code> (pooled <code>{b_arm['pooled_dti']:.6f}</code>); paired gain <b><code>{g_con['mean']:+.6f}</code></b> (<code>{g_con['folds_positive']}/4</code> folds positive; <code>hug</code> delta <code>{g_con['hug_mean']:+.4f}</code>). Leakage canary PASSED (max standalone feature AUC <code>{hd['leakage_canary']['h38_max_canary_auc']:.4f} &le; 0.90</code>). Confirmation draws <code>[26, 27]</code> were NOT run per frozen stopping rule.</li>
+<li><b>Great Basin North–South Structural Regime Split (<code>IR-25-H38-REGIME-SPLIT</code>):</b> Sparse-catalogue <code>NW</code> (<code>0.88%</code> fault prevalence, <code>75.0%</code> 3DEP 1 m LiDAR) jumped <b><code>{g_con['per_fold']['NW']:+.6f}</code></b> (<code>+0.0033</code> OSPC + <code>+0.0068</code> submodular), whereas missing-LiDAR <code>NE</code> (<code>54.2%</code> 3DEP) was flat (<code>{g_con['per_fold']['NE']:+.6f}</code>) and dense anastomosing <code>SW/SE</code> (<code>1.44–1.54%</code> Walker Lane / Sevier splays) lost <code>{g_con['per_fold']['SW']:+.6f}</code> / <code>{g_con['per_fold']['SE']:+.6f}</code>. Orthogonal main effects: Factor <code>G</code> <code>{fe['main_effect_G_OSPC']['mean']:+.6f}</code>, Factor <code>S</code> <code>{fe['main_effect_S_SUBMOD']['mean']:+.6f}</code>, <code>G&times;S</code> <code>{fe['interaction_GxS']['mean']:+.6f}</code>.</li>
+<li><b>3-Tier Registry Uniqueness:</b> <b><code>0 / 21</code></b> sibling top-scorers (<code>GEMSDOE27..91</code>) flagged — overlap vs <code>GEMSDOE32</code> (<code>0.2778</code>) = <code>{ov['overlap_vs_gemsdoe32_b2']:.3f}</code>, vs <code>GEMSDOE70</code> submodular (<code>0.2478</code>) = <code>{ov['overlap_vs_gemsdoe70_submod']:.3f}</code>, max sibling top-scorer = <code>{ov['worst_sibling_top_scorer_overlap']:.3f}</code>; pre-placement surface max <code>|&rho;| = {ov['worst_abs_spearman_surface']:.4f} &le; 0.90</code>; literal strict lane flags <code>r13</code> lattice (<code>1.000</code>), <code>gems10-h25</code> (<code>{ov['worst_historical_other_site_overlap']:.3f}</code>), and own-repo HGB lineage (<code>{ov['worst_other_registry_overlap']:.3f}</code>) &rarr; <b>OK TO DOWNLOAD: YES · OK TO SUBMIT: NO (DO NOT SUBMIT)</b>.</li>
+</ul></div>'''
+
     def home(prefix: str) -> str:
-        hero = latest_diagnostic(prefix) + verdict_banner(primary, prefix)
-        cards = dl_card(primary, prefix)
+        hero = verdict_banner(primary, prefix)
+        cards = dl_card(primary, prefix) + h38_summary_card(prefix) + latest_diagnostic(prefix)
         alt = "".join(f"""<div class="card"><b>{e(o['title'])}</b> {badge(o['status'], 'ok' if o['status']=='scored' else 'warn')}
 <p class="small" style="margin:.3em 0">{e(o['summary'])}</p><a class="btn alt small" href="{prefix}downloads/{o['file']}" download>↓ {e(o['file'])}</a>
  <span class="small">· {o['positive_pixels']:,} px · <code>{o['content_id']}</code></span></div>""" for o in others if o["role"] in ("fallback", "alternate"))
@@ -290,9 +309,11 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
 <p class="small">INFERENCE from owner-reported scores (<code>evidence/live_anchor_complement.json</code>); live break-even e ≈ 0.33–0.47. n/i = not identifiable (&lt;5 % off-incumbent dots).</p></div>"""
         return hero + cards + (f"<h3>Also available</h3>{alt}" if alt else "") + plan + kdcb + stats + h31_block + whyb + h28b + h30b + facb + flagb + feed
 
-    exec_body = f"""{latest_diagnostic('')}{verdict_banner(primary, '', exec_page=True)}
-<div class="callout"><b>Current unique research artifact: {e(selected['file'])}.</b> <b>OK to download for inspection/reproduction: YES.</b> Its tracked receipt reports format checks passing against an owner-mirrored template; this is not a fresh check in this checkout. <b>OK to submit to a competition scoring slot: NO.</b> The strict parallel-run lane gate is triggered: more than 70% of candidate dots are within 3 px of a registry lattice raster. Treat this as a duplicate-lane stop. No available TIFF is currently eligible for a weekly scoring slot; do not upload it.</div>
+    exec_body = f"""{verdict_banner(primary, '', exec_page=True)}
+<div class="callout"><b>Current Session-8 unique research artifact: {e(selected['file'])}.</b> <b>OK to download for local inspection/reproduction: YES.</b> Automated validation (<code>gems25.submission.check_file</code>, 16/16 checks) passed freshly in Session 8 against the SHA-256-pinned template (<code>2176d08e…</code>, owner-mirrored, not organizer-authenticated): every pixel is finite in <code>{{0.0, 1.0}} &sub; [0, 1]</code>, zero NaN anywhere, exact <code>EPSG:32611</code> / <code>3730 &times; 3292</code> grid. <b>OK to submit to a competition scoring slot: NO — DO NOT SUBMIT.</b> Both the pre-registered holdout screen gate (<code>-0.0011</code> fold-mean gain, <code>1/4</code> folds positive) and the literal strict parallel-run lane gate (<code>r13</code> lattice <code>100%</code>, own HGB lineage <code>96.5%</code>; <code>0/21</code> sibling top-scorers flagged) block weekly slot usage.</div>
 {dl_card(selected, '')}
+{h38_summary_card('')}
+{latest_diagnostic('')}
 <h2>Competition upload instructions — for a future gate-cleared candidate only</h2>
 <div class="callout"><b>Do not follow these steps with the current downloadable TIFF.</b> They describe the competition form, not authorization to submit. First require a fresh pre-registered holdout win, feature-alone leakage canaries, strict pre-placement and final-dot lane clearance, and exact-file format validation.</div>
 <ol class="steps">
