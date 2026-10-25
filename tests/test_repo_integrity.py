@@ -178,6 +178,14 @@ def test_the_invented_footprint_files_are_not_shipped_or_linked():
             assert f'href="docs/downloads/{name}"' not in text and f'href="downloads/{name}"' not in text and f"(docs/downloads/{name})" not in text
 
 
+def test_negative_download_copy_never_instructs_upload():
+    forbidden = ("upload the", "submit this", "use this twin")
+    for item in J("registry/submissions.json")["files"]:
+        if item.get("ok_to_submit_slot") is False or item.get("verdict") == "negative":
+            copy = " ".join(str(item.get(k, "")) for k in ("title", "summary", "status")).lower()
+            assert not any(phrase in copy for phrase in forbidden), (item["file"], copy)
+
+
 def test_shipped_files_are_not_duplicates_of_already_scored_files():
     # content ids of rasters that already have an owner-reported score (re-uploading them gives no information)
     already_scored = {"989f59505db1": "dotted H19-5 d1.5 (0.2477)", "80d47e1ab2ee": "H19-5 (0.1922)"}

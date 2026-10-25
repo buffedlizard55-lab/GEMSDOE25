@@ -1235,7 +1235,7 @@
    "outside": "nan",
    "status": "UNIQUE FILE - DO NOT SUBMIT under the merged strict lane policy (literal r13 lattice stop; 82-89% dot overlap with the H31-lineage lane); frozen holdout gate PASSED in screen + confirmation; unscored; not slot-approved",
    "title": "H35 RESMAG+tip dots (NaN outside) \u2014 holdout gate passed; strict-lane DO NOT SUBMIT",
-   "summary": "Identical prediction values inside the template footprint; NaN instead of 0.0 outside, matching the template convention. Upload the zeros primary first (strictest [0,1] validator); use this twin only if the portal rejects zeros.",
+   "summary": "Identical prediction values inside the template footprint; NaN instead of 0.0 outside, matching the template convention. Research/testing twin only: strict lane failed, so do not upload either H35 file.",
    "expected_range": "no competition estimate (HOLDOUT-DTI only: 0.1476, 95% CI 0.1317\u20130.1635)",
    "note": "GEMSDOE25 H35 R+T nan twin fallback | unscored; not slot-approved; no slot | id d5d4cde1e719",
    "parent": "primary",

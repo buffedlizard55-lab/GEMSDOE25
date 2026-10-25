@@ -82,7 +82,7 @@ def verdict_banner(p: dict, prefix: str, exec_page: bool = False) -> str:
 <div class="stats"><div class="stat"><b style="color:#15803d">OK to download: {dl}</b><span>for local testing: unique by content · all hard format checks pass · values in [0,1] · no NaN inside the footprint</span></div>
 <div class="stat"><b style="color:#b91c1c">OK to spend a weekly slot: {slot}</b><span>verdict <b>{e(p.get('verdict', 'n/a'))}</b>: not slot-approved — DO NOT SUBMIT (strict lane gate and pre-registered holdout gate both fail)</span></div>
 <div class="stat"><b>{e(p.get('expected_range') or 'n/a')}</b><span>model projection for this file versus the owner-reported 0.2778 best — not a score</span></div></div>
-<p class="lead"><b>{e(p['title'])}.</b> The download card below has the file, checksum and the note to paste.</p>
+<p class="lead"><b>{e(p['title'])}.</b> The download card below has the {'file, checksum, and submission note' if p.get('ok_to_submit_slot') else 'local-testing file, checksum, and research identifier (not for the competition form)'}.</p>
 <p class="small"><b>Status:</b> {e(p['status'])}. <b>Lane:</b> {e(p.get('lane_summary', 'n/a'))}. <b>Run card:</b> <code>{e(p.get('run_card', ''))}</code>.
 Zip alternative: <a href="{prefix}downloads/{e(p.get('zip', ''))}" download>{e(p.get('zip', ''))}</a>. The earlier "Predicted values must be in range [0, 1]" error came from NaN pixels inside the footprint of an old file; this file has none (zeros outside, no NaN anywhere).
 The frozen holdout comparator 0.152003389 does not reproduce in this environment (IR-25-COMPARATOR-DRIFT); gates use the best same-run control instead.</p></div>"""
