@@ -1,6 +1,6 @@
 {
  "schema_version": 3,
- "review_date_utc": "2026-10-03",
+ "review_date_utc": "2026-10-25",
  "issues": [
   {
    "id": "IR-25-NAN-FOOTPRINT",
@@ -190,7 +190,7 @@
    "id": "IR-25-HABITAT-MISSPECIFIED",
    "severity": "medium",
    "status": "closed",
-   "issue": "A single-band truth-intensity model based only on distance to known faults does not fit 25 hash-linked owner-reported DTI anchors: leave-one-artifact-out RMSE 0.0705–0.0812 (pre-registered threshold 0.020), blind-lattice prediction 0.2057 vs owner-reported 0.0904, and worst residual −0.1787. The score claims remain unverified; residuals indicate model misspecification relative to these claims and cannot be attributed solely to detector skill.",
+   "issue": "A single-band truth-intensity model based only on distance to known faults does not fit 25 hash-linked owner-reported DTI anchors: leave-one-artifact-out RMSE 0.0705\u20130.0812 (pre-registered threshold 0.020), blind-lattice prediction 0.2057 vs owner-reported 0.0904, and worst residual \u22120.1787. The score claims remain unverified; residuals indicate model misspecification relative to these claims and cannot be attributed solely to detector skill.",
    "evidence": "evidence/h28_calibration/habitat_fit.json, knowledge/10 sections 5, 11 (D1) and 12.6",
    "resolution_or_action": "Closed as a conditional negative result: the tested distance-to-known-faults habitat model did not satisfy its adoption rule, and no submission was designed from it. The fitted model does not support \"hug the known-fault halo\" as a promotion strategy. The anchor-based calibration remains conditional on unverified owner-reported scores and does not identify actual hidden-label locations."
   },
@@ -230,9 +230,57 @@
    "id": "IR-25-FACTORIAL-STATE",
    "severity": "medium",
    "status": "flagged",
-   "issue": "The condensed session handoff says the required five-family fractional factorial remains unrun, but the tracked repository contains a complete earlier run: evidence/factorial/cells.jsonl has 152 rows (16 registered model arms × 8 fold/draw cells plus 3 reference arms × 8), design.json specifies the 16-run Resolution V design, and results.json reports 16 runs with no deviations. Re-running the registered analyzer reproduces results.json/results.md byte-for-byte. H30 is a separate follow-on experiment and does not replace this five-family design.",
+   "issue": "The condensed session handoff says the required five-family fractional factorial remains unrun, but the tracked repository contains a complete earlier run: evidence/factorial/cells.jsonl has 152 rows (16 registered model arms \u00d7 8 fold/draw cells plus 3 reference arms \u00d7 8), design.json specifies the 16-run Resolution V design, and results.json reports 16 runs with no deviations. Re-running the registered analyzer reproduces results.json/results.md byte-for-byte. H30 is a separate follow-on experiment and does not replace this five-family design.",
    "evidence": "evidence/factorial/design.json; evidence/factorial/cells.jsonl (152 JSONL rows); evidence/factorial/results.json (16 runs, 8 cells per run, deviations=[]); evidence/factorial/results.md; scripts/analyze_factorial.py (rerun 2026-10-03, output hashes unchanged).",
    "resolution_or_action": "Treat the five-family experiment as already executed from the available, internally reproducible evidence unless stronger provenance evidence invalidates it. Do not overwrite/rerun it merely because the handoff says unrun. Preserve it as a separate registered result; H30 remains an additional experiment. The local JSONL lacks a fit timestamp, so the exact original run date/environment should not be inferred."
+  },
+  {
+   "id": "IR-25-DUPLICATE-DOWNLOAD",
+   "severity": "critical",
+   "status": "fixed (withdrawn)",
+   "issue": "The front-page 'format-validated' download gems25-dotted-h19-5-d2-8-\u2026-e56ea318af89-nan.tif (SHA-256 91eae1ca\u2026) is byte-identical to a raster the group already lists (GEMSDOE24 d2-8 alternate in registry/artifact_ledger.json and the GEMSDOE30 entry tagged 91eae1ca, 0.2600 claim). The brief requires a unique file.",
+   "evidence": "registry/submissions.json (role now 'duplicate'); scripts/check_lane_duplicates.py on the file: byte_identical=True vs data/scored/gems24-\u2026d2-8\u2026; registry/artifact_ledger.json.",
+   "resolution_or_action": "Withdrawn as primary. Replaced by the unique H31-C file (docs/downloads/gems25-h31-control-\u2026-nan.tif). The old file stays in git history and is labelled DUPLICATE. Do not submit it as new."
+  },
+  {
+   "id": "IR-25-LANE-DENSITY",
+   "severity": "high",
+   "status": "open (review)",
+   "issue": "The PARALLEL-RUN lane test flags the H31-C file against 13GEMSDOE (r13-lattice-s5, a dense 5-px lattice with 206,895 dots): 100% of candidate dots lie within 3 px of a registry dot. The reverse direction is only 18.5%. The one-directional test is not discriminative against dense registry rasters.",
+   "evidence": "docs/downloads/lane-gems25-h31-control-\u2026-nan.json (rows: 13gems_20261001_r13\u2026); computed in this session.",
+   "resolution_or_action": "Left flagged, not overridden. Human review needed: decide whether to use a two-sided or density-normalised overlap test. Until cleared, the file is NOT slot-eligible."
+  },
+  {
+   "id": "IR-25-LEADERBOARD-CONFLICT",
+   "severity": "medium",
+   "status": "flagged",
+   "issue": "The 2026-10-25 brief gives conflicting leaderboard figures: 'Current competition leaderboard GEMSDOE high score: 0.4413', then '0.3195 is the highest score right now'. The GEMSDOE32 page lists #1 0.3262, #2 DARD 0.3195, #3 0.3042 ('read 2026-10-04'). None verified here (drivendata not accessed per AGENTS.md).",
+   "evidence": "owner brief 2026-10-25; https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html (leaderboard section).",
+   "resolution_or_action": "Owner to confirm the current figures from the official leaderboard page. The repo uses no leaderboard number as a target without this."
+  },
+  {
+   "id": "IR-25-BREAKEVEN-SHORTHAND",
+   "severity": "low",
+   "status": "flagged",
+   "issue": "GEMSDOE32 gives a break-even credit of 0.0548 'from 0.2\u00b70.26 = 0.0520'. The repo's metric gives marginal_inclusion_ratio(0.26) = 0.05485 (the ratio form \u03b1D/(1\u2212\u03b1D)); the linear 0.2\u00b7D shorthand is 0.0520.",
+   "evidence": "gems25.metric.marginal_inclusion_ratio; knowledge/14_gemsdoe32_analysis_and_hypotheses_2026-10-25.md \u00a72.",
+   "resolution_or_action": "Use the ratio form. The 0.0548 figure is consistent with it."
+  },
+  {
+   "id": "IR-25-HOLDOUT-DOES-NOT-TEST-PRUNING",
+   "severity": "high",
+   "status": "disclosed",
+   "issue": "The hide-and-recover holdout uses catalogue components as truth. It cannot evaluate catalogue-proximity pruning (the GEMSDOE32 mechanism) or any hypothesis whose premise is the hidden set's distance from the catalogue.",
+   "evidence": "src/gems25/holdout.py docstring; GEMSDOE32 IR-32-PROXY-01; knowledge/14 \u00a73.",
+   "resolution_or_action": "Propose a new holdout whose truth is restricted to components at least 200 m from the visible traces, pre-registered before use (H32-1). Not run."
+  },
+  {
+   "id": "IR-25-SHIPPED-NOT-CLEARED",
+   "severity": "high",
+   "status": "open",
+   "issue": "The unique H31-C file is format-valid and unique by bytes, but its holdout result is parity with its own control (not a win), its lane check is flagged, and it has no competition score. It must not be used for a weekly slot.",
+   "evidence": "registry/run_card_h31_2026-10-25.json; evidence/h31_screen/analysis.json.",
+   "resolution_or_action": "The site and README label it 'UNIQUE FILE - NOT CLEARED'. A slot needs a passing confirmation, a cleared lane check, and the exact-file audit."
   }
  ]
 }

@@ -1,18 +1,24 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
+**Current session review (2026-10-25):** [GEMSDOE32 H33-2-B2 score forensics, candidate screen, data blockers, and run card](knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md). The requested start-of-session owner prompt remains archived verbatim at `knowledge/owner_brief_verbatim.txt`; see also `AGENTS.md`.
+
 > **Maximize P(Win)** · **Own the Outcome** — the Arena core values are the decision rule for every change in this repository.
 
 **Competition:** [DOE GEMS Prize, DrivenData #306](https://www.drivendata.org/competitions/306/competition-doe-gems/) · **Live site:** <https://buffedlizard55-lab.github.io/GEMSDOE25/> · **Weekly limit:** 3 submissions · **Ends:** 3 Dec 2026 (page: 11:59 p.m. UTC; rules: 5:00 p.m. ET — see IR-25-DEADLINE)
 
-## ⬇ Download the format-validated GeoTIFF (not slot-approved)
+## ⬇ Download the unique, format-valid GeoTIFF (NOT slot-cleared)
 
-**[↓ `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif`](docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif)** — Owner-mirrored H19-5 raster thinned by deterministic Poisson-disk dotting to 44,090 pixels (73% of the 0.2477-labelled mirror; 36% of H19-5). Conditional on unverified owner-reported score anchors, the H28 model estimates DTI 0.2510 and this file is its best point in the tested dot_thin(H19-5, d) sweep (d=1.8–4.0 px); this is a model output, not a competition score. The model-implied 12,691 truth count and 1.85-px concentration are fitted latent parameters, not verified hidden labels. This file is byte-identical to an owner-mirrored unscored alternate. It has not demonstrated a win over a comparable same-run holdout best and remains unscored/not slot-approved; the historical 0.152003389 comparator does not reproduce (IR-25-COMPARATOR-DRIFT).
+**[↓ `gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif`](docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif)** — Full-footprint emission of the H28 comparator configuration: raw-score ridge candidates, score-ordered dots at 2.4 px, 3.5% budget, base BDE plus seven add-on columns (builder: scripts/build_candidate.py). Format checks pass. On the spatial holdout it is at parity with its own same-run control and has not beaten the comparable same-run holdout best; the tested alternative (A1, H31) was negative. The lane-overlap check is FLAGGED against the dense 13GEMSDOE lattice - a density artefact under review, not cleared. Holdout-DTI 0.1497 (95% CI 0.1331-0.1663). This is not a competition score and is not slot-approved.
 
-* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, NaN outside (verified against the pinned owner-mirror template, not organizer-authenticated; independent check receipt: `docs/downloads/checks-gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.json`).
-* Unique content id `e56ea318af89` · SHA-256 `91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8` · 44,090 emitted pixels · status: **format-validated; unscored; not slot-approved**.
-* **Note to paste** in DrivenData's *Note (optional)* field: `GEMSDOE25 D2.8 | H28 conditional model 0.251; not a score | unscored; not slot-approved | id e56ea318af89 | no slot`
-* Format fallback (format troubleshooting only; not slot-approved): [`gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif`](docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif) — Format fallback: same predictions, zeros outside the footprint (format fallback; unscored; not slot-approved; 44,090 px).
+* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, NaN outside (verified against the pinned owner-mirror template, not organizer-authenticated; independent check receipt: `docs/downloads/checks-gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.json`).
+* Unique content id `9edd6bed8268` · SHA-256 `2165bb8e229ee27e25edf57e990191d8f7836ab4b07e2779f15023f7c34a3ab2` · 48,714 emitted pixels · status: **UNIQUE FILE - NOT CLEARED: lane flag open, holdout gate not passed, do not spend a slot**.
+* **Note to paste** in DrivenData's *Note (optional)* field: `GEMSDOE25 H31-C | sapd2.4, 3.5%, BDE+7 | unscored; not slot-approved; no slot | id 9edd6bed8268`
+* Format fallback (format troubleshooting only; not slot-approved): [`gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif`](docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif) — Format fallback: same H31-C dots, zeros outside the footprint (format fallback; unscored; not slot-approved; 48,714 px).
 * Step-by-step upload guide: [`docs/executive-summary.html`](https://buffedlizard55-lab.github.io/GEMSDOE25/docs/executive-summary.html).
+
+> ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).
+
+> ⚠ **Lane flag open:** this file is flagged by the lane-overlap check against a dense 13GEMSDOE lattice (IR-25-LANE-DENSITY). Its holdout result is parity with its own control, not a win. It is NOT slot-cleared. Receipt: `docs/downloads/lane-gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.json`.
 
 ## Where things stand
 
@@ -137,6 +143,10 @@ Planning brackets are uncertain prioritization judgments, not estimates or live-
 * **IR-25-PROXY-LIMITS** (high, disclosed) — The hide-and-recover holdout is a catalogue-gap proxy (hidden = catalogue components), not new-fault truth. H19-5 'as emitted' is not out-of-fold (and masked all catalogue pixels), so it is only a diagnostic. Family E may be flattered by the simulation. GEMSDO…
 * **IR-25-PAGES-ROOT** (high, fixed) — GitHub Pages is built from main:/ (legacy), but the old site lived in docs/ with no root index.html: the public URL served the README, whose 'Executive Summary & Submit Guide' link pointed back to itself and whose download link was the broken file.
 * **IR-25-COMPARATOR-DRIFT** (high, open) — The frozen hide-and-recover comparator 0.15200338908786984 (evidence/addons/emk_extension.json, variant sapd2.4 at kfrac 0.035, base BDE + the seven add-ons, draws 0-1) does NOT reproduce in this environment. Re-running that exact arm here gives 0.149667509 (f…
+* **IR-25-DUPLICATE-DOWNLOAD** (critical, fixed (withdrawn)) — The front-page 'format-validated' download gems25-dotted-h19-5-d2-8-…-e56ea318af89-nan.tif (SHA-256 91eae1ca…) is byte-identical to a raster the group already lists (GEMSDOE24 d2-8 alternate in registry/artifact_ledger.json and the GEMSDOE30 entry tagged 91eae…
+* **IR-25-LANE-DENSITY** (high, open (review)) — The PARALLEL-RUN lane test flags the H31-C file against 13GEMSDOE (r13-lattice-s5, a dense 5-px lattice with 206,895 dots): 100% of candidate dots lie within 3 px of a registry dot. The reverse direction is only 18.5%. The one-directional test is not discrimin…
+* **IR-25-HOLDOUT-DOES-NOT-TEST-PRUNING** (high, disclosed) — The hide-and-recover holdout uses catalogue components as truth. It cannot evaluate catalogue-proximity pruning (the GEMSDOE32 mechanism) or any hypothesis whose premise is the hidden set's distance from the catalogue.
+* **IR-25-SHIPPED-NOT-CLEARED** (high, open) — The unique H31-C file is format-valid and unique by bytes, but its holdout result is parity with its own control (not a win), its lane check is flagged, and it has no competition score. It must not be used for a weekly slot.
 
 ## Limitations and what is needed
 
@@ -154,7 +164,7 @@ Planning brackets are uncertain prioritization judgments, not estimates or live-
 2. Keep the prior five-family A–E Resolution V factorial separate: its complete `evidence/factorial/` record is present and was reproduced byte-for-byte; see `IR-25-FACTORIAL-STATE` for the handoff-state discrepancy. H30 is an additional hypothesis-specific 2², not a replacement.
 3. Keep H26/H27/H29 outcomes and registrations labeled as prior work. H27-1 failed its gate; the old H29 list is registered already and must not be relabeled as novel.
 4. Refresh the official-source/evidence tables and static site/feed (`scripts/check_sources.py`, then `scripts/build_site.py` and `scripts/build_readme.py`). The feed must never request or follow `drivendata.org`.
-5. Keep the existing D2.8 download format-validated but unscored/not slot-approved. A passing H30 proxy gate is not a competition score, not confirmation until the fresh draw, and not authorization to upload.
+5. Keep the H31-C file unscored and NOT slot-cleared (lane flag open). Never submit the withdrawn D2.8 duplicate as new. A passing H30 proxy gate is not a competition score, not confirmation until the fresh draw, and not authorization to upload.
 6. Open a PR from the fixed Arena session branch, review the checks, and merge only through the GitHub PR workflow if permitted; never claim an unverified merge or deployment.
 
 ## Current task (2026-10-25) — read at the start of every session
@@ -222,6 +232,65 @@ Set `GEMS_DATA_DIR` / `GEMS_WORK_DIR` to keep the 419 MB raster and the ~1.5 GB 
 | `knowledge/` | pre-registrations, ranked hypotheses, verified research digest, the brief |
 | `docs/`, `index.html` | GitHub Pages site (root `index.html` is the landing page; Pages builds from `main:/`) |
 | `tests/` | unit, parity, integrity and reproduction tests |
+
+## Standing brief 2026-10-25 (consolidated restatement, not verbatim) — read every session
+
+Full text: [`knowledge/owner_brief_2026-10-25_consolidated.md`](knowledge/owner_brief_2026-10-25_consolidated.md). GEMSDOE32 0.2778 analysis and ranked next hypotheses: [`knowledge/14_gemsdoe32_analysis_and_hypotheses_2026-10-25.md`](knowledge/14_gemsdoe32_analysis_and_hypotheses_2026-10-25.md). H31 pre-registration: [`knowledge/13_preregistered_h31_credit_field_emission_2026-10-25.md`](knowledge/13_preregistered_h31_credit_field_emission_2026-10-25.md). Run card: `registry/run_card_h31_2026-10-25.json`.
+
+<details><summary><strong>Full text of the 2026-10-25 brief (consolidated)</strong></summary>
+
+~~~text
+# Owner brief — 2026-10-25 (consolidated restatement, NOT a verbatim quote)
+
+The 2026-10-25 message is long and mixes several requests. This file keeps every requirement, condensed and grouped.
+The earlier verbatim brief remains in `knowledge/owner_brief_verbatim.txt`. Any gap between this text and the original
+message is a restatement error to flag, not a new instruction.
+
+## A. Highest urgency (stated as "must be followed")
+
+1. **Generate a unique TIF submission for the competition.** Do not copy a previous submission (learning and education
+   copies are allowed). The file must be easy to download from the site's first screen.
+2. **It must be obvious whether the file is OK to download and submit.** The status shown must say so in plain words.
+3. **Validation must run through the project, without human inspection.** Read the whole brief; several sites mention a
+   human inspector, but validation must be automated and verifiable.
+4. **Portal error to prevent:** `Predicted values must be in range [0, 1]`.
+5. **Each submission needs a unique name and a short note** (≤ 140 characters) to tell submissions apart.
+6. **An executive-summary subpage** explains how to submit, and sits at the top of the site.
+
+## B. Research and analysis requests
+
+7. Study the GEMSDOE32 page (0.2778, `h33-h33-2-b2-…-zeros`): why it scored, how, and whether we can exceed 0.2778.
+   Answer with PhD-level reasoning, and verify line by line with no hallucinations.
+8. Review the high-scoring GEMSDOE sites (24, 25, 27, 28, 30, 31, 32, 33, 36). Explain their methods and how they
+   differ. Note the sibling claims as claims.
+9. Generate 3–5 new geological hypotheses. For each, name the layers, the physical signature, why it should find a fault
+   missing from the USGS/INGENIOUS catalogue, and how it differs from the repo. Rank by expected gain and cost. Validate
+   the top one on the spatially blocked holdout before spending a weekly slot. If a candidate needs new data, name the
+   free official source and check it can be obtained first.
+10. Use a PARALLEL-RUN PROTOCOL: a lane limit, reuse of the shared holdout/evaluator/writer, labelled numbers
+    (HOLDOUT-DTI vs ORGANIZER-CONFIRMED), a leakage canary (single-feature AUC > 0.90 means leakage until proven),
+    a run card (JSON), and a budget (3 experiments or 2 hours).
+11. Work with verified official sources and give links for manual review. Flag irregularities. No hallucinations.
+12. Find overlooked data sources and new hypotheses, and store all verified knowledge in the repo as a base for later work.
+
+## C. Standing product requirements
+
+13. Put this brief into the README and read it at the start of every session.
+14. Core values: **Maximize P(Win)** and **Own the Outcome**. They are the decision rule for every change.
+15. A site that is clean, simple, organized and current, with a live feed and official source links.
+16. Run work in three passes: implement and verify; review for bugs and assumptions; re-check against this brief.
+17. Open a pull request from the session branch and merge it to `main` if checks pass. Make suggestions for next work and
+    list the limitations, for the next session.
+
+## D. Limits that stay in force (from AGENTS.md)
+
+* No automated access to drivendata.org, and no submission uploaded by the agent. The owner submits manually.
+* A weekly slot is used only for a candidate that beats the same-run comparable holdout best and passes the exact-file
+  audit. A format-valid file is not a slot-approved file.
+* Holdout DTI is a proxy. It is never a competition score.
+~~~
+
+</details>
 
 ## Owner brief (verbatim) — read every session
 

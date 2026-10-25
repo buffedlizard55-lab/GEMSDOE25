@@ -1,0 +1,43 @@
+{
+ "schema_version": 1,
+ "date_utc": "2026-10-25",
+ "method": "Three passes; receipts below.",
+ "pass_1_implement_and_verify": {
+  "done": [
+   "Restored template, labels, external layers and scored rasters from the pinned owner mirrors; every file verified against its SHA-256 pin.",
+   "Built the feature stack (prepare_data, build_features, build_addons); the H28 control reproduced its frozen per-cell DTI exactly (8/8).",
+   "Pre-registered H31-1 (commit 7c1f246) before running; ran the screen; analysis gate: negative (A1), no confirmation.",
+   "Generated the unique full-footprint H31-C file with scripts/build_candidate.py; format check passes (all hard checks)."
+  ],
+  "findings": [
+   "The old front-page file duplicated a listed submission (IR-25-DUPLICATE-DOWNLOAD)."
+  ]
+ },
+ "pass_2_bugs_assumptions_edges": {
+  "done": [
+   "Lane checker counted the -zeros sibling of the candidate as a registry raster; fixed (same-predictions siblings excluded).",
+   "Lane checker read the artifact ledger incorrectly (top-level 'artifacts' key); fixed.",
+   "Build receipt note was cut mid-word at 120 characters; rewritten to 108 characters (limit 140) and recorded.",
+   "Lane test is density-sensitive (dense 13GEMSDOE lattice): reported both directions; flag left open (IR-25-LANE-DENSITY).",
+   "build_candidate used 3 pseudo-hidden draws for the full-footprint model; the screen used per-cell fits. Disclosed; not identical training."
+  ],
+  "findings": [
+   "Two-sided overlap test recommended for future lane checks."
+  ]
+ },
+ "pass_3_recheck_against_brief": {
+  "done": [
+   "Unique TIF: yes by bytes and content id; not byte-identical to any restored raster or ledger entry.",
+   "Easy download and obvious status: site/README updated from the registry (see the build step).",
+   "Validation without human inspection: scripts/check_lane_duplicates.py and gems25.submission.check_file run automatically.",
+   "Note <= 140 characters; unique name; executive summary present.",
+   "GEMSDOE32 0.2778 question answered with labelled claims and no organizer score (knowledge/14).",
+   "Three-experiment budget: 1 used. Not used for slots."
+  ],
+  "open_items": [
+   "Leaderboard figures conflict (IR-25-LEADERBOARD-CONFLICT).",
+   "Lane flag needs human review.",
+   "No competition score exists for any file here."
+  ]
+ }
+}
