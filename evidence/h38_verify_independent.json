@@ -1,0 +1,79 @@
+{
+ "candidate": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.tif",
+ "all_hard_checks_pass": true,
+ "checks": {
+  "zeros.single_band_float32": true,
+  "zeros.crs_epsg32611_matches_template": true,
+  "zeros.shape_transform_match": true,
+  "zeros.transform_tuple": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "zeros.footprint_px": 5167373,
+  "zeros.footprint_all_finite": true,
+  "zeros.footprint_min_max": [
+   0.0,
+   1.0
+  ],
+  "zeros.footprint_values_subset_0_1": [
+   0.0,
+   1.0
+  ],
+  "zeros.positive_px": 54472,
+  "zeros.positives_on_catalogue": 0,
+  "zeros.positives_outside_footprint": 0,
+  "zeros.strict_whole_array_in_0_1_no_nan": true,
+  "zeros.nan_anywhere": 0,
+  "zeros.outside_all_zero": true,
+  "nan.single_band_float32": true,
+  "nan.crs_epsg32611_matches_template": true,
+  "nan.shape_transform_match": true,
+  "nan.transform_tuple": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "nan.footprint_px": 5167373,
+  "nan.footprint_all_finite": true,
+  "nan.footprint_min_max": [
+   0.0,
+   1.0
+  ],
+  "nan.footprint_values_subset_0_1": [
+   0.0,
+   1.0
+  ],
+  "nan.positive_px": 54472,
+  "nan.positives_on_catalogue": 0,
+  "nan.positives_outside_footprint": 0,
+  "nan.outside_all_nan": true,
+  "twins.footprint_values_identical": true,
+  "zip.single_member_named_like_tif": true,
+  "zip.member_bytes_equal_tif": true,
+  "content_id_recomputed": "18de99d38bb0",
+  "content_id_in_filename": true,
+  "sha256_file": "03b9d4c09aa630b69b49bd33df57f0660875a1b26b3d00cc1e38570404d6dae2",
+  "sha256_matches_registry": true,
+  "note_chars": 105,
+  "note_le_140": true,
+  "greedy_rederived_dots_equal_shipped": true,
+  "greedy_rederived_diag": {
+   "n_candidates": 180858,
+   "n_selected": 54472,
+   "plugin_tp": 4318.316065530203,
+   "plugin_fp": 49267.29876476443,
+   "plugin_dti": 0.18845159384760843,
+   "n_hat": 15247.0,
+   "last_accepted_ratio": 0.03916657786795053,
+   "first_rejected_ratio": 0.0391649857796462,
+   "stop_reason": "break_even"
+  }
+ }
+}
