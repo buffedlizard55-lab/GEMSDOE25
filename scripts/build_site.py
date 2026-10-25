@@ -121,8 +121,8 @@ def main() -> None:
         h30_status = "registered screen draws 6,7; real-data feature smoke passed, no model fit or DTI yet"
 
     def home(prefix: str) -> str:
-        hero = """<div class="hero"><h1>Download the format-validated GeoTIFF. Know what it proves.</h1>
-<p class="lead">One click gets a <b>single-band float32 GeoTIFF with finite [0,1] predictions throughout the footprint</b>, checked against the pinned template. This establishes file-format validity only—not holdout promotion or a competition score. The current D2.8 file has not demonstrated a win over a comparable same-run spatial-holdout best and is <b>not slot-approved</b>. The earlier range error was caused by NaNs inside the footprint (inferred from the file; the portal validator is not public); that defect is fixed.</p></div>"""
+        hero = """<div class="hero"><h1>Download the unique, format-valid GeoTIFF. It is NOT cleared for a slot.</h1>
+<p class="lead">One click gets a <b>single-band float32 GeoTIFF with finite [0,1] predictions throughout the footprint</b>, checked against the pinned template. This establishes file-format validity only—not holdout promotion or a competition score. This file is <b>unique</b> and format-valid, but it is <b>NOT cleared for a slot</b> and is <b>not slot-approved</b>: its lane-overlap check is flagged and it has not beaten its same-run holdout control. The former D2.8 download was byte-identical to a listed submission and has been <b>withdrawn</b> (IR-25-DUPLICATE-DOWNLOAD). The frozen holdout comparator 0.152003389 does not reproduce in this environment (IR-25-COMPARATOR-DRIFT), so the same-run control is used instead. The earlier range error was caused by NaNs inside the footprint (inferred from the file; the portal validator is not public); that defect is fixed.</p></div>"""
         cards = dl_card(primary, prefix)
         alt = "".join(f"""<div class="card"><b>{e(o['title'])}</b> {badge(o['status'], 'ok' if o['status']=='scored' else 'warn')}
 <p class="small" style="margin:.3em 0">{e(o['summary'])}</p><a class="btn alt small" href="{prefix}downloads/{o['file']}" download>↓ {e(o['file'])}</a>
@@ -192,7 +192,7 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
 <p class="small">All {len(irr)} items with evidence and actions: <a href="{prefix}sources.html#irregularities">Sources &amp; audit</a>.</p>"""
         feed = f"""<h2>Source feed</h2><div id="feed" data-base="{prefix}"><p class="small">Loading <code>data/feed.json</code> …</p></div>
 <p class="small">The feed blocks DrivenData requests and redirected targets. The displayed leaderboard values are user-provided, unverified claims—not live snapshots.</p>"""
-        plan = ('<div class="callout warn"><b>No weekly slot is approved for the currently downloadable D2.8 file.</b> '
+        plan = ('<div class="callout warn"><b>No weekly slot is approved for the downloadable H31-C file.</b> '
                 'It is format-validated but has not demonstrated a win over a comparable same-run spatial-holdout best. '
                 f'H30-1 status: {e(h30_status)}. Even a confirmed proxy win only permits a later full-data build and review; '
                 'that exact candidate must still beat the current comparable holdout best and pass the exact-file audit. '
@@ -200,7 +200,7 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
         return hero + cards + (f"<h3>Also available</h3>{alt}" if alt else "") + plan + stats + whyb + h28b + h30b + facb + flagb + feed
 
     exec_body = f"""<div class="hero"><h1>Executive summary &amp; submission guide</h1><p class="lead">The file and upload instructions are provided for reproducibility. Nothing here uploads for you: the owner submits manually.</p></div>
-<div class="callout"><b>Slot status: do not submit the current D2.8 file on this evidence.</b> Format checks passed, but no comparable same-run holdout win is established for this candidate. Use a weekly slot only after the specific candidate passes its frozen paired/confirmation gate and the exact-file audit.</div>
+<div class="callout"><b>Slot status: do not submit the H31-C file on this evidence.</b> It is unique and format-valid, but its lane-overlap check is flagged (IR-25-LANE-DENSITY) and no comparable same-run holdout win is established. Use a weekly slot only after the specific candidate passes its frozen paired/confirmation gate and the exact-file audit.</div>
 {dl_card(primary, '')}
 <h2>Manual upload steps (only for a candidate that has passed its holdout gate)</h2><ol class="steps">
 <li><b>Download</b> <code>{e(primary['file'])}</code> with the green button above. Optional: check <code>sha256sum</code> starts with <code>{primary['sha256'][:16]}</code>.</li>
