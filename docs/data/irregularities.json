@@ -787,6 +787,14 @@
    "resolution_or_action": "Mandatory duplicate/stop applied. No density exception, registry-driven relocation, jitter, or additional emission experiment was run. File remains testing-only and not slot-approved."
   },
   {
+   "id": "IR-26-FEED-DNS-CANONICALIZATION-20261026",
+   "severity": "high",
+   "status": "fixed",
+   "issue": "The automatic source-feed host guard treated DNS-equivalent DrivenData host spellings with a terminal DNS dot (for example, www.drivendata.org.) and IDNA Unicode dot separators as unblocked. A matching source URL or redirect could therefore bypass the no-DrivenData request policy.",
+   "evidence": "Pre-fix reproduction: scripts/check_sources.py:is_blocked returned false for https://www.drivendata.org./leaderboard/ and https://www.drivendata\u3002org/leaderboard/. Regression coverage: tests/test_feed_host_safety.py.",
+   "resolution_or_action": "Canonicalize hostnames through IDNA, strip terminal DNS dots before and after canonicalization, and fail closed on malformed hostnames. Tests assert URL and redirect variants are rejected before any request to the target host."
+  },
+  {
    "id": "IR-25-H73-BUILD-AFTER-GATE-FAIL",
    "severity": "medium",
    "status": "open",

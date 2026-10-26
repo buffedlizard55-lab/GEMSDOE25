@@ -400,7 +400,7 @@
    },
    "receipt": "checks-gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.json",
    "outside": "zero",
-   "status": "UNIQUE BY CONTENT \u00b7 FORMAT-VALID \u00b7 HOLDOUT FAIL vs H35 \u00b7 STRICT LANE FAIL (literal >=73.4%-halo lattice/pindrop only) \u00b7 DENSITY-AWARE UNIQUE across all 85 registry rasters (flagged_lane = []) \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "status": "CONTENT-DISTINCT ARCHIVED RESEARCH ARTIFACT \u00b7 FORMAT-VALID \u00b7 HOLDOUT FAIL vs H35 \u00b7 STRICT LANE FAIL (74.64% pindrop-discovery; 100% r13 lattice) \u00b7 DO NOT SUBMIT",
    "zip": "gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.zip",
    "verdict": "negative",
    "slot_approved": false,
@@ -411,7 +411,7 @@
    "lane": {
     "lane_clear": false,
     "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
-    "density_aware_verdict": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
+    "density_aware_verdict": "Informational comparison only; cannot waive strict literal overlap flags. Candidate fails lane.",
     "lattice_overlap": 1.0,
     "focus_winners": {
      "n": 21,
@@ -447,11 +447,11 @@
     "extended_receipt": "evidence/h72_3_lane_extended.json",
     "surface_receipt": "evidence/h72_3_lane_surface.json"
    },
-   "lane_summary": "STRICT LANE FAIL only on >=73.4%-footprint-halo rasters (r13 lattice 100%, pindrop-discovery 74.6%, pindrop-nodes 74.0%). DENSITY-AWARE UNIQUE across all 85 registry rasters (flagged_lane = []): max 3-px overlap vs 21 sibling top-scorers 39.5% (24.9% vs GEMSDOE32 B2 0.2778), max vs 20 own-lineage rasters 49.0%, h23-a-6pct 62.2%, surface |Spearman| 0.2857 <= 0.90.",
+   "lane_summary": "STRICT LITERAL LANE FAIL: 74.64% of final dots are within 3 px of pindrop-discovery.tif; 100% are within 3 px of r13 lattice. Surface |Spearman| 0.28571 and final |Spearman| 0.033213 pass the 0.90 cap. Density-aware comparisons are informational only and do not waive the strict stop",
    "slot_reason": "All 3 pre-registered H72 experiments failed the same-run CTRL_H35 holdout gate (H72-1 -0.00006, H72-2 +0.00050 in 2/4 folds, H72-3 -0.0944 pooled although +0.0012 over DEM-free CTRL_SUBSURF_D and +0.010 over H71). Not slot-approved.",
    "run_card": "registry/run_card_h72_2026-10-26.json",
    "title": "H72-3 PTTG+MTHS DEM-free subsurface multi-physics HGB (sapd3.0, zeros outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
-   "summary": "Unique 2026-10-26 GeoTIFF (41,061 binary dots, min_dist=3.0 px, d_cat > 2.0 px) from pre-registered H72-3 100% DEM-free & catalogue-free supervised HGB (Phillips gravity differential curvature + unit-consistent gravity THDR + local transtensional strain partitioning + MT pipe steps + K-metasomatic alteration halos). Leakage canary PASS (max AUC 0.631). Pooled HOLDOUT-DTI 0.0594 vs CTRL_SUBSURF_D 0.0582 (+0.0012) and same-run CTRL_H35 0.1538 (holdout gate FAIL). Density-aware unique across all 85 registry rasters (24.9% vs GEMSDOE32 B2, max 39.5% vs 21 top-scorers, max 49.0% vs 20 own-lineage, 62.2% vs h23-a-6pct). Strict lane gate flags only >=73.4%-halo lattice/pindrop rasters. Finite [0, 1] everywhere \u2014 DO NOT SUBMIT.",
+   "summary": "Existing archived H72-3 research artifact (41,061 binary dots; DEM-free PTTG+MTHS). Format-valid against the pinned owner-mirror template. Prior HOLDOUT-DTI 0.0594316 (22,334 withheld-positive occurrences; 95% CI [0.0494192, 0.0734348]) failed vs same-run H35 0.1537859. Surface/final rank-correlation limits pass, but the strict lane fails under the literal rule: 74.64% of final dots are within 3 px of pindrop-discovery.tif and 100% are within 3 px of the r13 lattice. No density-aware exception applies. Research archive only; no new TIF in this review; DO NOT SUBMIT.",
    "note": "GEMSDOE25 H72-3 SUBSURF | holdout FAIL vs H35; no slot; not slot-approved | id 88bbebfe79b4 | unscored"
   },
   {

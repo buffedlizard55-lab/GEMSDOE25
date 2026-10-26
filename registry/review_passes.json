@@ -974,5 +974,149 @@
    "weekly_slots_used": 0
   },
   "pr_and_deployment": "pending explicit PR/check/merge after integration with origin/main; no deployment claimed"
+ },
+ "arena_eb807510_repository_review_2026_10_26": {
+  "schema_version": 1,
+  "date_utc": "2026-10-26",
+  "branch": "arena/eb807510-gemsdoe25",
+  "pass_1_implement_and_verify": {
+   "completed": [
+    "Reviewed AGENTS.md, the complete README, current brief, prior site/score review, shared DTI/holdout/writer/feed code, tests, local data state, and open PR #47.",
+    "Reproduced the no-DrivenData feed-guard bypass for terminal DNS dots and IDNA Unicode dot separators.",
+    "Canonicalized hostnames in scripts/check_sources.py; added URL, redirect, lookalike, and malformed-host regression coverage.",
+    "Recorded the owner-reported focus-site table, conditional B2 explanation, ranked unrun hypotheses, blockers, and no-submit decision in knowledge/32_repository_review_2026-10-26_eb807510.md."
+   ],
+   "decision": "No geological experiment, score estimate, new raster, upload, or weekly slot. The brief lacks the method paragraph/lane assignment required by its own parallel-run protocol."
+  },
+  "pass_2_bugs_assumptions_edge_cases": {
+   "found_and_fixed": [
+    "IR-26-FEED-DNS-CANONICALIZATION-20261026: feed host checks now IDNA-canonicalize and strip terminal dots, and malformed hosts fail closed.",
+    "Regression tests cover DNS root/subdomains, uppercase, repeated terminal dots, all three Unicode dot separators, lookalike hosts, malformed host, and pre-request redirect blocking."
+   ],
+   "external_and_gate_limits": [
+    "No DrivenData page, leaderboard, submission endpoint, or credentials accessed.",
+    "No local template/data/cache restored; 12 data/template-dependent tests remain skipped.",
+    "PR #47 is a separate open branch and remains DIRTY/CONFLICTING; not modified or represented as merged.",
+    "No lane clearance, HOLDOUT-DTI, raster validator, uniqueness clearance, or organizer score is asserted."
+   ]
+  },
+  "pass_3_original_request_reconciliation": {
+   "confirmed": [
+    "All nine focus sites are listed with OWNER-REPORTED score labels and unknown new-file estimates.",
+    "GEMSDOE32 B2 pruning is described as a plausible DTI mechanism, not proved causation; 0.3195 and 0.4413 are left unverified/conflicting.",
+    "Three geological hypotheses include named layers, target signatures, distinction, mimics, qualitative upside/cost, and data-status caveats; none is claimed tested.",
+    "The missing method paragraph is explicitly treated as a protocol blocker; no new TIFF or submission approval is claimed.",
+    "One JSON run card is recorded at registry/run_card_repo_review_2026-10-26_eb807510.json."
+   ],
+   "verification": {
+    "pytest": "323 passed, 12 skipped",
+    "ruff": "passed",
+    "compileall": "passed",
+    "node_check": "passed",
+    "git_diff_check": "passed"
+   },
+   "pr_merge": "Not yet created for this review; no merge or Pages deployment claimed."
+  },
+  "files": [
+   "scripts/check_sources.py",
+   "tests/test_feed_host_safety.py",
+   "registry/irregularities.json",
+   "knowledge/32_repository_review_2026-10-26_eb807510.md",
+   "registry/run_card_repo_review_2026-10-26_eb807510.json"
+  ]
+ },
+ "arena_f5b9b632_repository_review_2026_10_26": {
+  "schema_version": 1,
+  "date_utc": "2026-10-26",
+  "branch": "arena/f5b9b632-gemsdoe25",
+  "verdict": "no eligible new submission; no new experiment, TIFF, slot, or organizer access",
+  "pass_1_implement_and_verify": {
+   "completed": [
+    "Read standing instructions and relevant prior run/review receipts; restored only the SHA-pinned core data group.",
+    "Freshly checked the existing H72-3 GeoTIFF against the restored sample template; the check is format-only and not submission authorization.",
+    "Audited the nine-site owner-reported artifact table, H72-3 saved holdout receipt, and saved literal-lane receipt.",
+    "Reviewed the relevant proposed changes in open PR #47 to avoid duplicating its four-hypothesis queue."
+   ],
+   "result": "No new candidate or experiment; H72-3 remains negative and ineligible."
+  },
+  "pass_2_bugs_assumptions_edge_cases": {
+   "found_and_fixed": [
+    "The H72 test asserted the density-aware empty flag list without asserting that the independent literal lane fails; strengthened it to require the 100% r13 overlap, strict stop verdict, and density-aware/literal distinction."
+   ],
+   "known_residual_risks": [
+    "H72-3 holdout and lane metrics are from saved prior-run receipts, not rerun here; scored registry rasters and the derived cache were not restored.",
+    "All nine historical scores are owner-reported, with no organizer receipts; the GEMSDOE36 focus audit and separate ledger disagree (0.2750 vs 0.2683).",
+    "The 0.3195 and 0.4413/0.4437 overall-leader claims remain conflicting and unverified.",
+    "The H72 experiment allowance is already 3/3; the requested distinct method paragraph remains unspecified."
+   ]
+  },
+  "pass_3_original_request_reconciliation": {
+   "completed": [
+    "Recorded the nine-site evidence class, B2 mask/score caveats, no defensible current score estimate, and H72-3 format/performance/lane distinction in knowledge/32_repository_review_2026-10-26.md.",
+    "Left the four planning hypotheses in PR #47 rather than duplicating them; the PR remains a separate open, conflicting PR and no hypothesis was fit.",
+    "Made no new TIF, weekly-slot decision, promotion decision, DrivenData access, or organizer upload."
+   ],
+   "unfulfilled": [
+    "No gate-cleared new submission TIF or organizer-confirmed score/receipt.",
+    "No new geological experiment; no current shared derived feature cache or scored registry raster group restored.",
+    "No external AOI scene availability was verified in this review."
+   ]
+  },
+  "scientific_budget": {
+   "new_experiments": 0,
+   "prior_h72_experiments": 3,
+   "weekly_slots_used": 0,
+   "new_tifs": 0
+  },
+  "verification": {
+   "pytest": "320 passed, 4 skipped; skips require scored-data group or external rasters not restored",
+   "ruff": "passed",
+   "compileall": "passed",
+   "javascript_syntax": "passed",
+   "git_diff_check": "passed",
+   "h72_format": "fresh template check passed; format-only, not eligibility"
+  },
+  "pr_and_deployment": "pending; no PR, merge, or deployment claimed in this receipt"
+ },
+ "arena_61f81983_repo_review_2026_10_26": {
+  "date_utc": "2026-10-26",
+  "branch": "arena/61f81983-gemsdoe25",
+  "base_commit": "606eef45e669a6da061ec24be4a3d870addadb0f",
+  "session_focus": "Review the competition brief, nine historical focus winners, H72-3 eligibility, current download wording, and open sibling PR #47. No new geological experiment or submission build.",
+  "pass_1_implementation_and_verification": {
+   "done": [
+    "Restored all 22 manifest-listed owner-mirror files with SHA-256 checks (529,756,068 bytes total) and prepared 19 bands; the pinned static_ABCD cache was absent and was not rebuilt.",
+    "Audited 46 existing downloadable TIFs with scripts/audit_downloads.py: 46 format-valid; aggregate submission eligibility false. Persisted the exact H72-3 format-only summary at evidence/download_audit_61f81983_2026-10-26.json.",
+    "Rechecked focus-site pairwise mask overlaps and identities from evidence/focus_audit_local_2026-10-26.json; reviewed the existing H72-3 holdout and strict lane receipts. No model, holdout, placement or writer was run.",
+    "Updated the README and generated Pages status to distinguish research-archive inspection from competition-ready/OK-to-submit status; added knowledge/32_repo_review_2026-10-26_61f81983.md and registry/run_card_review_61f81983_2026-10-26.json.",
+    "Fetched and fast-forwarded to origin/main bc3381fd82d8dca5c75721366ad90b2af8019548 before PR preparation, preserving upstream source-feed host canonicalization and feed refresh."
+   ]
+  },
+  "pass_2_bugs_assumptions_edge_cases": {
+   "found_and_fixed": [
+    "Current top-page copy could present the H72-3 archive as a generic download while saying it was density-aware unique. It now says research archive only, competition-ready TIF NO, OK TO SUBMIT NO, and names the strict overlap failures; the density-aware comparison cannot waive them.",
+    "Updated the selected primary metadata so its summary/status report strict lane FAIL (74.64% within 3 px of pindrop-discovery; 100% of dots within 3 px of r13), while preserving format validity as a separate fact.",
+    "Review of all nine focus winners confirms each has >70% directed 3-px overlap with another selected winner; exact selected mask duplicate is GEMSDOE25/GEMSDOE30, and separate GEMSDOE28 R1/GEMSDOE31 R1 are exact. G36 score discrepancy 0.2750 vs 0.2683 remains flagged.",
+    "Partial PR #47 review (changed-file list, selected patches, queue, restore receipt, pairwise audit) found a stale base/current H71 status, H72-1/2/3 ID collisions, inconsistent planning-range wording, and a retained-distance-grid comment mismatch; the full diff remains unreviewed. Submitted REQUEST_CHANGES; review publication status was not re-queried.",
+    "Added tests for the negative review card, H72-3 lane/format distinction, focus-site geometry, download audit and top-page status."
+   ]
+  },
+  "pass_3_recheck_against_the_original_brief": {
+   "done": [
+    "Reconciled all nine focus sites and the conditional (not causal/proven) B2 0.2778 explanation; retained OWNER-REPORTED labels and left the 0.4413 / 0.3195 overall claims unverified.",
+    "Listed three untried geological hypotheses with layers, physical signature, catalogue-missing rationale, novelty boundary, mimic, qualitative expected upside, cost and external-data availability limits. No numerical score projection was made.",
+    "No new TIF, holdout score, competition submission note, promotion decision, or weekly slot was fabricated or used; the required gate-cleared novel competition TIF remains unmet.",
+    "Final local verification: 340 pytest passed, 0 skipped; Ruff, compileall, Node syntax check and git diff --check passed.",
+    "All proposed hypotheses target faults; geothermal vents/surface manifestations were not treated as fault labels."
+   ]
+  },
+  "verdict": "negative; research archive only, no competition-ready TIF; no experiment or slot used",
+  "artifacts": [
+   "knowledge/32_repo_review_2026-10-26_61f81983.md",
+   "registry/run_card_review_61f81983_2026-10-26.json",
+   "evidence/download_audit_61f81983_2026-10-26.json"
+  ],
+  "pr_47_review": "REQUEST_CHANGES; gh pr view reports CHANGES_REQUESTED; GitHub API confirms open, mergeable=false, merge_state=dirty; base ece220432d7cec9af8d246959146245c9dceb1c1 is stale vs origin/main bc3381fd82d8dca5c75721366ad90b2af8019548; not merged",
+  "integrated_origin_main_commit": "bc3381fd82d8dca5c75721366ad90b2af8019548"
  }
 }

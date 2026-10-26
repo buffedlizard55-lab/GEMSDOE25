@@ -105,10 +105,10 @@ def test_site_and_readme_surface_h38_verdict_at_top():
     primary = next(s for s in J("registry/submissions.json")["files"] if s["role"] == "primary")
     for rel in ("docs/history.html", "docs/submission-history.html"):
         html = (ROOT / rel).read_text()
-        assert "OK to download: YES" in html
-        assert "OK to spend a weekly slot: NO" in html
+        assert "RESEARCH-ARCHIVE DOWNLOAD: YES" in html.upper()
+        assert "OK TO SUBMIT: NO" in html
         assert primary["file"] in html
-        assert html.index("OK to download: YES") < html.index("Prior parallel-lane CF-1 research TIFF")
+        assert html.upper().index("RESEARCH-ARCHIVE DOWNLOAD: YES") < html.index("Prior parallel-lane CF-1 research TIFF")
     for rel in ("index.html", "docs/index.html", "docs/executive-summary.html"):
         html = (ROOT / rel).read_text()
         assert "OK TO SUBMIT: NO" in html
@@ -116,4 +116,4 @@ def test_site_and_readme_surface_h38_verdict_at_top():
         assert "New TIF download: unavailable" not in html
     readme = (ROOT / "README.md").read_text()
     assert primary["file"] in readme
-    assert "OK to download (local testing): YES · OK to spend a weekly slot: NO — DO NOT SUBMIT" in readme
+    assert "Research-archive download: YES (inspection/testing only) · Competition-ready TIF: NO · OK TO SUBMIT: NO · weekly slot: NO — DO NOT SUBMIT" in readme

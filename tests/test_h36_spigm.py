@@ -211,8 +211,8 @@ def test_h36_featured_deliverable_run_card_and_site_banners():
     for page_rel in ("docs/history.html", "docs/submission-history.html"):
         html_txt = (root / page_rel).read_text()
         assert primary["file"] in html_txt
-        assert "OK to download: YES" in html_txt
-        assert "OK to spend a weekly slot: NO" in html_txt
+        assert "RESEARCH-ARCHIVE DOWNLOAD: YES" in html_txt.upper()
+        assert "OK TO SUBMIT: NO" in html_txt
         assert "DO NOT SUBMIT" in html_txt
     for page_rel in ("index.html", "docs/index.html", "docs/executive-summary.html"):
         assert "OK TO SUBMIT: NO" in (root / page_rel).read_text()
