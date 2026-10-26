@@ -61,7 +61,7 @@ def _scale01(values: np.ndarray, footprint: np.ndarray) -> np.ndarray:
     lo, hi = np.percentile(v[sel], [1, 99])
     if hi <= lo:
         return np.where(footprint, 0.0, 0.0).astype(np.float32)
-    return np.where(footprint, np.clip((v - lo) / (hi - lo), 0, 1), 0.0).astype(np.float32)
+    return np.nan_to_num(np.where(footprint, np.clip((v - lo) / (hi - lo), 0, 1), 0.0), nan=0.0, posinf=0.0, neginf=0.0).astype(np.float32)
 
 
 def build_olic_sidecar(static, static_names, footprint, footprint_idx, out_path) -> list[str]:
