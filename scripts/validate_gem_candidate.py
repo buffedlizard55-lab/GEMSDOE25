@@ -70,7 +70,8 @@ LANE_OVERLAP_CAP = 0.70
 LANE_RADIUS_PX = 3.0
 
 OUT_DIR = ROOT / "evidence" / "gem_validation"
-REGISTRY_DIR = ROOT / "data" / "scored"
+_DEFAULT_REGISTRY_DIR = ROOT / "data" / "scored"
+REGISTRY_DIR = _DEFAULT_REGISTRY_DIR
 
 
 # ----------------------------------------------------------------------------------------------
@@ -201,8 +202,9 @@ def load_registry_rasters() -> list[dict]:
     partial registry is not a lane clearance.
     """
     paths = []
+    scored_dir = data_dir() / "scored" if REGISTRY_DIR == _DEFAULT_REGISTRY_DIR else REGISTRY_DIR
     for directory in (
-        REGISTRY_DIR,
+        scored_dir,
         data_dir() / "calibration",
         data_dir() / "registry_top",
         ROOT / "docs" / "downloads",

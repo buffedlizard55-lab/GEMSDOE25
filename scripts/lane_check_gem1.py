@@ -18,19 +18,21 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from gems25.experiment import load_context  # noqa: E402
-from gems25.paths import work_dir  # noqa: E402
+from gems25.paths import data_dir, work_dir  # noqa: E402
 from gems25.thinning import dot_thin, ridge_nms, select_top_positive  # noqa: E402
 
 sys.path.insert(0, str(ROOT / "scripts"))
 from validate_gem_candidate import surface_gem1, KFRAC, DOT_MIN_DIST, NMS_SIGMA  # noqa: E402
 
-REGISTRY_DIR = ROOT / "data" / "scored"
+_DEFAULT_REGISTRY_DIR = ROOT / "data" / "scored"
+REGISTRY_DIR = _DEFAULT_REGISTRY_DIR
 
 
 def load_registry():
     import rasterio
+    scored_dir = data_dir() / "scored" if REGISTRY_DIR == _DEFAULT_REGISTRY_DIR else REGISTRY_DIR
     out = []
-    for p in sorted(REGISTRY_DIR.glob("*.tif")):
+    for p in sorted(scored_dir.glob("*.tif")):
         with rasterio.open(p) as s:
             out.append(dict(file=p.name, arr=np.nan_to_num(s.read(1), nan=0.0).astype(np.float32)))
     return out
