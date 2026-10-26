@@ -836,6 +836,58 @@
   ],
   "verdict": "negative; one screen completed, POL3 failed frozen holdout gate; no candidate raster, no lane clearance, no slot approval."
  },
+  "current_turn_review_2026_10_26_arena_17150ab5": {
+    "date_utc": "2026-10-26",
+    "branch": "arena/17150ab5-gemsdoe25",
+    "focus": "Review current repository, the nine focus-site submissions, B2 rationale, current negative ROD evidence, score-estimate limits, unique-TIFF gate, and site status.",
+    "pass_1_implement_and_verify": {
+      "completed": [
+        "Read AGENTS.md and the entire README, then inspected current branch status, focus-site forensics, ROD receipts, H71 artifact registry, site generator, tests, and official-source records.",
+        "Added knowledge/29_current_checkout_review_2026-10-26.md with all nine sites, score provenance, non-estimable live-score fields, five ranked research hypotheses, caveats, access limits, and next steps.",
+        "Added registry/run_card_repo_review_2026-10-26_current.json. It records the prior ROD HOLDOUT-DTI and lane failure separately from this review; no new fit, candidate TIFF, raster hash, validation, or projection is invented.",
+        "Updated shared site-generation source and README status so the older H71 file is described as a testing artifact with a literal lattice lane failure; the saved ROD run is clearly stated to have written no TIFF.",
+        "Expanded the generated nine-site table with historical file, OWNER-REPORTED score, unestimated new-file score, mask identity note, and explicit ineligibility for a new slot.",
+        "Integrated the exact-file audit from the concurrently merged main: 36/36 shipped TIFFs pass local format checks but resolve to only 19 distinct in-footprint arrays; no file is promoted or score-estimated.",
+        "Reconciled the separately preregistered OLIC screen and D01 density diagnostic from main, clearly labeled them as independent parallel results; did not perform either experiment in this review or use them to approve a TIFF.",
+        "Integrated the concurrently merged preregistered strict-lattice feasibility audit (no model fits): the B2-sized 37,654-dot budget has at least 82.70% unavoidable overlap vs the 70% cap; this is a geometric bound, not a score or full-registry uniqueness result."
+      ],
+      "result": "No new experiment or TIFF. ROD remains a prior negative result; H71 remains testing-only and not lane-unique under the literal rule."
+    },
+    "pass_2_bugs_assumptions_edge_cases": {
+      "completed": [
+        "Distinguished content-hash uniqueness from duplicate-lane clearance and historical prior submission status.",
+        "Verified ROD metric/count/CI from saved analysis and run card; preserved the H35 same-run control and final lattice-overlap failure.",
+        "Confirmed no local competition data/cache/template exists for a fresh experiment, holdout, or candidate-level validator run; the merged 36-file format audit is a separate artifact and not evidence of holdout or lane clearance.",
+        "Added a regression test for the negative review card, null new artifact/estimate fields, and explicit historical/lane wording.",
+        "Checked static local links in all eight pages and JSON validity; the first test attempt exposed only an over-specific assertion string, which was corrected."
+      ],
+      "verification": ".venv Python 3.11; after merging the lane-feasibility and exact-download audits, pytest 271 passed, 9 skipped due absent local restored competition/registry inputs; one expected scipy ConstantInputWarning in empty-candidate fail-closed lane test. Ruff passed."
+    },
+    "pass_3_original_request_reconciliation": {
+      "completed": [
+        "Compared the final report against the prompt: all nine sites covered; B2 rationale separated into computed identity and conditional inference; 3-5 ranked hypotheses and official manual-review links included.",
+        "No projected leaderboard score claimed; all historical values remain OWNER-REPORTED. ROD is labelled HOLDOUT-DTI with evaluator, withheld count and 95% CI.",
+        "No new TIFF is declared approved or produced because no candidate passes both holdout and literal lane gates; report explicitly marks the requested new submission file as unfulfilled.",
+        "README, landing/current-review/executive pages expose the no-submit decision and historical-testing-only artifact; HOW-TO remains manual and does not imply auto-upload."
+      ],
+      "limitations": [
+        "Local data directory contains only .gitkeep; nine data-dependent tests skip, and external official source hosts are outside the sandbox network allowlist.",
+        "No new hypothesis can be run within this review without violating the existing ROD lane stop or changing to an unspecified method lane.",
+        "No organizer receipts, current leaderboard read, available weekly slot count, external data bytes/license/schema/coverage, or live-score estimate.",
+        "The requested fresh unique competition TIFF is not delivered; H71 is an earlier failed testing artifact and ROD was stopped before writing."
+      ],
+      "verdict": "negative; no new TIF, no promotion, no weekly slot."
+    },
+    "verification": {
+      "pytest": "276 passed, 9 skipped after reconciling main's lane-feasibility, exact-download, H71-status, and separate OLIC-lane audits; 1 expected ConstantInputWarning",
+      "ruff": "passed",
+      "git_diff_check": "passed",
+      "html_local_links": "all local links resolved on index.html and seven docs HTML pages",
+      "run_card_json": "valid JSON",
+      "organizer_access": "none; no DrivenData page, leaderboard, submission endpoint or credentials accessed"
+    },
+    "pr_merge": "PR #43 remains open on the fixed branch. Reconciled origin/main through 2465b91, including the exact-download, separate OLIC, and D01 audits; the pushed code head is GitHub-checked and reported CLEAN/MERGEABLE. This final run-record status update requires its own push and checks before the GitHub-only merge."
+  },
  "arena_88ce763f_download_audit": {
   "pass_1": "Audited standing brief, prior negative results and shared tools; restored pinned template; validated all 36 download TIFFs.",
   "pass_2": "Tested invalid values, negative zero, exterior-independent identity and hash pinning; fixed root-page JSON receipt link exposed by link tests.",

@@ -57,6 +57,23 @@ def test_focus_claims_are_not_organizer_receipts():
     assert report['identities']['gems32_b2_equals_d28_distance_gt_2'] is True
 
 
+def test_current_review_does_not_claim_new_score_or_tif():
+    card = json.loads((ROOT/'registry/run_card_repo_review_2026-10-26_current.json').read_text())
+    report = (ROOT/'knowledge/29_current_checkout_review_2026-10-26.md').read_text()
+    page = (ROOT/'docs/current-review.html').read_text()
+    assert card['verdict'].startswith('negative')
+    assert card['experiments_this_review'] == 0
+    assert card['raster_sha256'] is None and card['submission_name'] is None
+    assert card['estimated_organizer_score'] is None
+    assert '0.06904088244998727' == str(card['holdout_dti']['prior_saved_experiment']['pooled_dti'])
+    assert 'Not estimated' in page and 'Historical file' in page
+    assert '100% within 3 px of the registered r13 lattice' in page
+    assert card['correlation_overlap_vs_registry']['separate_preregistered_geometry_audit']['B2_budget_minimum_overlap'] > 0.70
+    assert '82.70%' in report
+    assert 'request to generate a new submission TIF remains **unfulfilled**' in report
+    assert 'OWNER-REPORTED' in report and 'not an organizer score' in report
+
+
 def test_executive_summary_separates_holdout_from_score_and_strict_novelty():
     page = (ROOT/'docs/executive-summary.html').read_text()
     assert 'Estimated competition score' in page
