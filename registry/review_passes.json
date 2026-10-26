@@ -1118,5 +1118,40 @@
   ],
   "pr_47_review": "REQUEST_CHANGES; gh pr view reports CHANGES_REQUESTED; GitHub API confirms open, mergeable=false, merge_state=dirty; base ece220432d7cec9af8d246959146245c9dceb1c1 is stale vs origin/main bc3381fd82d8dca5c75721366ad90b2af8019548; not merged",
   "integrated_origin_main_commit": "bc3381fd82d8dca5c75721366ad90b2af8019548"
+ },
+ "session_2026_10_26_h74_rmps_bw": {
+  "schema_version": 1,
+  "date_utc": "2026-10-26",
+  "session_branch": "arena/3a62ee32-gemsdoe25",
+  "method": "Three cumulative passes per owner instructions: Pass 1 implements and verifies end-to-end; Pass 2 audits bugs, assumptions, and edge cases and fixes them; Pass 3 reconciles line-by-line against the full user prompt and verifies CI + full-data test suites, ruff, compileall, and git hygiene.",
+  "pass_1_implement_and_verify": {
+   "scope": "Audit GEMSDOE25 + all 9 focus sites (GEMSDOE24..36) + sibling portfolio through GEMSDOE92; deliver PhD forensic proof of why GEMSDOE32 B2 scored 0.2778 (OWNER-REPORTED) and how to surpass it; pre-register 4 untried geological hypotheses (H74-1..4) and the 25-km block-withheld holdout (H74-BW) before fitting; execute 3/3 paired experiments on virgin draws 110..113; generate and dual-validate a genuinely unique GeoTIFF; rebuild GitHub Pages + README.",
+   "done": [
+    "Committed pre-registrations knowledge/35_preregistered_h74_rmps_bw_2026-10-26.md (af10a19) and knowledge/36_preregistered_h74_exp3_subsurface_2026-10-26.md (32897de) prior to running their respective experiments.",
+    "Implemented src/gems25/h74_rmps.py (4 frozen topography-free & catalogue-free operators: H74_remanent_skew_crest, H74_biharmonic_plate_hinge, H74_simpson_pore_crit, H74_laplace_harmonic_defect + draw_block25km selector) and tests/test_h74_rmps_bw.py (4 synthetic + zero-leakage unit tests).",
+    "Executed Experiment 1 (standard Holdout, draws 110-111) and Experiment 2 (25-km block-withheld H74-BW, draws 110-111): all 688 leakage canaries passed (max 0.8259 <= 0.90); proved 62.9% collapse of CTRL_H35 - CTRL_BLIND apron advantage (+0.06353 -> +0.02356); BOTH H74_APRON (+0.00038, 3/4 folds) and H74_BLIND (+0.00237, 3/4 folds; SE +0.02343 above CTRL_H35) passed Gate G2, while Slot Gate G1 failed (-0.00086).",
+    "Caught Family-B LiDAR scarp convergence in staging on ABCD H74_BLIND (76.88% vs h23-a-6pct.tif, 74.52% vs H72-CF) and halted before writing to docs/downloads/ (logged as IR-25-LIDAR-BLIND-CONVERGENCE-20261026).",
+    "Executed Experiment 3 (3/3 budget, virgin draws 112-113) on 51-column topography-free & catalogue-free H74_SUBSURF (0.03906 vs 0.03988 CTRL_SUBSURF and 0.12821 CTRL_H35) and published verified unique GeoTIFF gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.tif (37,654 dots, content_id 3751606e1ce5, flagged_lane = [] across all 101 rasters, 23.63% vs B2, 33.13% vs H72-3-subsurf, verdict=negative, DO NOT SUBMIT)."
+   ]
+  },
+  "pass_2_bugs_assumptions_edge_cases": {
+   "found_and_fixed": [
+    "Fixed Gaussian truncation boundary residual in biharmonic operator: default scipy gaussian_laplace(truncate=4.0) left ~3e-4 residual on analytical quadratic basin sag; increased truncate=6.0 in src/gems25/h74_rmps.py, reducing interior quadratic residual below 1e-6 (locked in tests/test_h74_rmps_bw.py).",
+    "Fixed shared scripts/lane_check_extended.py parity with scripts/check_lane_duplicates.py: lane_check_extended previously hardcoded only r13-lattice-s5 as dense, omitting halo_coverage_3px >= 0.70 classification for restored pindrop-nodes.tif (73.50% footprint halo) and pindrop-discovery.tif (73.41% footprint halo) while keeping literal cand_dots_within_3px reported transparently.",
+    "Updated H74 DrivenData research note to satisfy IR-25-OBJ-NOTE-GUARDRAIL ('no slot', 'not slot-approved', 'DO NOT SUBMIT', 'unscored', <= 120 chars) and regenerated checks-*.json, registry/submissions.json, docs/data/submissions.json, and docs/data/download_audit.json (50/50 format_valid).",
+    "Removed unused zipfile import in scripts/build_h74_candidate.py, recorded surface_worst_abs_spearman in halted_abcd_staging_audit in scripts/register_h74_submission.py, and added transparent post-commit mechanical column-count note (ACD = 40 -> 47/51 static cols) to knowledge/36."
+   ],
+   "known_residual_risks": [
+    "Three restored registry rasters cover >73% of the 5,167,373-px footprint with their 3-px halos (r13-lattice-s5 99.87%, pindrop-nodes 73.50%, pindrop-discovery 73.41%), making literal <=70% candidate-side overlap geometrically impossible at 37,654 dots (IR-25-LATTICE-CAP-20261026).",
+    "Without Family-B 1-m LiDAR / 100 m DEM scarps, 2-4 km potential-field wavelengths cannot localize fault traces within the 300-m (3-px) Tversky kernel on their own (Exp 2 0.10464 with Family B vs Exp 3 0.03906 without Family B).",
+    "All live DTI numbers (0.2778, 0.2478, 0.3195, 0.4413/0.4437) remain OWNER-REPORTED claims without organizer receipts."
+   ]
+  },
+  "pass_3_recheck_against_original_brief": {
+   "gaps_found_and_closed": [
+    "Added the 4 Ranked Untried Geological Hypotheses (H74-1..4) table (with cached layers, physical signature, missing-fault rationale, named mimic, repo novelty/cost/official data, and expected delta-DTI) plus the 9-Focus-Site Latest-2026-10-26 Candidate Audit table directly onto index.html, docs/index.html, docs/executive-summary.html, and docs/current-review.html.",
+    "Verified full pytest suite passes in BOTH full-data mode (GEMS_DATA_DIR=/tmp/gems_data) AND clean CI mode (unset GEMS_DATA_DIR/GEMS_WORK_DIR), ruff check passes with 0 warnings, python -m compileall passes, all local HTML/Markdown links resolve, and zero files > 6 MB or data/* artifacts are tracked."
+   ]
+  }
  }
 }

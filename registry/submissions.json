@@ -1,7 +1,463 @@
 {
  "schema_version": 1,
- "generated_by": "scripts/register_h73_submission.py (2026-10-26, H73-PM session); prior: scripts/register_h72_submission.py (2026-10-26, H72 PTTG/VCCD/MTHS session); merged H72-CF MBSP-MTG negative alternate 1d7c1e9ea55f",
+ "generated_by": "scripts/register_h74_submission.py (2026-10-26, H74-RMPS/BW session)",
  "files": [
+  {
+   "id": "h74-rmps-subsurf",
+   "role": "research-h74",
+   "file": "gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.tif",
+   "path": "docs/downloads/gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.tif",
+   "bytes": 826738,
+   "sha256": "9e0200dc3b1597c7cfc94b1a39938da3e7e61cac52f89a1249992eaccf23b9ed",
+   "content_id": "3751606e1ce5",
+   "positive_pixels": 37654,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "finite range over the whole array; infinity rejected",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read; empty data rejected",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.json",
+   "outside": "zero",
+   "status": "UNIQUE BY CONTENT (density-aware across 101 rasters) \u00b7 FORMAT-VALID \u00b7 EXP 2 25-KM BLOCK GATE PASS (+0.00237 blind / +0.00038 apron, 3/4 folds), SLOT GATE G1 & EXP 3 SUBSURF FAIL vs CTRL_H35 \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "zip": "gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5.zip",
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "expected_range": "NOT ESTIMATED \u2014 no calibrated leaderboard projection (HOLDOUT-DTI is a proxy, not a score)",
+   "lane": {
+    "lane_clear": false,
+    "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+    "density_aware_verdict": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
+    "flagged_lane": [],
+    "flagged_literal": [
+     "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+     "pindrop-discovery.tif",
+     "pindrop-nodes.tif"
+    ],
+    "registry_checked": 101,
+    "surface_worst_abs_spearman": 0.127949,
+    "focus_winners": {
+     "n": 27,
+     "worst_cand_dots_within_3px": 0.38357146651086205,
+     "worst_overlap_file": "g63_cvarlw_0.2303.tif",
+     "b2_overlap": 0.23628299782227652,
+     "b2_reverse_overlap": 0.26783343071121263,
+     "b2_spearman_surface": 0.029886,
+     "b2_spearman_final": 0.00325
+    },
+    "vs_prior_subsurface_h72_3": {
+     "file": "gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-nan.tif",
+     "spearman_surface": 0.049121,
+     "spearman_final": 0.013917,
+     "cand_dots_within_3px": 0.3313061029372709,
+     "reg_dots_within_3px_of_cand": 0.3368403107571662
+    },
+    "vs_h72_catfree": {
+     "file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+     "spearman_surface": 0.078423,
+     "spearman_final": 0.017137,
+     "cand_dots_within_3px": 0.4321718808094758,
+     "reg_dots_within_3px_of_cand": 0.49668029956976684
+    },
+    "vs_h23_a_6pct": {
+     "file": "h23-a-6pct.tif",
+     "cand_dots_within_3px": 0.5324268338025177,
+     "reg_dots_within_3px_of_cand": 0.225697349343067
+    },
+    "external_sparse": {
+     "n": 54,
+     "worst_abs_spearman_surface": 0.127949,
+     "worst_surface_file": "structural-area06.tif",
+     "worst_abs_spearman_final": 0.014889,
+     "worst_final_file": "g91_cwpc_0.1367.tif",
+     "worst_cand_dots_within_3px": 0.5324268338025177,
+     "worst_overlap_file": "h23-a-6pct.tif",
+     "lane_pass": true
+    },
+    "own_lineage": {
+     "n": 25,
+     "worst_abs_spearman_surface": 0.078423,
+     "worst_surface_file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+     "worst_abs_spearman_final": 0.017137,
+     "worst_final_file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+     "worst_cand_dots_within_3px": 0.4321718808094758,
+     "worst_overlap_file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+     "lane_pass": true
+    },
+    "lattice": [
+     {
+      "group": "scored",
+      "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "registry_dots": 206895,
+      "spearman_surface": -0.001645,
+      "spearman_final": 0.000834,
+      "cand_dots_within_3px": 1.0,
+      "reg_dots_within_3px_of_cand": 0.16483240290968848,
+      "halo_coverage_3px": 0.998713,
+      "non_discriminative_dense": true,
+      "dense_lattice": true
+     }
+    ],
+    "non_discriminative_dense_other": [
+     {
+      "group": "artifacts",
+      "file": "pindrop-discovery.tif",
+      "sha256": "37f9d5b855ee1b6c302cb81cdae1414db94db427f5dc9da3538474df37cf1cad",
+      "registry_dots": 155021,
+      "spearman_surface": 0.001962,
+      "spearman_final": 0.002828,
+      "cand_dots_within_3px": 0.7423646890104637,
+      "reg_dots_within_3px_of_cand": 0.16744183046167938,
+      "halo_coverage_3px": 0.734134,
+      "non_discriminative_dense": true,
+      "dense_lattice": false
+     },
+     {
+      "group": "artifacts",
+      "file": "pindrop-nodes.tif",
+      "sha256": "f347b70daa95170bfc967b1c0b6bbf951496c2b74764a7102848ad6178829aca",
+      "registry_dots": 155021,
+      "spearman_surface": 0.003975,
+      "spearman_final": 0.000501,
+      "cand_dots_within_3px": 0.744276836458278,
+      "reg_dots_within_3px_of_cand": 0.16698382799749711,
+      "halo_coverage_3px": 0.735046,
+      "non_discriminative_dense": true,
+      "dense_lattice": false
+     }
+    ],
+    "halted_abcd_staging_audit": {
+     "surface_worst_abs_spearman": 0.21364,
+     "flagged_lane": [
+      "h23-a-6pct.tif",
+      "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+      "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.tif"
+     ],
+     "h23_overlap": 0.768816,
+     "h72_cf_overlap": 0.745233,
+     "stopped_before_publish": true,
+     "receipt": "evidence/h74_blind_abcd_stopped_lane.json"
+    },
+    "receipt": "docs/downloads/lane-gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.json",
+    "extended_receipt": "evidence/h74_subsurf_lane_extended.json",
+    "surface_receipt": "evidence/h74_subsurf_surface_lane.json"
+   },
+   "lane_summary": "DENSITY-AWARE UNIQUE (flagged_lane = [] across all 101 rasters; surface |Spearman| 0.1279 <= 0.90; binary |Spearman| 0.0171 <= 0.90). Literal 70% flags only the 3 dense-halo rasters whose 3-px halos cover >73% of the entire footprint (r13-lattice-s5 99.87%, pindrop-nodes 73.50%, pindrop-discovery 73.41%). Final-dot overlap: 23.63% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), worst 38.36% across 27 registry_top rasters, 33.13% vs H72-3-subsurf, 43.22% max own-lineage, 53.24% max sparse external.",
+   "slot_reason": "3/3 experiments completed. Exp 1 (standard Holdout, draws 110-111): H74_APRON 0.15030 vs CTRL_H35 0.15116 (-0.00086, G1 FAIL); H74_BLIND 0.09156 (+0.00394 vs CTRL_BLIND). Exp 2 (25-km block-withheld H74-BW, draws 110-111): BOTH passed G2 (H74_APRON +0.00038 3/4 folds; H74_BLIND +0.00237 3/4 folds, SE fold +0.02343 above CTRL_H35) and apron advantage collapsed 62.9% (+0.06353 -> +0.02356), but ABCD blind staging hit Family-B LiDAR scarp convergence (>74% vs H72-CF/h23-a-6pct) and stopped before publish. Exp 3 (25-km block-withheld topography-free H74_SUBSURF, virgin draws 112-113): 0.03906 vs CTRL_SUBSURF 0.03988 (-0.00082, 2/4 folds) and CTRL_H35 0.12821. Not slot-approved.",
+   "run_card": "registry/run_card_h74_2026-10-26.json",
+   "title": "H74-RMPS topography-free subsurface LOQO B2 (37,654 dots, zero outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
+   "summary": "Unique 2026-10-26 topography-free & catalogue-free GeoTIFF (37,654 binary dots, 51 static ACD + H34 + H74_RMPS subsurface columns, zero DEM/LiDAR Family B, zero catalogue Family E, 4-quadrant LOQO OOF + B2 submodular greedy_dots; d_cat median 19.0 px, 75.6% > 9 px, 47.8% > 20 px). Strict lane gate flags only the 3 >73%-halo rasters (r13 lattice + pindrop dense maps); density-aware unique (flagged_lane = [] across all 101 rasters; 23.6% vs B2, 33.1% vs H72-3-subsurf). 25-km block-withheld HOLDOUT-DTI 0.03906 on 25,308 withheld-positive occurrences \u2014 catalogue-gap proxy, not a live score. Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
+   "note": "GEMSDOE25 H74-SUBSURF | no slot, not slot-approved; DO NOT SUBMIT | id 3751606e1ce5 | unscored"
+  },
+  {
+   "id": "h74-rmps-subsurf-nan",
+   "role": "research-h74-nan",
+   "file": "gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-nan.tif",
+   "path": "docs/downloads/gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-nan.tif",
+   "bytes": 1591228,
+   "sha256": "684337ae3aba07ea7f7a8264144063689fc13d9cb01abea7b911ec5d12535cb0",
+   "content_id": "3751606e1ce5",
+   "positive_pixels": 37654,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": true,
+     "detail": "7,111,787/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=nan",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "finite range over the whole array; infinity rejected",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read; empty data rejected",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": false,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-nan.json",
+   "outside": "nan",
+   "status": "UNIQUE BY CONTENT (density-aware across 101 rasters) \u00b7 FORMAT-VALID \u00b7 EXP 2 25-KM BLOCK GATE PASS (+0.00237 blind / +0.00038 apron, 3/4 folds), SLOT GATE G1 & EXP 3 SUBSURF FAIL vs CTRL_H35 \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "zip": null,
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "expected_range": "NOT ESTIMATED \u2014 no calibrated leaderboard projection (HOLDOUT-DTI is a proxy, not a score)",
+   "lane": {
+    "lane_clear": false,
+    "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+    "density_aware_verdict": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
+    "flagged_lane": [],
+    "flagged_literal": [
+     "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+     "pindrop-discovery.tif",
+     "pindrop-nodes.tif"
+    ],
+    "registry_checked": 101,
+    "surface_worst_abs_spearman": 0.127949,
+    "focus_winners": {
+     "n": 27,
+     "worst_cand_dots_within_3px": 0.38357146651086205,
+     "worst_overlap_file": "g63_cvarlw_0.2303.tif",
+     "b2_overlap": 0.23628299782227652,
+     "b2_reverse_overlap": 0.26783343071121263,
+     "b2_spearman_surface": 0.029886,
+     "b2_spearman_final": 0.00325
+    },
+    "vs_prior_subsurface_h72_3": {
+     "file": "gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-nan.tif",
+     "spearman_surface": 0.049121,
+     "spearman_final": 0.013917,
+     "cand_dots_within_3px": 0.3313061029372709,
+     "reg_dots_within_3px_of_cand": 0.3368403107571662
+    },
+    "vs_h72_catfree": {
+     "file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+     "spearman_surface": 0.078423,
+     "spearman_final": 0.017137,
+     "cand_dots_within_3px": 0.4321718808094758,
+     "reg_dots_within_3px_of_cand": 0.49668029956976684
+    },
+    "vs_h23_a_6pct": {
+     "file": "h23-a-6pct.tif",
+     "cand_dots_within_3px": 0.5324268338025177,
+     "reg_dots_within_3px_of_cand": 0.225697349343067
+    },
+    "external_sparse": {
+     "n": 54,
+     "worst_abs_spearman_surface": 0.127949,
+     "worst_surface_file": "structural-area06.tif",
+     "worst_abs_spearman_final": 0.014889,
+     "worst_final_file": "g91_cwpc_0.1367.tif",
+     "worst_cand_dots_within_3px": 0.5324268338025177,
+     "worst_overlap_file": "h23-a-6pct.tif",
+     "lane_pass": true
+    },
+    "own_lineage": {
+     "n": 25,
+     "worst_abs_spearman_surface": 0.078423,
+     "worst_surface_file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+     "worst_abs_spearman_final": 0.017137,
+     "worst_final_file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+     "worst_cand_dots_within_3px": 0.4321718808094758,
+     "worst_overlap_file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+     "lane_pass": true
+    },
+    "lattice": [
+     {
+      "group": "scored",
+      "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "registry_dots": 206895,
+      "spearman_surface": -0.001645,
+      "spearman_final": 0.000834,
+      "cand_dots_within_3px": 1.0,
+      "reg_dots_within_3px_of_cand": 0.16483240290968848,
+      "halo_coverage_3px": 0.998713,
+      "non_discriminative_dense": true,
+      "dense_lattice": true
+     }
+    ],
+    "non_discriminative_dense_other": [
+     {
+      "group": "artifacts",
+      "file": "pindrop-discovery.tif",
+      "sha256": "37f9d5b855ee1b6c302cb81cdae1414db94db427f5dc9da3538474df37cf1cad",
+      "registry_dots": 155021,
+      "spearman_surface": 0.001962,
+      "spearman_final": 0.002828,
+      "cand_dots_within_3px": 0.7423646890104637,
+      "reg_dots_within_3px_of_cand": 0.16744183046167938,
+      "halo_coverage_3px": 0.734134,
+      "non_discriminative_dense": true,
+      "dense_lattice": false
+     },
+     {
+      "group": "artifacts",
+      "file": "pindrop-nodes.tif",
+      "sha256": "f347b70daa95170bfc967b1c0b6bbf951496c2b74764a7102848ad6178829aca",
+      "registry_dots": 155021,
+      "spearman_surface": 0.003975,
+      "spearman_final": 0.000501,
+      "cand_dots_within_3px": 0.744276836458278,
+      "reg_dots_within_3px_of_cand": 0.16698382799749711,
+      "halo_coverage_3px": 0.735046,
+      "non_discriminative_dense": true,
+      "dense_lattice": false
+     }
+    ],
+    "halted_abcd_staging_audit": {
+     "surface_worst_abs_spearman": 0.21364,
+     "flagged_lane": [
+      "h23-a-6pct.tif",
+      "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+      "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.tif"
+     ],
+     "h23_overlap": 0.768816,
+     "h72_cf_overlap": 0.745233,
+     "stopped_before_publish": true,
+     "receipt": "evidence/h74_blind_abcd_stopped_lane.json"
+    },
+    "receipt": "docs/downloads/lane-gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.json",
+    "extended_receipt": "evidence/h74_subsurf_lane_extended.json",
+    "surface_receipt": "evidence/h74_subsurf_surface_lane.json"
+   },
+   "lane_summary": "DENSITY-AWARE UNIQUE (flagged_lane = [] across all 101 rasters; surface |Spearman| 0.1279 <= 0.90; binary |Spearman| 0.0171 <= 0.90). Literal 70% flags only the 3 dense-halo rasters whose 3-px halos cover >73% of the entire footprint (r13-lattice-s5 99.87%, pindrop-nodes 73.50%, pindrop-discovery 73.41%). Final-dot overlap: 23.63% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), worst 38.36% across 27 registry_top rasters, 33.13% vs H72-3-subsurf, 43.22% max own-lineage, 53.24% max sparse external.",
+   "slot_reason": "3/3 experiments completed. Exp 1 (standard Holdout, draws 110-111): H74_APRON 0.15030 vs CTRL_H35 0.15116 (-0.00086, G1 FAIL); H74_BLIND 0.09156 (+0.00394 vs CTRL_BLIND). Exp 2 (25-km block-withheld H74-BW, draws 110-111): BOTH passed G2 (H74_APRON +0.00038 3/4 folds; H74_BLIND +0.00237 3/4 folds, SE fold +0.02343 above CTRL_H35) and apron advantage collapsed 62.9% (+0.06353 -> +0.02356), but ABCD blind staging hit Family-B LiDAR scarp convergence (>74% vs H72-CF/h23-a-6pct) and stopped before publish. Exp 3 (25-km block-withheld topography-free H74_SUBSURF, virgin draws 112-113): 0.03906 vs CTRL_SUBSURF 0.03988 (-0.00082, 2/4 folds) and CTRL_H35 0.12821. Not slot-approved.",
+   "run_card": "registry/run_card_h74_2026-10-26.json",
+   "title": "H74-RMPS topography-free subsurface LOQO B2 (37,654 dots, nan outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
+   "summary": "Unique 2026-10-26 topography-free & catalogue-free GeoTIFF (37,654 binary dots, 51 static ACD + H34 + H74_RMPS subsurface columns, zero DEM/LiDAR Family B, zero catalogue Family E, 4-quadrant LOQO OOF + B2 submodular greedy_dots; d_cat median 19.0 px, 75.6% > 9 px, 47.8% > 20 px). Strict lane gate flags only the 3 >73%-halo rasters (r13 lattice + pindrop dense maps); density-aware unique (flagged_lane = [] across all 101 rasters; 23.6% vs B2, 33.1% vs H72-3-subsurf). 25-km block-withheld HOLDOUT-DTI 0.03906 on 25,308 withheld-positive occurrences \u2014 catalogue-gap proxy, not a live score. Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
+   "note": "GEMSDOE25 H74-SUBSURF | no slot, not slot-approved; DO NOT SUBMIT | id 3751606e1ce5 | unscored"
+  },
   {
    "id": "h73-pm-deapron",
    "role": "research-h73",

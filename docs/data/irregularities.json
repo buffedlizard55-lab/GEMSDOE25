@@ -809,6 +809,14 @@
    "issue": "Older GEMSDOE25 tables (e.g. knowledge/31 nine-site table) report D2.8 (dotted-h19-5-d2-8, 44,090 px) as '8.6% <=2px' of dots within 2 px of labels.tif. Independent recomputation 2026-10-26 gives 14.6% <=2px (6,436/44,090, exactly the B2-pruned count); 8.8% is the <=1px share (3,891/44,090, the R1-pruned count). The mislabel does not affect any score, gate or conclusion, but the strata column header and value disagree.",
    "evidence": "Recomputed from SHA-pinned data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif vs data/labels.tif EDT (session transcript 2026-10-26); B2==D2.8&(d>2) and R1==D2.8&(d>1) pixel-exact.",
    "resolution_or_action": "Use 14.6% (<=2px) / 8.8% (<=1px) in new documents; historical documents left unchanged as records."
+  },
+  {
+   "id": "IR-25-LIDAR-BLIND-CONVERGENCE-20261026",
+   "severity": "medium",
+   "status": "disclosed",
+   "issue": "Catalogue-free HGBs that include Family B (1-m LiDAR scarps L_step_max/L_ex_max and 100 m DEM scarps) converge onto >70% 3-px final-dot overlap with prior Family-B blind rasters even when pre-placement continuous surfaces have low rank correlation (worst |Spearman| = 0.2136 <= 0.90): in H74_BLIND (ABCD + EXTRAS + H34 + H74_RMPS, 78 cols), staging submodular emission (37,654 dots) hit 76.88% within 3 px of h23-a-6pct.tif and 74.52% within 3 px of H72-CF (1d7c1e9ea55f) because tree splits place >74% of top-probability ridges on exposed Quaternary scarps.",
+   "evidence": "evidence/h74_blind_abcd_surface.json; evidence/h74_blind_abcd_stopped_lane.json; evidence/h74_blind_abcd_stopped_extended.json; evidence/h74_subsurf_lane_literal.json.",
+   "resolution_or_action": "Pre-publish staging guard in scripts/build_h74_candidate.py halted immediately before writing any ABCD GeoTIFF to docs/downloads/. Pre-registered Experiment 3 (knowledge/36, virgin draws 112-113) isolated H74_RMPS in a 100% topography-free & catalogue-free subsurface stack (H74_SUBSURF, 51 ACD cols), reducing overlap to 53.24% vs h23-a-6pct.tif and 43.22% vs H72-CF (flagged_lane = [] across all 101 rasters)."
   }
  ]
 }
