@@ -1,0 +1,41 @@
+{
+  "stage": "screen",
+  "evaluator": "gems25.holdout.v1.2-buffered-4quad-pooled-dti",
+  "draws": [
+    82,
+    83
+  ],
+  "cells": 8,
+  "withheld_positives": 22929,
+  "control_pooled": {
+    "dti": 0.14697590177026737,
+    "withheld_positives": 22929,
+    "tp": 5495.451246891367,
+    "fp": 89739.3066898215,
+    "fn": 17433.548753108633
+  },
+  "candidate_pooled": {
+    "dti": 0.14769042395072357,
+    "withheld_positives": 22929,
+    "tp": 5521.770382601695,
+    "fp": 89699.54873665438,
+    "fn": 17407.229617398305
+  },
+  "paired_fold_mean_gain": 0.0008488122559146775,
+  "paired_fold_ci95": [
+    -0.004777802987463359,
+    0.006475427499292714
+  ],
+  "paired_gain_by_fold": [
+    -0.001127961687502163,
+    0.004661048689005257,
+    -0.0030172502017509,
+    0.002879412223906516
+  ],
+  "positive_folds": 2,
+  "mean_hug_delta": -0.0009347435914746627,
+  "max_canary_auc": 0.6204695663820526,
+  "gate_passed": false,
+  "full_catalogue_raster_emitted": false,
+  "elapsed_seconds": 439.5
+}

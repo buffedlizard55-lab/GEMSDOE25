@@ -1,0 +1,37 @@
+{
+  "schema": "run_card/v1 (parallel-run protocol)",
+  "review_date_utc": "2026-10-26",
+  "session_branch": "arena/b9f75df7-gemsdoe25",
+  "hypothesis": "Strict literal 3px overlap gate (protocol rule 1) feasibility against the restored r13 lattice registry raster",
+  "mechanism": "Pigeonhole capacity bound: with 5,099,871 covered eligible pixels out of 5,106,385, at most 6,514 distinct candidate pixels lie outside the 3px halo. For any budget K > 21,713, minimum overlap exceeds 70% regardless of geological signal or feature selection.",
+  "named_non_fault_process_that_could_mimic_it": "Space-filling synthetic sampling lattices and gridded dense baseline predictions mimic widespread faulting and blanket the survey domain.",
+  "evaluator": {
+    "src/gems25/lane_feasibility.py": "hash-pinned capacity bound",
+    "scripts/audit_lane_feasibility.py": "hash-pinned audit"
+  },
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "ci95": null,
+    "status": "NOT RUN: stopped at pre-placement feasibility gate before model fitting"
+  },
+  "correlation_overlap_vs_registry": {
+    "target_densities": {
+      "37654": {"min_overlap": 0.8270, "impossible": true},
+      "38854": {"min_overlap": 0.8323, "impossible": true},
+      "40199": {"min_overlap": 0.8380, "impossible": true},
+      "44090": {"min_overlap": 0.8523, "impossible": true},
+      "70524": {"min_overlap": 0.9076, "impossible": true}
+    },
+    "max_dots_not_ruled_out": 21713,
+    "verdict": "DUPLICATE-LANE: all target candidate densities mathematically exceed 70% overlap against r13 lattice"
+  },
+  "raster_sha256": null,
+  "validator_output": null,
+  "submission_name": null,
+  "submission_note": null,
+  "verdict": "negative — feasibility stopped before placement; no new TIF generated; DO NOT SUBMIT",
+  "okay_to_submit": false,
+  "experiments": 0,
+  "preregistration_commit": "06612d8"
+}
