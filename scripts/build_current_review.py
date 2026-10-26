@@ -59,10 +59,35 @@ This is a catalogue-gap proxy, not an organizer score or blind-fault performance
         f'<p><b>OK to download: YES</b> for local testing of unique content id '
         f'<code>{e(featured["content_id"])}</code>. '
         f'<b>OK to spend a weekly slot: NO — DO NOT SUBMIT.</b> '
-        f'H71 HGPC-BLIND is an older, format-valid testing file with distinct bytes, but it is not lane-unique under the literal r13 lattice rule; '
+        f'H71 HGPC-BLIND is an older format-valid test file with distinct bytes, but it is NOT strict-lane-cleared under the literal r13 lattice overlap rule; '
         f'three DIRECT screens failed vs H35. ROD/POL3 wrote no competition TIFF.</p>'
         f'<a class="btn" download href="downloads/{e(featured["file"])}">↓ Download {e(featured["file"])} — testing only</a>'
     )
+    inventory_path = ROOT/'docs/data/download_audit.json'
+    inventory_section = ''
+    if inventory_path.exists():
+        inventory = json.loads(inventory_path.read_text())
+        inventory_rows = ''.join(
+            f'<tr><td><a download href="downloads/{e(r["file"])}">{e(r["file"])}</a></td>'
+            f'<td>{"PASS" if r["format_valid"] else "FAIL"} (local only)</td>'
+            '<td>Unknown — no calibrated estimate</td>'
+            f'<td>{len(r["identical_footprint_files"])} identical local footprint variant(s); '
+            'cross-site novelty unproven</td><td>NO — testing only</td></tr>'
+            for r in inventory['files'])
+        inventory_section = f'''<section><h2>Exactly what can I download and submit?</h2>
+<p><a href="../knowledge/29_download_audit_and_next_hypotheses_2026-10-26.md">Latest audit, ranked future hypotheses and limitations</a>.</p>
+<p><b>No file is currently approved to submit.</b> The table below audits the actual shipped files,
+not their names. Format validity does not predict a high score or prove novelty.
+Audit time: <code>{e(inventory['generated_utc'])}</code>.
+{len(inventory['files'])} TIFFs; {len({r['footprint_sha256'] for r in inventory['files'] if r['footprint_sha256']})}
+ distinct finite footprint prediction arrays. NaN-outside and zero-outside variants are not new predictions.</p>
+<p><a href="data/download_audit.json" download>Download all exact-file validator receipts and identity groups (JSON)</a>.
+Leaderboard estimates are unknown: a catalogue-gap HOLDOUT-DTI is not a calibrated competition prediction.
+Historical scores in the nine-site table are OWNER-REPORTED, not ORGANIZER-CONFIRMED.</p>
+<details><summary>Show every downloadable TIFF, estimated score and submission status</summary>
+<div class="table-scroll"><table><thead><tr><th>File to download (research only)</th><th>Format</th>
+<th>Estimated leaderboard score</th><th>Unique?</th><th>OK to submit?</th></tr></thead>
+<tbody>{inventory_rows}</tbody></table></div></details></section>'''
     historical = 'gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif'
     rows, cards = [], []
     for row in sorted(focus['sites'], key=lambda r: -r['owner_reported_score']):
@@ -90,6 +115,7 @@ Not approved as a new submission. SHA-256: <code class="wrap-hash">{row['sha256'
 <div class="row"><a class="btn" href="../evidence/rod_2026-10-26/run_card.json" download>Download decision receipt</a>
 <a class="btn alt" href="#how-to-submit">Submission checklist</a>
 <a class="btn alt" href="../knowledge/29_current_checkout_review_2026-10-26.md">Current-checkout review and ranked next hypotheses</a></div></section>
+{inventory_section}
 <section id="lane-feasibility"><h2>Strict-overlap feasibility audit</h2>
 <p>Freshly restored SHA-pinned template, labels and registry lattice match CRS, shape and transform.
 Only <b>{geometry['uncovered_pixels']:,}</b> eligible pixels lie outside that lattice's 3-pixel halo.
@@ -156,6 +182,7 @@ Automatic source availability is not automatic scientific verification or a live
     if root_page:
         body = body.replace('href="../', 'href="').replace('href="downloads/', 'href="docs/downloads/')
         body = body.replace('href="history.html"', 'href="docs/history.html"')
+        body = body.replace('href="data/', 'href="docs/data/')
     return body
 
 
