@@ -1,0 +1,44 @@
+{
+ "hypothesis": "H36-1: Unit-consistent subsurface SPI-GM-UP150 + hydrogeochemical disequilibrium PoE + Bayes 300m submodular allocation",
+ "preregistration": "knowledge/21_preregistered_h36_spigm_submodular_2026-10-25.md",
+ "evaluator_version": "gems25.holdout.Holdout(v1,4-quadrant,collar=15px,hide_frac=0.20,erode=12)+gems25.metric.dti_binary(alpha=0.2,beta=0.8,R=3.0px)",
+ "draws": [
+  20,
+  21
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "leakage_auc_cap": 0.9,
+ "h36_columns": [
+  "H36_grav_spi_k",
+  "H36_mag_spi_k",
+  "H36_up150_persist",
+  "H36_gm_strike_concord",
+  "H36_transtension_iq",
+  "H36_chem_diseq",
+  "H36_burial_regime"
+ ],
+ "submod_params": {
+  "pi0": 0.0024,
+  "flank_px": 2.0,
+  "tip_keep": 0.06,
+  "cand_kfrac": 0.035,
+  "mass_frac": 0.007286874781441169,
+  "tau_min": 1e-06
+ },
+ "sapd_params": {
+  "kfrac": 0.035,
+  "min_dist": 2.4
+ },
+ "gate": {
+  "primary_comparison": "H36_PoE_submod vs C0_BDE_ctrl",
+  "subsurface_comparison": "H36_S_submod vs C1_Sub_ctrl",
+  "mean_gain_gt": 0.001,
+  "folds_positive_min": 3,
+  "worst_fold_min": -0.01
+ }
+}

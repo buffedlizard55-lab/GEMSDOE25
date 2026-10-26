@@ -1,0 +1,730 @@
+{
+ "run_card_version": 1,
+ "date_utc": "2026-10-25",
+ "session_branch": "arena/501aa834-gemsdoe25",
+ "hypothesis": "H38-1: on a fixed detector surface, buying dots by exact incremental triangular-kernel credit per unit false-positive mass (plug-in truth density proportional to the surface, break-even stopping at alpha*D/(1-alpha*D)) raises credit per emitted pixel versus fixed-spacing score-ordered dotting, because the metric pays only for the maximum kernel over nearby dots and fixed budgets force-spend FP mass in barren terrain while under-covering short high-credit segments.",
+ "mechanism": "DTI = TP/(0.2(TP+FP)+0.8N); detector (H35 arm B) and candidate pool (ridge-NMS top 3.5%) are identical across arms, so only the selection rule changes. Greedy maximises dTP_hat/dFP_hat with dTP_hat = sum_g phat_g*max(0,k-cur_g) (exact max-kernel incremental accounting, submodular) and dFP_hat = 1-E[max_g k*Bern(phat_g)] under neighbour independence; phat is the surface normalised to Nhat = 0.25*|visible catalogue in domain|.",
+ "non_fault_process_that_could_mimic_it": "No new geology: the lane inherits the H35 detector's mimics (lithologic/intrusive contacts, basin-margin pinch-outs). Lane-specific failure mode: phat is the detector's own uncalibrated score, so greedy spending amplifies the detector's systematic errors, and the independence approximation understates FP along continuous false lineaments (roads, flight-line levelling, fan-lobe edges).",
+ "pre_registration": "knowledge/25_preregistered_h38_greedy_credit_emission_2026-10-25.md (commit 766b590, before any fit)",
+ "holdout": {
+  "label": "HOLDOUT-DTI",
+  "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px) via Cell.evaluate; off-catalogue = same evaluator, truth >2px from visible",
+  "screen": {
+   "draws": [
+    20,
+    21
+   ],
+   "passed": true,
+   "arms": {
+    "A0": {
+     "dti": {
+      "fold_means": [
+       0.157311469302702,
+       0.14986150771041512,
+       0.14215811829753083,
+       0.1592497132190736
+      ],
+      "mean": 0.15214520213243038,
+      "ci95": [
+       0.13974721821092126,
+       0.1645431860539395
+      ]
+     },
+     "dti_offcat": {
+      "fold_means": [
+       0.155662426468199,
+       0.14893942871841742,
+       0.14005361528911306,
+       0.15797813676649852
+      ],
+      "mean": 0.150658401810557,
+      "ci95": [
+       0.13786132828253417,
+       0.16345547533857985
+      ]
+     },
+     "pooled_dti": 0.15149191402449555,
+     "pooled_dti_offcat": 0.15000856879779007,
+     "mean_emitted": 11585.5,
+     "mean_hug": 0.08640960062073885,
+     "mean_coverage": 0.25860461163308296
+    },
+    "A1": {
+     "dti": {
+      "fold_means": [
+       0.16545235401977992,
+       0.15635187112763743,
+       0.1463215025643399,
+       0.16234485507955018
+      ],
+      "mean": 0.15761764569782685,
+      "ci95": [
+       0.14421183229767992,
+       0.17102345909797378
+      ]
+     },
+     "dti_offcat": {
+      "fold_means": [
+       0.1642679358604418,
+       0.15605147134313038,
+       0.1450311895512607,
+       0.16155291263604046
+      ],
+      "mean": 0.15672587734771834,
+      "ci95": [
+       0.14318010757040245,
+       0.17027164712503423
+      ]
+     },
+     "pooled_dti": 0.15647348045543868,
+     "pooled_dti_offcat": 0.15558848261983355,
+     "mean_emitted": 10880.25,
+     "mean_hug": 0.043158208712277026,
+     "mean_coverage": 0.2556303888746848
+    },
+    "A2": {
+     "dti": {
+      "fold_means": [
+       0.1576489486192706,
+       0.15030370563436068,
+       0.14139360564793607,
+       0.1604243031144896
+      ],
+      "mean": 0.15244264075401423,
+      "ci95": [
+       0.13889483576223471,
+       0.16599044574579375
+      ]
+     },
+     "dti_offcat": {
+      "fold_means": [
+       0.15612159128056186,
+       0.14970866055142346,
+       0.14017859392483362,
+       0.15928801814426224
+      ],
+      "mean": 0.1513242159752703,
+      "ci95": [
+       0.13790777744250127,
+       0.16474065450803932
+      ]
+     },
+     "pooled_dti": 0.15171641533088873,
+     "pooled_dti_offcat": 0.15064066140785556,
+     "mean_emitted": 11412.875,
+     "mean_hug": 0.07243662972356797,
+     "mean_coverage": 0.25713176193591003
+    },
+    "A3": {
+     "dti": {
+      "fold_means": [
+       0.16205264926076385,
+       0.14872854916230577,
+       0.14137467534429501,
+       0.15471041787275505
+      ],
+      "mean": 0.15171657291002993,
+      "ci95": [
+       0.13773308849971821,
+       0.16570005732034165
+      ]
+     },
+     "dti_offcat": {
+      "fold_means": [
+       0.16080544551559073,
+       0.14765319170051125,
+       0.1400667787422621,
+       0.15332703706446954
+      ],
+      "mean": 0.1504631132557084,
+      "ci95": [
+       0.13649579527438896,
+       0.16443043123702786
+      ]
+     },
+     "pooled_dti": 0.15063648412304792,
+     "pooled_dti_offcat": 0.14940544034271838,
+     "mean_emitted": 11349.375,
+     "mean_hug": 0.12177403409846094,
+     "mean_coverage": 0.25236383865820333
+    }
+   },
+   "A1_vs_A0": {
+    "standard": {
+     "per_fold": [
+      0.008140884717077912,
+      0.006490363417222311,
+      0.004163384266809067,
+      0.0030951418604765746
+     ],
+     "mean": 0.005472443565396466,
+     "ci95": [
+      0.0018529863848390383,
+      0.009091900745953894
+     ],
+     "folds_positive": 4,
+     "worst_fold": 0.0030951418604765746,
+     "pooled_delta": 0.004981566430943135
+    },
+    "offcat": {
+     "per_fold": [
+      0.008605509392242805,
+      0.007112042624712961,
+      0.004977574262147649,
+      0.0035747758695419407
+     ],
+     "mean": 0.006067475537161339,
+     "ci95": [
+      0.002517208288398493,
+      0.009617742785924185
+     ],
+     "folds_positive": 4,
+     "worst_fold": 0.0035747758695419407,
+     "pooled_delta": 0.005579913822043481
+    },
+    "hug_delta": -0.04325139190846183
+   },
+   "leakage_canary": {
+    "base_surface_auc_max_effective": 0.8439440729112158,
+    "line_score_auc_max_effective": 0.8282175367124586,
+    "cap": 0.9,
+    "passed": true
+   },
+   "withheld_positives_per_fold": [
+    2011,
+    2308,
+    3634,
+    3162
+   ]
+  },
+  "confirmation": {
+   "draws": [
+    22,
+    23
+   ],
+   "passed": true,
+   "arms": {
+    "A0": {
+     "dti": {
+      "fold_means": [
+       0.14400293363280886,
+       0.15803052410618768,
+       0.15540413892605393,
+       0.18605488017437513
+      ],
+      "mean": 0.1608731192098564,
+      "ci95": [
+       0.13245720693036728,
+       0.1892890314893455
+      ]
+     },
+     "dti_offcat": {
+      "fold_means": [
+       0.1422831027595186,
+       0.15692717616263469,
+       0.15376311065592055,
+       0.18498692564368785
+      ],
+      "mean": 0.15949007880544042,
+      "ci95": [
+       0.13064932037191496,
+       0.18833083723896588
+      ]
+     },
+     "pooled_dti": 0.16196768789886712,
+     "pooled_dti_offcat": 0.16056756169925493,
+     "mean_emitted": 11666.375,
+     "mean_hug": 0.08833958091197111,
+     "mean_coverage": 0.27246020006910365
+    },
+    "A1": {
+     "dti": {
+      "fold_means": [
+       0.14354155466027207,
+       0.1634446558847874,
+       0.15760209104087258,
+       0.19502476179896852
+      ],
+      "mean": 0.16490326584622514,
+      "ci95": [
+       0.13029569354501963,
+       0.19951083814743065
+      ]
+     },
+     "dti_offcat": {
+      "fold_means": [
+       0.14275078733573388,
+       0.16276231191808196,
+       0.15629497353717964,
+       0.19415454628184883
+      ],
+      "mean": 0.1639906547682111,
+      "ci95": [
+       0.12935062876212158,
+       0.1986306807743006
+      ]
+     },
+     "pooled_dti": 0.16692591099039403,
+     "pooled_dti_offcat": 0.16595055949785206,
+     "mean_emitted": 11086.875,
+     "mean_hug": 0.04357843550692064,
+     "mean_coverage": 0.2686126042014031
+    },
+    "A2": {
+     "dti": {
+      "fold_means": [
+       0.1438568865083239,
+       0.15924633104333394,
+       0.15567800654858077,
+       0.18690866192186034
+      ],
+      "mean": 0.16142247150552474,
+      "ci95": [
+       0.13243147818536694,
+       0.19041346482568255
+      ]
+     },
+     "dti_offcat": {
+      "fold_means": [
+       0.14274013874868907,
+       0.15813877446939717,
+       0.15442845531476368,
+       0.18622268928559996
+      ],
+      "mean": 0.16038251445461246,
+      "ci95": [
+       0.13104967412361088,
+       0.18971535478561405
+      ]
+     },
+     "pooled_dti": 0.1625290109762166,
+     "pooled_dti_offcat": 0.16146085714212277,
+     "mean_emitted": 11492.0,
+     "mean_hug": 0.07442057051306544,
+     "mean_coverage": 0.2712812681377693
+    },
+    "A3": {
+     "dti": {
+      "fold_means": [
+       0.1407569352489706,
+       0.15407056333627436,
+       0.15426377551079182,
+       0.18114224497574277
+      ],
+      "mean": 0.1575583797679449,
+      "ci95": [
+       0.13059342194306273,
+       0.18452333759282707
+      ]
+     },
+     "dti_offcat": {
+      "fold_means": [
+       0.13953763750651488,
+       0.15292255836762464,
+       0.15289104765207667,
+       0.17944441777177755
+      ],
+      "mean": 0.15619891532449842,
+      "ci95": [
+       0.12957855464273713,
+       0.18281927600625972
+      ]
+     },
+     "pooled_dti": 0.15925617835963934,
+     "pooled_dti_offcat": 0.1578523063556521,
+     "mean_emitted": 11503.0,
+     "mean_hug": 0.12010991131330823,
+     "mean_coverage": 0.2621890324804171
+    }
+   },
+   "A1_vs_A0": {
+    "standard": {
+     "per_fold": [
+      -0.0004613789725367856,
+      0.005414131778599729,
+      0.0021979521148186576,
+      0.00896988162459339
+     ],
+     "mean": 0.004030146636368748,
+     "ci95": [
+      -0.0024560567984752233,
+      0.010516350071212719
+     ],
+     "folds_positive": 3,
+     "worst_fold": -0.0004613789725367856,
+     "pooled_delta": 0.004958223091526909
+    },
+    "offcat": {
+     "per_fold": [
+      0.00046768457621526593,
+      0.005835135755447279,
+      0.0025318628812590893,
+      0.009167620638160984
+     ],
+     "mean": 0.004500575962770655,
+     "ci95": [
+      -0.0015727012614323967,
+      0.010573853186973705
+     ],
+     "folds_positive": 4,
+     "worst_fold": 0.00046768457621526593,
+     "pooled_delta": 0.005382997798597133
+    },
+    "hug_delta": -0.04476114540505047
+   },
+   "leakage_canary": {
+    "base_surface_auc_max_effective": 0.8388482771211683,
+    "line_score_auc_max_effective": 0.8334367108676852,
+    "cap": 0.9,
+    "passed": true
+   },
+   "withheld_positives_per_fold": [
+    1934,
+    2358,
+    3587,
+    3315
+   ]
+  },
+  "combined_draws_20_23": {
+   "arms": {
+    "A0": {
+     "fold_means": [
+      0.15065720146775544,
+      0.1539460159083014,
+      0.14878112861179238,
+      0.17265229669672438
+     ],
+     "mean": 0.1565091606711434,
+     "ci95": [
+      0.1390506444217128,
+      0.173967676920574
+     ],
+     "pooled_dti": 0.15675219696536058,
+     "pooled_dti_offcat": 0.1553084483390874,
+     "mean_emitted": 11625.9375,
+     "mean_hug": 0.08737459076635498
+    },
+    "A1": {
+     "fold_means": [
+      0.154496954340026,
+      0.15989826350621242,
+      0.15196179680260624,
+      0.17868480843925938
+     ],
+     "mean": 0.16126045577202602,
+     "ci95": [
+      0.14204079760259694,
+      0.1804801139414551
+     ],
+     "pooled_dti": 0.16173767959083687,
+     "pooled_dti_offcat": 0.1608049710747365,
+     "mean_emitted": 10983.5625,
+     "mean_hug": 0.04336832210959883
+    },
+    "A2": {
+     "fold_means": [
+      0.15075291756379725,
+      0.1547750183388473,
+      0.14853580609825845,
+      0.17366648251817496
+     ],
+     "mean": 0.15693255612976947,
+     "ci95": [
+      0.13871154312467504,
+      0.1751535691348639
+     ],
+     "pooled_dti": 0.15714583312840308,
+     "pooled_dti_offcat": 0.1560716035688019,
+     "mean_emitted": 11452.4375,
+     "mean_hug": 0.0734286001183167
+    },
+    "A3": {
+     "fold_means": [
+      0.15140479225486722,
+      0.15139955624929008,
+      0.14781922542754342,
+      0.16792633142424893
+     ],
+     "mean": 0.15463747633898742,
+     "ci95": [
+      0.1402865433383088,
+      0.16898840933966602
+     ],
+     "pooled_dti": 0.15497144918965866,
+     "pooled_dti_offcat": 0.15365174051058464,
+     "mean_emitted": 11426.1875,
+     "mean_hug": 0.12094197270588458
+    }
+   },
+   "contrasts": {
+    "A1": {
+     "per_fold": [
+      0.003839752872270563,
+      0.00595224759791102,
+      0.0031806681908138623,
+      0.006032511742534996
+     ],
+     "mean": 0.00475129510088261,
+     "ci95": [
+      0.002430511705348024,
+      0.007072078496417196
+     ],
+     "folds_positive": 4,
+     "worst_fold": 0.0031806681908138623,
+     "pooled_delta": 0.004985482625476295,
+     "pooled_delta_offcat": 0.005496522735649101
+    },
+    "A2": {
+     "per_fold": [
+      9.571609604180908e-05,
+      0.0008290024305458998,
+      -0.00024532251353392986,
+      0.001014185821450575
+     ],
+     "mean": 0.0004233954586260885,
+     "ci95": [
+      -0.000526067435801591,
+      0.0013728583530537679
+     ],
+     "folds_positive": 3,
+     "worst_fold": -0.00024532251353392986,
+     "pooled_delta": 0.00039363616304249893,
+     "pooled_delta_offcat": 0.000763155229714485
+    },
+    "A3": {
+     "per_fold": [
+      0.0007475907871117848,
+      -0.0025464596590113187,
+      -0.0009619031842489634,
+      -0.0047259652724754575
+     ],
+     "mean": -0.0018716843321559887,
+     "ci95": [
+      -0.005579671931169375,
+      0.0018363032668573974
+     ],
+     "folds_positive": 1,
+     "worst_fold": -0.0047259652724754575,
+     "pooled_delta": -0.0017807477757019186,
+     "pooled_delta_offcat": -0.0016567078285027736
+    }
+   },
+   "withheld_positives_per_fold": [
+    1973,
+    2333,
+    3611,
+    3239
+   ],
+   "withheld_positives_offcat_per_fold": [
+    1948,
+    2309,
+    3518,
+    3182
+   ],
+   "draws": [
+    20,
+    21,
+    22,
+    23
+   ]
+  },
+  "secondary_A3_line_filter": {
+   "screen_gain": -0.00042862922240047285,
+   "confirmation_gain": -0.0033147394419115114,
+   "verdict": "negative (failed both stages)"
+  },
+  "diagnostic_A2_b2_prune": {
+   "screen_gain": 0.000297438621583844,
+   "confirmation_gain": 0.00054935229566834,
+   "note": "B=2 visible-catalogue prune of the incumbent emission: near-neutral on both responses (this detector already hugs little: A0 hug ~0.09 vs H19-5-family shells)."
+  },
+  "note": "Catalogue-gap proxy (hidden = withheld catalogue components); not a competition score. Off-catalogue response = truth restricted to hidden pixels >2 px from the visible catalogue."
+ },
+ "correlation_overlap_vs_registry": {
+  "lane_clear": false,
+  "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+  "density_aware_verdict": "DUPLICATE/LANE OVERLAP (density-aware) - do not package",
+  "lattice_overlap": 1.0,
+  "worst_other_site_overlap": 0.682736,
+  "worst_other_site_file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+  "worst_own_lineage_overlap": 1.0,
+  "worst_own_lineage_file": "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+  "worst_abs_spearman_final": 0.386989,
+  "worst_abs_spearman_surface": 0.154274,
+  "overlap_vs_gemsdoe32_b2": 0.315703,
+  "flagged_other_site": [],
+  "flagged_own_lineage": [
+   "gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
+   "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+   "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-zeros.tif",
+   "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-nan.tif",
+   "gems25-h31-aniso-scarp-b2-d2-8-20261025-c213681203f6-zeros.tif",
+   "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+   "gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-zeros.tif",
+   "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+   "gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-zeros.tif",
+   "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-nan.tif",
+   "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-zeros.tif",
+   "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-nan.tif",
+   "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-zeros.tif",
+   "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-nan.tif",
+   "gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.tif"
+  ],
+  "registry_checked": 50,
+  "lane_summary": "strict lane gate (literal) vs the dense r13 lattice: 100.0% of dots within 3 px (halo coverage 99.87%; density-aware symmetric overlap 0.189); vs 28 other-site/scored rasters worst 3-px dot overlap 0.683 (gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif), no flag; overlap vs GEMSDOE32 B2 (OWNER 0.2778) 0.316; worst final-dot |Spearman| 0.387, pre-placement surface worst |Spearman| 0.154; FLAGGED vs own unscored lineage (cf1-transverse-negative-20261025-22e2f9eddad9, h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5, h31-aniso-scarp-b2-d2-8-20261025-c213681203f6, h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268, h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719, h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea, h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf, xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9; worst 1.000)",
+  "lane_receipt": "docs/downloads/lane-gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.json",
+  "surface_receipt": "evidence/h38_lane_surface.json"
+ },
+ "raster": {
+  "file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.tif",
+  "sha256": "03b9d4c09aa630b69b49bd33df57f0660875a1b26b3d00cc1e38570404d6dae2",
+  "content_id": "18de99d38bb0",
+  "positive_pixels": 54472,
+  "nan_twin": {
+   "file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+   "sha256": "d81c69cace45144ea29d6d1f208efec3f38ff45265171f5f6c9bbbfdd43eabcf"
+  },
+  "zip": {
+   "file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.zip",
+   "path": "docs/downloads/gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.zip",
+   "bytes": 224272
+  }
+ },
+ "validator": {
+  "hard_failures": [],
+  "ok_to_upload": true,
+  "checks": {
+   "template_matches_expected_grid_and_footprint": {
+    "pass_": true,
+    "detail": "(3730, 3292), footprint 5,167,373 px",
+    "hard": true
+   },
+   "single_band": {
+    "pass_": true,
+    "detail": "count=1",
+    "hard": true
+   },
+   "dtype_float32": {
+    "pass_": true,
+    "detail": "dtypes=('float32',)",
+    "hard": true
+   },
+   "crs_epsg_32611": {
+    "pass_": true,
+    "detail": "32611",
+    "hard": true
+   },
+   "shape_matches_template": {
+    "pass_": true,
+    "detail": "(3730, 3292) vs (3730, 3292)",
+    "hard": true
+   },
+   "geotransform_matches_template": {
+    "pass_": true,
+    "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+    "hard": true
+   },
+   "footprint_all_finite": {
+    "pass_": true,
+    "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+    "hard": true
+   },
+   "footprint_values_in_0_1": {
+    "pass_": true,
+    "detail": "min=0.0 max=1.0",
+    "hard": true
+   },
+   "outside_footprint_is_nan_official": {
+    "pass_": false,
+    "detail": "0/7,111,787 NaN",
+    "hard": false
+   },
+   "outside_footprint_is_nan_or_zero": {
+    "pass_": true,
+    "detail": "NaN (official) or 0 (fallback) outside",
+    "hard": true
+   },
+   "nan_mask_identical_to_template": {
+    "pass_": true,
+    "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+    "hard": true
+   },
+   "nodata_tag": {
+    "pass_": true,
+    "detail": "nodata=None",
+    "hard": false
+   },
+   "variant_nan_aware_whole_array": {
+    "pass_": true,
+    "detail": "np.nanmin/np.nanmax over the whole array",
+    "hard": true
+   },
+   "variant_masked_read": {
+    "pass_": true,
+    "detail": "rasterio masked read",
+    "hard": true
+   },
+   "variant_strict_whole_array_no_nan": {
+    "pass_": true,
+    "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+    "hard": false
+   },
+   "profile_matches_template": {
+    "pass_": true,
+    "detail": "compress=lzw (template lzw)",
+    "hard": false
+   }
+  },
+  "receipt": "docs/downloads/checks-gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.json"
+ },
+ "submission_name": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.tif",
+ "driven_data_note": "GEMSDOE25 H38 greedy-credit k3.5% | PASSx2 +0.005; unscored; not slot-approved; no slot | id 18de99d38bb0",
+ "note_chars": 105,
+ "verdict": "negative",
+ "slot_approved": false,
+ "ok_to_download": true,
+ "ok_to_submit_slot": false,
+ "slot_reason": "holdout gate PASS x2 + format PASS; blocked by: lane duplicate vs this repo's own unscored lineage (cf1-transverse-negative-20261025-22e2f9eddad9, h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5, h31-aniso-scarp-b2-d2-8-20261025-c213681203f6, h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268, h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719, h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea, h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf, xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9; worst 1.000 vs gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif) \u2014 supersession is an owner selector decision, not agent-cleared; strict lane gate (literal) vs the dense r13 lattice: 100.0% of dots within 3 px (halo coverage 99.87%; density-aware symmetric overlap 0.189) (IR-25-LANE-DENSITY)",
+ "build": {
+  "base": "BDE",
+  "extras": [
+   "X1_K",
+   "X1_ThK",
+   "X1_UK",
+   "X2_compat",
+   "X2_compat_coh",
+   "X3_gm",
+   "X3_gd"
+  ],
+  "tip_column": "H27_tip",
+  "h34_columns": [
+   "H34_resmag_shallow_ridge",
+   "H34_resmag_mid_ridge",
+   "H34_baseflex_ridge"
+  ],
+  "kfrac": 0.035,
+  "emission": "greedy_marginal_credit (gems25.greedy)",
+  "n_hat": 15247.0,
+  "greedy_diag": {
+   "n_candidates": 180858,
+   "n_selected": 54472,
+   "plugin_tp": 4318.316065530203,
+   "plugin_fp": 49267.29876476443,
+   "plugin_dti": 0.18845159384760843,
+   "n_hat": 15247.0,
+   "last_accepted_ratio": 0.03916657786795053,
+   "first_rejected_ratio": 0.0391649857796462,
+   "stop_reason": "break_even"
+  },
+  "draws": 3,
+  "draw_seeds": [
+   424200,
+   424201,
+   424202
+  ],
+  "seconds": 225,
+  "utc": "2026-10-25T23:08:13.960583+00:00",
+  "scores": "data/work/h38_full_scores.npy (gitignored cache)",
+  "preregistration": "knowledge/25_preregistered_h38_greedy_credit_emission_2026-10-25.md"
+ }
+}

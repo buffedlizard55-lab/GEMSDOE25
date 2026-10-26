@@ -390,8 +390,8 @@
    "id": "IR-25-FEATURED-DOWNLOAD-RATIONALE",
    "severity": "medium",
    "status": "disclosed",
-   "issue": "The site needs one featured download, and every current file is DO NOT SUBMIT under the strict lane policy. Since the 2026-10-25 H66 session (arena/66ca912a-gemsdoe25) the featured file is the H66-1 MGD-F + tip-preserved flank shield candidate (gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif, 44,832 dots), featured because it is this session's unique, format-valid generated TIF with a complete 3-experiment Run Card; it passed its screen (+0.0025, 4/4 folds) but failed fresh-draw confirmation (-0.0022) and is testing-only (DO NOT SUBMIT). Earlier featured files (MSCR-1, XG1, KDC) remain available as alternates.",
-   "evidence": "registry/run_card_h66_2026-10-25.json; registry/run_card_session_2026-10-25_gmce_mscr.json; evidence/kdc_build/candidates_vs_b2.json.",
+   "issue": "The site needs one featured download, and every current file is DO NOT SUBMIT under the strict lane policy. Since the 2026-10-25 GMCE/MSCR session the featured file is the MSCR-1 candidate (gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.tif), featured because it is this session's unique, format-valid generated TIF with a full run card; it failed both pre-registered holdout gates and is testing-only. Previously the KDC file was featured because it was the only unique file keeping all 37,654 dots of the owner-reported 0.2778 file (its model projection 0.25-0.31 is not a score); it is now an alternate.",
+   "evidence": "registry/run_card_session_2026-10-25_gmce_mscr.json; evidence/kdc_build/candidates_vs_b2.json; evidence/kdc_build/projection.json.",
    "resolution_or_action": "Featuring a file is not slot approval; slot selection remains with the separate selector (owner)."
   },
   {
@@ -547,6 +547,38 @@
    "resolution_or_action": "Session documents (knowledge/21, knowledge/23) describe D1.5->D2.8 as a re-thinning of the same parent, not a subset deletion. No score claim is affected (all are OWNER-reported)."
   },
   {
+   "id": "IR-25-STUDY-AREA-VALID-PIXELS-CORRECTION",
+   "severity": "medium",
+   "status": "fixed",
+   "issue": "IR-25-STUDY-AREA-VS-INGENIOUS-EXTENT earlier stated that only 1,154,738 pixels inside the 5,167,373-pixel footprint had valid 19-band training features. Direct byte-level verification on data/training_features.tif proves 5,164,300 of the 5,167,373 footprint pixels (99.941%) have all 19 bands finite; only external 1 m 3DEP LiDAR coverage (L_valid) is restricted (3,894,460 valid px = 75.37%, 1,272,913 px = 24.63% missing).",
+   "evidence": "COMPUTED from data/work/bands/*.npy, data/sample_submission.tif, and data/external/lidar_3dep_1m_100m.tif (knowledge/21, knowledge/22_h36_outcomes_and_forensics_2026-10-25.md).",
+   "resolution_or_action": "Documented and fixed in H36-SPIGM: 4-fold LOQO predictions cover all 5,167,373 footprint pixels without restricting emission to 1,154,738 cells."
+  },
+  {
+   "id": "IR-25-POTENTIAL-FIELD-UNIT-MISMATCH",
+   "severity": "high",
+   "status": "fixed",
+   "issue": "Physical unit audit of data/training_features.tif revealed two silent bugs in src/gems25/features.py Family A: (1) band 15_tmi_hg (p50=1.678, p99=12.66) is scaled per 200 m central-difference span (~200x ||grad_h TMI|| in nT/m), whereas 09_tmi_vg (p50=0.0156, p99=0.1456) is in nT/m, so tmi_hg^2 dominates tmi_vg^2 by ~40,000x in A_mag_as and shrinks A_mag_tilt by ~200x; (2) band 18_iso_grav_anom_hg is signed (min -3.997, max +4.864) and correlates r=+0.9459 with dg/dx and +0.3576 with dg/dy (~N110E directional projection), blinding A_grav_hg to ~N110E accommodation faults.",
+   "evidence": "COMPUTED on data/work/bands/{07_tmi_rtp,09_tmi_vg,15_tmi_hg,17_iso_grav_anom,18_iso_grav_anom_hg}.npy (knowledge/21_preregistered_h36_spigm_submodular_2026-10-25.md, knowledge/22_h36_outcomes_and_forensics_2026-10-25.md).",
+   "resolution_or_action": "Fixed cleanly in src/gems25/h36_spigm.py (H36_mag_spi_k, H36_grav_spi_k, H36_gm_strike_concord) without mutating the SHA-256-pinned static_ABCD.npy comparator cache; covered by unit tests in tests/test_h36_spigm.py."
+  },
+  {
+   "id": "IR-25-CATALOGUE-HALO-CONVERGENCE",
+   "severity": "medium",
+   "status": "disclosed",
+   "issue": "Even with zero DEM and zero 1 m LiDAR inputs, H36_S_submod (content_id 3937b96ce366, 37,654 off-catalogue dots, clearing all 31 non-lattice scored/sibling rasters with max 3-px overlap 59.85% and 23.95% vs GEMSDOE32 B2, and max mutual 3-px overlap 57.94% across all 55 non-lattice rasters) exhibits 70.3%-70.9% one-way 3-px dot overlap (55.7%-56.3% reverse) against this repo's unscored ~48,500-dot SAPD2.4 builds (H35, H36-TZC, H37-DOC, MSCR, XG1) because all share Family E visible-catalogue distance/density features (E_d_fault..E_dens_r50).",
+   "evidence": "evidence/h36_spigm_build/lane_dots_sub.json; evidence/h36_spigm_lane_duplicates_canonical.json; registry/run_card_h36_spigm_2026-10-25.json.",
+   "resolution_or_action": "Logged as a strict one-way lane stop (lane_clear=False, ok_to_submit_slot=False, DO NOT SUBMIT). Future non-topographic builds aiming for literal one-way clearance against dense local alternates should omit Family E or restrict emission to distal basin cover (d(catalogue) > 6 px)."
+  },
+  {
+   "id": "IR-25-H38-REGIME-SPLIT",
+   "severity": "medium",
+   "status": "disclosed",
+   "issue": "In the Session-8 H38-OSPC x SUBMOD 2x2 factorial (draws 24, 25), both OSPC geology (+0.0033) and 300 m submodular skeleton coverage (+0.0068; joint +0.00704) improved NW strongly (0.88% catalogue prevalence, 75.0% 3DEP 1 m LiDAR coverage), stayed flat in NE (-0.0014; 45.8% missing 3DEP tiles zero-filled instead of NaN), and lost in SW/SE (-0.0034/-0.0066; 1.44-1.54% dense Walker Lane / Sevier splays). Overall 4-fold mean gain was -0.0011 (1/4 folds positive), failing the frozen screen gate.",
+   "evidence": "evidence/h38_ospc_screen/analysis.json; knowledge/26_h38_outcomes_and_0.2778_phd_synthesis_2026-10-25.md section 2.2; registry/run_card_h38_ospc_2026-10-25.json.",
+   "resolution_or_action": "Confirmation draws 26-27 were NOT run per pre-registered stopping rule. Unique H38-OSPC GeoTIFF (680d62616417, 48,666 dots; 0/21 GEMSDOE27..91 top-scorers flagged, 96.5% 3-px overlap with own H35 lineage, 100% vs r13 lattice) is retained as an alternate testing-only download with ok_to_download=true, ok_to_submit_slot=false, DO NOT SUBMIT."
+  },
+  {
    "id": "IR-25-LANE-CHECK-MSCR-BUG-FIXED",
    "severity": "medium",
    "status": "fixed",
@@ -558,17 +590,17 @@
    "id": "IR-25-MGD-SPARSE-DRAW-DEPENDENCE",
    "severity": "medium",
    "status": "disclosed",
-   "issue": "H66-1 MGD-F (multi-geothermometer SiO2 vs Na-K-Ca disequilibrium + 2-m probe upflow + Efimov F-parameter ridge) passed its frozen 2-draw screen on draws 50,51 (+0.002486 vs BEST_CTRL, 4/4 folds+, G_main=+0.002400) but reversed on fresh confirmation draws 52,53 (-0.002241 vs BEST_CTRL, 0/4 folds+, G_main=-0.001007), whereas Factor C (tip-preserved flank shielding) stayed positive in 4/4 folds on both runs (8/8 fold-blocks). Because GDR #1391 chemical geothermometry covers only 610 footprint grid cells (~1.5% halo support), screen draws whose 20% hidden fault components intersect sampled hydrothermal basins produce non-replicable positive gains.",
+   "issue": "H66-1 MGD-F (multi-geothermometer SiO2 vs Na-K-Ca disequilibrium + 2-m probe upflow + Efimov F-parameter ridge) passed its frozen 2-draw screen on draws 50,51 (+0.002486 vs BEST_CTRL, 4/4 folds+, G_main=+0.002400) but reversed on fresh confirmation draws 52,53 (-0.002241 vs BEST_CTRL, 0/4 folds+, G_main=-0.001007), whereas Factor C (tip-preserved flank shielding) stayed positive in 4/4 folds on both runs (8/8 fold-blocks -> 16/16 combined with H31-1). Because GDR #1391 chemical geothermometry covers only 610 footprint grid cells (~1.5% halo support), screen draws whose 20% hidden fault components intersect sampled hydrothermal basins produce non-replicable positive gains.",
    "evidence": "evidence/h66_1_screen/analysis.json; evidence/h66_1_confirm/analysis.json; registry/run_card_h66_2026-10-25.json.",
-   "resolution_or_action": "Two-stage screen + confirmation discipline caught the false positive before any weekly slot was touched. Verdict set to negative (DO NOT SUBMIT); Factor C (16/16 fold-blocks positive across H31-1 + H66-1) retained as a validated emission primitive."
+   "resolution_or_action": "Two-stage screen + confirmation discipline caught the false positive before any weekly slot was touched. Verdict set to negative (DO NOT SUBMIT); Factor C retained as a validated emission primitive."
   },
   {
    "id": "IR-25-SGMC-TREE-INVERSION",
    "severity": "high",
    "status": "disclosed",
-   "issue": "In H66-2 (SGMC-REACT, draws 54,55), gating USGS SGMC bedrock fault proximity exp(-d_SGMC / 4 px) by strictly positive smooth strain * gravity-THDR (`H66_sgmc_strain_react`) yielded standalone AUC 0.7862 — nearly identical to raw `H66_sgmc_prox4` (0.7890) — whereas gating by binary-supported 3DEP LiDAR scarps (`H66_sgmc_scarp_compat`, zero where L_coh100==0 or cos 2dtheta<=0) yielded standalone AUC 0.5965. Gradient-boosted trees threshold strictly positive products near 1e-5 to recover the underlying SGMC proximity map, inheriting compilation overlap between 1:500k state bedrock maps and USGS QFFDB (`labels.tif`, 35.2% 3-px proximity).",
+   "issue": "In H66-2 (SGMC-REACT, draws 54,55), gating USGS SGMC bedrock fault proximity exp(-d_SGMC / 4 px) by strictly positive smooth strain * gravity-THDR (`H66_sgmc_strain_react`) yielded standalone AUC 0.7862 — nearly identical to raw `H66_sgmc_prox4` (0.7890) — whereas gating by binary-supported 3DEP LiDAR scarps (`H66_sgmc_scarp_compat`, zero where L_coh100==0 or cos 2dtheta<=0) yielded standalone AUC 0.5965. Gradient-boosted trees threshold strictly positive products near 1e-5 to recover the underlying SGMC proximity map, inheriting compilation overlap between state bedrock maps and USGS QFFDB (`labels.tif`, 35.2% 3-px proximity).",
    "evidence": "evidence/h66_2_screen/analysis.json (`leakage_canary.max_by_feature`); knowledge/26_h66_outcomes_2026-10-25.md.",
-   "resolution_or_action": "Even though SGMC_REACT_ONLY cleared the <0.90 canary and beat CTRL_H35_24 by +0.013794 (4/4 folds+, CI95 [+0.0025, +0.0251]), H66-2 was NOT promoted: 3-of-3 experiment cap reached without confirmation, and any future SGMC reactivation feature must use hard zero-support gating (e.g., `H66_sgmc_scarp_compat` alone or binarized top-decile strain) so trees cannot invert smooth positive multipliers."
+   "resolution_or_action": "Even though SGMC_REACT_ONLY cleared the <0.90 canary and beat CTRL_H35_24 by +0.013794 (4/4 folds+, CI95 [+0.0025, +0.0251]), H66-2 was NOT promoted: 3-of-3 experiment cap reached without confirmation, and any future SGMC reactivation feature must use hard zero-support gating so trees cannot invert smooth positive multipliers."
   },
   {
    "id": "IR-25-G87-STALE-PROMPT-CLAIM",

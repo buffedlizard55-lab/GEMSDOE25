@@ -299,7 +299,7 @@
   }
  },
  "registry_correlation_and_overlap": {
-  "surface_max_abs_spearman": 0.147963,
+  "surface_max_abs_spearman": 0.151079,
   "surface_cap": 0.9,
   "surface_pass": true,
   "focus_21_top_scorers": {
@@ -323,13 +323,13 @@
    "lane_pass": false
   },
   "own_unscored_lineage_13": {
-   "n": 13,
-   "worst_abs_spearman_surface": 0.145301,
-   "worst_surface_file": "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-nan.tif",
+   "n": 16,
+   "worst_abs_spearman_surface": 0.151079,
+   "worst_surface_file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
    "worst_abs_spearman_final": 0.18008,
    "worst_final_file": "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
-   "worst_cand_dots_within_3px": 0.822470556745182,
-   "worst_overlap_file": "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+   "worst_cand_dots_within_3px": 0.8354523554603854,
+   "worst_overlap_file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
    "lane_pass": false
   },
   "dense_lattice_r13": {

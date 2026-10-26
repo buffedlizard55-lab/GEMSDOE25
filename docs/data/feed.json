@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-25T22:41:04Z",
+ "generated_utc": "2026-10-25T23:52:59Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"d9777d2e1ba4717d210e507415559fac\""
+   "detail": "HTTP 200; ETag: W/\"fd0d121a3896ab982cbc8518edceffd6\""
   },
   {
    "kind": "source",
@@ -105,7 +105,7 @@
    "url": "https://www.usgs.gov/3d-elevation-program",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 22:40:29 GMT; ETag: W/\"1792968029\""
+   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 23:52:36 GMT; ETag: W/\"1792972356\""
   },
   {
    "kind": "source",
@@ -145,7 +145,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"df346e6d09a848401a4be0def3d880f5\""
+   "detail": "HTTP 200; ETag: W/\"aefa2943be31fa32d905db4b5c09ce2a\""
   },
   {
    "kind": "source",
@@ -153,7 +153,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"9f0089c896a2f4f365c829ce91eb7e12\""
+   "detail": "HTTP 200; ETag: W/\"666da4b898913bf5793f80967faa4b82\""
   },
   {
    "kind": "source",
@@ -177,7 +177,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"a563ae3bc4766522c5790f3cafda8174\""
+   "detail": "HTTP 200; ETag: W/\"9954011deaebb6d65e12576bedd33674\""
   },
   {
    "kind": "source",
@@ -185,7 +185,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"ceee3e1360abda25f143a2e87c94d79f\""
+   "detail": "HTTP 200; ETag: W/\"761c8daf1541f588b6da1a06b5a0a12c\""
   },
   {
    "kind": "source",
@@ -193,7 +193,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"d9777d2e1ba4717d210e507415559fac\""
+   "detail": "HTTP 200; ETag: W/\"fd0d121a3896ab982cbc8518edceffd6\""
   },
   {
    "kind": "source",
@@ -208,8 +208,8 @@
    "title": "Quaternary fault mapping from high-resolution 3DEP topography (USGS data release)",
    "url": "https://www.usgs.gov/data/quaternary-fault-mapping-zapata-and-blanca-sections-sangre-de-cristo-fault-zone-high",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "ReadTimeout"
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 23:52:44 GMT; ETag: W/\"1792972364\""
   },
   {
    "kind": "source",
@@ -225,7 +225,7 @@
    "url": "https://www.usgs.gov/data/state-geologic-map-compilation-sgmc-geodatabase-conterminous-united-states",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 22:40:56 GMT; ETag: W/\"1792968056\""
+   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 23:52:46 GMT; ETag: W/\"1792972366\""
   },
   {
    "kind": "source",
@@ -233,7 +233,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"55c308701495ac756e43ab78772733a4\""
+   "detail": "HTTP 200; ETag: W/\"bdd0e8e2ff962bcd1843a6ab1de460de\""
   },
   {
    "kind": "source",
@@ -241,7 +241,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE36",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"2c704e36d3b7620f2f927086c90bf152\""
+   "detail": "HTTP 200; ETag: W/\"0478b7553a5d5462fc671b8f7d8f3a05\""
   },
   {
    "kind": "source",
@@ -249,7 +249,7 @@
    "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 21:56:49 GMT; Content-Length: 9424; ETag: W/\"6ade7b21-631c\""
+   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 23:46:01 GMT; Content-Length: 9948; ETag: W/\"6ade94b9-692e\""
   },
   {
    "kind": "source",
@@ -257,7 +257,55 @@
    "url": "https://buffedlizard55-lab.github.io/GEMSDOE36/docs/",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Sun, 04 Oct 2026 21:18:00 GMT; Content-Length: 5715; ETag: W/\"6ac2c288-442d\""
+   "detail": "HTTP 200; Last-Modified: Sun, 25 Oct 2026 23:42:47 GMT; Content-Length: 2419; ETag: W/\"6ade93f7-144a\""
+  },
+  {
+   "kind": "source",
+   "title": "GEMSDOE70 repository & shipped dual-population submodular GeoTIFF (gems70, owner-reported 0.2478)",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
+   "verified_in_repo": true,
+   "status": "ok",
+   "detail": "HTTP 200; ETag: W/\"39e37098bd2a209165c56a87ab9741d9\""
+  },
+  {
+   "kind": "source",
+   "title": "Thurston, J. B., & Smith, R. S. (1997), Automatic conversion of magnetic data to depth, dip, and susceptibility contrast using the SPI (TM) method, Geophysics 62(3), 807-813",
+   "url": "https://doi.org/10.1190/1.1444190",
+   "verified_in_repo": false,
+   "status": "ok",
+   "detail": "HTTP 200; Content-Length: 5580"
+  },
+  {
+   "kind": "source",
+   "title": "Elkan, C. (2001), The Foundations of Cost-Sensitive Learning, Proceedings of IJCAI-01, 973-978",
+   "url": "https://www.ijcai.org/Proceedings/01/IJCAI-01-145.pdf",
+   "verified_in_repo": false,
+   "status": "HTTP 404",
+   "detail": "HTTP 404"
+  },
+  {
+   "kind": "source",
+   "title": "Minoux, M. (1978), Accelerated greedy algorithms for maximizing submodular set functions, Optimization Techniques (Lecture Notes in Control and Information Sciences, vol. 7), Springer, 234-243",
+   "url": "https://doi.org/10.1007/BFb0006528",
+   "verified_in_repo": false,
+   "status": "ok",
+   "detail": "HTTP 200; ETag: \"d397e5baae912a220e12b2a41bb1d065\""
+  },
+  {
+   "kind": "source",
+   "title": "GEMSDOE70 repository (sibling; dual-submodular OOF HGB 0.2478 owner-reported claim & 2026-10-20 0.4413 leaderboard read)",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
+   "verified_in_repo": true,
+   "status": "ok",
+   "detail": "HTTP 200; ETag: W/\"39e37098bd2a209165c56a87ab9741d9\""
+  },
+  {
+   "kind": "source",
+   "title": "NASA JPL/Caltech ARIA & ASF DAAC Sentinel-1 Geocoded Unwrapped Interferogram / Velocity Open Data",
+   "url": "https://aria.jpl.nasa.gov/",
+   "verified_in_repo": false,
+   "status": "unreachable",
+   "detail": "ConnectionError"
   },
   {
    "kind": "sciencebase",
@@ -446,7 +494,7 @@
    "title": "GEMSDOE24",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24",
    "status": "ok",
-   "detail": "pushed_at 2026-10-25T22:11:38Z"
+   "detail": "pushed_at 2026-10-25T23:35:12Z"
   },
   {
    "kind": "human-snapshot",

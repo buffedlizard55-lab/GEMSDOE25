@@ -30,13 +30,13 @@
   }
  ],
  "own_lineage": {
-  "n": 13,
-  "worst_abs_spearman_surface": 0.145301,
-  "worst_surface_file": "gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-nan.tif",
+  "n": 16,
+  "worst_abs_spearman_surface": 0.151079,
+  "worst_surface_file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
   "worst_abs_spearman_final": 0.18008,
   "worst_final_file": "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
-  "worst_cand_dots_within_3px": 0.822470556745182,
-  "worst_overlap_file": "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+  "worst_cand_dots_within_3px": 0.8354523554603854,
+  "worst_overlap_file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
   "lane_pass": false
  },
  "rows": [
@@ -691,6 +691,17 @@
   },
   {
    "group": "own_downloads",
+   "file": "gems25-h36-spigm-subsurface-submod300-20261025-3937b96ce366-nan.tif",
+   "sha256": "c103482fb70b4eb447a4fd9ae5b4a82baa2bcf41b161e34170f86cf5fdce8778",
+   "registry_dots": 37654,
+   "spearman_surface": 0.110262,
+   "spearman_final": 0.047734,
+   "cand_dots_within_3px": 0.5645298001427552,
+   "reg_dots_within_3px_of_cand": 0.7088224358633877,
+   "dense_lattice": false
+  },
+  {
+   "group": "own_downloads",
    "file": "gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-nan.tif",
    "sha256": "ee71642cd603418ceaf6c789ab05a9d742d8dce096ee9816118fdeb90a475a73",
    "registry_dots": 48634,
@@ -709,6 +720,28 @@
    "spearman_final": 0.167244,
    "cand_dots_within_3px": 0.8200169521770164,
    "reg_dots_within_3px_of_cand": 0.8209691340265505,
+   "dense_lattice": false
+  },
+  {
+   "group": "own_downloads",
+   "file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+   "sha256": "d81c69cace45144ea29d6d1f208efec3f38ff45265171f5f6c9bbbfdd43eabcf",
+   "registry_dots": 54472,
+   "spearman_surface": 0.151079,
+   "spearman_final": 0.139379,
+   "cand_dots_within_3px": 0.8354523554603854,
+   "reg_dots_within_3px_of_cand": 0.8366500220296667,
+   "dense_lattice": false
+  },
+  {
+   "group": "own_downloads",
+   "file": "gems25-h38-ospc-submod-20261025-680d62616417-nan.tif",
+   "sha256": "077668cad7cec6ea5d9b3eed56b2fc8eaf2bc2703851af9e387b4f62eacfc4bd",
+   "registry_dots": 48666,
+   "spearman_surface": 0.144614,
+   "spearman_final": 0.127525,
+   "cand_dots_within_3px": 0.763896324054247,
+   "reg_dots_within_3px_of_cand": 0.8758681625775696,
    "dense_lattice": false
   },
   {

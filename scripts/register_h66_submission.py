@@ -191,7 +191,7 @@ def main() -> None:
     subs_doc = J("registry/submissions.json")
     files = subs_doc["files"]
     for item in files:
-        if item.get("role") == "primary":
+        if item.get("role") in ("primary", "fallback"):
             item["role"] = "alternate"
     # Remove any prior h66 entry if re-run idempotently
     files = [f for f in files if f["id"] not in ("h66-mgd-flank", "h66-mgd-flank-nan")]
@@ -255,7 +255,7 @@ def main() -> None:
 
     nan_entry = dict(
         id="h66-mgd-flank-nan",
-        role="alternate",
+        role="fallback",
         file=nrec["file"],
         path=nrec["path"],
         bytes=nrec["bytes"],
