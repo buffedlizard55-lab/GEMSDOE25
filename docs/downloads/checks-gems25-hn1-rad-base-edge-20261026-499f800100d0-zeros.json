@@ -1,0 +1,115 @@
+{
+ "id": "hn1-rad-base-edge-499f800100d0",
+ "role": "primary",
+ "verdict": "promote",
+ "file": "gems25-hn1-rad-base-edge-20261026-499f800100d0-zeros.tif",
+ "path": "docs/downloads/gems25-hn1-rad-base-edge-20261026-499f800100d0-zeros.tif",
+ "bytes": 842284,
+ "sha256": "a561e943aa849c76b58a5ba10b44ad97eca1fc2d5aaa243c435f8fe8b3877cbb",
+ "content_id": "499f800100d0",
+ "positive_pixels": 47970,
+ "format_ok": true,
+ "checks": {
+  "template_matches_expected_grid_and_footprint": {
+   "pass_": true,
+   "detail": "(3730, 3292), footprint 5,167,373 px",
+   "hard": true
+  },
+  "single_band": {
+   "pass_": true,
+   "detail": "count=1",
+   "hard": true
+  },
+  "dtype_float32": {
+   "pass_": true,
+   "detail": "dtypes=('float32',)",
+   "hard": true
+  },
+  "crs_epsg_32611": {
+   "pass_": true,
+   "detail": "32611",
+   "hard": true
+  },
+  "shape_matches_template": {
+   "pass_": true,
+   "detail": "(3730, 3292) vs (3730, 3292)",
+   "hard": true
+  },
+  "geotransform_matches_template": {
+   "pass_": true,
+   "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+   "hard": true
+  },
+  "footprint_all_finite": {
+   "pass_": true,
+   "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+   "hard": true
+  },
+  "footprint_values_in_0_1": {
+   "pass_": true,
+   "detail": "min=0.0 max=1.0",
+   "hard": true
+  },
+  "outside_footprint_is_nan_official": {
+   "pass_": false,
+   "detail": "0/7,111,787 NaN",
+   "hard": false
+  },
+  "outside_footprint_is_nan_or_zero": {
+   "pass_": true,
+   "detail": "NaN (official) or 0 (fallback) outside",
+   "hard": true
+  },
+  "nan_mask_identical_to_template": {
+   "pass_": true,
+   "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+   "hard": true
+  },
+  "nodata_tag": {
+   "pass_": true,
+   "detail": "nodata=None",
+   "hard": false
+  },
+  "variant_nan_aware_whole_array": {
+   "pass_": true,
+   "detail": "np.nanmin/np.nanmax over the whole array",
+   "hard": true
+  },
+  "variant_masked_read": {
+   "pass_": true,
+   "detail": "rasterio masked read",
+   "hard": true
+  },
+  "variant_strict_whole_array_no_nan": {
+   "pass_": true,
+   "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+   "hard": false
+  },
+  "profile_matches_template": {
+   "pass_": true,
+   "detail": "compress=lzw (template lzw)",
+   "hard": false
+  }
+ },
+ "receipt": "checks-gems25-hn1-rad-base-edge-20261026-499f800100d0-zeros.json",
+ "lane_receipt": "lane-gems25-hn1-rad-base-edge-20261026-499f800100d0-zeros.json",
+ "outside": "zero",
+ "status": "UNIQUE BY CONTENT \u00b7 FORMAT-VALID \u00b7 HOLDOUT-DTI screen 0.042014 (+0.023155, 4/4 folds) / confirm 0.040630 (+0.021771, 4/4 folds) vs B_crest control; leakage AUC 0.575 <= 0.90; lane CLEAR vs 42 registry rasters (max |rho| 0.036, max overlap <= 0.70) \u00b7 verdict promote \u00b7 slot-eligible; weekly-slot spend is the separate owner selector decision",
+ "title": "H-N1 radiometric alteration-ratio edge x conductive-base edge (20261026) \u2014 gates passed \u00b7 slot-eligible",
+ "summary": "Unique catalogue-free GeoTIFF: 1-px gradient-edge coincidence of GeoDAWN radiometric alteration-ratio edge (D_UK_edge) and MT conductive-base depth edge (D_depth_base_grad), emitted by ridge NMS + top-K (3.5%) + Poisson-disk dots min_dist 1.5 px, 0 on catalogue pixels. HOLDOUT-DTI is a catalogue-gap proxy, not an organizer score.",
+ "expected_range": "no organizer estimate (HOLDOUT-DTI proxy only): screen 0.042014, CI see run card; confirm 0.040630",
+ "note": "GEMSDOE25 H-N1 | radiometric alteration-ratio edge x conductive-base edge; catalogue-free blind-faul | id 499f800100d0 | not yet live-scored",
+ "slot_approved": false,
+ "do_not_resubmit": false,
+ "holdout_gate_passed": true,
+ "ok_to_download": true,
+ "ok_to_submit_slot": "YES \u2014 gates cleared; final weekly-slot spend is the owner selector step",
+ "run_card": "registry/run_card_hn1_2026-10-26.json",
+ "lane_summary": "surface lane CLEAR vs 42 registry rasters, max |Spearman| 0.036 <= 0.90; final-dot lane CLEAR, worst 3-px overlap 1.000 <= 0.70 vs every registry raster (density-aware symmetric statistic for dense rasters per IR-25-LANE-DENSITY)",
+ "build": {
+  "hypothesis": "H-N1",
+  "date": "20261026",
+  "utc": "2026-10-26T00:45:02Z",
+  "seconds": 190
+ }
+}

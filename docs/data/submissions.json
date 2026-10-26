@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "generated_by": "scripts/register_h66_submission.py (2026-10-25, H66 MGD-F + SGMC-REACT session)",
+ "generated_by": "scripts/package_hn1.py + registry run_card_hn1_2026-10-26.json (2026-10-26, arena/850bcd58-gemsdoe25)",
  "files": [
   {
    "id": "h66-mgd-flank",
@@ -3116,6 +3116,34 @@
    "ok_to_submit_slot": false,
    "run_card": "registry/run_card_h37_2026-10-25.json",
    "lane_summary": "vs other-site substantive scored rasters: worst 3-px overlap 0.682, worst final |rho| 0.047, worst pre-placement surface |rho| 0.152 (caps 0.70/0.90) -- clean; vs H33-2-B2 (0.2778 file) overlap 0.312 (reverse 0.375); dense r13 lattice: literal overlap 1.000 but halo coverage 0.9987 (a random file scores the same; symmetric-min 0.186); own lineage (same detector family): worst overlap 0.928 vs gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif -- duplicate lane vs superseded H31/H35 lineage, never submit alongside them"
+  },
+  {
+   "id": "hn1-rad-base-edge-499f800100d0",
+   "role": "primary",
+   "verdict": "promote",
+   "file": "gems25-hn1-rad-base-edge-20261026-499f800100d0-zeros.tif",
+   "path": "docs/downloads/gems25-hn1-rad-base-edge-20261026-499f800100d0-zeros.tif",
+   "bytes": 842284,
+   "sha256": "a561e943aa849c76b58a5ba10b44ad97eca1fc2d5aaa243c435f8fe8b3877cbb",
+   "content_id": "499f800100d0",
+   "positive_pixels": 47970,
+   "format_ok": true,
+   "checks": {},
+   "receipt": "checks-gems25-hn1-rad-base-edge-20261026-499f800100d0-zeros.json",
+   "lane_receipt": "lane-gems25-hn1-rad-base-edge-20261026-499f800100d0-zeros.json",
+   "outside": "zero",
+   "status": "UNIQUE BY CONTENT \u00b7 FORMAT-VALID \u00b7 HOLDOUT-DTI screen 0.042014 (+0.023155, 4/4 folds) / confirm 0.040630 (+0.021771, 4/4 folds) vs B_crest control; leakage AUC 0.575 <= 0.90; lane CLEAR vs 42 registry rasters (max |rho| 0.036, max overlap <= 0.70) \u00b7 verdict promote \u00b7 slot-eligible; weekly-slot spend is the separate owner selector decision",
+   "title": "H-N1 radiometric alteration-ratio edge x conductive-base edge (20261026) \u2014 gates passed \u00b7 slot-eligible",
+   "summary": "Unique catalogue-free GeoTIFF: 1-px gradient-edge coincidence of GeoDAWN radiometric alteration-ratio edge (D_UK_edge) and MT conductive-base depth edge (D_depth_base_grad), emitted by ridge NMS + top-K (3.5%) + Poisson-disk dots min_dist 1.5 px, 0 on catalogue pixels. HOLDOUT-DTI is a catalogue-gap proxy, not an organizer score.",
+   "expected_range": "no organizer estimate (HOLDOUT-DTI proxy only): screen 0.042014; confirm 0.040630",
+   "note": "GEMSDOE25 H-N1 | radiometric alteration-ratio edge x conductive-base edge; catalogue-free blind-faul | id 499f800100d0 | not yet live-scored",
+   "slot_approved": false,
+   "do_not_resubmit": false,
+   "holdout_gate_passed": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": "YES \u2014 gates cleared; final weekly-slot spend is the owner selector step",
+   "run_card": "registry/run_card_hn1_2026-10-26.json",
+   "lane_summary": "surface lane CLEAR vs 42 registry rasters, max |Spearman| 0.036 <= 0.90; final-dot lane CLEAR, worst 3-px overlap 0.302 vs non-dense rasters (dense r13 lattice literal overlap 1.000, symmetric-min 0.136 <= 0.70 per IR-25-LANE-DENSITY)"
   }
  ]
 }
