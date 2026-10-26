@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "date_utc": "2026-10-26",
+  "branch": "arena/ccb1fe34-gemsdoe25",
+  "verdict": "negative: no new candidate cleared holdout and strict lane gates; existing TIF retained for testing only",
+  "passes": [
+    {
+      "pass": 1,
+      "scope": "Review existing evidence, correct the executive summary and create an auditable decision record without consuming experiment budget.",
+      "completed": [
+        "Read the standing README and current brief; reviewed AGENTS.md, focus-site audit, historical site analysis, saved H71/ROD/POL3 records, submission registry and current site generator.",
+        "Confirmed all nine focus score claims are OWNER-REPORTED, not organizer receipts; identified exact mask matches GEMSDOE25=GEMSDOE30 and GEMSDOE28=GEMSDOE31, plus nested H19-5/D2.8/R1/B2 lineage.",
+        "Recomputed the existing H71 GeoTIFF SHA-256 and read it independently with Rasterio: one Float32 band, EPSG:32611, shape 3730x3292, recorded transform, all finite and all values in [0,1].",
+        "Added a current-candidate score-estimate/holdout/lane table and nine-site file/score/exact-identity/eligibility table to the generated executive pages.",
+        "Clarified in registry receipts and the README generator that H71 is content-distinct but fails the literal r13 lattice overlap rule; its holdout result is not a leaderboard score estimate."
+      ],
+      "result": "Existing testing file remains downloadable only; no new TIF or submission was created."
+    },
+    {
+      "pass": 2,
+      "scope": "Review for incorrect claims, software defects, evidence mismatches and edge cases.",
+      "found_and_fixed": [
+        "The previous site heading called the H71 file 'unique' without an immediate clear statement that the strict literal lane rule flags 100% of its dots within 3 px of the r13 lattice. Changed wording across generated pages and registry/README output to content-distinct and strict-lane-failed.",
+        "The previous focus-site table lacked filenames, evidence class, exact-mask relationships and per-site slot status. Added all nine columns and explicit exact duplicate pairs.",
+        "The prior registry note did not mention the literal lane failure and differed from its H71 run card/check receipt. Synchronized the short note across registry, run card and file receipt; added regression assertions.",
+        "Corrected a missing comma caught by Python execution and an unused variable caught by Ruff during generation."
+      ],
+      "verification": {
+        "pytest": "254 passed, 9 skipped (missing data/template), 1 expected ConstantInputWarning from the fail-closed empty-candidate lane test.",
+        "ruff": "passed after fixes.",
+        "html_local_links": "covered by existing link-resolution tests in the full suite.",
+        "diff_check": "passed after generation.",
+        "tif_sha256": "44ee60289f21030b119122c04fb1508584df1e88ce2a4c607adbde9f8eba1808"
+      }
+    },
+    {
+      "pass": 3,
+      "scope": "Re-check against the original task and protocol; state what remains unfulfilled.",
+      "verified": [
+        "The landing/executive page still provides a one-click testing-only TIF and clearly says DO NOT SUBMIT; the new table says no competition score projection is made and reports the saved HOLDOUT-DTI with evaluator, withheld positives and 95% CI.",
+        "All requested focus sites appear with their highest supplied filename, OWNER-REPORTED score, audited exact-mask relation and no-slot status.",
+        "GEMSDOE32 B2 analysis is described as a conditional metric explanation, not a proven hidden-label cause; 0.3195/0.4413 remain unverified conflicts.",
+        "The previous registered 3\u20135 hypothesis work and negative runs are linked, not relabeled as new experiments. New experiment count in this review is zero; no experiment budget or weekly slot was spent.",
+        "A JSON run card records the saved holdout result, strict lane stop, SHA-256, independent file checks, null score projection, and negative verdict.",
+        "Final generator, pytest, Ruff, and diff checks were rerun after the run-card regression test was added."
+      ],
+      "not_fulfilled": [
+        "No new unique TIF was generated in this review. The available H71 file fails the literal lane rule and holdout gate and must not be submitted.",
+        "No leaderboard score can be estimated from catalogue-gap HOLDOUT-DTI. No organizer receipts, current leaderboard snapshot or weekly allowance were verified.",
+        "The live template was absent from data/, so exact comparison was to recorded owner-mirror grid values and saved receipts, not a fresh template-file comparison.",
+        "Official web pages were linked for review but not fetched during this pass; owner-mirror bytes are not organizer-authenticated.",
+        "No pull request or merge has been made yet; this session branch is fixed and will be used if GitHub access/checks permit."
+      ]
+    }
+  ],
+  "experiment_budget": {
+    "new_experiments": 0,
+    "limit": 3,
+    "reason": "Repository review only; prior saved runs exhausted their own registered session budgets; no new experiment was preregistered or fitted."
+  },
+  "limits": [
+    "data/ contains only .gitkeep; no current training/template stack.",
+    "Strict literal lane policy flags the r13 dense lattice; no density-aware exception was applied.",
+    "HOLDOUT-DTI is a proxy, not organizer performance.",
+    "No organizer score or acceptance receipt is available in this checkout."
+  ]
+}

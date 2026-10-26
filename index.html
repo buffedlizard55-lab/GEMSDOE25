@@ -7,35 +7,61 @@
 <a href="docs/current-review.html">Read the nine-site executive review &amp; automatic test result →</a></aside><section class="hero"><p class="eyebrow">RESEARCH DECISION BRIEF / 26 OCTOBER 2026</p>
 <h1>Know what to submit.<br>Know when to stop.</h1>
 <p class="lead">Nine focus sites, one auditable comparison, and a new geological test. No renamed reference files. No predicted leaderboard scores.</p></section>
-<section class="review-decision"><span class="badge b-bad">OK TO SUBMIT: NO</span><h2>Unique research GeoTIFF is downloadable — not slot-cleared</h2>
-<p>H71-1 HGPC-BLIND signed gravity–basement polarity (sapd3.0, zeros outside) — TESTING ONLY · DO NOT SUBMIT. Unique 2026-10-26 GeoTIFF (59,472 binary dots, min_dist=3.0 px) from pre-registered H71-1 DIRECT emission (signed isostatic-gravity × MT basement half-graben polarity; zero HGB; B=2 collar). Leakage canary PASS (max AUC 0.695). Holdout gate FAIL vs H35. Clears 21/21 sibling top-scorers (15.4% vs GEMSDOE32 B2) and own HGB lineage (max 23.4%). Strict lane gate fails only on the dense r13 lattice. Zero outside footprint (prevents &#x27;Predicted values must be in range [0, 1]&#x27;). Testing only — DO NOT SUBMIT.</p>
-<p>ROD stop: DUPLICATE-LANE: final dots fail literal overlap/rank gate; stopped, no TIFF written</p><p><b>OK to download: YES</b> for local testing of unique content id <code>9eb0c31e5149</code>. <b>OK to spend a weekly slot: NO — DO NOT SUBMIT.</b> H71 HGPC-BLIND is format-valid and density-aware unique vs scored rasters; three DIRECT screens failed vs H35. ROD/POL3 wrote no competition TIFF.</p><a class="btn" download href="docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif">↓ Download gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif — testing only</a>
+<section class="review-decision"><span class="badge b-bad">OK TO SUBMIT: NO</span><h2>Testing GeoTIFF is downloadable — strict novelty and performance gates failed</h2>
+<p>H71-1 HGPC-BLIND signed gravity–basement polarity (sapd3.0, zeros outside) — TESTING ONLY · STRICT LANE FAIL · DO NOT SUBMIT. Content-distinct 2026-10-26 testing GeoTIFF (59,472 binary dots, min_dist=3.0 px) from pre-registered H71-1 DIRECT emission (signed isostatic-gravity × MT basement half-graben polarity; zero HGB; B=2 collar). Feature-alone canary max AUC 0.695. HOLDOUT-DTI 0.050577 (95% CI 0.037264–0.063890; 21,835 withheld positives) failed vs same-run H35. Strict lane FAIL: 100% of candidate dots are within 3 px of the registered r13 lattice. Format-valid only; local testing download; DO NOT SUBMIT.</p>
+<p>ROD stop: DUPLICATE-LANE: final dots fail literal overlap/rank gate; stopped, no TIFF written</p><p><b>OK to download: YES</b> for local testing of content id <code>9eb0c31e5149</code>. <b>OK to spend a weekly slot: NO — DO NOT SUBMIT.</b> This file is content-distinct from scored mirrors, but it FAILS the literal lane rule (100% final-dot overlap within 3 px of the registered r13 lattice); do not call it lane-unique. The three DIRECT screens failed vs H35. ROD/POL3 wrote no competition TIFF.</p><a class="btn" download href="docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif">↓ Download gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif — testing only</a>
 <div class="row"><a class="btn" href="evidence/rod_2026-10-26/run_card.json" download>Download decision receipt</a>
 <a class="btn alt" href="#how-to-submit">Submission checklist</a></div></section>
+<section><h2>Current downloadable file: score estimate and uniqueness gate</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Current candidate assessment"><table><thead><tr><th>File</th><th>Estimated competition score</th><th>Observed HOLDOUT-DTI (proxy only)</th><th>Unique under literal lane rule?</th><th>Decision</th></tr></thead><tbody>
+<tr><td class="submission-id">gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif</td>
+<td>NOT ESTIMATED — no defensible leaderboard projection</td>
+<td>HOLDOUT-DTI 0.050577; evaluator gems25.holdout.v1.2-buffered-4quad-pooled-dti; 21,835 withheld positives; 95% CI [0.037264, 0.063890]</td>
+<td><b>NO.</b> Final dots overlap the registered r13 lattice 100% within 3 px; literal threshold is 70%.</td>
+<td><b>DO NOT SUBMIT.</b> Holdout gate failed against same-run H35; testing download only.</td></tr></tbody></table></div>
+<p class="small">HOLDOUT-DTI is a catalogue-gap recovery proxy, not a forecast of organizer score. H71 holdout result is cited from the saved H71 run card; it was not rerun in this review. Surface correlation/overlap and final-dot lane results are not interchangeable.</p></section>
 <section><h2>What is the strongest historical evidence?</h2>
 <p><b>GEMSDOE32 B2 — 0.2778, OWNER-REPORTED.</b> It is the highest supplied historical result among these focus sites.
 It is already an earlier submission, so it is <b>not</b> eligible as a new unique artifact. No organizer receipt has been supplied.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Nine historical exemplars"><table><thead><tr><th>Site</th><th>Reported result</th><th>Highest supplied historical submission</th><th>Use</th></tr></thead>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Nine historical exemplars"><table><thead><tr><th>Site</th><th>Highest supplied historical TIF / filename</th><th>Score evidence</th><th>Exact-mask relation within focus set</th><th>New-slot eligible?</th></tr></thead>
 <tbody><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32</a></th>
-<td>0.2778<small>OWNER-REPORTED</small></td>
-<td class="submission-id">h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</td><td><span class="badge b-warn">Historical only</span></td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE36/docs/">GEMSDOE36</a></th>
-<td>0.2750<small>OWNER-REPORTED</small></td>
-<td class="submission-id">anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros</td><td><span class="badge b-warn">Historical only</span></td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE28/">GEMSDOE28</a></th>
-<td>0.2710<small>OWNER-REPORTED</small></td>
-<td class="submission-id">h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan</td><td><span class="badge b-warn">Historical only</span></td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE31/docs/">GEMSDOE31</a></th>
-<td>0.2708<small>OWNER-REPORTED</small></td>
-<td class="submission-id">h27-4-solo-d28-20261004-8acb75e1-nan</td><td><span class="badge b-warn">Historical only</span></td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE33/">GEMSDOE33</a></th>
-<td>0.2632<small>OWNER-REPORTED</small></td>
-<td class="submission-id">h33d-analog-tip-stepover-r30-20261004-cb490425926e</td><td><span class="badge b-warn">Historical only</span></td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE25/">GEMSDOE25</a></th>
-<td>0.2600<small>OWNER-REPORTED</small></td>
-<td class="submission-id">dotted-h19-5-d2-8-20261002-e56ea318af89-nan</td><td><span class="badge b-warn">Historical only</span></td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE30/">GEMSDOE30</a></th>
-<td>0.2600<small>OWNER-REPORTED</small></td>
-<td class="submission-id">d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca</td><td><span class="badge b-warn">Historical only</span></td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE24/">GEMSDOE24</a></th>
-<td>0.2477<small>OWNER-REPORTED</small></td>
-<td class="submission-id">h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan</td><td><span class="badge b-warn">Historical only</span></td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE27/">GEMSDOE27</a></th>
-<td>0.2449<small>OWNER-REPORTED</small></td>
-<td class="submission-id">topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan</td><td><span class="badge b-warn">Historical only</span></td></tr></tbody></table></div>
-<p class="small">Not a live leaderboard query and not a slot selection. The conflicting overall-leader claims 0.3195 and 0.4413 remain unverified.</p></section>
+<td class="submission-id">h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</td>
+<td>0.2778<small>OWNER-REPORTED · not an estimate</small></td>
+<td>Different mask; nested B2 pruning of D2.8/R1.<small>Pixel identity / lineage from local mirror audit</small></td>
+<td><span class="badge b-warn">NO — historical; not slot-approved</span></td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE36/docs/">GEMSDOE36</a></th>
+<td class="submission-id">anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</td>
+<td>0.2750<small>OWNER-REPORTED · not an estimate</small></td>
+<td>Different mask; B2 plus 1,200 additional pixels.<small>Pixel identity / lineage from local mirror audit</small></td>
+<td><span class="badge b-warn">NO — historical; not slot-approved</span></td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE28/">GEMSDOE28</a></th>
+<td class="submission-id">h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif</td>
+<td>0.2710<small>OWNER-REPORTED · not an estimate</small></td>
+<td>Exact-mask duplicate of GEMSDOE31 (R1).<small>Pixel identity / lineage from local mirror audit</small></td>
+<td><span class="badge b-warn">NO — historical; not slot-approved</span></td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE31/docs/">GEMSDOE31</a></th>
+<td class="submission-id">h27-4-solo-d28-20261004-8acb75e1-nan.tif</td>
+<td>0.2708<small>OWNER-REPORTED · not an estimate</small></td>
+<td>Exact-mask duplicate of GEMSDOE28 (R1).<small>Pixel identity / lineage from local mirror audit</small></td>
+<td><span class="badge b-warn">NO — historical; not slot-approved</span></td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE33/">GEMSDOE33</a></th>
+<td class="submission-id">h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</td>
+<td>0.2632<small>OWNER-REPORTED · not an estimate</small></td>
+<td>Different mask; R1 plus re-admitted collar/tip pixels.<small>Pixel identity / lineage from local mirror audit</small></td>
+<td><span class="badge b-warn">NO — historical; not slot-approved</span></td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE25/">GEMSDOE25</a></th>
+<td class="submission-id">dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</td>
+<td>0.2600<small>OWNER-REPORTED · not an estimate</small></td>
+<td>Exact-mask duplicate of GEMSDOE30 (D2.8).<small>Pixel identity / lineage from local mirror audit</small></td>
+<td><span class="badge b-warn">NO — historical; not slot-approved</span></td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE30/">GEMSDOE30</a></th>
+<td class="submission-id">d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif</td>
+<td>0.2600<small>OWNER-REPORTED · not an estimate</small></td>
+<td>Exact-mask duplicate of GEMSDOE25 (D2.8).<small>Pixel identity / lineage from local mirror audit</small></td>
+<td><span class="badge b-warn">NO — historical; not slot-approved</span></td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE24/">GEMSDOE24</a></th>
+<td class="submission-id">h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</td>
+<td>0.2477<small>OWNER-REPORTED · not an estimate</small></td>
+<td>Different mask; D1.5 thinning of the older H19-5 parent.<small>Pixel identity / lineage from local mirror audit</small></td>
+<td><span class="badge b-warn">NO — historical; not slot-approved</span></td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE27/">GEMSDOE27</a></th>
+<td class="submission-id">topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</td>
+<td>0.2449<small>OWNER-REPORTED · not an estimate</small></td>
+<td>Different mask; 97.95% lies in the older H19-5/D1.5 lineage.<small>Pixel identity / lineage from local mirror audit</small></td>
+<td><span class="badge b-warn">NO — historical; not slot-approved</span></td></tr></tbody></table></div>
+<p class="small">The values are owner-reported historical results, not score estimates. Exact-mask equivalences and lineage are from the locally hashed owner-mirror audit; this does not authenticate competition receipts or establish new-slot uniqueness. The conflicting overall-leader claims 0.3195 and 0.4413 remain unverified.</p></section>
 <section><h2>Why B2 can work — and what it does not prove</h2>
 <p>Fresh pixel checks show B2 is exactly D2.8 with 6,436 predictions within 200 m of the supplied catalogue removed.
 GEMSDOE36 is B2 plus 1,200 predictions. GEMSDOE25 and 30 have identical masks; GEMSDOE28 R1 and 31 have identical masks.</p>
@@ -127,8 +153,10 @@ Not approved as a new submission. SHA-256: <code class="wrap-hash">33003374335d8
 <a href="https://www.usgs.gov/3d-elevation-program">USGS 3DEP</a> — manual-review links, not freshly fetched here.</li></ul>
 <p>Next: resolve the dense-lattice policy before another high-budget run; address SGMC proxy contamination before confirmation; authenticate external source bytes and preserve all failed results.
 Automatic source availability is not automatic scientific verification or a live leaderboard feed.</p>
-<p><a href="docs/history.html">Historical experiment/download archive</a></p></section></main>
+<p><a href="knowledge/29_repository_review_2026-10-26.md">Full repository review and limitations</a> ·
+<a href="registry/run_card_repo_review_2026-10-26_session.json">This review's JSON run card</a> ·
+<a href="docs/history.html">Historical experiment/download archive</a></p></section></main>
 <footer><div class="wrap">Core values: <b>Maximize P(Win)</b> · <b>Own the Outcome</b>. Source: <a href="https://github.com/buffedlizard55-lab/GEMSDOE25">github.com/buffedlizard55-lab/GEMSDOE25</a> ·
-built 2026-10-26 01:17 UTC from <code>registry/</code> and <code>evidence/</code> by <code>scripts/build_site.py</code>.
+built 2026-10-26 16:20 UTC from <code>registry/</code> and <code>evidence/</code> by <code>scripts/build_site.py</code>.
 No score here is promised; reported scores are unverified unless an organizer receipt is supplied. This site/feed never contacts drivendata.org.</div></footer>
 <script src="docs/assets/app.js"></script></body></html>

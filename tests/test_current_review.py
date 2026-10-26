@@ -57,6 +57,34 @@ def test_focus_claims_are_not_organizer_receipts():
     assert report['identities']['gems32_b2_equals_d28_distance_gt_2'] is True
 
 
+def test_executive_summary_separates_holdout_from_score_and_strict_novelty():
+    page = (ROOT/'docs/executive-summary.html').read_text()
+    assert 'Estimated competition score' in page
+    assert 'NOT ESTIMATED' in page
+    assert 'HOLDOUT-DTI 0.050577' in page
+    assert '21,835 withheld positives' in page
+    assert 'Unique under literal lane rule?' in page
+    assert 'Final dots overlap the registered r13 lattice 100% within 3 px' in page
+    assert 'DO NOT SUBMIT' in page
+    assert 'dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif' in page
+    assert 'Exact-mask duplicate of GEMSDOE30 (D2.8)' in page
+    assert 'Exact-mask duplicate of GEMSDOE31 (R1)' in page
+
+
+def test_current_review_run_card_is_complete_and_honest():
+    card = json.loads((ROOT/'registry/run_card_repo_review_2026-10-26_session.json').read_text())
+    assert card['verdict'].startswith('negative')
+    assert card['holdout_dti']['label'] == 'HOLDOUT-DTI'
+    assert card['holdout_dti']['source'].startswith('saved prior-session')
+    assert card['holdout_dti']['withheld_positive_count'] == 21835
+    assert card['correlation_overlap_vs_registry']['strict_final_dot_overlap']['candidate_dots_within_3px_fraction'] == 1.0
+    assert card['raster']['generated_in_this_review'] is False
+    assert card['validator_output']['all_pixels_finite'] is True
+    assert card['validator_output']['grid_matches_live_template'] is None
+    assert card['submission_note_characters'] == len(card['submission_note']) <= 140
+    assert card['score_projection'] is None
+
+
 class Links(HTMLParser):
     def __init__(self):
         super().__init__()
