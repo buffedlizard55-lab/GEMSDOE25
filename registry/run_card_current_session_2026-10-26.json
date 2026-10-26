@@ -1,0 +1,77 @@
+{
+  "schema": "run_card/v1 (PARALLEL-RUN PROTOCOL item 5; negative preflight)",
+  "session": "2026-10-26 current-checkout review on arena/c8d0a8cc-gemsdoe25",
+  "verdict": "negative",
+  "experiments_used": 0,
+  "experiment_budget": 3,
+  "weekly_slot_used": false,
+  "new_raster_created": false,
+  "lane_assignment": null,
+  "lane_assignment_blocker": "The prompt refers to a single method paragraph but supplies no distinct assigned method paragraph. The prior handoff recommends H73-BW as an evaluation-only selector, not a geological method lane.",
+  "cache_status": {
+    "required_cached_feature_stack_present": false,
+    "observed_data_files": ["data/.gitkeep"],
+    "static_ABCD_cache_present": false,
+    "scientific_python_dependencies_present": true,
+    "action": "Stopped before fitting; no private cache rebuild or evaluator fork was made."
+  },
+  "hypothesis": {
+    "id": "planning-only-1-cross-modal-phase-congruency",
+    "description": "On the supplied RTP magnetic field and K/Th/U radiometric layers, a two-scale magnetic phase-congruency ridge may be more fault-like when radiometric texture is continuous along strike but discontinuous across strike.",
+    "tested_this_session": false,
+    "status": "ranked planning hypothesis only; not pre-registered for fitting and not validated"
+  },
+  "mechanism": "A concealed basement discontinuity can preserve a magnetic edge beneath cover while the surface alteration/lithologic texture changes across it; the proposed detector does not use catalogue distance.",
+  "named_non_fault_mimic": "Buried volcanic-flow/lithologic contacts and airborne survey seams.",
+  "holdout_dti": null,
+  "holdout_status": "No experiment was run in this review. Do not interpret null as HOLDOUT-DTI 0.0.",
+  "prior_artifact_holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "source": "Existing prior-session H73-PM run card; not recomputed in this review.",
+    "evaluator_version": "gems25.metric.dti_binary; alpha=0.2, beta=0.8, R=3 px (300 m triangular kernel)",
+    "withheld_positive_occurrences": 22290,
+    "candidate_pooled_dti": 0.11342900649535811,
+    "candidate_ci95": [0.09676886674984296, 0.1268621949043373],
+    "same_run_ctrl_h35_pooled_dti": 0.15238901899668933,
+    "paired_gain_vs_ctrl_h35": -0.038960012501331215,
+    "paired_gain_ci95_vs_ctrl_h35": [-0.047168504052067656, -0.024562119794497073],
+    "gate_passed": false
+  },
+  "correlation_overlap_vs_registry": {
+    "source": "Existing H73-PM lane receipts; not recomputed in this review.",
+    "registry_rasters_checked": 80,
+    "surface_max_abs_spearman": 0.128745,
+    "surface_rank_gate_threshold": 0.9,
+    "r13_lattice_candidate_dots_within_3px_fraction": 1.0,
+    "literal_overlap_gate_threshold": 0.7,
+    "flagged_literal": ["13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"],
+    "strict_lane_clear": false,
+    "density_aware_comparisons_do_not_waive_literal_gate": true
+  },
+  "raster_sha256": "35e1b1400a5a2057b8ae4acaab43ad7d9d165532f9a43709cf0d1eb4f2247595",
+  "raster_sha256_scope": "Existing H73-PM inspection artifact; not generated in this session.",
+  "validator_output": {
+    "source": "Existing H73-PM exact-file receipts; not rerun because sample template/data are absent.",
+    "single_band": true,
+    "dtype_float32": true,
+    "no_nan_or_inf_inside_footprint": true,
+    "footprint_values_inclusive_range_0_1": true,
+    "crs_matches_pinned_owner_mirror_template": "EPSG:32611",
+    "shape_matches_pinned_owner_mirror_template": [3730, 3292],
+    "transform_matches_pinned_owner_mirror_template": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "organizer_validation": null
+  },
+  "new_submission_name": null,
+  "prior_artifact_submission_name": "gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif",
+  "submission_note": "GEMSDOE25 H73-PM | propensity-matched H35 deapron; holdout FAIL vs H35; DO NOT SUBMIT | id 1b7533ebb62b | unscored",
+  "submission_note_characters": 114,
+  "submission_note_scope": "Existing research identifier only; not approved for a competition form.",
+  "organizer_confirmed_score": null,
+  "estimated_leaderboard_score": null,
+  "limitations": [
+    "The task's distinct single-method lane paragraph is missing.",
+    "The required pinned feature cache is absent from this checkout. Scientific Python packages were installed into the ignored .venv for repository verification, but the missing feature cache still blocks scientific evaluation.",
+    "The existing H73 candidate fails the paired same-run holdout gate and strict literal lane gate.",
+    "No organizer receipts or current leaderboard snapshot were accessed; automated DrivenData access is prohibited."
+  ]
+}

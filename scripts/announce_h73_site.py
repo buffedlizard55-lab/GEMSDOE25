@@ -1,70 +1,117 @@
 #!/usr/bin/env python3
-"""Prepend the H73-PM status banner to docs/index.html and refresh the README decision block.
+"""Publish the cache-gated H73-BW stop and keep the prior H73-PM file inspection-only.
 
-Idempotent; reads every number from registry/run_card_h73_2026-10-26.json. Historical page
-content is preserved verbatim below the banner (tests lock several historical strings).
+The H73-PM model remains a failed, unscored research result; this block selector is blocked before
+fit because shared caches are absent. This synchronization helper never creates a model, TIFF, or score.
 """
-
 from __future__ import annotations
 
+import html
 import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-MARK = "H73-PM-2026-10-26"
+MARK = "H73-BW-2026-10-26"
+
+
+def h73bw_banner(pm_card: dict, bw_card: dict, preflight: dict, lane_audit: dict, *, docs_page: bool = True) -> str:
+    pm = pm_card["holdout_dti"]
+    bw = bw_card["holdout_dti"]
+    lattice = lane_audit["lattice"][0]
+    file_name = pm_card["submission_name"]
+    missing = [row["path"] for row in preflight["required_artifacts"] if not row["exists"]]
+    links = "" if docs_page else "docs/"
+    kb = "../knowledge/" if docs_page else "knowledge/"
+    ev = "../evidence/" if docs_page else "evidence/"
+    reg = "../registry/" if docs_page else "registry/"
+    return (
+        f'<!-- {MARK} --><aside class="current-status" aria-label="Current H73-BW decision">\n'
+        f"<strong>26 OCT 2026 · NO NEW TIF · H73-BW: BLOCKED BEFORE FIT · "
+        f"PRIOR RESEARCH ARCHIVE DOWNLOAD: YES (INSPECTION ONLY) · COMPETITION-READY TIF: NO · "
+        f"OK TO SUBMIT: NO — DO NOT SUBMIT</strong>\n"
+        f"<span>H73-BW is an evaluation-only diagnostic, conditionally authorized but stopped by its cache gate: "
+        f"{len(missing)}/{len(preflight['required_artifacts'])} required shared-cache artifacts are absent. "
+        f"No H73-BW fit, HOLDOUT-DTI, canary, candidate surface, lane audit, or raster exists ({html.escape(bw['reason'])}). Prior H73-PM "
+        f"HOLDOUT-DTI {pm['pm_deapron_pooled']:.5f} vs same-run H35 {pm['ctrl_h35_pooled']:.5f} "
+        f"({pm['withheld_positive_occurrences']:,} withheld-positive occurrences; 95% CI "
+        f"[{pm['pm_deapron_ci95'][0]:.5f}, {pm['pm_deapron_ci95'][1]:.5f}]) is a catalogue-gap proxy, not a "
+        f"leaderboard estimate. Its literal lane audit flags {100 * lattice['cand_dots_within_3px']:.0f}% of dots "
+        f"within 3 px of the r13 lattice; no density-aware waiver applies. No submission is eligible. "
+f"Estimated competition score: UNKNOWN (not calibrated).</span>\n"
+        f'<a href="{links}downloads/{html.escape(file_name)}" download>↓ Prior H73-PM file for inspection only — DO NOT SUBMIT</a> · '
+        f'<a href="{reg}run_card_h73_bw_2026-10-26.json" download>H73-BW run card (metrics null)</a> · '
+        f'<a href="{ev}h73_bw_preflight_2026-10-26.json" download>cache preflight receipt</a> · '
+        f'<a href="{kb}34_h73_bw_block_selector_2026-10-26.md">H73-BW decision &amp; design</a> · '
+        f'<a href="{links}current-review.html#h73-status">full current review →</a></aside>'
+    )
+
+
+def publish_banner(page: str, banner: str) -> str:
+    """Replace this review's marked banner, or insert it at the top of <main>."""
+    marker = f"<!-- {MARK} -->"
+    start = page.find(marker)
+    if start >= 0:
+        close = page.find("</aside>", start)
+        if close < 0:
+            raise ValueError("H73-BW marker found without its closing aside")
+        return page[:start] + banner + page[close + len("</aside>"):]
+    anchor = '<main class="wrap">'
+    if anchor not in page:
+        raise ValueError("Could not locate main wrapper to publish H73-BW decision")
+    return page.replace(anchor, anchor + banner, 1)
 
 
 def main() -> None:
-    card = json.loads((ROOT / "registry" / "run_card_h73_2026-10-26.json").read_text())
-    h = card["holdout_dti"]
-    zfile = card["submission_name"]
-    zzip = zfile.replace(".tif", ".zip")
-    banner = (
-        f'<!-- {MARK} --><aside class="current-status" aria-label="H73-PM status">\n'
-        f"<strong>26 OCT 2026 · NEW UNIQUE RESEARCH TIF (H73-PM) · OK TO DOWNLOAD: YES (INSPECTION ONLY) · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>\n"
-        f"<span>Propensity-matched H35 GeoTIFF <code>{card['content_id']}</code> ({card['positive_pixels']:,} dots) is format-valid "
-        f"and density-aware UNIQUE ({100 * card['correlation_overlap_vs_registry']['focus_winners']['b2_overlap']:.1f}% of dots within 3 px of GEMSDOE32 B2), "
-        f"but HOLDOUT-DTI {h['pm_deapron_pooled']:.5f} failed the frozen slot gate vs same-run CTRL_H35 {h['ctrl_h35_pooled']:.5f} "
-        f"(paired {h['paired_gain_vs_h35']:+.5f}). HOLDOUT-DTI is a catalogue-gap proxy, not a leaderboard estimate. "
-        f'Note ({card["note_chars"]} chars, identification only): <code>{card["note"]}</code></span>\n'
-        f'<a href="downloads/{zfile}" download>↓ Download {zfile} (inspection only)</a> · '
-        f'<a href="downloads/{zzip}" download>↓ ZIP</a> · '
-        f'<a href="data/run_card_h73_2026-10-26.json" download>↓ H73 run card JSON</a> · '
-        f'<a href="../knowledge/33_h73_outcomes_and_executive_summary_2026-10-26.md">H73 outcomes &amp; nine-site executive summary →</a></aside>'
-    )
-    page_path = ROOT / "docs" / "index.html"
-    page = page_path.read_text()
-    if MARK not in page:
-        anchor = '<main class="wrap">'
-        assert anchor in page
-        page = page.replace(anchor, anchor + banner, 1)
-        page_path.write_text(page)
-        print("docs/index.html banner inserted")
-    else:
-        print("docs/index.html banner already present")
+    pm_card = json.loads((ROOT / "registry" / "run_card_h73_2026-10-26.json").read_text())
+    bw_card = json.loads((ROOT / "registry" / "run_card_h73_bw_2026-10-26.json").read_text())
+    preflight = json.loads((ROOT / "evidence" / "h73_bw_preflight_2026-10-26.json").read_text())
+    lane_audit = json.loads((ROOT / "evidence" / "h73_lane_extended.json").read_text())
+
+    for rel in ("docs/index.html", "index.html", "docs/current-review.html", "docs/executive-summary.html"):
+        path = ROOT / rel
+        page = path.read_text()
+        banner = h73bw_banner(pm_card, bw_card, preflight, lane_audit, docs_page=(rel != "index.html"))
+        updated = publish_banner(page, banner)
+        updated = updated.replace(
+            "26 OCT 2026 · RESEARCH-ARCHIVE DOWNLOAD: YES (INSPECTION ONLY) · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT",
+            "PRIOR H72-3 ARCHIVE · RESEARCH INSPECTION ONLY · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT",
+        )
+        path.write_text(updated)
+        print(f"{rel}: H73-BW status synchronized")
 
     readme_path = ROOT / "README.md"
     readme = readme_path.read_text()
-    if MARK not in readme:
-        block = (
-            f"<!-- {MARK} -->\n"
-            f"**H73-PM update (2026-10-26, this branch):** unique research GeoTIFF "
-            f"[`{zfile}`](docs/downloads/{zfile}) (content id `{card['content_id']}`, {card['positive_pixels']:,} dots) — "
-            f"**OK to download: YES (inspection) · OK to spend a weekly slot: NO — DO NOT SUBMIT.** "
-            f"Propensity-matched training restored B2-like far-field geometry and beat the catalogue-free control, "
-            f"but pooled HOLDOUT-DTI {h['pm_deapron_pooled']:.5f} failed the frozen slot gate vs same-run CTRL_H35 "
-            f"{h['ctrl_h35_pooled']:.5f} (paired {h['paired_gain_vs_h35']:+.5f}). "
-            f"[H73 outcomes & nine-site executive summary](knowledge/33_h73_outcomes_and_executive_summary_2026-10-26.md) · "
-            f"[H73 run card](registry/run_card_h73_2026-10-26.json) · [pre-registration](knowledge/32_preregistered_h73_pm_2026-10-26.md). "
-            f"Next required instrument: 25-km block-withheld selector (knowledge/33 §4). No weekly slot was used.\n\n"
-        )
-        marker = "## Current decision — 2026-10-26\n"
-        assert marker in readme
-        readme = readme.replace(marker, marker + "\n" + block, 1)
-        readme_path.write_text(readme)
-        print("README decision block updated")
+    marker = f"<!-- {MARK} -->"
+    h = pm_card["holdout_dti"]
+    file_name = pm_card["submission_name"]
+    block = (
+        f"{marker}\n"
+        f"**H73-BW diagnostic: {bw_card['status'].upper()} · NO NEW TIF · OK TO SUBMIT: NO.** "
+        f"The evaluation-only block selector is blocked before fit because {len(preflight['errors'])} cache-gate errors were recorded. "
+        f"Prior H73-PM research GeoTIFF [{file_name}](docs/downloads/{file_name}) "
+        f"(content id `{pm_card['content_id']}`, {pm_card['positive_pixels']:,} dots) is for inspection only; "
+        f"the literal lane audit flags the r13 lattice, so DO NOT SUBMIT. Its HOLDOUT-DTI is {h['pm_deapron_pooled']:.5f} "
+        f"vs same-run H35 {h['ctrl_h35_pooled']:.5f}, paired gain {h['paired_gain_vs_h35']:+.5f}, "
+        f"95% CI [{h['paired_ci95_vs_h35'][0]:+.5f}, {h['paired_ci95_vs_h35'][1]:+.5f}], "
+        f"{h['withheld_positive_occurrences']:,} withheld positives; this is not a leaderboard estimate. "
+        f"No H73-BW metric or raster was produced. [H73-BW design](knowledge/34_h73_bw_block_selector_2026-10-26.md) · "
+        f"[preflight](evidence/h73_bw_preflight_2026-10-26.json) · "
+        f"[run card](registry/run_card_h73_bw_2026-10-26.json) · "
+        f"[follow-up review](knowledge/35_h73_bw_followup_review_2026-10-26.md).\n\n"
+    )
+    if marker in readme:
+        start = readme.index(marker)
+        end = readme.find("\n\n", start)
+        if end < 0:
+            raise ValueError("README H73-BW marker has no paragraph terminator")
+        readme = readme[:start] + block.rstrip() + readme[end:]
     else:
-        print("README already updated")
+        heading = "## Current decision — 2026-10-26\n"
+        if heading not in readme:
+            raise ValueError("README current-decision heading not found")
+        readme = readme.replace(heading, heading + "\n" + block, 1)
+    readme_path.write_text(readme)
+    print("README: H73-BW status synchronized")
 
 
 if __name__ == "__main__":

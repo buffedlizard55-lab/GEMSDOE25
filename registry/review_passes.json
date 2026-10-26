@@ -1119,6 +1119,86 @@
   "pr_47_review": "REQUEST_CHANGES; gh pr view reports CHANGES_REQUESTED; GitHub API confirms open, mergeable=false, merge_state=dirty; base ece220432d7cec9af8d246959146245c9dceb1c1 is stale vs origin/main bc3381fd82d8dca5c75721366ad90b2af8019548; not merged",
   "integrated_origin_main_commit": "bc3381fd82d8dca5c75721366ad90b2af8019548"
  },
+ "arena_c1c20eed_h73_bw_followup_2026_10_26": {
+  "schema_version": 1,
+  "date_utc": "2026-10-26",
+  "branch": "arena/c1c20eed-gemsdoe25",
+  "base_commit": "af2b6f2543e5422a7e917638b70e038e6fd91cad",
+  "session_focus": "Resolve the conditional H73-BW diagnostic decision, implement a read-only shared-cache gate and isolated 25-km BlockHoldout, update current site/README and preserve no-score/no-slot boundaries.",
+  "pass_1_implement_and_verify": {
+   "completed": [
+    "Re-read complete README.md and AGENTS.md; read all 102 lines of knowledge/32 and all 116 lines of knowledge/33 in chunks; verified the prior H73-PM run card and saved cell analysis.",
+    "Resolved the H73-BW gate distinction: the H73-PM qualitative far-field signal over blind (+0.006740, 3/4 folds, 46.4% >20 px) meets the rank-2 diagnostic precondition, while the stronger H73-PM screen vs H35 failed (0.082120 vs 0.097871). Authorized only one new evaluation-only block selector, not confirmation or a slot.",
+    "Added knowledge/34 conditional design and knowledge/35 follow-up review; added H73-BW JSON run card with null holdout/raster/score fields and a machine-readable preflight receipt.",
+    "Implemented isolated src/gems25/block_holdout.py and a no-restore/no-build cache preflight; updated the generated current review, README, and docs/data run-card exports."
+   ],
+   "decision": "No real-data H73-BW run: all eight shared cache artifacts are absent. No feature cache was rebuilt, no model fit or holdout score was computed, and no TIF or slot was produced."
+  },
+  "pass_2_bugs_assumptions_edge_cases": {
+   "found_and_fixed": [
+    "Initial placement of BlockHoldout in src/gems25/holdout.py changed the frozen H73-PM evaluator hash and caused a regression test failure; moved the new class to src/gems25/block_holdout.py so historical evaluator source remains unchanged.",
+    "Zero-target component selection in the new block selector is explicitly empty; synthetic tests exercise determinism, checkerboard parity, complete component hiding, collar constraints, block size and fold validation.",
+    "The H34 sidecar loader silently creates a missing file; the read-only preflight requires both H34 sidecar and names JSON and never calls that loader. Missing pins, missing artifacts, hash mismatch and wrong H34 names fail closed.",
+    "Current site initially lacked legacy status phrases expected by existing copy checks; preserved compatibility while adding the current H73-BW blocked status and inspection-only/DO NOT SUBMIT distinctions."
+   ],
+   "known_residual_risks": [
+    "BlockHoldout geometry was tested only on synthetic arrays; no real-grid fold occupancy, connected-component distribution, leakage canary or HOLDOUT-DTI was evaluated.",
+    "H34 has no expected hash in evidence/work_cache_hashes.json. A future present sidecar must have its exact hash and names recorded and be shared across all same-run arms.",
+    "The carried-forward prompt still refers to an unidentified separate method paragraph; the provisional H73-PM-only lane interpretation is documented, not owner-confirmed.",
+    "No competition template, scored raster group, or external raster inputs were restored; 12 data-dependent tests remain skipped."
+   ]
+  },
+  "pass_3_original_request_reconciliation": {
+   "confirmed": [
+    "The nine-focus-site comparison, owner-reported/unverified score labels and conditional GEMSDOE32 B2 explanation remain in knowledge/33; 0.3195 and 0.4413 remain unverified and are not projections.",
+    "Three novel geology hypotheses remain planning-only in knowledge/29 and were not turned into extra method lanes or fitted in this follow-up.",
+    "The only downloadable TIF linked in the H73 block is the prior H73-PM research artifact; strict literal lane flags the r13 lattice and the file remains inspection-only, DO NOT SUBMIT. No new TIF exists.",
+    "No DrivenData page, leaderboard, submission form, credentials or upload were accessed. Official links are manual-review references only.",
+    "The H73-BW run card keeps unknown metrics, confidence intervals, raster hashes, validator and score projection null; Maximize P(Win) / Own the Outcome stop is explicit."
+   ],
+   "unfulfilled": [
+    "No real-data spatial-block holdout validation because the eight shared cache files are missing; requested top-candidate validation remains blocked before fit.",
+    "No unique submission-ready GeoTIFF or organizer-confirmed score/receipt was produced.",
+    "No external official source page was freshly fetched or independently verified in this turn."
+   ]
+  },
+  "scientific_budget": {
+   "new_experiments": 0,
+   "selector_budget": 1,
+   "model_fits": 0,
+   "new_tifs": 0,
+   "weekly_slots_used": 0
+  },
+  "verification": {
+   "pytest": "350 passed, 12 skipped after integrating origin/main c04766f; skipped tests require un-restored competition template, scored rasters or external inputs",
+   "ruff": "passed",
+   "compileall": "passed",
+   "javascript_syntax": "node --check docs/assets/app.js passed",
+   "git_diff_check": "passed",
+   "preflight": "blocked_before_fit; 8/8 required artifacts missing; no restore/build/load_h34/fit",
+   "site_readme": "scripts/build_site.py and scripts/build_readme.py completed; H73-BW status synchronization and current links tested"
+  },
+  "artifacts": [
+   "knowledge/34_h73_bw_block_selector_2026-10-26.md",
+   "knowledge/35_h73_bw_followup_review_2026-10-26.md",
+   "registry/run_card_h73_bw_2026-10-26.json",
+   "evidence/h73_bw_preflight_2026-10-26.json",
+   "src/gems25/block_holdout.py",
+   "scripts/preflight_h73_bw.py",
+   "tests/test_h73_bw_preflight.py",
+   "tests/test_h73_bw_review.py"
+  ],
+  "pr_and_deployment": "PR #58 opened from the fixed Arena branch against main; two pytest checks are pending. No merge or Pages deployment claimed at this receipt time.",
+  "integrated_origin_main_commit": "c04766f",
+  "pull_request": {
+   "number": 58,
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/pull/58",
+   "base": "main at c04766f",
+   "head": "arena/c1c20eed-gemsdoe25",
+   "status": "open; GitHub reports mergeable=true while required pytest checks are pending",
+   "merge": "not yet attempted"
+  }
+ },
  "session_2026_10_26_h74_rmps_bw": {
   "schema_version": 1,
   "date_utc": "2026-10-26",

@@ -1,0 +1,98 @@
+{
+  "schema": "run_card/v1",
+  "session": "2026-10-26 H73-BW 25-km block-withheld selector preflight",
+  "branch": "arena/c1c20eed-gemsdoe25",
+  "status": "blocked_before_fit",
+  "experiments_used": 0,
+  "experiments_budget": 1,
+  "preregistration": "knowledge/34_h73_bw_block_selector_2026-10-26.md",
+  "cache_preflight": "evidence/h73_bw_preflight_2026-10-26.json",
+  "hypothesis": "Evaluation hypothesis only: if H73-PM's de-aproned far-field signal survives complete spatial-block withholding, its component-split holdout deficit may reflect evaluator adjacency bias rather than absence of far-field signal. No new geological detector or features are proposed here.",
+  "mechanism": "The H73-BW evaluator hides every complete 8-connected catalogue component intersecting a 25-km checkerboard test block; H73-PM's negative-sampling and de-apron emission remain unchanged. This removes the adjacent-fragment shortcut in the component-split holdout.",
+  "named_non_fault_mimic": "Not applicable to this evaluation-only selector; the upstream H73-PM model's named mimics are Lahontan shoreline scarps and alluvial-fan channel levees.",
+  "method_lane": {
+    "selected_candidate_method": "H73-PM propensity-matched H35 from the already pre-registered prior session",
+    "selector_role": "H73-BW changes only spatial withholding; it is not a new geological method or a submission lane",
+    "prompt_ambiguity": "The preserved prompt refers to a separate 'single method paragraph below', but no distinct paragraph is identifiable in the checked-in brief. The provisional interpretation is documented in the pre-registration; no fit occurred."
+  },
+  "planned_evaluator": {
+    "name": "gems25.metric.dti_binary via gems25.experiment.Cell.evaluate and gems25.block_holdout.BlockHoldout",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "radius_px": 3.0,
+    "block_size_px": 250,
+    "block_size_m": 25000,
+    "folds": [
+      "block_parity_00",
+      "block_parity_01",
+      "block_parity_10",
+      "block_parity_11"
+    ],
+    "draws": [
+      94,
+      95
+    ],
+    "leakage_auc_cap": 0.9
+  },
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positive_occurrences": null,
+    "pooled_candidate_dti": null,
+    "candidate_ci95": null,
+    "same_run_ctrl_h35_dti": null,
+    "same_run_ctrl_blind_bd_dti": null,
+    "paired_gain_vs_ctrl_h35": null,
+    "paired_ci95_vs_ctrl_h35": null,
+    "far_field_candidate_dti_d_vis_gt_9px": null,
+    "far_field_ctrl_h35_dti_d_vis_gt_9px": null,
+    "far_field_ctrl_blind_bd_dti_d_vis_gt_9px": null,
+    "selector_gate_passed": null,
+    "reason": "No HOLDOUT-DTI computed: all eight required shared-cache artifacts are absent; the preflight stopped before any fit."
+  },
+  "leakage_canary": {
+    "cap": 0.9,
+    "results": null,
+    "passed": null,
+    "reason": "Not run because the shared-cache preflight failed before model construction."
+  },
+  "organizer_confirmed_score": null,
+  "score_projection": null,
+  "correlation_overlap_vs_registry": {
+    "surface_rank_correlation": null,
+    "final_dot_overlap": null,
+    "lane_audit_performed": false,
+    "reason": "No candidate surface, final dots, or new raster were produced."
+  },
+  "raster_sha256": null,
+  "content_id": null,
+  "positive_pixels": null,
+  "validator_output": null,
+  "submission_name": null,
+  "note": null,
+  "note_chars": null,
+  "verdict": "conditional diagnostic go; blocked by absent shared caches; no candidate TIF; no submission approval",
+  "slot_approved": false,
+  "ok_to_download_inspection": false,
+  "ok_to_submit_slot": false,
+  "preflight_performed": true,
+  "auto_restore_performed": false,
+  "feature_build_performed": false,
+  "h34_loader_called": false,
+  "model_fit_performed": false,
+  "conditional_decision": {
+    "decision": "go_for_one_evaluation_only_diagnostic",
+    "condition_source": "knowledge/32_preregistered_h73_pm_2026-10-26.md §1 rank-2 entry; H73-BW is warranted if H73-PM shows far-field signal",
+    "condition_met": true,
+    "basis": {
+      "prior_h73_pm_far_field_dti": 0.08211988675436788,
+      "prior_same_run_ctrl_blind_far_field_dti": 0.07537942478692798,
+      "prior_gain_vs_blind": 0.006740461967439895,
+      "prior_folds_positive_vs_blind": 3,
+      "prior_fraction_emitted_gt_20px": 0.46409875,
+      "stronger_h73_pm_screen_passed": false,
+      "stronger_screen_failure": "PM_DEAPRON far-field HOLDOUT-DTI did not exceed same-run CTRL_H35 (0.09787060036779713)."
+    },
+    "scope_limit": "Diagnostic holdout only; no H73-PM confirmation, no feature/model change, no full-footprint build, no TIF, no slot."
+  }
+}

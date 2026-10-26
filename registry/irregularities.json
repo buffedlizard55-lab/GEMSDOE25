@@ -811,6 +811,30 @@
    "resolution_or_action": "Use 14.6% (<=2px) / 8.8% (<=1px) in new documents; historical documents left unchanged as records."
   },
   {
+   "id": "IR-26-H73-BW-CACHE-ABSENT-20261026",
+   "severity": "high",
+   "status": "open",
+   "issue": "The documented H73-BW 25-km block selector cannot reuse its required shared cache in this checkout: bands/_footprint.npy, bands/_labels.npy, static_ABCD.npy (+ names), addons.npy (+ names), and h34_columns.npy (+ names) are absent. The shared load_h34_sidecar helper silently builds its sidecar when missing, so calling the H73-PM runner path without a preflight would violate the no-rebuild instruction.",
+   "evidence": "evidence/h73_bw_preflight_2026-10-26.json; data/ contains only .gitkeep; scripts/preflight_h73_bw.py; src/gems25/h34.py::load_h34_sidecar; knowledge/34_h73_bw_block_selector_2026-10-26.md.",
+   "resolution_or_action": "Preflight stopped before any fit; no restore or feature build was attempted. Reuse only the existing pinned work cache if it becomes available; verify all recorded hashes and H34 names first. Do not call load_h34_sidecar when the sidecar is missing."
+  },
+  {
+   "id": "IR-26-METHOD-PARAGRAPH-AMBIGUITY-20261026",
+   "severity": "medium",
+   "status": "open",
+   "issue": "The carried-forward owner brief refers to a separate 'single method paragraph below', but no distinct method paragraph can be identified in the checked-in brief/README or current session context. The H73-BW plan is an evaluation-only selector for the already-tested H73-PM method; this is a conservative provisional interpretation, not an owner-confirmed lane selection.",
+   "evidence": "knowledge/34_h73_bw_block_selector_2026-10-26.md \u00a71; knowledge/32_preregistered_h73_pm_2026-10-26.md; knowledge/33_h73_outcomes_and_executive_summary_2026-10-26.md \u00a74.",
+   "resolution_or_action": "No new geological feature, surface, or fit is authorized by this interpretation. Keep H73-PM as the only candidate method and H73-BW as an evaluator change; if the missing paragraph is later located, reconcile it before any experiment outside this selector."
+  },
+  {
+   "id": "IR-26-H73-BW-CONDITIONAL-GATE-RESOLUTION-20261026",
+   "severity": "medium",
+   "status": "resolved",
+   "issue": "H73 planning documents appear to conflict: knowledge/32 \u00a71 says the rank-2 H73-BW selector is worth building only if H73-PM shows far-field signal; \u00a72's stronger H73-PM screen requires beating both H35 and blind controls and failed vs H35; knowledge/33 \u00a74 calls H73-BW the single blocking instrument.",
+   "evidence": "knowledge/32_preregistered_h73_pm_2026-10-26.md \u00a7\u00a71\u20132; knowledge/33_h73_outcomes_and_executive_summary_2026-10-26.md \u00a7\u00a73\u20134; registry/run_card_h73_2026-10-26.json; knowledge/34_h73_bw_block_selector_2026-10-26.md \u00a71a.",
+   "resolution_or_action": "Distinguish the qualitative rank-2 diagnostic precondition from the stricter candidate-screen gate. H73-PM showed far-field HOLDOUT-DTI +0.006740 vs CTRL_BLIND_BD (3/4 folds; 46.4% of emissions >20 px), so authorize one evaluation-only block selector to diagnose the component-split contrast. H73-PM still failed vs CTRL_H35 (0.082120 vs 0.097871), so no confirmation, feature/model change, full-footprint build, TIFF, or slot is authorized. The run is blocked before fit because the shared cache is absent."
+  },
+  {
    "id": "IR-25-LIDAR-BLIND-CONVERGENCE-20261026",
    "severity": "medium",
    "status": "disclosed",

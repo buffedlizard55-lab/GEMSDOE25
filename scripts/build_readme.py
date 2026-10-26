@@ -453,7 +453,12 @@ def main() -> None:
     A("~~~markdown\n" + (ROOT / "knowledge" / "current_session_brief_2026-10-25_66ca_CONDENSED.md").read_text().rstrip() + "\n~~~\n")
     A("</details>\n")
     (ROOT / "README.md").write_text("\n".join(L))
-    print("README.md written,", len("\n".join(L)), "chars")
+    try:
+        from announce_h73_site import main as publish_current_status
+    except ImportError:
+        from scripts.announce_h73_site import main as publish_current_status
+    publish_current_status()
+    print("README.md written,", len((ROOT / "README.md").read_text()), "chars")
 
 
 if __name__ == "__main__":

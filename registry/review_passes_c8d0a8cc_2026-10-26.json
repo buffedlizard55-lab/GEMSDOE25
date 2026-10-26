@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "session_branch": "arena/c8d0a8cc-gemsdoe25",
+  "date_utc": "2026-10-26",
+  "verdict": "negative preflight; no new experiment or TIF; current H73-PM artifact is inspection-only and not submit-eligible",
+  "pass_1_implement_and_verify": {
+    "completed": [
+      "Reviewed AGENTS.md, current README decision/brief, repository source/evidence layout, H73 run card and existing holdout/lane/format receipts.",
+      "Reviewed open PR #47 metadata/body and its scope; did not merge or modify the sibling branch.",
+      "Found that README/root landing page identified H73-PM as current while the executive-summary/current-review subpages still led with prior H72-3 state; synchronized the H73 decision banner across root index, docs index, current review and executive summary, and made site/README generators reapply it.",
+      "Added a nine-site review, three ranked planning-only hypotheses, and a negative preflight run card with explicit unknown score fields.",
+      "Reinstalled pinned project dependencies from PyPI for verification; did not restore/rebuild the absent feature cache and did not fit a model."
+    ],
+    "verification": {
+      "site_builder": "scripts/build_site.py completed; current H73 status re-applied after generated pages were written",
+      "announcement_idempotence": "passed",
+      "local_links": "passed on index.html, docs/index.html, docs/current-review.html, docs/executive-summary.html",
+      "pytest": "340 passed, 12 skipped; skips require competition template, scored registry or external rasters not restored",
+      "ruff": "passed",
+      "compileall": "passed",
+      "javascript_syntax": "passed",
+      "git_diff_check": "passed"
+    }
+  },
+  "pass_2_bugs_assumptions_edge_cases": {
+    "fixed": [
+      "The site's latest-decision strip had previously called H73 unique without foregrounding that the strict literal lane fails on the r13 lattice; it now states 100% candidate-dot proximity within 3 px and DO NOT SUBMIT.",
+      "Prominent status now separates research download, competition-ready file, and slot eligibility; no HOLDOUT-DTI is presented as a leaderboard estimate.",
+      "Prior H72 status is relabeled as archive/history rather than the current decision.",
+      "The announced H73 note is presented only as an inspection identifier, not as an authorized competition-form note."
+    ],
+    "known_limits": [
+      "The distinct method paragraph referred to by the user's lane protocol is absent; no new lane could be responsibly assigned.",
+      "The required derived cache is not present in this checkout; data/ contains only .gitkeep. Twelve data-dependent tests were consequently skipped.",
+      "The H73 HOLDOUT-DTI, lane and exact-file format results are cited from previous run receipts and were not recomputed in this review.",
+      "No DrivenData page, submission portal, receipt or live leaderboard was accessed."
+    ]
+  },
+  "pass_3_recheck_against_original_request": {
+    "confirmed": [
+      "All nine requested sites are included with OWNER-REPORTED historical claims and NOT ESTIMABLE new leaderboard scores.",
+      "The B2 identity/pruning explanation is labeled conditional on owner-reported score claims and is not presented as proven causation.",
+      "Three untried/untested geological mechanisms are ranked with layers, signatures, rationale, novelty, named mimics, relative upside, implementation cost and source/data limits.",
+      "The candidate score label is HOLDOUT-DTI with evaluator, withheld-positive count and 95% CI; organizer-confirmed score and projection remain null/unknown.",
+      "The final run card records a negative preflight, no new TIFF, the existing artifact hash/validator provenance, strict registry overlap and note length.",
+      "No new TIFF was manufactured, no failed candidate was promoted, and no weekly slot was used."
+    ],
+    "unfulfilled": [
+      "A new, gate-cleared unique competition TIFF is not available; H73-PM is a prior research artifact and fails holdout and strict lane gates.",
+      "No new hypothesis could be validated with HOLDOUT-DTI because the cached feature stack is missing and no method paragraph/lane was specified.",
+      "No organizer-confirmed competition score or present leaderboard snapshot is available."
+    ],
+    "pr_merge": "Not yet opened for this current review; no merge or deployment claimed in this receipt."
+  },
+  "artifacts": [
+    "knowledge/34_current_session_review_2026-10-26.md",
+    "registry/run_card_current_session_2026-10-26.json",
+    "registry/review_passes_c8d0a8cc_2026-10-26.json",
+    "scripts/announce_h73_site.py",
+    "tests/test_h73_site_status.py"
+  ]
+}
