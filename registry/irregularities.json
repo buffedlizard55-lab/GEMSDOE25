@@ -657,6 +657,30 @@
    "issue": "README describes the Family A potential-field unit mismatch as fixed, but the current shared build_static still forms A_mag_tilt directly from provider tmi_vg/tmi_hg. The narrative and implementation need reconciliation; no new unit calibration was performed in this session.",
    "evidence": "src/gems25/features.py build_static Family A; README IR-25-POTENTIAL-FIELD-UNIT-MISMATCH",
    "resolution_or_action": "Audit source units and cached hashes before any new Family A run. ROD is catalogue-free radiometric/scarp work; its H35 comparator uses the existing BDE+7/H34 recipe, not a newly repaired A stack."
+  },
+  {
+   "id": "IR-26-LANE-BUDGET-CONFLICT",
+   "severity": "high",
+   "status": "open",
+   "issue": "The literal 70%-within-3-px lane rule and the scoring objective conflict. The restored registry raster 13gems_20261001_r13-lattice-s5_v2_nan-outside.tif (SHA-256 b4570b40\u2026) has a 3-px halo covering 99.8724% of the 5,106,385 eligible pixels, so the exact bound permits at most 21,713 unique dots, reachable only by using every one of the 6,514 uncovered pixels. No competitive-density candidate can pass that literal rule against this raster.",
+   "evidence": "evidence/lane_feasibility_2026-10-26.json (shared tool src/gems25/lane_feasibility.py), knowledge/29_lane_feasibility_plan_2026-10-26.md, knowledge/29_lane_budget_preregistration_2026-10-26.md",
+   "resolution_or_action": "Owner policy decision required: exclude the synthetic sibling lattice from the lane registry while reporting it separately, or adopt the symmetric density-aware statistic. Neither exception was applied silently; every duplicate flag is preserved."
+  },
+  {
+   "id": "IR-26-D01-DENSITY-NEGATIVE",
+   "severity": "medium",
+   "status": "closed",
+   "issue": "The preregistered D01 density diagnostic shows proxy HOLDOUT-DTI rising monotonically with emitted density, so uniform thinning toward the lane budget costs performance; a low-density unique file would be knowingly inferior, and none was written.",
+   "evidence": "evidence/d01_density_2026-10-26/analysis.json, run_card.json, knowledge/31_d01_outcome_2026-10-26.md",
+   "resolution_or_action": "Recorded as a negative result. Do not submit a low-density artifact as a scoring strategy; the B2 near-catalogue collar hypothesis, not uniform thinning, is the surviving explanation for the reported 0.2778."
+  },
+  {
+   "id": "IR-26-REQUESTED-CAP-SATURATION",
+   "severity": "low",
+   "status": "open",
+   "issue": "In D01 the requested full-footprint dot caps are not fully reached: ridge candidates saturate, so per-quadrant emitted counts are far below the caps (median 960\u20135,012). The diagnostic ranks density regimes; it does not simulate one exact full-grid file.",
+   "evidence": "evidence/d01_density_2026-10-26/analysis.json (emitted_median), run_card.json caveat",
+   "resolution_or_action": "A direct full-grid density test would need a model fitted on all cells and a full-surface emitter; not run within the 3-experiment / 2-hour budget."
   }
  ]
 }

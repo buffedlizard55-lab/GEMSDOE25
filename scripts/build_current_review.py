@@ -134,6 +134,26 @@ Historical scores in the nine-site table are OWNER-REPORTED, not ORGANIZER-CONFI
 <p class="small">{row['positive_pixels']:,} positive pixels · Local format checks: {'pass' if row['local_format_pass'] else 'fail'} ·
 Not approved as a new submission. SHA-256: <code class="wrap-hash">{row['sha256']}</code></p>
 <a href="{e(row['source_url'])}">Pinned source revision</a> · <a href="{e(row['site_url'])}">Original site</a></article>''')
+    d01_path = ROOT/'evidence/d01_density_2026-10-26/analysis.json'
+    d01_section = ''
+    if d01_path.exists():
+        d01 = json.loads(d01_path.read_text())
+        d01_rows = ''.join(
+            f'<tr><td>{int(k):,}</td><td>{v["pooled_dti"]:.4f}</td>'
+            f'<td>{v["ci95"][0]:.4f}–{v["ci95"][1]:.4f}</td><td>{v["emitted_median"]:,.0f}</td></tr>'
+            for k, v in d01['arms'].items())
+        lane_arm, cur_arm = d01['arms']['21713'], d01['arms']['70524']
+        d01_section = f'''<section id="d01-density"><h2>New test: what the lane budget costs in proxy performance</h2>
+<p>The strict gate alone does not say whether a lane-clean file could be competitive, so the preregistered D01 diagnostic measured the incumbent H35 surface at seven fixed emission caps.
+One fit per buffered quadrant, draws 60/61, spacing 2.4 px, every feature canary passed (maximum AUC 0.8025). <b>HOLDOUT-DTI</b>, α=0.2, β=0.8, 300 m kernel:</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="D01 density response"><table><thead><tr><th>Requested cap (full-footprint dots)</th><th>HOLDOUT-DTI</th><th>95% CI</th><th>Median emitted per quadrant</th></tr></thead><tbody>{d01_rows}</tbody></table></div>
+<p>The lane-compatible cap gives <b>{lane_arm['pooled_dti']:.4f}</b> versus <b>{cur_arm['pooled_dti']:.4f}</b> at the current request: paired difference
+<b>{lane_arm['paired_gain_vs_current']:+.4f}</b>, 95% CI [{lane_arm['paired_ci95'][0]:+.4f}, {lane_arm['paired_ci95'][1]:+.4f}], worse in every quadrant and both draws.
+Uniform thinning is therefore <b>not</b> a route to a higher score; the reported B2 gain is better explained by selective near-catalogue collar pruning than by uniform density reduction.
+Requested caps saturate at available ridge candidates, so this orders density regimes rather than simulating one exact file (recorded as IR-26-REQUESTED-CAP-SATURATION).</p>
+<p><a href="../knowledge/31_d01_outcome_2026-10-26.md">Scientific write-up and the policy decision required</a> ·
+<a href="../evidence/d01_density_2026-10-26/run_card.json">D01 run card</a> ·
+<a href="../evidence/d01_density_2026-10-26/analysis.json">Full paired results and evaluator hashes</a></p></section>'''
     feasibility = json.loads((ROOT/'evidence/lane_feasibility_2026-10-26.json').read_text())
     geometry = feasibility['geometry']
     bounds = ''.join(f"<tr><td>{r['dots']:,}</td><td>{r['minimum_overlap']:.2%}</td><td>Impossible at this density</td></tr>"
@@ -168,6 +188,7 @@ We did not exclude the dense reference or substitute a density-aware waiver.</p>
 <p><a href="../evidence/lane_feasibility_2026-10-26.json">Download the reproducible geometry receipt</a> ·
 <a href="../knowledge/29_lane_feasibility_plan_2026-10-26.md">Preregistered proof and three deferred geological hypotheses</a></p>
 <p><b>No new TIFF generated:</b> the preregistered budgets cannot pass the required gate. The existing research download above remains DO NOT SUBMIT.</p></section>
+{d01_section}
 <section><h2>What is the strongest historical evidence?</h2>
 <p><b>GEMSDOE32 B2 — 0.2778, OWNER-REPORTED.</b> It is the highest supplied historical result among these focus sites.
 It is already an earlier submission, so it is <b>not</b> eligible as a new unique artifact. No organizer receipt has been supplied.</p>
@@ -241,6 +262,8 @@ def readme_status():
             "[This review's JSON run card](registry/run_card_repo_review_2026-10-26_session.json) · "
             "[Download audit and three deferred hypotheses](knowledge/29_download_audit_and_next_hypotheses_2026-10-26.md) · "
             "[Strict-lane feasibility proof and hypothesis slate](knowledge/29_lane_feasibility_plan_2026-10-26.md) · "
+            "[D01 density outcome: lane-compatible cap 0.0859 vs 0.1321, paired −0.0462](knowledge/31_d01_outcome_2026-10-26.md) · "
+            "[D01 run card](evidence/d01_density_2026-10-26/run_card.json) · "
             "[H71 outcomes](knowledge/28_h71_outcomes_2026-10-26.md) · "
             "[ROD run card](evidence/rod_2026-10-26/run_card.json). "
             "OLIC screen (draws 82-83) FAILED its frozen gate (+0.000849, 2/4 folds); no OLIC TIF was written. "

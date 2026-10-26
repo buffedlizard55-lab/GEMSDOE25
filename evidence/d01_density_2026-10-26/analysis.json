@@ -1,0 +1,177 @@
+{
+  "generated_utc": "2026-10-26T16:25:06Z",
+  "evidence_class": "HOLDOUT-DTI density-response diagnostic; no new geology; not a leaderboard score",
+  "design": {
+    "folds": 4,
+    "draws": [
+      60,
+      61
+    ],
+    "counts": [
+      12000,
+      21713,
+      26494,
+      37654,
+      44090,
+      59472,
+      70524
+    ],
+    "spacing_px": 2.4,
+    "footprint_px": 5167373,
+    "model": "H35 columns + H34 sidecar, shared HGB_PARAMS",
+    "note": "one fit per cell shared by all densities; no arm selection for submission"
+  },
+  "evaluator": {
+    "src/gems25/metric.py": "4f6e4732029efd0238388aec74590e56bc2727df7441220ca09af7d02e9da230",
+    "src/gems25/holdout.py": "f0455eb17921e50365342ffb658504a5fcc0ddb3d2bd82f4bf0568d772be2bc1",
+    "src/gems25/experiment.py": "f47cb776b0136ea33fc61ea244b81e6138e1cc1cfb8fd009af427896e906d548",
+    "src/gems25/validation.py": "bb2faea55b6bd827196f56758e5fbbf1e4e620e92779e6b9b53703c3bdf42ac3",
+    "src/gems25/thinning.py": "63bdfd1c11455e18446f0e1be0fbf7c93ae94c49f98624d3f4ef4ef76f79c55e",
+    "scripts/run_d01_density.py": "8e54a5a6df3838969da7a8c618b4f119a77c3d098210e0e65753d41aae821652"
+  },
+  "arms": {
+    "12000": {
+      "pooled_dti": 0.06387272331006023,
+      "ci95": [
+        0.043382524560724424,
+        0.09433219221913848
+      ],
+      "emitted_median": 960.0,
+      "withheld_positive_occurrences": 22813,
+      "fold_dti": [
+        0.11077856906118631,
+        0.06321896499163454,
+        0.03906725840336274,
+        0.06381471200807472
+      ],
+      "paired_gain_vs_current": -0.06824628492454861,
+      "paired_ci95": [
+        -0.07941602538624061,
+        -0.05169225260918672
+      ]
+    },
+    "21713": {
+      "pooled_dti": 0.08588968769311231,
+      "ci95": [
+        0.06364827023030506,
+        0.11449794705939041
+      ],
+      "emitted_median": 1677.5,
+      "withheld_positive_occurrences": 22813,
+      "fold_dti": [
+        0.1298901306693878,
+        0.09387929724962134,
+        0.0569383654730407,
+        0.08512168589470323
+      ],
+      "paired_gain_vs_current": -0.04622932054149653,
+      "paired_ci95": [
+        -0.05584480533555927,
+        -0.03212575535335842
+      ]
+    },
+    "26494": {
+      "pooled_dti": 0.09373433362802425,
+      "ci95": [
+        0.0722231448858459,
+        0.1213725472865456
+      ],
+      "emitted_median": 2022.0,
+      "withheld_positive_occurrences": 22813,
+      "fold_dti": [
+        0.136740106315354,
+        0.10305471237603123,
+        0.0653313971048819,
+        0.09157675004132514
+      ],
+      "paired_gain_vs_current": -0.038384674606584596,
+      "paired_ci95": [
+        -0.048875942793561986,
+        -0.02450679421353942
+      ]
+    },
+    "37654": {
+      "pooled_dti": 0.10874673361054939,
+      "ci95": [
+        0.0866936849642199,
+        0.1318993704855086
+      ],
+      "emitted_median": 2820.0,
+      "withheld_positive_occurrences": 22813,
+      "fold_dti": [
+        0.14195952824871597,
+        0.12348014305282777,
+        0.07832630149796127,
+        0.11037340034202425
+      ],
+      "paired_gain_vs_current": -0.023372274624059455,
+      "paired_ci95": [
+        -0.03084094744227761,
+        -0.013973644459624013
+      ]
+    },
+    "44090": {
+      "pooled_dti": 0.11451227993320164,
+      "ci95": [
+        0.09294557893361384,
+        0.1358863910841719
+      ],
+      "emitted_median": 3265.0,
+      "withheld_positive_occurrences": 22813,
+      "fold_dti": [
+        0.14408019731816504,
+        0.12600557707471188,
+        0.08534743710361906,
+        0.11937524714256269
+      ],
+      "paired_gain_vs_current": -0.017606728301407207,
+      "paired_ci95": [
+        -0.023179781871639396,
+        -0.011632322518609434
+      ]
+    },
+    "59472": {
+      "pooled_dti": 0.12572622066622285,
+      "ci95": [
+        0.10276087177438954,
+        0.14641778121441149
+      ],
+      "emitted_median": 4280.5,
+      "withheld_positive_occurrences": 22813,
+      "fold_dti": [
+        0.15168510012140168,
+        0.13555463280126287,
+        0.09506613196912307,
+        0.13550395754148278
+      ],
+      "paired_gain_vs_current": -0.006392787568385988,
+      "paired_ci95": [
+        -0.008636927180100423,
+        -0.002950868163485998
+      ]
+    },
+    "70524": {
+      "pooled_dti": 0.13211900823460884,
+      "ci95": [
+        0.11039321015226781,
+        0.14879530998050747
+      ],
+      "emitted_median": 5012.0,
+      "withheld_positive_occurrences": 22813,
+      "fold_dti": [
+        0.15199736036669254,
+        0.14073282460662837,
+        0.10316410843942521,
+        0.14485355663240146
+      ],
+      "paired_gain_vs_current": 0.0,
+      "paired_ci95": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "best_pooled_count": 70524,
+  "lane_budget_count": 21713,
+  "interpretation": "Descriptive density response on the catalogue-gap proxy. The count that maximises the proxy is NOT a validated method and must not be presented as one."
+}
