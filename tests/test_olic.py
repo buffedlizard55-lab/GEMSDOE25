@@ -4,10 +4,10 @@ from gems25.olic import OLIC_NAMES, compute_olic_grids, line_means
 
 
 def test_line_means_constant_field():
-    g = np.full((9, 9), 0.5, np.float32)
+    g = np.full((31, 31), 0.5, np.float32)
     lm = line_means(g, 5)
-    assert lm.shape == (4, 9, 9)
-    assert np.allclose(lm[:, 4, 4], 0.5)
+    assert lm.shape == (4, 31, 31)
+    assert np.allclose(lm[:, 15, 15], 0.5)  # interior: no zero-padding dilution
 
 
 def test_olic_prefers_line_over_isolated_dot():
