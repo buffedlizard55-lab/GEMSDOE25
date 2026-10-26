@@ -791,5 +791,49 @@
    "No organizer-confirmed receipt is present; 0.2778, 0.3195 and 0.4413 claims must not be conflated."
   ],
   "verdict": "negative; repository review and summary documentation only; no new TIFF, experiment, slot approval or competition score."
+ },
+ "current_turn_review_2026_10_26_arena_863e8740": {
+  "branch": "arena/863e8740-gemsdoe25",
+  "date_utc": "2026-10-26",
+  "pass_1_implement_and_verify": [
+   "Read AGENTS.md, README.md (including the long owner briefs), the prior session handoff, focus-site pixel forensics, current run cards, metric/holdout/writer, source/data manifests and site generator.",
+   "Restored the core, external and scored groups using scripts/restore_data.py; all restored files matched registry/data_manifest.json SHA-256 pins (owner mirrors, not organizer-authenticated). Prepared 19 bands, 5,167,373 footprint pixels, 60,988 labels, 64 static features and add-on cache.",
+   "Freshly reran scripts/analyze_focus_sites.py; it reproduced the D1.5/D2.8/R1/B2/G36 mask relations across the available 13 focus raster instances; all attached live scores remain OWNER-REPORTED.",
+   "Ranked four untested hypotheses, selected POL3 signed half-graben polarity, committed its preregistration as 9d342bd before implementation/fitting, implemented the static features and shared-Holdout screen, and committed implementation as 86f844b before fit.",
+   "Ran one frozen POL3 screen on draws 58/59 across four quadrants with feature-alone canaries; a post-fit summary bug was corrected using saved cell results without refit or tuning. HOLDOUT-DTI screen failed; no confirmation, surface, placement, raster or slot was produced.",
+   "Independently validated the existing H66 testing TIFF against the restored owner-mirror template; hard format checks passed, but its submission status remains DO NOT SUBMIT."
+  ],
+  "pass_2_bugs_assumptions_edge_cases": [
+   "Found that Cell.evaluate provides tp, fp and n_truth but not fn; corrected the POL3 pooled analyzer to derive FN = n_truth - TP and recomputed the result from saved cells, avoiding a costly and methodologically invalid refit.",
+   "Verified all four POL3 feature-alone canaries remained below 0.90; checked the two-polarity sign invariance and invalid LiDAR-coverage edge cases with focused unit tests.",
+   "Confirmed same-run H35 comparator, 4-fold pairing, 15-px buffer and exact DTI kernel settings in the preregistration and runner. The 95% interval includes zero and only 2/4 folds were positive; no confirmation was permitted.",
+   "Verified format-validation receipt refers to the existing H66 file only; did not misrepresent that validation as a POL3 candidate check or as organizer acceptance."
+  ],
+  "pass_3_recheck_against_original_request": [
+   "Rechecked every requested focus site (24,25,27,28,30,31,32,33,36), explained the locally verified raster transformations and kept every site score OWNER-REPORTED rather than ORGANIZER-CONFIRMED.",
+   "Rechecked score and leaderboard conflicts (0.3195 / 0.4413 and other repository snapshots); retained IR-25-LEADERBOARD-CONFLICT and made no live leaderboard claim.",
+   "Recorded the negative POL3 outcome, uncertainty, non-fault mimic, canaries and no-raster/no-lane-check/no-validator status in a JSON run card; existing site download remains visibly testing-only and DO NOT SUBMIT.",
+   "Updated the current site generator and README with the latest negative experiment rather than leaving H66 as the only apparent current status.",
+   "After main advanced via PR #37, merged origin/main commit 23afac5930a2a5f9f294fcbad14f340b788ca4c9 into this fixed branch; kept the ROD and APFL evidence as distinct sessions/artifacts, renamed the POL3 run card to avoid colliding with the repository-level review card, and added a clearly separated POL3 result section to the generated current review."
+  ],
+  "verification": {
+   "holdout_dti": "HOLDOUT-DTI: candidate pooled 0.1602799993 vs same-run H35 pooled 0.1612748274; 22,595 withheld positives; paired 4-fold gain -0.0008584532; 95% CI [-0.0094520321, +0.0077351256]; 2/4 positive folds; evaluator gems25.holdout.v1.2-buffered-4quad-pooled-dti.",
+   "canary": "Maximum standalone AUC 0.6015164595; all four features <= 0.90.",
+   "pytest": "247 passed, 1 expected ConstantInputWarning on an empty-candidate lane-preflight edge case; 0 skipped (full suite after main merge).",
+   "ruff": "ruff check src scripts tests passed after the main merge and current-review change.",
+   "git_diff_check": "passed after main merge and generated-site rebuild.",
+   "raster": "No new raster. Existing H66 testing TIFF independent hard checks pass against owner-mirror template; not slot-approved.",
+   "lane": "POL3 surface/dot comparison NOT RUN because preregistered HOLDOUT-DTI screen failed before surface construction.",
+   "pull_request": "PR #38 opened from the fixed session branch; base main advanced and was merged into this branch. GitHub checks must be refreshed; no merge claimed yet."
+  },
+  "limitations": [
+   "HOLDOUT-DTI is a proxy for recovering hidden catalogue components, not competition truth; this negative does not establish that POL3 is ineffective against truly blind faults.",
+   "No organizer-confirmed score/leaderboard receipt; site score associations are owner-reported and owner mirrors are not organizer-authenticated.",
+   "No new submission TIFF exists or was authorized. Existing H66 file remains DO NOT SUBMIT due failed confirmation and strict lane flags.",
+   "Raw 1 m DEM tile-level availability for drainage-offset candidate is unverified; no viability claim until official coverage/schema/licence are checked.",
+   "All public data mirrors could reproduce hashes but that is not byte-authentication to organizer originals.",
+   "The merged main branch also carries independent ROD and APFL work. Their results/artifacts are not part of the POL3 experiment budget or validation; APFL holdout is pending and is not slot-approved."
+  ],
+  "verdict": "negative; one screen completed, POL3 failed frozen holdout gate; no candidate raster, no lane clearance, no slot approval."
  }
 }

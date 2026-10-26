@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-25T20:24:26Z",
+ "generated_utc": "2026-10-26T00:34:19Z",
  "generated_by": "scripts/analyze_focus_sites.py",
  "evidence_boundary": "All GeoTIFF bytes and SHA-256 digests were verified locally from the owner's public GitHub repositories. All competition DTI values (0.1922, 0.2477, 0.2600, 0.2708, 0.2778, 0.2750, 0.3195, 0.4413) are user/owner-reported claims, not organizer-confirmed receipts.",
  "focus_artifacts": [

@@ -36,6 +36,23 @@ Four buffered spatial quadrants, whole components withheld. {e(analysis['ci_meth
 Evaluator: <code>gems25.metric.dti_binary</code>, α=0.2, β=0.8, 300 m triangular kernel;
 <a href="../evidence/rod_2026-10-26/analysis.json">version hashes and full paired results</a>.
 This estimates catalogue-gap recovery, not leaderboard performance.</p>'''
+    pol3_path = ROOT/'evidence/pol3_screen_2026-10-26/summary.json'
+    pol3 = json.loads(pol3_path.read_text()) if pol3_path.exists() else None
+    pol3_section = ''
+    if pol3:
+        pol3_section = f'''<section class="card"><p class="eyebrow">SEPARATE BRANCH SESSION · ONE SCREEN · NOT COMBINED WITH ROD BUDGET</p>
+<h2>POL3 signed half-graben screen — negative</h2>
+<p><b>HOLDOUT-DTI</b>, evaluator <code>{e(pol3['evaluator'])}</code>, draws <code>{e(str(pol3['draws']))}</code>,
+{pol3['withheld_positives']:,} withheld positives. Candidate pooled <code>{pol3['candidate_pooled']['dti']:.6f}</code> vs same-run H35
+<code>{pol3['control_pooled']['dti']:.6f}</code>; paired four-fold mean gain <code>{pol3['paired_fold_mean_gain']:+.6f}</code>,
+95% CI <code>[{pol3['paired_fold_ci95'][0]:+.6f}, {pol3['paired_fold_ci95'][1]:+.6f}]</code>,
+{pol3['positive_folds']}/4 folds positive. Feature-alone maximum AUC <code>{pol3['max_canary_auc']:.4f}</code>.
+The frozen screen gate failed. No confirmation, catalogue surface, placement or POL3 raster was run; lane clearance is <b>NOT RUN</b>.
+This is a catalogue-gap proxy, not an organizer score or blind-fault performance claim.</p>
+<p><a href="../knowledge/27_ranked_hypotheses_and_review_2026-10-26.md">POL3 session review</a> ·
+<a href="../knowledge/28_preregistered_pol3_signed_halfgraben_2026-10-26.md">frozen preregistration</a> ·
+<a href="../registry/run_card_pol3_screen_2026-10-26.json">POL3 run card</a> ·
+<a href="../evidence/pol3_screen_2026-10-26/summary.json">saved-cell result</a>.</p></section>'''
     download = '<p><b>New TIF download: unavailable.</b> The strict stop gate prevents publishing a rejected candidate as a submission.</p>'
     if card and card.get('submission_name'):
         download = f'<a class="btn alt" download href="downloads/{e(card["submission_name"])}">Download negative diagnostic TIF — DO NOT SUBMIT</a>'
@@ -78,6 +95,7 @@ not a copied prediction mask. Volcanic flow lobes, sediment sorting and survey s
 {outcome}<p><a href="../knowledge/27_preregistered_rod_2026-10-26.md">Four ranked hypotheses &amp; frozen design</a> ·
 <a href="../evidence/rod_2026-10-26/feature_canaries.json">Every-feature leakage canaries</a> ·
 <a href="../evidence/rod_2026-10-26/surface_lane.json">Pre-placement surface audit</a></p></section>
+{pol3_section}
 <section><h2>The novelty constraint needs attention</h2>
 <p>The registered lattice's three-pixel halo covers <b>{coverage['coverage_fraction']*100:.4f}%</b> of eligible pixels.
 Only {coverage['uncovered_pixels']:,} pixels lie outside it. Under the literal overlap rule, a candidate above 21,713 unique dots cannot pass against that lattice,
