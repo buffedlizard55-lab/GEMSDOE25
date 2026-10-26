@@ -13,8 +13,8 @@ e = html.escape
 def current_banner(prefix):
     return f'''<aside class="current-status" aria-label="Current submission status">
 <strong>26 OCT 2026 · OK TO SUBMIT: NO</strong>
-<span>No new candidate has cleared all required gates. Historical downloads are not new submissions.</span>
-<a href="{prefix}current-review.html">Read the nine-site executive review &amp; automatic test result →</a></aside>'''
+<span>Latest saved ROD-1 test failed HOLDOUT-DTI and the literal lane gate; it wrote no TIFF. The H71 download is an earlier testing artifact only.</span>
+<a href="{prefix}current-review.html">Read the nine-site executive review, score-estimate limits &amp; run card →</a></aside>'''
 
 
 def render_body(root_page=False):
@@ -59,7 +59,7 @@ This is a catalogue-gap proxy, not an organizer score or blind-fault performance
         f'<p><b>OK to download: YES</b> for local testing of unique content id '
         f'<code>{e(featured["content_id"])}</code>. '
         f'<b>OK to spend a weekly slot: NO — DO NOT SUBMIT.</b> '
-        f'H71 HGPC-BLIND is format-valid and density-aware unique vs scored rasters; '
+        f'H71 HGPC-BLIND is an older, format-valid testing file with distinct bytes, but it is not lane-unique under the literal r13 lattice rule; '
         f'three DIRECT screens failed vs H35. ROD/POL3 wrote no competition TIFF.</p>'
         f'<a class="btn" download href="downloads/{e(featured["file"])}">↓ Download {e(featured["file"])} — testing only</a>'
     )
@@ -67,8 +67,11 @@ This is a catalogue-gap proxy, not an organizer score or blind-fault performance
     rows, cards = [], []
     for row in sorted(focus['sites'], key=lambda r: -r['owner_reported_score']):
         rows.append(f'''<tr><th scope="row"><a href="{e(row['site_url'])}">{e(row['site'])}</a></th>
-<td>{row['owner_reported_score']:.4f}<small>OWNER-REPORTED</small></td>
-<td class="submission-id">{e(row['submission'])}</td><td><span class="badge b-warn">Historical only</span></td></tr>''')
+<td class="submission-id">{e(row['submission'])}</td>
+<td>{row['owner_reported_score']:.4f}<small>OWNER-REPORTED · not a receipt</small></td>
+<td>Not estimated<small>No validated live-score model</small></td>
+<td>{'Exact mask duplicate of GEMSDOE30' if row['site'] == 'GEMSDOE25' else 'Exact mask duplicate of GEMSDOE25' if row['site'] == 'GEMSDOE30' else 'Distinct mask in recorded focus comparison'}</td>
+<td><span class="badge b-bad">NO — historical file</span></td></tr>''')
         cards.append(f'''<article class="card"><h3>{e(row['site'])}</h3><p>{e(row['mechanism'])}</p>
 <p class="small">{row['positive_pixels']:,} positive pixels · Local format checks: {'pass' if row['local_format_pass'] else 'fail'} ·
 Not approved as a new submission. SHA-256: <code class="wrap-hash">{row['sha256']}</code></p>
@@ -77,15 +80,16 @@ Not approved as a new submission. SHA-256: <code class="wrap-hash">{row['sha256'
     body = f'''<section class="hero"><p class="eyebrow">RESEARCH DECISION BRIEF / 26 OCTOBER 2026</p>
 <h1>Know what to submit.<br>Know when to stop.</h1>
 <p class="lead">Nine focus sites, one auditable comparison, and a new geological test. No renamed reference files. No predicted leaderboard scores.</p></section>
-<section class="review-decision"><span class="badge b-bad">OK TO SUBMIT: NO</span><h2>Unique research GeoTIFF is downloadable — not slot-cleared</h2>
+<section class="review-decision"><span class="badge b-bad">OK TO SUBMIT: NO</span><h2>Earlier H71 testing GeoTIFF only — no new ROD file was written</h2>
 <p>{e(featured['title'])}. {e(featured['summary'])}</p>
 <p>ROD stop: {status}</p>{download}
 <div class="row"><a class="btn" href="../evidence/rod_2026-10-26/run_card.json" download>Download decision receipt</a>
-<a class="btn alt" href="#how-to-submit">Submission checklist</a></div></section>
+<a class="btn alt" href="#how-to-submit">Submission checklist</a>
+<a class="btn alt" href="../knowledge/29_current_checkout_review_2026-10-26.md">Current-checkout review and ranked next hypotheses</a></div></section>
 <section><h2>What is the strongest historical evidence?</h2>
 <p><b>GEMSDOE32 B2 — 0.2778, OWNER-REPORTED.</b> It is the highest supplied historical result among these focus sites.
 It is already an earlier submission, so it is <b>not</b> eligible as a new unique artifact. No organizer receipt has been supplied.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Nine historical exemplars"><table><thead><tr><th>Site</th><th>Reported result</th><th>Highest supplied historical submission</th><th>Use</th></tr></thead>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Nine focus-site files, reported results, estimates, and eligibility"><table><thead><tr><th>Site</th><th>Historical file</th><th>Historical score</th><th>Estimated score for a new file</th><th>Focus-mask uniqueness</th><th>New submission eligible?</th></tr></thead>
 <tbody>{''.join(rows)}</tbody></table></div>
 <p class="small">Not a live leaderboard query and not a slot selection. The conflicting overall-leader claims 0.3195 and 0.4413 remain unverified.</p></section>
 <section><h2>Why B2 can work — and what it does not prove</h2>
@@ -143,14 +147,16 @@ def readme_status():
     brief = (ROOT/'knowledge/current_project_brief_2026-10-26.md').read_text()
     return ("<!-- CURRENT-REVIEW-2026-10-26 -->\n"
             "## Current decision — 2026-10-26\n\n"
-            "**OK to download: YES · OK to spend a weekly slot: NO — DO NOT SUBMIT.** "
-            "Featured unique GeoTIFF [`gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif`](docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif) "
-            "(content id `9eb0c31e5149`; HOLDOUT-DTI FAIL vs H35). "
-            "[Nine-site executive review and automated ROD result](docs/current-review.html) · "
+            "**OK to download: YES, for local testing only · OK to submit: NO — DO NOT SUBMIT.** "
+            "The H71 GeoTIFF [`gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif`](docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif) "
+            "is an older test artifact, not lane-unique under the literal r13 lattice rule, and failed its holdout gate. The later saved ROD-1 run failed HOLDOUT-DTI and final overlap checks; it wrote no TIFF. "
+            "No new-file organizer-score estimate is available. The requested new submission TIF is **not produced** in this review. "
+            "[Nine-site executive review, score-estimate caveat and run card](docs/current-review.html) · "
+            "[Current review report](knowledge/29_current_checkout_review_2026-10-26.md) · "
             "[H71 outcomes](knowledge/28_h71_outcomes_2026-10-26.md) · "
-            "[ROD run card](evidence/rod_2026-10-26/run_card.json). "
+            "[ROD run card](evidence/rod_2026-10-26/run_card.json) · "
+            "[This review's machine-readable run card](registry/run_card_repo_review_2026-10-26_current.json). "
             "GEMSDOE32 B2 is the strongest supplied historical exemplar (**OWNER-REPORTED 0.2778**), not a new submission. "
-            "Do not reinterpret historical downloads or format-only receipts as authorization. "
             "No weekly slot was used.\n\n"
             "Read the current owner brief below every session, then the preserved historical prompts. "
             "**Maximize P(Win)** and **Own the Outcome**: a negative scientific result is not an excuse to submit a rejected file.\n\n"

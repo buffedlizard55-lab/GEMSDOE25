@@ -57,6 +57,21 @@ def test_focus_claims_are_not_organizer_receipts():
     assert report['identities']['gems32_b2_equals_d28_distance_gt_2'] is True
 
 
+def test_current_review_does_not_claim_new_score_or_tif():
+    card = json.loads((ROOT/'registry/run_card_repo_review_2026-10-26_current.json').read_text())
+    report = (ROOT/'knowledge/29_current_checkout_review_2026-10-26.md').read_text()
+    page = (ROOT/'docs/current-review.html').read_text()
+    assert card['verdict'].startswith('negative')
+    assert card['experiments_this_review'] == 0
+    assert card['raster_sha256'] is None and card['submission_name'] is None
+    assert card['estimated_organizer_score'] is None
+    assert '0.06904088244998727' == str(card['holdout_dti']['prior_saved_experiment']['pooled_dti'])
+    assert 'Not estimated' in page and 'Historical file' in page
+    assert 'not lane-unique under the literal r13 lattice rule' in page
+    assert 'request to generate a new submission TIF remains **unfulfilled**' in report
+    assert 'OWNER-REPORTED' in report and 'not an organizer score' in report
+
+
 class Links(HTMLParser):
     def __init__(self):
         super().__init__()

@@ -1,0 +1,54 @@
+{
+  "schema": "run_card/v1 (parallel-run protocol item 5)",
+  "review_date_utc": "2026-10-26",
+  "session_branch": "arena/17150ab5-gemsdoe25",
+  "review_type": "Repository/evidence review only; no new geological experiment and no new TIFF.",
+  "hypothesis": "No new hypothesis was fitted in this review. The saved GEMSDOE32 B2 raster/mask is consistent with the OWNER-REPORTED 0.2778 being helped by removing low-marginal-credit catalogue-adjacent emission, but hidden-label causation and score receipt are unavailable.",
+  "mechanism": "COMPUTED pixel-mask relationships in pinned owner mirrors: GEMSDOE25 D2.8 equals GEMSDOE30; GEMSDOE28 R1 equals GEMSDOE31; GEMSDOE32 B2 equals D2.8 with dots at catalogue distance <=2 px removed; GEMSDOE36 is B2 plus 1,200 pixels. Conditional on OWNER-REPORTED scores, sparse emission may reduce FP mass faster than useful triangular-kernel TP credit. This is inference, not an observed live-label mechanism.",
+  "named_non_fault_process_that_could_mimic_it": "Volcanic-flow and lithologic contacts can form aligned magnetic, gravity, radiometric, or conductivity edges; alluvial-fan facies boundaries, drainage incision, and survey seams can also mimic structural signals.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "current_review_status": "NOT RUN; local data/ contains only .gitkeep and no shared input/feature caches.",
+    "prior_saved_experiment": {
+      "name": "ROD-1 radiometric offset discontinuity",
+      "evaluator_version": "gems25.holdout.v1.2-buffered-4quad-pooled-dti / gems25.metric.dti_binary (alpha=0.2, beta=0.8, 300 m triangular kernel)",
+      "withheld_positive_occurrences": 22813,
+      "distinct_withheld_pixels": 19515,
+      "pooled_dti": 0.06904088244998727,
+      "ci95": [0.055788275765469, 0.07723532767825059],
+      "same_run_h35_control_pooled_dti": 0.15230762342811624,
+      "same_run_h35_control_ci95": [0.14018825114197445, 0.16650945228566885],
+      "paired_gain": -0.08326674097812897,
+      "paired_gain_ci95": [-0.09910237505661801, -0.06783248293969561],
+      "evidence": "evidence/rod_2026-10-26/analysis.json and evidence/rod_2026-10-26/run_card.json",
+      "interpretation": "Prior negative holdout evidence only; not a leaderboard estimate or result of this repository review."
+    }
+  },
+  "correlation_overlap_vs_registry": {
+    "label": "COMPUTED lane diagnostics from prior saved ROD-1 run; no fresh lane computation in this review",
+    "surface_max_abs_spearman": 0.038981986156781674,
+    "surface_registry_rasters": 60,
+    "final_dots": 70524,
+    "final_max_abs_spearman": 0.013141290554169325,
+    "max_candidate_dots_within_3px_of_registry": 1.0,
+    "flagged_registry_raster": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "verdict": "STOP: final literal overlap gate failed (>0.70). No density exception applied; no ROD TIFF written. Registry completeness beyond available local manifest is unverified."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT RUN for a new candidate; no new TIFF exists.",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "note": "An older H71 test artifact has an earlier format receipt, but it failed its own holdout and literal lattice-overlap gates; it is not validated or approved by this review."
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "submission_note_character_limit": 140,
+  "estimated_organizer_score": null,
+  "estimated_score_reason": "No validated mapping from this proxy to organizer scoring; no new candidate passed the required gates.",
+  "experiments_this_review": 0,
+  "budget_note": "The saved ROD-1 experiment already failed its performance and final lane gates. This review did not restart it, switch lanes, or use a weekly slot.",
+  "verdict": "negative — no new candidate, no new TIFF, no promotion, and no weekly slot authorization.",
+  "pr_and_merge": "No PR/merge claimed in this card; verify from GitHub after creating the pull request from the fixed session branch."
+}
