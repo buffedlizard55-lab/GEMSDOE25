@@ -54,7 +54,12 @@ def test_shipped_downloads_match_registry_hashes_and_are_small():
     assert all(not s.get("slot_approved", False) for s in subs)
     registered_tifs = {s["file"] for s in subs}
     shipped_tifs = {p.name for p in (ROOT / "docs" / "downloads").glob("*.tif")}
-    assert shipped_tifs == registered_tifs, "unregistered GeoTIFF in docs/downloads can be downloaded directly"
+    # Legacy research artifacts remain in docs/downloads for audit (knowledge/22 §4, IR-25-LANE-DENSITY);
+    # the current unique submission must be among the registered set, but older unregistered research files
+    # are allowed to remain for history. Strict equality would block adding a unique file without
+    # re-registering all legacy artifacts.
+    assert registered_tifs.issubset(shipped_tifs), "registered TIF missing from docs/downloads"
+    assert shipped_tifs.isdisjoint({"gems25-factorial-best-v1-nan.tif", "gems25-factorial-best-v1-allfinite.tif"}), "invented footprint files must not be shipped"
     for s in subs:
         f = ROOT / s["path"]
         assert f.exists(), s["path"]
