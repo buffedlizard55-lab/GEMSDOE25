@@ -1,7 +1,311 @@
 {
  "schema_version": 1,
- "generated_by": "scripts/register_h72_submission.py (2026-10-26, H72 PTTG/VCCD/MTHS session); merged H72-CF MBSP-MTG negative alternate 1d7c1e9ea55f",
+ "generated_by": "scripts/register_h73_submission.py (2026-10-26, H73-PM session); prior: scripts/register_h72_submission.py (2026-10-26, H72 PTTG/VCCD/MTHS session); merged H72-CF MBSP-MTG negative alternate 1d7c1e9ea55f",
  "files": [
+  {
+   "id": "h73-pm-deapron",
+   "role": "research-h73",
+   "file": "gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif",
+   "path": "docs/downloads/gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif",
+   "bytes": 835916,
+   "sha256": "35e1b1400a5a2057b8ae4acaab43ad7d9d165532f9a43709cf0d1eb4f2247595",
+   "content_id": "1b7533ebb62b",
+   "positive_pixels": 42997,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "finite range over the whole array; infinity rejected",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read; empty data rejected",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.json",
+   "outside": "zero",
+   "status": "UNIQUE BY CONTENT (density-aware) \u00b7 FORMAT-VALID \u00b7 HOLDOUT FAIL vs CTRL_H35 (slot gate FAIL, far-field screen FAIL) \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "zip": "gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.zip",
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "expected_range": "no live projection computed \u2014 H73-PM Exp 1 FAIL vs CTRL_H35 (not a score)",
+   "lane": {
+    "lane_clear": false,
+    "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+    "density_aware_verdict": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
+    "flagged_lane": [],
+    "flagged_literal": [
+     "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
+    ],
+    "registry_checked": 80,
+    "surface_worst_abs_spearman": 0.128745,
+    "focus_winners": {
+     "n": 27,
+     "worst_cand_dots_within_3px": 0.5601321022396911,
+     "worst_overlap_file": "g63_cvarlw_0.2303.tif",
+     "b2_overlap": 0.37521222410865873,
+     "b2_reverse_overlap": 0.43124236468901045,
+     "b2_spearman_surface": 0.079589,
+     "b2_spearman_final": 0.029729
+    },
+    "external_sparse": {
+     "n": 37,
+     "worst_abs_spearman_surface": 0.109867,
+     "worst_surface_file": "gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+     "worst_abs_spearman_final": 0.045238,
+     "worst_final_file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+     "worst_cand_dots_within_3px": 0.5788775961113566,
+     "worst_overlap_file": "gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+     "lane_pass": true
+    },
+    "own_lineage": {
+     "n": 24,
+     "worst_abs_spearman_surface": 0.128745,
+     "worst_surface_file": "gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-nan.tif",
+     "worst_abs_spearman_final": 0.115262,
+     "worst_final_file": "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+     "worst_cand_dots_within_3px": 0.6138567807056307,
+     "worst_overlap_file": "gems25-h72-pttg-deapron-sapd2-8-k3p0-20261026-a07ef071c49e-nan.tif",
+     "lane_pass": true
+    },
+    "receipt": "docs/downloads/lane-gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.json",
+    "extended_receipt": "evidence/h73_lane_extended.json",
+    "surface_receipt": "evidence/h73_lane_surface.json"
+   },
+   "lane_summary": "DENSITY-AWARE UNIQUE (flagged_lane = [] across 80 literal-checker rasters; surface |Spearman| 0.129 <= 0.90). Literal 70% flags only the dense r13 lattice (206,895 dots, ~100% 3-px halo \u2014 geometrically unavoidable at this budget, knowledge/29_lane_feasibility_plan). Final-dot overlap: 37.5% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), worst 56.0% across 27 registry_top rasters, worst 61.4% own-lineage.",
+   "slot_reason": "Pre-registered Experiment 1 (draws 90-91, 8 cells/arm) failed the slot gate: PM_DEAPRON pooled HOLDOUT-DTI 0.11343 vs same-run CTRL_H35 0.15239 (paired -0.03896, cluster 95% CI [-0.04717, -0.02456]); far-field screen also failed (pooled far DTI 0.08212 vs CTRL_H35 0.09787, although +0.00674 vs CTRL_BLIND_BD in 3/4 folds). Experiments 2-3 not run per frozen rule. Not slot-approved.",
+   "run_card": "registry/run_card_h73_2026-10-26.json",
+   "title": "H73-PM propensity-matched H35 de-aproned HGB (sapd2.8, zero outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
+   "summary": "Unique 2026-10-26 GeoTIFF (42,997 binary dots, min_dist=2.8 px, d_cat > 2.0 px; d_cat strata 2-9px 33.9%, >20px 37.3%) from pre-registered H73-PM: H35 feature stack retrained with propensity-matched negatives in d_vis bins (sampler removes the catalogue-apron prior tilt; no new feature). Strict lane gate flags only the dense r13 lattice; density-aware unique. HOLDOUT-DTI (PM_DEAPRON arm) 0.11343 on 22,290 withheld-positive occurrences \u2014 a catalogue-gap proxy, not a live score. Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
+   "note": "GEMSDOE25 H73-PM | propensity-matched H35 deapron; holdout FAIL vs H35; DO NOT SUBMIT | id 1b7533ebb62b | unscored"
+  },
+  {
+   "id": "h73-pm-deapron-nan",
+   "role": "research-h73-nan",
+   "file": "gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-nan.tif",
+   "path": "docs/downloads/gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-nan.tif",
+   "bytes": 1600986,
+   "sha256": "9f71fa8dc4f9f9829c888b923eefc2dd98ae1bc71d5b1c2d9014bed1dc9da829",
+   "content_id": "1b7533ebb62b",
+   "positive_pixels": 42997,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": true,
+     "detail": "7,111,787/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=nan",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "finite range over the whole array; infinity rejected",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read; empty data rejected",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": false,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-nan.json",
+   "outside": "nan",
+   "status": "UNIQUE BY CONTENT (density-aware) \u00b7 FORMAT-VALID \u00b7 HOLDOUT FAIL vs CTRL_H35 (slot gate FAIL, far-field screen FAIL) \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "zip": null,
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "expected_range": "no live projection computed \u2014 H73-PM Exp 1 FAIL vs CTRL_H35 (not a score)",
+   "lane": {
+    "lane_clear": false,
+    "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+    "density_aware_verdict": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
+    "flagged_lane": [],
+    "flagged_literal": [
+     "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
+    ],
+    "registry_checked": 80,
+    "surface_worst_abs_spearman": 0.128745,
+    "focus_winners": {
+     "n": 27,
+     "worst_cand_dots_within_3px": 0.5601321022396911,
+     "worst_overlap_file": "g63_cvarlw_0.2303.tif",
+     "b2_overlap": 0.37521222410865873,
+     "b2_reverse_overlap": 0.43124236468901045,
+     "b2_spearman_surface": 0.079589,
+     "b2_spearman_final": 0.029729
+    },
+    "external_sparse": {
+     "n": 37,
+     "worst_abs_spearman_surface": 0.109867,
+     "worst_surface_file": "gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+     "worst_abs_spearman_final": 0.045238,
+     "worst_final_file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+     "worst_cand_dots_within_3px": 0.5788775961113566,
+     "worst_overlap_file": "gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+     "lane_pass": true
+    },
+    "own_lineage": {
+     "n": 24,
+     "worst_abs_spearman_surface": 0.128745,
+     "worst_surface_file": "gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-nan.tif",
+     "worst_abs_spearman_final": 0.115262,
+     "worst_final_file": "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+     "worst_cand_dots_within_3px": 0.6138567807056307,
+     "worst_overlap_file": "gems25-h72-pttg-deapron-sapd2-8-k3p0-20261026-a07ef071c49e-nan.tif",
+     "lane_pass": true
+    },
+    "receipt": "docs/downloads/lane-gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.json",
+    "extended_receipt": "evidence/h73_lane_extended.json",
+    "surface_receipt": "evidence/h73_lane_surface.json"
+   },
+   "lane_summary": "DENSITY-AWARE UNIQUE (flagged_lane = [] across 80 literal-checker rasters; surface |Spearman| 0.129 <= 0.90). Literal 70% flags only the dense r13 lattice (206,895 dots, ~100% 3-px halo \u2014 geometrically unavoidable at this budget, knowledge/29_lane_feasibility_plan). Final-dot overlap: 37.5% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), worst 56.0% across 27 registry_top rasters, worst 61.4% own-lineage.",
+   "slot_reason": "Pre-registered Experiment 1 (draws 90-91, 8 cells/arm) failed the slot gate: PM_DEAPRON pooled HOLDOUT-DTI 0.11343 vs same-run CTRL_H35 0.15239 (paired -0.03896, cluster 95% CI [-0.04717, -0.02456]); far-field screen also failed (pooled far DTI 0.08212 vs CTRL_H35 0.09787, although +0.00674 vs CTRL_BLIND_BD in 3/4 folds). Experiments 2-3 not run per frozen rule. Not slot-approved.",
+   "run_card": "registry/run_card_h73_2026-10-26.json",
+   "title": "H73-PM propensity-matched H35 de-aproned HGB (sapd2.8, nan outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
+   "summary": "Unique 2026-10-26 GeoTIFF (42,997 binary dots, min_dist=2.8 px, d_cat > 2.0 px; d_cat strata 2-9px 33.9%, >20px 37.3%) from pre-registered H73-PM: H35 feature stack retrained with propensity-matched negatives in d_vis bins (sampler removes the catalogue-apron prior tilt; no new feature). Strict lane gate flags only the dense r13 lattice; density-aware unique. HOLDOUT-DTI (PM_DEAPRON arm) 0.11343 on 22,290 withheld-positive occurrences \u2014 a catalogue-gap proxy, not a live score. Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
+   "note": "GEMSDOE25 H73-PM | propensity-matched H35 deapron; holdout FAIL vs H35; DO NOT SUBMIT | id 1b7533ebb62b | unscored"
+  },
   {
    "id": "h72-3-subsurf",
    "role": "primary",

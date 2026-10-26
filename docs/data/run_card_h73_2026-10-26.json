@@ -1,0 +1,122 @@
+{
+ "schema": "run_card/v1 (PARALLEL-RUN PROTOCOL item 5)",
+ "session": "2026-10-26 H73-PM propensity-matched H35 (arena/11c66d52-gemsdoe25)",
+ "experiments_used": "1 of 3 budget (Exp 1 draws 90-91; Exp 2 confirmation and Exp 3 slot-build not run \u2014 frozen gate rule, knowledge/32 \u00a72; research build logged as IR-25-H73-BUILD-AFTER-GATE-FAIL)",
+ "hypothesis": "H73-PM: matching the training-negative d_vis histogram to the positives' removes the catalogue-apron prior tilt, forcing the H35 HGB to use scarp/potential-field evidence and emit B2-like far-field geometry with higher live credit density.",
+ "mechanism": "Negatives resampled per d_vis bin ([0,2],(2,5],(5,9],(9,15],(15,25],(25,40],(40,80],>80 px) proportional to positive bin shares (gems25.h73_pm.propensity_matched_negatives); H35 columns, HGB params and de-apron emission unchanged.",
+ "named_non_fault_mimic": "Pluvial Lake Lahontan shoreline scarps and alluvial-fan channel levees far from mapped faults (linear DEM breaks a de-biased model may over-fire on).",
+ "holdout_dti": {
+  "label": "HOLDOUT-DTI",
+  "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px)",
+  "cells_per_arm": 8,
+  "withheld_positive_occurrences": 22290,
+  "far_withheld_positive_occurrences": 10364,
+  "pm_deapron_pooled": 0.11342900649535811,
+  "pm_deapron_ci95": [
+   0.09676886674984296,
+   0.1268621949043373
+  ],
+  "ctrl_h35_pooled": 0.15238901899668933,
+  "ctrl_blind_pooled": 0.0939499295473494,
+  "pm_h35_pooled": 0.11516472207580439,
+  "paired_gain_vs_h35": -0.038960012501331215,
+  "paired_ci95_vs_h35": [
+   -0.047168504052067656,
+   -0.024562119794497073
+  ],
+  "fold_gains_vs_h35": [
+   -0.047168504051628785,
+   -0.018242263193477437,
+   -0.04727810282460937,
+   -0.04212011133803589
+  ],
+  "pooled_far_dti": {
+   "pm_deapron": 0.08211988675436788,
+   "ctrl_h35": 0.09787060036779713,
+   "ctrl_blind": 0.07537942478692798
+  },
+  "far_gain_vs_blind": 0.006740461967439895,
+  "far_folds_positive_vs_blind": 3,
+  "slot_gate_passed": false,
+  "far_field_screen_passed": false,
+  "leakage_canary": {
+   "cap": 0.9,
+   "max_fitted_column_auc": 0.84273,
+   "neg_dvis_auc": 0.84273,
+   "passed": true
+  }
+ },
+ "organizer_confirmed_score": null,
+ "correlation_overlap_vs_registry": {
+  "lane_clear": false,
+  "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+  "density_aware_verdict": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
+  "flagged_lane": [],
+  "flagged_literal": [
+   "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
+  ],
+  "registry_checked": 80,
+  "surface_worst_abs_spearman": 0.128745,
+  "focus_winners": {
+   "n": 27,
+   "worst_cand_dots_within_3px": 0.5601321022396911,
+   "worst_overlap_file": "g63_cvarlw_0.2303.tif",
+   "b2_overlap": 0.37521222410865873,
+   "b2_reverse_overlap": 0.43124236468901045,
+   "b2_spearman_surface": 0.079589,
+   "b2_spearman_final": 0.029729
+  },
+  "external_sparse": {
+   "n": 37,
+   "worst_abs_spearman_surface": 0.109867,
+   "worst_surface_file": "gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+   "worst_abs_spearman_final": 0.045238,
+   "worst_final_file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+   "worst_cand_dots_within_3px": 0.5788775961113566,
+   "worst_overlap_file": "gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+   "lane_pass": true
+  },
+  "own_lineage": {
+   "n": 24,
+   "worst_abs_spearman_surface": 0.128745,
+   "worst_surface_file": "gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-nan.tif",
+   "worst_abs_spearman_final": 0.115262,
+   "worst_final_file": "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+   "worst_cand_dots_within_3px": 0.6138567807056307,
+   "worst_overlap_file": "gems25-h72-pttg-deapron-sapd2-8-k3p0-20261026-a07ef071c49e-nan.tif",
+   "lane_pass": true
+  },
+  "receipt": "docs/downloads/lane-gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.json",
+  "extended_receipt": "evidence/h73_lane_extended.json",
+  "surface_receipt": "evidence/h73_lane_surface.json"
+ },
+ "raster_sha256": "35e1b1400a5a2057b8ae4acaab43ad7d9d165532f9a43709cf0d1eb4f2247595",
+ "nan_twin_sha256": "9f71fa8dc4f9f9829c888b923eefc2dd98ae1bc71d5b1c2d9014bed1dc9da829",
+ "content_id": "1b7533ebb62b",
+ "positive_pixels": 42997,
+ "d_cat_strata_full_build": {
+  "frac_le2": 0.0,
+  "frac_2_9": 0.33949,
+  "frac_9_20": 0.28721,
+  "frac_gt20": 0.37331,
+  "median_d_cat_px": 14.422
+ },
+ "validator_output": {
+  "format_valid": true,
+  "hard_failures_zeros": [],
+  "hard_failures_nan": [],
+  "independent_audit_all_hard_pass": true,
+  "footprint_pixels": 5167373,
+  "checks_receipts": [
+   "docs/downloads/checks-gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.json",
+   "docs/downloads/checks-gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-nan.json"
+  ]
+ },
+ "submission_name": "gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif",
+ "note": "GEMSDOE25 H73-PM | propensity-matched H35 deapron; holdout FAIL vs H35; DO NOT SUBMIT | id 1b7533ebb62b | unscored",
+ "note_chars": 114,
+ "verdict": "negative",
+ "slot_approved": false,
+ "ok_to_download_inspection": true,
+ "ok_to_submit_slot": false
+}

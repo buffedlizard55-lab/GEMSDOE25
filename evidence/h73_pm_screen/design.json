@@ -1,0 +1,49 @@
+{
+ "experiment": "H73_PM",
+ "preregistration": "knowledge/32_preregistered_h73_pm_2026-10-26.md",
+ "draws": [
+  90,
+  91
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "fold_names": [
+  "NW",
+  "NE",
+  "SW",
+  "SE"
+ ],
+ "arms": [
+  "CTRL_H35",
+  "CTRL_BLIND_BD",
+  "PM_H35",
+  "PM_DEAPRON"
+ ],
+ "kfrac_h35": 0.035,
+ "min_dist_h35": 2.4,
+ "kfrac_deapron": 0.03,
+ "min_dist_deapron": 2.8,
+ "cat_buf_deapron": 2.0,
+ "n_neg": 300000,
+ "pm_seed_rule": "777 + 31*fold + draw + 5000",
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px) via gems25.experiment.Cell.evaluate",
+ "leakage_auc_cap": 0.9,
+ "slot_gate": {
+  "mean_gain_gt": 0.001,
+  "paired_ci_lo_gt": 0.0,
+  "folds_positive_min": 3,
+  "worst_fold_min": -0.01
+ },
+ "far_field_screen": {
+  "pooled_far_dti_gt": [
+   "CTRL_H35",
+   "CTRL_BLIND_BD"
+  ],
+  "folds_positive_vs_blind_min": 3,
+  "frac_gt20_min": 0.35
+ }
+}

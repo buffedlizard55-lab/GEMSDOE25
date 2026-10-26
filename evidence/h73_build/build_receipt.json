@@ -1,0 +1,461 @@
+{
+ "built_utc": "2026-10-26T20:39:04Z",
+ "slug": "h73-pm-deapron-sapd2-8-k3p0",
+ "content_id": "1b7533ebb62b",
+ "note": "GEMSDOE25 H73-PM | propensity-matched H35 deapron; holdout FAIL vs H35; DO NOT SUBMIT | id 1b7533ebb62b | unscored",
+ "note_chars": 114,
+ "verdict": "negative",
+ "slot_approved": false,
+ "ok_to_download_inspection": true,
+ "ok_to_submit_slot": false,
+ "hypothesis": "H73-PM propensity-matched H35 (knowledge/32)",
+ "holdout_evidence": "evidence/h73_pm_screen/analysis.json",
+ "draws": 3,
+ "base_seed": 20261027,
+ "kfrac": 0.03,
+ "min_dist": 2.8,
+ "cat_buf_px": 2.0,
+ "domain_erode_px": 12,
+ "positive_pixels": 42997,
+ "d_cat_strata": {
+  "frac_le2": 0.0,
+  "frac_2_9": 0.33949,
+  "frac_9_20": 0.28721,
+  "frac_gt20": 0.37331,
+  "median_d_cat_px": 14.422
+ },
+ "pm_sampler_per_split": [
+  {
+   "n_pos": 12200,
+   "n_neg": 300000,
+   "quotas": [
+    5902,
+    71754,
+    80533,
+    65508,
+    46401,
+    22402,
+    7500,
+    0
+   ],
+   "pos_bin_shares": [
+    0.01967,
+    0.23918,
+    0.26844,
+    0.21836,
+    0.15467,
+    0.07467,
+    0.025,
+    0.0
+   ],
+   "neg_bin_shares": [
+    0.01967,
+    0.23918,
+    0.26844,
+    0.21836,
+    0.15467,
+    0.07467,
+    0.025,
+    0.0
+   ],
+   "pool_bin_shares": [
+    0.03832,
+    0.06689,
+    0.08346,
+    0.12405,
+    0.17715,
+    0.19142,
+    0.25061,
+    0.0681
+   ]
+  },
+  {
+   "n_pos": 12206,
+   "n_neg": 300000,
+   "quotas": [
+    5235,
+    76143,
+    75578,
+    69138,
+    47485,
+    21481,
+    4645,
+    295
+   ],
+   "pos_bin_shares": [
+    0.01745,
+    0.25381,
+    0.25193,
+    0.23046,
+    0.15828,
+    0.0716,
+    0.01548,
+    0.00098
+   ],
+   "neg_bin_shares": [
+    0.01745,
+    0.25381,
+    0.25193,
+    0.23046,
+    0.15828,
+    0.0716,
+    0.01548,
+    0.00098
+   ],
+   "pool_bin_shares": [
+    0.03839,
+    0.06732,
+    0.08384,
+    0.1238,
+    0.17602,
+    0.19195,
+    0.25027,
+    0.06843
+   ]
+  },
+  {
+   "n_pos": 12265,
+   "n_neg": 300000,
+   "quotas": [
+    6482,
+    69931,
+    67485,
+    61810,
+    48308,
+    31259,
+    14725,
+    0
+   ],
+   "pos_bin_shares": [
+    0.02161,
+    0.2331,
+    0.22495,
+    0.20603,
+    0.16103,
+    0.1042,
+    0.04908,
+    0.0
+   ],
+   "neg_bin_shares": [
+    0.02161,
+    0.2331,
+    0.22495,
+    0.20603,
+    0.16103,
+    0.1042,
+    0.04908,
+    0.0
+   ],
+   "pool_bin_shares": [
+    0.03824,
+    0.06667,
+    0.08264,
+    0.12145,
+    0.1724,
+    0.19149,
+    0.25419,
+    0.07293
+   ]
+  }
+ ],
+ "columns": [
+  "det_elev",
+  "det_elev_slope",
+  "B_lap1",
+  "B_lap2",
+  "B_tpi5",
+  "B_tpi11",
+  "B_relief5",
+  "B_slope_grad",
+  "B_crest",
+  "B_trough",
+  "B_slope_ctx",
+  "L_ex_max",
+  "L_ex_mean",
+  "L_step_max",
+  "L_lapneg_max",
+  "L_lappos_max",
+  "L_downface_max",
+  "L_upface_max",
+  "L_cross_max",
+  "L_relief",
+  "L_coh100",
+  "L_strike_c2",
+  "L_strike_s2",
+  "L_valid",
+  "tc",
+  "cond_surf",
+  "depth_to_base_surf",
+  "D_cond_grad",
+  "D_depth_base_grad",
+  "D_K",
+  "D_Th",
+  "D_U",
+  "D_ThK",
+  "D_UK",
+  "D_UTh",
+  "D_ThK_edge",
+  "D_UK_edge",
+  "D_gdr_dist_hot",
+  "D_gdr_kde2km",
+  "D_gdr_tmax5km",
+  "D_gdr_quartz5km",
+  "E_dist",
+  "E_cos2",
+  "E_sin2",
+  "E_dens5",
+  "E_dens20",
+  "E_dens50",
+  "E_coh20",
+  "X1_K",
+  "X1_ThK",
+  "X1_UK",
+  "X2_compat",
+  "X2_compat_coh",
+  "X3_gm",
+  "X3_gd",
+  "H27_tip",
+  "H34_resmag_shallow_ridge",
+  "H34_resmag_mid_ridge",
+  "H34_baseflex_ridge"
+ ],
+ "scores_npy": "/home/user/GEMSDOE25/data/work/h73_full_scores.npy",
+ "seconds": 224.9,
+ "files": {
+  "zeros": {
+   "file": "gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif",
+   "bytes": 835916,
+   "sha256": "35e1b1400a5a2057b8ae4acaab43ad7d9d165532f9a43709cf0d1eb4f2247595",
+   "positive_pixels": 42997,
+   "checks": {
+    "driver_gtiff": true,
+    "single_band": true,
+    "dtype_float32": true,
+    "crs_epsg32611": true,
+    "shape_3730x3292": true,
+    "geotransform_exact": true,
+    "footprint_no_nan_or_inf": true,
+    "footprint_in_0_1": true,
+    "outside_ok": true,
+    "zero_known_catalogue_overlap": true
+   },
+   "all_hard_checks_pass": true,
+   "zip": {
+    "file": "gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.zip",
+    "bytes": 195849,
+    "sha256": "6b19bde282d130ae49ffce446bc2fc7f8bfa0de93d7ee2dfbafd99635f3e0fc0",
+    "entries": [
+     "gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif"
+    ],
+    "single_tif_at_root": true
+   }
+  },
+  "nan": {
+   "file": "gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-nan.tif",
+   "bytes": 1600986,
+   "sha256": "9f71fa8dc4f9f9829c888b923eefc2dd98ae1bc71d5b1c2d9014bed1dc9da829",
+   "positive_pixels": 42997,
+   "checks": {
+    "driver_gtiff": true,
+    "single_band": true,
+    "dtype_float32": true,
+    "crs_epsg32611": true,
+    "shape_3730x3292": true,
+    "geotransform_exact": true,
+    "footprint_no_nan_or_inf": true,
+    "footprint_in_0_1": true,
+    "outside_ok": true,
+    "zero_known_catalogue_overlap": true
+   },
+   "all_hard_checks_pass": true
+  }
+ },
+ "checks_zeros": {
+  "file": "gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif",
+  "bytes": 835916,
+  "sha256": "35e1b1400a5a2057b8ae4acaab43ad7d9d165532f9a43709cf0d1eb4f2247595",
+  "ok_to_upload": true,
+  "format_valid": true,
+  "authorization_note": "ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval",
+  "hard_failures": [],
+  "official_nan_outside": false,
+  "positive_pixels": 42997,
+  "footprint_pixels": 5167373,
+  "checks": {
+   "template_matches_expected_grid_and_footprint": {
+    "pass_": true,
+    "detail": "(3730, 3292), footprint 5,167,373 px",
+    "hard": true
+   },
+   "single_band": {
+    "pass_": true,
+    "detail": "count=1",
+    "hard": true
+   },
+   "dtype_float32": {
+    "pass_": true,
+    "detail": "dtypes=('float32',)",
+    "hard": true
+   },
+   "crs_epsg_32611": {
+    "pass_": true,
+    "detail": "32611",
+    "hard": true
+   },
+   "shape_matches_template": {
+    "pass_": true,
+    "detail": "(3730, 3292) vs (3730, 3292)",
+    "hard": true
+   },
+   "geotransform_matches_template": {
+    "pass_": true,
+    "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+    "hard": true
+   },
+   "footprint_all_finite": {
+    "pass_": true,
+    "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+    "hard": true
+   },
+   "footprint_values_in_0_1": {
+    "pass_": true,
+    "detail": "min=0.0 max=1.0",
+    "hard": true
+   },
+   "outside_footprint_is_nan_official": {
+    "pass_": false,
+    "detail": "0/7,111,787 NaN",
+    "hard": false
+   },
+   "outside_footprint_is_nan_or_zero": {
+    "pass_": true,
+    "detail": "NaN (official) or 0 (fallback) outside",
+    "hard": true
+   },
+   "nan_mask_identical_to_template": {
+    "pass_": true,
+    "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+    "hard": true
+   },
+   "nodata_tag": {
+    "pass_": true,
+    "detail": "nodata=None",
+    "hard": false
+   },
+   "variant_nan_aware_whole_array": {
+    "pass_": true,
+    "detail": "finite range over the whole array; infinity rejected",
+    "hard": true
+   },
+   "variant_masked_read": {
+    "pass_": true,
+    "detail": "rasterio masked read; empty data rejected",
+    "hard": true
+   },
+   "variant_strict_whole_array_no_nan": {
+    "pass_": true,
+    "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+    "hard": false
+   },
+   "profile_matches_template": {
+    "pass_": true,
+    "detail": "compress=lzw (template lzw)",
+    "hard": false
+   }
+  }
+ },
+ "checks_nan": {
+  "file": "gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-nan.tif",
+  "bytes": 1600986,
+  "sha256": "9f71fa8dc4f9f9829c888b923eefc2dd98ae1bc71d5b1c2d9014bed1dc9da829",
+  "ok_to_upload": true,
+  "format_valid": true,
+  "authorization_note": "ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval",
+  "hard_failures": [],
+  "official_nan_outside": true,
+  "positive_pixels": 42997,
+  "footprint_pixels": 5167373,
+  "checks": {
+   "template_matches_expected_grid_and_footprint": {
+    "pass_": true,
+    "detail": "(3730, 3292), footprint 5,167,373 px",
+    "hard": true
+   },
+   "single_band": {
+    "pass_": true,
+    "detail": "count=1",
+    "hard": true
+   },
+   "dtype_float32": {
+    "pass_": true,
+    "detail": "dtypes=('float32',)",
+    "hard": true
+   },
+   "crs_epsg_32611": {
+    "pass_": true,
+    "detail": "32611",
+    "hard": true
+   },
+   "shape_matches_template": {
+    "pass_": true,
+    "detail": "(3730, 3292) vs (3730, 3292)",
+    "hard": true
+   },
+   "geotransform_matches_template": {
+    "pass_": true,
+    "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+    "hard": true
+   },
+   "footprint_all_finite": {
+    "pass_": true,
+    "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+    "hard": true
+   },
+   "footprint_values_in_0_1": {
+    "pass_": true,
+    "detail": "min=0.0 max=1.0",
+    "hard": true
+   },
+   "outside_footprint_is_nan_official": {
+    "pass_": true,
+    "detail": "7,111,787/7,111,787 NaN",
+    "hard": false
+   },
+   "outside_footprint_is_nan_or_zero": {
+    "pass_": true,
+    "detail": "NaN (official) or 0 (fallback) outside",
+    "hard": true
+   },
+   "nan_mask_identical_to_template": {
+    "pass_": true,
+    "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+    "hard": true
+   },
+   "nodata_tag": {
+    "pass_": true,
+    "detail": "nodata=nan",
+    "hard": false
+   },
+   "variant_nan_aware_whole_array": {
+    "pass_": true,
+    "detail": "finite range over the whole array; infinity rejected",
+    "hard": true
+   },
+   "variant_masked_read": {
+    "pass_": true,
+    "detail": "rasterio masked read; empty data rejected",
+    "hard": true
+   },
+   "variant_strict_whole_array_no_nan": {
+    "pass_": false,
+    "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+    "hard": false
+   },
+   "profile_matches_template": {
+    "pass_": true,
+    "detail": "compress=lzw (template lzw)",
+    "hard": false
+   }
+  }
+ }
+}

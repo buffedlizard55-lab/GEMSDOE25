@@ -1,0 +1,37 @@
+{
+ "verified_utc": "2026-10-26",
+ "method": "independent rasterio re-read + deterministic emission reproduction from data/work/h73_full_scores.npy (no model refit)",
+ "zeros_sha256": "35e1b1400a5a2057b8ae4acaab43ad7d9d165532f9a43709cf0d1eb4f2247595",
+ "content_id_recomputed": "1b7533ebb62b",
+ "positive_pixels": 42997,
+ "profile": {
+  "count": 1,
+  "dtype": "float32",
+  "crs": "EPSG:32611",
+  "shape": [
+   3730,
+   3292
+  ],
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ]
+ },
+ "zeros_all_finite_range_0_1": true,
+ "nan_twin_footprint_finite_outside_nan": true,
+ "twins_mask_equal": true,
+ "dots_on_labels": 0,
+ "dots_outside_footprint": 0,
+ "d_cat_strata": {
+  "frac_le2": 0.0,
+  "frac_2_9": 0.3395,
+  "frac_9_20": 0.2872,
+  "frac_gt20": 0.3733,
+  "median_px": 14.422
+ },
+ "emission_reproduction_xor": 0
+}

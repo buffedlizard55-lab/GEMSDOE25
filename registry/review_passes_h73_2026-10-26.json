@@ -1,0 +1,36 @@
+{
+ "session": "2026-10-26 H73-PM (arena/11c66d52-gemsdoe25)",
+ "pass_1_implement_and_verify": {
+  "done": true,
+  "notes": [
+   "Read README standing brief + AGENTS first; checked open PR #47 (sibling session, different branch) and did not touch it.",
+   "Restored SHA-pinned core/external/scored data + 27 registry_top rasters from public GitHub mirrors only; no DrivenData contact.",
+   "Independently re-verified the 0.2778 chain pixel-exactly: dot_thin(H19-5,2.4)==D2.8, R1==D2.8&(d>1), B2==D2.8&(d>2); counts and strata recomputed.",
+   "Pre-registered 5 ranked hypotheses + frozen H73-PM design in knowledge/32 and committed (88f75fe) before any fit.",
+   "Implemented gems25.h73_pm sampler with synthetic unit tests; ran Exp 1 (8 cells/arm, draws 90-91) reusing shared Cell/metric; analyzed with paired pooled cluster CIs.",
+   "Built unique full-footprint TIF (1b7533ebb62b) with shared submission writer; dual format audits + surface/final lane audits; registered run card + submissions entries."
+  ]
+ },
+ "pass_2_bugs_assumptions_edge_cases": {
+  "done": true,
+  "found_and_fixed": [
+   "gather_like_cell reimplementation risk: runner asserts exact equality with Cell.Xtr rows on overlapping indices of the first cell before fitting PM (passed).",
+   "Download-audit registry went stale after adding TIFs (test_download_audit failed): regenerated docs/data/download_audit.json with the shared audit script; 48/48 format-valid, okay_to_submit=false.",
+   "docs/data/irregularities.json mirror desync after adding IRs: re-copied from registry (byte-mirror convention verified for all mirrored files).",
+   "Frozen-design deviation (build after gate fail) logged as IR-25-H73-BUILD-AFTER-GATE-FAIL instead of silently proceeding; verdicts unchanged.",
+   "Historical doc error found during verification logged as IR-25-D28-STRATA-DOC (D2.8 <=2px share 14.6%, not 8.6%).",
+   "Independent re-read of shipped TIFs: profile/CRS/shape/transform exact, zeros twin wholly finite in [0,1], nan twin footprint-finite, 0 dots on labels/outside footprint, content_id and sha256 recomputed, deterministic emission reproduction xor=0 (evidence/h73_build/independent_verification.json)."
+  ],
+  "checks": "ruff clean; full pytest 331 passed after fixes (1 initial failure fixed as above)"
+ },
+ "pass_3_request_reconciliation": {
+  "done": true,
+  "notes": [
+   "Nine-site executive table with best file per site, uniqueness and submit-eligibility: knowledge/33 §1; download/estimate/unique/submit table at its top and in the docs/index.html first-screen banner.",
+   "0.2778 explained from the metric algebra + pixel identities (knowledge/33 §2); conditions for beating it stated without promising a score.",
+   "Every number labelled HOLDOUT-DTI (evaluator, withheld counts, CI) or OWNER-REPORTED; no live projection anywhere; organizer_confirmed_score=null in run card.",
+   "Parallel-run protocol honored: single lane H73-PM; surface |rho|<=0.129 and final-dot overlaps <=61.4% (density-aware unique, literal lattice flag disclosed); canaries on every fitted column; 1 of 3 experiment budget used; no weekly slot spent or recommended.",
+   "Remaining limitations (knowledge/33 §5): component-split holdout cannot certify far-field discovery — 25-km block-withheld selector is the named next instrument; no GPU/torch and no Earthdata credentials in sandbox; mirrors prove integrity not organizer authentication."
+  ]
+ }
+}
