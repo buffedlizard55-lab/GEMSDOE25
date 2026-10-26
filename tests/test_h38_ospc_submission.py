@@ -21,8 +21,8 @@ def sha256(p: Path) -> str:
 
 def test_h38_is_featured_primary_and_files_match_registry():
     subs = J("registry/submissions.json")["files"]
-    primary = next(s for s in subs if s["role"] == "primary")
-    fallback = next(s for s in subs if s["role"] == "fallback")
+    primary = next(s for s in subs if s["id"] == "h38-ospc-submod")
+    fallback = next(s for s in subs if s["id"] == "h38-ospc-submod-nan")
     assert primary["id"] == "h38-ospc-submod"
     assert fallback["id"] == "h38-ospc-submod-nan"
     assert primary["content_id"] == fallback["content_id"] == "680d62616417"

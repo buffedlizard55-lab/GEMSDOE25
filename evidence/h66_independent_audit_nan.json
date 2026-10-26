@@ -1,0 +1,50 @@
+{
+ "file": "gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-nan.tif",
+ "bytes": 1604510,
+ "sha256": "a27a036ac86e468a47b492801fca0257417fd8ebbcdfea859a87c25193a477d8",
+ "meta": {
+  "count": 1,
+  "dtypes": [
+   "float32"
+  ],
+  "crs": "EPSG:32611",
+  "epsg": 32611,
+  "shape": [
+   3730,
+   3292
+  ],
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "nodata": "nan"
+ },
+ "footprint_px": 5167373,
+ "positive_pixels": 44832,
+ "distinct_values": [
+  0.0,
+  1.0
+ ],
+ "outside_convention": "nan",
+ "checks": {
+  "template_footprint_px_is_5167373": true,
+  "single_band": true,
+  "dtype_float32": true,
+  "crs_epsg_32611_and_equals_template": true,
+  "shape_equals_template": true,
+  "transform_equals_template": true,
+  "transform_is_100m_243350_4508550": true,
+  "footprint_all_finite": true,
+  "footprint_values_in_0_1": true,
+  "outside_all_zero": false,
+  "outside_all_nan": true,
+  "strict_whole_array_0_le_x_le_1": false,
+  "no_emission_on_catalogue": true
+ },
+ "all_hard_checks_pass": true,
+ "zip": null
+}

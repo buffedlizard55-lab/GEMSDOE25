@@ -1,0 +1,53 @@
+{
+ "experiment": "H66-1",
+ "hypothesis": "2x2 factorial: Factor G (MGD cation/chalcedony disequilibrium + natural spring upflow + Efimov F-ridge) x Factor C (tip-preserved flank shielding r=2.5px, tip>=0.05) on H35 detector at min_dist=3.0px",
+ "preregistration": "knowledge/25_preregistered_h66_mgd_and_sgmc_react_2026-10-25.md",
+ "draws": [
+  50,
+  51
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "kfrac": 0.035,
+ "min_dist_primary": 3.0,
+ "min_dist_h35_control": 2.4,
+ "flank_radius_px": 2.5,
+ "tip_preserve_threshold": 0.05,
+ "mgd_columns": [
+  "H66_mgd_cat_excess",
+  "H66_mgd_chalc_excess",
+  "H66_spring_upflow_prox",
+  "H66_efimov_f_ridge"
+ ],
+ "h34_columns": [
+  "H34_resmag_shallow_ridge",
+  "H34_resmag_mid_ridge",
+  "H34_baseflex_ridge"
+ ],
+ "arms": [
+  "CTRL_BDE7",
+  "CTRL_H35_24",
+  "G0_C0",
+  "G1_C0",
+  "G0_C1",
+  "G1_C1"
+ ],
+ "primary_arm": "G1_C1",
+ "controls": [
+  "CTRL_BDE7",
+  "CTRL_H35_24",
+  "G0_C0"
+ ],
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px) via gems25.experiment.Cell.evaluate",
+ "leakage_auc_cap": 0.9,
+ "gate": {
+  "mean_gain_gt": 0.001,
+  "folds_positive_min": 3,
+  "worst_fold_min": -0.01,
+  "mean_hug_increase_max": 0.1
+ }
+}

@@ -1,0 +1,57 @@
+{
+ "file": "gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif",
+ "bytes": 839064,
+ "sha256": "7503f4d498694c0107e0efad92cd06613b56d6fe402712532c1805e778166c1a",
+ "meta": {
+  "count": 1,
+  "dtypes": [
+   "float32"
+  ],
+  "crs": "EPSG:32611",
+  "epsg": 32611,
+  "shape": [
+   3730,
+   3292
+  ],
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "nodata": null
+ },
+ "footprint_px": 5167373,
+ "positive_pixels": 44832,
+ "distinct_values": [
+  0.0,
+  1.0
+ ],
+ "outside_convention": "zeros",
+ "checks": {
+  "template_footprint_px_is_5167373": true,
+  "single_band": true,
+  "dtype_float32": true,
+  "crs_epsg_32611_and_equals_template": true,
+  "shape_equals_template": true,
+  "transform_equals_template": true,
+  "transform_is_100m_243350_4508550": true,
+  "footprint_all_finite": true,
+  "footprint_values_in_0_1": true,
+  "outside_all_zero": true,
+  "outside_all_nan": false,
+  "strict_whole_array_0_le_x_le_1": true,
+  "no_emission_on_catalogue": true
+ },
+ "all_hard_checks_pass": true,
+ "zip": {
+  "file": "gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.zip",
+  "sha256": "087326528c231921478b606d571885e2d52660cfc8bc5ff9b9c15380cd6fb198",
+  "members": [
+   "gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif"
+  ],
+  "contains_exactly_candidate_bytes": true
+ }
+}

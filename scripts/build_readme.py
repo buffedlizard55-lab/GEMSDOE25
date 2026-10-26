@@ -45,6 +45,7 @@ def main() -> None:
     h31_aniso_res = opt("evidence/h31_experiments/results.json")
     h31_aniso_card = opt("evidence/h31_experiments/run_card.json")
     h38_card = opt("registry/run_card_h38_ospc_2026-10-25.json")
+    h66_card = opt("registry/run_card_h66_2026-10-25.json")
     h36_spigm_card = opt("registry/run_card_h36_spigm_2026-10-25.json")
     h36_spigm_pool = opt("evidence/h36_spigm_pooled_16cells.json")
     focus_forensics = opt("evidence/focus_sites_forensics.json")
@@ -58,6 +59,13 @@ def main() -> None:
     A("# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize\n")
     A("## Start here every session — owner mandate, 2026-10-25\n")
     A("**MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.** The project's decision principles are **Maximize P(Win)** and **Own the Outcome**. Review the original owner prompt and this README each session; follow `AGENTS.md`. Test catalogue-free geological hypotheses on buffered, spatially blocked hide-and-recover folds; test each feature alone for leakage (AUC >0.90 is presumptive leakage); check surface and final dots against every available registry raster (|rank correlation| >0.90 or >70% within 3 pixels is a duplicate-lane stop). Report pooled HOLDOUT-DTI with withheld-positive count and 95% CI, never present a projection or owner-reported claim as an organizer-confirmed score. Never spend a weekly slot before a separate selector decision. Exact-file format checks do not imply submission approval. Read the complete historical owner brief at the bottom. The current owner's very long updated prompt is not claimed to be transcribed verbatim here; this section records its actionable protocol, not the complete message.\n")
+    if h66_card:
+        e1_66 = h66_card["experiments"]["experiment_1_h66_1_screen"]
+        e2_66 = h66_card["experiments"]["experiment_2_h66_1_confirm"]
+        e3_66 = h66_card["experiments"]["experiment_3_h66_2_sgmc_react_screen"]
+        A("**Latest session (2026-10-25, H66 MGD-F + SGMC-REACT 3-experiment lane — featured download below):** "
+          f"[PhD forensic deconstruction of `GEMSDOE32` (`0.2778`) across focus sites `24–36` & `48–92`, 5 ranked untried hypotheses (`H66-1..H66-5`), and 3 pre-registered holdout experiments — `H66-1` screen PASS (`{e1_66['gate']['mean_gain']:+.6f}`, `4/4` folds+) / confirm FAIL (`{e2_66['gate']['mean_gain']:+.6f}`), `Factor C` flank shield `+8/8` (`16/16` combined with `H31-1`), `H66-2` `SGMC-REACT` screen PASS (`{e3_66['gate']['mean_gain']:+.6f}`, `4/4` folds+, unconfirmed at `3/3` cap) — unique GeoTIFF `da617550a0e9` (`0/21` sibling top-scorers flagged, `30.4%` vs `B2`; OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT)](knowledge/26_h66_outcomes_2026-10-25.md) · "
+          "pre-registration [`knowledge/25_preregistered_h66_mgd_and_sgmc_react_2026-10-25.md`](knowledge/25_preregistered_h66_mgd_and_sgmc_react_2026-10-25.md) (commit `0f6fc77`, pre-fit) · run card `registry/run_card_h66_2026-10-25.json`.\n")
     if h38_card:
         hd38 = h38_card["holdout_dti"]
         g38 = hd38["primary_contrast_G1_S1_vs_G0_S0"]
@@ -390,6 +398,10 @@ def main() -> None:
     A("The current user message was condensed into the session handoff. The full active scope and acceptance criteria are preserved below, separately from the verbatim 2026-10-02 brief.\n")
     A("<details><summary><strong>Full continuation brief and current constraints</strong></summary>\n")
     A("~~~text\n" + active_brief + "\n~~~\n")
+    A("</details>\n")
+    A("## Active Session Brief (2026-10-25, `arena/66ca912a-gemsdoe25` — condensed handoff preserved verbatim) — read every session\n")
+    A("<details><summary><strong>Active condensed prompt &amp; protocol for session 66ca912a</strong></summary>\n")
+    A("~~~markdown\n" + (ROOT / "knowledge" / "current_session_brief_2026-10-25_66ca_CONDENSED.md").read_text().rstrip() + "\n~~~\n")
     A("</details>\n")
     (ROOT / "README.md").write_text("\n".join(L))
     print("README.md written,", len("\n".join(L)), "chars")

@@ -1,0 +1,391 @@
+{
+ "schema": "run_card/v1 (PARALLEL-RUN PROTOCOL item 5)",
+ "session": "2026-10-25 H66 MGD-F + SGMC-REACT (arena/66ca912a-gemsdoe25)",
+ "experiments_used": "3 of 3 budget (Exp 1: H66-1 MGD-F screen [PASS]; Exp 2: H66-1 MGD-F confirmation [FAIL]; Exp 3: H66-2 SGMC-REACT screen [PASS +0.0138, 4/4 folds; unconfirmed at 3-exp cap]).",
+ "deviation_from_preregistration": "none \u2014 frozen rule in knowledge/25_preregistered_h66_mgd_and_sgmc_react_2026-10-25.md section 4.1 followed verbatim",
+ "hypothesis": "H66-1 (MGD-F, built GeoTIFF): Blind hydrothermal fault conduits over-pressured in unmapped Great Basin valleys produce positive SiO2-chalcedony minus Na-K-Ca cation geothermometer disequilibrium (GDR #1391 wells/springs), 2-m temperature probe upflow plumes (F2mDAB), and Efimov airborne radiometric potassium hydrothermal alteration ridges (GeoDAWN K * K/(eTh * TC)), paired with tip-preserved lateral-flank shielding (r=2.5 px, H27_tip>=0.05) and 300 m (min_dist=3.0 px) score-ordered dot spacing. H66-2 (SGMC-REACT, Exp 3 screen): A substantial fraction of unmapped Quaternary faults are neotectonically reactivated pre-Quaternary bedrock faults recorded in USGS SGMC (1:500k) where 3DEP LiDAR scarps and GPS strain gradients confirm active slip.",
+ "mechanism": "H66-1 adds 4 catalogue-free columns (H66_mgd_cat_excess, H66_mgd_chalc_excess, H66_spring_upflow_prox, H66_efimov_f_ridge) to the 82-column H35 RESMAG-TIP HGB detector, suppresses non-tip lateral flanks within 2.5 px of visible catalogue faults (preserving fault-tip relays where H27_tip >= 0.05), and thins at min_dist=3.0 px. H66-2 gates USGS SGMC bedrock fault proximity exp(-d_SGMC / 4 px) by 3DEP LiDAR scarp strike alignment/step (H66_sgmc_scarp_compat) and GPS 2nd-invariant strain * gravity THDR (H66_sgmc_strain_react).",
+ "mimicking_non_fault_process": "H66-1 mimics: Stratabound lateral outflow plumes in permeable ash-flow tuffs/playa aquifers, agricultural/evaporitic brine mixing altering Na-K-Ca ratios, and potassic rhyolite domes/unwelded tuffs with primary high K/eTh ratios. H66-2 mimics: Inactive Mesozoic Sevier thrust ramps, caldera ring-fracture contacts, and compilation overlap between 1:500k state bedrock fault maps and USGS QFFDB.",
+ "preregistration": "knowledge/25_preregistered_h66_mgd_and_sgmc_react_2026-10-25.md (frozen at commit 0f6fc77; band filename fix at 822fb60 before Exp 3 fit)",
+ "focus_sites_forensics": {
+  "why_g32_scored_0_2778": "Pixel-exact subset chain on 19GEMSDOE H19-5 (121,131 px, 0.1922 [OWNER-CLAIM]): GEMSDOE24 D1.5 (60,069 px, 0.2477) -> GEMSDOE25/30 D2.8 (44,090 px, 0.2600, nn>=2.83 px cuts cone-overlap FP by 63.6%) -> GEMSDOE28/31 R1 (40,199 px, 0.2708, deletes 3,891 d_cat<=1 px collar dots carrying 0.00096 credit/px << tau=0.0549) -> GEMSDOE32 B2 (37,654 px, 0.2778 [OWNER-CLAIM], deletes 2,545 1<d_cat<=2 px collar dots carrying 0.00503 credit/px << tau=0.0573). GEMSDOE33 h33d (41,865 px, 0.2632) re-admitted 1,377 d<=1 and 2,517 1<d<=2 dots (-0.0146 vs B2); GEMSDOE36 anderson-pinn (38,854 px, 0.2750) is B2 union 1,200 extra dots (~0.0134 credit/px < tau=0.0588, -0.0028 vs B2).",
+  "evidence": "evidence/h66_focus_sites_forensics.json",
+  "identities": {
+   "d28_g25_equals_d28_g30": true,
+   "r1_g28_equals_r1_g31": true,
+   "r1_is_exact_d28_gt_1px": true,
+   "b2_is_exact_r1_gt_2px": true,
+   "g36_is_exact_superset_of_b2_plus_1200": true,
+   "g33_vs_b2_shared_px": 31614,
+   "g33_added_over_b2_px": 10251,
+   "g33_removed_from_b2_px": 6040
+  }
+ },
+ "experiments": {
+  "experiment_1_h66_1_screen": {
+   "draws": [
+    50,
+    51
+   ],
+   "evaluator": "gems25.holdout.v1.2-buffered-4quad-pooled-dti",
+   "withheld_positives": 22410,
+   "leakage_canary": {
+    "cap": 0.9,
+    "max_feature_auc": 0.5858059250936329,
+    "max_by_feature": {
+     "H66_mgd_cat_excess": 0.57308811835206,
+     "H66_mgd_chalc_excess": 0.5858059250936329,
+     "H66_spring_upflow_prox": 0.5724222852133255,
+     "H66_efimov_f_ridge": 0.5377820299625469
+    },
+    "mean_raw_auc_by_feature": {
+     "H66_mgd_cat_excess": 0.4954724359456319,
+     "H66_mgd_chalc_excess": 0.5015408065580521,
+     "H66_spring_upflow_prox": 0.5090582993095119,
+     "H66_efimov_f_ridge": 0.48480240257966756
+    },
+    "passed": true
+   },
+   "candidate_arm": "G1_C1",
+   "candidate_pooled_holdout_dti": 0.14630848801337518,
+   "candidate_pooled_ci95": [
+    0.11486487398181874,
+    0.1777521020449316
+   ],
+   "candidate_formatted": "HOLDOUT-DTI 0.146308 (evaluator=gems25.holdout.v1.2-buffered-4quad-pooled-dti, withheld_positives=22410, 95% CI [0.114865, 0.177752])",
+   "control_h35_pooled_holdout_dti": 0.14375726678521233,
+   "control_h35_pooled_ci95": [
+    0.1133520685037732,
+    0.17416246506665145
+   ],
+   "factorial": {
+    "G_main": {
+     "mean": 0.0023996871984171275,
+     "ci95": [
+      -0.0038098398772190237,
+      0.008609214274053279
+     ],
+     "by_fold": [
+      0.0016215822469623498,
+      0.00016911324790611082,
+      -0.00031369079348897433,
+      0.008121744092289024
+     ],
+     "folds_positive": 3
+    },
+    "C_main": {
+     "mean": 0.0009118935969642181,
+     "ci95": [
+      0.00019500823901199714,
+      0.0016287789549164389
+     ],
+     "by_fold": [
+      0.00028119381842545144,
+      0.001201355307210883,
+      0.0008966019596376995,
+      0.0012684233025828384
+     ],
+     "folds_positive": 4
+    },
+    "GxC_interaction": {
+     "mean": -0.00015776952175888814,
+     "ci95": [
+      -0.0010777396636606628,
+      0.0007622006201428865
+     ],
+     "by_fold": [
+      -0.00012099431926673732,
+      -0.0007671771465836141,
+      -0.0003542048053971625,
+      0.0006112981842119614
+     ],
+     "folds_positive": 1
+    }
+   },
+   "gate": {
+    "mean_gain": 0.002485637490678927,
+    "ci95": [
+     -0.0021453732338711125,
+     0.007116648215228966
+    ],
+    "folds_positive": 4,
+    "worst_fold_gain": 0.0005829111661486974,
+    "per_fold_gain": [
+     0.00160527713007394,
+     0.0009495399247442804,
+     0.0005829111661486974,
+     0.00680482174174879
+    ],
+    "mean_hug_delta": -0.011038754513068932,
+    "passed": true,
+    "best_control_by_fold": [
+     "CTRL_H35_24",
+     "CTRL_H35_24",
+     "G0_C0",
+     "CTRL_H35_24"
+    ],
+    "best_control_mean_dti": 0.1461954051037053
+   }
+  },
+  "experiment_2_h66_1_confirm": {
+   "draws": [
+    52,
+    53
+   ],
+   "evaluator": "gems25.holdout.v1.2-buffered-4quad-pooled-dti",
+   "withheld_positives": 22223,
+   "leakage_canary": {
+    "cap": 0.9,
+    "max_feature_auc": 0.5634625198911223,
+    "max_by_feature": {
+     "H66_mgd_cat_excess": 0.5545449667938391,
+     "H66_mgd_chalc_excess": 0.558220626409856,
+     "H66_spring_upflow_prox": 0.5634625198911223,
+     "H66_efimov_f_ridge": 0.5410675229617069
+    },
+    "mean_raw_auc_by_feature": {
+     "H66_mgd_cat_excess": 0.498716331731465,
+     "H66_mgd_chalc_excess": 0.5026201485234753,
+     "H66_spring_upflow_prox": 0.5020090207148054,
+     "H66_efimov_f_ridge": 0.4779812397832961
+    },
+    "passed": true
+   },
+   "candidate_arm": "G1_C1",
+   "candidate_pooled_holdout_dti": 0.1555049697379181,
+   "candidate_pooled_ci95": [
+    0.13135750503326124,
+    0.17965243444257498
+   ],
+   "candidate_formatted": "HOLDOUT-DTI 0.155505 (evaluator=gems25.holdout.v1.2-buffered-4quad-pooled-dti, withheld_positives=22223, 95% CI [0.131358, 0.179652])",
+   "control_h35_pooled_holdout_dti": 0.1570865156052568,
+   "control_h35_pooled_ci95": [
+    0.13005215911379592,
+    0.18412087209671768
+   ],
+   "factorial": {
+    "G_main": {
+     "mean": -0.0010067214585976966,
+     "ci95": [
+      -0.0036541106069580198,
+      0.0016406676897626265
+     ],
+     "by_fold": [
+      -0.002585133671054035,
+      -0.0008694870743964356,
+      0.001255850677233994,
+      -0.0018281157661743097
+     ],
+     "folds_positive": 1
+    },
+    "C_main": {
+     "mean": 0.0004933105919572023,
+     "ci95": [
+      -0.0001344898497396788,
+      0.0011211110336540834
+     ],
+     "by_fold": [
+      0.0002892237411713794,
+      0.0008068424908135308,
+      3.793764113602105e-05,
+      0.0008392384947078779
+     ],
+     "folds_positive": 4
+    },
+    "GxC_interaction": {
+     "mean": -0.00010998071479979138,
+     "ci95": [
+      -0.0005974832394021676,
+      0.0003775218098025848
+     ],
+     "by_fold": [
+      0.00014133545947350723,
+      -0.0001316360254151605,
+      8.469354668880213e-05,
+      -0.0005343158399463144
+     ],
+     "folds_positive": 2
+    }
+   },
+   "gate": {
+    "mean_gain": -0.002240688313106025,
+    "ci95": [
+     -0.00635829424155606,
+     0.0018769176153440106
+    ],
+    "folds_positive": 0,
+    "worst_fold_gain": -0.005860266818767168,
+    "per_fold_gain": [
+     -0.0022959099298826557,
+     -6.264458358290481e-05,
+     -0.0007439319201913708,
+     -0.005860266818767168
+    ],
+    "mean_hug_delta": -0.0104334632755375,
+    "passed": false,
+    "best_control_by_fold": [
+     "G0_C0",
+     "G0_C0",
+     "CTRL_H35_24",
+     "CTRL_H35_24"
+    ],
+    "best_control_mean_dti": 0.15915436571074432
+   }
+  },
+  "experiment_3_h66_2_sgmc_react_screen": {
+   "draws": [
+    54,
+    55
+   ],
+   "evaluator": "gems25.holdout.v1.2-buffered-4quad-pooled-dti",
+   "withheld_positives": 22586,
+   "leakage_canary": {
+    "cap": 0.9,
+    "max_feature_auc": 0.7890165639686684,
+    "max_by_feature": {
+     "H66_sgmc_prox4": 0.7890165639686684,
+     "H66_sgmc_scarp_compat": 0.5964913296089386,
+     "H66_sgmc_strain_react": 0.7861721079199304
+    },
+    "mean_raw_auc_by_feature": {
+     "H66_sgmc_prox4": 0.694433729545316,
+     "H66_sgmc_scarp_compat": 0.5438775451632529,
+     "H66_sgmc_strain_react": 0.6956337145238976
+    },
+    "passed": true
+   },
+   "candidate_arm": "SGMC_REACT_ONLY",
+   "candidate_pooled_holdout_dti": 0.16264546718350364,
+   "candidate_pooled_ci95": [
+    0.12323339161648753,
+    0.20205754275051976
+   ],
+   "candidate_formatted": "HOLDOUT-DTI 0.162645 (evaluator=gems25.holdout.v1.2-buffered-4quad-pooled-dti, withheld_positives=22586, 95% CI [0.123233, 0.202058])",
+   "sgmc_all3_pooled_holdout_dti": 0.1710379322846643,
+   "sgmc_all3_pooled_ci95": [
+    0.1348883448289447,
+    0.20718751974038388
+   ],
+   "control_h35_pooled_holdout_dti": 0.1497112319542751,
+   "control_h35_pooled_ci95": [
+    0.11986075504101662,
+    0.1795617088675336
+   ],
+   "gate": {
+    "mean_gain": 0.013793901052201768,
+    "ci95": [
+     0.0024942326587472,
+     0.025093569445656334
+    ],
+    "folds_positive": 4,
+    "worst_fold_gain": 0.0034396322289344528,
+    "per_fold_gain": [
+     0.019559267934577407,
+     0.016478077326523788,
+     0.0034396322289344528,
+     0.015698626718771425
+    ],
+    "mean_hug_delta": -0.007510276344365165,
+    "passed": true,
+    "best_control_by_fold": [
+     "CTRL_H35_24",
+     "CTRL_H35_24",
+     "CTRL_H35_24",
+     "CTRL_H35_24"
+    ],
+    "best_control_mean_dti": 0.1511048888715937
+   },
+   "scientific_caveat": "Screen PASSED (+0.013794 paired gain, CI95 [+0.002494, +0.025094], 4/4 folds+, max canary AUC 0.7890 <= 0.90), but NOT promoted: (1) 3-of-3 experiment budget reached so confirmation draws 56,57 were not run; (2) H66_sgmc_strain_react standalone AUC (0.7862) nearly equals raw H66_sgmc_prox4 (0.7890) because HGB trees threshold strictly positive smooth multipliers near zero to recover USGS SGMC bedrock fault proximity (IR-25-SGMC-TREE-INVERSION & IR-25-SGMC-PROXY-CONTAMINATION), whereas H66_sgmc_scarp_compat (AUC 0.5965) genuinely restricts to LiDAR-scarp-bearing traces."
+  }
+ },
+ "registry_correlation_and_overlap": {
+  "surface_max_abs_spearman": 0.151079,
+  "surface_cap": 0.9,
+  "surface_pass": true,
+  "focus_21_top_scorers": {
+   "n": 21,
+   "worst_cand_dots_within_3px": 0.48712972876516775,
+   "worst_overlap_file": "g63_cvarlw_0.2303.tif",
+   "worst_abs_spearman_surface": 0.096144,
+   "b2_overlap": 0.30384546752319774,
+   "b2_reverse_overlap": 0.3625378445849047,
+   "b2_spearman_surface": 0.052283,
+   "b2_spearman_final": 0.019646
+  },
+  "external_sparse_50": {
+   "n": 50,
+   "worst_abs_spearman_surface": 0.176946,
+   "worst_surface_file": "h23-a-6pct.tif",
+   "worst_abs_spearman_final": 0.062878,
+   "worst_final_file": "h16-continuation.tif",
+   "worst_cand_dots_within_3px": 0.7877185938615274,
+   "worst_overlap_file": "pindrop-nodes.tif",
+   "lane_pass": false
+  },
+  "own_unscored_lineage_13": {
+   "n": 16,
+   "worst_abs_spearman_surface": 0.151079,
+   "worst_surface_file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+   "worst_abs_spearman_final": 0.18008,
+   "worst_final_file": "gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+   "worst_cand_dots_within_3px": 0.8354523554603854,
+   "worst_overlap_file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+   "lane_pass": false
+  },
+  "dense_lattice_r13": {
+   "group": "scored",
+   "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+   "registry_dots": 206895,
+   "spearman_surface": 0.00371,
+   "spearman_final": 0.000282,
+   "cand_dots_within_3px": 1.0,
+   "reg_dots_within_3px_of_cand": 0.18232436743275574,
+   "dense_lattice": true
+  },
+  "literal_strict_lane_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+  "density_aware_lane_verdict": "DUPLICATE/LANE OVERLAP (density-aware) - do not package",
+  "interpretation": "Passes surface rank-correlation against all 64 rasters (max |rho|=0.1769 <= 0.90) and passes 3-px overlap against all 21 focus/sibling top-scorer submissions (max 0.4871 <= 0.70; 0.3037 vs GEMSDOE32 B2 0.2778) and all external sparse submissions <=80k dots. Exceeds literal 0.70 cap on 13gems 5-px dense lattice (1.000, IR-25-LANE-DENSITY), 4 ultra-dense >100k-dot early artifact carpets (0.717-0.788 forward, 0.191-0.426 reverse), and GEMSDOE25's own unscored docs/downloads HGB lineage (0.749-0.822). Held DO NOT SUBMIT."
+ },
+ "tif": {
+  "submission_name": "gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros",
+  "file": "gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif",
+  "path": "docs/downloads/gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif",
+  "bytes": 839064,
+  "sha256": "7503f4d498694c0107e0efad92cd06613b56d6fe402712532c1805e778166c1a",
+  "nan_twin_file": "gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-nan.tif",
+  "nan_twin_sha256": "a27a036ac86e468a47b492801fca0257417fd8ebbcdfea859a87c25193a477d8",
+  "zip_file": "gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.zip",
+  "zip_sha256": "087326528c231921478b606d571885e2d52660cfc8bc5ff9b9c15380cd6fb198",
+  "content_id": "da617550a0e9",
+  "positive_pixels": 44832,
+  "note": "GEMSDOE25 H66-1 MGD-C sapd3.0 | confirm FAIL; no slot; unscored; not slot-approved | id da617550a0e9",
+  "note_chars": 100,
+  "validator_gems25_check_file": {
+   "ok_to_upload": true,
+   "hard_failures": []
+  },
+  "validator_independent_rasterio": {
+   "all_hard_checks_pass": true,
+   "checks": {
+    "template_footprint_px_is_5167373": true,
+    "single_band": true,
+    "dtype_float32": true,
+    "crs_epsg_32611_and_equals_template": true,
+    "shape_equals_template": true,
+    "transform_equals_template": true,
+    "transform_is_100m_243350_4508550": true,
+    "footprint_all_finite": true,
+    "footprint_values_in_0_1": true,
+    "outside_all_zero": true,
+    "outside_all_nan": false,
+    "strict_whole_array_0_le_x_le_1": true,
+    "no_emission_on_catalogue": true
+   }
+  }
+ },
+ "verdict": "negative",
+ "ok_to_download": true,
+ "ok_to_submit_slot": false,
+ "slot_approved": false
+}

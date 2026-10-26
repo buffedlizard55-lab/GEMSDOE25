@@ -1,0 +1,43 @@
+{
+ "experiment": "H66-2",
+ "hypothesis": "Neotectonically reactivated SGMC bedrock faults (SGMC x 3DEP LiDAR strike/step + SGMC x geodetic strain/gravity) vs ungated SGMC and same-run H35 controls",
+ "preregistration": "knowledge/25_preregistered_h66_mgd_and_sgmc_react_2026-10-25.md",
+ "caveat": "IR-25-SGMC-PROXY-CONTAMINATION: compilation-overlap risk disclosed alongside physics-gated vs ungated ablation",
+ "draws": [
+  54,
+  55
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "kfrac": 0.035,
+ "min_dist_primary": 3.0,
+ "min_dist_h35_control": 2.4,
+ "sgmc_columns": [
+  "H66_sgmc_prox4",
+  "H66_sgmc_scarp_compat",
+  "H66_sgmc_strain_react"
+ ],
+ "arms": [
+  "CTRL_H35_24",
+  "CTRL_H35_C1",
+  "SGMC_REACT_ONLY",
+  "SGMC_ALL3"
+ ],
+ "primary_arm": "SGMC_REACT_ONLY",
+ "controls": [
+  "CTRL_H35_24",
+  "CTRL_H35_C1"
+ ],
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px) via gems25.experiment.Cell.evaluate",
+ "leakage_auc_cap": 0.9,
+ "gate": {
+  "mean_gain_gt": 0.001,
+  "folds_positive_min": 3,
+  "worst_fold_min": -0.01,
+  "mean_hug_increase_max": 0.1
+ }
+}
