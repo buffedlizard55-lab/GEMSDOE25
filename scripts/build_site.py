@@ -783,8 +783,24 @@ Response: exact sparse-regime DTI of a fixed emission (ridge NMS → top 2.45 % 
     (DOCS / "research.html").write_text(page("Research", research, "research", ""))
     (DOCS / "sources.html").write_text(page("Sources & audit", sources, "sources", ""))
     (DOCS / "current-review.html").write_text(page("Current executive review", render_body(), "current", ""))
-    for name in ("submissions", "live_scores", "irregularities", "sources", "data_manifest", "artifact_ledger", "run_card_h72_2026-10-26"):
+    for name in (
+        "submissions",
+        "live_scores",
+        "irregularities",
+        "sources",
+        "data_manifest",
+        "artifact_ledger",
+        "run_card_h72_2026-10-26",
+        "run_card_h73_2026-10-26",
+    ):
         (DOCS / "data" / f"{name}.json").write_text((ROOT / "registry" / f"{name}.json").read_text())
+    # Reapply the current, gate-negative H73 status after generated pages are written.
+    # Keep research inspection visibly separate from competition eligibility.
+    try:
+        from announce_h73_site import main as publish_current_status
+    except ImportError:
+        from scripts.announce_h73_site import main as publish_current_status
+    publish_current_status()
     print("site built:", [p.name for p in DOCS.glob("*.html")] + ["../index.html"])
 
 
