@@ -2,6 +2,7 @@ import numpy as np
 
 from gems25.features import build_catalogue_features, dequantize, nearest_fill, ridge_strength
 from gems25.families import FAMILIES, family_columns
+from gems25.block_holdout import BlockHoldout
 from gems25.holdout import COLLAR_PX, Holdout, quadrant_ids
 from gems25.metric import dti_binary
 
@@ -106,3 +107,55 @@ def test_scoring_masks_visible_faults_and_scores_only_hidden_truth():
     assert H.score(d, np.zeros_like(perfect))["dti"] == 0.0
     # the generic scorer agrees
     assert abs(dti_binary(perfect[d.bbox], d.hidden_test[d.bbox], valid=d.quadrant[d.bbox], known=d.visible[d.bbox])["dti"] - r["dti"]) < 1e-12
+
+
+def test_block_component_picker_hides_no_training_components_at_zero_target():
+    foot = np.ones((100, 100), bool)
+    labels = np.zeros((100, 100), bool)
+    labels[50, 50] = True
+    holdout = BlockHoldout(foot, labels, block_size_px=40)
+    selected = holdout._pick(np.random.default_rng(0), np.array([1]), 0.0)
+    assert selected.size == 0
+
+
+def test_block_holdout_uses_25km_checkerboard_and_hides_all_test_components():
+    foot, labels = _toy_holdout(seed=5)
+    holdout = BlockHoldout(foot, labels, hide_frac=0.20)
+    assert holdout.block_size_px == 250
+    assert holdout.block_grid_shape == (2, 2)
+    assert holdout.FOLD_NAMES == ("block_parity_00", "block_parity_01", "block_parity_10", "block_parity_11")
+    assert (holdout.quad[foot] >= 0).all() and (holdout.quad[~foot] == -1).all()
+    # Each 25-km block uses one checkerboard colour, independent of the footprint mask.
+    for br in range(holdout.block_grid_shape[0]):
+        for bc in range(holdout.block_grid_shape[1]):
+            r0, c0 = br * holdout.block_size_px, bc * holdout.block_size_px
+            r1, c1 = min(r0 + holdout.block_size_px, foot.shape[0]), min(c0 + holdout.block_size_px, foot.shape[1])
+            local_foot = foot[r0:r1, c0:c1]
+            block = holdout.quad[r0:r1, c0:c1]
+            values = np.unique(block[local_foot])
+            assert values.size == 1 and values[0] == 2 * (br % 2) + (bc % 2)
+    for fold in range(4):
+        draw = holdout.draw(fold, seed=94)
+        q_labels = labels & draw.quadrant
+        assert np.array_equal(draw.hidden_test, q_labels)  # all labelled pixels in every test block are truth
+        assert not (draw.visible & draw.quadrant).any()
+        test_components = np.unique(holdout.comp[q_labels])
+        test_components = test_components[test_components > 0]
+        if test_components.size:
+            assert not np.isin(holdout.comp, test_components)[draw.visible].any()
+        assert not (draw.hidden_train & draw.collar).any()
+        assert (draw.hidden_train <= draw.train_region).all()
+        assert not (draw.hidden_train & draw.hidden_test).any()
+        assert np.array_equal(draw.hidden_test, holdout.draw(fold, 94).hidden_test)
+        assert np.array_equal(draw.hidden_train, holdout.draw(fold, 94).hidden_train)
+        assert not np.array_equal(draw.hidden_train, holdout.draw(fold, 95).hidden_train)
+
+
+def test_block_holdout_rejects_degenerate_blocks_and_fold_ids():
+    foot = np.ones((100, 100), bool)
+    labels = np.zeros_like(foot)
+    with np.testing.assert_raises(ValueError):
+        BlockHoldout(foot, labels, block_size_px=2 * COLLAR_PX)
+    holdout = BlockHoldout(foot, labels, block_size_px=40)
+    with np.testing.assert_raises(ValueError):
+        holdout.draw(4, 0)
