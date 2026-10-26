@@ -53,6 +53,10 @@ This is a catalogue-gap proxy, not an organizer score or blind-fault performance
 <a href="../knowledge/28_preregistered_pol3_signed_halfgraben_2026-10-26.md">frozen preregistration</a> ·
 <a href="../registry/run_card_pol3_screen_2026-10-26.json">POL3 run card</a> ·
 <a href="../evidence/pol3_screen_2026-10-26/summary.json">saved-cell result</a>.</p></section>'''
+    budget_path = ROOT/'evidence/lane_budget_2026-10-26/budget.json'
+    budget = json.loads(budget_path.read_text()) if budget_path.exists() else None
+    d01_path = ROOT/'evidence/d01_density_2026-10-26/analysis.json'
+    d01 = json.loads(d01_path.read_text()) if d01_path.exists() else None
     subs = json.loads((ROOT / "registry" / "submissions.json").read_text())["files"]
     featured = next(s for s in subs if s["role"] == "primary")
     download = (
@@ -65,15 +69,32 @@ This is a catalogue-gap proxy, not an organizer score or blind-fault performance
     )
     historical = 'gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif'
     rows, cards = [], []
+    fname = e(featured['file'])
+    rows.append(f'''<tr><th scope="row">This project</th>
+<td class="submission-id"><a href="downloads/{fname}" download>{fname}</a></td>
+<td>No leaderboard estimate exists. Proxy HOLDOUT-DTI is 0.13–0.15 and is <b>not</b> a score.<small>NOT A FORECAST</small></td>
+<td><span class="badge b-ok">Yes — unique content id {e(featured["content_id"])}</span><small>density-aware check</small></td>
+<td><span class="badge b-bad">NO — testing only</span></td></tr>''')
     for row in sorted(focus['sites'], key=lambda r: -r['owner_reported_score']):
         rows.append(f'''<tr><th scope="row"><a href="{e(row['site_url'])}">{e(row['site'])}</a></th>
-<td>{row['owner_reported_score']:.4f}<small>OWNER-REPORTED</small></td>
-<td class="submission-id">{e(row['submission'])}</td><td><span class="badge b-warn">Historical only</span></td></tr>''')
+<td class="submission-id">{e(row['submission'])}</td>
+<td>{row['owner_reported_score']:.4f}<small>OWNER-REPORTED, historical. Not an estimate for a new file.</small></td>
+<td><span class="badge b-warn">NO — earlier submission, not unique</span></td>
+<td><span class="badge b-bad">DO NOT SUBMIT</span></td></tr>''')
         cards.append(f'''<article class="card"><h3>{e(row['site'])}</h3><p>{e(row['mechanism'])}</p>
 <p class="small">{row['positive_pixels']:,} positive pixels · Local format checks: {'pass' if row['local_format_pass'] else 'fail'} ·
 Not approved as a new submission. SHA-256: <code class="wrap-hash">{row['sha256']}</code></p>
 <a href="{e(row['source_url'])}">Pinned source revision</a> · <a href="{e(row['site_url'])}">Original site</a></article>''')
-    coverage = focus['lattice_coverage']
+    d01_rows, budget_dti, current_dti, paired, paired_ci = '', None, None, None, None
+    if budget and d01:
+        d01_rows = ''.join(
+            f'<tr><td>{int(k):,}</td><td>{v["pooled_dti"]:.4f}</td>'
+            f'<td>{v["ci95"][0]:.4f}–{v["ci95"][1]:.4f}</td><td>{v["emitted_median"]:,.0f}</td></tr>'
+            for k, v in d01['arms'].items())
+        lane_arm = d01['arms']['21713']
+        cur_arm = d01['arms']['70524']
+        budget_dti, current_dti = lane_arm['pooled_dti'], cur_arm['pooled_dti']
+        paired, paired_ci = lane_arm['paired_gain_vs_current'], lane_arm['paired_ci95']
     body = f'''<section class="hero"><p class="eyebrow">RESEARCH DECISION BRIEF / 26 OCTOBER 2026</p>
 <h1>Know what to submit.<br>Know when to stop.</h1>
 <p class="lead">Nine focus sites, one auditable comparison, and a new geological test. No renamed reference files. No predicted leaderboard scores.</p></section>
@@ -85,9 +106,9 @@ Not approved as a new submission. SHA-256: <code class="wrap-hash">{row['sha256'
 <section><h2>What is the strongest historical evidence?</h2>
 <p><b>GEMSDOE32 B2 — 0.2778, OWNER-REPORTED.</b> It is the highest supplied historical result among these focus sites.
 It is already an earlier submission, so it is <b>not</b> eligible as a new unique artifact. No organizer receipt has been supplied.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Nine historical exemplars"><table><thead><tr><th>Site</th><th>Reported result</th><th>Highest supplied historical submission</th><th>Use</th></tr></thead>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Download, estimate, uniqueness and submit decision"><table><thead><tr><th>Source</th><th>File to download</th><th>Estimated leaderboard score</th><th>Unique as a new submission?</th><th>Submit?</th></tr></thead>
 <tbody>{''.join(rows)}</tbody></table></div>
-<p class="small">Not a live leaderboard query and not a slot selection. The conflicting overall-leader claims 0.3195 and 0.4413 remain unverified.</p></section>
+<p class="small">No calibration maps any proxy number to this leaderboard: the private labels are unavailable and no organizer receipt exists, so an <b>estimate is stated as unavailable</b> rather than invented. Owner-reported historical scores are context, not predictions. Not a live leaderboard query and not a slot selection. The conflicting overall-leader claims 0.3195 and 0.4413 remain unverified.</p></section>
 <section><h2>Why B2 can work — and what it does not prove</h2>
 <p>Fresh pixel checks show B2 is exactly D2.8 with 6,436 predictions within 200 m of the supplied catalogue removed.
 GEMSDOE36 is B2 plus 1,200 predictions. GEMSDOE25 and 30 have identical masks; GEMSDOE28 R1 and 31 have identical masks.</p>
@@ -104,11 +125,24 @@ not a copied prediction mask. Volcanic flow lobes, sediment sorting and survey s
 <a href="../evidence/rod_2026-10-26/feature_canaries.json">Every-feature leakage canaries</a> ·
 <a href="../evidence/rod_2026-10-26/surface_lane.json">Pre-placement surface audit</a></p></section>
 {pol3_section}
-<section><h2>The novelty constraint needs attention</h2>
-<p>The registered lattice's three-pixel halo covers <b>{coverage['coverage_fraction']*100:.4f}%</b> of eligible pixels.
-Only {coverage['uncovered_pixels']:,} pixels lie outside it. Under the literal overlap rule, a candidate above 21,713 unique dots cannot pass against that lattice,
-even before spacing constraints. This does <b>not</b> establish that every smaller candidate passes.</p>
-<p>No density exception was applied. No dots were moved merely to evade the registry.</p></section>
+<section><h2>The novelty rule and the scoring objective are in direct conflict</h2>
+<p>The literal rule is: more than 70% of a candidate's unique dots within 3 px of any one registry raster is a duplicate-lane stop.
+An exact arithmetic audit of the restored registry (<a href="../evidence/lane_budget_2026-10-26/budget.json">budget.json</a>) finds the binding raster is
+<code>{budget['binding_raster']['file']}</code>: its three-pixel halo covers <b>{budget['binding_raster']['coverage_fraction']*100:.4f}%</b> of the
+{budget['eligible_domain_pixels']:,} eligible pixels, leaving only <b>{budget['binding_raster']['uncovered_pixels']:,}</b> outside.
+With K unique dots at most U can lie outside, so the rule requires <code>10·max(0,K−U) ≤ 7·K</code>, i.e. <b>K ≤ {budget['binding_raster']['max_feasible_unique_dots']:,}</b>,
+and that maximum is reachable only by placing a dot on <i>every</i> uncovered pixel. Anything larger cannot pass, whatever its geology or rank correlation.</p>
+<p>The same-run density diagnostic (D01) then measures what that cap costs. <b>HOLDOUT-DTI</b>, shared evaluator α=0.2, β=0.8, 300 m kernel, four buffered
+quadrants, draws 60/61; one fit per cell shared by every density, spacing 2.4 px:</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Density diagnostic"><table><thead><tr><th>Requested cap (full-footprint dots)</th><th>HOLDOUT-DTI</th><th>95% CI</th><th>Median emitted per quadrant</th></tr></thead><tbody>
+{d01_rows}</tbody></table></div>
+<p>The lane-compatible cap gives <b>{budget_dti:.4f}</b> versus <b>{current_dti:.4f}</b> at the current request — paired difference
+<b>{paired:+.4f}</b>, 95% CI [{paired_ci[0]:+.4f}, {paired_ci[1]:+.4f}], worse in every quadrant and both draws.
+Uniform thinning is therefore <b>not</b> a route to a higher score; the earlier B2 result is better explained by selective near-catalogue collar pruning than by uniform density reduction,
+and even that remains a conditional explanation without the private labels. Requested caps saturate at available ridge candidates, so this orders density regimes rather than simulating one exact file.</p>
+<p>No density exception was applied and no dots were moved to evade the registry. <b>This is a policy decision for the owner</b>: either exclude the synthetic sibling lattice from the lane
+registry (reporting it separately), or replace the literal rule with a symmetric density-aware statistic. Until one is chosen, no competitive candidate can be both lane-clean and high-scoring,
+so no new TIF is asserted as submittable.</p></section>
 <section><h2>Site-by-site executive findings</h2>{''.join(cards)}</section>
 <section id="how-to-submit"><h2>How a submission becomes eligible</h2>
 <ol class="steps"><li><b>Research gate.</b> Beat the same-run best comparable buffered holdout; report pooled HOLDOUT-DTI, evaluator version, withheld-positive count and 95% CI. Confirm on fresh draws.</li>
@@ -145,10 +179,15 @@ def readme_status():
             "## Current decision — 2026-10-26\n\n"
             "**OK to download: YES · OK to spend a weekly slot: NO — DO NOT SUBMIT.** "
             "Featured unique GeoTIFF [`gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif`](docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif) "
-            "(content id `9eb0c31e5149`; HOLDOUT-DTI FAIL vs H35). "
-            "[Nine-site executive review and automated ROD result](docs/current-review.html) · "
-            "[H71 outcomes](knowledge/28_h71_outcomes_2026-10-26.md) · "
-            "[ROD run card](evidence/rod_2026-10-26/run_card.json). "
+            "(content id `9eb0c31e5149`; HOLDOUT-DTI FAIL vs H35; 0 NaN in footprint, values in [0,1]). "
+            "[Executive review with the download/estimate/uniqueness table](docs/current-review.html) · "
+            "[D01 lane-budget and density outcome](knowledge/31_d01_outcome_2026-10-26.md) · "
+            "[lane budget receipt](evidence/lane_budget_2026-10-26/budget.json) · "
+            "[D01 run card](evidence/d01_density_2026-10-26/run_card.json). "
+            "The literal 70%/3 px lane rule caps any candidate at 21,713 unique dots against the restored lattice, "
+            "and the density diagnostic puts that cap at HOLDOUT-DTI 0.0859 vs 0.1321 at the current request, so no "
+            "competitive file can be both lane-clean and high-scoring until the owner chooses a registry policy. "
+            "No leaderboard estimate is available: the private labels and organizer receipts are absent. "
             "GEMSDOE32 B2 is the strongest supplied historical exemplar (**OWNER-REPORTED 0.2778**), not a new submission. "
             "Do not reinterpret historical downloads or format-only receipts as authorization. "
             "No weekly slot was used.\n\n"

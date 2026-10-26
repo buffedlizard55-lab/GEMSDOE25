@@ -1,0 +1,157 @@
+{
+  "hypothesis": "Uniform emission-density reduction to the literal lane budget preserves proxy DTI",
+  "mechanism": "Fewer dots reduce false-positive mass, so a lane-compliant density could offset the credit lost from thinner coverage; tested on the incumbent H35 surface with no geology change.",
+  "non_fault_mimic": "Ridge-only NMS can leave non-fault ridges (roads, lithological contacts, survey seams) as candidates; density alone cannot distinguish them.",
+  "evaluator": {
+    "src/gems25/metric.py": "4f6e4732029efd0238388aec74590e56bc2727df7441220ca09af7d02e9da230",
+    "src/gems25/holdout.py": "f0455eb17921e50365342ffb658504a5fcc0ddb3d2bd82f4bf0568d772be2bc1",
+    "src/gems25/experiment.py": "f47cb776b0136ea33fc61ea244b81e6138e1cc1cfb8fd009af427896e906d548",
+    "src/gems25/validation.py": "bb2faea55b6bd827196f56758e5fbbf1e4e620e92779e6b9b53703c3bdf42ac3",
+    "src/gems25/thinning.py": "63bdfd1c11455e18446f0e1be0fbf7c93ae94c49f98624d3f4ef4ef76f79c55e",
+    "scripts/run_d01_density.py": "8e54a5a6df3838969da7a8c618b4f119a77c3d098210e0e65753d41aae821652"
+  },
+  "holdout_dti": 0.08588968769311231,
+  "ci95": [
+    0.06364827023030506,
+    0.11449794705939041
+  ],
+  "withheld_positives": {
+    "occurrences": 22813,
+    "distinct": null,
+    "note": "per-arm occurrences; distinct withheld pixels were not recomputed in this diagnostic"
+  },
+  "control": {
+    "count": 70524,
+    "pooled_dti": 0.13211900823460884,
+    "ci95": [
+      0.11039321015226781,
+      0.14879530998050747
+    ]
+  },
+  "paired_gain_vs_control": -0.04622932054149653,
+  "paired_ci95": [
+    -0.05584480533555927,
+    -0.03212575535335842
+  ],
+  "density_response": {
+    "12000": {
+      "pooled_dti": 0.06387272331006023,
+      "ci95": [
+        0.043382524560724424,
+        0.09433219221913848
+      ],
+      "emitted_median": 960.0,
+      "fold_dti": [
+        0.11077856906118631,
+        0.06321896499163454,
+        0.03906725840336274,
+        0.06381471200807472
+      ]
+    },
+    "21713": {
+      "pooled_dti": 0.08588968769311231,
+      "ci95": [
+        0.06364827023030506,
+        0.11449794705939041
+      ],
+      "emitted_median": 1677.5,
+      "fold_dti": [
+        0.1298901306693878,
+        0.09387929724962134,
+        0.0569383654730407,
+        0.08512168589470323
+      ]
+    },
+    "26494": {
+      "pooled_dti": 0.09373433362802425,
+      "ci95": [
+        0.0722231448858459,
+        0.1213725472865456
+      ],
+      "emitted_median": 2022.0,
+      "fold_dti": [
+        0.136740106315354,
+        0.10305471237603123,
+        0.0653313971048819,
+        0.09157675004132514
+      ]
+    },
+    "37654": {
+      "pooled_dti": 0.10874673361054939,
+      "ci95": [
+        0.0866936849642199,
+        0.1318993704855086
+      ],
+      "emitted_median": 2820.0,
+      "fold_dti": [
+        0.14195952824871597,
+        0.12348014305282777,
+        0.07832630149796127,
+        0.11037340034202425
+      ]
+    },
+    "44090": {
+      "pooled_dti": 0.11451227993320164,
+      "ci95": [
+        0.09294557893361384,
+        0.1358863910841719
+      ],
+      "emitted_median": 3265.0,
+      "fold_dti": [
+        0.14408019731816504,
+        0.12600557707471188,
+        0.08534743710361906,
+        0.11937524714256269
+      ]
+    },
+    "59472": {
+      "pooled_dti": 0.12572622066622285,
+      "ci95": [
+        0.10276087177438954,
+        0.14641778121441149
+      ],
+      "emitted_median": 4280.5,
+      "fold_dti": [
+        0.15168510012140168,
+        0.13555463280126287,
+        0.09506613196912307,
+        0.13550395754148278
+      ]
+    },
+    "70524": {
+      "pooled_dti": 0.13211900823460884,
+      "ci95": [
+        0.11039321015226781,
+        0.14879530998050747
+      ],
+      "emitted_median": 5012.0,
+      "fold_dti": [
+        0.15199736036669254,
+        0.14073282460662837,
+        0.10316410843942521,
+        0.14485355663240146
+      ]
+    }
+  },
+  "correlation_overlap_vs_registry": {
+    "not_measured": "no new final dot set was emitted; the lane audit for this run is the arithmetic bound only",
+    "binding_raster": {
+      "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "uncovered_pixels": 6514,
+      "coverage_fraction": 0.9987243421716145,
+      "max_feasible_unique_dots": 21713
+    }
+  },
+  "raster_sha256": null,
+  "validator_output": null,
+  "submission_name": null,
+  "note": "D01 density diagnostic; no TIF written; no slot authorized.",
+  "verdict": "negative",
+  "okay_to_submit": false,
+  "experiments": 1,
+  "preregistration_commit": "2a7a31d",
+  "reason": "Proxy DTI rises monotonically with emitted density in all four quadrants and both draws. At the literal lane-budget cap the pooled HOLDOUT-DTI is materially below the same-run 70,524 request, so uniform thinning is not a route to a higher score and no file was written.",
+  "canary_max_auc": 0.802517169509595,
+  "caveat": "Requested caps saturate at the available ridge candidates, so per-quadrant emitted counts are below the full-footprint caps; this orders density regimes, it does not simulate one specific file."
+}
