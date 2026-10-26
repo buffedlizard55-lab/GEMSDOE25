@@ -1,0 +1,19 @@
+{
+ "file": "gems25-h72-pttg-deapron-sapd2-8-k3p0-20261026-a07ef071c49e-nan.tif",
+ "bytes": 1607410,
+ "sha256": "753d761462ba1c3cb17bf63ec2c3c38fad53c3473f9a837bf53b471a73fcdf3d",
+ "positive_pixels": 46102,
+ "checks": {
+  "driver_gtiff": true,
+  "single_band": true,
+  "dtype_float32": true,
+  "crs_epsg32611": true,
+  "shape_3730x3292": true,
+  "geotransform_exact": true,
+  "footprint_no_nan_or_inf": true,
+  "footprint_in_0_1": true,
+  "whole_array_finite_in_0_1": true,
+  "zero_known_catalogue_overlap": true
+ },
+ "all_hard_checks_pass": true
+}
