@@ -44,23 +44,45 @@ def main() -> None:
     samp_vec = np.sort(rng.choice(fi.size, min(SAMPLE, fi.size), replace=False))
     samp_flat = fi[samp_vec]
     svals = np.asarray(scores, dtype=np.float64)[samp_vec]
-    paths = (
-        sorted((data_dir() / "scored").glob("*.tif"))
-        + (sorted((data_dir() / "registry_top").glob("*.tif")) if (data_dir() / "registry_top").exists() else [])
-        + sorted((ROOT / "docs" / "downloads").glob("*.tif"))
-    )
-    rows = []
-    for p in paths:
+    import hashlib
+
+    raw_paths = []
+    for d in (
+        data_dir() / "scored",
+        data_dir() / "calibration",
+        data_dir() / "research",
+        data_dir() / "artifacts",
+        data_dir() / "registry_top",
+        ROOT / "docs" / "downloads",
+    ):
+        if d.exists():
+            raw_paths.extend(sorted(d.glob("*.tif")))
+    paths = []
+    seen_sha = set()
+    for p in raw_paths:
         if a.exclude_stem and a.exclude_stem in p.stem:
             continue
+        digest = hashlib.sha256(p.read_bytes()).hexdigest()
+        if digest in seen_sha:
+            continue
+        seen_sha.add(digest)
+        paths.append(p)
+    rows = []
+    for p in paths:
         with rasterio.open(p) as r:
             if r.shape != foot.shape:
+                rows.append(dict(file=p.name, spearman_surface=None, flag_rank=True, skipped="shape differs"))
                 continue
             rv = np.nan_to_num(r.read(1), nan=0.0).ravel()[samp_flat]
-        rho = float(spearmanr(svals, rv).statistic)
-        rows.append(dict(file=p.name, spearman_surface=round(rho, 6), flag_rank=bool(abs(rho) > RHO_MAX)))
-        print(f"{p.name[:70]:70s} rho={rho:+.4f}")
-    worst = max((abs(r["spearman_surface"]) for r in rows), default=0.0)
+        finite = np.isfinite(svals) & np.isfinite(rv)
+        if finite.sum() >= 1000 and svals[finite].min() != svals[finite].max() and rv[finite].min() != rv[finite].max():
+            rho = float(spearmanr(svals[finite], rv[finite]).statistic)
+        else:
+            rho = float("nan")
+        flag = bool(not np.isfinite(rho) or abs(rho) > RHO_MAX)
+        rows.append(dict(file=p.name, spearman_surface=round(rho, 6) if np.isfinite(rho) else None, flag_rank=flag))
+        print(f"{p.name[:70]:70s} rho={rho:+.4f}" if np.isfinite(rho) else f"{p.name[:70]:70s} rho=nan (FLAGGED)")
+    worst = max((abs(r["spearman_surface"]) for r in rows if r["spearman_surface"] is not None), default=float("nan"))
     rec = dict(scores=str(a.scores), sample=int(samp_vec.size), rho_max=RHO_MAX,
                worst_abs_spearman=worst, flagged=[r["file"] for r in rows if r["flag_rank"]], rows=rows,
                note="Registry rasters are binary/near-binary, so Spearman has heavy ties; this is the protocol's rank screen, not a Pearson correlation.")
