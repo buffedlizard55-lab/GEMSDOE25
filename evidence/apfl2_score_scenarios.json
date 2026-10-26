@@ -1,0 +1,21 @@
+{
+ "label": "INFERENCE scenarios, NOT scores. N_truth=12503 from blind-lattice calibration (owner-anchor dependent).",
+ "formula": "D = T/(0.2*M + 0.8*N); T_required = D*(0.2M+0.8N)",
+ "new_file_M": 48658,
+ "to_tie_0_2778": {
+  "tp_required": 5482.1,
+  "credit_per_px_required": 0.1127
+ },
+ "to_reach_0_3195": {
+  "tp_required": 6305.0,
+  "credit_per_px_required": 0.1296
+ },
+ "b2_implied_credit_per_px": 0.1294,
+ "if_new_file_earned_b2_credit_per_px": {
+  "D": 0.3191
+ },
+ "if_new_file_earned_dotted_h19_5_credit_per_px_0_0903": {
+  "D": 0.2227
+ },
+ "warning": "HGB-lineage live anchor in the owner brief is H66 0.0742 (OWNER-REPORTED); catalogue-gap holdout does not predict live DTI (Spearman +0.33, n=24, n.s.). No point estimate is warranted."
+}

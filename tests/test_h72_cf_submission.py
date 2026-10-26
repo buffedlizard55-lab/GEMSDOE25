@@ -19,10 +19,11 @@ def J(path: str) -> dict:
 def test_h72_primary_bytes_format_and_registry_status():
     card = J("registry/run_card_h72_cf_2026-10-26.json")
     subs = J("registry/submissions.json")["files"]
-    primary = next(x for x in subs if x["role"] == "primary")
+    primary = next(x for x in subs if x["id"] == "h72-mbsp-mtg-catfree")
     p = ROOT / "docs" / "downloads" / FILE
 
     assert primary["file"] == FILE
+    assert primary["role"] == "alternate"
     assert primary["content_id"] == card["raster"]["content_id"] == "1d7c1e9ea55f"
     assert primary["sha256"] == card["raster"]["sha256"] == hashlib.sha256(p.read_bytes()).hexdigest()
     assert primary["verdict"] == card["verdict"] == "negative"

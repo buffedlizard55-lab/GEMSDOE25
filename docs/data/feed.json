@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-26T18:16:25Z",
+ "generated_utc": "2026-10-26T18:21:53Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -495,6 +495,69 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24",
    "status": "ok",
    "detail": "pushed_at 2026-10-26T17:37:05Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "GEMSDOE25",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE25",
+   "status": "ok",
+   "detail": "pushed_at 2026-10-26T18:17:22Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "GEMSDOE27",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE27",
+   "status": "ok",
+   "detail": "pushed_at 2026-10-26T13:36:05Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "GEMSDOE28",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE28",
+   "status": "ok",
+   "detail": "pushed_at 2026-10-26T13:03:18Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "GEMSDOE30",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE30",
+   "status": "ok",
+   "detail": "pushed_at 2026-10-26T16:10:06Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "GEMSDOE31",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE31",
+   "status": "ok",
+   "detail": "pushed_at 2026-10-26T17:02:35Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "GEMSDOE32",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
+   "status": "ok",
+   "detail": "pushed_at 2026-10-26T18:14:57Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "GEMSDOE33",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE33",
+   "status": "ok",
+   "detail": "pushed_at 2026-10-26T16:43:35Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "GEMSDOE36",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE36",
+   "status": "ok",
+   "detail": "pushed_at 2026-10-26T18:21:25Z"
+  },
+  {
+   "kind": "sibling-repo",
+   "title": "GEMSDOE70",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
+   "status": "ok",
+   "detail": "pushed_at 2026-10-21T02:11:56Z"
   },
   {
    "kind": "human-snapshot",

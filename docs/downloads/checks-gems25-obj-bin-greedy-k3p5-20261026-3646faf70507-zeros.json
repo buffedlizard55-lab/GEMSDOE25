@@ -1,0 +1,241 @@
+{
+ "primary_outside": "zeros",
+ "note": "GEMSDOE25 BIN greedy k3.5% | HOLDOUT negative; DO NOT SUBMIT; no slot; not slot-approved; unscored | id 3646faf70507",
+ "note_chars": 116,
+ "files": {
+  "zeros": {
+   "file": "gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.tif",
+   "path": "docs/downloads/gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.tif",
+   "bytes": 854680,
+   "sha256": "160dbdc0c2abc25bd40a3f38a36c2a69f8a02503337dea7ab706f6d77a08934d",
+   "content_id": "3646faf70507",
+   "positive_pixels": 53522,
+   "format_ok": true,
+   "hard_failures": [],
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "finite range over the whole array; infinity rejected",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read; empty data rejected",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   }
+  },
+  "nan": {
+   "file": "gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-nan.tif",
+   "path": "docs/downloads/gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-nan.tif",
+   "bytes": 1620936,
+   "sha256": "cf5a813c4237e88729b44322559e87a4eb5601b2787e5ccf2ea2f40d5983f30b",
+   "content_id": "3646faf70507",
+   "positive_pixels": 53522,
+   "format_ok": true,
+   "hard_failures": [],
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": true,
+     "detail": "7,111,787/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=nan",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "finite range over the whole array; infinity rejected",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read; empty data rejected",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": false,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   }
+  }
+ },
+ "zip": {
+  "file": "gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.zip",
+  "path": "docs/downloads/gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.zip",
+  "bytes": 221664
+ },
+ "build": {
+  "scheme": "BIN",
+  "base": "BDE",
+  "extras": [
+   "X1_K",
+   "X1_ThK",
+   "X1_UK",
+   "X2_compat",
+   "X2_compat_coh",
+   "X3_gm",
+   "X3_gd"
+  ],
+  "tip_column": "H27_tip",
+  "h34_columns": [
+   "H34_resmag_shallow_ridge",
+   "H34_resmag_mid_ridge",
+   "H34_baseflex_ridge"
+  ],
+  "kfrac": 0.035,
+  "emission": "greedy_marginal_credit (gems25.greedy)",
+  "n_hat": 15247.0,
+  "greedy_diag": {
+   "n_candidates": 180858,
+   "n_selected": 53522,
+   "plugin_tp": 4349.161845879882,
+   "plugin_fp": 48259.55418485467,
+   "plugin_dti": 0.19142991090971234,
+   "n_hat": 15247.0,
+   "last_accepted_ratio": 0.0398106066218021,
+   "first_rejected_ratio": 0.0398096398149843,
+   "stop_reason": "break_even"
+  },
+  "draws": 3,
+  "draw_seeds": [
+   724200,
+   724201,
+   724202
+  ],
+  "seconds": 210,
+  "utc": "2026-10-26T16:46:59.355285+00:00",
+  "scores": "data/work/objective_bin_full_scores.npy (gitignored cache)",
+  "preregistration": "knowledge/29 + knowledge/30 (build rule knowledge/29 \u00a75)"
+ },
+ "verdict_note": "HOLDOUT negative; DO NOT SUBMIT; no slot; not slot-approved; unscored",
+ "label": "HOLDOUT-DTI only; not a competition score (see registry/run_card_objective_2026-10-26.json)"
+}

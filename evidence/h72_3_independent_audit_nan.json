@@ -1,0 +1,19 @@
+{
+ "file": "gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-nan.tif",
+ "bytes": 1597478,
+ "sha256": "9a631bf64fb98701c6eb175402972b54e57d70b9e29cfdf227d8088d4decad6d",
+ "positive_pixels": 41061,
+ "checks": {
+  "driver_gtiff": true,
+  "single_band": true,
+  "dtype_float32": true,
+  "crs_epsg32611": true,
+  "shape_3730x3292": true,
+  "geotransform_exact": true,
+  "footprint_no_nan_or_inf": true,
+  "footprint_in_0_1": true,
+  "whole_array_finite_in_0_1": true,
+  "zero_known_catalogue_overlap": true
+ },
+ "all_hard_checks_pass": true
+}

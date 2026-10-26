@@ -1,0 +1,236 @@
+{
+ "built_utc": "2026-10-26T17:07:29Z",
+ "slug": "h72-3-subsurf-pttg-mths-sapd3-0-k3p0",
+ "hypothesis": "H72-3 C1_SUBSURF_PTTG_MTHS: 100% DEM-free & catalogue-free subsurface HGB combining Phillips gravity differential curvature, unit-consistent gravity THDR, local transtensional strain partitioning, MT pipe steps, and K-metasomatic alteration halos",
+ "subsurf_new_columns": [
+  "PTTG_grav_diffcurv",
+  "PTTG_grav_thdr_unit",
+  "PTTG_transtension_loc",
+  "MTHS_pipe_step",
+  "MTHS_k_metasom_halo"
+ ],
+ "pttg_subset": [
+  "PTTG_grav_diffcurv",
+  "PTTG_grav_thdr_unit",
+  "PTTG_transtension_loc"
+ ],
+ "mths_columns": [
+  "MTHS_pipe_step",
+  "MTHS_k_metasom_halo"
+ ],
+ "h34_columns": [
+  "H34_resmag_shallow_ridge",
+  "H34_resmag_mid_ridge",
+  "H34_baseflex_ridge"
+ ],
+ "draws": 3,
+ "base_seed": 20261126,
+ "kfrac": 0.03,
+ "min_dist": 3.0,
+ "cat_buf_px": 2.0,
+ "domain_erode_px": 12,
+ "positive_pixels": 41061,
+ "d_cat_strata": {
+  "frac_le2": 0.0,
+  "frac_2_9": 0.46475,
+  "frac_9_20": 0.29537,
+  "frac_gt20": 0.23989,
+  "median_d_cat_px": 10.0
+ },
+ "content_id": "88bbebfe79b4",
+ "note": "GEMSDOE25 H72-3 SUBSURF | holdout FAIL vs H35; no slot; not slot-approved | id 88bbebfe79b4 | unscored",
+ "note_chars": 102,
+ "seconds": 95.8,
+ "scores": "work_dir()/h72_3_full_scores.npy (gitignored cache)",
+ "files": {
+  "zeros": {
+   "file": "gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.tif",
+   "bytes": 831974,
+   "sha256": "51f6e3cb83d7371231f3a8cd3ef166f82d5fb7d80a584577500eb36bf7615346",
+   "ok_to_upload": true,
+   "format_valid": true,
+   "authorization_note": "ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval",
+   "hard_failures": [],
+   "official_nan_outside": false,
+   "positive_pixels": 41061,
+   "footprint_pixels": 5167373,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "finite range over the whole array; infinity rejected",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read; empty data rejected",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   }
+  },
+  "nan": {
+   "file": "gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-nan.tif",
+   "bytes": 1597478,
+   "sha256": "9a631bf64fb98701c6eb175402972b54e57d70b9e29cfdf227d8088d4decad6d",
+   "ok_to_upload": true,
+   "format_valid": true,
+   "authorization_note": "ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval",
+   "hard_failures": [],
+   "official_nan_outside": true,
+   "positive_pixels": 41061,
+   "footprint_pixels": 5167373,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": true,
+     "detail": "7,111,787/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=nan",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "finite range over the whole array; infinity rejected",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read; empty data rejected",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": false,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   }
+  },
+  "zip": "gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.zip"
+ }
+}

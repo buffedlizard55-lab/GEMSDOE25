@@ -56,10 +56,10 @@
       "NASA OPERA InSAR bytes could not be fetched under the current host allowlist and were not used."
     ],
     "verification": {
-      "pytest": "271 passed with one expected scipy ConstantInputWarning in the empty-candidate fail-closed test",
+      "pytest": "324 passed after integrating origin/main parallel sessions",
       "ruff": "all checks passed",
       "git_diff_check": "passed",
-      "site": "all eight generated pages and local paths tested; current first screen links final 1d7c1e9ea55f bytes and says OK TO DOWNLOAD YES / OK TO SUBMIT NO / DO NOT SUBMIT"
+      "site": "all eight generated pages and local paths tested; current review preserves one-click alternate link to final 1d7c1e9ea55f bytes and labels it OK TO DOWNLOAD YES (testing) / OK TO SUBMIT NO / DO NOT SUBMIT; newer merged H72-3 remains the primary negative research artifact"
     }
   },
   "scientific_budget": {
@@ -70,5 +70,5 @@
     "total_experiment_seconds": 2187.35,
     "weekly_slots_used": 0
   },
-  "pr_and_deployment": "pending; update only from verified gh URLs/status after merge"
+  "pr_and_deployment": "pending explicit PR/check/merge after integration with origin/main; no deployment claimed"
 }

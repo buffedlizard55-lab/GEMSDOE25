@@ -201,11 +201,13 @@ def load_registry_rasters() -> list[dict]:
     raster at a time instead. Do not silently ignore an unreadable raster: a
     partial registry is not a lane clearance.
     """
-    paths = []
     scored_dir = data_dir() / "scored" if REGISTRY_DIR == _DEFAULT_REGISTRY_DIR else REGISTRY_DIR
+    paths = []
     for directory in (
         scored_dir,
         data_dir() / "calibration",
+        data_dir() / "research",
+        data_dir() / "artifacts",
         data_dir() / "registry_top",
         ROOT / "docs" / "downloads",
     ):
@@ -294,10 +296,13 @@ def lane_check(ctx, emitted: np.ndarray, surface: np.ndarray, registry: list[dic
             results.append(dict(file=reg["file"], skipped="shape differs", duplicate=True))
             continue
         reg_flat = np.where(foot, reg_arr, np.nan).ravel()[fi]
-        finite = ~(np.isnan(surf_finite) | np.isnan(reg_flat))
+        finite = np.isfinite(surf_finite) & np.isfinite(reg_flat)
         corr = float("nan")
-        if finite.sum() >= 1000:
-            corr = float(spearmanr(surf_finite[finite], reg_flat[finite], nan_policy="omit").statistic)
+        cand_vals = surf_finite[finite]
+        reg_vals = reg_flat[finite]
+        if (finite.sum() >= 1000 and cand_vals.min() != cand_vals.max()
+                and reg_vals.min() != reg_vals.max()):
+            corr = float(spearmanr(cand_vals, reg_vals, nan_policy="omit").statistic)
         overlap = 0.0
         reverse_overlap = 0.0
         coverage = 0.0

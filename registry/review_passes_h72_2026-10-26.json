@@ -1,0 +1,36 @@
+{
+ "schema_version": 1,
+ "date_utc": "2026-10-26",
+ "session_branch": "arena/d64e58fa-gemsdoe25",
+ "method": "Three cumulative passes per owner instructions: Pass 1 implements and verifies end-to-end; Pass 2 audits bugs, assumptions, and edge cases and fixes them; Pass 3 re-checks line-by-line against the full original prompt and polishes deliverables.",
+ "pass_1_implement_and_verify": {
+  "scope": "Audit GEMSDOE25 + all 9 focus sites (GEMSDOE24..36) + siblings through GEMSDOE92; answer at PhD level why GEMSDOE32 B2 achieved 0.2778 (OWNER-REPORTED) and how to surpass it; pre-register 4 untried geological hypotheses before fitting; execute 3 buffered spatially blocked holdout experiments (draws 80..85); fix shared lane validators in-place; build and dual-validate a genuinely unique GeoTIFF; rebuild GitHub Pages + README.",
+  "done": [
+   "Pre-registered knowledge/29 (commit 53cb884) and knowledge/30 (commit fc60bdd) before fitting.",
+   "Repaired shared lane validators (validate_gem_candidate.py, check_lane_surface.py, check_lane_duplicates.py, lane_check_extended.py) to use data_dir(), fail-closed NaN correlation, and full 85-raster directory parity across scored/calibration/top_scorers/artifacts/research/downloads, locked by tests/test_lane_preflight.py.",
+   "Implemented src/gems25/h72_pttg.py (unit-consistent gravity/magnetic THDR, azimuth-invariant Phillips differential curvature K_diff, valley-crossing VCCD+RBDT, and multi-altitude upward-continued magnetic tilt-zero depth-splay MTHS) + tests/test_h72_pttg.py (5 unit tests).",
+   "Executed 3 pre-registered holdout experiments (24 cells, draws 80..85; standalone leakage canaries 0.5872, 0.6546, 0.6308 <= 0.90 all PASS): Exp 1 A3_PTTG_DEAPRON +0.00606 vs Blind (4/4 folds, FAIL vs H35); Exp 2 B3_FULL_DEAPRON +0.00733 vs Blind (4/4 folds, B1 +0.00050 vs H35 in 2/4 folds -> FAIL); Exp 3 DEM-free C1_SUBSURF_PTTG_MTHS +0.00140 vs Subsurf control (FAIL vs H35).",
+   "Built primary DEM-free subsurface GeoTIFF gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.tif (41,061 binary dots, content_id 88bbebfe79b4) + -nan.tif + -zeros.zip: dual validators PASS, zero NaN/Inf, values in [0,1], and density-aware flagged_lane = [] (UNIQUE across all 85 indexed rasters; 24.86% vs GEMSDOE32 B2, 48.96% max own-lineage, 62.25% vs h23-a-6pct). Held DO NOT SUBMIT (verdict=negative, slot_approved=false)."
+  ]
+ },
+ "pass_2_bugs_assumptions_edge_cases": {
+  "found_and_fixed": [
+   "Cross-checked every 9-site filename and positive-pixel count in knowledge/31 and scripts/build_current_review.py against evidence/focus_audit_2026-10-26.json: reconciled GEMSDOE27 (61,328 px), GEMSDOE28 rung30 (37,660 px) + R1 (40,199 px), GEMSDOE33 (41,865 px), and GEMSDOE36 (38,854 px, 0.2750 in focus audit / 0.2683 in G36 ledger).",
+   "Replaced literal fold-count text in scripts/build_current_review.py and scripts/build_site.py with dynamic folds_positive/4 lookups from evidence/h72_{1,2,3}_screen/analysis.json.",
+   "Retargeted tests/test_h71_submission.py from role=='primary' to id=='h71-hgpc-blind' (matching tests/test_h66_submission.py convention) and added tests/test_h72_submission.py locking H72-3 primary invariants.",
+   "Extended scripts/check_sources.py SIBLINGS list to include all 9 focus sites + GEMSDOE70 and regenerated docs/data/feed.json (75 items, 33 live GitHub sources verified, zero DrivenData requests).",
+   "Verified zero broken HTML hrefs across index.html + docs/*.html, zero broken Markdown links across README.md + knowledge/29..31, all artifacts < 6 MB (primary TIF 813 KB), and all 6 pinned ROD SHA-256 hashes untouched."
+  ],
+  "known_residual_risks": [
+   "Component-withholding holdouts have an 8.0x 2-9 px apron positive bias (IR-25-CATALOGUE-HALO-CONVERGENCE), penalizing de-aproned and DEM-free subsurface detectors relative to Family-E H35 even when live >=0.219 scorers place 41-49% of dots at >2 km.",
+   "All leaderboard scores (0.2778, 0.2478, 0.3195, 0.4413/0.4437) are OWNER-REPORTED user claims without organizer receipts.",
+   "Strict literal 70% one-way 3-px overlap flags the 3 non-discriminative >=73.4%-footprint-halo rasters (13gems r13-lattice-s5 99.87% halo, pindrop-nodes, pindrop-discovery)."
+  ]
+ },
+ "pass_3_recheck_against_original_brief": {
+  "gaps_found_and_closed": [
+   "Added explicit Repo Novelty, Implementation Cost, and Verified Official Data Obtainability column directly into the H72 ranked-hypotheses table on index.html / docs/current-review.html / docs/executive-summary.html so all 8 required hypothesis attributes are immediately visible on the main page.",
+   "Linked registry/review_passes_h72_2026-10-26.json directly from the executive review page and verified 272/272 pytest checks pass (both CI-mode and full-data mode) with ruff clean."
+  ]
+ }
+}
