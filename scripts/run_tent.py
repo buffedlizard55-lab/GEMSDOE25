@@ -77,6 +77,8 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--draws", type=int, nargs="+", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--primary", choices=("TENT", "IGN3"), default="TENT",
+                    help="design-metadata only: which arm the frozen gate applies to (Exp3/knowledge30 uses IGN3)")
     a = ap.parse_args()
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)

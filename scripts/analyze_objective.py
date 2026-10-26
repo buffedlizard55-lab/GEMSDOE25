@@ -50,6 +50,8 @@ def main() -> None:
     ap.add_argument("--dir", required=True)
     ap.add_argument("--extra-dirs", nargs="*", default=[], help="additional run dirs to pool (combined stage analysis)")
     ap.add_argument("--out-name", default="results.json")
+    ap.add_argument("--primary", choices=("TENT", "IGN3"), default="TENT",
+                    help="arm the frozen gate applies to (Exp3/knowledge30 uses IGN3)")
     a = ap.parse_args()
     run = Path(a.dir)
     rows, draws = [], set()
@@ -101,7 +103,7 @@ def main() -> None:
     canary_max = float(max(max(r["feature_auc_canary_effective"].values()) for r in rows))
     canary = dict(max_effective_auc=canary_max, cap=0.90, passed=bool(canary_max <= 0.90),
                   columns=["H27_tip", *json.loads((run / "design.json").read_text())["features"]["h34_columns"]])
-    c = contrasts["TENT-greedy_vs_BIN-greedy"]
+    c = contrasts[f"{a.primary}-greedy_vs_BIN-greedy"]
     gate = dict(
         mean_gain_gt_0p001=bool(c["standard"]["mean"] > 0.001),
         folds_positive_min_3=bool(c["standard"]["folds_positive"] >= 3),
@@ -112,7 +114,9 @@ def main() -> None:
     gate["passed"] = bool(all(gate.values()))
 
     result = dict(
-        hypothesis="Exp1 TENT kernel-regression target (knowledge/29)",
+        primary_arm=a.primary,
+        hypothesis=("Exp1 TENT kernel-regression target (knowledge/29)" if a.primary == "TENT"
+                    else "Exp3 IGN3 ring-excluded negatives as primary (knowledge/30)"),
         label="HOLDOUT-DTI",
         evaluator="gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px/300m triangular) via Cell.evaluate; pooled via TP/(0.2(TP+FP)+0.8N)",
         evaluator_version="gems25.holdout 4-quadrant hide-and-recover, hide_frac=0.20, collar=15px",
