@@ -59,10 +59,26 @@ This is a catalogue-gap proxy, not an organizer score or blind-fault performance
         f'<p><b>OK to download: YES</b> for local testing of unique content id '
         f'<code>{e(featured["content_id"])}</code>. '
         f'<b>OK to spend a weekly slot: NO — DO NOT SUBMIT.</b> '
-        f'H71 HGPC-BLIND is format-valid and density-aware unique vs scored rasters; '
-        f'three DIRECT screens failed vs H35. ROD/POL3 wrote no competition TIFF.</p>'
+        f'{e(featured.get("slot_reason", ""))} Lane: {e(featured.get("lane_summary", ""))}</p>'
         f'<a class="btn" download href="downloads/{e(featured["file"])}">↓ Download {e(featured["file"])} — testing only</a>'
     )
+    apfl2_path = ROOT/'registry/run_card_apfl2_2026-10-26.json'
+    apfl2 = json.loads(apfl2_path.read_text()) if apfl2_path.exists() else None
+    apfl2_section = ''
+    if apfl2:
+        x1 = apfl2['holdout_dti']['exp1_direct']
+        x2 = apfl2['holdout_dti']['exp2_hgb']
+        cnd, ctl = x2['candidate'], x2['control_h35']
+        apfl2_section = f'''<section class="card"><p class="eyebrow">NEWEST SESSION · PRE-REGISTERED · 3/3 EXPERIMENT BUDGET</p>
+<h2>APFL piedmont-flexure completion — both screens negative</h2>
+<p><b>Exp 1 (DIRECT, draws 60–61):</b> HOLDOUT-DTI <code>{x1['candidate']['pooled_dti']:.6f}</code> vs same-run H35 <code>{x1['control_h35']['pooled_dti']:.6f}</code> (gain {x1['gate']['mean_gain']:+.4f}, {x1['gate']['folds_positive']}/4 folds) — FAIL.
+<b>Exp 2 (H35+APFL columns, draws 62–63):</b> HOLDOUT-DTI <code>{cnd['pooled_dti']:.6f}</code> [{cnd['ci_95'][0]:.4f}, {cnd['ci_95'][1]:.4f}], {cnd['withheld_positives']:,} withheld positives, vs H35 <code>{ctl['pooled_dti']:.6f}</code> (gain {x2['gate']['mean_gain']:+.4f}, {x2['gate']['folds_positive']}/4 folds) — FAIL.
+Canary max AUC {x1['canary']['max_feature_auc']:.3f} / {x2['canary']['max_feature_auc']:.3f} (≤0.90). Evaluator <code>gems25.holdout.v1.2-buffered-4quad-pooled-dti</code>. Catalogue-gap proxy only — not a leaderboard score or estimate.</p>
+<p><b>Exp 3 (OCEM diagnostic):</b> B=2 collar with budget refill is ~neutral on this proxy; the live B2 effect was deletion without refill. A ≥200 m off-catalogue truth restriction is vacuous here (hidden whole components are ≥2 px from visible traces).</p>
+<p><a href="../knowledge/29_preregistered_apfl_completion_2026-10-26.md">Pre-registration (knowledge/29)</a> ·
+<a href="../knowledge/30_executive_summary_and_apfl_outcomes_2026-10-26.md">Executive summary &amp; outcomes (knowledge/30)</a> ·
+<a href="../registry/run_card_apfl2_2026-10-26.json">Run card</a> ·
+<a href="../evidence/focus_audit_session_2026-10-26.json">Fresh nine-site pixel audit</a>.</p></section>'''
     historical = 'gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif'
     rows, cards = [], []
     for row in sorted(focus['sites'], key=lambda r: -r['owner_reported_score']):
@@ -104,6 +120,7 @@ not a copied prediction mask. Volcanic flow lobes, sediment sorting and survey s
 <a href="../evidence/rod_2026-10-26/feature_canaries.json">Every-feature leakage canaries</a> ·
 <a href="../evidence/rod_2026-10-26/surface_lane.json">Pre-placement surface audit</a></p></section>
 {pol3_section}
+{apfl2_section}
 <section><h2>The novelty constraint needs attention</h2>
 <p>The registered lattice's three-pixel halo covers <b>{coverage['coverage_fraction']*100:.4f}%</b> of eligible pixels.
 Only {coverage['uncovered_pixels']:,} pixels lie outside it. Under the literal overlap rule, a candidate above 21,713 unique dots cannot pass against that lattice,
@@ -141,14 +158,15 @@ Automatic source availability is not automatic scientific verification or a live
 
 def readme_status():
     brief = (ROOT/'knowledge/current_project_brief_2026-10-26.md').read_text()
+    featured = next(s for s in json.loads((ROOT / "registry" / "submissions.json").read_text())["files"] if s["role"] == "primary")
     return ("<!-- CURRENT-REVIEW-2026-10-26 -->\n"
             "## Current decision — 2026-10-26\n\n"
             "**OK to download: YES · OK to spend a weekly slot: NO — DO NOT SUBMIT.** "
-            "Featured unique GeoTIFF [`gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif`](docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif) "
-            "(content id `9eb0c31e5149`; HOLDOUT-DTI FAIL vs H35). "
-            "[Nine-site executive review and automated ROD result](docs/current-review.html) · "
-            "[H71 outcomes](knowledge/28_h71_outcomes_2026-10-26.md) · "
-            "[ROD run card](evidence/rod_2026-10-26/run_card.json). "
+            f"Featured testing GeoTIFF [`{featured['file']}`](docs/downloads/{featured['file']}) "
+            f"(content id `{featured['content_id']}`; {featured['status']}). "
+            "[Nine-site executive review](docs/current-review.html) · "
+            "[Executive summary & APFL outcomes](knowledge/30_executive_summary_and_apfl_outcomes_2026-10-26.md) · "
+            "[APFL run card](registry/run_card_apfl2_2026-10-26.json). "
             "GEMSDOE32 B2 is the strongest supplied historical exemplar (**OWNER-REPORTED 0.2778**), not a new submission. "
             "Do not reinterpret historical downloads or format-only receipts as authorization. "
             "No weekly slot was used.\n\n"

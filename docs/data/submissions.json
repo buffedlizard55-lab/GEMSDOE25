@@ -1,10 +1,227 @@
 {
  "schema_version": 1,
- "generated_by": "merge: H71 featured primary onto 2026-10-26 main (APFL/POL3/ROD retained as alternate/history)",
+ "generated_by": "APFL2 session (arena/8aa4ff79): newest testing file featured, DO NOT SUBMIT; H71 demoted to alternate",
  "files": [
   {
-   "id": "h71-hgpc-blind",
+   "id": "apfl2-h35plus-apfl-b2-zeros",
    "role": "primary",
+   "file": "gems25-apfl2-h35plus-apfl-b2-sapd2-4-k3p5-20261026-2e9e4189f554-zeros.tif",
+   "path": "docs/downloads/gems25-apfl2-h35plus-apfl-b2-sapd2-4-k3p5-20261026-2e9e4189f554-zeros.tif",
+   "bytes": 846064,
+   "sha256": "8be65a3e77c51836e14a425c6060db6295ffeb24209e243ac56003294093c8ad",
+   "content_id": "2e9e4189f554",
+   "positive_pixels": 48658,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "finite range over the whole array; infinity rejected",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read; empty data rejected",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-apfl2-h35plus-apfl-b2-sapd2-4-k3p5-20261026-2e9e4189f554-zeros.json",
+   "outside": "zero",
+   "status": "UNIQUE vs FOCUS SITES \u00b7 FORMAT-VALID \u00b7 HOLDOUT FAIL (Exp1+Exp2) \u00b7 OWN-LINEAGE LANE OVERLAP \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "title": "APFL2 H35+APFL B2 (sapd2.4, zeros outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
+   "summary": "New 2026-10-26 GeoTIFF (48,658 dots) from pre-registered APFL completion (knowledge/29): H35 HGB + 7 reconstructed piedmont-flexure columns, B=2 collar, sapd2.4. HOLDOUT-DTI (recipe, draws 62-63) 0.1495 vs same-run H35 \u2014 screen FAIL. Canary max AUC 0.615. Unique vs all 9 focus sites; strict lane gate fails vs own H35 lineage (not unique). Zeros-outside twin passes the strict [0,1] whole-array check. DO NOT SUBMIT.",
+   "format_ok": true,
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "expected_range": "no live projection warranted \u2014 Exp2 screen FAIL vs H35 (see evidence/apfl2_score_scenarios.json for labelled INFERENCE scenarios, not a score)",
+   "lane_summary": "UNIQUE vs 9 focus sites (vs GEMSDOE32 B2 31.6% within 3px) and external scored rasters (worst 67.1%); surface |rho| 0.158. NOT unique vs own HGB lineage (worst 92.6%, gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif); literal lattice 100% (IR-25-LANE-DENSITY).",
+   "slot_reason": "Exp1 APFL-DIRECT HOLDOUT-DTI 0.0456 vs H35 0.1523 (0/4 folds); Exp2 H35+APFL 0.1489 vs H35 0.1490 (1/4 folds, gain -0.0009). Frozen gate failed twice; no confirmation. Not slot-approved.",
+   "run_card": "registry/run_card_apfl2_2026-10-26.json",
+   "note": "GEMSDOE25 APFL2 H35+APFL B2 sapd2.4 | holdout FAIL; no slot; unscored; not slot-approved | id 2e9e4189f554",
+   "zip": "gems25-apfl2-h35plus-apfl-b2-sapd2-4-k3p5-20261026-2e9e4189f554-zeros.zip"
+  },
+  {
+   "id": "apfl2-h35plus-apfl-b2-nan",
+   "role": "fallback",
+   "file": "gems25-apfl2-h35plus-apfl-b2-sapd2-4-k3p5-20261026-2e9e4189f554-nan.tif",
+   "path": "docs/downloads/gems25-apfl2-h35plus-apfl-b2-sapd2-4-k3p5-20261026-2e9e4189f554-nan.tif",
+   "bytes": 1611870,
+   "sha256": "4115ec0c8f864d422ad5124f1f87b3e42871b77b451b801f7dae37438d74c328",
+   "content_id": "2e9e4189f554",
+   "positive_pixels": 48658,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": true,
+     "detail": "7,111,787/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=nan",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "finite range over the whole array; infinity rejected",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read; empty data rejected",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": false,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-apfl2-h35plus-apfl-b2-sapd2-4-k3p5-20261026-2e9e4189f554-nan.json",
+   "outside": "nan",
+   "status": "UNIQUE vs FOCUS SITES \u00b7 FORMAT-VALID \u00b7 HOLDOUT FAIL (Exp1+Exp2) \u00b7 OWN-LINEAGE LANE OVERLAP \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "title": "APFL2 H35+APFL B2 (sapd2.4, nan outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
+   "summary": "New 2026-10-26 GeoTIFF (48,658 dots) from pre-registered APFL completion (knowledge/29): H35 HGB + 7 reconstructed piedmont-flexure columns, B=2 collar, sapd2.4. HOLDOUT-DTI (recipe, draws 62-63) 0.1495 vs same-run H35 \u2014 screen FAIL. Canary max AUC 0.615. Unique vs all 9 focus sites; strict lane gate fails vs own H35 lineage (not unique). Zeros-outside twin passes the strict [0,1] whole-array check. DO NOT SUBMIT.",
+   "format_ok": true,
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "expected_range": "no live projection warranted \u2014 Exp2 screen FAIL vs H35 (see evidence/apfl2_score_scenarios.json for labelled INFERENCE scenarios, not a score)",
+   "lane_summary": "UNIQUE vs 9 focus sites (vs GEMSDOE32 B2 31.6% within 3px) and external scored rasters (worst 67.1%); surface |rho| 0.158. NOT unique vs own HGB lineage (worst 92.6%, gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif); literal lattice 100% (IR-25-LANE-DENSITY).",
+   "slot_reason": "Exp1 APFL-DIRECT HOLDOUT-DTI 0.0456 vs H35 0.1523 (0/4 folds); Exp2 H35+APFL 0.1489 vs H35 0.1490 (1/4 folds, gain -0.0009). Frozen gate failed twice; no confirmation. Not slot-approved.",
+   "run_card": "registry/run_card_apfl2_2026-10-26.json",
+   "note": "GEMSDOE25 APFL2 H35+APFL B2 sapd2.4 | holdout FAIL; no slot; unscored; not slot-approved | id 2e9e4189f554"
+  },
+  {
+   "id": "h71-hgpc-blind",
+   "role": "alternate",
    "file": "gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif",
    "path": "docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif",
    "bytes": 863096,
@@ -151,7 +368,7 @@
   },
   {
    "id": "h71-hgpc-blind-nan",
-   "role": "fallback",
+   "role": "alternate",
    "file": "gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-nan.tif",
    "path": "docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-nan.tif",
    "bytes": 1631210,

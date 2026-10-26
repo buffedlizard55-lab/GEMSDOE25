@@ -176,7 +176,6 @@ def main() -> None:
                     row("H35_PLUS_APFL_B2", emit_field(cell, p_new, collar_px=COLLAR_B2, min_dist=MIN_DIST_H35),
                         dict(auc=cell.auc(p_new), **t_new, descriptive_ocem=True))
                 print(f"  fold {FOLDS[fold]} draw {draw} done in {time.time() - t_all:.0f}s (canary_max={max_can:.3f})", flush=True)
-                del cell
     print(f"APFL-{a.exp} complete in {time.time() - t_all:.0f}s -> {out}", flush=True)
 
 

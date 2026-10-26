@@ -8,8 +8,8 @@
 <h1>Know what to submit.<br>Know when to stop.</h1>
 <p class="lead">Nine focus sites, one auditable comparison, and a new geological test. No renamed reference files. No predicted leaderboard scores.</p></section>
 <section class="review-decision"><span class="badge b-bad">OK TO SUBMIT: NO</span><h2>Unique research GeoTIFF is downloadable — not slot-cleared</h2>
-<p>H71-1 HGPC-BLIND signed gravity–basement polarity (sapd3.0, zeros outside) — TESTING ONLY · DO NOT SUBMIT. Unique 2026-10-26 GeoTIFF (59,472 binary dots, min_dist=3.0 px) from pre-registered H71-1 DIRECT emission (signed isostatic-gravity × MT basement half-graben polarity; zero HGB; B=2 collar). Leakage canary PASS (max AUC 0.695). Holdout gate FAIL vs H35. Clears 21/21 sibling top-scorers (15.4% vs GEMSDOE32 B2) and own HGB lineage (max 23.4%). Strict lane gate fails only on the dense r13 lattice. Zero outside footprint (prevents &#x27;Predicted values must be in range [0, 1]&#x27;). Testing only — DO NOT SUBMIT.</p>
-<p>ROD stop: DUPLICATE-LANE: final dots fail literal overlap/rank gate; stopped, no TIFF written</p><p><b>OK to download: YES</b> for local testing of unique content id <code>9eb0c31e5149</code>. <b>OK to spend a weekly slot: NO — DO NOT SUBMIT.</b> H71 HGPC-BLIND is format-valid and density-aware unique vs scored rasters; three DIRECT screens failed vs H35. ROD/POL3 wrote no competition TIFF.</p><a class="btn" download href="downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif">↓ Download gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif — testing only</a>
+<p>APFL2 H35+APFL B2 (sapd2.4, zeros outside) — TESTING ONLY · DO NOT SUBMIT. New 2026-10-26 GeoTIFF (48,658 dots) from pre-registered APFL completion (knowledge/29): H35 HGB + 7 reconstructed piedmont-flexure columns, B=2 collar, sapd2.4. HOLDOUT-DTI (recipe, draws 62-63) 0.1495 vs same-run H35 — screen FAIL. Canary max AUC 0.615. Unique vs all 9 focus sites; strict lane gate fails vs own H35 lineage (not unique). Zeros-outside twin passes the strict [0,1] whole-array check. DO NOT SUBMIT.</p>
+<p>ROD stop: DUPLICATE-LANE: final dots fail literal overlap/rank gate; stopped, no TIFF written</p><p><b>OK to download: YES</b> for local testing of unique content id <code>2e9e4189f554</code>. <b>OK to spend a weekly slot: NO — DO NOT SUBMIT.</b> Exp1 APFL-DIRECT HOLDOUT-DTI 0.0456 vs H35 0.1523 (0/4 folds); Exp2 H35+APFL 0.1489 vs H35 0.1490 (1/4 folds, gain -0.0009). Frozen gate failed twice; no confirmation. Not slot-approved. Lane: UNIQUE vs 9 focus sites (vs GEMSDOE32 B2 31.6% within 3px) and external scored rasters (worst 67.1%); surface |rho| 0.158. NOT unique vs own HGB lineage (worst 92.6%, gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif); literal lattice 100% (IR-25-LANE-DENSITY).</p><a class="btn" download href="downloads/gems25-apfl2-h35plus-apfl-b2-sapd2-4-k3p5-20261026-2e9e4189f554-zeros.tif">↓ Download gems25-apfl2-h35plus-apfl-b2-sapd2-4-k3p5-20261026-2e9e4189f554-zeros.tif — testing only</a>
 <div class="row"><a class="btn" href="../evidence/rod_2026-10-26/run_card.json" download>Download decision receipt</a>
 <a class="btn alt" href="#how-to-submit">Submission checklist</a></div></section>
 <section><h2>What is the strongest historical evidence?</h2>
@@ -72,6 +72,16 @@ This is a catalogue-gap proxy, not an organizer score or blind-fault performance
 <a href="../knowledge/28_preregistered_pol3_signed_halfgraben_2026-10-26.md">frozen preregistration</a> ·
 <a href="../registry/run_card_pol3_screen_2026-10-26.json">POL3 run card</a> ·
 <a href="../evidence/pol3_screen_2026-10-26/summary.json">saved-cell result</a>.</p></section>
+<section class="card"><p class="eyebrow">NEWEST SESSION · PRE-REGISTERED · 3/3 EXPERIMENT BUDGET</p>
+<h2>APFL piedmont-flexure completion — both screens negative</h2>
+<p><b>Exp 1 (DIRECT, draws 60–61):</b> HOLDOUT-DTI <code>0.045617</code> vs same-run H35 <code>0.152308</code> (gain -0.1062, 0/4 folds) — FAIL.
+<b>Exp 2 (H35+APFL columns, draws 62–63):</b> HOLDOUT-DTI <code>0.148880</code> [0.1316, 0.1661], 22,931 withheld positives, vs H35 <code>0.148977</code> (gain -0.0009, 1/4 folds) — FAIL.
+Canary max AUC 0.640 / 0.615 (≤0.90). Evaluator <code>gems25.holdout.v1.2-buffered-4quad-pooled-dti</code>. Catalogue-gap proxy only — not a leaderboard score or estimate.</p>
+<p><b>Exp 3 (OCEM diagnostic):</b> B=2 collar with budget refill is ~neutral on this proxy; the live B2 effect was deletion without refill. A ≥200 m off-catalogue truth restriction is vacuous here (hidden whole components are ≥2 px from visible traces).</p>
+<p><a href="../knowledge/29_preregistered_apfl_completion_2026-10-26.md">Pre-registration (knowledge/29)</a> ·
+<a href="../knowledge/30_executive_summary_and_apfl_outcomes_2026-10-26.md">Executive summary &amp; outcomes (knowledge/30)</a> ·
+<a href="../registry/run_card_apfl2_2026-10-26.json">Run card</a> ·
+<a href="../evidence/focus_audit_session_2026-10-26.json">Fresh nine-site pixel audit</a>.</p></section>
 <section><h2>The novelty constraint needs attention</h2>
 <p>The registered lattice's three-pixel halo covers <b>99.8724%</b> of eligible pixels.
 Only 6,514 pixels lie outside it. Under the literal overlap rule, a candidate above 21,713 unique dots cannot pass against that lattice,
@@ -129,6 +139,6 @@ Not approved as a new submission. SHA-256: <code class="wrap-hash">33003374335d8
 Automatic source availability is not automatic scientific verification or a live leaderboard feed.</p>
 <p><a href="history.html">Historical experiment/download archive</a></p></section></main>
 <footer><div class="wrap">Core values: <b>Maximize P(Win)</b> · <b>Own the Outcome</b>. Source: <a href="https://github.com/buffedlizard55-lab/GEMSDOE25">github.com/buffedlizard55-lab/GEMSDOE25</a> ·
-built 2026-10-26 01:17 UTC from <code>registry/</code> and <code>evidence/</code> by <code>scripts/build_site.py</code>.
+built 2026-10-26 16:49 UTC from <code>registry/</code> and <code>evidence/</code> by <code>scripts/build_site.py</code>.
 No score here is promised; reported scores are unverified unless an organizer receipt is supplied. This site/feed never contacts drivendata.org.</div></footer>
 <script src="assets/app.js"></script></body></html>

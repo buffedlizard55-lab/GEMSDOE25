@@ -154,6 +154,7 @@ def main() -> None:
     h38_card = opt('registry/run_card_h38_ospc_2026-10-25.json')
     h66_card = opt('registry/run_card_h66_2026-10-25.json')
     h71_card = opt('registry/run_card_h71_2026-10-26.json')
+    apfl2_card = opt('registry/run_card_apfl2_2026-10-26.json')
 
     def latest_diagnostic(prefix: str) -> str:
         if cf1 is None or cf1_card is None:
@@ -225,6 +226,24 @@ is not a lane clearance. Format verification is against an owner-mirrored templa
 </tbody></table>
 <p class="small"><b>Key scientific findings:</b> (1) <code>Factor C</code> (tip-preserved lateral-flank shielding, <code>r=2.5 px</code>, <code>H27_tip &ge; 0.05</code>) was positive in <code>4/4</code> screen AND <code>4/4</code> confirmation folds (<code>8/8</code> here; <b><code>16/16</code> fold-blocks</b> combined with H31-1). (2) Sparse 610-cell GDR geothermometry (<code>MGD-F</code>) is draw-dependent (<code>IR-25-MGD-SPARSE-DRAW-DEPENDENCE</code>); two-stage confirmation stopped a false-positive weekly slot spend. (3) Gating USGS SGMC bedrock faults by 3DEP LiDAR scarps &amp; GPS strain jumped HOLDOUT-DTI by <code>+0.0138</code> (95% CI <code>[+0.0025, +0.0251]</code>, <code>4/4</code> folds+), held unpromoted at the 3-experiment cap with HGB smooth-multiplier tree inversion documented (<code>IR-25-SGMC-TREE-INVERSION</code>). (4) Featured GeoTIFF clears all {fw['n']} focus/top-scorer submissions (max 3-px overlap <code>{100*fw['worst_cand_dots_within_3px']:.1f}% &le; 70%</code>; <code>{100*fw['b2_overlap']:.1f}%</code> vs GEMSDOE32 B2 <code>0.2778</code>; max surface |&rho;| <code>{rc['surface_max_abs_spearman']:.4f} &le; 0.90</code>), held <b>DO NOT SUBMIT</b>.</p></div>'''
 
+    def apfl2_summary_card(prefix: str) -> str:
+        if not apfl2_card:
+            return ''
+        x1 = apfl2_card['holdout_dti']['exp1_direct']
+        x2 = apfl2_card['holdout_dti']['exp2_hgb']
+        ov = apfl2_card['correlation_overlap_vs_registry']['final_dots']
+        kbase = "../knowledge" if not prefix else "knowledge"
+        def pooled_txt(p):
+            return f"{p['pooled_dti']:.6f} [{p['ci_95'][0]:.4f}, {p['ci_95'][1]:.4f}] ({p['withheld_positives']:,} withheld)"
+        return f'''<div class="card"><h2>Newest session — APFL piedmont-flexure completion (2 screens FAIL + OCEM diagnostic) · featured download above</h2>
+<p><b>Pre-registration:</b> <a href="{kbase}/29_preregistered_apfl_completion_2026-10-26.md"><code>knowledge/29</code></a> (committed before any fit) · <b>Executive summary:</b> <a href="{kbase}/30_executive_summary_and_apfl_outcomes_2026-10-26.md"><code>knowledge/30</code></a> · <b>Run card:</b> <code>registry/run_card_apfl2_2026-10-26.json</code>.</p>
+<ul>
+<li><b>Exp 1 APFL-DIRECT (draws 60–61):</b> HOLDOUT-DTI <code>{pooled_txt(x1['candidate'])}</code> vs same-run H35 <code>{pooled_txt(x1['control_h35'])}</code>; paired gain <code>{x1['gate']['mean_gain']:+.4f}</code> ({x1['gate']['folds_positive']}/4 folds) → <b>FAIL</b>. It beat the unsupervised crest floor ({x1['crest_floor']['pooled_dti']:.4f}) in 4/4 folds. Canary max AUC <code>{x1['canary']['max_feature_auc']:.3f} &le; 0.90</code>.</li>
+<li><b>Exp 2 H35+APFL columns (draws 62–63):</b> HOLDOUT-DTI <code>{pooled_txt(x2['candidate'])}</code> vs same-run H35 <code>{pooled_txt(x2['control_h35'])}</code>; paired gain <code>{x2['gate']['mean_gain']:+.4f}</code> ({x2['gate']['folds_positive']}/4 folds) → <b>FAIL</b>. Canary max AUC <code>{x2['canary']['max_feature_auc']:.3f} &le; 0.90</code>.</li>
+<li><b>Exp 3 OCEM (descriptive, no fit):</b> B=2 collar with budget refill is ~neutral on the catalogue-gap proxy; the live B2 win was deletion <i>without</i> refill, which this proxy cannot test. A ≥200 m off-catalogue truth restriction is vacuous (hidden whole components are ≥2 px from visible traces by construction).</li>
+<li><b>Uniqueness (COMPUTED):</b> new TIF dots within 3 px of GEMSDOE32 B2 = <code>{100*ov['vs_focus_sites']['GEMSDOE32']['dots_within_3px']:.1f}%</code> (cap 70%); worst external scored raster <code>{100*ov['worst_external_scored']['dots_within_3px']:.1f}%</code>; surface |&rho;| <code>{apfl2_card['correlation_overlap_vs_registry']['surface_before_placement']['worst_abs_spearman']:.3f} &le; 0.90</code>. <b>Not</b> unique vs this repo's own HGB testing lineage (worst <code>{100*ov['worst_own_lineage']['dots_within_3px']:.1f}%</code>). <b>OK TO DOWNLOAD: YES (testing) · OK TO SUBMIT: NO — DO NOT SUBMIT.</b></li>
+</ul></div>'''
+
     def pol3_summary_card(prefix: str) -> str:
         pol3 = opt("evidence/pol3_screen_2026-10-26/summary.json")
         if not pol3:
@@ -238,7 +257,7 @@ is not a lane clearance. Format verification is against an owner-mirrored templa
 
     def home(prefix: str) -> str:
         hero = verdict_banner(primary, prefix)
-        cards = dl_card(primary, prefix) + h71_summary_card(prefix) + pol3_summary_card(prefix) + h66_summary_card(prefix) + h38_summary_card(prefix) + latest_diagnostic(prefix)
+        cards = dl_card(primary, prefix) + apfl2_summary_card(prefix) + h71_summary_card(prefix) + pol3_summary_card(prefix) + h66_summary_card(prefix) + h38_summary_card(prefix) + latest_diagnostic(prefix)
         alt = "".join(f"""<div class="card"><b>{e(o['title'])}</b> {badge(o['status'], 'ok' if o['status']=='scored' else 'warn')}
 <p class="small" style="margin:.3em 0">{e(o['summary'])}</p><a class="btn alt small" href="{prefix}downloads/{o['file']}" download>↓ {e(o['file'])}</a>
  <span class="small">· {o['positive_pixels']:,} px · <code>{o['content_id']}</code></span></div>""" for o in others if o["role"] in ("fallback", "alternate"))
@@ -384,8 +403,9 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
         return hero + cards + (f"<h3>Also available</h3>{alt}" if alt else "") + plan + h36_spigm_b + kdcb + stats + h31_block + whyb + h28b + h30b + facb + flagb + feed
 
     exec_body = f"""{verdict_banner(primary, '', exec_page=True)}
-<div class="callout"><b>Current featured unique research artifact: {e(selected['file'])}.</b> <b>OK to download for local inspection/reproduction: YES.</b> Automated validation (<code>gems25.submission.check_file</code> 16/16 checks + plain-<code>rasterio</code> <code>scripts/verify_candidate_independent.py</code>) passed freshly against the SHA-256-pinned template (<code>2176d08e…</code>, owner-mirrored, not organizer-authenticated): every pixel is finite in <code>{{0.0, 1.0}} &sub; [0, 1]</code>, zero NaN anywhere, exact <code>EPSG:32611</code> / <code>3730 &times; 3292</code> grid. <b>OK to submit to a competition scoring slot: NO — DO NOT SUBMIT.</b> Three pre-registered H71 DIRECT-emission screens (HGPC-BLIND, AKF, MAG-ANISO) each beat unsupervised crest emission and each failed vs same-run H35 (0/4 folds). Density-aware lane is UNIQUE vs 21 top-scorers (15.4% vs GEMSDOE32 B2) and own HGB lineage (23.4%); literal strict lane fails only on the dense <code>r13</code> lattice (100%; <code>IR-25-LANE-DENSITY</code>). No weekly slot. Parallel-session research GeoTIFFs (including <code>gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif</code>, <code>gems25-h38-ospc-submod-20261025-680d62616417-zeros.tif</code>, <code>gems25-h36-spigm-subsurface-submod300-20261025-3937b96ce366-zeros.tif</code>, and <code>gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.tif</code>) remain available in the registry below and are likewise testing-only (<b>DO NOT SUBMIT</b>).</div>
+<div class="callout"><b>Current featured research artifact: {e(selected['file'])}.</b> <b>OK to download for local inspection/reproduction: YES.</b> <b>OK to submit to a competition scoring slot: NO — DO NOT SUBMIT.</b> Status, lane and gate outcome for this exact file are in the banner and download card below (driven by <code>registry/submissions.json</code> + its run card — no hand-written status). The newest session (APFL piedmont-flexure completion, <code>knowledge/29–30</code>) failed both frozen holdout screens vs the same-run H35 control; earlier research GeoTIFFs (including <code>gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif</code>, <code>gems25-h38-ospc-submod-20261025-680d62616417-zeros.tif</code>, <code>gems25-h36-spigm-subsurface-submod300-20261025-3937b96ce366-zeros.tif</code>, and <code>gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.tif</code>) remain in the registry below and are likewise testing-only (<b>DO NOT SUBMIT</b>). Historical best among the nine focus sites remains GEMSDOE32 B2 at 0.2778 (OWNER-REPORTED, already submitted — do not resubmit it).</div>
 {dl_card(selected, '')}
+{apfl2_summary_card('')}
 {h71_summary_card('')}
 {pol3_summary_card('')}
 {h66_summary_card('')}

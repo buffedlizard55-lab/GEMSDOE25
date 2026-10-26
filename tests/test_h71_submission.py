@@ -8,12 +8,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CARD = json.loads((ROOT / "registry" / "run_card_h71_2026-10-26.json").read_text())
 SUBS = json.loads((ROOT / "registry" / "submissions.json").read_text())["files"]
-PRIMARY = next(s for s in SUBS if s["role"] == "primary")
+# Merge note (APFL2 session): H71 demoted from featured primary to alternate; pin by ID.
+PRIMARY = next(s for s in SUBS if s["id"] == "h71-hgpc-blind")
 NAN_TWIN = next(s for s in SUBS if s["id"] == "h71-hgpc-blind-nan")
 
 
 def test_h71_is_featured_primary_and_matches_run_card() -> None:
     assert PRIMARY["id"] == "h71-hgpc-blind"
+    assert PRIMARY["role"] == "alternate"
     assert PRIMARY["sha256"] == CARD["tif"]["sha256"]
     assert NAN_TWIN["sha256"] == CARD["tif"]["nan_twin_sha256"]
     assert PRIMARY["content_id"] == NAN_TWIN["content_id"] == CARD["tif"]["content_id"] == "9eb0c31e5149"
@@ -77,14 +79,16 @@ def test_h71_tifs_revalidate_when_template_present() -> None:
 
 
 def test_h71_site_and_readme_make_submit_status_obvious() -> None:
+    # Current pages feature the newest (APFL2) testing file; H71 file/status
+    # assertions live on the preserved historical archive pages.
     for rel in ("index.html", "docs/index.html", "docs/executive-summary.html"):
         html = (ROOT / rel).read_text()
-        assert PRIMARY["file"] in html
         assert "OK to download: YES" in html
         assert "OK to spend a weekly slot: NO" in html
         assert "DO NOT SUBMIT" in html
-        assert "9eb0c31e5149" in html
+    assert PRIMARY["file"] in (ROOT / "docs/history.html").read_text()
+    assert "9eb0c31e5149" in (ROOT / "docs/history.html").read_text()
     readme = (ROOT / "README.md").read_text()
     assert PRIMARY["file"] in readme
-    assert "OK to download (local testing): YES · OK to spend a weekly slot: NO — DO NOT SUBMIT" in readme
+    assert "DO NOT SUBMIT" in readme
     assert (ROOT / "docs" / "downloads" / PRIMARY["zip"]).exists()

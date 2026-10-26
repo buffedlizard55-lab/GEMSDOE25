@@ -657,6 +657,30 @@
    "issue": "README describes the Family A potential-field unit mismatch as fixed, but the current shared build_static still forms A_mag_tilt directly from provider tmi_vg/tmi_hg. The narrative and implementation need reconciliation; no new unit calibration was performed in this session.",
    "evidence": "src/gems25/features.py build_static Family A; README IR-25-POTENTIAL-FIELD-UNIT-MISMATCH",
    "resolution_or_action": "Audit source units and cached hashes before any new Family A run. ROD is catalogue-free radiometric/scarp work; its H35 comparator uses the existing BDE+7/H34 recipe, not a newly repaired A stack."
+  },
+  {
+   "id": "IR-25-APFL-BUILDER-MISSING",
+   "severity": "high",
+   "status": "fixed",
+   "issue": "The shipped APFL GeoTIFF (8aebdab87158, 2026-10-26) had a run card and frozen formula (knowledge/27) but no builder code in src/ or scripts/ (grep verified), so its surface could not be reproduced or holdout-tested.",
+   "evidence": "knowledge/29 disclosure; grep APFL/apfl/piedmont over src/, scripts/, tests/ at fac6dbe",
+   "resolution_or_action": "Re-implemented from the frozen formula in src/gems25/apfl.py (reconstruction, disclosed). Shipped-APFL holdout claims remain unreproduced; this session's screens test the reconstruction."
+  },
+  {
+   "id": "IR-25-RUNG30-COUNT",
+   "severity": "low",
+   "status": "fixed",
+   "issue": "knowledge/28 listed GEMSDOE28 rung30 (0.2710 OWNER-REPORTED) as 40,199 dots; fresh count of the pinned mirror is 37,660 (40,199 is R1/GEMSDOE31).",
+   "evidence": "evidence/focus_audit_session_2026-10-26.json (scripts/audit_focus_sites_session.py)",
+   "resolution_or_action": "Corrected in knowledge/30 section 2. Rung30 shares 26,248 exact pixels with B2 but 95.5% within 3 px."
+  },
+  {
+   "id": "IR-25-OFFCAT-VACUOUS",
+   "severity": "medium",
+   "status": "disclosed",
+   "issue": "The proposed off-catalogue holdout (truth restricted to >=200 m from visible traces, knowledge/20) is identical to the standard holdout: whole-component hiding with 8-connectivity puts every hidden pixel >=2 px from visible pixels. dti_offcat2 == dti in all 32 APFL-HGB cells.",
+   "evidence": "evidence/apfl_hgb_screen/cells.jsonl (max |dti-dti_offcat2| = 0.0)",
+   "resolution_or_action": "Do not use a >=2 px restriction. A future pre-registered instrument needs >=3-5 px shells or distance-stratified scoring on fresh draws."
   }
  ]
 }

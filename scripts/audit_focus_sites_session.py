@@ -15,7 +15,7 @@ from pathlib import Path
 
 import numpy as np
 import rasterio
-from scipy.ndimage import binary_dilation, distance_transform_edt
+from scipy.ndimage import distance_transform_edt
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
@@ -77,7 +77,6 @@ def main() -> None:
         )
     r1 = mask(top / R1_FILE)
     d28, b2 = masks["GEMSDOE25"], masks["GEMSDOE32"]
-    halo3_b2 = binary_dilation(b2, structure=np.ones((7, 7), bool))  # Chebyshev<=3 superset; exact EDT below
     dist_b2 = distance_transform_edt(~b2)
     identities = dict(
         g25_d28_equals_g30_mask=bool(np.array_equal(d28, masks["GEMSDOE30"])),
