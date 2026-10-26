@@ -172,6 +172,22 @@ is not a lane clearance. Format verification is against an owner-mirrored templa
 <a class="btn alt small" href="{prefix}downloads/{e(cf1['file'])}" download>↓ Download CF-1 diagnostic TIFF (testing only)</a>
 <p class="small">SHA-256 <code>{cf1['sha256']}</code> · EPSG:32611 · 3730×3292 · no NaN inside footprint · all values [0,1] · <a href="{prefix}executive-summary.html">submission eligibility guide</a> · note (≤140 chars): <code>{e(cf1['note'])}</code></p></section>'''
 
+    def apfl2_summary_card(prefix: str) -> str:
+        rc_path = ROOT / "registry" / "run_card_apfl2_2026-10-26.json"
+        if not rc_path.exists():
+            return ""
+        rc = json.loads(rc_path.read_text())
+        x1, x2 = rc["holdout_dti"]["exp1_direct"], rc["holdout_dti"]["exp2_hgb"]
+        return f"""<article class="card">
+      <div class="card-top"><span class="badge b-bad">Screen FAIL</span><span class="badge b-grey">Testing download only</span></div>
+      <h3>APFL piedmont-flexure completion (parallel session)</h3>
+      <p>Two pre-registered screens vs same-run H35 — direct HOLDOUT-DTI {x1['candidate']['pooled_dti']:.6f} [22,813 withheld]
+      and H35+APFL {x2['candidate']['pooled_dti']:.6f} [22,931 withheld] — both FAIL; OCEM diagnostic: B2+refill ~neutral on proxy.
+      New unique testing GeoTIFF <code>{e(rc['submission']['name'])}</code> (48,658 dots, strict [0,1] pass) is registered as alternate.</p>
+      <div class="links"><a href="{prefix}downloads/{e(rc['submission']['name'])}" download>Download testing GeoTIFF</a>
+      <a href="../knowledge/30_executive_summary_and_apfl_outcomes_2026-10-26.md">Executive summary</a>
+      <a href="../registry/run_card_apfl2_2026-10-26.json">Run card</a></div></article>"""
+
     def h38_summary_card(prefix: str) -> str:
         if not h38_card:
             return ''
@@ -259,7 +275,7 @@ is not a lane clearance. Format verification is against an owner-mirrored templa
 
     def home(prefix: str) -> str:
         hero = verdict_banner(primary, prefix)
-        cards = dl_card(primary, prefix) + objective_summary_card(prefix) + h71_summary_card(prefix) + pol3_summary_card(prefix) + h66_summary_card(prefix) + h38_summary_card(prefix) + latest_diagnostic(prefix)
+        cards = dl_card(primary, prefix) + objective_summary_card(prefix) + apfl2_summary_card(prefix) + h71_summary_card(prefix) + pol3_summary_card(prefix) + h66_summary_card(prefix) + h38_summary_card(prefix) + latest_diagnostic(prefix)
         alt = "".join(f"""<div class="card"><b>{e(o['title'])}</b> {badge(o['status'], 'ok' if o['status']=='scored' else 'warn')}
 <p class="small" style="margin:.3em 0">{e(o['summary'])}</p><a class="btn alt small" href="{prefix}downloads/{o['file']}" download>↓ {e(o['file'])}</a>
  <span class="small">· {o['positive_pixels']:,} px · <code>{o['content_id']}</code></span></div>""" for o in others if o["role"] in ("fallback", "alternate"))
@@ -408,6 +424,7 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
 <div class="callout"><b>Current featured unique research artifact: {e(selected['file'])}.</b> <b>OK to download for local inspection/reproduction: YES.</b> Automated validation (<code>gems25.submission.check_file</code> 16/16 checks + plain-<code>rasterio</code> <code>scripts/verify_candidate_independent.py</code>) passed freshly against the SHA-256-pinned template (<code>2176d08e…</code>, owner-mirrored, not organizer-authenticated): every pixel is finite in <code>{{0.0, 1.0}} &sub; [0, 1]</code>, zero NaN anywhere, exact <code>EPSG:32611</code> / <code>3730 &times; 3292</code> grid. <b>OK to submit to a competition scoring slot: NO — DO NOT SUBMIT.</b> Three pre-registered H71 DIRECT-emission screens (HGPC-BLIND, AKF, MAG-ANISO) each beat unsupervised crest emission and each failed vs same-run H35 (0/4 folds). Density-aware lane is UNIQUE vs 21 top-scorers (15.4% vs GEMSDOE32 B2) and own HGB lineage (23.4%); literal strict lane fails only on the dense <code>r13</code> lattice (100%; <code>IR-25-LANE-DENSITY</code>). No weekly slot. Parallel-session research GeoTIFFs (including <code>gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif</code>, <code>gems25-h38-ospc-submod-20261025-680d62616417-zeros.tif</code>, <code>gems25-h36-spigm-subsurface-submod300-20261025-3937b96ce366-zeros.tif</code>, and <code>gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.tif</code>) remain available in the registry below and are likewise testing-only (<b>DO NOT SUBMIT</b>).</div>
 {dl_card(selected, '')}
 {objective_summary_card('')}
+{apfl2_summary_card('')}
 {h71_summary_card('')}
 {pol3_summary_card('')}
 {h66_summary_card('')}

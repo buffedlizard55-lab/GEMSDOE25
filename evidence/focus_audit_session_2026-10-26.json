@@ -1,0 +1,188 @@
+{
+ "generated_by": "scripts/audit_focus_sites_session.py",
+ "evidence_class": "COMPUTED from pinned mirrors; scores OWNER-REPORTED (registry/top_scorer_sources.json); no organizer receipt",
+ "footprint_px": 5167373,
+ "catalogue_px": 60988,
+ "focus": {
+  "GEMSDOE24": {
+   "file": "g24_d1-5_0.2477.tif",
+   "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+   "pinned_sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+   "sha256_matches_pin": true,
+   "owner_reported_score": 0.2477,
+   "submission_name": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+   "dots": 60069,
+   "dots_on_catalogue": 0,
+   "dots_outside_footprint": 0,
+   "format_ok": true,
+   "hard_failures": [],
+   "strict_whole_array_0_1": false,
+   "share_dots_within_3px_of_b2": 0.88476585260284,
+   "exact_pixel_overlap_with_b2": 25517
+  },
+  "GEMSDOE25": {
+   "file": "g25_d2-8_0.2600.tif",
+   "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+   "pinned_sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+   "sha256_matches_pin": true,
+   "owner_reported_score": 0.26,
+   "submission_name": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+   "dots": 44090,
+   "dots_on_catalogue": 0,
+   "dots_outside_footprint": 0,
+   "format_ok": true,
+   "hard_failures": [],
+   "strict_whole_array_0_1": false,
+   "share_dots_within_3px_of_b2": 0.8817192107053754,
+   "exact_pixel_overlap_with_b2": 37654
+  },
+  "GEMSDOE27": {
+   "file": "g27_topo-gap-d1-5_0.2449.tif",
+   "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+   "pinned_sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+   "sha256_matches_pin": true,
+   "owner_reported_score": 0.2449,
+   "submission_name": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+   "dots": 61328,
+   "dots_on_catalogue": 0,
+   "dots_outside_footprint": 0,
+   "format_ok": true,
+   "hard_failures": [],
+   "strict_whole_array_0_1": false,
+   "share_dots_within_3px_of_b2": 0.8671895382207149,
+   "exact_pixel_overlap_with_b2": 25517
+  },
+  "GEMSDOE28": {
+   "file": "g28_h36-1-rung30_0.2710.tif",
+   "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+   "pinned_sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+   "sha256_matches_pin": true,
+   "owner_reported_score": 0.271,
+   "submission_name": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
+   "dots": 37660,
+   "dots_on_catalogue": 0,
+   "dots_outside_footprint": 0,
+   "format_ok": true,
+   "hard_failures": [],
+   "strict_whole_array_0_1": false,
+   "share_dots_within_3px_of_b2": 0.9547265002655337,
+   "exact_pixel_overlap_with_b2": 26248
+  },
+  "GEMSDOE30": {
+   "file": "g30_d28-poisson_0.2600.tif",
+   "sha256": "5f963b8bca5ec226ddc7caaadec239c6be6d28aa567f890033be04d04bfd5e32",
+   "pinned_sha256": "5f963b8bca5ec226ddc7caaadec239c6be6d28aa567f890033be04d04bfd5e32",
+   "sha256_matches_pin": true,
+   "owner_reported_score": 0.26,
+   "submission_name": "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
+   "dots": 44090,
+   "dots_on_catalogue": 0,
+   "dots_outside_footprint": 0,
+   "format_ok": true,
+   "hard_failures": [],
+   "strict_whole_array_0_1": false,
+   "share_dots_within_3px_of_b2": 0.8817192107053754,
+   "exact_pixel_overlap_with_b2": 37654
+  },
+  "GEMSDOE31": {
+   "file": "g31_h27-4-solo-d28_0.2708.tif",
+   "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+   "pinned_sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+   "sha256_matches_pin": true,
+   "owner_reported_score": 0.2708,
+   "submission_name": "h27-4-solo-d28-20261004-8acb75e1-nan",
+   "dots": 40199,
+   "dots_on_catalogue": 0,
+   "dots_outside_footprint": 0,
+   "format_ok": true,
+   "hard_failures": [],
+   "strict_whole_array_0_1": false,
+   "share_dots_within_3px_of_b2": 0.9539043259782581,
+   "exact_pixel_overlap_with_b2": 37654
+  },
+  "GEMSDOE32": {
+   "file": "g32_h33-2-b2_0.2778.tif",
+   "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+   "pinned_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+   "sha256_matches_pin": true,
+   "owner_reported_score": 0.2778,
+   "submission_name": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+   "dots": 37654,
+   "dots_on_catalogue": 0,
+   "dots_outside_footprint": 0,
+   "format_ok": true,
+   "hard_failures": [],
+   "strict_whole_array_0_1": true,
+   "share_dots_within_3px_of_b2": 1.0,
+   "exact_pixel_overlap_with_b2": 37654
+  },
+  "GEMSDOE33": {
+   "file": "g33_h33d_0.2632.tif",
+   "sha256": "bc3af2a5fcb4b49bc5845a2d7dc3da23daf41ce75e4c64da3337c0c8c93cc12c",
+   "pinned_sha256": "bc3af2a5fcb4b49bc5845a2d7dc3da23daf41ce75e4c64da3337c0c8c93cc12c",
+   "sha256_matches_pin": true,
+   "owner_reported_score": 0.2632,
+   "submission_name": "h33d-analog-tip-stepover-r30-20261004-cb490425926e",
+   "dots": 41865,
+   "dots_on_catalogue": 0,
+   "dots_outside_footprint": 0,
+   "format_ok": true,
+   "hard_failures": [],
+   "strict_whole_array_0_1": false,
+   "share_dots_within_3px_of_b2": 0.9264301922847247,
+   "exact_pixel_overlap_with_b2": 31614
+  },
+  "GEMSDOE36": {
+   "file": "g36_anderson-pinn_0.2750.tif",
+   "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+   "pinned_sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+   "sha256_matches_pin": true,
+   "owner_reported_score": 0.275,
+   "submission_name": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+   "dots": 38854,
+   "dots_on_catalogue": 0,
+   "dots_outside_footprint": 0,
+   "format_ok": true,
+   "hard_failures": [],
+   "strict_whole_array_0_1": true,
+   "share_dots_within_3px_of_b2": 0.9740309878004839,
+   "exact_pixel_overlap_with_b2": 37654
+  }
+ },
+ "identities": {
+  "g25_d28_equals_g30_mask": true,
+  "r1_equals_d28_and_edt_gt1": true,
+  "g31_equals_r1_mask": true,
+  "b2_equals_d28_and_edt_gt2": true,
+  "g36_superset_b2": true,
+  "g36_extra_dots_vs_b2": 1200,
+  "d28_to_b2_removed": 6436,
+  "shell_d_le1_removed": 3891,
+  "shell_1lt_d_le2_removed": 2545,
+  "g27_superset_d15": true,
+  "g27_extra_vs_d15": 1259,
+  "lattice_note": "halo computed with Euclidean EDT<=3, not the Chebyshev dilation above"
+ },
+ "breakeven": {
+  "D=0.26": {
+   "tau_credit_over_fp": 0.054852320675105495,
+   "per_pixel_credit_bar": 0.052000000000000005
+  },
+  "D=0.2708": {
+   "tau_credit_over_fp": 0.05726127040514252,
+   "per_pixel_credit_bar": 0.05416
+  },
+  "D=0.2778": {
+   "tau_credit_over_fp": 0.05882851213417475,
+   "per_pixel_credit_bar": 0.05556
+  },
+  "D=0.3195": {
+   "tau_credit_over_fp": 0.06826193782715521,
+   "per_pixel_credit_bar": 0.0639
+  },
+  "D=0.4413": {
+   "tau_credit_over_fp": 0.096803913396363,
+   "per_pixel_credit_bar": 0.08826
+  }
+ }
+}

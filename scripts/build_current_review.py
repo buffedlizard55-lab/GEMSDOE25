@@ -150,6 +150,24 @@ Historical scores in the nine-site table are OWNER-REPORTED, not ORGANIZER-CONFI
 <div class="table-scroll"><table><thead><tr><th>File to download (research only)</th><th>Format</th>
 <th>Estimated leaderboard score</th><th>Unique?</th><th>OK to submit?</th></tr></thead>
 <tbody>{inventory_rows}</tbody></table></div></details></section>'''
+
+    apfl2_path = ROOT/'registry/run_card_apfl2_2026-10-26.json'
+    apfl2 = json.loads(apfl2_path.read_text()) if apfl2_path.exists() else None
+    apfl2_section = ''
+    if apfl2:
+        x1 = apfl2['holdout_dti']['exp1_direct']
+        x2 = apfl2['holdout_dti']['exp2_hgb']
+        cnd, ctl = x2['candidate'], x2['control_h35']
+        apfl2_section = f'''<section class="card"><p class="eyebrow">PARALLEL SESSION · APFL LANE · TWO FROZEN SCREENS + OCEM DIAGNOSTIC · NEGATIVE</p>
+<h2>APFL piedmont-flexure completion — both screens negative</h2>
+<p><b>Exp 1 (DIRECT, draws 60–61):</b> HOLDOUT-DTI <code>{x1['candidate']['pooled_dti']:.6f}</code> vs same-run H35 <code>{x1['control_h35']['pooled_dti']:.6f}</code> (gain {x1['gate']['mean_gain']:+.4f}, {x1['gate']['folds_positive']}/4 folds) — FAIL.
+<b>Exp 2 (H35+APFL columns, draws 62–63):</b> HOLDOUT-DTI <code>{cnd['pooled_dti']:.6f}</code> [{cnd['ci_95'][0]:.4f}, {cnd['ci_95'][1]:.4f}], {cnd['withheld_positives']:,} withheld positives, vs H35 <code>{ctl['pooled_dti']:.6f}</code> (gain {x2['gate']['mean_gain']:+.4f}, {x2['gate']['folds_positive']}/4 folds) — FAIL.
+Canary max AUC {x1['canary']['max_feature_auc']:.3f} / {x2['canary']['max_feature_auc']:.3f} (≤0.90). Evaluator <code>gems25.holdout.v1.2-buffered-4quad-pooled-dti</code>. Catalogue-gap proxy only — not a leaderboard score or estimate.</p>
+<p><b>Exp 3 (OCEM diagnostic):</b> B=2 collar with budget refill is ~neutral on this proxy; the live B2 effect was deletion without refill. A ≥200 m off-catalogue truth restriction is vacuous here.</p>
+<p><a href="../knowledge/29_preregistered_apfl_completion_2026-10-26.md">Pre-registration</a> ·
+<a href="../knowledge/30_executive_summary_and_apfl_outcomes_2026-10-26.md">Executive summary &amp; outcomes (knowledge/30)</a> ·
+<a href="../registry/run_card_apfl2_2026-10-26.json">Run card</a> ·
+<a href="../evidence/focus_audit_session_2026-10-26.json">Fresh nine-site pixel audit</a>.</p></section>'''
     historical = 'gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif'
     rows, cards = [], []
     exact_mask_notes = {
@@ -254,6 +272,7 @@ not a copied prediction mask. Volcanic flow lobes, sediment sorting and survey s
 {pol3_section}
 {obj_section}
 {olic_section}
+{apfl2_section}
 <section><h2>The novelty constraint needs attention</h2>
 <p>The registered lattice's three-pixel halo covers <b>{coverage['coverage_fraction']*100:.4f}%</b> of eligible pixels.
 Only {coverage['uncovered_pixels']:,} pixels lie outside it. Under the literal overlap rule, a candidate above 21,713 unique dots cannot pass against that lattice,
@@ -312,6 +331,7 @@ def readme_status():
             "[D01 density outcome](knowledge/31_d01_outcome_2026-10-26.md) · "
             "[H71 outcomes](knowledge/28_h71_outcomes_2026-10-26.md). "
             "Parallel merged sessions: OLIC screen (draws 82–83) failed its frozen gate (+0.000849, 2/4 folds) and D01 density diagnostic was negative; neither wrote a TIF. "
+            "Parallel APFL session: two screens failed (0.045617 / 0.148880 HOLDOUT-DTI); its unique testing TIF `2e9e4189f554` is registered alternate — [executive summary](knowledge/30_executive_summary_and_apfl_outcomes_2026-10-26.md) · [run card](registry/run_card_apfl2_2026-10-26.json). "
             "GEMSDOE32 B2 is the strongest supplied historical exemplar (**OWNER-REPORTED 0.2778**), not a new submission. "
             "No weekly slot was used.\n\n"
             "Read the current owner brief below every session, then the preserved historical prompts. "

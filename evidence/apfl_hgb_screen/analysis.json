@@ -1,0 +1,215 @@
+{
+ "experiment": "APFL-HGB",
+ "draws": [
+  62,
+  63
+ ],
+ "preregistration": "knowledge/29_preregistered_apfl_completion_2026-10-26.md",
+ "leakage_canary": {
+  "max_feature_auc": 0.6153758542108989,
+  "per_feature": {
+   "APFL_lstep": 0.6108815073076246,
+   "APFL_gravas": 0.5923120040108867,
+   "APFL_depthgrad": 0.5520275682944091,
+   "APFL_condgrad": 0.5337369119253302,
+   "APFL_tpipos": 0.6153758542108989,
+   "APFL_crest": 0.5426858637083994,
+   "APFL_product": 0.6000442190526502
+  },
+  "passed": true
+ },
+ "arms": {
+  "CTRL_H35_24": {
+   "cell_mean_dti": 0.150339477469081,
+   "cell_mean_ci95": [
+    0.12860438913090624,
+    0.17207456580725575
+   ],
+   "by_fold_dti": {
+    "NW": 0.15765081026990418,
+    "NE": 0.14702076609420883,
+    "SW": 0.1327339655936438,
+    "SE": 0.16395236791856715
+   },
+   "mean_hug": 0.08544216259565668,
+   "mean_emitted": 11597.0,
+   "mean_auc": 0.7965998329208912,
+   "mean_dti_offcat2": 0.150339477469081,
+   "pooled": {
+    "evaluator_version": "gems25.holdout.v1.2-buffered-4quad-pooled-dti",
+    "pooled_dti": 0.14897658338276665,
+    "withheld_positives": 22931,
+    "tp_total": 5587.577331848541,
+    "fp_total": 90220.48995544582,
+    "fn_total": 17343.42266815146,
+    "fold_pooled_dti": [
+     0.15767225298220625,
+     0.14701379030261838,
+     0.13265340134668024,
+     0.16391363780374427
+    ],
+    "se_across_folds": 0.006842770893769707,
+    "ci_95": [
+     0.12719983243398636,
+     0.17075333433154694
+    ],
+    "formatted_label": "HOLDOUT-DTI 0.148977 (evaluator=gems25.holdout.v1.2-buffered-4quad-pooled-dti, withheld_positives=22931, 95% CI [0.127200, 0.170753])"
+   }
+  },
+  "H35_PLUS_APFL": {
+   "cell_mean_dti": 0.14946255063293445,
+   "cell_mean_ci95": [
+    0.1322438078953082,
+    0.1666812933705607
+   ],
+   "by_fold_dti": {
+    "NW": 0.1545269518586542,
+    "NE": 0.1401402616743459,
+    "SW": 0.1408754116828761,
+    "SE": 0.16230757731586162
+   },
+   "mean_hug": 0.0872585559248162,
+   "mean_emitted": 11586.0,
+   "mean_auc": 0.7919089393434772,
+   "mean_dti_offcat2": 0.14946255063293445,
+   "pooled": {
+    "evaluator_version": "gems25.holdout.v1.2-buffered-4quad-pooled-dti",
+    "pooled_dti": 0.14888011383999364,
+    "withheld_positives": 22931,
+    "tp_total": 5581.036598868411,
+    "fp_total": 90128.8810313816,
+    "fn_total": 17349.96340113159,
+    "fold_pooled_dti": [
+     0.15454970360688372,
+     0.1401478032649335,
+     0.14079647588605204,
+     0.16227422284771892
+    ],
+    "se_across_folds": 0.005415115876674141,
+    "ci_95": [
+     0.13164679832558887,
+     0.1661134293543984
+    ],
+    "formatted_label": "HOLDOUT-DTI 0.148880 (evaluator=gems25.holdout.v1.2-buffered-4quad-pooled-dti, withheld_positives=22931, 95% CI [0.131647, 0.166113])"
+   }
+  },
+  "CTRL_H35_B2": {
+   "cell_mean_dti": 0.15052959805043736,
+   "cell_mean_ci95": [
+    0.1280876566121401,
+    0.17297153948873462
+   ],
+   "by_fold_dti": {
+    "NW": 0.15733699429605838,
+    "NE": 0.1473864367869721,
+    "SW": 0.1323604152420128,
+    "SE": 0.16503454587670613
+   },
+   "mean_hug": 0.07437790148390859,
+   "mean_emitted": 11593.125,
+   "mean_auc": 0.7965998329208912,
+   "mean_dti_offcat2": 0.15052959805043736,
+   "pooled": {
+    "evaluator_version": "gems25.holdout.v1.2-buffered-4quad-pooled-dti",
+    "pooled_dti": 0.14916611903684296,
+    "withheld_positives": 22931,
+    "tp_total": 5593.9634743338775,
+    "fp_total": 90189.88047973759,
+    "fn_total": 17337.036525666124,
+    "fold_pooled_dti": [
+     0.15735455248771077,
+     0.14738121885677116,
+     0.13227769002389494,
+     0.16498899586076735
+    ],
+    "se_across_folds": 0.007063375409080509,
+    "ci_95": [
+     0.1266873060633829,
+     0.171644932010303
+    ],
+    "formatted_label": "HOLDOUT-DTI 0.149166 (evaluator=gems25.holdout.v1.2-buffered-4quad-pooled-dti, withheld_positives=22931, 95% CI [0.126687, 0.171645])"
+   }
+  },
+  "H35_PLUS_APFL_B2": {
+   "cell_mean_dti": 0.15005196669742965,
+   "cell_mean_ci95": [
+    0.1332100431853199,
+    0.1668938902095394
+   ],
+   "by_fold_dti": {
+    "NW": 0.15467228951899992,
+    "NE": 0.14126362430170814,
+    "SW": 0.14143991884341206,
+    "SE": 0.16283203412559852
+   },
+   "mean_hug": 0.07652498702284408,
+   "mean_emitted": 11586.375,
+   "mean_auc": 0.7919089393434772,
+   "mean_dti_offcat2": 0.15005196669742965,
+   "pooled": {
+    "evaluator_version": "gems25.holdout.v1.2-buffered-4quad-pooled-dti",
+    "pooled_dti": 0.1494869546684323,
+    "withheld_positives": 22931,
+    "tp_total": 5604.508634730062,
+    "fp_total": 90129.6092708131,
+    "fn_total": 17326.49136526994,
+    "fold_pooled_dti": [
+     0.15469325509472376,
+     0.14126553073593642,
+     0.1413621509406437,
+     0.16279753745389508
+    ],
+    "se_across_folds": 0.005297039180284136,
+    "ci_95": [
+     0.132629411900194,
+     0.16634449743667057
+    ],
+    "formatted_label": "HOLDOUT-DTI 0.149487 (evaluator=gems25.holdout.v1.2-buffered-4quad-pooled-dti, withheld_positives=22931, 95% CI [0.132629, 0.166344])"
+   }
+  }
+ },
+ "gate": {
+  "primary_arm": "H35_PLUS_APFL",
+  "vs_pointwise_best_control": {
+   "mean_gain": -0.000876926836146541,
+   "ci95": [
+    -0.011066236225488971,
+    0.00931238255319589
+   ],
+   "folds_positive": 1,
+   "worst_fold_gain": -0.006880504419862932,
+   "per_fold_gain": [
+    -0.0031238584112499856,
+    -0.006880504419862932,
+    0.008141446089232285,
+    -0.0016447906027055315
+   ],
+   "mean_hug_delta": 0.0018163933291595116,
+   "passed": false
+  },
+  "vs_named": {
+   "CTRL_H35_24": {
+    "mean_gain": -0.000876926836146541,
+    "ci95": [
+     -0.011066236225488971,
+     0.00931238255319589
+    ],
+    "folds_positive": 1,
+    "worst_fold_gain": -0.006880504419862932,
+    "per_fold_gain": [
+     -0.0031238584112499856,
+     -0.006880504419862932,
+     0.008141446089232285,
+     -0.0016447906027055315
+    ],
+    "mean_hug_delta": 0.0018163933291595116,
+    "passed": false
+   }
+  },
+  "passed": false,
+  "mean_gain": -0.000876926836146541,
+  "folds_positive": 1,
+  "worst_fold_gain": -0.006880504419862932
+ },
+ "n_cells": 8
+}
