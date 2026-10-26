@@ -142,7 +142,7 @@ def main() -> None:
                      f"| [{cc['pooled_delta_boot_ci95'][0]:+.4f}, {cc['pooled_delta_boot_ci95'][1]:+.4f}] "
                      f"| {cc['offcat']['pooled_delta']:+.6f} |")
     lines += ["", f"Canary max effective AUC {canary_max:.4f} (cap 0.90) — {'PASS' if canary['passed'] else 'FAIL'}.",
-              f"**Primary gate (TENT-greedy vs BIN-greedy): {'PASS' if gate['passed'] else 'FAIL'}** — {gate}"]
+              f"**Primary gate ({a.primary}-greedy vs BIN-greedy): {'PASS' if gate['passed'] else 'FAIL'}** — {gate}"]
     (run / (a.out_name.replace(".json", ".md"))).write_text("\n".join(lines) + "\n")
     print("\n".join(lines))
 

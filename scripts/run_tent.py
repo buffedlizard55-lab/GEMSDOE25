@@ -99,7 +99,7 @@ def main() -> None:
         emission_primary="greedy marginal-credit on ridge-NMS top-3.5% pool (H38 rule), n_hat=0.25*|visible in domain|",
         emission_diagnostic="score_ordered_dots min_dist=2.4 on the same pool",
         evaluator=EVALUATOR, leakage_auc_cap=0.90,
-        gate={"primary": "TENT-greedy vs BIN-greedy", "mean_gain_gt": 0.001, "folds_positive_min": 3,
+        gate={"primary": f"{a.primary}-greedy vs BIN-greedy", "mean_gain_gt": 0.001, "folds_positive_min": 3,
               "worst_fold_min": -0.010, "mean_hug_increase_max": 0.10},
         cache_hashes_file="evidence/work_cache_hashes.json",
         runner_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
