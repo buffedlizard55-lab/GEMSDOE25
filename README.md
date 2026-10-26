@@ -3,6 +3,8 @@
 <!-- CURRENT-REVIEW-2026-10-26 -->
 ## Current decision — 2026-10-26
 
+**Repository review (fixed session branch, 2026-10-26):** no new experiment or GeoTIFF was created; software checks passed (335 tests, 12 input-dependent skips). Existing H73-PM remains **inspection only / DO NOT SUBMIT**. Strict final-dot lane checks and absent competition template/data prevent responsibly clearing a new submission. See [review note](knowledge/34_repository_review_2026-10-26.md) and [review run card](registry/run_card_repo_review_2026-10-26_7fdf591a.json).
+
 <!-- H73-PM-2026-10-26 -->
 **H73-PM update (2026-10-26, this branch):** unique research GeoTIFF [`gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif`](docs/downloads/gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif) (content id `1b7533ebb62b`, 42,997 dots) — **OK to download: YES (inspection) · OK to spend a weekly slot: NO — DO NOT SUBMIT.** Propensity-matched training restored B2-like far-field geometry and beat the catalogue-free control, but pooled HOLDOUT-DTI 0.11343 failed the frozen slot gate vs same-run CTRL_H35 0.15239 (paired -0.03896). [H73 outcomes & nine-site executive summary](knowledge/33_h73_outcomes_and_executive_summary_2026-10-26.md) · [H73 run card](registry/run_card_h73_2026-10-26.json) · [pre-registration](knowledge/32_preregistered_h73_pm_2026-10-26.md). Next required instrument: 25-km block-withheld selector (knowledge/33 §4). No weekly slot was used.
 
