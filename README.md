@@ -1,5 +1,16 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
+## This session: verified overlap-capacity blocker
+
+**No new submission approved or generated.** The existing research TIFF is downloadable for inspection only, **DO NOT SUBMIT**.
+Fresh restoration of the hash-pinned template, labels and r13 lattice confirms only **6,514** eligible pixels avoid its 3-pixel halo.
+A 37,654-dot candidate must overlap by at least **82.70%**, exceeding the mandatory 70% cap regardless of geology.
+All five preregistered typical dot budgets fail this necessary condition. Budgets ≤21,713 are merely not ruled out, not approved.
+[Executive summary](docs/current-review.html#lane-feasibility) · [reproducible receipt](evidence/lane_feasibility_2026-10-26.json) ·
+[three deferred hypotheses and preregistration](knowledge/29_lane_feasibility_plan_2026-10-26.md).
+Run `.venv/bin/python scripts/audit_lane_feasibility.py --restore` before planning another high-density experiment.
+This extends the standing owner brief below; it does not authorize changing its strict novelty gate. Zero model experiments and zero slots used.
+
 <!-- CURRENT-REVIEW-2026-10-26 -->
 ## Current decision — 2026-10-26
 

@@ -31,6 +31,15 @@
     "final_dots": 70524,
     "final_max_abs_spearman": 0.013141290554169325,
     "max_candidate_dots_within_3px_of_registry": 1.0,
+    "separate_preregistered_geometry_audit": {
+      "evidence": "evidence/lane_feasibility_2026-10-26.json",
+      "reference_halo_coverage": 0.9987243421716145,
+      "eligible_pixels_outside_halo": 6514,
+      "B2_budget_dots": 37654,
+      "B2_budget_minimum_overlap": 0.8270037711796887,
+      "largest_budget_not_ruled_out_by_this_single_raster": 21713,
+      "interpretation": "Computed necessary overlap bound only, not a score and not full-registry uniqueness proof."
+    },
     "flagged_registry_raster": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
     "verdict": "STOP: final literal overlap gate failed (>0.70). No density exception applied; no ROD TIFF written. Registry completeness beyond available local manifest is unverified."
   },

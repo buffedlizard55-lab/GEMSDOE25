@@ -68,6 +68,8 @@ def test_current_review_does_not_claim_new_score_or_tif():
     assert '0.06904088244998727' == str(card['holdout_dti']['prior_saved_experiment']['pooled_dti'])
     assert 'Not estimated' in page and 'Historical file' in page
     assert 'not lane-unique under the literal r13 lattice rule' in page
+    assert card['correlation_overlap_vs_registry']['separate_preregistered_geometry_audit']['B2_budget_minimum_overlap'] > 0.70
+    assert '82.70%' in report
     assert 'request to generate a new submission TIF remains **unfulfilled**' in report
     assert 'OWNER-REPORTED' in report and 'not an organizer score' in report
 

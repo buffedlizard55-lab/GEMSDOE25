@@ -76,6 +76,10 @@ This is a catalogue-gap proxy, not an organizer score or blind-fault performance
 <p class="small">{row['positive_pixels']:,} positive pixels · Local format checks: {'pass' if row['local_format_pass'] else 'fail'} ·
 Not approved as a new submission. SHA-256: <code class="wrap-hash">{row['sha256']}</code></p>
 <a href="{e(row['source_url'])}">Pinned source revision</a> · <a href="{e(row['site_url'])}">Original site</a></article>''')
+    feasibility = json.loads((ROOT/'evidence/lane_feasibility_2026-10-26.json').read_text())
+    geometry = feasibility['geometry']
+    bounds = ''.join(f"<tr><td>{r['dots']:,}</td><td>{r['minimum_overlap']:.2%}</td><td>Impossible at this density</td></tr>"
+                     for r in feasibility['cases'])
     coverage = focus['lattice_coverage']
     body = f'''<section class="hero"><p class="eyebrow">RESEARCH DECISION BRIEF / 26 OCTOBER 2026</p>
 <h1>Know what to submit.<br>Know when to stop.</h1>
@@ -86,6 +90,18 @@ Not approved as a new submission. SHA-256: <code class="wrap-hash">{row['sha256'
 <div class="row"><a class="btn" href="../evidence/rod_2026-10-26/run_card.json" download>Download decision receipt</a>
 <a class="btn alt" href="#how-to-submit">Submission checklist</a>
 <a class="btn alt" href="../knowledge/29_current_checkout_review_2026-10-26.md">Current-checkout review and ranked next hypotheses</a></div></section>
+<section id="lane-feasibility"><h2>Strict-overlap feasibility audit</h2>
+<p>Freshly restored SHA-pinned template, labels and registry lattice match CRS, shape and transform.
+Only <b>{geometry['uncovered_pixels']:,}</b> eligible pixels lie outside that lattice's 3-pixel halo.
+For K distinct dots, at least max(0, K − {geometry['uncovered_pixels']:,}) must overlap.
+These are <b>COMPUTED GEOMETRY diagnostics, not performance scores</b>.</p>
+<table><thead><tr><th>Candidate dot budget K</th><th>Minimum unavoidable overlap</th><th>Literal 70% gate</th></tr></thead><tbody>{bounds}</tbody></table>
+<p>At most <b>21,713 dots</b> are not ruled out by this one necessary condition. Smaller budgets are not automatically feasible,
+unique, high-scoring or approved. No candidate was placed; no geological model was fitted in this audit.
+We did not exclude the dense reference or substitute a density-aware waiver.</p>
+<p><a href="../evidence/lane_feasibility_2026-10-26.json">Download the reproducible geometry receipt</a> ·
+<a href="../knowledge/29_lane_feasibility_plan_2026-10-26.md">Preregistered proof and three deferred geological hypotheses</a></p>
+<p><b>No new TIFF generated:</b> the preregistered budgets cannot pass the required gate. The existing research download above remains DO NOT SUBMIT.</p></section>
 <section><h2>What is the strongest historical evidence?</h2>
 <p><b>GEMSDOE32 B2 — 0.2778, OWNER-REPORTED.</b> It is the highest supplied historical result among these focus sites.
 It is already an earlier submission, so it is <b>not</b> eligible as a new unique artifact. No organizer receipt has been supplied.</p>
