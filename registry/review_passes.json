@@ -848,6 +848,7 @@
         "Updated shared site-generation source and README status so the older H71 file is described as a testing artifact with a literal lattice lane failure; the saved ROD run is clearly stated to have written no TIFF.",
         "Expanded the generated nine-site table with historical file, OWNER-REPORTED score, unestimated new-file score, mask identity note, and explicit ineligibility for a new slot.",
         "Integrated the exact-file audit from the concurrently merged main: 36/36 shipped TIFFs pass local format checks but resolve to only 19 distinct in-footprint arrays; no file is promoted or score-estimated.",
+        "Reconciled the separately preregistered OLIC parallel-lane screen from main, clearly labeled it independent of this review: its frozen HOLDOUT-DTI gate failed and it wrote no TIFF.",
         "Integrated the concurrently merged preregistered strict-lattice feasibility audit (no model fits): the B2-sized 37,654-dot budget has at least 82.70% unavoidable overlap vs the 70% cap; this is a geometric bound, not a score or full-registry uniqueness result."
       ],
       "result": "No new experiment or TIFF. ROD remains a prior negative result; H71 remains testing-only and not lane-unique under the literal rule."
@@ -878,14 +879,14 @@
       "verdict": "negative; no new TIF, no promotion, no weekly slot."
     },
     "verification": {
-      "pytest": "273 passed, 9 skipped after reconciling main's lane-feasibility, exact-download, and H71-status audits; 1 expected ConstantInputWarning",
+      "pytest": "276 passed, 9 skipped after reconciling main's lane-feasibility, exact-download, H71-status, and separate OLIC-lane audits; 1 expected ConstantInputWarning",
       "ruff": "passed",
       "git_diff_check": "passed",
       "html_local_links": "all local links resolved on index.html and seven docs HTML pages",
       "run_card_json": "valid JSON",
       "organizer_access": "none; no DrivenData page, leaderboard, submission endpoint or credentials accessed"
     },
-    "pr_merge": "PR #43 remains open. Reconciled origin/main through cafbfe5 (including exact-download audit); current merge conflict resolution is locally tested but not yet pushed. Push and require checks on the new head; merge only if GitHub reports clean and all checks pass."
+    "pr_merge": "PR #43 remains open. Reconciled origin/main through 8774b61, including the exact-download and separate OLIC audits; merge reconciliation is locally tested but not yet pushed. Push, require checks on the new head, and only merge if GitHub reports clean and all checks pass."
   },
  "arena_88ce763f_download_audit": {
   "pass_1": "Audited standing brief, prior negative results and shared tools; restored pinned template; validated all 36 download TIFFs.",
