@@ -1,0 +1,46 @@
+{
+ "schema_version": 1,
+ "date_utc": "2026-10-26",
+ "branch": "arena/8aa4ff79-gemsdoe25",
+ "verdict": "negative",
+ "passes": [
+  {
+   "pass": 1,
+   "scope": "Implement and verify",
+   "completed": [
+    "Read README/AGENTS/knowledge 17,20,27,28 + run cards; git fetch + open-PR check; identified APFL draws 60-61 as the pending next step.",
+    "Restored 22 manifest inputs + 21 top-scorer rasters (all SHA-256 pins match); built shared static/addon caches via original builders.",
+    "Pre-registered knowledge/29 (e78a10b) before any fit; implemented src/gems25/apfl.py reconstruction + runner/analyzer (dd271ad).",
+    "Exp1 APFL-DIRECT draws 60-61 FAIL; Exp2 H35+APFL draws 62-63 FAIL; Exp3 OCEM descriptive. Fresh 9-site pixel audit reproduced all identities.",
+    "Built new unique TIF 2e9e4189f554 (48,658 dots); format + strict [0,1] + lane (surface 0.158; focus worst 37.9%; B2 31.6%) verified."
+   ],
+   "result": "No gate passed; new TIF is testing-only DO NOT SUBMIT. Negative is the deliverable."
+  },
+  {
+   "pass": 2,
+   "scope": "Bugs, assumptions, edge cases",
+   "fixed": [
+    "APFL builder absence found by grep and disclosed (IR-25-APFL-BUILDER-MISSING); reconstruction choices documented in code.",
+    "Lane focus lookup KeyError from SHA-deduped registry names fixed by keying on pinned SHA-256 in finalize script.",
+    "dti_offcat2 vacuity detected (exact equality in 32/32 cells) and reported instead of presented as independent evidence (IR-25-OFFCAT-VACUOUS).",
+    "knowledge/28 rung30 dot count corrected 40,199 -> 37,660 (IR-25-RUNG30-COUNT); knowledge/30 numeric claims re-derived (Exp2 CI filled; 0.4413 credit/px 0.19 -> 0.179).",
+    "Stale hardcoded H71 featured text in both site builders replaced with registry-driven text + APFL2 card; new TIF independently re-validated with plain rasterio incl. ZIP contents."
+   ],
+   "verification": "pytest + ruff + git diff --check run at end of pass 3 (results in PR)."
+  },
+  {
+   "pass": 3,
+   "scope": "Reconcile with original request",
+   "fulfilled": [
+    "Executive summary for all 9 focus sites with obvious historical best (GEMSDOE32 B2 0.2778 OWNER-REPORTED) \u2014 knowledge/30 section 2.",
+    "Required download/estimate/uniqueness table at knowledge/30 section 1 with HOLDOUT-DTI + labelled INFERENCE scenarios (no projection written as a score).",
+    "Unique new TIF generated with obvious OK-to-download YES / OK-to-submit NO on site first screen, executive page, README and run card.",
+    "3-5 ranked untried hypotheses with layers/signature/mimic/cost/validatability pre-registered (knowledge/29); top candidate validated on holdout before any slot; 3-experiment budget respected; JSON run card emitted."
+   ],
+   "not_fulfilled": [
+    "No slot-approved / >0.2778 submission: both screens failed the frozen gate. Claiming otherwise would violate the protocol. Highest-leverage next step is one organizer receipt for the lineage (owner selector).",
+    "Leaderboard 0.3195 vs 0.4413 conflict and all live scores remain OWNER-REPORTED (no DrivenData access permitted)."
+   ]
+  }
+ ]
+}

@@ -1,0 +1,382 @@
+{
+ "schema": "run_card/v1 (PARALLEL-RUN PROTOCOL item 5)",
+ "session": "2026-10-26 training-objective lane (arena/f1967d4f-gemsdoe25)",
+ "preregistrations": [
+  "knowledge/29_ranked_hypotheses_and_preregistration_2026-10-26.md (commit 005e115, before any fit)",
+  "knowledge/30_preregistered_ign3_experiment3_2026-10-26.md (commit 7806b5c, before Exp-3 fit; draws 90-91 burned for IGN3)"
+ ],
+ "experiments_used": "3 of 3 (Exp1 TENT screen draws 90-91 FAIL; Exp2 HARDNEG screen draws 94-95 FAIL; Exp3 IGN3 screen draws 100-101 FAIL; no confirmations run because no screen passed)",
+ "hypothesis": "Training-objective geometry around the pseudo-hidden trace is the unused lever: (1) price the 300 m credit ring with the metric's own triangular kernel (TENT regression), (2) mine hard negatives among fault-like non-fault lineaments (HARDNEG), or (3) exclude the 1.5-3 px ring from supervision entirely (IGN3). Detector columns and greedy emission frozen at the validated H35/H38 stack.",
+ "mechanism": "USGS/INGENIOUS traces are cartographic polylines offset from the physical scarp; binary training labels scarp-crest pixels 1.5-3 px off-trace as negatives although the official metric still pays credit there. TENT/IGN3 repair that label geometry; HARDNEG targets the false lineaments that decide the emission head.",
+ "mimicking_non_fault_process": "Roads/graded tracks, pluvial shoreline benches, lithologic contacts and survey seams are the fault-like non-fault lineaments all three arms must not promote; for TENT the failure mode is blurred localisation + catalogue hugging (observed: hug 0.044->0.093).",
+ "experiments": {
+  "experiment_1_tent": {
+   "label": "HOLDOUT-DTI",
+   "draws": [
+    90,
+    91
+   ],
+   "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px/300m triangular) via Cell.evaluate; pooled via TP/(0.2(TP+FP)+0.8N)",
+   "evaluator_version": "gems25.holdout 4-quadrant hide-and-recover, hide_frac=0.20, collar=15px",
+   "withheld_positives_total": 22290,
+   "withheld_positives_per_fold": [
+    1948,
+    2310,
+    3599,
+    3287
+   ],
+   "bin_greedy": {
+    "fold_mean_dti": 0.1591284906992211,
+    "fold_mean_ci95": [
+     0.13044396293514948,
+     0.18781301846329274
+    ],
+    "pooled_dti": 0.1573709884168404
+   },
+   "candidate_greedy": {
+    "fold_mean_dti": 0.158854023369413,
+    "fold_mean_ci95": [
+     0.136180989147057,
+     0.18152705759176901
+    ],
+    "pooled_dti": 0.15722338052146728
+   },
+   "paired": {
+    "mean_gain": -0.00027446732980809796,
+    "ci95": [
+     -0.007676040770447144,
+     0.007127106110830948
+    ],
+    "folds_positive": 2,
+    "worst_fold": -0.005664339579611044,
+    "pooled_delta": -0.0001476078953731308,
+    "pooled_delta_boot_ci95": [
+     -0.004511796893283598,
+     0.003570156388088358
+    ],
+    "offcat_pooled_delta": -0.0009082444730841577,
+    "hug_delta": 0.04910530424969799
+   },
+   "leakage_canary": {
+    "max_effective_auc": 0.62091087585034,
+    "cap": 0.9,
+    "passed": true,
+    "columns": [
+     "H27_tip",
+     "H34_resmag_shallow_ridge",
+     "H34_resmag_mid_ridge",
+     "H34_baseflex_ridge"
+    ]
+   },
+   "gate": {
+    "mean_gain_gt_0p001": false,
+    "folds_positive_min_3": false,
+    "worst_fold_min_m0p010": true,
+    "hug_increase_max_0p10": true,
+    "canary_passed": true,
+    "passed": false
+   },
+   "verdict": "FAIL (stage gate; confirmation on fresh draws required before any promotion)"
+  },
+  "experiment_2_hardneg": {
+   "label": "HOLDOUT-DTI",
+   "draws": [
+    94,
+    95
+   ],
+   "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px/300m) via Cell.evaluate; pooled TP/(0.2(TP+FP)+0.8N)",
+   "evaluator_version": "gems25.holdout 4-quadrant hide-and-recover, hide_frac=0.20, collar=15px",
+   "withheld_positives_total": 22073,
+   "withheld_positives_per_fold": [
+    1876,
+    2345,
+    3684,
+    3131
+   ],
+   "bin_greedy": {
+    "fold_mean_dti": 0.15752451387245248,
+    "fold_mean_ci95": [
+     0.13163320568740086,
+     0.1834158220575041
+    ],
+    "pooled_dti": 0.15577555122015316
+   },
+   "candidate_greedy": {
+    "fold_mean_dti": 0.1148334615817856,
+    "fold_mean_ci95": [
+     0.10695406426466735,
+     0.12271285889890386
+    ],
+    "pooled_dti": 0.11541933853633334
+   },
+   "paired": {
+    "mean_gain": -0.04269105229066687,
+    "ci95": [
+     -0.07026821176148774,
+     -0.015113892819846
+    ],
+    "folds_positive": 0,
+    "worst_fold": -0.0644796065851528,
+    "pooled_delta": -0.04035621268381982,
+    "pooled_delta_boot_ci95": [
+     -0.05641119315164385,
+     -0.028594646325290615
+    ],
+    "offcat_pooled_delta": -0.039676412568873304,
+    "hug_delta": -0.012358944446707536
+   },
+   "leakage_canary": {
+    "max_effective_auc": 0.6238758015267175,
+    "cap": 0.9,
+    "passed": true
+   },
+   "gate": {
+    "mean_gain_gt_0p001": false,
+    "folds_positive_min_3": false,
+    "worst_fold_min_m0p010": false,
+    "hug_increase_max_0p10": true,
+    "canary_passed": true,
+    "passed": false
+   },
+   "verdict": "FAIL (stage gate; confirmation on fresh draws required before any promotion)"
+  },
+  "experiment_3_ign3": {
+   "label": "HOLDOUT-DTI",
+   "draws": [
+    100,
+    101
+   ],
+   "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px/300m triangular) via Cell.evaluate; pooled via TP/(0.2(TP+FP)+0.8N)",
+   "evaluator_version": "gems25.holdout 4-quadrant hide-and-recover, hide_frac=0.20, collar=15px",
+   "withheld_positives_total": 22397,
+   "withheld_positives_per_fold": [
+    1921,
+    2367,
+    3727,
+    3182
+   ],
+   "bin_greedy": {
+    "fold_mean_dti": 0.15799014067545358,
+    "fold_mean_ci95": [
+     0.12444470949432945,
+     0.1915355718565777
+    ],
+    "pooled_dti": 0.15549182933074118
+   },
+   "candidate_greedy": {
+    "fold_mean_dti": 0.15709504972753938,
+    "fold_mean_ci95": [
+     0.1225119676781834,
+     0.19167813177689536
+    ],
+    "pooled_dti": 0.15463037678944866
+   },
+   "paired": {
+    "mean_gain": -0.0008950909479142205,
+    "ci95": [
+     -0.003320237266543076,
+     0.001530055370714635
+    ],
+    "folds_positive": 1,
+    "worst_fold": -0.0023636669092700346,
+    "pooled_delta": -0.0008614525412925234,
+    "pooled_delta_boot_ci95": [
+     -0.0019402364933347738,
+     0.00041244646783047956
+    ],
+    "offcat_pooled_delta": -0.0008962564481605484,
+    "hug_delta": -0.0013214635878228478
+   },
+   "leakage_canary": {
+    "max_effective_auc": 0.6301490488656196,
+    "cap": 0.9,
+    "passed": true,
+    "columns": [
+     "H27_tip",
+     "H34_resmag_shallow_ridge",
+     "H34_resmag_mid_ridge",
+     "H34_baseflex_ridge"
+    ]
+   },
+   "gate": {
+    "mean_gain_gt_0p001": false,
+    "folds_positive_min_3": false,
+    "worst_fold_min_m0p010": true,
+    "hug_increase_max_0p10": true,
+    "canary_passed": true,
+    "passed": false
+   },
+   "verdict": "FAIL (stage gate; confirmation on fresh draws required before any promotion)"
+  },
+  "diagnostic_ign3_in_exp1": {
+   "paired_mean_gain": 0.0020347068064614435,
+   "pooled_delta": 0.0018809935145884804,
+   "note": "Hypothesis-generating only; tested as primary in Exp 3 on fresh draws, where it did not replicate."
+  }
+ },
+ "holdout_dti_candidate_stack": {
+  "label": "HOLDOUT-DTI",
+  "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px/300m triangular) via Cell.evaluate; pooled via TP/(0.2(TP+FP)+0.8N)",
+  "evaluator_version": "gems25.holdout 4-quadrant hide-and-recover, hide_frac=0.20, collar=15px",
+  "reference_screen": "Exp1 draws 90-91, BIN-greedy (the candidate's training/emission protocol)",
+  "fold_mean_dti": 0.1591284906992211,
+  "fold_mean_ci95": [
+   0.13044396293514948,
+   0.18781301846329274
+  ],
+  "pooled_dti": 0.1573709884168404,
+  "withheld_positives_total": 22290,
+  "note": "Catalogue-gap proxy, not a competition score and not a live projection."
+ },
+ "registry_correlation_and_overlap": {
+  "surface_pre_placement": {
+   "worst_abs_spearman_external_sparse": 0.10848,
+   "worst_file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+   "worst_abs_spearman_own_lineage": 0.151525,
+   "cap": 0.9,
+   "receipt": "evidence/objective_lane_extended.json"
+  },
+  "final_dots": {
+   "external_sparse": {
+    "n": 31,
+    "worst_abs_spearman_surface": 0.10848,
+    "worst_surface_file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+    "worst_abs_spearman_final": 0.053707,
+    "worst_final_file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+    "worst_cand_dots_within_3px": 0.6923508090131161,
+    "worst_overlap_file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+    "lane_pass": true
+   },
+   "own_lineage": {
+    "n": 19,
+    "worst_abs_spearman_surface": 0.151525,
+    "worst_surface_file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+    "worst_abs_spearman_final": 0.183076,
+    "worst_final_file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+    "worst_cand_dots_within_3px": 0.8720526138784052,
+    "worst_overlap_file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+    "lane_pass": false
+   },
+   "lattice": [
+    {
+     "group": "scored",
+     "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+     "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+     "registry_dots": 206895,
+     "spearman_surface": 0.003417,
+     "spearman_final": -0.000388,
+     "cand_dots_within_3px": 1.0,
+     "reg_dots_within_3px_of_cand": 0.1850503878779091,
+     "dense_lattice": true
+    }
+   ],
+   "vs_gemsdoe32_b2": {
+    "cand_dots_within_3px": 0.32031687904039463,
+    "reg_dots_within_3px_of_cand": 0.38973283050937485,
+    "spearman_surface": 0.058849,
+    "spearman_final": 0.02611
+   },
+   "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+   "density_aware_verdict": "DUPLICATE/LANE OVERLAP (density-aware) - do not package",
+   "cap_overlap": 0.7
+  },
+  "interpretation": "Unique vs every scored/external sparse registry raster (worst 3-px overlap 0.692 <= 0.70; 0.320 vs GEMSDOE32 B2; surface |rho| <= 0.108). NOT a new lane vs this repo's own unscored HGB lineage (0.872 vs the H38 greedy file \u2014 same frozen stack, fresh production seeds) and literal lattice overlap is 1.0 (IR-25-LANE-DENSITY). Held DO NOT SUBMIT because no experiment beat the same-run comparator and the strict lane policy is not cleared."
+ },
+ "focus_sites_audit": {
+  "receipt": "evidence/focus_audit_local_2026-10-26.json",
+  "ranking_by_owner_reported_score": [
+   "GEMSDOE32",
+   "GEMSDOE36",
+   "GEMSDOE28",
+   "GEMSDOE31",
+   "GEMSDOE33",
+   "GEMSDOE25",
+   "GEMSDOE30",
+   "GEMSDOE24",
+   "GEMSDOE27"
+  ],
+  "identities": {
+   "g25_d28_mask_equals_g30": true,
+   "g28_r1_mask_equals_g31": true,
+   "r1_equals_d28_and_distcat_gt_1": true,
+   "b2_equals_d28_and_distcat_gt_2": true,
+   "b2_subset_of_g36": true,
+   "g36_extra_over_b2": 1200,
+   "d28_subset_of_h19_5": true,
+   "d15_subset_of_h19_5": true,
+   "g27_minus_d15": 1259,
+   "d15_minus_g27": 0,
+   "g28_rung30_minus_r1": 9807,
+   "r1_minus_g28_rung30": 12346,
+   "g33_minus_b2": 10251,
+   "b2_minus_g33": 6040,
+   "deleted_d28_to_r1": 3891,
+   "deleted_r1_to_b2": 2545
+  },
+  "evidence_class": {
+   "geometry": "COMPUTED from SHA-256-verified local bytes",
+   "scores": "OWNER-REPORTED (registry/top_scorer_sources.json); not organizer-confirmed"
+  }
+ },
+ "tif": {
+  "submission_name": "gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros",
+  "file": "gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.tif",
+  "path": "docs/downloads/gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.tif",
+  "bytes": 854680,
+  "sha256": "160dbdc0c2abc25bd40a3f38a36c2a69f8a02503337dea7ab706f6d77a08934d",
+  "content_id": "3646faf70507",
+  "positive_pixels": 53522,
+  "nan_twin_file": "gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-nan.tif",
+  "nan_twin_sha256": "cf5a813c4237e88729b44322559e87a4eb5601b2787e5ccf2ea2f40d5983f30b",
+  "zip_file": "gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.zip",
+  "zip_sha256": "a039e27d15c7fc53ad0579bbe58cf1d1bacba91b17bbca9f4e8ba2ba3756682d",
+  "zip_bytes": 221664,
+  "note": "GEMSDOE25 BIN greedy k3.5% | HOLDOUT negative; DO NOT SUBMIT; no slot; not slot-approved; unscored | id 3646faf70507",
+  "note_chars": 116,
+  "scheme": "BIN",
+  "draw_seeds": [
+   724200,
+   724201,
+   724202
+  ],
+  "greedy_diag": {
+   "n_candidates": 180858,
+   "n_selected": 53522,
+   "plugin_tp": 4349.161845879882,
+   "plugin_fp": 48259.55418485467,
+   "plugin_dti": 0.19142991090971234,
+   "n_hat": 15247.0,
+   "last_accepted_ratio": 0.0398106066218021,
+   "first_rejected_ratio": 0.0398096398149843,
+   "stop_reason": "break_even"
+  },
+  "validator_gems25_check_file": {
+   "format_ok": true,
+   "hard_failures": []
+  },
+  "validator_independent_rasterio": {
+   "all_hard_checks_pass": true,
+   "checks": {
+    "template_footprint_px_is_5167373": true,
+    "single_band": true,
+    "dtype_float32": true,
+    "crs_epsg_32611_and_equals_template": true,
+    "shape_equals_template": true,
+    "transform_equals_template": true,
+    "transform_is_100m_243350_4508550": true,
+    "footprint_all_finite": true,
+    "footprint_values_in_0_1": true,
+    "outside_all_zero": true,
+    "outside_all_nan": false,
+    "strict_whole_array_0_le_x_le_1": true,
+    "no_emission_on_catalogue": true
+   },
+   "strict_whole_array_0_le_x_le_1": true
+  }
+ },
+ "verdict": "negative",
+ "ok_to_download": true,
+ "ok_to_submit_slot": false,
+ "slot_approved": false,
+ "slot_reason": "No pre-registered experiment beat the same-run BIN comparator (TENT -0.0003, HARDNEG -0.0427, IGN3 -0.0009 paired fold-mean HOLDOUT-DTI). Candidate is the previously validated BIN/H38 protocol with fresh seeds; strict lane fails vs own unscored lineage + literal lattice. Selector must not spend a weekly slot on this evidence."
+}

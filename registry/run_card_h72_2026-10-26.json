@@ -262,7 +262,7 @@
   ]
  },
  "correlation_overlap_vs_registry": {
-  "registry_rasters_checked": 85,
+  "registry_rasters_checked": 89,
   "caps": {
    "abs_spearman": 0.9,
    "dots_within_3px": 0.7
@@ -281,7 +281,7 @@
    "b2_spearman_final": 0.005824
   },
   "own_lineage": {
-   "n": 20,
+   "n": 22,
    "worst_abs_spearman_surface": 0.079346,
    "worst_surface_file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
    "worst_abs_spearman_final": 0.030279,

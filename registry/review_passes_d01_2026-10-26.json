@@ -1,0 +1,51 @@
+{
+ "schema_version": 1,
+ "date_utc": "2026-10-26",
+ "branch": "arena/b25f4c66-gemsdoe25",
+ "verdict": "negative",
+ "passes": [
+  {
+   "pass_": 1,
+   "scope": "Implement and verify",
+   "completed": [
+    "Read AGENTS.md, README current brief, ROD record and prior next steps; no open PR or session branch collision found.",
+    "Preregistered the lane-budget audit (knowledge/29) and D01 density diagnostic (knowledge/30) before any fit.",
+    "Independently derived the exact lane bound (U=6,514, max K=21,713) with dedicated unit tests and a SHA-pinned audit; after merging origin/main, the duplicated module was deleted in favour of the shared src/gems25/lane_feasibility.py and tests/test_lane_feasibility.py.",
+    "Restored all 22 manifest inputs, built shared static/add-on/H34 caches, ran one D01 screen (8 cells, 67 canaries each, max AUC 0.8025).",
+    "Recorded run cards, irregularities IR-26-LANE-BUDGET-CONFLICT and IR-26-D01-DENSITY-NEGATIVE, the executive table and knowledge/31."
+   ],
+   "result": "Lane budget makes any competitive-density candidate arithmetically ineligible against the restored lattice; D01 shows the lane-compatible density is 0.0462 proxy DTI worse (95% CI [-0.0558,-0.0321]). No TIF written."
+  },
+  {
+   "pass_": 2,
+   "scope": "Bugs, assumptions, edge cases",
+   "fixed": [
+    "Empty reference mask originally produced spurious EDT halo coverage; now treated as no halo, with a regression test.",
+    "The draft max-K formula used float division; replaced with exact integer comparison so the 70% boundary is not rounded.",
+    "Requested dot caps in D01 saturate at available ridge candidates; disclosed as IR-26-REQUESTED-CAP-SATURATION instead of being read as a full-grid simulation.",
+    "Removed an unused variable/import and rebuilt site and README from evidence rather than hand-editing HTML.",
+    "Existing featured TIF was revalidated (not regenerated) and clearly labelled as an existing artifact, not a new candidate.",
+    "Post-merge de-duplication: private lane_budget fork and its audit script removed; D01 reuses the shared lane tool, and all references were updated."
+   ],
+   "result": "Unit, protocol, preflight, submission and repo-integrity tests pass; ruff clean."
+  },
+  {
+   "pass_": 3,
+   "scope": "Reconcile with the owner request",
+   "checked": [
+    "Executive summary states per-site strongest file, reported score, estimate availability and uniqueness, and whether to submit.",
+    "Download is one click at the top of the site; the file is unique by content and 0 NaN / in-range in the footprint.",
+    "Uniqueness under the literal lane rule is honestly reported as failed; no rename, jitter or copy was used as a substitute.",
+    "Every number is labelled HOLDOUT-DTI (evaluator hashes, positives, CI) or OWNER-REPORTED; no projection is called a score.",
+    "No DrivenData access, upload, credential request or weekly slot use occurred."
+   ],
+   "result": "Requested 'highest scoring unique TIF' is NOT satisfied and is reported as unfulfilled, because the literal lane rule and scoring objective conflict. Next action requires an explicit owner registry-policy decision."
+  }
+ ],
+ "limitations": [
+  "No leaderboard estimate is possible without private labels or receipts; proxy-to-live correlation is weak and not a calibration.",
+  "D01 requested caps saturate; a full-grid density test needs an all-cell fit outside the 3-experiment budget.",
+  "The r13 lattice is a synthetic sibling artifact; whether it belongs in the lane registry is an owner policy decision.",
+  "External layer bytes remain integrity-pinned mirrors, not organizer-authenticated or license-verified this session."
+ ]
+}

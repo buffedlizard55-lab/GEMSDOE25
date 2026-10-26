@@ -30,7 +30,7 @@
   }
  ],
  "own_lineage": {
-  "n": 20,
+  "n": 22,
   "worst_abs_spearman_surface": 0.079346,
   "worst_surface_file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
   "worst_abs_spearman_final": 0.030279,
@@ -614,6 +614,17 @@
   },
   {
    "group": "own_downloads",
+   "file": "gems25-apfl2-h35plus-apfl-b2-sapd2-4-k3p5-20261026-2e9e4189f554-nan.tif",
+   "sha256": "4115ec0c8f864d422ad5124f1f87b3e42871b77b451b801f7dae37438d74c328",
+   "registry_dots": 48658,
+   "spearman_surface": 0.074186,
+   "spearman_final": 0.018884,
+   "cand_dots_within_3px": 0.4616302574218845,
+   "reg_dots_within_3px_of_cand": 0.41506021620288547,
+   "dense_lattice": false
+  },
+  {
+   "group": "own_downloads",
    "file": "gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
    "sha256": "a0b58cca87ad98f9579c8744e6dd216b7eb4a3e5b075a4bd7af3cf3004ab5cf0",
    "registry_dots": 48777,
@@ -808,6 +819,17 @@
    "spearman_final": 0.016657,
    "cand_dots_within_3px": 0.44913665034948,
    "reg_dots_within_3px_of_cand": 0.4088394368523182,
+   "dense_lattice": false
+  },
+  {
+   "group": "own_downloads",
+   "file": "gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-nan.tif",
+   "sha256": "cf5a813c4237e88729b44322559e87a4eb5601b2787e5ccf2ea2f40d5983f30b",
+   "registry_dots": 53522,
+   "spearman_surface": 0.078698,
+   "spearman_final": 0.016624,
+   "cand_dots_within_3px": 0.4489174642604905,
+   "reg_dots_within_3px_of_cand": 0.42055603303314526,
    "dense_lattice": false
   },
   {

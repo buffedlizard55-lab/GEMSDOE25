@@ -1,0 +1,57 @@
+{
+ "experiment": "APFL-DIRECT",
+ "hypothesis": "DIRECT emission from reconstructed APFL piedmont-flexure product, B=2 collar, sapd 3.0; no HGB",
+ "preregistration": "knowledge/29_preregistered_apfl_completion_2026-10-26.md",
+ "reconstruction_note": "APFL re-implemented in src/gems25/apfl.py from the frozen knowledge/27 formula; original builder absent from repo",
+ "draws": [
+  60,
+  61
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "kfrac": 0.035,
+ "min_dist_direct": 3.0,
+ "min_dist_h35": 2.4,
+ "collar_b2_px": 2.0,
+ "columns": [
+  "APFL_lstep",
+  "APFL_gravas",
+  "APFL_depthgrad",
+  "APFL_condgrad",
+  "APFL_tpipos",
+  "APFL_crest",
+  "APFL_product"
+ ],
+ "arms": [
+  "CTRL_CREST_B2",
+  "APFL_DIRECT_B2",
+  "CTRL_H35_24"
+ ],
+ "primary_arm": "APFL_DIRECT_B2",
+ "controls": [
+  "CTRL_CREST_B2",
+  "CTRL_H35_24"
+ ],
+ "base": "BDE",
+ "extras": [
+  "X1_K",
+  "X1_ThK",
+  "X1_UK",
+  "X2_compat",
+  "X2_compat_coh",
+  "X3_gm",
+  "X3_gd"
+ ],
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px) via gems25.experiment.Cell.evaluate",
+ "leakage_auc_cap": 0.9,
+ "gate": {
+  "mean_gain_gt": 0.001,
+  "folds_positive_min": 3,
+  "worst_fold_min": -0.01,
+  "mean_hug_increase_max": 0.1
+ }
+}

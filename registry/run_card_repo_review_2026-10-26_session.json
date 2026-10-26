@@ -1,0 +1,100 @@
+{
+  "schema": "run_card/v1 (parallel-run protocol)",
+  "review_date_utc": "2026-10-26",
+  "session_branch": "arena/ccb1fe34-gemsdoe25",
+  "review_type": "repository and artifact audit; zero new experiments; no new TIF generated",
+  "hypothesis": "No new geological hypothesis was fitted in this review. The stored focus-site evidence supports the conditional interpretation that GEMSDOE32 B2's owner-reported 0.2778 may reflect pruning of low-credit near-catalogue emissions; causal attribution to hidden organizer truth is not established.",
+  "mechanism": "Existing local pixel audit records B2 as a nested subset of D2.8 after pruning predictions in the catalogue collar. Reducing false-positive mass can improve the DTI ratio if removed dots contribute less truth credit per unit mass than the marginal-cost threshold. This is conditional metric reasoning, not verified organizer-test attribution.",
+  "named_non_fault_process_that_could_mimic_it": "Volcanic-flow and lithologic boundaries can mimic potential-field/radiometric/conductivity edges; alluvial-fan margins, depositional onlap, and drainage incision can mimic topographic scarps.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "source": "saved prior-session H71 run card; not rerun in this review",
+    "candidate": "H71-1 HGPC-BLIND",
+    "evaluator_version": "gems25.holdout.v1.2-buffered-4quad-pooled-dti",
+    "withheld_positive_count": 21835,
+    "mean": 0.05057682898214471,
+    "ci95": [
+      0.03726384010530468,
+      0.06388981785898475
+    ],
+    "same_run_control": {
+      "name": "H35",
+      "mean": 0.14988664975844043,
+      "ci95": [
+        0.11926078904380913,
+        0.18051251047307174
+      ]
+    },
+    "interpretation": "Candidate failed the preregistered same-run H35 gate. This proxy is not an organizer score or leaderboard-score estimate."
+  },
+  "correlation_overlap_vs_registry": {
+    "source": "saved H71 lane receipt; not recomputed as a new candidate audit",
+    "surface_max_abs_spearman": 0.030027,
+    "surface_threshold": 0.9,
+    "surface_gate": "pass in saved receipt",
+    "strict_final_dot_overlap": {
+      "registry_raster": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "candidate_dots_within_3px_fraction": 1.0,
+      "protocol_threshold": 0.7,
+      "gate": "FAIL / literal lane duplicate"
+    },
+    "density_aware_results": "Separate diagnostic only; not a waiver of the literal lane rule.",
+    "verdict": "negative"
+  },
+  "raster": {
+    "generated_in_this_review": false,
+    "audited_existing_testing_file": "docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif",
+    "sha256_recomputed": "44ee60289f21030b119122c04fb1508584df1e88ce2a4c607adbde9f8eba1808",
+    "content_id": "9eb0c31e5149"
+  },
+  "validator_output": {
+    "status": "fresh file-property audit passed; template-byte comparison not possible because data/ contains only .gitkeep",
+    "single_band": true,
+    "dtype": "float32",
+    "crs_epsg": 32611,
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "all_pixels_finite": true,
+    "whole_array_range": [
+      0.0,
+      1.0
+    ],
+    "no_nan_inside_footprint": true,
+    "grid_matches_recorded_owner_mirror_grid": true,
+    "grid_matches_live_template": null,
+    "note": "Metadata and full-array checks were independently read with Rasterio; the saved owner-mirror exact-template receipt was not recomputed against an absent template."
+  },
+  "submission_name": "gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif",
+  "submission_note": "GEMSDOE25 H71 HGPC-B | holdout/lane FAIL; no slot; unscored LB; not slot-approved | id 9eb0c31e5149",
+  "submission_note_characters": 99,
+  "verdict": "negative \u2014 file is for local testing only; literal lane and holdout gates failed; do not submit",
+  "score_projection": null,
+  "weekly_slots_used": 0,
+  "pull_request": {
+    "number": 42,
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/pull/42",
+    "state_at_review_record": "OPEN; origin/main merge incorporated on the fixed session branch; refreshed CI pending",
+    "initial_check": "pytest PASS (33s) on original review commit 5e09033; refreshed checks required for merge commit"
+  },
+  "registry_feasibility_geometry": {
+    "evidence_class": "COMPUTED GEOMETRY; inherited from the merged parallel-session audit, not a score or a new experiment",
+    "reference": "evidence/lane_feasibility_2026-10-26.json",
+    "r13_halo_covered_eligible_pixels": 5099871,
+    "eligible_pixels": 5106385,
+    "uncovered_pixels": 6514,
+    "minimum_overlap_at_37654_dots": 0.8270037711796887,
+    "minimum_overlap_at_44090_dots": 0.8522567475618054,
+    "overlap_cap": 0.7,
+    "scope": "Necessary condition against one registry raster only; not a full-registry uniqueness check and does not prove all smaller candidates are feasible."
+  }
+}

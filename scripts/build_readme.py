@@ -49,7 +49,6 @@ def main() -> None:
     h38_card = opt("registry/run_card_h38_ospc_2026-10-25.json")
     h66_card = opt("registry/run_card_h66_2026-10-25.json")
     h71_card = opt("registry/run_card_h71_2026-10-26.json")
-    h72_card = opt("registry/run_card_h72_2026-10-26.json")
     h36_spigm_card = opt("registry/run_card_h36_spigm_2026-10-25.json")
     h36_spigm_pool = opt("evidence/h36_spigm_pooled_16cells.json")
     focus_forensics = opt("evidence/focus_sites_forensics.json")
@@ -64,6 +63,7 @@ def main() -> None:
     A(readme_status())
     A("## Start here every session — owner mandate, 2026-10-25\n")
     A("**MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.** The project's decision principles are **Maximize P(Win)** and **Own the Outcome**. Review the original owner prompt and this README each session; follow `AGENTS.md`. Test catalogue-free geological hypotheses on buffered, spatially blocked hide-and-recover folds; test each feature alone for leakage (AUC >0.90 is presumptive leakage); check surface and final dots against every available registry raster (|rank correlation| >0.90 or >70% within 3 pixels is a duplicate-lane stop). Report pooled HOLDOUT-DTI with withheld-positive count and 95% CI, never present a projection or owner-reported claim as an organizer-confirmed score. Never spend a weekly slot before a separate selector decision. Exact-file format checks do not imply submission approval. Read the complete historical owner brief at the bottom. The current owner's very long updated prompt is not claimed to be transcribed verbatim here; this section records its actionable protocol, not the complete message.\n")
+    h72_card = opt("registry/run_card_h72_2026-10-26.json")
     if h72_card:
         e1_72 = opt("evidence/h72_1_screen/analysis.json")
         e2_72 = opt("evidence/h72_2_screen/analysis.json")
@@ -72,15 +72,23 @@ def main() -> None:
         h23_ov = next(r["dots_within_3px"] for r in lane72["rows"] if r["file"] == "h23-a-6pct.tif")
         rc72 = h72_card["correlation_overlap_vs_registry"]
         A("**Current session (2026-10-26, H72 Unit-Consistent PTTG + VCCD + DEM-Free MTHS Subsurface 3-experiment lane — featured download below):** "
-          f"[9-site executive review (`GEMSDOE24..36` + `GEMSDOE19..92`), PhD proof of why `GEMSDOE32` `H33-2-B2` achieved `0.2778` (`OWNER-REPORTED`) and how to surpass it, 4 ranked untried hypotheses (`H72-A..D`), and 3 pre-registered holdout experiments — `H72-1` `A3_PTTG_DEAPRON` `HOLDOUT-DTI {e1_72['arms']['A3_PTTG_DEAPRON']['mean_dti']:.4f}` (`{e1_72['contrasts']['A3_PTTG_DEAPRON_vs_CTRL_BLIND_BD']['mean']:+.4f}` vs Blind in `4/4` folds; FAIL vs H35 `{e1_72['arms']['CTRL_H35']['mean_dti']:.4f}`), `H72-2` `B3_FULL_DEAPRON` `{e2_72['arms']['B3_FULL_DEAPRON']['mean_dti']:.4f}` (`{e2_72['contrasts']['B3_FULL_DEAPRON_vs_CTRL_BLIND_BD']['mean']:+.4f}` vs Blind in `4/4` folds; `B1` `{e2_72['contrasts']['B1_FULL_H35_vs_CTRL_H35']['mean']:+.4f}` vs H35 in `2/4` folds), `H72-3` DEM-free `C1_SUBSURF_PTTG_MTHS` `{e3_72['arms']['C1_SUBSURF_PTTG_MTHS']['mean_dti']:.4f}` (`{e3_72['contrasts']['C1_SUBSURF_PTTG_MTHS_vs_CTRL_SUBSURF_D']['mean']:+.4f}` vs Subsurf; FAIL vs H35 `{e3_72['arms']['CTRL_H35']['mean_dti']:.4f}`) — unique GeoTIFF `88bbebfe79b4` (`flagged_lane = []` across all 85 rasters, `{100*rc72['focus_21_top_scorers']['b2_overlap']:.1f}%` vs B2, `{100*rc72['own_lineage']['worst_cand_dots_within_3px']:.1f}%` max own-lineage, `{100*h23_ov:.1f}%` vs `h23-a-6pct`; OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT)](knowledge/31_h72_outcomes_and_portfolio_synthesis_2026-10-26.md) · "
+          f"[9-site executive review (`GEMSDOE24..36` + `GEMSDOE19..92`), PhD proof of why `GEMSDOE32` `H33-2-B2` achieved `0.2778` (`OWNER-REPORTED`) and how to surpass it, 4 ranked untried hypotheses (`H72-A..D`), and 3 pre-registered holdout experiments — `H72-1` `A3_PTTG_DEAPRON` `HOLDOUT-DTI {e1_72['arms']['A3_PTTG_DEAPRON']['mean_dti']:.4f}` (`{e1_72['contrasts']['A3_PTTG_DEAPRON_vs_CTRL_BLIND_BD']['mean']:+.4f}` vs Blind in `4/4` folds; FAIL vs H35 `{e1_72['arms']['CTRL_H35']['mean_dti']:.4f}`), `H72-2` `B3_FULL_DEAPRON` `{e2_72['arms']['B3_FULL_DEAPRON']['mean_dti']:.4f}` (`{e2_72['contrasts']['B3_FULL_DEAPRON_vs_CTRL_BLIND_BD']['mean']:+.4f}` vs Blind in `4/4` folds; `B1` `{e2_72['contrasts']['B1_FULL_H35_vs_CTRL_H35']['mean']:+.4f}` vs H35 in `2/4` folds), `H72-3` DEM-free `C1_SUBSURF_PTTG_MTHS` `{e3_72['arms']['C1_SUBSURF_PTTG_MTHS']['mean_dti']:.4f}` (`{e3_72['contrasts']['C1_SUBSURF_PTTG_MTHS_vs_CTRL_SUBSURF_D']['mean']:+.4f}` vs Subsurf; FAIL vs H35 `{e3_72['arms']['CTRL_H35']['mean_dti']:.4f}`) — unique GeoTIFF `88bbebfe79b4` (`flagged_lane = []` across all {rc72['registry_rasters_checked']} rasters, `{100*rc72['focus_21_top_scorers']['b2_overlap']:.1f}%` vs B2, `{100*rc72['own_lineage']['worst_cand_dots_within_3px']:.1f}%` max own-lineage, `{100*h23_ov:.1f}%` vs `h23-a-6pct`; OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT)](knowledge/31_h72_outcomes_and_portfolio_synthesis_2026-10-26.md) · "
           "pre-registrations [`knowledge/29`](knowledge/29_preregistered_h72_pttg_ranked_hypotheses_2026-10-26.md) (`53cb884`) & [`knowledge/30`](knowledge/30_preregistered_h72_3_subsurf_blind_2026-10-26.md) (`fc60bdd`) · run card [`registry/run_card_h72_2026-10-26.json`](registry/run_card_h72_2026-10-26.json).\n")
+    obj_card = opt("registry/run_card_objective_2026-10-26.json")
+    if obj_card:
+        oe1 = obj_card["experiments"]["experiment_1_tent"]
+        oe2 = obj_card["experiments"]["experiment_2_hardneg"]
+        oe3 = obj_card["experiments"]["experiment_3_ign3"]
+        oext = obj_card["registry_correlation_and_overlap"]["final_dots"]["external_sparse"]
+        A("**Latest session (2026-10-26, training-objective lane (TENT / HARDNEG / IGN3) — featured download below):** "
+          f"[nine-site executive summary and why `GEMSDOE32` `H33-2-B2` scored `0.2778`, 5 ranked untried hypotheses, and 3 pre-registered screens vs the same-run BIN comparator — `TENT` `{oe1['paired']['mean_gain']:+.4f}` (`{oe1['paired']['folds_positive']}/4` folds, GATE FAIL), `HARDNEG` `{oe2['paired']['mean_gain']:+.4f}` (`{oe2['paired']['folds_positive']}/4`, GATE FAIL), `IGN3` `{oe3['paired']['mean_gain']:+.4f}` (`{oe3['paired']['folds_positive']}/4`, GATE FAIL) — unique GeoTIFF `3646faf70507` (frozen H35/H38 stack, fresh production seeds; worst external 3-px overlap `{100*oext['worst_cand_dots_within_3px']:.1f}%` ≤ 70%; OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT)](knowledge/31_objective_outcomes_and_executive_summary_2026-10-26.md) · "
+          "pre-registrations [`knowledge/29`](knowledge/29_ranked_hypotheses_and_preregistration_2026-10-26.md) (commit `005e115`, pre-fit) and [`knowledge/30`](knowledge/30_preregistered_ign3_experiment3_2026-10-26.md) · run card `registry/run_card_objective_2026-10-26.json`.\n")
     if h71_card:
         e1_71 = h71_card["experiments"]["experiment_1_h71_1_hgpc_screen"]
         e2_71 = h71_card["experiments"]["experiment_2_h71_3_akf_screen"]
         e3_71 = h71_card["experiments"]["experiment_3_h71_4_mag_screen"]
-        rc71 = h71_card["registry_correlation_and_overlap"]
-        A("**Latest session (2026-10-26, H71 HGPC-BLIND DIRECT + AKF + MAG-ANISO 3-experiment lane — featured download below):** "
-          f"[why `GEMSDOE32` `H33-2-B2` scored `0.2778`, 5 ranked untried hypotheses (`H71-1..H71-5`), and 3 pre-registered DIRECT-emission screens — `H71-1` HGPC-BLIND HOLDOUT-DTI `{e1_71['candidate_pooled_holdout_dti']:.4f}` vs H35 `{e1_71['control_h35_pooled_holdout_dti']:.4f}` (`{e1_71['gate']['vs_named']['CTRL_H35_24']['mean_gain']:+.4f}`, `0/4` folds, GATE FAIL) / vs crest `{e1_71['gate']['vs_named']['CTRL_CREST_B2']['mean_gain']:+.4f}`; `H71-3` AKF `{e2_71['candidate_pooled_holdout_dti']:.4f}` FAIL vs H35; `H71-4` MAG `{e3_71['candidate_pooled_holdout_dti']:.4f}` FAIL vs H35 — unique GeoTIFF `9eb0c31e5149` (`{100*rc71['focus_21_top_scorers']['b2_overlap']:.1f}%` vs B2, own HGB lineage `{100*rc71['own_lineage']['worst_cand_dots_within_3px']:.1f}%`, first GEMSDOE25 file to clear own HGB 70% wall; OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT)](knowledge/28_h71_outcomes_2026-10-26.md) · "
+        A("**Prior session (2026-10-26, H71 HGPC-BLIND DIRECT + AKF + MAG-ANISO 3-experiment lane):** "
+          f"[why `GEMSDOE32` `H33-2-B2` scored `0.2778`, 5 ranked untried hypotheses (`H71-1..H71-5`), and 3 pre-registered DIRECT-emission screens — `H71-1` HGPC-BLIND HOLDOUT-DTI `{e1_71['candidate_pooled_holdout_dti']:.4f}` vs H35 `{e1_71['control_h35_pooled_holdout_dti']:.4f}` (`{e1_71['gate']['vs_named']['CTRL_H35_24']['mean_gain']:+.4f}`, `0/4` folds, GATE FAIL) / vs crest `{e1_71['gate']['vs_named']['CTRL_CREST_B2']['mean_gain']:+.4f}`; `H71-3` AKF `{e2_71['candidate_pooled_holdout_dti']:.4f}` FAIL vs H35; `H71-4` MAG `{e3_71['candidate_pooled_holdout_dti']:.4f}` FAIL vs H35 — content-distinct testing GeoTIFF `9eb0c31e5149` (strict lane FAIL: 100% candidate dots within 3 px of the r13 lattice; density-aware comparisons do not waive the literal stop; OK TO DOWNLOAD FOR TESTING: YES · OK TO SUBMIT: NO — DO NOT SUBMIT)](knowledge/28_h71_outcomes_2026-10-26.md) · "
           "pre-registration [`knowledge/27_preregistered_h71_hgpc_2026-10-26.md`](knowledge/27_preregistered_h71_hgpc_2026-10-26.md) (commit `d4d4bf7`, pre-fit) · run card `registry/run_card_h71_2026-10-26.json`.\n")
     if h66_card:
         e1_66 = h66_card["experiments"]["experiment_1_h66_1_screen"]
@@ -118,12 +126,12 @@ def main() -> None:
     A("**Competition:** [DOE GEMS Prize, DrivenData #306](https://www.drivendata.org/competitions/306/competition-doe-gems/) · "
       "**Live site:** <https://buffedlizard55-lab.github.io/GEMSDOE25/> · **Weekly limit:** 3 submissions · "
       "**Ends:** 3 Dec 2026 (page: 11:59 p.m. UTC; rules: 5:00 p.m. ET — see IR-25-DEADLINE)\n")
-    A("## ⬇ Download the unique, format-valid GeoTIFF (testing only — DO NOT SUBMIT)\n")
+    A("## ⬇ Download the content-distinct testing GeoTIFF (strict lane FAIL — DO NOT SUBMIT)\n")
     A(f"**[↓ `{primary['file']}`](docs/downloads/{primary['file']})** — {primary['summary']}\n")
     outside_txt = "zeros outside (no NaN anywhere)" if primary.get("outside") == "zero" else "NaN outside"
     A(f"* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, {outside_txt} "
       f"(verified against the pinned owner-mirror template, not organizer-authenticated; independent check receipt: `docs/downloads/{primary['receipt']}`).")
-    A(f"* Unique content id `{primary['content_id']}` · SHA-256 `{primary['sha256']}` · {primary['positive_pixels']:,} emitted pixels · status: **{primary['status']}**.")
+    A(f"* Content id `{primary['content_id']}` · SHA-256 `{primary['sha256']}` · {primary['positive_pixels']:,} emitted pixels · status: **{primary['status']}**.")
     if primary.get("ok_to_submit_slot"):
         A(f"* **Note to paste** in DrivenData's *Note (optional)* field: `{primary['note']}`")
     else:
@@ -135,7 +143,7 @@ def main() -> None:
     A("> ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).\n")
     A("> **OK to download (local testing): " + ("YES" if primary.get("ok_to_download") else "NO") + " · OK to spend a weekly slot: " + ("YES" if primary.get("ok_to_submit_slot") else "NO") + " — DO NOT SUBMIT** "
       f"(verdict **{primary.get('verdict', 'n/a')}**). Projection: {primary.get('expected_range', 'n/a')}. Lane: {primary.get('lane_summary', 'n/a')}. "
-      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest known file. Why this negative file is featured: DEM-free 4-fold OOF subsurface detector achieving `flagged_lane = []` (`UNIQUE`) across all 85 registry rasters (`knowledge/31`); prior rationale IR-25-H38-REGIME-SPLIT / IR-25-XG1-FEATURED-NEGATIVE / IR-25-FEATURED-DOWNLOAD-RATIONALE still applies to earlier downloads.\n")
+      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest supplied historical focus-site claim. This H71 file is featured for transparent local testing only; it fails both the holdout comparison and literal lane rule, so it must not be submitted.\n")
     if h36_spigm_card and h36_spigm_pool:
         p16 = h36_spigm_pool["arms"]
         cmp16 = h36_spigm_pool["comparisons"]

@@ -256,6 +256,16 @@
    "flag_rank": false
   },
   {
+   "file": "gems25-apfl2-h35plus-apfl-b2-sapd2-4-k3p5-20261026-2e9e4189f554-nan.tif",
+   "spearman_surface": 0.074186,
+   "flag_rank": false
+  },
+  {
+   "file": "gems25-apfl2-h35plus-apfl-b2-sapd2-4-k3p5-20261026-2e9e4189f554-zeros.tif",
+   "spearman_surface": 0.074186,
+   "flag_rank": false
+  },
+  {
    "file": "gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
    "spearman_surface": 0.073865,
    "flag_rank": false
@@ -418,6 +428,16 @@
   {
    "file": "gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.tif",
    "spearman_surface": 0.073581,
+   "flag_rank": false
+  },
+  {
+   "file": "gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-nan.tif",
+   "spearman_surface": 0.078698,
+   "flag_rank": false
+  },
+  {
+   "file": "gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.tif",
+   "spearman_surface": 0.078698,
    "flag_rank": false
   },
   {
