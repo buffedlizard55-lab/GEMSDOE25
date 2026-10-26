@@ -62,7 +62,11 @@ def canaries(cell: Cell, pol3: np.ndarray) -> dict:
 
 
 def pooled(rows: list[dict]) -> dict:
-    tp, fp, fn, n = (sum(r[k] for r in rows) for k in ("tp", "fp", "fn", "n_truth"))
+    # Cell.evaluate exposes tp/fp/n_truth (not fn); exact identity is FN = n_truth - TP.
+    tp = sum(r["tp"] for r in rows)
+    fp = sum(r["fp"] for r in rows)
+    n = sum(r["n_truth"] for r in rows)
+    fn = n - tp
     return {"dti": float(tp / (tp + 0.2 * fp + 0.8 * fn + 1e-7)), "withheld_positives": int(n),
             "tp": float(tp), "fp": float(fp), "fn": float(fn)}
 

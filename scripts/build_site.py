@@ -203,9 +203,20 @@ is not a lane clearance. Format verification is against an owner-mirrored templa
 </tbody></table>
 <p class="small"><b>Key scientific findings:</b> (1) <code>Factor C</code> (tip-preserved lateral-flank shielding, <code>r=2.5 px</code>, <code>H27_tip &ge; 0.05</code>) was positive in <code>4/4</code> screen AND <code>4/4</code> confirmation folds (<code>8/8</code> here; <b><code>16/16</code> fold-blocks</b> combined with H31-1). (2) Sparse 610-cell GDR geothermometry (<code>MGD-F</code>) is draw-dependent (<code>IR-25-MGD-SPARSE-DRAW-DEPENDENCE</code>); two-stage confirmation stopped a false-positive weekly slot spend. (3) Gating USGS SGMC bedrock faults by 3DEP LiDAR scarps &amp; GPS strain jumped HOLDOUT-DTI by <code>+0.0138</code> (95% CI <code>[+0.0025, +0.0251]</code>, <code>4/4</code> folds+), held unpromoted at the 3-experiment cap with HGB smooth-multiplier tree inversion documented (<code>IR-25-SGMC-TREE-INVERSION</code>). (4) Featured GeoTIFF clears all {fw['n']} focus/top-scorer submissions (max 3-px overlap <code>{100*fw['worst_cand_dots_within_3px']:.1f}% &le; 70%</code>; <code>{100*fw['b2_overlap']:.1f}%</code> vs GEMSDOE32 B2 <code>0.2778</code>; max surface |&rho;| <code>{rc['surface_max_abs_spearman']:.4f} &le; 0.90</code>), held <b>DO NOT SUBMIT</b>.</p></div>'''
 
+    def pol3_summary_card(prefix: str) -> str:
+        pol3 = opt("evidence/pol3_screen_2026-10-26/summary.json")
+        if not pol3:
+            return ""
+        kbase = "../knowledge" if not prefix else "knowledge"
+        return f'''<div class="card"><h2>Latest experiment — POL3 signed half-graben polarity (negative screen)</h2>
+<p>Pre-registered before fitting: <a href="{kbase}/27_ranked_hypotheses_and_review_2026-10-26.md">ranked hypotheses &amp; repo review</a> · <a href="{kbase}/28_preregistered_pol3_signed_halfgraben_2026-10-26.md">POL3 preregistration</a> · run card <code>registry/run_card_repo_review_2026-10-26.json</code>.</p>
+<ul><li><b>HOLDOUT-DTI</b> (<code>{e(pol3['evaluator'])}</code>, draws <code>{pol3['draws']}</code>, <code>{pol3['withheld_positives']:,}</code> withheld positives): candidate pooled <code>{pol3['candidate_pooled']['dti']:.6f}</code> vs same-run H35 control <code>{pol3['control_pooled']['dti']:.6f}</code>.</li>
+<li><b>HOLDOUT-DTI paired 4-fold gain</b> <code>{pol3['paired_fold_mean_gain']:+.6f}</code>, 95% CI <code>[{pol3['paired_fold_ci95'][0]:+.6f}, {pol3['paired_fold_ci95'][1]:+.6f}]</code>; <code>{pol3['positive_folds']}/4</code> folds positive. Feature-alone leakage canary max AUC <code>{pol3['max_canary_auc']:.4f}</code> (&le; 0.90).</li>
+<li><b>Verdict: NEGATIVE.</b> Screen gate failed; confirmation, full-catalogue surface, dot placement and new TIFF were not run. No submission slot is authorized.</li></ul></div>'''
+
     def home(prefix: str) -> str:
         hero = verdict_banner(primary, prefix)
-        cards = dl_card(primary, prefix) + h66_summary_card(prefix) + h38_summary_card(prefix) + latest_diagnostic(prefix)
+        cards = dl_card(primary, prefix) + pol3_summary_card(prefix) + h66_summary_card(prefix) + h38_summary_card(prefix) + latest_diagnostic(prefix)
         alt = "".join(f"""<div class="card"><b>{e(o['title'])}</b> {badge(o['status'], 'ok' if o['status']=='scored' else 'warn')}
 <p class="small" style="margin:.3em 0">{e(o['summary'])}</p><a class="btn alt small" href="{prefix}downloads/{o['file']}" download>↓ {e(o['file'])}</a>
  <span class="small">· {o['positive_pixels']:,} px · <code>{o['content_id']}</code></span></div>""" for o in others if o["role"] in ("fallback", "alternate"))
@@ -353,6 +364,7 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
     exec_body = f"""{verdict_banner(primary, '', exec_page=True)}
 <div class="callout"><b>Current featured unique research artifact: {e(selected['file'])}.</b> <b>OK to download for local inspection/reproduction: YES.</b> Automated validation (<code>gems25.submission.check_file</code> 16/16 checks + plain-<code>rasterio</code> <code>scripts/verify_candidate_independent.py</code>) passed freshly against the SHA-256-pinned template (<code>2176d08e…</code>, owner-mirrored, not organizer-authenticated): every pixel is finite in <code>{{0.0, 1.0}} &sub; [0, 1]</code>, zero NaN anywhere, exact <code>EPSG:32611</code> / <code>3730 &times; 3292</code> grid. <b>OK to submit to a competition scoring slot: NO — DO NOT SUBMIT.</b> Pre-registered H66-1 passed screen (<code>+0.0025</code>, <code>4/4</code> folds+) but failed fresh-draw confirmation (<code>-0.0022</code>), H66-2 SGMC-REACT is screen-only at the 3/3 budget cap, and the literal strict parallel-run lane gate (<code>r13</code> lattice <code>100%</code>, own HGB lineage <code>83.5%</code>; <code>0/21</code> sibling top-scorers flagged) blocks weekly slot usage. Parallel-session research GeoTIFFs (including <code>gems25-h38-ospc-submod-20261025-680d62616417-zeros.tif</code>, <code>gems25-h36-spigm-subsurface-submod300-20261025-3937b96ce366-zeros.tif</code>, and <code>gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.tif</code>) remain available in the registry below and are likewise testing-only (<b>DO NOT SUBMIT</b>).</div>
 {dl_card(selected, '')}
+{pol3_summary_card('')}
 {h66_summary_card('')}
 {h38_summary_card('')}
 {latest_diagnostic('')}
