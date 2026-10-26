@@ -68,11 +68,15 @@ This is a catalogue-gap proxy, not an organizer score or blind-fault performance
     for row in sorted(focus['sites'], key=lambda r: -r['owner_reported_score']):
         rows.append(f'''<tr><th scope="row"><a href="{e(row['site_url'])}">{e(row['site'])}</a></th>
 <td>{row['owner_reported_score']:.4f}<small>OWNER-REPORTED</small></td>
-<td class="submission-id">{e(row['submission'])}</td><td><span class="badge b-warn">Historical only</span></td></tr>''')
+<td class="submission-id">{e(row['submission'])}</td><td>Unavailable — no validated leaderboard estimate</td><td>Previously submitted; not new</td><td><span class="badge b-warn">Historical only</span></td></tr>''')
         cards.append(f'''<article class="card"><h3>{e(row['site'])}</h3><p>{e(row['mechanism'])}</p>
 <p class="small">{row['positive_pixels']:,} positive pixels · Local format checks: {'pass' if row['local_format_pass'] else 'fail'} ·
 Not approved as a new submission. SHA-256: <code class="wrap-hash">{row['sha256']}</code></p>
 <a href="{e(row['source_url'])}">Pinned source revision</a> · <a href="{e(row['site_url'])}">Original site</a></article>''')
+    feasibility = json.loads((ROOT/'evidence/lane_feasibility_2026-10-26.json').read_text())
+    geometry = feasibility['geometry']
+    bounds = ''.join(f"<tr><td>{r['dots']:,}</td><td>{r['minimum_overlap']:.2%}</td><td>Impossible at this density</td></tr>"
+                     for r in feasibility['cases'])
     coverage = focus['lattice_coverage']
     body = f'''<section class="hero"><p class="eyebrow">RESEARCH DECISION BRIEF / 26 OCTOBER 2026</p>
 <h1>Know what to submit.<br>Know when to stop.</h1>
@@ -82,10 +86,22 @@ Not approved as a new submission. SHA-256: <code class="wrap-hash">{row['sha256'
 <p>ROD stop: {status}</p>{download}
 <div class="row"><a class="btn" href="../evidence/rod_2026-10-26/run_card.json" download>Download decision receipt</a>
 <a class="btn alt" href="#how-to-submit">Submission checklist</a></div></section>
+<section id="lane-feasibility"><h2>New audit: the strict overlap gate blocks typical densities</h2>
+<p>Freshly restored SHA-pinned template, labels and registry lattice match CRS, shape and transform.
+Only <b>{geometry['uncovered_pixels']:,}</b> eligible pixels lie outside that lattice's 3-pixel halo.
+For K distinct dots, at least max(0, K − {geometry['uncovered_pixels']:,}) must overlap.
+These are <b>COMPUTED GEOMETRY diagnostics, not performance scores</b>.</p>
+<table><thead><tr><th>Candidate dot budget K</th><th>Minimum unavoidable overlap</th><th>Literal 70% gate</th></tr></thead><tbody>{bounds}</tbody></table>
+<p>At most <b>21,713 dots</b> are not ruled out by this one necessary condition. Smaller budgets are not automatically feasible,
+unique, high-scoring or approved. No candidate was placed; no geological model was fitted in this audit.
+We did not exclude the dense reference or substitute a density-aware waiver.</p>
+<p><a href="../evidence/lane_feasibility_2026-10-26.json">Download the reproducible geometry receipt</a> ·
+<a href="../knowledge/29_lane_feasibility_plan_2026-10-26.md">Preregistered proof and three deferred geological hypotheses</a></p>
+<p><b>No new TIFF generated:</b> the preregistered budgets cannot pass the required gate. The existing research download above remains DO NOT SUBMIT.</p></section>
 <section><h2>What is the strongest historical evidence?</h2>
 <p><b>GEMSDOE32 B2 — 0.2778, OWNER-REPORTED.</b> It is the highest supplied historical result among these focus sites.
 It is already an earlier submission, so it is <b>not</b> eligible as a new unique artifact. No organizer receipt has been supplied.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Nine historical exemplars"><table><thead><tr><th>Site</th><th>Reported result</th><th>Highest supplied historical submission</th><th>Use</th></tr></thead>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Nine historical exemplars"><table><thead><tr><th>Site</th><th>Reported result</th><th>Highest supplied historical submission</th><th>Estimated score</th><th>Unique new file?</th><th>Use</th></tr></thead>
 <tbody>{''.join(rows)}</tbody></table></div>
 <p class="small">Not a live leaderboard query and not a slot selection. The conflicting overall-leader claims 0.3195 and 0.4413 remain unverified.</p></section>
 <section><h2>Why B2 can work — and what it does not prove</h2>
