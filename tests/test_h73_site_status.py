@@ -45,6 +45,8 @@ def test_review_run_card_is_negative_preflight_not_a_zero_score() -> None:
     assert card["verdict"] == "negative"
     assert card["experiments_used"] == 0
     assert card["new_raster_created"] is False
+    assert card["cache_status"]["scientific_python_dependencies_present"] is True
+    assert card["cache_status"]["required_cached_feature_stack_present"] is False
     assert card["holdout_dti"] is None
     assert card["estimated_leaderboard_score"] is None
     assert card["prior_artifact_holdout_dti"]["label"] == "HOLDOUT-DTI"
