@@ -841,11 +841,12 @@
   "pass_2": "Tested invalid values, negative zero, exterior-independent identity and hash pinning; fixed root-page JSON receipt link exposed by link tests.",
   "pass_3": "Rebuilt executive pages; checked nine-site summaries, no numerical score projection, strict-lane wording, no new TIFF/no experiment/no slot claims.",
   "verification": {
-   "pytest": "265 passed, 4 data-dependent skipped, one existing ConstantInputWarning",
+   "pytest": "275 passed, 4 data-dependent skipped, one existing ConstantInputWarning after parallel-main merge",
    "ruff": "passed",
    "git_diff_check": "passed",
    "official_reference_head": "aebe92f7c8a990f0e3443451b7a825d9afd6336b"
   },
-  "unfulfilled": "No new unique high-scoring slot-cleared TIFF. No geological validation run. Current owner brief preserved as condensed addendum, not falsely described as verbatim."
+  "unfulfilled": "No new unique high-scoring slot-cleared TIFF. No geological validation run. Current owner brief preserved as condensed addendum, not falsely described as verbatim.",
+  "parallel_merge": "PR #41 advanced main during PR #40 checks. Merged origin/main e812edb into this fixed branch, preserving both audits and rebuilding pages."
  }
 }

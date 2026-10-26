@@ -8,6 +8,16 @@ Fresh validation: **36/36 shipped TIFFs pass local format checks**, but represen
 ### Continuing owner requirements
 
 Read the full standing brief below on every session. This turn reiterates it: prioritize a genuinely unique, automatically validated, high-scoring TIFF; provide the nine-site executive table, short submission note and honest score evidence; propose hypotheses before implementation; use the shared buffered holdout/writer and feature leakage canaries; stop on duplicate-lane results; use at most three experiments/two hours; never spend a weekly slot without a comparable holdout win and separate selector. **Maximize P(Win)** and **Own the Outcome** mean reporting an unfulfilled artifact requirement rather than falsely approving a failed file. The current prompt has no explicit single-method paragraph. This paragraph is a condensed addendum, not a verbatim transcript; the longer preserved owner briefs remain below.
+## This session: verified overlap-capacity blocker
+
+**No new submission approved or generated.** The existing research TIFF is downloadable for inspection only, **DO NOT SUBMIT**.
+Fresh restoration of the hash-pinned template, labels and r13 lattice confirms only **6,514** eligible pixels avoid its 3-pixel halo.
+A 37,654-dot candidate must overlap by at least **82.70%**, exceeding the mandatory 70% cap regardless of geology.
+All five preregistered typical dot budgets fail this necessary condition. Budgets ≤21,713 are merely not ruled out, not approved.
+[Executive summary](docs/current-review.html#lane-feasibility) · [reproducible receipt](evidence/lane_feasibility_2026-10-26.json) ·
+[three deferred hypotheses and preregistration](knowledge/29_lane_feasibility_plan_2026-10-26.md).
+Run `.venv/bin/python scripts/audit_lane_feasibility.py --restore` before planning another high-density experiment.
+This extends the standing owner brief below; it does not authorize changing its strict novelty gate. Zero model experiments and zero slots used.
 
 <!-- CURRENT-REVIEW-2026-10-26 -->
 ## Current decision — 2026-10-26
@@ -386,7 +396,6 @@ PROVENANCE WARNING (IR-25-BRIEF-RECONSTRUCTED): this is the owner's 2026-10-25 b
 its working context was condensed. It is NOT guaranteed to be verbatim (whitespace, link markup and possibly wording may differ).
 Cross-check: the 21 owner-reported scores independently transcribed into registry/top_scorer_sources.json all appear here (21/21).
 Owner action: paste the original message over this file to make it authoritative. Older verbatim brief: knowledge/owner_brief_verbatim.txt. Shorter parallel-session copy: knowledge/owner_brief_2026-10-25_verbatim.txt.
-==================================================================================================================
 Review the repo.
 
 I want to focus on  the highest scoring submissions from the following sites, GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, GEMSDOE36.
