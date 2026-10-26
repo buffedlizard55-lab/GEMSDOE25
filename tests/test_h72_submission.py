@@ -49,18 +49,29 @@ def test_h72_three_experiments_match_saved_analyses_and_pass_canaries() -> None:
     assert a3["contrasts"]["C1_SUBSURF_PTTG_MTHS_vs_CTRL_SUBSURF_D"]["mean"] > 0.0
 
 
-def test_h72_3_density_aware_unique_across_all_85_rasters() -> None:
+def test_h72_3_density_aware_nonflag_does_not_waive_literal_lane_stop() -> None:
     az = json.loads((ROOT / "evidence" / "h72_3_independent_audit_zeros.json").read_text())
     an = json.loads((ROOT / "evidence" / "h72_3_independent_audit_nan.json").read_text())
     lane_lit = json.loads((ROOT / PRIMARY["lane"]["receipt"]).read_text())
     rc = CARD["correlation_overlap_vs_registry"]
+    r13 = "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
     assert az["all_hard_checks_pass"] is True
     assert an["all_hard_checks_pass"] is True
     assert az["checks"]["whole_array_finite_in_0_1"] is True
     assert az["checks"]["zero_known_catalogue_overlap"] is True
     assert len(lane_lit["rows"]) >= 85
-    assert lane_lit["flagged_lane"] == []
+    assert lane_lit["flagged_lane"] == []  # density-aware filter only; not a literal-rule clearance
     assert rc["lane_clean_density_aware"] is True
+    assert rc["lane_clean"] is False
+    assert r13 in rc["literal_flagged"]
+    assert r13 in lane_lit["flagged_literal"]
+    assert PRIMARY["lane"]["lane_clear"] is False
+    assert PRIMARY["lane"]["lattice_overlap"] == 1.0
+    assert lane_lit["verdict"] == "DUPLICATE/LANE OVERLAP - do not package"
+    r13_row = next(row for row in lane_lit["rows"] if row["file"] == r13)
+    assert r13_row["dots_within_3px"] == 1.0
+    assert r13_row["flag_overlap"] is True
+    assert r13_row["flag_overlap_lane"] is False  # dense-reference exception is not the standing rule
     assert rc["focus_21_top_scorers"]["worst_cand_dots_within_3px"] <= 0.40
     assert rc["focus_21_top_scorers"]["b2_overlap"] < 0.26
     assert rc["own_lineage"]["worst_cand_dots_within_3px"] <= 0.50
