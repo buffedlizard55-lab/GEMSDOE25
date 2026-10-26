@@ -663,7 +663,7 @@
    "severity": "high",
    "status": "open",
    "issue": "The literal 70%-within-3-px lane rule and the scoring objective conflict. The restored registry raster 13gems_20261001_r13-lattice-s5_v2_nan-outside.tif (SHA-256 b4570b40\u2026) has a 3-px halo covering 99.8724% of the 5,106,385 eligible pixels, so the exact bound permits at most 21,713 unique dots, reachable only by using every one of the 6,514 uncovered pixels. No competitive-density candidate can pass that literal rule against this raster.",
-   "evidence": "evidence/lane_budget_2026-10-26/budget.json, evidence/lane_budget_2026-10-26/run_card.json, src/gems25/lane_budget.py, knowledge/29_lane_budget_preregistration_2026-10-26.md",
+   "evidence": "evidence/lane_feasibility_2026-10-26.json (shared tool src/gems25/lane_feasibility.py), knowledge/29_lane_feasibility_plan_2026-10-26.md, knowledge/29_lane_budget_preregistration_2026-10-26.md",
    "resolution_or_action": "Owner policy decision required: exclude the synthetic sibling lattice from the lane registry while reporting it separately, or adopt the symmetric density-aware statistic. Neither exception was applied silently; every duplicate flag is preserved."
   },
   {

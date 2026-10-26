@@ -1,0 +1,24 @@
+{
+  "hypothesis": "Protocol preflight and exact-file download audit; no geological experiment",
+  "mechanism": "Shared template validator plus normalized footprint SHA-256 identity groups",
+  "non_fault_mimic": "Not applicable to engineering audit; geological candidates and mimics recorded in knowledge/29_download_audit_and_next_hypotheses_2026-10-26.md",
+  "holdout_dti": null,
+  "ci95": null,
+  "evaluator_version": null,
+  "withheld_positives": null,
+  "correlation_overlap_vs_registry": null,
+  "raster_sha256": null,
+  "validator_output": {
+    "receipt": "docs/data/download_audit.json",
+    "files": 36,
+    "format_valid": 36,
+    "distinct_footprint_arrays": 19,
+    "scope": "Existing local files only; pinned owner-mirror template; no new raster or novelty approval"
+  },
+  "submission_name": null,
+  "note": "Exact-file audit only; 36 format-valid TIFFs, 19 footprint arrays. No new raster, lane clearance or slot approval.",
+  "verdict": "negative",
+  "okay_to_submit": false,
+  "experiments": 0,
+  "reason": "No explicit method lane; prior strict-lane failures remain unresolved. No high-scoring new TIFF can be claimed."
+}

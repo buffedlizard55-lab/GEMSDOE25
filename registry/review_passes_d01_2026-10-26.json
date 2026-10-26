@@ -10,7 +10,7 @@
    "completed": [
     "Read AGENTS.md, README current brief, ROD record and prior next steps; no open PR or session branch collision found.",
     "Preregistered the lane-budget audit (knowledge/29) and D01 density diagnostic (knowledge/30) before any fit.",
-    "Implemented src/gems25/lane_budget.py with exact integer arithmetic and 6 unit tests; audit script reproduced U=6,514 and max K=21,713 from SHA-pinned bytes.",
+    "Independently derived the exact lane bound (U=6,514, max K=21,713) with dedicated unit tests and a SHA-pinned audit; after merging origin/main, the duplicated module was deleted in favour of the shared src/gems25/lane_feasibility.py and tests/test_lane_feasibility.py.",
     "Restored all 22 manifest inputs, built shared static/add-on/H34 caches, ran one D01 screen (8 cells, 67 canaries each, max AUC 0.8025).",
     "Recorded run cards, irregularities IR-26-LANE-BUDGET-CONFLICT and IR-26-D01-DENSITY-NEGATIVE, the executive table and knowledge/31."
    ],
@@ -24,7 +24,8 @@
     "The draft max-K formula used float division; replaced with exact integer comparison so the 70% boundary is not rounded.",
     "Requested dot caps in D01 saturate at available ridge candidates; disclosed as IR-26-REQUESTED-CAP-SATURATION instead of being read as a full-grid simulation.",
     "Removed an unused variable/import and rebuilt site and README from evidence rather than hand-editing HTML.",
-    "Existing featured TIF was revalidated (not regenerated) and clearly labelled as an existing artifact, not a new candidate."
+    "Existing featured TIF was revalidated (not regenerated) and clearly labelled as an existing artifact, not a new candidate.",
+    "Post-merge de-duplication: private lane_budget fork and its audit script removed; D01 reuses the shared lane tool, and all references were updated."
    ],
    "result": "Unit, protocol, preflight, submission and repo-integrity tests pass; ruff clean."
   },
