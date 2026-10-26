@@ -1,0 +1,26 @@
+{
+  "hypothesis": "Literal parallel-run lane rule implies a maximum feasible dot count",
+  "mechanism": "With K unique dots and U eligible pixels outside a registry halo, at most U dots can be outside, so the rule requires 10*max(0,K-U) <= 7*K; the largest K satisfying this is an exact upper bound independent of geology or model.",
+  "non_fault_mimic": "Not applicable: an arithmetic feasibility bound is not a geological feature.",
+  "evaluator": null,
+  "holdout_dti": null,
+  "ci95": null,
+  "withheld_positives": null,
+  "correlation_overlap_vs_registry": {
+    "binding_raster": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "uncovered_pixels": 6514,
+    "coverage_fraction": 0.9987243421716145,
+    "scope": "restored local registry only; not proof every sibling artifact is registered"
+  },
+  "raster_sha256": null,
+  "validator_output": null,
+  "submission_name": null,
+  "note": "No new TIF; literal lane budget audit only. DO NOT SUBMIT.",
+  "verdict": "negative",
+  "okay_to_submit": false,
+  "experiments": 0,
+  "preregistration_commit": "d1c2bd7",
+  "holdout_label": null,
+  "reason": "No new geological candidate was run: the literal 70% rule cannot be met by candidates above 21,713 unique dots against 13gems_20261001_r13-lattice-s5_v2_nan-outside.tif. No TIFF was written and no weekly slot is authorized.",
+  "elapsed_seconds": 38.8
+}
