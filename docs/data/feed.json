@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-26T17:15:03Z",
+ "generated_utc": "2026-10-26T17:42:39Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -40,8 +40,8 @@
    "title": "Official rules (NLR 96647)",
    "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Wed, 09 Sep 2026 21:37:58 GMT; Content-Length: 455140; ETag: \"6f1e4-65b13aa31500b\""
   },
   {
    "kind": "source",
@@ -80,224 +80,224 @@
    "title": "DrivenData reference solution (U-Net, MC-CV)",
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; ETag: W/\"e8e4f70fafc24df6de866cb4f5a83028\""
   },
   {
    "kind": "source",
    "title": "INGENIOUS - Great Basin Regional Dataset Compilation (GDR 1391)",
    "url": "https://gdr.openei.org/submissions/1391",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200"
   },
   {
    "kind": "source",
    "title": "GeoDAWN airborne magnetic and radiometric surveys (USGS)",
    "url": "https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Thu, 01 Jan 1970 00:00:00 GMT"
   },
   {
    "kind": "source",
    "title": "USGS 3D Elevation Program",
    "url": "https://www.usgs.gov/3d-elevation-program",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Mon, 26 Oct 2026 17:42:15 GMT; ETag: W/\"1793036535\""
   },
   {
    "kind": "source",
    "title": "Slip & dilation tendency, Quaternary faults, Great Basin (Siler 2022)",
    "url": "https://www.sciencebase.gov/catalog/item/6296974dd34ec53d276bb33d",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Thu, 01 Jan 1970 00:00:00 GMT"
   },
   {
    "kind": "source",
    "title": "Heat flow maps and supporting data for the Great Basin, USA (DeAngelo et al., 2022)",
    "url": "https://www.sciencebase.gov/catalog/item/6297d2fad34ec53d276c5b28",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Thu, 01 Jan 1970 00:00:00 GMT"
   },
   {
    "kind": "source",
    "title": "Faulds & Hinz (2015) Favorable tectonic and structural settings of geothermal systems in the Great Basin",
    "url": "https://www.osti.gov/servlets/purl/1724082",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; Content-Length: 1719141"
   },
   {
    "kind": "source",
    "title": "Hermant, Kiersnowski & Bellanger (2025) Using deep learning to map Quaternary faults in Western USA",
    "url": "https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Hermant.pdf",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Tue, 21 Jan 2025 13:57:06 GMT; Content-Length: 3072200; ETag: \"2ee0c8-62c37c0a1318a\""
   },
   {
    "kind": "source",
    "title": "Owner mirror of training_features.tif (5 parts)",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; ETag: W/\"5ca43014300abf20eb6de351d12c21bd\""
   },
   {
    "kind": "source",
    "title": "Owner mirror: labels, template, external layers, scored rasters (GEMSDOE24 @ 07345ea)",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; ETag: W/\"76db162418c1c3f1c11d41a044671109\""
   },
   {
    "kind": "source",
    "title": "Dropbox links supplied in the brief (GEMS_96647.pdf, example_submission.tif, existing_faults.tif, gems-geodawn-numerical-features.tif, DEM-links PDF)",
    "url": "https://www.dropbox.com/scl/fi/6rgvnuady818ol8yqgis4/example_submission.tif?rlkey=kbykilvau066xuogoosbf4cq8&st=8junzdyw&dl=0",
    "verified_in_repo": false,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200"
   },
   {
    "kind": "source",
    "title": "INGENIOUS project site",
    "url": "https://gbcge.org/current-projects/ingenious/",
    "verified_in_repo": false,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200"
   },
   {
    "kind": "source",
    "title": "Owner's public GitHub mirrors of the group's 30 competition rasters",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; ETag: W/\"e8ba5cda1d5713480d75c664cbcaa7ce\""
   },
   {
    "kind": "source",
    "title": "GEMSDOE27 registry/live_scores.json \u2014 the owner's SHA-256 <-> reported-score ledger",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; ETag: W/\"7d4ceaa902a2431ef5a0be145e077353\""
   },
   {
    "kind": "source",
    "title": "Official reference solution \u2014 U-Net with Monte-Carlo cross-validation (Prof. John Lipor, Portland State University)",
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; ETag: W/\"e8e4f70fafc24df6de866cb4f5a83028\""
   },
   {
    "kind": "source",
    "title": "Structural Inventory of Great Basin Geothermal Systems and Definition of Favorable Structural Settings (dataset)",
    "url": "https://www.osti.gov/dataexplorer/biblio/dataset/1148722",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200"
   },
   {
    "kind": "source",
    "title": "Quaternary fault mapping from high-resolution 3DEP topography (USGS data release)",
    "url": "https://www.usgs.gov/data/quaternary-fault-mapping-zapata-and-blanca-sections-sangre-de-cristo-fault-zone-high",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Mon, 26 Oct 2026 17:42:22 GMT; ETag: W/\"1793036542\""
   },
   {
    "kind": "source",
    "title": "Quaternary Fault and Fold Database for the Nation",
    "url": "https://pubs.usgs.gov/fs/2004/3033/fs-2004-3033.html",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200"
   },
   {
    "kind": "source",
    "title": "State Geologic Map Compilation (SGMC) Geodatabase of the Conterminous United States (USGS DS 1052)",
    "url": "https://www.usgs.gov/data/state-geologic-map-compilation-sgmc-geodatabase-conterminous-united-states",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Mon, 26 Oct 2026 17:42:24 GMT; ETag: W/\"1793036544\""
   },
   {
    "kind": "source",
    "title": "GEMSDOE32 repository & shipped B=2 GeoTIFF (h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif)",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; ETag: W/\"b28535262fa990822a9a96e310fe5713\""
   },
   {
    "kind": "source",
    "title": "GEMSDOE36 repository & shipped Anderson-Geothermal PINN GeoTIFF",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE36",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; ETag: W/\"34cc4be2be5c4776cbf9b5dcb565afcb\""
   },
   {
    "kind": "source",
    "title": "GEMSDOE32 project site (sibling; H33-2-B2 champion, Arena41/H32-WIN lanes)",
    "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Mon, 26 Oct 2026 17:09:33 GMT; Content-Length: 17499; ETag: W/\"6adf894d-12303\""
   },
   {
    "kind": "source",
    "title": "GEMSDOE36 project site (sibling; Anderson-PINN 0.2750 claim)",
    "url": "https://buffedlizard55-lab.github.io/GEMSDOE36/docs/",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Mon, 26 Oct 2026 16:27:27 GMT; Content-Length: 11047; ETag: W/\"6adf7f6f-99c6\""
   },
   {
    "kind": "source",
    "title": "GEMSDOE70 repository & shipped dual-population submodular GeoTIFF (gems70, owner-reported 0.2478)",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; ETag: W/\"9f0c320f7e97ea492750c90c945e4ce3\""
   },
   {
    "kind": "source",
    "title": "Thurston, J. B., & Smith, R. S. (1997), Automatic conversion of magnetic data to depth, dip, and susceptibility contrast using the SPI (TM) method, Geophysics 62(3), 807-813",
    "url": "https://doi.org/10.1190/1.1444190",
    "verified_in_repo": false,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; Content-Length: 5580"
   },
   {
    "kind": "source",
    "title": "Elkan, C. (2001), The Foundations of Cost-Sensitive Learning, Proceedings of IJCAI-01, 973-978",
    "url": "https://www.ijcai.org/Proceedings/01/IJCAI-01-145.pdf",
    "verified_in_repo": false,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "HTTP 404",
+   "detail": "HTTP 404"
   },
   {
    "kind": "source",
    "title": "Minoux, M. (1978), Accelerated greedy algorithms for maximizing submodular set functions, Optimization Techniques (Lecture Notes in Control and Information Sciences, vol. 7), Springer, 234-243",
    "url": "https://doi.org/10.1007/BFb0006528",
    "verified_in_repo": false,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; ETag: \"618d38d0165ed54d67b11832d95a18fa\""
   },
   {
    "kind": "source",
    "title": "GEMSDOE70 repository (sibling; dual-submodular OOF HGB 0.2478 owner-reported claim & 2026-10-20 0.4413 leaderboard read)",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "HTTP 200; ETag: W/\"9f0c320f7e97ea492750c90c945e4ce3\""
   },
   {
    "kind": "source",
@@ -311,22 +311,22 @@
    "kind": "sciencebase",
    "title": "GeoDAWN release",
    "url": "https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7",
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "lastUpdated 2025-02-28T23:02:25Z"
   },
   {
    "kind": "sciencebase",
    "title": "Slip/dilation tendency release",
    "url": "https://www.sciencebase.gov/catalog/item/6296974dd34ec53d276bb33d",
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "lastUpdated 2026-04-24T15:15:49Z"
   },
   {
    "kind": "sciencebase",
    "title": "Great Basin heat-flow release",
    "url": "https://www.sciencebase.gov/catalog/item/6297d2fad34ec53d276c5b28",
-   "status": "unreachable",
-   "detail": "SSLError"
+   "status": "ok",
+   "detail": "lastUpdated 2022-07-20T14:07:29Z"
   },
   {
    "kind": "sibling-repo",
@@ -494,14 +494,14 @@
    "title": "GEMSDOE24",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24",
    "status": "ok",
-   "detail": "pushed_at 2026-10-26T17:14:30Z"
+   "detail": "pushed_at 2026-10-26T17:37:05Z"
   },
   {
    "kind": "sibling-repo",
    "title": "GEMSDOE25",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25",
    "status": "ok",
-   "detail": "pushed_at 2026-10-26T17:00:31Z"
+   "detail": "pushed_at 2026-10-26T17:42:01Z"
   },
   {
    "kind": "sibling-repo",
