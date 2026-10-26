@@ -793,6 +793,22 @@
    "issue": "The automatic source-feed host guard treated DNS-equivalent DrivenData host spellings with a terminal DNS dot (for example, www.drivendata.org.) and IDNA Unicode dot separators as unblocked. A matching source URL or redirect could therefore bypass the no-DrivenData request policy.",
    "evidence": "Pre-fix reproduction: scripts/check_sources.py:is_blocked returned false for https://www.drivendata.org./leaderboard/ and https://www.drivendata\u3002org/leaderboard/. Regression coverage: tests/test_feed_host_safety.py.",
    "resolution_or_action": "Canonicalize hostnames through IDNA, strip terminal DNS dots before and after canonicalization, and fail closed on malformed hostnames. Tests assert URL and redirect variants are rejected before any request to the target host."
+  },
+  {
+   "id": "IR-25-H73-BUILD-AFTER-GATE-FAIL",
+   "severity": "medium",
+   "status": "open",
+   "issue": "knowledge/32 \u00a72 froze 'Exp 3 = full-footprint build only if the slot gate passes'. H73-PM Exp 1 failed both gates, yet a full-footprint research GeoTIFF (1b7533ebb62b) was still built for owner inspection, following this repo's H71/H72 precedent of packaging holdout-negative artifacts as download-YES/submit-NO. The deviation changes no gate, label or verdict (negative, slot_approved=false everywhere), but it is a deviation from the frozen design and is recorded here rather than silently normalized.",
+   "evidence": "knowledge/32_preregistered_h73_pm_2026-10-26.md \u00a72; evidence/h73_pm_screen/analysis.json; evidence/h73_build/build_receipt.json; registry/run_card_h73_2026-10-26.json",
+   "resolution_or_action": "Accepted as inspection-only packaging; future pre-registrations should separate 'build for inspection' from 'build for slot' explicitly. No weekly slot may be spent on 1b7533ebb62b without a new pre-registered gate pass."
+  },
+  {
+   "id": "IR-25-D28-STRATA-DOC",
+   "severity": "low",
+   "status": "open",
+   "issue": "Older GEMSDOE25 tables (e.g. knowledge/31 nine-site table) report D2.8 (dotted-h19-5-d2-8, 44,090 px) as '8.6% <=2px' of dots within 2 px of labels.tif. Independent recomputation 2026-10-26 gives 14.6% <=2px (6,436/44,090, exactly the B2-pruned count); 8.8% is the <=1px share (3,891/44,090, the R1-pruned count). The mislabel does not affect any score, gate or conclusion, but the strata column header and value disagree.",
+   "evidence": "Recomputed from SHA-pinned data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif vs data/labels.tif EDT (session transcript 2026-10-26); B2==D2.8&(d>2) and R1==D2.8&(d>1) pixel-exact.",
+   "resolution_or_action": "Use 14.6% (<=2px) / 8.8% (<=1px) in new documents; historical documents left unchanged as records."
   }
  ]
 }
