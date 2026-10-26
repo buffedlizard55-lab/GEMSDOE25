@@ -1,0 +1,68 @@
+{
+  "label": "HOLDOUT-DTI",
+  "arms": {
+    "H35": {
+      "pooled_dti": 0.15230762342811624,
+      "ci95": [
+        0.14018825114197445,
+        0.16650945228566885
+      ],
+      "withheld_positive_occurrences": 22813
+    },
+    "OFFSET": {
+      "pooled_dti": 0.06573163675786901,
+      "ci95": [
+        0.057428267963801266,
+        0.07389092144765945
+      ],
+      "withheld_positive_occurrences": 22813
+    },
+    "ROD": {
+      "pooled_dti": 0.06904088244998727,
+      "ci95": [
+        0.055788275765469,
+        0.07723532767825059
+      ],
+      "withheld_positive_occurrences": 22813
+    },
+    "SCARP": {
+      "pooled_dti": 0.05756880066816713,
+      "ci95": [
+        0.043003345225707874,
+        0.06838293636112985
+      ],
+      "withheld_positive_occurrences": 22813
+    },
+    "UNIFORM": {
+      "pooled_dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positive_occurrences": 22813
+    }
+  },
+  "paired_gain": -0.08326674097812897,
+  "paired_ci95": [
+    -0.09910237505661801,
+    -0.06783248293969561
+  ],
+  "fold_gains": [
+    -0.07439890277941452,
+    -0.09909001900130018,
+    -0.06366932253142142,
+    -0.09948130157515721
+  ],
+  "screen_passed": false,
+  "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters",
+  "distinct_withheld_pixels": 19515,
+  "evaluator": {
+    "src/gems25/metric.py": "4f6e4732029efd0238388aec74590e56bc2727df7441220ca09af7d02e9da230",
+    "src/gems25/holdout.py": "f0455eb17921e50365342ffb658504a5fcc0ddb3d2bd82f4bf0568d772be2bc1",
+    "src/gems25/experiment.py": "f47cb776b0136ea33fc61ea244b81e6138e1cc1cfb8fd009af427896e906d548",
+    "src/gems25/validation.py": "bb2faea55b6bd827196f56758e5fbbf1e4e620e92779e6b9b53703c3bdf42ac3",
+    "src/gems25/rod.py": "5d7cd22bd44d9c82b7668d0d4f4f8de122d3f6e60d2b9b7f6bd4f03e4eb27795",
+    "scripts/run_rod.py": "d5895ed1539fae494fc485516f1d8fb7a19c9d2cc01bde30cb66facf23fcc089"
+  },
+  "confirmation": "not run; screen alone is not promotion"
+}

@@ -744,6 +744,54 @@
    "Session prompt preserved in README.md alongside Arena Core Values (Maximize P(Win), Own the Outcome), verified official links table, flagged irregularities, limitations, and ranked next steps."
   ]
  },
+ "continuation_reviews": [
+  {
+   "date_utc": "2026-10-26",
+   "path": "registry/review_passes_2026-10-26.json",
+   "result": "ROD negative, no new TIF; 245 tests passed in final local check."
+  }
+ ],
+ "current_turn_review_2026_10_26_arena_d956e0a6": {
+  "session_branch": "arena/d956e0a6-gemsdoe25",
+  "focus": "Review repository and focus-site evidence; update the public executive-summary subpage with the requested nine-site comparison; record blockers and ranked hypotheses without exceeding the experimental lane or claiming a submission.",
+  "pass_1_implement_and_verify": [
+   "Read AGENTS.md and the relevant README mandate, focus-site forensics, H66/H38 run cards, submission writer/guide, source manifest and site content.",
+   "Confirmed current branch and origin/main SHA, no open PR listed, no local data beyond data/.gitkeep, and focus-site score claims are owner/user-reported.",
+   "Added knowledge/27_checkout_review_2026-10-26.md with nine-site executive comparison, B2 forensic interpretation, five ranked candidate hypotheses, limitations, sources and three-pass review.",
+   "Added registry/run_card_repo_review_2026-10-26.json with null holdout/lane/raster/validator metrics because no experiment or fresh raster validation was possible.",
+   "Linked the review from README.md and added an owner-claim-labeled nine-site table to docs/executive-summary.html."
+  ],
+  "pass_2_bugs_assumptions_edge_cases": [
+   "Kept OWNER-REPORTED scores separate from COMPUTED pixel identities and HOLDOUT-DTI; no organizer confirmation or projected score is asserted.",
+   "Kept unique bytes, format validation, lane clearance, holdout gate and slot authorization separate; all existing downloadable artifacts remain testing-only / DO NOT SUBMIT.",
+   "Marked source retrieval blocked where official source domains cannot be reached under the runner allowlist; did not infer data availability, schema or licence from citations alone.",
+   "Installed pinned requirements into ignored .venv; full pytest result 214 passed, 8 skipped (all skips require restored data/template), Ruff check passed, git diff --check passed."
+  ],
+  "pass_3_recheck_against_original_brief": [
+   "Verified all nine requested site rows and selected the highest supplied claim for each based on evidence/focus_sites_forensics.json.",
+   "Ranked five distinct candidate designs, each with layers, targeted physical signature, catalogue-gap rationale, difference from repo methods, non-fault mimic and availability/cost qualifier; no gain estimate was presented as a score.",
+   "No experiment was run because there is no unambiguous single method lane and the shared inputs are absent; strict overlap gate and separate slot selection remain binding.",
+   "No new GeoTIFF or organizer submission was generated; PR #33 merged after successful checks, but no Pages deployment or organizer receipt is claimed."
+  ],
+  "verification": {
+   "pytest": "214 passed, 8 skipped (data/template dependent)",
+   "ruff": "ruff check src scripts tests passed",
+   "git_diff_check": "passed",
+   "holdout_dti": "NOT RUN; no fresh evaluator result, withheld positive count or CI",
+   "raster": "NO NEW TIFF; sha256 null",
+   "validator": "NOT RUN; required sample template absent",
+   "organizer_score": "NONE; all focus-site scores remain owner/user-reported",
+   "pull_request": "PR #33 merged to main at 2026-10-26T00:36:15Z (merge commit dc3fb328777a15c0c3e7e5b2f39ed2a99f6523d2); both GitHub pytest checks SUCCESS; Pages deployment not checked."
+  },
+  "open_limitations": [
+   "data/ contains only .gitkeep, so current feature stack, labels, template and full fresh registry checks are unavailable.",
+   "The prompt's lane selection refers to a single method paragraph that is not uniquely designated in the active user text.",
+   "The strict 70% overlap rule is binding; historical H66 output failed against the r13 lattice, which is reported to cover 99.87% of the footprint within 3 px.",
+   "Official non-GitHub sources were not fetched due outbound host allowlist; links are provided for manual review.",
+   "No organizer-confirmed receipt is present; 0.2778, 0.3195 and 0.4413 claims must not be conflated."
+  ],
+  "verdict": "negative; repository review and summary documentation only; no new TIFF, experiment, slot approval or competition score."
+ },
  "current_turn_review_2026_10_26_arena_863e8740": {
   "branch": "arena/863e8740-gemsdoe25",
   "date_utc": "2026-10-26",
@@ -765,24 +813,26 @@
    "Rechecked every requested focus site (24,25,27,28,30,31,32,33,36), explained the locally verified raster transformations and kept every site score OWNER-REPORTED rather than ORGANIZER-CONFIRMED.",
    "Rechecked score and leaderboard conflicts (0.3195 / 0.4413 and other repository snapshots); retained IR-25-LEADERBOARD-CONFLICT and made no live leaderboard claim.",
    "Recorded the negative POL3 outcome, uncertainty, non-fault mimic, canaries and no-raster/no-lane-check/no-validator status in a JSON run card; existing site download remains visibly testing-only and DO NOT SUBMIT.",
-   "Updated the current site generator and README with the latest negative experiment rather than leaving H66 as the only apparent current status."
+   "Updated the current site generator and README with the latest negative experiment rather than leaving H66 as the only apparent current status.",
+   "After main advanced via PR #37, merged origin/main commit 23afac5930a2a5f9f294fcbad14f340b788ca4c9 into this fixed branch; kept the ROD and APFL evidence as distinct sessions/artifacts, renamed the POL3 run card to avoid colliding with the repository-level review card, and added a clearly separated POL3 result section to the generated current review."
   ],
   "verification": {
    "holdout_dti": "HOLDOUT-DTI: candidate pooled 0.1602799993 vs same-run H35 pooled 0.1612748274; 22,595 withheld positives; paired 4-fold gain -0.0008584532; 95% CI [-0.0094520321, +0.0077351256]; 2/4 positive folds; evaluator gems25.holdout.v1.2-buffered-4quad-pooled-dti.",
    "canary": "Maximum standalone AUC 0.6015164595; all four features <= 0.90.",
-   "pytest": "224 passed, 0 skipped (full suite after restoring scored group and adding POL3 tests).",
-   "ruff": "ruff check src scripts tests passed after final changes.",
-   "git_diff_check": "passed after final changes.",
+   "pytest": "247 passed, 1 expected ConstantInputWarning on an empty-candidate lane-preflight edge case; 0 skipped (full suite after main merge).",
+   "ruff": "ruff check src scripts tests passed after the main merge and current-review change.",
+   "git_diff_check": "passed after main merge and generated-site rebuild.",
    "raster": "No new raster. Existing H66 testing TIFF independent hard checks pass against owner-mirror template; not slot-approved.",
    "lane": "POL3 surface/dot comparison NOT RUN because preregistered HOLDOUT-DTI screen failed before surface construction.",
-   "pull_request": "Not yet opened; must be verified after pushing this fixed session branch."
+   "pull_request": "PR #38 opened from the fixed session branch; base main advanced and was merged into this branch. GitHub checks must be refreshed; no merge claimed yet."
   },
   "limitations": [
    "HOLDOUT-DTI is a proxy for recovering hidden catalogue components, not competition truth; this negative does not establish that POL3 is ineffective against truly blind faults.",
    "No organizer-confirmed score/leaderboard receipt; site score associations are owner-reported and owner mirrors are not organizer-authenticated.",
    "No new submission TIFF exists or was authorized. Existing H66 file remains DO NOT SUBMIT due failed confirmation and strict lane flags.",
    "Raw 1 m DEM tile-level availability for drainage-offset candidate is unverified; no viability claim until official coverage/schema/licence are checked.",
-   "All public data mirrors could reproduce hashes but that is not byte-authentication to organizer originals."
+   "All public data mirrors could reproduce hashes but that is not byte-authentication to organizer originals.",
+   "The merged main branch also carries independent ROD and APFL work. Their results/artifacts are not part of the POL3 experiment budget or validation; APFL holdout is pending and is not slot-approved."
   ],
   "verdict": "negative; one screen completed, POL3 failed frozen holdout gate; no candidate raster, no lane clearance, no slot approval."
  }

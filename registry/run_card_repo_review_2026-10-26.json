@@ -1,69 +1,60 @@
 {
-  "run_card_version": 1,
-  "session_branch": "arena/863e8740-gemsdoe25",
+  "schema": "run_card/v1 (parallel-run protocol)",
   "review_date_utc": "2026-10-26",
-  "hypothesis": "POL3 signed half-graben polarity: faults missing from the Quaternary USGS/INGENIOUS catalogue are preferentially associated with sign-coherent cross-strike gradients in detrended elevation, isostatic gravity, and conductive-basement depth, oriented by cached 3DEP LiDAR strike.",
-  "mechanism": "A normal-fault basin margin can lower the hanging-wall surface, alter gravity in the opposite cross-strike polarity, and deepen the conductive basement in the same direction. A conjunction across the three static fields could detect concealed basin-margin structures not represented in the catalogue. This is a geologic hypothesis, not an observed interpretation of the holdout cells.",
-  "named_non_fault_process_that_could_mimic_it": "Basinward thickening alluvial-fan deposits or depositional onlap can produce the same elevation, gravity, and conductive-depth polarity without active fault displacement; lithologic contacts and sensor/processing boundaries are secondary mimics.",
-  "preregistration": {
-    "file": "knowledge/28_preregistered_pol3_signed_halfgraben_2026-10-26.md",
-    "commit_before_fit": "9d342bd698e3a85f35e0b04e8b74b2b16cfc9eeb",
-    "implementation_commit_before_fit": "86f844b3424162ddad0ce06d4aa1dba45b100105",
-    "screen_draws": [58, 59],
-    "experiments_used": 1,
-    "confirmation_run": false
-  },
+  "session_branch": "arena/d956e0a6-gemsdoe25",
+  "review_type": "repository/source/evidence review; no model experiment",
+  "hypothesis": "No geological hypothesis was fitted. Review conclusion: the available records explain GEMSDOE32 B2's owner-reported 0.2778 as a plausible gain from removing low-credit near-catalogue emission mass, but the score is not organizer-confirmed and no current candidate can be approved from this checkout.",
+  "mechanism": "COMPUTED mirrored-raster identity: the supplied B2 raster is a pruned subset in the H19-5 -> D2.8 -> R1 -> B2 chain. Conditional on the reported scores, pruning low-marginal-credit dots can improve the DTI denominator trade-off without improving fault detection. This mechanism is an inference about scoring, not verified hidden-label truth.",
+  "named_non_fault_process_that_could_mimic_it": "Lithologic contacts and volcanic-flow boundaries can create aligned magnetic, gravity, radiometric or conductivity edges; hydrologic incision, alluvial-fan margins and survey seams can imitate fault/scarp signals.",
   "holdout_dti": {
     "label": "HOLDOUT-DTI",
-    "evaluator_version": "gems25.holdout.v1.2-buffered-4quad-pooled-dti; gems25.metric.dti_binary alpha=0.2, beta=0.8, R=3.0 px triangular kernel; 15 px whole-component buffer",
-    "withheld_positive_count": 22595,
-    "candidate_pooled": 0.16027999925600653,
-    "same_run_h35_control_pooled": 0.16127482737058552,
-    "paired_four_fold_mean_gain": -0.0008584532469557218,
-    "paired_four_fold_95_ci": [-0.009452032136077322, 0.0077351256421658784],
-    "paired_gain_by_fold": [0.0007678108656494764, -0.005594912966357002, -0.00466919119713971, 0.0060624803100243485],
-    "positive_folds": 2,
-    "mean_hug_delta": -0.0035144224040589596,
-    "feature_alone_canary_max_auc": 0.6015164594883766,
-    "canary_by_feature": {
-      "POL3_elevation_normal_gradient": 0.6015164594883766,
-      "POL3_gravity_normal_gradient": 0.5977955922619047,
-      "POL3_basement_normal_gradient": 0.5956751309523809,
-      "POL3_signed_concordance": 0.5312643565701861
-    },
-    "screen_gate_passed": false,
-    "analysis_source": "evidence/pol3_screen_2026-10-26/summary.json; recomputed from saved cells without refit after fixing summary fn derivation"
+    "status": "NOT RUN in this review",
+    "evaluator_version": "gems25.holdout.v1.2-buffered-4quad-pooled-dti (referenced in prior run cards; no current execution)",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel": "300 m triangular",
+    "withheld_positive_count": null,
+    "mean": null,
+    "ci95": null,
+    "reason": "data/ contains only .gitkeep; no restored labels, feature stack or submission template. No candidate was fitted."
   },
   "correlation_overlap_vs_registry": {
-    "status": "NOT RUN: holdout screen failed before full-catalogue surface construction or dot placement",
-    "surface_spearman_max_abs": null,
-    "final_dot_overlap_max_within_3px": null,
-    "thresholds": {
-      "absolute_spearman_max": 0.90,
-      "candidate_dots_within_3px_max": 0.70
+    "label": "LANE CHECK",
+    "status": "NO NEW SURFACE OR FINAL DOTS; no fresh lane check",
+    "strict_thresholds": {
+      "absolute_rank_correlation_stop_gt": 0.9,
+      "candidate_dots_within_3px_stop_gt_fraction": 0.7
     },
-    "verdict": "No lane clearance is claimed."
+    "current_surface_correlation": null,
+    "current_final_dot_overlap": null,
+    "historical_context_not_recomputed": "Prior H66 receipt reports 100% overlap against the r13 lattice and other strict lane failures; it is not a fresh result for a new candidate."
   },
   "raster": {
-    "status": "NO NEW RASTER GENERATED",
+    "generated": false,
     "sha256": null,
-    "reason": "POL3 failed the frozen holdout screen; the preregistered stopping rule prohibited confirmation, full-catalogue surface construction, placement, and candidate emission."
+    "submission_name": null,
+    "reason": "No fresh artifact generated: missing data/cache, no unambiguous single-method lane, and no current experiment/validator result. Existing downloads remain testing-only."
   },
   "validator_output": {
-    "status": "NOT RUN for POL3 because no raster exists",
+    "status": "NOT RUN in this review",
     "no_nan_inside_footprint": null,
     "values_in_0_1": null,
     "crs_shape_transform_match": null,
-    "candidate_file_sha256": null,
-    "existing_featured_h66_testing_file_independent_audit": {
-      "file": "docs/downloads/gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif",
-      "sha256": "7503f4d498694c0107e0efad92cd06613b56d6fe402712532c1805e778166c1a",
-      "all_hard_checks_pass": true,
-      "interpretation": "Format valid against the owner-mirror template only; not approved for a scoring slot."
-    }
+    "template_present": false,
+    "format_validation_fresh": false,
+    "prior_receipts_are_current": false
   },
   "submission_name": null,
   "submission_note": null,
   "submission_note_character_limit": 140,
-  "verdict": "negative; POL3 screen failed; no confirmation, lane clearance, TIFF, or weekly submission approval."
+  "verdict": "negative \u2014 no experiment, no new TIF, and no slot approval; use no existing download for scoring",
+  "pull_request": {
+    "number": 33,
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/pull/33",
+    "state": "MERGED",
+    "merged_at_utc": "2026-10-26T00:36:15Z",
+    "merge_commit": "dc3fb328777a15c0c3e7e5b2f39ed2a99f6523d2",
+    "checks": "both GitHub pytest checks SUCCESS",
+    "pages_deployment": "not checked"
+  }
 }

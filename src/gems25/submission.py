@@ -128,8 +128,12 @@ def check_file(path: Path | str, template_path: Path | str) -> dict:
         inside = outside = np.array([], np.float32)
     add("nodata_tag", True, f"nodata={nodata}", hard=False)
     # the variants a portal validator might use (information only, except the first two)
-    add("variant_nan_aware_whole_array", bool(np.nanmin(arr) >= 0 and np.nanmax(arr) <= 1), "np.nanmin/np.nanmax over the whole array")
-    add("variant_masked_read", bool(masked.compressed().min() >= 0 and masked.compressed().max() <= 1), "rasterio masked read")
+    finite_all = arr[np.isfinite(arr)]
+    compressed = masked.compressed()
+    add("variant_nan_aware_whole_array", bool(finite_all.size and finite_all.min() >= 0 and finite_all.max() <= 1
+                                             and not np.isinf(arr).any()), "finite range over the whole array; infinity rejected")
+    add("variant_masked_read", bool(compressed.size and np.isfinite(compressed).all()
+                                   and compressed.min() >= 0 and compressed.max() <= 1), "rasterio masked read; empty data rejected")
     add("variant_strict_whole_array_no_nan", bool(((arr >= 0) & (arr <= 1)).all()),
         "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint", hard=False)
     same_profile = all(prof.get(k) == tprof.get(k) or (k == "nodata" and nodata is not None and np.isnan(nodata))
@@ -138,6 +142,8 @@ def check_file(path: Path | str, template_path: Path | str) -> dict:
     hard_fail = [k for k, v in checks.items() if v["hard"] and not v["pass_"]]
     out = dict(
         file=path.name, bytes=path.stat().st_size, sha256=sha256_file(path), ok_to_upload=not hard_fail,
+        format_valid=not hard_fail,
+        authorization_note="ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval",
         hard_failures=hard_fail, official_nan_outside=checks["outside_footprint_is_nan_official"]["pass_"] if shape == tshape else False,
         positive_pixels=int((inside > 0).sum()) if inside.size else 0,
         footprint_pixels=int(foot.sum()),

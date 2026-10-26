@@ -598,7 +598,7 @@
    "id": "IR-25-SGMC-TREE-INVERSION",
    "severity": "high",
    "status": "disclosed",
-   "issue": "In H66-2 (SGMC-REACT, draws 54,55), gating USGS SGMC bedrock fault proximity exp(-d_SGMC / 4 px) by strictly positive smooth strain * gravity-THDR (`H66_sgmc_strain_react`) yielded standalone AUC 0.7862 — nearly identical to raw `H66_sgmc_prox4` (0.7890) — whereas gating by binary-supported 3DEP LiDAR scarps (`H66_sgmc_scarp_compat`, zero where L_coh100==0 or cos 2dtheta<=0) yielded standalone AUC 0.5965. Gradient-boosted trees threshold strictly positive products near 1e-5 to recover the underlying SGMC proximity map, inheriting compilation overlap between state bedrock maps and USGS QFFDB (`labels.tif`, 35.2% 3-px proximity).",
+   "issue": "In H66-2 (SGMC-REACT, draws 54,55), gating USGS SGMC bedrock fault proximity exp(-d_SGMC / 4 px) by strictly positive smooth strain * gravity-THDR (`H66_sgmc_strain_react`) yielded standalone AUC 0.7862 \u2014 nearly identical to raw `H66_sgmc_prox4` (0.7890) \u2014 whereas gating by binary-supported 3DEP LiDAR scarps (`H66_sgmc_scarp_compat`, zero where L_coh100==0 or cos 2dtheta<=0) yielded standalone AUC 0.5965. Gradient-boosted trees threshold strictly positive products near 1e-5 to recover the underlying SGMC proximity map, inheriting compilation overlap between state bedrock maps and USGS QFFDB (`labels.tif`, 35.2% 3-px proximity).",
    "evidence": "evidence/h66_2_screen/analysis.json (`leakage_canary.max_by_feature`); knowledge/26_h66_outcomes_2026-10-25.md.",
    "resolution_or_action": "Even though SGMC_REACT_ONLY cleared the <0.90 canary and beat CTRL_H35_24 by +0.013794 (4/4 folds+, CI95 [+0.0025, +0.0251]), H66-2 was NOT promoted: 3-of-3 experiment cap reached without confirmation, and any future SGMC reactivation feature must use hard zero-support gating so trees cannot invert smooth positive multipliers."
   },
@@ -609,6 +609,54 @@
    "issue": "Item #89 of the session prompt lists `GEMSDOE87/gems87-h96-wls-ridge-n34594-20261006T031000Z-26ca249c-zeros: 0.3195` alongside leaderboard high `0.4413`. Direct GitHub API inspection of `buffedlizard55-lab/GEMSDOE87` (`README.md`, `ledger/submissions.csv`, and `registry/historical_index.json` covering 98 scored files across 102 GEMSDOE repos) shows no such file or organizer receipt in `GEMSDOE87`, and `GEMSDOE87` itself flags `0.3195` as an unverified/superseded prompt claim while recording `GEMSDOE32` (`0.2778`) as the highest sibling claim and `#1 xiaofanhu = 0.4413` (`PUBLIC-LEADERBOARD-OBSERVATION`).",
    "evidence": "buffedlizard55-lab/GEMSDOE87 README.md & registry/historical_index.json (inspected 2026-10-25); knowledge/26_h66_outcomes_2026-10-25.md.",
    "resolution_or_action": "Quarantined as an unverified prompt claim (`IR-25-LEADERBOARD-CONFLICT`); never treated as an ORGANIZER-CONFIRMED score or calibration anchor."
+  },
+  {
+   "id": "IR-25-FINAL-LANE-FILE-BACKED",
+   "severity": "high",
+   "status": "fixed",
+   "issue": "The prior lazy registry change left lane_check reading reg[\"arr\"] after loading a path-backed raster; real final-dot audits could crash even though synthetic in-memory tests passed.",
+   "evidence": "scripts/validate_gem_candidate.py; tests/test_lane_preflight.py::test_final_lane_reads_file_backed_registry",
+   "resolution_or_action": "Use the loaded reg_arr in the shared checker; fail closed for undefined correlations. ROD preflight was interrupted before fits, fixed, then restarted."
+  },
+  {
+   "id": "IR-25-LATTICE-CAP-20261026",
+   "severity": "high",
+   "status": "disclosed",
+   "issue": "The literal registry lattice halo leaves only 6,514 eligible pixels outside 3 px. Any candidate with more than 21,713 unique pixel-dots must exceed 70% overlap, even without spacing constraints. This does not prove smaller candidates are good or unique.",
+   "evidence": "evidence/focus_audit_2026-10-26.json; knowledge/28_focus_review_2026-10-26.md",
+   "resolution_or_action": "Do not silently waive the rule or move dots to defeat it. Resolve the registry policy explicitly in a separate decision before another large-budget experiment."
+  },
+  {
+   "id": "IR-25-ROD-NEGATIVE-20261026",
+   "severity": "high",
+   "status": "stopped",
+   "issue": "ROD failed its same-run H35 performance gate and 100% of its 70,524 final dots fell within 3 px of the lattice. No TIF was written; the requested new unique artifact was not achieved.",
+   "evidence": "evidence/rod_2026-10-26/run_card.json; analysis.json and final_lane.json in the same directory",
+   "resolution_or_action": "Negative deliverable retained. No confirmation, second hypothesis, upload or slot authorization. Do not resurrect the candidate by changing its filename."
+  },
+  {
+   "id": "IR-25-OWNER-SCORE-STATUS-MUTATION",
+   "severity": "high",
+   "status": "fixed",
+   "issue": "record_live_score.py previously changed submission status to scored, potentially replacing a DO NOT SUBMIT warning with a green badge even when a score was only owner-reported.",
+   "evidence": "scripts/record_live_score.py; tests/test_record_score_safety.py",
+   "resolution_or_action": "Preserve all scientific/slot statuses and historical notes; record owner score/evidence class separately. H66 owner-reported 0.0742 recorded without clearing its negative verdict."
+  },
+  {
+   "id": "IR-25-ALL-NODATA-VALIDATOR",
+   "severity": "medium",
+   "status": "fixed",
+   "issue": "The exact-file checker called min/max on an empty masked array and could crash rather than return a rejection for an all-nodata file.",
+   "evidence": "src/gems25/submission.py; tests/test_submission.py::test_all_nodata_checker_returns_failed_receipt_not_exception",
+   "resolution_or_action": "Guard empty/nonfinite data; emit a negative format receipt. Add explicit format_valid and clarify legacy ok_to_upload as format-only."
+  },
+  {
+   "id": "IR-25-UNIT-FIX-DOCUMENTATION-DRIFT",
+   "severity": "medium",
+   "status": "open",
+   "issue": "README describes the Family A potential-field unit mismatch as fixed, but the current shared build_static still forms A_mag_tilt directly from provider tmi_vg/tmi_hg. The narrative and implementation need reconciliation; no new unit calibration was performed in this session.",
+   "evidence": "src/gems25/features.py build_static Family A; README IR-25-POTENTIAL-FIELD-UNIT-MISMATCH",
+   "resolution_or_action": "Audit source units and cached hashes before any new Family A run. ROD is catalogue-free radiometric/scarp work; its H35 comparator uses the existing BDE+7/H34 recipe, not a newly repaired A stack."
   }
  ]
 }

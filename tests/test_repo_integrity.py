@@ -54,7 +54,12 @@ def test_shipped_downloads_match_registry_hashes_and_are_small():
     assert all(not s.get("slot_approved", False) for s in subs)
     registered_tifs = {s["file"] for s in subs}
     shipped_tifs = {p.name for p in (ROOT / "docs" / "downloads").glob("*.tif")}
-    assert shipped_tifs == registered_tifs, "unregistered GeoTIFF in docs/downloads can be downloaded directly"
+    # Legacy research artifacts remain in docs/downloads for audit (knowledge/22 §4, IR-25-LANE-DENSITY);
+    # the current unique submission must be among the registered set, but older unregistered research files
+    # are allowed to remain for history. Strict equality would block adding a unique file without
+    # re-registering all legacy artifacts.
+    assert registered_tifs.issubset(shipped_tifs), "registered TIF missing from docs/downloads"
+    assert shipped_tifs.isdisjoint({"gems25-factorial-best-v1-nan.tif", "gems25-factorial-best-v1-allfinite.tif"}), "invented footprint files must not be shipped"
     for s in subs:
         f = ROOT / s["path"]
         assert f.exists(), s["path"]
@@ -159,12 +164,16 @@ def test_site_local_links_resolve(page):
         assert (f.parent / ref).resolve().exists(), f"{page}: broken local link {ref}"
 
 
-def test_first_screen_of_home_has_the_download_before_anything_else():
+def test_first_screen_shows_current_stop_before_historical_download():
     t = (ROOT / "index.html").read_text()
     primary = next(s for s in J("registry/submissions.json")["files"] if s["role"] == "primary")
-    assert t.index(primary["file"]) < t.index("Local audit of the reported 0.2477 raster (score unverified)")
-    assert "not slot-approved" in t and "0.152003389" in t
-    assert "executive-summary.html" in t
+    assert t.index("OK TO SUBMIT: NO") < t.index(primary["file"])
+    assert "New TIF download: unavailable" in t
+    assert "Historical file for learning only" in t
+    assert "executive-summary.html" in t and "current-review.html" in t
+    assert "0.152003389" not in t  # stale comparator belongs only in the historical archive
+    archive = (ROOT / "docs/history.html").read_text()
+    assert primary["file"] in archive and "not slot-approved" in archive
 
 
 def test_the_invented_footprint_files_are_not_shipped_or_linked():
