@@ -34,8 +34,25 @@ SIBLINGS = [f"{n}GEMSDOE" for n in (5, 6, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 
 
 
 def is_blocked(url: str) -> bool:
-    host = (urlparse(url).hostname or "").lower()
-    return any(host == s or host.endswith("." + s) for s in BLOCKED_SUFFIXES)
+    """Block DrivenData after canonicalizing DNS-equivalent hostname spellings.
+
+    A fully qualified DNS name may end in a dot (``drivendata.org.``), and
+    IDNA maps Unicode dot separators to ASCII dots. Normalize both before the
+    suffix check so those spellings cannot bypass the no-DrivenData policy.
+    Malformed hostnames fail closed; ordinary non-DrivenData hosts remain
+    available to the source-health feed.
+    """
+    try:
+        host = urlparse(url).hostname
+        if not host:
+            return True
+        host = host.rstrip(".").encode("idna").decode("ascii").lower().rstrip(".")
+        labels = host.split(".")
+        if not host or len(host) > 253 or any(not label or len(label) > 63 for label in labels):
+            return True
+    except (TypeError, UnicodeError, ValueError):
+        return True
+    return any(host == suffix or host.endswith("." + suffix) for suffix in BLOCKED_SUFFIXES)
 
 
 class BlockedRedirect(RuntimeError):

@@ -974,5 +974,55 @@
    "weekly_slots_used": 0
   },
   "pr_and_deployment": "pending explicit PR/check/merge after integration with origin/main; no deployment claimed"
+ },
+ "arena_eb807510_repository_review_2026_10_26": {
+  "schema_version": 1,
+  "date_utc": "2026-10-26",
+  "branch": "arena/eb807510-gemsdoe25",
+  "pass_1_implement_and_verify": {
+   "completed": [
+    "Reviewed AGENTS.md, the complete README, current brief, prior site/score review, shared DTI/holdout/writer/feed code, tests, local data state, and open PR #47.",
+    "Reproduced the no-DrivenData feed-guard bypass for terminal DNS dots and IDNA Unicode dot separators.",
+    "Canonicalized hostnames in scripts/check_sources.py; added URL, redirect, lookalike, and malformed-host regression coverage.",
+    "Recorded the owner-reported focus-site table, conditional B2 explanation, ranked unrun hypotheses, blockers, and no-submit decision in knowledge/32_repository_review_2026-10-26_eb807510.md."
+   ],
+   "decision": "No geological experiment, score estimate, new raster, upload, or weekly slot. The brief lacks the method paragraph/lane assignment required by its own parallel-run protocol."
+  },
+  "pass_2_bugs_assumptions_edge_cases": {
+   "found_and_fixed": [
+    "IR-26-FEED-DNS-CANONICALIZATION-20261026: feed host checks now IDNA-canonicalize and strip terminal dots, and malformed hosts fail closed.",
+    "Regression tests cover DNS root/subdomains, uppercase, repeated terminal dots, all three Unicode dot separators, lookalike hosts, malformed host, and pre-request redirect blocking."
+   ],
+   "external_and_gate_limits": [
+    "No DrivenData page, leaderboard, submission endpoint, or credentials accessed.",
+    "No local template/data/cache restored; 12 data/template-dependent tests remain skipped.",
+    "PR #47 is a separate open branch and remains DIRTY/CONFLICTING; not modified or represented as merged.",
+    "No lane clearance, HOLDOUT-DTI, raster validator, uniqueness clearance, or organizer score is asserted."
+   ]
+  },
+  "pass_3_original_request_reconciliation": {
+   "confirmed": [
+    "All nine focus sites are listed with OWNER-REPORTED score labels and unknown new-file estimates.",
+    "GEMSDOE32 B2 pruning is described as a plausible DTI mechanism, not proved causation; 0.3195 and 0.4413 are left unverified/conflicting.",
+    "Three geological hypotheses include named layers, target signatures, distinction, mimics, qualitative upside/cost, and data-status caveats; none is claimed tested.",
+    "The missing method paragraph is explicitly treated as a protocol blocker; no new TIFF or submission approval is claimed.",
+    "One JSON run card is recorded at registry/run_card_repo_review_2026-10-26_eb807510.json."
+   ],
+   "verification": {
+    "pytest": "323 passed, 12 skipped",
+    "ruff": "passed",
+    "compileall": "passed",
+    "node_check": "passed",
+    "git_diff_check": "passed"
+   },
+   "pr_merge": "Not yet created for this review; no merge or Pages deployment claimed."
+  },
+  "files": [
+   "scripts/check_sources.py",
+   "tests/test_feed_host_safety.py",
+   "registry/irregularities.json",
+   "knowledge/32_repository_review_2026-10-26_eb807510.md",
+   "registry/run_card_repo_review_2026-10-26_eb807510.json"
+  ]
  }
 }

@@ -785,6 +785,14 @@
    "issue": "The final corrected H72-CF candidate's surface passes the rank gate (max |Spearman| 0.2177), and final dots clear all 27 pinned focus/top scorers (max 64.02%) plus every own-lineage raster (max 49.86%), but final dots exceed 70% within 3 px of five registry rasters: r13 lattice 100%, pindrop-nodes 85.50%, h23-a-6pct 81.79%, pindrop-discovery 79.68%, and r7-nms3-dem10-scarp 72.39%.",
    "evidence": "docs/downloads/lane-gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.json; evidence/h72_cf_lane_surface.json",
    "resolution_or_action": "Mandatory duplicate/stop applied. No density exception, registry-driven relocation, jitter, or additional emission experiment was run. File remains testing-only and not slot-approved."
+  },
+  {
+   "id": "IR-26-FEED-DNS-CANONICALIZATION-20261026",
+   "severity": "high",
+   "status": "fixed",
+   "issue": "The automatic source-feed host guard treated DNS-equivalent DrivenData host spellings with a terminal DNS dot (for example, www.drivendata.org.) and IDNA Unicode dot separators as unblocked. A matching source URL or redirect could therefore bypass the no-DrivenData request policy.",
+   "evidence": "Pre-fix reproduction: scripts/check_sources.py:is_blocked returned false for https://www.drivendata.org./leaderboard/ and https://www.drivendata\u3002org/leaderboard/. Regression coverage: tests/test_feed_host_safety.py.",
+   "resolution_or_action": "Canonicalize hostnames through IDNA, strip terminal DNS dots before and after canonicalization, and fail closed on malformed hostnames. Tests assert URL and redirect variants are rejected before any request to the target host."
   }
  ]
 }
