@@ -60,3 +60,6 @@
 | `25_preregistered_h38_ospc_submod_factorial_2026-10-25.md` | session 8 H38-OSPC (committed pre-fit): ranked untried hypotheses `H38-1..H38-5` and frozen $2 \times 2$ `H38-OSPC × 300 m submodular skeleton` factorial design on fresh draws `[24, 25]` / `[26, 27]` |
 | `26_h38_outcomes_and_0.2778_phd_synthesis_2026-10-25.md` | session 8 H38-OSPC outcomes: PhD proof of `GEMSDOE32` `0.2778` across all 9 focus sites, `H38` $2 \times 2$ factorial results (negative overall `-0.0011`, `NW +0.0070` vs `SW/SE -0.0034/-0.0066` structural regime split), unique `H38-OSPC` GeoTIFF `680d62616417` (`0/21` sibling top-scorers flagged; DO NOT SUBMIT) |
 | `current_project_brief_2026-10-25_session8.md` | session 8 consolidated scope and acceptance criteria |
+| `27_preregistered_h71_hgpc_2026-10-26.md` | this session (`arena/71b61fac-gemsdoe25`): 5 ranked untried hypotheses (`H71-1..H71-5`) and frozen `H71-1` HGPC-BLIND DIRECT-emission screen (draws 70, 71) — committed **before any fit** |
+| `28_h71_outcomes_2026-10-26.md` | H71 3-experiment outcomes (all FAIL vs H35, all PASS vs crest), unique GeoTIFF `9eb0c31e5149` (15.4% vs B2; own-lineage 23.4%; DO NOT SUBMIT) |
+| `current_session_brief_2026-10-26_h71_CONDENSED.md` | condensed 2026-10-26 working brief (not verbatim) |

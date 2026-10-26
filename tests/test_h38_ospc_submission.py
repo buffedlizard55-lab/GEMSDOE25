@@ -112,7 +112,8 @@ def test_site_and_readme_surface_h38_verdict_at_top():
     for rel in ("index.html", "docs/index.html", "docs/executive-summary.html"):
         html = (ROOT / rel).read_text()
         assert "OK TO SUBMIT: NO" in html
-        assert "New TIF download: unavailable" in html
+        assert "DO NOT SUBMIT" in html
+        assert "New TIF download: unavailable" not in html
     readme = (ROOT / "README.md").read_text()
     assert primary["file"] in readme
     assert "OK to download (local testing): YES · OK to spend a weekly slot: NO — DO NOT SUBMIT" in readme

@@ -1,0 +1,41 @@
+{
+ "experiment": "H71-4-MAG",
+ "hypothesis": "DIRECT emission from multi-scale structure-tensor persistence of shallow residual RTP, B=2 collar, sapd 3.0",
+ "preregistration": "knowledge/27_preregistered_h71_hgpc_2026-10-26.md",
+ "draws": [
+  78,
+  79
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "kfrac": 0.035,
+ "min_dist_primary": 3.0,
+ "min_dist_h35_control": 2.4,
+ "collar_b2_px": 2.0,
+ "columns": [
+  "H71_mag_aniso_persist",
+  "H71_crest_ctrl"
+ ],
+ "arms": [
+  "CTRL_CREST_B2",
+  "MAG_ANISO_B2",
+  "CTRL_H35_24"
+ ],
+ "primary_arm": "MAG_ANISO_B2",
+ "controls": [
+  "CTRL_CREST_B2",
+  "CTRL_H35_24"
+ ],
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px) via gems25.experiment.Cell.evaluate",
+ "leakage_auc_cap": 0.9,
+ "gate": {
+  "mean_gain_gt": 0.001,
+  "folds_positive_min": 3,
+  "worst_fold_min": -0.01,
+  "mean_hug_increase_max": 0.1
+ }
+}

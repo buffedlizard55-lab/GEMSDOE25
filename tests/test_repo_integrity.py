@@ -168,7 +168,10 @@ def test_first_screen_shows_current_stop_before_historical_download():
     t = (ROOT / "index.html").read_text()
     primary = next(s for s in J("registry/submissions.json")["files"] if s["role"] == "primary")
     assert t.index("OK TO SUBMIT: NO") < t.index(primary["file"])
-    assert "New TIF download: unavailable" in t
+    assert "OK to download: YES" in t
+    assert "OK to spend a weekly slot: NO" in t
+    assert "DO NOT SUBMIT" in t
+    assert "New TIF download: unavailable" not in t
     assert "Historical file for learning only" in t
     assert "executive-summary.html" in t and "current-review.html" in t
     assert "0.152003389" not in t  # stale comparator belongs only in the historical archive

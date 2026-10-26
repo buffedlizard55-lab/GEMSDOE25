@@ -53,9 +53,16 @@ This is a catalogue-gap proxy, not an organizer score or blind-fault performance
 <a href="../knowledge/28_preregistered_pol3_signed_halfgraben_2026-10-26.md">frozen preregistration</a> ·
 <a href="../registry/run_card_pol3_screen_2026-10-26.json">POL3 run card</a> ·
 <a href="../evidence/pol3_screen_2026-10-26/summary.json">saved-cell result</a>.</p></section>'''
-    download = '<p><b>New TIF download: unavailable.</b> The strict stop gate prevents publishing a rejected candidate as a submission.</p>'
-    if card and card.get('submission_name'):
-        download = f'<a class="btn alt" download href="downloads/{e(card["submission_name"])}">Download negative diagnostic TIF — DO NOT SUBMIT</a>'
+    subs = json.loads((ROOT / "registry" / "submissions.json").read_text())["files"]
+    featured = next(s for s in subs if s["role"] == "primary")
+    download = (
+        f'<p><b>OK to download: YES</b> for local testing of unique content id '
+        f'<code>{e(featured["content_id"])}</code>. '
+        f'<b>OK to spend a weekly slot: NO — DO NOT SUBMIT.</b> '
+        f'H71 HGPC-BLIND is format-valid and density-aware unique vs scored rasters; '
+        f'three DIRECT screens failed vs H35. ROD/POL3 wrote no competition TIFF.</p>'
+        f'<a class="btn" download href="downloads/{e(featured["file"])}">↓ Download {e(featured["file"])} — testing only</a>'
+    )
     historical = 'gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif'
     rows, cards = [], []
     for row in sorted(focus['sites'], key=lambda r: -r['owner_reported_score']):
@@ -70,8 +77,9 @@ Not approved as a new submission. SHA-256: <code class="wrap-hash">{row['sha256'
     body = f'''<section class="hero"><p class="eyebrow">RESEARCH DECISION BRIEF / 26 OCTOBER 2026</p>
 <h1>Know what to submit.<br>Know when to stop.</h1>
 <p class="lead">Nine focus sites, one auditable comparison, and a new geological test. No renamed reference files. No predicted leaderboard scores.</p></section>
-<section class="review-decision"><span class="badge b-bad">DO NOT SUBMIT</span><h2>No new file is slot-cleared</h2>
-<p>{status}</p>{download}
+<section class="review-decision"><span class="badge b-bad">OK TO SUBMIT: NO</span><h2>Unique research GeoTIFF is downloadable — not slot-cleared</h2>
+<p>{e(featured['title'])}. {e(featured['summary'])}</p>
+<p>ROD stop: {status}</p>{download}
 <div class="row"><a class="btn" href="../evidence/rod_2026-10-26/run_card.json" download>Download decision receipt</a>
 <a class="btn alt" href="#how-to-submit">Submission checklist</a></div></section>
 <section><h2>What is the strongest historical evidence?</h2>
@@ -135,12 +143,14 @@ def readme_status():
     brief = (ROOT/'knowledge/current_project_brief_2026-10-26.md').read_text()
     return ("<!-- CURRENT-REVIEW-2026-10-26 -->\n"
             "## Current decision — 2026-10-26\n\n"
-            "**OK TO SUBMIT: NO.** [Nine-site executive review and automated ROD result](docs/current-review.html) · "
-            "[Scientific report](knowledge/28_focus_review_2026-10-26.md) · "
-            "[Run card](evidence/rod_2026-10-26/run_card.json). "
+            "**OK to download: YES · OK to spend a weekly slot: NO — DO NOT SUBMIT.** "
+            "Featured unique GeoTIFF [`gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif`](docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif) "
+            "(content id `9eb0c31e5149`; HOLDOUT-DTI FAIL vs H35). "
+            "[Nine-site executive review and automated ROD result](docs/current-review.html) · "
+            "[H71 outcomes](knowledge/28_h71_outcomes_2026-10-26.md) · "
+            "[ROD run card](evidence/rod_2026-10-26/run_card.json). "
             "GEMSDOE32 B2 is the strongest supplied historical exemplar (**OWNER-REPORTED 0.2778**), not a new submission. "
-            "No new TIF is approved; do not reinterpret historical downloads or format-only receipts as authorization. "
-            "The new radiometric-offset hypothesis was preregistered and tested against the same-run H35 comparator. "
+            "Do not reinterpret historical downloads or format-only receipts as authorization. "
             "No weekly slot was used.\n\n"
             "Read the current owner brief below every session, then the preserved historical prompts. "
             "**Maximize P(Win)** and **Own the Outcome**: a negative scientific result is not an excuse to submit a rejected file.\n\n"
