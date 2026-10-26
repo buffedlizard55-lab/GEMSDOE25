@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "generated_by": "scripts/register_h71_submission.py (2026-10-26, H71 HGPC-BLIND session)",
+ "generated_by": "merge: H71 featured primary onto 2026-10-26 main (APFL/POL3/ROD retained as alternate/history)",
  "files": [
   {
    "id": "h71-hgpc-blind",
@@ -253,6 +253,250 @@
    "title": "H71-1 HGPC-BLIND (NaN-outside template twin) \u2014 DO NOT SUBMIT",
    "summary": "Pixel-identical on the 5,167,373-pixel footprint to the H71-1 zeros-outside primary (content_id 9eb0c31e5149, 59,472 dots), with NaN outside the footprint. DO NOT SUBMIT either file.",
    "note": "GEMSDOE25 H71 HGPC-B | holdout FAIL; no slot; unscored; not slot-approved | id 9eb0c31e5149"
+  },
+  {
+   "id": "apfl-piedmont-flexure",
+   "role": "alternate",
+   "file": "gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-zeros.tif",
+   "path": "docs/downloads/gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-zeros.tif",
+   "bytes": 836650,
+   "sha256": "6648cbebcf724f82f18682632d1770084bc293a1db63d1394bb42871de5279fc",
+   "content_id": "8aebdab87158",
+   "positive_pixels": 43798,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "np.nanmin/np.nanmax over the whole array",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-zeros.json",
+   "outside": "zero",
+   "status": "UNIQUE BY CONTENT \u00b7 FORMAT-VALID \u00b7 HOLDOUT-DTI pending (no gate yet) \u00b7 LANE UNIQUE (0.15/0.33) vs registry \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "zip": "gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-zeros.zip",
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "expected_range": "HOLDOUT-DTI gate not yet run \u2014 no slot, not a score; lane unique vs 32 scored + 32 docs/downloads rasters",
+   "lane": {
+    "lane_clear": true,
+    "strict_verdict": "UNIQUE vs available registry",
+    "lattice_overlap": 1.0,
+    "focus_winners": {
+     "n": 21,
+     "worst_cand_dots_within_3px": 0.231,
+     "worst_overlap_file": "gems25-h31-aniso-scarp",
+     "worst_abs_spearman_surface": 0.045,
+     "b2_overlap": 0.23,
+     "b2_reverse_overlap": 0.249
+    },
+    "external_sparse": {
+     "n": 11,
+     "worst_abs_spearman_surface": 0.051,
+     "worst_cand_dots_within_3px": 0.328
+    },
+    "own_lineage": {
+     "n": 32,
+     "worst_abs_spearman_surface": 0.145,
+     "worst_cand_dots_within_3px": 0.297
+    }
+   },
+   "lane_summary": "LANE UNIQUE: max |Spearman| 0.146 (self 0.15) vs cap 0.90, max 3-px dot-share 0.297 vs cap 0.70; lattice 13gems 1.00 raw but halo 0.9987 non-discriminative, symmetric min 0.30 pass (IR-25-LANE-DENSITY). Vs 21 focus winners max 0.23, vs B2 0.23 well below threshold.",
+   "slot_reason": "HOLDOUT-DTI screen not yet run (pending draws 60,61); file is testing-only, lane clean, format-valid \u2014 DO NOT SUBMIT without separate selector slot approval",
+   "run_card": "registry/run_card_apfl_2026-10-26.json",
+   "title": "H67-APFL Piedmont Flexure (s3.0, k3.5, zeros outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
+   "summary": "Unique 2026-10-26 GeoTIFF (43,798 binary dots, min_dist=3.0 px) from catalogue-free APFL product detector: L_valid\u00b7(L_step^0.35\u00b7gravAS^0.30\u00b7depthGrad^0.20\u00b7condGrad^0.05\u00b7TPI^0.10)\u00b7(1+0.5\u00b7crest) with p1-p99 scaling, ridge-NMS, score-ordered Poisson-disk s3.0, tip-preserved flank shield r2.5 px (50,810 flank ridges removed, 2,532 tip relays preserved, hug 3.9%). Lane UNIQUE vs 32 registry rasters (max |\u03c1| 0.146, max 3-px overlap 0.297) and vs all scored focus winners; zeros outside prevents Predicted values must be in range [0,1] error. Testing only \u2014 HOLDOUT-DTI pending, DO NOT SUBMIT. Strict lane UNIQUE vs registry (max |\u03c1| 0.15 vs 0.90, max 3-px overlap 0.30 vs 0.70).",
+   "note": "GEMSDOE25 APFL piedmont flexure | no slot; unscored; not slot-approved | id 8aebdab87158"
+  },
+  {
+   "id": "apfl-piedmont-flexure-nan",
+   "role": "alternate",
+   "file": "gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-nan.tif",
+   "path": "docs/downloads/gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-nan.tif",
+   "bytes": 1601806,
+   "sha256": "8848a2935cf2c2ffaaf5e77b62a3fd17959c3aaa667409f87a67b3609e66ac60",
+   "content_id": "8aebdab87158",
+   "positive_pixels": 43798,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": true,
+     "detail": "7,111,787/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=nan",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "np.nanmin/np.nanmax over the whole array",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": false,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-nan.json",
+   "outside": "nan",
+   "status": "NaN-outside twin of APFL primary (same 43,798 dots, identical footprint values); same verdict: lane UNIQUE, HOLDOUT pending, DO NOT SUBMIT",
+   "zip": "gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-zeros.zip",
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "expected_range": "twin of primary \u2014 same dots, NaN outside per template convention",
+   "lane": {
+    "lane_clear": true
+   },
+   "lane_summary": "twin",
+   "slot_reason": "twin",
+   "run_card": "registry/run_card_apfl_2026-10-26.json",
+   "title": "H67-APFL twin (NaN outside) \u2014 DO NOT SUBMIT",
+   "summary": "NaN-outside twin of APFL primary (same 43,798 dots); for strict whole-array validators; DO NOT SUBMIT",
+   "note": "GEMSDOE25 APFL piedmont flexure twin | no slot; unscored; fallback NaN outside, not slot-approved | id 8aebdab87158"
   },
   {
    "id": "h66-mgd-flank",

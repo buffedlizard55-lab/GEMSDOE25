@@ -1,0 +1,40 @@
+{
+  "evaluator": "gems25.holdout.v1.2-buffered-4quad-pooled-dti",
+  "draws": [
+    58,
+    59
+  ],
+  "cells": 8,
+  "withheld_positives": 22595,
+  "control_pooled": {
+    "dti": 0.16127482737058552,
+    "withheld_positives": 22595,
+    "tp": 6034.371062871151,
+    "fp": 90669.10505175329,
+    "fn": 16560.62893712885
+  },
+  "candidate_pooled": {
+    "dti": 0.16027999925600653,
+    "withheld_positives": 22595,
+    "tp": 6008.627683904486,
+    "fp": 91052.96552109682,
+    "fn": 16586.372316095512
+  },
+  "paired_fold_mean_gain": -0.0008584532469557218,
+  "paired_fold_ci95": [
+    -0.009452032136077322,
+    0.0077351256421658784
+  ],
+  "paired_gain_by_fold": [
+    0.0007678108656494764,
+    -0.005594912966357002,
+    -0.00466919119713971,
+    0.0060624803100243485
+  ],
+  "positive_folds": 2,
+  "mean_hug_delta": -0.0035144224040589596,
+  "max_canary_auc": 0.6015164594883766,
+  "screen_gate_passed": false,
+  "full_catalogue_raster_emitted": false,
+  "analysis_note": "Computed from saved cells.jsonl only; no model refit, parameter change, or candidate raster emission."
+}

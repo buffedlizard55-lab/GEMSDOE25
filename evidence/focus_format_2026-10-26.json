@@ -1,0 +1,830 @@
+{
+  "24": {
+    "file": "g24_d1-5_0.2477.tif",
+    "bytes": 1632732,
+    "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+    "ok_to_upload": true,
+    "hard_failures": [],
+    "official_nan_outside": true,
+    "positive_pixels": 60069,
+    "footprint_pixels": 5167373,
+    "checks": {
+      "template_matches_expected_grid_and_footprint": {
+        "pass_": true,
+        "detail": "(3730, 3292), footprint 5,167,373 px",
+        "hard": true
+      },
+      "single_band": {
+        "pass_": true,
+        "detail": "count=1",
+        "hard": true
+      },
+      "dtype_float32": {
+        "pass_": true,
+        "detail": "dtypes=('float32',)",
+        "hard": true
+      },
+      "crs_epsg_32611": {
+        "pass_": true,
+        "detail": "32611",
+        "hard": true
+      },
+      "shape_matches_template": {
+        "pass_": true,
+        "detail": "(3730, 3292) vs (3730, 3292)",
+        "hard": true
+      },
+      "geotransform_matches_template": {
+        "pass_": true,
+        "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+        "hard": true
+      },
+      "footprint_all_finite": {
+        "pass_": true,
+        "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+        "hard": true
+      },
+      "footprint_values_in_0_1": {
+        "pass_": true,
+        "detail": "min=0.0 max=1.0",
+        "hard": true
+      },
+      "outside_footprint_is_nan_official": {
+        "pass_": true,
+        "detail": "7,111,787/7,111,787 NaN",
+        "hard": false
+      },
+      "outside_footprint_is_nan_or_zero": {
+        "pass_": true,
+        "detail": "NaN (official) or 0 (fallback) outside",
+        "hard": true
+      },
+      "nan_mask_identical_to_template": {
+        "pass_": true,
+        "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+        "hard": true
+      },
+      "nodata_tag": {
+        "pass_": true,
+        "detail": "nodata=nan",
+        "hard": false
+      },
+      "variant_nan_aware_whole_array": {
+        "pass_": true,
+        "detail": "np.nanmin/np.nanmax over the whole array",
+        "hard": true
+      },
+      "variant_masked_read": {
+        "pass_": true,
+        "detail": "rasterio masked read",
+        "hard": true
+      },
+      "variant_strict_whole_array_no_nan": {
+        "pass_": false,
+        "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+        "hard": false
+      },
+      "profile_matches_template": {
+        "pass_": true,
+        "detail": "compress=lzw (template lzw)",
+        "hard": false
+      }
+    }
+  },
+  "25": {
+    "file": "g25_d2-8_0.2600.tif",
+    "bytes": 1603424,
+    "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+    "ok_to_upload": true,
+    "hard_failures": [],
+    "official_nan_outside": true,
+    "positive_pixels": 44090,
+    "footprint_pixels": 5167373,
+    "checks": {
+      "template_matches_expected_grid_and_footprint": {
+        "pass_": true,
+        "detail": "(3730, 3292), footprint 5,167,373 px",
+        "hard": true
+      },
+      "single_band": {
+        "pass_": true,
+        "detail": "count=1",
+        "hard": true
+      },
+      "dtype_float32": {
+        "pass_": true,
+        "detail": "dtypes=('float32',)",
+        "hard": true
+      },
+      "crs_epsg_32611": {
+        "pass_": true,
+        "detail": "32611",
+        "hard": true
+      },
+      "shape_matches_template": {
+        "pass_": true,
+        "detail": "(3730, 3292) vs (3730, 3292)",
+        "hard": true
+      },
+      "geotransform_matches_template": {
+        "pass_": true,
+        "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+        "hard": true
+      },
+      "footprint_all_finite": {
+        "pass_": true,
+        "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+        "hard": true
+      },
+      "footprint_values_in_0_1": {
+        "pass_": true,
+        "detail": "min=0.0 max=1.0",
+        "hard": true
+      },
+      "outside_footprint_is_nan_official": {
+        "pass_": true,
+        "detail": "7,111,787/7,111,787 NaN",
+        "hard": false
+      },
+      "outside_footprint_is_nan_or_zero": {
+        "pass_": true,
+        "detail": "NaN (official) or 0 (fallback) outside",
+        "hard": true
+      },
+      "nan_mask_identical_to_template": {
+        "pass_": true,
+        "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+        "hard": true
+      },
+      "nodata_tag": {
+        "pass_": true,
+        "detail": "nodata=nan",
+        "hard": false
+      },
+      "variant_nan_aware_whole_array": {
+        "pass_": true,
+        "detail": "np.nanmin/np.nanmax over the whole array",
+        "hard": true
+      },
+      "variant_masked_read": {
+        "pass_": true,
+        "detail": "rasterio masked read",
+        "hard": true
+      },
+      "variant_strict_whole_array_no_nan": {
+        "pass_": false,
+        "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+        "hard": false
+      },
+      "profile_matches_template": {
+        "pass_": true,
+        "detail": "compress=lzw (template lzw)",
+        "hard": false
+      }
+    }
+  },
+  "27": {
+    "file": "g27_topo-gap-d1-5_0.2449.tif",
+    "bytes": 1635084,
+    "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+    "ok_to_upload": true,
+    "hard_failures": [],
+    "official_nan_outside": true,
+    "positive_pixels": 61328,
+    "footprint_pixels": 5167373,
+    "checks": {
+      "template_matches_expected_grid_and_footprint": {
+        "pass_": true,
+        "detail": "(3730, 3292), footprint 5,167,373 px",
+        "hard": true
+      },
+      "single_band": {
+        "pass_": true,
+        "detail": "count=1",
+        "hard": true
+      },
+      "dtype_float32": {
+        "pass_": true,
+        "detail": "dtypes=('float32',)",
+        "hard": true
+      },
+      "crs_epsg_32611": {
+        "pass_": true,
+        "detail": "32611",
+        "hard": true
+      },
+      "shape_matches_template": {
+        "pass_": true,
+        "detail": "(3730, 3292) vs (3730, 3292)",
+        "hard": true
+      },
+      "geotransform_matches_template": {
+        "pass_": true,
+        "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+        "hard": true
+      },
+      "footprint_all_finite": {
+        "pass_": true,
+        "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+        "hard": true
+      },
+      "footprint_values_in_0_1": {
+        "pass_": true,
+        "detail": "min=0.0 max=1.0",
+        "hard": true
+      },
+      "outside_footprint_is_nan_official": {
+        "pass_": true,
+        "detail": "7,111,787/7,111,787 NaN",
+        "hard": false
+      },
+      "outside_footprint_is_nan_or_zero": {
+        "pass_": true,
+        "detail": "NaN (official) or 0 (fallback) outside",
+        "hard": true
+      },
+      "nan_mask_identical_to_template": {
+        "pass_": true,
+        "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+        "hard": true
+      },
+      "nodata_tag": {
+        "pass_": true,
+        "detail": "nodata=nan",
+        "hard": false
+      },
+      "variant_nan_aware_whole_array": {
+        "pass_": true,
+        "detail": "np.nanmin/np.nanmax over the whole array",
+        "hard": true
+      },
+      "variant_masked_read": {
+        "pass_": true,
+        "detail": "rasterio masked read",
+        "hard": true
+      },
+      "variant_strict_whole_array_no_nan": {
+        "pass_": false,
+        "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+        "hard": false
+      },
+      "profile_matches_template": {
+        "pass_": true,
+        "detail": "compress=lzw (template lzw)",
+        "hard": false
+      }
+    }
+  },
+  "28": {
+    "file": "g28_h36-1-rung30_0.2710.tif",
+    "bytes": 1590848,
+    "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+    "ok_to_upload": true,
+    "hard_failures": [],
+    "official_nan_outside": true,
+    "positive_pixels": 37660,
+    "footprint_pixels": 5167373,
+    "checks": {
+      "template_matches_expected_grid_and_footprint": {
+        "pass_": true,
+        "detail": "(3730, 3292), footprint 5,167,373 px",
+        "hard": true
+      },
+      "single_band": {
+        "pass_": true,
+        "detail": "count=1",
+        "hard": true
+      },
+      "dtype_float32": {
+        "pass_": true,
+        "detail": "dtypes=('float32',)",
+        "hard": true
+      },
+      "crs_epsg_32611": {
+        "pass_": true,
+        "detail": "32611",
+        "hard": true
+      },
+      "shape_matches_template": {
+        "pass_": true,
+        "detail": "(3730, 3292) vs (3730, 3292)",
+        "hard": true
+      },
+      "geotransform_matches_template": {
+        "pass_": true,
+        "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+        "hard": true
+      },
+      "footprint_all_finite": {
+        "pass_": true,
+        "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+        "hard": true
+      },
+      "footprint_values_in_0_1": {
+        "pass_": true,
+        "detail": "min=0.0 max=1.0",
+        "hard": true
+      },
+      "outside_footprint_is_nan_official": {
+        "pass_": true,
+        "detail": "7,111,787/7,111,787 NaN",
+        "hard": false
+      },
+      "outside_footprint_is_nan_or_zero": {
+        "pass_": true,
+        "detail": "NaN (official) or 0 (fallback) outside",
+        "hard": true
+      },
+      "nan_mask_identical_to_template": {
+        "pass_": true,
+        "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+        "hard": true
+      },
+      "nodata_tag": {
+        "pass_": true,
+        "detail": "nodata=nan",
+        "hard": false
+      },
+      "variant_nan_aware_whole_array": {
+        "pass_": true,
+        "detail": "np.nanmin/np.nanmax over the whole array",
+        "hard": true
+      },
+      "variant_masked_read": {
+        "pass_": true,
+        "detail": "rasterio masked read",
+        "hard": true
+      },
+      "variant_strict_whole_array_no_nan": {
+        "pass_": false,
+        "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+        "hard": false
+      },
+      "profile_matches_template": {
+        "pass_": true,
+        "detail": "compress=lzw (template lzw)",
+        "hard": false
+      }
+    }
+  },
+  "30": {
+    "file": "g30_d28-poisson_0.2600.tif",
+    "bytes": 1573188,
+    "sha256": "5f963b8bca5ec226ddc7caaadec239c6be6d28aa567f890033be04d04bfd5e32",
+    "ok_to_upload": true,
+    "hard_failures": [],
+    "official_nan_outside": true,
+    "positive_pixels": 44090,
+    "footprint_pixels": 5167373,
+    "checks": {
+      "template_matches_expected_grid_and_footprint": {
+        "pass_": true,
+        "detail": "(3730, 3292), footprint 5,167,373 px",
+        "hard": true
+      },
+      "single_band": {
+        "pass_": true,
+        "detail": "count=1",
+        "hard": true
+      },
+      "dtype_float32": {
+        "pass_": true,
+        "detail": "dtypes=('float32',)",
+        "hard": true
+      },
+      "crs_epsg_32611": {
+        "pass_": true,
+        "detail": "32611",
+        "hard": true
+      },
+      "shape_matches_template": {
+        "pass_": true,
+        "detail": "(3730, 3292) vs (3730, 3292)",
+        "hard": true
+      },
+      "geotransform_matches_template": {
+        "pass_": true,
+        "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+        "hard": true
+      },
+      "footprint_all_finite": {
+        "pass_": true,
+        "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+        "hard": true
+      },
+      "footprint_values_in_0_1": {
+        "pass_": true,
+        "detail": "min=0.0 max=1.0",
+        "hard": true
+      },
+      "outside_footprint_is_nan_official": {
+        "pass_": true,
+        "detail": "7,111,787/7,111,787 NaN",
+        "hard": false
+      },
+      "outside_footprint_is_nan_or_zero": {
+        "pass_": true,
+        "detail": "NaN (official) or 0 (fallback) outside",
+        "hard": true
+      },
+      "nan_mask_identical_to_template": {
+        "pass_": true,
+        "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+        "hard": true
+      },
+      "nodata_tag": {
+        "pass_": true,
+        "detail": "nodata=nan",
+        "hard": false
+      },
+      "variant_nan_aware_whole_array": {
+        "pass_": true,
+        "detail": "np.nanmin/np.nanmax over the whole array",
+        "hard": true
+      },
+      "variant_masked_read": {
+        "pass_": true,
+        "detail": "rasterio masked read",
+        "hard": true
+      },
+      "variant_strict_whole_array_no_nan": {
+        "pass_": false,
+        "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+        "hard": false
+      },
+      "profile_matches_template": {
+        "pass_": true,
+        "detail": "compress=lzw (template lzw)",
+        "hard": false
+      }
+    }
+  },
+  "31": {
+    "file": "g31_h27-4-solo-d28_0.2708.tif",
+    "bytes": 199214,
+    "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+    "ok_to_upload": true,
+    "hard_failures": [],
+    "official_nan_outside": true,
+    "positive_pixels": 40199,
+    "footprint_pixels": 5167373,
+    "checks": {
+      "template_matches_expected_grid_and_footprint": {
+        "pass_": true,
+        "detail": "(3730, 3292), footprint 5,167,373 px",
+        "hard": true
+      },
+      "single_band": {
+        "pass_": true,
+        "detail": "count=1",
+        "hard": true
+      },
+      "dtype_float32": {
+        "pass_": true,
+        "detail": "dtypes=('float32',)",
+        "hard": true
+      },
+      "crs_epsg_32611": {
+        "pass_": true,
+        "detail": "32611",
+        "hard": true
+      },
+      "shape_matches_template": {
+        "pass_": true,
+        "detail": "(3730, 3292) vs (3730, 3292)",
+        "hard": true
+      },
+      "geotransform_matches_template": {
+        "pass_": true,
+        "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+        "hard": true
+      },
+      "footprint_all_finite": {
+        "pass_": true,
+        "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+        "hard": true
+      },
+      "footprint_values_in_0_1": {
+        "pass_": true,
+        "detail": "min=0.0 max=1.0",
+        "hard": true
+      },
+      "outside_footprint_is_nan_official": {
+        "pass_": true,
+        "detail": "7,111,787/7,111,787 NaN",
+        "hard": false
+      },
+      "outside_footprint_is_nan_or_zero": {
+        "pass_": true,
+        "detail": "NaN (official) or 0 (fallback) outside",
+        "hard": true
+      },
+      "nan_mask_identical_to_template": {
+        "pass_": true,
+        "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+        "hard": true
+      },
+      "nodata_tag": {
+        "pass_": true,
+        "detail": "nodata=nan",
+        "hard": false
+      },
+      "variant_nan_aware_whole_array": {
+        "pass_": true,
+        "detail": "np.nanmin/np.nanmax over the whole array",
+        "hard": true
+      },
+      "variant_masked_read": {
+        "pass_": true,
+        "detail": "rasterio masked read",
+        "hard": true
+      },
+      "variant_strict_whole_array_no_nan": {
+        "pass_": false,
+        "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+        "hard": false
+      },
+      "profile_matches_template": {
+        "pass_": true,
+        "detail": "compress=deflate (template lzw)",
+        "hard": false
+      }
+    }
+  },
+  "32": {
+    "file": "g32_h33-2-b2_0.2778.tif",
+    "bytes": 219065,
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "ok_to_upload": true,
+    "hard_failures": [],
+    "official_nan_outside": false,
+    "positive_pixels": 37654,
+    "footprint_pixels": 5167373,
+    "checks": {
+      "template_matches_expected_grid_and_footprint": {
+        "pass_": true,
+        "detail": "(3730, 3292), footprint 5,167,373 px",
+        "hard": true
+      },
+      "single_band": {
+        "pass_": true,
+        "detail": "count=1",
+        "hard": true
+      },
+      "dtype_float32": {
+        "pass_": true,
+        "detail": "dtypes=('float32',)",
+        "hard": true
+      },
+      "crs_epsg_32611": {
+        "pass_": true,
+        "detail": "32611",
+        "hard": true
+      },
+      "shape_matches_template": {
+        "pass_": true,
+        "detail": "(3730, 3292) vs (3730, 3292)",
+        "hard": true
+      },
+      "geotransform_matches_template": {
+        "pass_": true,
+        "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+        "hard": true
+      },
+      "footprint_all_finite": {
+        "pass_": true,
+        "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+        "hard": true
+      },
+      "footprint_values_in_0_1": {
+        "pass_": true,
+        "detail": "min=0.0 max=1.0",
+        "hard": true
+      },
+      "outside_footprint_is_nan_official": {
+        "pass_": false,
+        "detail": "0/7,111,787 NaN",
+        "hard": false
+      },
+      "outside_footprint_is_nan_or_zero": {
+        "pass_": true,
+        "detail": "NaN (official) or 0 (fallback) outside",
+        "hard": true
+      },
+      "nan_mask_identical_to_template": {
+        "pass_": true,
+        "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+        "hard": true
+      },
+      "nodata_tag": {
+        "pass_": true,
+        "detail": "nodata=None",
+        "hard": false
+      },
+      "variant_nan_aware_whole_array": {
+        "pass_": true,
+        "detail": "np.nanmin/np.nanmax over the whole array",
+        "hard": true
+      },
+      "variant_masked_read": {
+        "pass_": true,
+        "detail": "rasterio masked read",
+        "hard": true
+      },
+      "variant_strict_whole_array_no_nan": {
+        "pass_": true,
+        "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+        "hard": false
+      },
+      "profile_matches_template": {
+        "pass_": true,
+        "detail": "compress=deflate (template lzw)",
+        "hard": false
+      }
+    }
+  },
+  "33": {
+    "file": "g33_h33d_0.2632.tif",
+    "bytes": 966684,
+    "sha256": "bc3af2a5fcb4b49bc5845a2d7dc3da23daf41ce75e4c64da3337c0c8c93cc12c",
+    "ok_to_upload": true,
+    "hard_failures": [],
+    "official_nan_outside": true,
+    "positive_pixels": 41865,
+    "footprint_pixels": 5167373,
+    "checks": {
+      "template_matches_expected_grid_and_footprint": {
+        "pass_": true,
+        "detail": "(3730, 3292), footprint 5,167,373 px",
+        "hard": true
+      },
+      "single_band": {
+        "pass_": true,
+        "detail": "count=1",
+        "hard": true
+      },
+      "dtype_float32": {
+        "pass_": true,
+        "detail": "dtypes=('float32',)",
+        "hard": true
+      },
+      "crs_epsg_32611": {
+        "pass_": true,
+        "detail": "32611",
+        "hard": true
+      },
+      "shape_matches_template": {
+        "pass_": true,
+        "detail": "(3730, 3292) vs (3730, 3292)",
+        "hard": true
+      },
+      "geotransform_matches_template": {
+        "pass_": true,
+        "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+        "hard": true
+      },
+      "footprint_all_finite": {
+        "pass_": true,
+        "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+        "hard": true
+      },
+      "footprint_values_in_0_1": {
+        "pass_": true,
+        "detail": "min=0.0 max=1.0",
+        "hard": true
+      },
+      "outside_footprint_is_nan_official": {
+        "pass_": true,
+        "detail": "7,111,787/7,111,787 NaN",
+        "hard": false
+      },
+      "outside_footprint_is_nan_or_zero": {
+        "pass_": true,
+        "detail": "NaN (official) or 0 (fallback) outside",
+        "hard": true
+      },
+      "nan_mask_identical_to_template": {
+        "pass_": true,
+        "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+        "hard": true
+      },
+      "nodata_tag": {
+        "pass_": true,
+        "detail": "nodata=nan",
+        "hard": false
+      },
+      "variant_nan_aware_whole_array": {
+        "pass_": true,
+        "detail": "np.nanmin/np.nanmax over the whole array",
+        "hard": true
+      },
+      "variant_masked_read": {
+        "pass_": true,
+        "detail": "rasterio masked read",
+        "hard": true
+      },
+      "variant_strict_whole_array_no_nan": {
+        "pass_": false,
+        "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+        "hard": false
+      },
+      "profile_matches_template": {
+        "pass_": true,
+        "detail": "compress=lzw (template lzw)",
+        "hard": false
+      }
+    }
+  },
+  "36": {
+    "file": "g36_anderson-pinn_0.2750.tif",
+    "bytes": 318190,
+    "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+    "ok_to_upload": true,
+    "hard_failures": [],
+    "official_nan_outside": false,
+    "positive_pixels": 38854,
+    "footprint_pixels": 5167373,
+    "checks": {
+      "template_matches_expected_grid_and_footprint": {
+        "pass_": true,
+        "detail": "(3730, 3292), footprint 5,167,373 px",
+        "hard": true
+      },
+      "single_band": {
+        "pass_": true,
+        "detail": "count=1",
+        "hard": true
+      },
+      "dtype_float32": {
+        "pass_": true,
+        "detail": "dtypes=('float32',)",
+        "hard": true
+      },
+      "crs_epsg_32611": {
+        "pass_": true,
+        "detail": "32611",
+        "hard": true
+      },
+      "shape_matches_template": {
+        "pass_": true,
+        "detail": "(3730, 3292) vs (3730, 3292)",
+        "hard": true
+      },
+      "geotransform_matches_template": {
+        "pass_": true,
+        "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+        "hard": true
+      },
+      "footprint_all_finite": {
+        "pass_": true,
+        "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+        "hard": true
+      },
+      "footprint_values_in_0_1": {
+        "pass_": true,
+        "detail": "min=0.0 max=1.0",
+        "hard": true
+      },
+      "outside_footprint_is_nan_official": {
+        "pass_": false,
+        "detail": "0/7,111,787 NaN",
+        "hard": false
+      },
+      "outside_footprint_is_nan_or_zero": {
+        "pass_": true,
+        "detail": "NaN (official) or 0 (fallback) outside",
+        "hard": true
+      },
+      "nan_mask_identical_to_template": {
+        "pass_": true,
+        "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+        "hard": true
+      },
+      "nodata_tag": {
+        "pass_": true,
+        "detail": "nodata=None",
+        "hard": false
+      },
+      "variant_nan_aware_whole_array": {
+        "pass_": true,
+        "detail": "np.nanmin/np.nanmax over the whole array",
+        "hard": true
+      },
+      "variant_masked_read": {
+        "pass_": true,
+        "detail": "rasterio masked read",
+        "hard": true
+      },
+      "variant_strict_whole_array_no_nan": {
+        "pass_": true,
+        "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+        "hard": false
+      },
+      "profile_matches_template": {
+        "pass_": true,
+        "detail": "compress=deflate (template lzw)",
+        "hard": false
+      }
+    }
+  }
+}

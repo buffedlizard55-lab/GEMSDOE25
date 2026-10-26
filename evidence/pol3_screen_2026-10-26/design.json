@@ -1,0 +1,31 @@
+{
+  "experiment": "POL3 signed half-graben polarity screen",
+  "preregistration": "knowledge/28_preregistered_pol3_signed_halfgraben_2026-10-26.md",
+  "draws": [
+    58,
+    59
+  ],
+  "folds": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "evaluator": "gems25.holdout.v1.2-buffered-4quad-pooled-dti",
+  "alpha": 0.2,
+  "beta": 0.8,
+  "kernel_radius_px": 3.0,
+  "collar_px": 15,
+  "candidate": "H35 plus four POL3 features",
+  "control": "H35",
+  "kfrac": 0.035,
+  "min_dist_px": 2.4,
+  "leakage_auc_cap": 0.9,
+  "gate": {
+    "mean_gain_gt": 0.001,
+    "folds_positive_min": 3,
+    "worst_fold_min": -0.01,
+    "hug_delta_max": 0.1
+  },
+  "note": "Design written before fitting; this runner never emits a full-catalogue raster."
+}

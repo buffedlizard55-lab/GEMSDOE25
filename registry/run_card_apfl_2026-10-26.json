@@ -1,0 +1,159 @@
+{
+  "schema": "run_card/v1 (PARALLEL-RUN PROTOCOL item 5)",
+  "session": "2026-10-26 APFL Piedmont Flexure (arena/e00ae365-gemsdoe25)",
+  "hypothesis": "H67-APFL: Blind alluvial piedmont faults under Qal alluvium produce coincident LiDAR sub-metre step (L_step_max), DEM TPI11 flexure and crest ridge, isostatic gravity analytic-signal gradient, depth-to-basement thickening gradient, and conductivity clay-pan edge; product detector S = L_valid\u00b7(L_step^0.35\u00b7gravAS^0.30\u00b7depthGrad^0.20\u00b7condGrad^0.05\u00b7TPI_pos^0.10)\u00b7(1+0.5\u00b7crest) with p1-p99 scaling, ridge-NMS and 300 m score-ordered thinning with tip-preserved flank shield r=2.5 px.",
+  "mechanism": "Catalogue-free hand-crafted product emphasizes co-located surface warp (LiDAR+DEM) and basement step (gravity+depth) to find buried basin-margin faults systematically missing from QFFDB/INGENIOUS (Stahl & Niemi 2017). Ridge-NMS extracts lineaments, score-ordered Poisson-disk thins to 43,798 dots at min_dist=3.0 px, flank shield removes 50,810 non-tip lateral apron ridges within 2.5 px of visible faults while preserving 2,532 tip relays.",
+  "mimicking_non_fault_process": "Unfaulted alluvial-fan depositional onlap wedges, axial drainage incision, and aeolian deflation surfaces also produce TPI/gravity/depth gradients; modern Qal fan toes thicken basinward without fault. Mimic differentiated by gravity polarity + LiDAR step coincidence vs pure depositional thickening (requires gravity step).",
+  "preregistration": "knowledge/27_apfl_hypotheses_ranked_2026-10-26.md (frozen before fit, 1 of 3 experiments; no holdout confirmation yet - testing-only file)",
+  "focus_sites_forensics": {
+    "why_g32_scored_0_2778": "Pixel-exact B2 = D2.8 & EDT(~cat)>2 (37,654 px, OWNER-REPORTED 0.2778) deletes 2,545 1<d\u22642 px collar dots at 0.0050 credit/px << \u03c4=0.0556 vs D2.8 (44,090 px, 0.2600) and R1 B=1 (40,199 px, 0.2708). Break-even at 0.2778 is 0.0556; deleted shells 52\u00d7 and 11\u00d7 below, so pruning is pure denominator reduction; B2 is only focus winner that removes both low-credit shells.",
+    "expected_beats_0_2778": "Unverified \u2014 APFL adds +0.002 to +0.008 planning bracket but no HOLDOUT-DTI gate has passed yet; 0.3195/0.4413 leaderboard claims are OWNER-REPORTED, unverified, not organizer-confirmed."
+  },
+  "experiments": {
+    "experiment_1_apfl_screen": {
+      "draws": "not yet run \u2014 catalogue-free hand-crafted detector built on full catalogue (43,798 dots, min_dist=3.0 px, hug 3.9%); holdout screen pending on draws [60,61] (2 of 3 budget remaining)",
+      "leakage_canary": {
+        "cap": 0.9,
+        "note": "Each APFL sub-signal tested alone: L_step AUC~0.58, gravAS~0.57, depthGrad~0.55, condGrad~0.52 \u2014 all \u22640.90 pass (INFERENCE from H66 analog; explicit per-feature canary scheduled for holdout run)"
+      },
+      "candidate_arm": "APFL product + tip-preserved flank shield sapd3.0 kfrac0.035",
+      "candidate_formatted": "Not yet scored \u2014 HOLDOUT-DTI pending; file is format-valid and lane-unique but not slot-approved",
+      "factorial": "N/A \u2014 single-arm exploratory surface, not factorial"
+    }
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_before_placement": {
+      "worst_abs_spearman_surface": 0.0273,
+      "cap": 0.9,
+      "flagged": []
+    },
+    "final_dots": {
+      "worst_dots_within_3px": 0.2969,
+      "cap": 0.7,
+      "worst_file": "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-zeros.tif",
+      "flagged": []
+    },
+    "verdict": "UNIQUE vs available registry (both 0.146 \u22640.90 and 0.33 \u22640.70) \u2014 literal dense-lattice (13gems 206,895-dot 5-px grid) gives 1.00 raw overlap but is non-discriminative (halo 0.9987); density-aware symmetric min 0.33 passes (IR-25-LANE-DENSITY).",
+    "lane_clean": true,
+    "lane_clean_density_aware": true,
+    "strict_lane_literal_lattice_flag": "Lattice 13gems would flag any file at 1.00 (>0.70) but is marked non-discriminative per knowledge/22 \u00a74; reported separately."
+  },
+  "validator_output": {
+    "file": "gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-zeros.tif",
+    "sha256": "6648cbebcf724f82f18682632d1770084bc293a1db63d1394bb42871de5279fc",
+    "bytes": 836650,
+    "checks": {
+      "template_matches_expected_grid_and_footprint": {
+        "pass_": true,
+        "detail": "(3730, 3292), footprint 5,167,373 px",
+        "hard": true
+      },
+      "single_band": {
+        "pass_": true,
+        "detail": "count=1",
+        "hard": true
+      },
+      "dtype_float32": {
+        "pass_": true,
+        "detail": "dtypes=('float32',)",
+        "hard": true
+      },
+      "crs_epsg_32611": {
+        "pass_": true,
+        "detail": "32611",
+        "hard": true
+      },
+      "shape_matches_template": {
+        "pass_": true,
+        "detail": "(3730, 3292) vs (3730, 3292)",
+        "hard": true
+      },
+      "geotransform_matches_template": {
+        "pass_": true,
+        "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+        "hard": true
+      },
+      "footprint_all_finite": {
+        "pass_": true,
+        "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+        "hard": true
+      },
+      "footprint_values_in_0_1": {
+        "pass_": true,
+        "detail": "min=0.0 max=1.0",
+        "hard": true
+      },
+      "outside_footprint_is_nan_official": {
+        "pass_": false,
+        "detail": "0/7,111,787 NaN",
+        "hard": false
+      },
+      "outside_footprint_is_nan_or_zero": {
+        "pass_": true,
+        "detail": "NaN (official) or 0 (fallback) outside",
+        "hard": true
+      },
+      "nan_mask_identical_to_template": {
+        "pass_": true,
+        "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+        "hard": true
+      },
+      "nodata_tag": {
+        "pass_": true,
+        "detail": "nodata=None",
+        "hard": false
+      },
+      "variant_nan_aware_whole_array": {
+        "pass_": true,
+        "detail": "np.nanmin/np.nanmax over the whole array",
+        "hard": true
+      },
+      "variant_masked_read": {
+        "pass_": true,
+        "detail": "rasterio masked read",
+        "hard": true
+      },
+      "variant_strict_whole_array_no_nan": {
+        "pass_": true,
+        "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+        "hard": false
+      },
+      "profile_matches_template": {
+        "pass_": true,
+        "detail": "compress=lzw (template lzw)",
+        "hard": false
+      }
+    },
+    "ok_to_upload": true,
+    "hard_failures": [],
+    "footprint_px": 5167373,
+    "positive_pixels": 43798,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "outside_is_zero": true
+  },
+  "submission": {
+    "name": "gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-zeros.tif",
+    "note": "GEMSDOE25 APFL piedmont flexure | lane UNIQUE 0.15/0.33, 43.8k dots, zeros outside, not slot-approved | id 8aebdab87158",
+    "content_id": "8aebdab87158",
+    "ok_to_download": true,
+    "ok_to_submit_slot": false,
+    "verdict": "negative (testing-only) \u2014 HOLDOUT-DTI gate not yet passed, lane clean but no organizer score; DO NOT SUBMIT to weekly slot without separate selector approval",
+    "limit_note": "Note \u2264120 chars: GEMSDOE25 APFL piedmont flexure | lane UNIQUE 0.15/0.33, 43.8k dots, zeros outside, not slot-approved | id 8aebdab87158"
+  },
+  "budget": "1 of 3 experiments consumed (APFL exploratory build; 2 draws remaining for holdout screen/confirmation)",
+  "generated_utc": "2026-10-26T00:40:27Z"
+}

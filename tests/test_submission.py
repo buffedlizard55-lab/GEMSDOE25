@@ -107,3 +107,16 @@ def test_note_and_filename_are_short_and_unique():
     n = make_note("D2.8", "Poisson-disk dotted H19-5, 44,090 px", "abcdef123456")
     assert len(n) <= 120 and "abcdef123456" in n
     assert make_filename("Dotted H19-5 d2.8", "20261002", "abcdef123456") == "gems25-dotted-h19-5-d2-8-20261002-abcdef123456-nan.tif"
+
+
+def test_all_nodata_checker_returns_failed_receipt_not_exception(template, tmp_path):
+    t, foot = template
+    path = tmp_path / 'all-nodata.tif'
+    with rasterio.open(t) as src:
+        profile = src.profile
+    with rasterio.open(path, 'w', **profile) as dst:
+        dst.write(np.full(foot.shape, np.nan, np.float32), 1)
+    result = check_file(path, t)
+    assert result['format_valid'] is False
+    assert result['checks']['variant_masked_read']['pass_'] is False
+    assert 'FORMAT-ONLY' in result['authorization_note']

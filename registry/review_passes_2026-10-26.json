@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "date_utc": "2026-10-26",
+  "branch": "arena/20ed4aa1-gemsdoe25",
+  "verdict": "negative",
+  "passes": [
+    {
+      "pass": 1,
+      "scope": "Implement and verify",
+      "completed": [
+        "Read current/historical instructions and audit prior next steps.",
+        "Restore and hash all 22 input manifest files and all 21 top-scorer records; build shared caches, not a private stack.",
+        "Commit four ranked hypotheses and ROD design before fits (f32cf6d).",
+        "Run one ROD screen, 8 buffered whole-component cells with every feature canary and same-run H35.",
+        "Fresh nine-site mask/format audit and official reference repository read."
+      ],
+      "result": "HOLDOUT-DTI performance gate fails; final dots fail strict lattice overlap; writer never called."
+    },
+    {
+      "pass": 2,
+      "scope": "Bugs, assumptions, edge cases",
+      "fixed": [
+        "File-backed registry final-dot KeyError fixed in shared validator; a prefit engineering restart was needed.",
+        "Undefined final correlation fails closed; inverted/missingness feature canary covers degenerate classes.",
+        "All-nodata checker returns rejection instead of an empty min/max exception.",
+        "Owner-score recorder no longer overwrites DO NOT SUBMIT with scored status.",
+        "Current landing/executive pages now show a stop before historical downloads; historical panels preserved in archives.",
+        "Legacy site tests moved their historical artifact assertions to archives and retain negative status checks on current pages."
+      ],
+      "verification": "245 pytest tests passed; ruff passed. One expected scipy constant-input warning in empty-candidate fail-closed test."
+    },
+    {
+      "pass": 3,
+      "scope": "Reconcile with original requirements",
+      "verification": "245 pytest tests passed again; ruff passed; git diff --check clean; HTMLParser resolves all local href/src targets on all eight pages. Pooled result and CI independently recomputed from saved cell sufficient statistics in tests.",
+      "fulfilled": [
+        "Nine-site executive report, ranked hypotheses, preregistration, top-candidate screen, per-feature canaries, pooled CI/counts/version hashes, surface/final strict lane audit, dated source evidence, automatic stop status, submission guide, negative run card.",
+        "Current normalized owner brief embedded in README and generator; core values retained."
+      ],
+      "not_fulfilled": [
+        "No new unique submission TIF: performance failed and final-dot duplicate stop prohibits writing/promoting it.",
+        "Current prompt is a normalized restatement, not a full verbatim transcription; original long historical prompts remain archived.",
+        "No organizer score receipts, verified current leaderboard, current weekly allowance, or original-source authentication.",
+        "No proof of complete cross-site registry beyond 60 distinct available local rasters; no novelty clearance granted.",
+        "No fresh external scientific literature/data-host retrieval outside permitted GitHub hosts."
+      ]
+    }
+  ],
+  "scientific_budget": {
+    "experiments": 1,
+    "screen_seconds": 476.4,
+    "confirmation_runs": 0,
+    "weekly_slots_used": 0
+  },
+  "limitations": [
+    "H35 is a strong same-run comparator, not a claim to exhaust every later historical emission variant. ROD fails even this comparator.",
+    "Four quadrant clusters provide coarse bootstrap uncertainty, and catalogue-gap proxy bias remains.",
+    "Uniform diagnostic has no NMS ridges and is not a meaningful space-filling null.",
+    "Dense registry lattice permits at most 21,713 unique dots under literal overlap rule; smaller does not imply good.",
+    "Family A unit-fix narrative/source drift flagged, not silently recalibrated in this unrelated lane."
+  ],
+  "next_steps": [
+    "Resolve literal registry policy separately before another large-budget experiment.",
+    "Address SGMC compilation overlap/tree inversion before pending H66 confirmation.",
+    "Require fresh confirmation and exact-file, complete-registry validation before a separate selector authorizes any slot."
+  ],
+  "pr_and_deployment": "To be verified via gh after this local review; no merge or deployment claimed here."
+}
