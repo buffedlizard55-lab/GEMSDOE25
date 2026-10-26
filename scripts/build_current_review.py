@@ -75,8 +75,6 @@ The frozen gate (gain &gt; +0.001 and &ge;3/4 folds) failed, so no confirmation,
 
     subs = json.loads((ROOT / "registry" / "submissions.json").read_text())["files"]
     featured = next(s for s in subs if s["role"] == "primary")
-    h71 = json.loads((ROOT / "registry" / "run_card_h71_2026-10-26.json").read_text())
-    h71_result = h71["holdout_dti"]
     download = (
         f'<p><b>OK to download: YES</b> for local testing of content id '
         f'<code>{e(featured["content_id"])}</code>. '
