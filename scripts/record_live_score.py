@@ -3,8 +3,9 @@
 
     python scripts/record_live_score.py --file <file-name | sha256-prefix | content-id> --score 0.2xxx [--note "..."]
 
-Updates registry/submissions.json (status -> scored) and appends to registry/live_scores.json, then re-run
-``python scripts/build_site.py``.
+Records an OWNER-REPORTED claim in registry/submissions.json and registry/live_scores.json,
+without changing any submission status, lane verdict, approval, or signed historical note.
+A score claim is not an organizer receipt or permission to resubmit. Re-run ``python scripts/build_site.py``.
 """
 
 from __future__ import annotations
@@ -31,7 +32,9 @@ def main() -> None:
     if len(hits) != 1:
         raise SystemExit(f"{len(hits)} matches for {a.file!r}; give the exact file name, content id or a longer sha256 prefix")
     s = hits[0]
-    s["status"] = "scored"
+    # Never replace a DO NOT SUBMIT status with a green 'scored' badge.
+    # A reported result does not waive a failed lane or performance gate.
+    s["score_evidence_class"] = "OWNER-REPORTED; no organizer receipt supplied"
     s["owner_reported_score"] = a.score
     s["score_recorded_utc"] = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     ls["artifacts"].append(dict(project="GEMSDOE25", label=s["file"], score=a.score, status="owner-reported", note=a.note))

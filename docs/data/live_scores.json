@@ -485,6 +485,41 @@
    "score": 0.1816,
    "status": "owner-reported",
    "note": "independent TPCR-PINN detector (<70% overlap regime)"
+  },
+  {
+   "project": "GEMSDOE25",
+   "label": "gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif",
+   "score": 0.0742,
+   "status": "owner-reported",
+   "note": "Current owner message, 2026-10-26. No organizer receipt; prior negative verdict and no-slot status remain."
+  },
+  {
+   "project": "GEMSDOE24",
+   "label": "gems24-gvc1-negative-geothermal-lineament-submod-20261025-abe8e51c719d-zeros",
+   "score": 0.0859,
+   "status": "user-provided-unverified",
+   "note": "Current owner message, 2026-10-26; no organizer receipt or fresh artifact-to-score authentication."
+  },
+  {
+   "project": "GEMSDOE27",
+   "label": "gems27-h29-hydrothermal-piedmont-celf-20261025-511898747886-allfinite",
+   "score": 0.219,
+   "status": "user-provided-unverified",
+   "note": "Current owner message, 2026-10-26; no organizer receipt or fresh artifact-to-score authentication."
+  },
+  {
+   "project": "GEMSDOE28",
+   "label": "gems28-s18-mxtp-20261025-3e95505c011a-allfinite",
+   "score": 0.0217,
+   "status": "user-provided-unverified",
+   "note": "Current owner message, 2026-10-26; no organizer receipt or fresh artifact-to-score authentication."
+  },
+  {
+   "project": "GEMSDOE30",
+   "label": "gems30-MSDB1-edge44090-20261025-e7856ec3f14a",
+   "score": 0.1462,
+   "status": "user-provided-unverified",
+   "note": "Current owner message, 2026-10-26; no organizer receipt or fresh artifact-to-score authentication."
   }
  ],
  "leaderboard_snapshot": {

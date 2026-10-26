@@ -661,87 +661,94 @@
    ]
   }
  },
-  "current_checkout_review_2026_10_25_arena_e7df9bae": {
-    "session_branch": "arena/e7df9bae-gemsdoe25",
-    "focus": "Review current repository against the latest user brief; fix lane-validator registry coverage and enforce pre-placement surface lane checks.",
-    "pass_1_implement_and_verify": [
-      "Read AGENTS.md and README.md plus the current project briefs, focus-site forensics, source/data registries, holdout, writer, validator, and stored score/run-card evidence.",
-      "Confirmed data/ contains only .gitkeep and no fresh template, labels, work cache, or restored registry; no new experiment, TIF, submission slot, or DrivenData access was used.",
-      "Fixed validate_gem_candidate.load_registry_rasters to include data/registry_top and deduplicate index entries by SHA-256 without retaining all decoded full-grid rasters in memory.",
-      "Added strict surface lane preflight before holdout prediction placement and before full-footprint candidate emission; absent registry, undefined correlation, >0.90 absolute Spearman, and shape mismatch fail closed.",
-      "Added tests/test_lane_preflight.py for absolute correlation, undefined correlation, empty registry, top-scorer registry discovery, and lazy raster loading."
-    ],
-    "pass_2_bug_assumption_edge_case_review": [
-      "Verified the existing final-dot lane gate remains literal; no density-aware override was wired into the promotion decision.",
-      "Ran focused lane tests: 8 passed. Ran full suite: 166 passed, 5 skipped; skipped tests require restored scored rasters or sample_submission.tif.",
-      "Ruff passed for src scripts tests; git diff --check passed.",
-      "Flagged a remaining protocol gap: the shared validator scores composite-surface AUC but does not guarantee an isolated canary for every raw input feature; a future candidate must add that gate before fitting/promotion.",
-      "Checked candidate external-data provenance; GDR/USGS official links remain manual-review references, and data availability/schema/licensing were not freshly checked from this runner."
-    ],
-    "pass_3_recheck_against_original_request": [
-      "Rechecked the full request: no organizer-confirmed score is claimed; supplied scores remain owner-reported; no projection is written as a result.",
-      "Ranked four follow-up hypotheses in knowledge/25, named layers, signatures, missing-catalogue rationale, prior-work differences, mimics, planning-only gain brackets, cost and data status.",
-      "Top candidate was not fit because the shared data/cache and full registry are absent and the prompt does not uniquely identify the method lane; strict lane protocol therefore prevents a safe experiment or new TIFF.",
-      "README links the current review and run card. Existing TIFFs remain testing-only and are not slot-approved."
-    ],
-    "verification": {
-      "pytest": "166 passed, 5 skipped",
-      "ruff": "ruff check src scripts tests passed",
-      "git_diff_check": "passed",
-      "holdout_dti": "NOT RUN; no fresh evaluator output, withheld-positive count, or CI",
-      "raster": "NO NEW TIFF; sha256 null",
-      "validator": "NOT RUN; competition sample template absent",
-      "pull_request": "PR #28 opened from arena/e7df9bae-gemsdoe25; origin/main advanced with PR #27 while this review was underway, so the session branch integrated that main update before merge-ready verification."
-    },
-    "open_limitations": [
-      "data/ contains only .gitkeep; pinned public owner mirrors are not organizer-authenticated and no data were restored in this review.",
-      "No new method lane is unambiguously specified in the prompt; current strict lane protocol is binding.",
-      "The shared validator still needs per-feature leakage canaries for every raw predictor before combination.",
-      "No fresh holdout, strict full-registry lane audit, exact-template raster validation, or organizer-confirmed score exists for this review.",
-      "External sources were not re-fetched; verify current source text, required file coverage, schemas and licensing manually before acquisition."
-    ],
-    "verdict": "negative; code review and validator hardening only; no new TIF and no scoring-slot approval."
+ "current_checkout_review_2026_10_25_arena_e7df9bae": {
+  "session_branch": "arena/e7df9bae-gemsdoe25",
+  "focus": "Review current repository against the latest user brief; fix lane-validator registry coverage and enforce pre-placement surface lane checks.",
+  "pass_1_implement_and_verify": [
+   "Read AGENTS.md and README.md plus the current project briefs, focus-site forensics, source/data registries, holdout, writer, validator, and stored score/run-card evidence.",
+   "Confirmed data/ contains only .gitkeep and no fresh template, labels, work cache, or restored registry; no new experiment, TIF, submission slot, or DrivenData access was used.",
+   "Fixed validate_gem_candidate.load_registry_rasters to include data/registry_top and deduplicate index entries by SHA-256 without retaining all decoded full-grid rasters in memory.",
+   "Added strict surface lane preflight before holdout prediction placement and before full-footprint candidate emission; absent registry, undefined correlation, >0.90 absolute Spearman, and shape mismatch fail closed.",
+   "Added tests/test_lane_preflight.py for absolute correlation, undefined correlation, empty registry, top-scorer registry discovery, and lazy raster loading."
+  ],
+  "pass_2_bug_assumption_edge_case_review": [
+   "Verified the existing final-dot lane gate remains literal; no density-aware override was wired into the promotion decision.",
+   "Ran focused lane tests: 8 passed. Ran full suite: 166 passed, 5 skipped; skipped tests require restored scored rasters or sample_submission.tif.",
+   "Ruff passed for src scripts tests; git diff --check passed.",
+   "Flagged a remaining protocol gap: the shared validator scores composite-surface AUC but does not guarantee an isolated canary for every raw input feature; a future candidate must add that gate before fitting/promotion.",
+   "Checked candidate external-data provenance; GDR/USGS official links remain manual-review references, and data availability/schema/licensing were not freshly checked from this runner."
+  ],
+  "pass_3_recheck_against_original_request": [
+   "Rechecked the full request: no organizer-confirmed score is claimed; supplied scores remain owner-reported; no projection is written as a result.",
+   "Ranked four follow-up hypotheses in knowledge/25, named layers, signatures, missing-catalogue rationale, prior-work differences, mimics, planning-only gain brackets, cost and data status.",
+   "Top candidate was not fit because the shared data/cache and full registry are absent and the prompt does not uniquely identify the method lane; strict lane protocol therefore prevents a safe experiment or new TIFF.",
+   "README links the current review and run card. Existing TIFFs remain testing-only and are not slot-approved."
+  ],
+  "verification": {
+   "pytest": "166 passed, 5 skipped",
+   "ruff": "ruff check src scripts tests passed",
+   "git_diff_check": "passed",
+   "holdout_dti": "NOT RUN; no fresh evaluator output, withheld-positive count, or CI",
+   "raster": "NO NEW TIFF; sha256 null",
+   "validator": "NOT RUN; competition sample template absent",
+   "pull_request": "PR #28 opened from arena/e7df9bae-gemsdoe25; origin/main advanced with PR #27 while this review was underway, so the session branch integrated that main update before merge-ready verification."
   },
-  "h36_spigm_submodular_session_review_2026_10_25": {
-    "branch": "arena/867f087d-gemsdoe25",
-    "date_utc": "2026-10-25",
-    "pass_1_implement_and_verify": [
-      "Restored all 22 data_manifest inputs, 21 registry_top rasters, and 6 work caches with 100% SHA-256 verification; audited GEMSDOE24..36 + GEMSDOE70 + official reference solution via gh api.",
-      "Discovered and proved IR-25-POTENTIAL-FIELD-UNIT-MISMATCH (200x tmi_hg vs tmi_vg unit mismatch + ~N110E signed iso_grav_anom_hg in Family A) and IR-25-STUDY-AREA-VALID-PIXELS-CORRECTION (5,164,300 / 5,167,373 = 99.941% finite 19-band pixels inside footprint).",
-      "Pre-registered 5 ranked untried geological hypotheses (H36-1..H36-5) in knowledge/21_preregistered_h36_spigm_submodular_2026-10-25.md (commit 2c5e873) and froze code (commit 1138a18) before running E1 (draws 20,21; 22,232 withheld positives), E2 (draws 22,23; 22,391 withheld positives; 44,623 pooled across 16 cells; 8/8 per-feature leakage canaries <= 0.6503 <= 0.90), and E3 (4-fold LOQO zero-topography GeoTIFF 3937b96ce366 + dual automated [0, 1] portal validation)."
-    ],
-    "pass_2_bug_assumption_edge_case_review": [
-      "Fetched origin/main (cbcf1cd, PRs #20-#28) before opening PR; detected add/add filename collision with PR #26 (src/gems25/h36.py, tests/test_h36.py, evidence/h36_screen) and cleanly namespaced our module/tests/evidence/run_card to h36_spigm, achieving a zero-conflict merge of all 154 files from origin/main.",
-      "Re-ran surface and final-dot lane audits across all 56 non-self rasters on merged origin/main (incl. CF1, XG1, H36-TZC, H37-DOC, MSCR): worst surface |Spearman| 0.1213 <= 0.90, 31/31 external non-lattice scored/sibling rasters clear (23.95% vs GEMSDOE32 B2, max 59.85% <= 70%), max mutual 3-px overlap 57.94% <= 70%, while literal one-way check stops on r13-lattice-s5 (100.0%) and Family-E halo local alternates (70.3%-70.9%, IR-25-CATALOGUE-HALO-CONVERGENCE).",
-      "Verified exact numerical parity across evidence JSONs, registry/run_card_h36_spigm_2026-10-25.json, knowledge/22, README.md, and site pages; fixed test_session_gmce_mscr.py to select MSCR by its pinned SHA-256 when demoted to alternate."
-    ],
-    "pass_3_recheck_against_original_request": [
-      "Verified independent rasterio checks on both -zeros.tif and -nan.tif (0 NaN anywhere in -zeros.tif, all 12,279,160 cells in [0, 1], 0 pixels on catalogue, 0 pixels copied from any prior submission), check_sources.py feed refresh (0 drivendata.org calls), ruff check (0 issues), git diff --check (clean), and full pytest suite (all tests green, 0 skips).",
-      "Confirmed index.html, docs/executive-summary.html, and README.md prominently display OK to download: YES and OK to spend a weekly slot: NO — DO NOT SUBMIT (verdict: negative, slot_approved: false)."
-    ],
-    "verdict": "negative for weekly slot (DO NOT SUBMIT); unique zero-topography GeoTIFF 3937b96ce366 verified and available for local testing/inspection."
-  },
-  "h66_mgd_sgmc_session_review_2026_10_25": {
-    "branch": "arena/66ca912a-gemsdoe25",
-    "date_utc": "2026-10-25",
-    "pass_1_implement_and_verify": [
-      "Read AGENTS.md, full README (including verbatim and consolidated owner briefs), registry/*.json, and evidence/*.json; restored all 22 SHA-pinned data files, 30 artifact mirrors, and 21 registry_top rasters; rebuilt and SHA-verified static_ABCD + addons work caches.",
-      "Re-verified pixel-exact identities across all 9 focus sites (GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36 -> evidence/h66_focus_sites_forensics.json): D2.8(g25)==D2.8(g30), R1(g28)==R1(g31)==D2.8&d>1, B2(g32)==R1&d>2 (37,654 px), G36==B2 union 1,200 PINN dots, and G33 (41,865 px) re-admitted 3,894 d<=2 collar dots; also inspected GEMSDOE87/92 via gh api and flagged stale prompt claim 0.3195 (IR-25-G87-STALE-PROMPT-CLAIM).",
-      "Pre-registered 5 ranked untried hypotheses and frozen H66-1 / H66-2 code before any holdout fit (knowledge/25_preregistered_h66_mgd_and_sgmc_react_2026-10-25.md, commit 0f6fc77).",
-      "Executed all 3 allowed holdout experiments on untouched draws 50..55: Exp 1 H66-1 screen (draws 50,51) PASSED (+0.002486, 4/4 folds+, canary 0.5858); Exp 2 H66-1 confirmation (draws 52,53) FAILED (-0.002241, 0/4 folds+, canary 0.5635; Factor C positive in 8/8 fold-blocks -> 16/16 combined with H31-1); Exp 3 H66-2 SGMC-REACT screen (draws 54,55) PASSED (+0.013794, CI95 [+0.0025, +0.0251], 4/4 folds+, canary 0.7890; stopped at 3/3 budget cap without confirmation).",
-      "Built unique full-catalogue GeoTIFFs from pure catalogue-free H66-1 G1_C1 per frozen pre-registration rule (gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif, 44,832 dots, SHA-256 7503f4d4..., plus -nan.tif twin and single-TIF .zip); verified automatically via gems25.submission.check_file + independent plain-rasterio verify_candidate_independent.py + 3 lane checkers across 67 rasters."
-    ],
-    "pass_2_bugs_assumptions_edge_cases": [
-      "Caught and fixed scripts/lane_check_extended.py:49 hardcoded `'mscr' in p.stem` exclusion (IR-25-LANE-CHECK-MSCR-BUG-FIXED) so non-MSCR candidates are checked against MSCR GeoTIFFs, covered by unit test.",
-      "Caught and fixed band filename mismatch in build_h66_sgmc_sidecar (`04_geod_2ndinv.npy` instead of `10_geod_2ndinv.npy`) before any H66-2 cell fit (commit 822fb60).",
-      "Discovered HGB positive-multiplier tree inversion on USGS SGMC (`H66_sgmc_strain_react` standalone AUC 0.7862 vs raw `H66_sgmc_prox4` 0.7890 vs hard-zero-gated `H66_sgmc_scarp_compat` 0.5965) and disclosed as IR-25-SGMC-TREE-INVERSION rather than over-claiming raw SGMC gain.",
-      "Merged parallel PRs #28-#31 cleanly from origin/main (ea399cd), re-ran lane audits across all 67 rasters including H36-SPIGM, H38, and H38-OSPC, pinned test_h38_ospc_submission.py by id so prior session tests stay green alongside H66, and fixed data_dir() lookup in tests/test_h36_submission.py and tests/test_kdc.py."
-    ],
-    "pass_3_recheck_against_the_original_brief": [
-      "Unique GeoTIFF generated (not a copy; content_id da617550a0e9; 30.4% 3-px overlap vs GEMSDOE32 B2; <=48.7% vs all 21 focus/top-scorer rasters; max surface |Spearman| 0.1769 <= 0.90) and placed first on README.md, index.html, and docs/executive-summary.html with unmistakable plain-language verdict (OK to download: YES · OK to spend a weekly slot: NO — DO NOT SUBMIT) and 100-char note.",
-      "Prevented 'Predicted values must be in range [0, 1]' via zeros-outside float32 encoding verified automatically by both project and independent plain-rasterio validators (strict whole-array 0<=x<=1 True, 0 NaN).",
-      "All 6 PARALLEL-RUN PROTOCOL rules satisfied: pre-placement surface + final-dot lane checks logged, shared template feature stack/holdout/writer reused, strict HOLDOUT-DTI vs OWNER-CLAIM labeling, single-feature <=0.90 leakage canaries, machine-verified JSON Run Card (registry/run_card_h66_2026-10-25.json), stopped at 3/3 experiments, 0 weekly slots spent.",
-      "Session prompt preserved in README.md alongside Arena Core Values (Maximize P(Win), Own the Outcome), verified official links table, flagged irregularities, limitations, and ranked next steps."
-    ]
+  "open_limitations": [
+   "data/ contains only .gitkeep; pinned public owner mirrors are not organizer-authenticated and no data were restored in this review.",
+   "No new method lane is unambiguously specified in the prompt; current strict lane protocol is binding.",
+   "The shared validator still needs per-feature leakage canaries for every raw predictor before combination.",
+   "No fresh holdout, strict full-registry lane audit, exact-template raster validation, or organizer-confirmed score exists for this review.",
+   "External sources were not re-fetched; verify current source text, required file coverage, schemas and licensing manually before acquisition."
+  ],
+  "verdict": "negative; code review and validator hardening only; no new TIF and no scoring-slot approval."
+ },
+ "h36_spigm_submodular_session_review_2026_10_25": {
+  "branch": "arena/867f087d-gemsdoe25",
+  "date_utc": "2026-10-25",
+  "pass_1_implement_and_verify": [
+   "Restored all 22 data_manifest inputs, 21 registry_top rasters, and 6 work caches with 100% SHA-256 verification; audited GEMSDOE24..36 + GEMSDOE70 + official reference solution via gh api.",
+   "Discovered and proved IR-25-POTENTIAL-FIELD-UNIT-MISMATCH (200x tmi_hg vs tmi_vg unit mismatch + ~N110E signed iso_grav_anom_hg in Family A) and IR-25-STUDY-AREA-VALID-PIXELS-CORRECTION (5,164,300 / 5,167,373 = 99.941% finite 19-band pixels inside footprint).",
+   "Pre-registered 5 ranked untried geological hypotheses (H36-1..H36-5) in knowledge/21_preregistered_h36_spigm_submodular_2026-10-25.md (commit 2c5e873) and froze code (commit 1138a18) before running E1 (draws 20,21; 22,232 withheld positives), E2 (draws 22,23; 22,391 withheld positives; 44,623 pooled across 16 cells; 8/8 per-feature leakage canaries <= 0.6503 <= 0.90), and E3 (4-fold LOQO zero-topography GeoTIFF 3937b96ce366 + dual automated [0, 1] portal validation)."
+  ],
+  "pass_2_bug_assumption_edge_case_review": [
+   "Fetched origin/main (cbcf1cd, PRs #20-#28) before opening PR; detected add/add filename collision with PR #26 (src/gems25/h36.py, tests/test_h36.py, evidence/h36_screen) and cleanly namespaced our module/tests/evidence/run_card to h36_spigm, achieving a zero-conflict merge of all 154 files from origin/main.",
+   "Re-ran surface and final-dot lane audits across all 56 non-self rasters on merged origin/main (incl. CF1, XG1, H36-TZC, H37-DOC, MSCR): worst surface |Spearman| 0.1213 <= 0.90, 31/31 external non-lattice scored/sibling rasters clear (23.95% vs GEMSDOE32 B2, max 59.85% <= 70%), max mutual 3-px overlap 57.94% <= 70%, while literal one-way check stops on r13-lattice-s5 (100.0%) and Family-E halo local alternates (70.3%-70.9%, IR-25-CATALOGUE-HALO-CONVERGENCE).",
+   "Verified exact numerical parity across evidence JSONs, registry/run_card_h36_spigm_2026-10-25.json, knowledge/22, README.md, and site pages; fixed test_session_gmce_mscr.py to select MSCR by its pinned SHA-256 when demoted to alternate."
+  ],
+  "pass_3_recheck_against_original_request": [
+   "Verified independent rasterio checks on both -zeros.tif and -nan.tif (0 NaN anywhere in -zeros.tif, all 12,279,160 cells in [0, 1], 0 pixels on catalogue, 0 pixels copied from any prior submission), check_sources.py feed refresh (0 drivendata.org calls), ruff check (0 issues), git diff --check (clean), and full pytest suite (all tests green, 0 skips).",
+   "Confirmed index.html, docs/executive-summary.html, and README.md prominently display OK to download: YES and OK to spend a weekly slot: NO \u2014 DO NOT SUBMIT (verdict: negative, slot_approved: false)."
+  ],
+  "verdict": "negative for weekly slot (DO NOT SUBMIT); unique zero-topography GeoTIFF 3937b96ce366 verified and available for local testing/inspection."
+ },
+ "h66_mgd_sgmc_session_review_2026_10_25": {
+  "branch": "arena/66ca912a-gemsdoe25",
+  "date_utc": "2026-10-25",
+  "pass_1_implement_and_verify": [
+   "Read AGENTS.md, full README (including verbatim and consolidated owner briefs), registry/*.json, and evidence/*.json; restored all 22 SHA-pinned data files, 30 artifact mirrors, and 21 registry_top rasters; rebuilt and SHA-verified static_ABCD + addons work caches.",
+   "Re-verified pixel-exact identities across all 9 focus sites (GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36 -> evidence/h66_focus_sites_forensics.json): D2.8(g25)==D2.8(g30), R1(g28)==R1(g31)==D2.8&d>1, B2(g32)==R1&d>2 (37,654 px), G36==B2 union 1,200 PINN dots, and G33 (41,865 px) re-admitted 3,894 d<=2 collar dots; also inspected GEMSDOE87/92 via gh api and flagged stale prompt claim 0.3195 (IR-25-G87-STALE-PROMPT-CLAIM).",
+   "Pre-registered 5 ranked untried hypotheses and frozen H66-1 / H66-2 code before any holdout fit (knowledge/25_preregistered_h66_mgd_and_sgmc_react_2026-10-25.md, commit 0f6fc77).",
+   "Executed all 3 allowed holdout experiments on untouched draws 50..55: Exp 1 H66-1 screen (draws 50,51) PASSED (+0.002486, 4/4 folds+, canary 0.5858); Exp 2 H66-1 confirmation (draws 52,53) FAILED (-0.002241, 0/4 folds+, canary 0.5635; Factor C positive in 8/8 fold-blocks -> 16/16 combined with H31-1); Exp 3 H66-2 SGMC-REACT screen (draws 54,55) PASSED (+0.013794, CI95 [+0.0025, +0.0251], 4/4 folds+, canary 0.7890; stopped at 3/3 budget cap without confirmation).",
+   "Built unique full-catalogue GeoTIFFs from pure catalogue-free H66-1 G1_C1 per frozen pre-registration rule (gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif, 44,832 dots, SHA-256 7503f4d4..., plus -nan.tif twin and single-TIF .zip); verified automatically via gems25.submission.check_file + independent plain-rasterio verify_candidate_independent.py + 3 lane checkers across 67 rasters."
+  ],
+  "pass_2_bugs_assumptions_edge_cases": [
+   "Caught and fixed scripts/lane_check_extended.py:49 hardcoded `'mscr' in p.stem` exclusion (IR-25-LANE-CHECK-MSCR-BUG-FIXED) so non-MSCR candidates are checked against MSCR GeoTIFFs, covered by unit test.",
+   "Caught and fixed band filename mismatch in build_h66_sgmc_sidecar (`04_geod_2ndinv.npy` instead of `10_geod_2ndinv.npy`) before any H66-2 cell fit (commit 822fb60).",
+   "Discovered HGB positive-multiplier tree inversion on USGS SGMC (`H66_sgmc_strain_react` standalone AUC 0.7862 vs raw `H66_sgmc_prox4` 0.7890 vs hard-zero-gated `H66_sgmc_scarp_compat` 0.5965) and disclosed as IR-25-SGMC-TREE-INVERSION rather than over-claiming raw SGMC gain.",
+   "Merged parallel PRs #28-#31 cleanly from origin/main (ea399cd), re-ran lane audits across all 67 rasters including H36-SPIGM, H38, and H38-OSPC, pinned test_h38_ospc_submission.py by id so prior session tests stay green alongside H66, and fixed data_dir() lookup in tests/test_h36_submission.py and tests/test_kdc.py."
+  ],
+  "pass_3_recheck_against_the_original_brief": [
+   "Unique GeoTIFF generated (not a copy; content_id da617550a0e9; 30.4% 3-px overlap vs GEMSDOE32 B2; <=48.7% vs all 21 focus/top-scorer rasters; max surface |Spearman| 0.1769 <= 0.90) and placed first on README.md, index.html, and docs/executive-summary.html with unmistakable plain-language verdict (OK to download: YES \u00b7 OK to spend a weekly slot: NO \u2014 DO NOT SUBMIT) and 100-char note.",
+   "Prevented 'Predicted values must be in range [0, 1]' via zeros-outside float32 encoding verified automatically by both project and independent plain-rasterio validators (strict whole-array 0<=x<=1 True, 0 NaN).",
+   "All 6 PARALLEL-RUN PROTOCOL rules satisfied: pre-placement surface + final-dot lane checks logged, shared template feature stack/holdout/writer reused, strict HOLDOUT-DTI vs OWNER-CLAIM labeling, single-feature <=0.90 leakage canaries, machine-verified JSON Run Card (registry/run_card_h66_2026-10-25.json), stopped at 3/3 experiments, 0 weekly slots spent.",
+   "Session prompt preserved in README.md alongside Arena Core Values (Maximize P(Win), Own the Outcome), verified official links table, flagged irregularities, limitations, and ranked next steps."
+  ]
+ },
+ "continuation_reviews": [
+  {
+   "date_utc": "2026-10-26",
+   "path": "registry/review_passes_2026-10-26.json",
+   "result": "ROD negative, no new TIF; 245 tests passed in final local check."
   }
+ ]
 }
