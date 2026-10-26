@@ -13,7 +13,7 @@
  "domain_erode_px": 12,
  "positive_pixels": 59472,
  "content_id": "9eb0c31e5149",
- "note": "GEMSDOE25 H71 HGPC-B | holdout FAIL; no slot; unscored; not slot-approved | id 9eb0c31e5149",
+ "note": "GEMSDOE25 H71 HGPC-B | holdout/lane FAIL; no slot; unscored LB; not slot-approved | id 9eb0c31e5149",
  "seconds": 4.2,
  "files": {
   "zeros": {

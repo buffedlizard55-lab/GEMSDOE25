@@ -67,11 +67,39 @@ def test_current_review_does_not_claim_new_score_or_tif():
     assert card['estimated_organizer_score'] is None
     assert '0.06904088244998727' == str(card['holdout_dti']['prior_saved_experiment']['pooled_dti'])
     assert 'Not estimated' in page and 'Historical file' in page
-    assert 'NOT strict-lane-cleared under the literal r13 lattice overlap rule' in page
+    assert '100% within 3 px of the registered r13 lattice' in page
     assert card['correlation_overlap_vs_registry']['separate_preregistered_geometry_audit']['B2_budget_minimum_overlap'] > 0.70
     assert '82.70%' in report
     assert 'request to generate a new submission TIF remains **unfulfilled**' in report
     assert 'OWNER-REPORTED' in report and 'not an organizer score' in report
+
+
+def test_executive_summary_separates_holdout_from_score_and_strict_novelty():
+    page = (ROOT/'docs/executive-summary.html').read_text()
+    assert 'Estimated competition score' in page
+    assert 'NOT ESTIMATED' in page
+    assert 'HOLDOUT-DTI 0.050577' in page
+    assert '21,835 withheld positives' in page
+    assert 'Unique under literal lane rule?' in page
+    assert '100% within 3 px of the registered r13 lattice; threshold 70%' in page
+    assert 'DO NOT SUBMIT' in page
+    assert 'dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif' in page
+    assert 'Exact-mask duplicate of GEMSDOE30 (D2.8)' in page
+    assert 'Exact-mask duplicate of GEMSDOE31 (R1)' in page
+
+
+def test_current_review_run_card_is_complete_and_honest():
+    card = json.loads((ROOT/'registry/run_card_repo_review_2026-10-26_session.json').read_text())
+    assert card['verdict'].startswith('negative')
+    assert card['holdout_dti']['label'] == 'HOLDOUT-DTI'
+    assert card['holdout_dti']['source'].startswith('saved prior-session')
+    assert card['holdout_dti']['withheld_positive_count'] == 21835
+    assert card['correlation_overlap_vs_registry']['strict_final_dot_overlap']['candidate_dots_within_3px_fraction'] == 1.0
+    assert card['raster']['generated_in_this_review'] is False
+    assert card['validator_output']['all_pixels_finite'] is True
+    assert card['validator_output']['grid_matches_live_template'] is None
+    assert card['submission_note_characters'] == len(card['submission_note']) <= 140
+    assert card['score_projection'] is None
 
 
 class Links(HTMLParser):

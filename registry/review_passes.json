@@ -878,7 +878,7 @@
       "verdict": "negative; no new TIF, no promotion, no weekly slot."
     },
     "verification": {
-      "pytest": "271 passed, 9 skipped after merging main's lane-feasibility and exact-download audits; 1 expected ConstantInputWarning",
+      "pytest": "273 passed, 9 skipped after reconciling main's lane-feasibility, exact-download, and H71-status audits; 1 expected ConstantInputWarning",
       "ruff": "passed",
       "git_diff_check": "passed",
       "html_local_links": "all local links resolved on index.html and seven docs HTML pages",

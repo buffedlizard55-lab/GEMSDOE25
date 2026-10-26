@@ -96,7 +96,7 @@
    },
    "receipt": "checks-gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.json",
    "outside": "zero",
-   "status": "UNIQUE BY CONTENT \u00b7 FORMAT-VALID \u00b7 HOLDOUT FAIL vs H35 (3/3 DIRECT screens) \u00b7 STRICT LANE FAIL (literal r13 lattice only) \u00b7 density-aware UNIQUE vs 21 top-scorers and own HGB lineage \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "status": "CONTENT-DISTINCT \u00b7 FORMAT-VALID \u00b7 HOLDOUT FAIL vs H35 (3/3 DIRECT screens) \u00b7 STRICT LANE FAIL (100% within 3 px of literal r13 lattice) \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
    "zip": "gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.zip",
    "verdict": "negative",
    "slot_approved": false,
@@ -142,12 +142,12 @@
     "extended_receipt": "evidence/h71_lane_extended.json",
     "surface_receipt": "evidence/h71_lane_surface.json"
    },
-   "lane_summary": "STRICT LANE FAIL (literal r13 5-px lattice 100%, IR-25-LANE-DENSITY). Density-aware UNIQUE: max 3-px overlap vs 21 top-scorers 25.1% (15.4% vs GEMSDOE32 B2 0.2778); own HGB lineage max 23.4%; surface |Spearman| 0.0300 <= 0.90.",
+   "lane_summary": "STRICT LANE FAIL (literal r13 lattice: 100% candidate dots within 3 px, exceeding 70% cap). Density-aware comparison with scored rasters is not a waiver of the literal protocol.",
    "slot_reason": "Three pre-registered DIRECT-emission screens all failed vs same-run H35 (HGPC -0.100, AKF -0.091, MAG -0.103; 0/4 folds each) although each beat unsupervised B_crest. Literal r13 lattice also fails. Not slot-approved.",
    "run_card": "registry/run_card_h71_2026-10-26.json",
-   "title": "H71-1 HGPC-BLIND signed gravity\u2013basement polarity (sapd3.0, zeros outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
-   "summary": "Unique 2026-10-26 GeoTIFF (59,472 binary dots, min_dist=3.0 px) from pre-registered H71-1 DIRECT emission (signed isostatic-gravity \u00d7 MT basement half-graben polarity; zero HGB; B=2 collar). Leakage canary PASS (max AUC 0.695). Holdout gate FAIL vs H35. Clears 21/21 sibling top-scorers (15.4% vs GEMSDOE32 B2) and own HGB lineage (max 23.4%). Strict lane gate fails only on the dense r13 lattice. Zero outside footprint (prevents 'Predicted values must be in range [0, 1]'). Testing only \u2014 DO NOT SUBMIT.",
-   "note": "GEMSDOE25 H71 HGPC-B | holdout FAIL; no slot; unscored; not slot-approved | id 9eb0c31e5149"
+   "title": "H71-1 HGPC-BLIND signed gravity\u2013basement polarity (sapd3.0, zeros outside) \u2014 TESTING ONLY \u00b7 STRICT LANE FAIL \u00b7 DO NOT SUBMIT",
+   "summary": "Content-distinct 2026-10-26 testing GeoTIFF (59,472 binary dots, min_dist=3.0 px) from pre-registered H71-1 DIRECT emission (signed isostatic-gravity \u00d7 MT basement half-graben polarity; zero HGB; B=2 collar). Feature-alone canary max AUC 0.695. HOLDOUT-DTI 0.050577 (95% CI 0.037264\u20130.063890; 21,835 withheld positives) failed vs same-run H35. Strict lane FAIL: 100% of candidate dots are within 3 px of the registered r13 lattice. Format-valid only; local testing download; DO NOT SUBMIT.",
+   "note": "GEMSDOE25 H71 HGPC-B | holdout/lane FAIL; no slot; unscored LB; not slot-approved | id 9eb0c31e5149"
   },
   {
    "id": "h71-hgpc-blind-nan",
