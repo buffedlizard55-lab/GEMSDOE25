@@ -1,0 +1,49 @@
+{
+  "hypothesis": "ROD-1 radiometric offset discontinuity",
+  "mechanism": "Tangential registration improvement across a scarp",
+  "non_fault_mimic": "Volcanic flow lobes, alluvial fan sorting, airborne mosaic seams",
+  "evaluator": {
+    "src/gems25/metric.py": "4f6e4732029efd0238388aec74590e56bc2727df7441220ca09af7d02e9da230",
+    "src/gems25/holdout.py": "f0455eb17921e50365342ffb658504a5fcc0ddb3d2bd82f4bf0568d772be2bc1",
+    "src/gems25/experiment.py": "f47cb776b0136ea33fc61ea244b81e6138e1cc1cfb8fd009af427896e906d548",
+    "src/gems25/validation.py": "bb2faea55b6bd827196f56758e5fbbf1e4e620e92779e6b9b53703c3bdf42ac3",
+    "src/gems25/rod.py": "5d7cd22bd44d9c82b7668d0d4f4f8de122d3f6e60d2b9b7f6bd4f03e4eb27795",
+    "scripts/run_rod.py": "d5895ed1539fae494fc485516f1d8fb7a19c9d2cc01bde30cb66facf23fcc089"
+  },
+  "holdout_dti": 0.06904088244998727,
+  "ci95": [
+    0.055788275765469,
+    0.07723532767825059
+  ],
+  "withheld_positives": {
+    "occurrences": 22813,
+    "distinct": 19515
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_max_abs_rho": 0.038981986156781674,
+    "surface_registry_count": 60,
+    "final_dots": {
+      "max_overlap": 1.0,
+      "max_abs_rho": 0.013141290554169325,
+      "flagged": [
+        "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
+      ],
+      "count": 60
+    },
+    "scope": "available local registry; not proof that every sibling artifact is registered"
+  },
+  "raster_sha256": null,
+  "validator_output": null,
+  "submission_name": null,
+  "note": "ROD-1; automatic gates; no slot authorized.",
+  "verdict": "negative",
+  "okay_to_submit": false,
+  "experiments": 1,
+  "preregistration_commit": "f32cf6d",
+  "holdout_label": "HOLDOUT-DTI",
+  "performance_gate": false,
+  "candidate_mask_sha256": "bbd5f4a085b0ee79b307d72da302b0078d3618cc6d6e3c7f9f47a79dcd6140a3",
+  "candidate_dots": 70524,
+  "reason": "DUPLICATE-LANE: final dots fail literal overlap/rank gate; stopped, no TIFF written",
+  "elapsed_seconds": 476.4
+}

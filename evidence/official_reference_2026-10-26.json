@@ -1,0 +1,33 @@
+{
+  "checked_utc": "2026-10-26",
+  "source_class": "OFFICIAL GitHub repository, freshly retrieved via gh api",
+  "commit": "aebe92f7c8a990f0e3443451b7a825d9afd6336b",
+  "files": {
+    "reference_README.md": "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239",
+    "reference.ipynb": "1a7622732ba00f67237058bc0efe79b45ba4e87c449fc9c1e5d6ea659de92ca0"
+  },
+  "claims": [
+    {
+      "claim": "CPU execution is supported; GPU is faster, not mandatory",
+      "readme_section": "Choosing GPU vs. CPU",
+      "notebook_cell": 3
+    },
+    {
+      "claim": "Training uses ordinary TverskyLoss(alpha=0.2,beta=0.8)",
+      "notebook_cell": 16,
+      "caveat": "Not an independent 300 m DTI scorer."
+    },
+    {
+      "claim": "Output copies label CRS and transform, and writes one band",
+      "notebook_cell": 19
+    }
+  ],
+  "excerpts": {
+    "3": "# set device\nif torch.cuda.is_available():\n    device = torch.device(\"cuda\")\nelif torch.backends.mps.is_available():\n    device = torch.device(\"mps\")\nelse:\n    device = torch.device(\"cpu\")\n\nprint(f\"Using device: {device}\")",
+    "19": "# match size to original image\ny_final = y_combined[: y_orig.shape[0], : y_orig.shape[1]]\n\n# get CRS and georeferencing from faults.tif\nfname_out = \"predicted_faults_example.tif\"\nfault_dataset = rasterio.open(FAULT_LABELS_PATH)\n\nnew_dataset = rasterio.open(\n    fname_out,\n    \"w\",\n    driver=\"GTiff\",\n    height=y_final.shape[0],\n    width=y_final.shape[1],\n    count=1,\n    dtype=y_final.dtype,\n    crs=fault_dataset.crs,\n    transform=fault_dataset.transform,\n)\nnew_dataset.write(y_final, 1)\nnew_dataset.close()"
+  },
+  "urls": [
+    "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md",
+    "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/unet-mc-cv-reference-solution.ipynb"
+  ]
+}

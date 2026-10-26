@@ -300,7 +300,7 @@ def lane_check(ctx, emitted: np.ndarray, surface: np.ndarray, registry: list[dic
         reverse_overlap = 0.0
         coverage = 0.0
         reg_n = 0
-        reg_mask = (reg["arr"] > 0) & foot
+        reg_mask = (reg_arr > 0) & foot
         reg_n = int(reg_mask.sum())
         if reg_n:
             dist_to_reg = distance_transform_edt(~reg_mask)
@@ -312,7 +312,7 @@ def lane_check(ctx, emitted: np.ndarray, surface: np.ndarray, registry: list[dic
             overlap = float((dist <= LANE_RADIUS_PX).mean())
             rdist = cKDTree(my_rc).query(reg_rc, k=1)[0]
             reverse_overlap = float((rdist <= LANE_RADIUS_PX).mean())
-        rho_flag = not math.isnan(corr) and abs(corr) > LANE_CORR_CAP
+        rho_flag = not math.isfinite(corr) or abs(corr) > LANE_CORR_CAP
         overlap_flag = overlap > LANE_OVERLAP_CAP
         # Density-aware companion (pre-registered knowledge/22 section 4): a registry
         # raster whose own 3-px halo covers >= 70% of the footprint fails *any* dot

@@ -147,7 +147,10 @@
    "run_card": "registry/run_card_h66_2026-10-25.json",
    "title": "H66-1 MGD-F + tip-preserved flank shield (sapd3.0, zeros outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
    "summary": "Unique 2026-10-25 GeoTIFF (44,832 binary dots, min_dist=3.0 px) from pre-registered H66-1 G1_C1 (H35 base + 4 multi-geothermometer disequilibrium & Efimov K-alteration columns + tip-preserved flank shield r=2.5 px). Passed screen (+0.0025, 4/4 folds) and Factor C flank shielding was positive in 8/8 fold-blocks, but MGD-F failed fresh-draw confirmation (-0.0022) and strict lane gate fails on dense lattice / own HGB lineage. Zero outside footprint (prevents 'Predicted values must be in range [0, 1]'). Testing only \u2014 DO NOT SUBMIT.",
-   "note": "GEMSDOE25 H66-1 MGD-C sapd3.0 | confirm FAIL; no slot; unscored; not slot-approved | id da617550a0e9"
+   "note": "GEMSDOE25 H66-1 MGD-C sapd3.0 | confirm FAIL; no slot; unscored; not slot-approved | id da617550a0e9",
+   "score_evidence_class": "OWNER-REPORTED; no organizer receipt supplied",
+   "owner_reported_score": 0.0742,
+   "score_recorded_utc": "2026-10-26T00:35:27Z"
   },
   {
    "id": "h66-mgd-flank-nan",

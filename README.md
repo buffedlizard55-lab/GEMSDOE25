@@ -1,10 +1,60 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
+<!-- CURRENT-REVIEW-2026-10-26 -->
+## Current decision — 2026-10-26
+
+**OK TO SUBMIT: NO.** [Nine-site executive review and automated ROD result](docs/current-review.html) · [Scientific report](knowledge/28_focus_review_2026-10-26.md) · [Run card](evidence/rod_2026-10-26/run_card.json). GEMSDOE32 B2 is the strongest supplied historical exemplar (**OWNER-REPORTED 0.2778**), not a new submission. No new TIF is approved; do not reinterpret historical downloads or format-only receipts as authorization. The new radiometric-offset hypothesis was preregistered and tested against the same-run H35 comparator. No weekly slot was used.
+
+Read the current owner brief below every session, then the preserved historical prompts. **Maximize P(Win)** and **Own the Outcome**: a negative scientific result is not an excuse to submit a rejected file.
+
+<details><summary>Current owner prompt — normalized standing brief (not verbatim)</summary>
+
+# Current owner prompt — 2026-10-26, normalized standing brief
+
+This is a **normalized restatement, not a claimed verbatim transcript** of the current long message. Historical verbatim/reconstructed prompt archives remain unchanged in this repo. Read this brief and the README before every session. Repeated passages are consolidated; user-supplied score claims are preserved as claims in the focused review and existing score ledger, not organizer receipts.
+
+## Highest urgency — owner's wording
+
+> MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. BUT WE MUST GENERATE A UNIQUE TIF SUBMISSION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.
+
+The goal is a genuinely new, high-scoring competition GeoTIFF, with a one-click download at the beginning of the site, a unique name and a note of at most 140 characters. Validate through the project without relying on a human inspector. Prevent the portal error **“Predicted values must be in range [0, 1]”**. Match the official single-band format's CRS, shape and geotransform; keep every prediction in the footprint finite and in range. An executive-summary subpage must explain exactly how to submit. Format validation is not authorization or expected leaderboard performance.
+
+## Focus and scientific questions
+
+Review this repo and the strongest supplied historical submissions from **GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33 and GEMSDOE36**. Give an executive finding for every site, including the strongest supplied result and whether any file is actually eligible as a new submission. Learn from all supplied sibling results through GEMSDOE92; do not pretend to have freshly verified unexamined websites.
+
+Explain why GEMSDOE32 `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` reportedly obtained **0.2778**, and whether a genuinely new candidate can improve on it. The prompt supplies conflicting overall-leader values **0.4413** and **0.3195**; neither is an organizer-confirmed current snapshot here.
+
+Before implementation, propose and rank **3–5 untried geological hypotheses**. Each must identify layers, physical signature/transform, catalogue-missing-fault rationale, distinction from existing code, non-fault mimic, expected improvement (clearly a planning judgment, not a score) and cost. Check actual obtainable free official data before calling an externally dependent idea viable. Investigate geothermal science, but do not substitute vent labels for the competition's fault-label task. Store auditable evidence and knowledge for future work.
+
+## Parallel-run protocol — mandatory constraints
+
+1. Stay within one method lane. The current message refers to a “single method paragraph below” but does not actually supply a separate method. Record any provisional lane choice explicitly. If surface/final rank correlation exceeds 0.90 in magnitude or more than 70% of candidate dots are within 3 px of any registry raster's dots, log a duplicate and stop. Check before placement and on final dots. Do not silently waive dense-registry cases.
+2. Reuse the shared cached features, hide-and-recover evaluator and submission writer. The actual equivalents in this checkout are `gems25.holdout`, `gems25.experiment`, `gems25.metric` and `gems25.submission`, not files literally named `evaluate_holdout.py` / `submission_writer.py`. Hide whole fault components with a buffer, derive catalogue features only from visible faults, mask visible pixels exactly, and report pooled DTI with alpha 0.2, beta 0.8 and the 300 m triangular kernel. Fix shared bugs once, not in private forks.
+3. Distinguish HOLDOUT-DTI (evaluator version, withheld-positive count, 95% CI) from ORGANIZER-CONFIRMED scores backed by receipts. The existing user-provided figures must remain OWNER-REPORTED rather than being forced into a false organizer-confirmed label. Geometric counts and diagnostic AUC are not DTI scores. Projections never become scores.
+4. Test every feature alone on the holdout; AUC above 0.90 is presumed leakage until resolved. Include inverted and missingness discrimination. An untested feature cannot receive an implicit pass.
+5. End with one JSON run card: hypothesis, mechanism, named non-fault mimic, holdout DTI and CI, registry correlation/overlap, raster SHA-256, validator output, name and short note, promote/negative verdict. Unknown/not-created fields are null, never invented. Negative results are deliverables.
+6. Stop after 3 experiments or 2 hours. Do not spend a weekly slot or choose a submission for a real slot. Promotion is a separate selector step within the verified weekly cap. Recompute the best comparable control in the same run and require a genuine paired holdout improvement before consideration.
+
+The request to always create a new TIF can conflict with a duplicate-lane stop. Do not evade this by copying, jittering, renaming or blessing a failed file. Explicitly report the unfulfilled artifact requirement if the safety/scientific gates stop the run.
+
+## Autonomous execution, sources and review
+
+Work on prior-session next steps first. Use **Maximize P(Win)** and **Own the Outcome** as decision principles: prefer verified leverage, own engineering failures, and preserve negative results. Work autonomously without asking for secrets or manual data placement when pinned public mirrors are available. Use free official sources for external data; record bytes/schema/coverage/license verification separately from page availability. Provide official links for manual review, flag irregularities, and never claim all lines or sources are independently verified when they are not.
+
+Official reference links: [competition](https://www.drivendata.org/competitions/306/competition-doe-gems/), [problem](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/), [about](https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/), [data](https://www.drivendata.org/competitions/306/competition-doe-gems/data/), [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/), [official reference repository](https://github.com/drivendataorg/gems-prize-reference-solution), [rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf), [GDR 1391](https://gdr.openei.org/submissions/1391), [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and), [INGENIOUS](https://gbcge.org/current-projects/ingenious/), [EPSG:32611](https://epsg.io/32611). The historical brief preserves the supplied Dropbox links. Links are not assertions that they were fetched or authenticated this session. Respect the repo's no-automated-DrivenData-access policy.
+
+Build a clean GitHub Pages site with an immediate status, downloadable approved artifacts only when earned, executive instructions, evidence/source tables and an honestly dated source feed. Keep the prompt and core values in README as the standing starting point. Complete three cumulative passes: implementation and verification; bug/assumption/edge-case review and fixes; full request reconciliation and remaining limitations. Open a PR from the fixed session branch, wait for checks, merge onto main through the explicit GitHub PR number, and report only verified merge/deployment status. Do not claim that this work fully met the request if no gate-cleared novel TIF was produced.
+
+</details>
+
+<!-- END-CURRENT-REVIEW-2026-10-26 -->
+
 ## Start here every session — owner mandate, 2026-10-25
 
 **MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.** The project's decision principles are **Maximize P(Win)** and **Own the Outcome**. Review the original owner prompt and this README each session; follow `AGENTS.md`. Test catalogue-free geological hypotheses on buffered, spatially blocked hide-and-recover folds; test each feature alone for leakage (AUC >0.90 is presumptive leakage); check surface and final dots against every available registry raster (|rank correlation| >0.90 or >70% within 3 pixels is a duplicate-lane stop). Report pooled HOLDOUT-DTI with withheld-positive count and 95% CI, never present a projection or owner-reported claim as an organizer-confirmed score. Never spend a weekly slot before a separate selector decision. Exact-file format checks do not imply submission approval. Read the complete historical owner brief at the bottom. The current owner's very long updated prompt is not claimed to be transcribed verbatim here; this section records its actionable protocol, not the complete message.
 
-**Current checkout review (2026-10-26):** [Nine-site executive comparison (GEMSDOE24/25/27/28/30/31/32/33/36), GEMSDOE32 B2 forensic interpretation, five ranked untested hypotheses, blockers, three-pass review and negative run card](knowledge/27_checkout_review_2026-10-26.md). **No new TIFF or experiment was generated. No current file is approved to submit.** `data/` is empty except `.gitkeep`; current owner-reported scores are not organizer receipts; the literal lane gate has a blocking overlap with the dense registered lattice. Automated verification in this checkout: 214 passed, 8 data-dependent skips; Ruff passed. [PR #33 was merged to main](https://github.com/buffedlizard55-lab/GEMSDOE25/pull/33) after GitHub checks passed; no Pages deployment was verified.
+**Earlier parallel checkout review (2026-10-26, `arena/d956e0a6-gemsdoe25`; preserved snapshot):** [Nine-site comparison and no-data review](knowledge/27_checkout_review_2026-10-26.md). That separate checkout had no restored inputs and ran no experiment (214 tests passed, 8 data-dependent skips). **Those data-placement statements are not the current session's state:** this session restored the inputs, ran ROD, and passed 245 tests without data skips. Both reviews authorize no new submission. [That review merged as PR #33](https://github.com/buffedlizard55-lab/GEMSDOE25/pull/33); its recorded merge receipt is preserved.
 
 **Latest session (2026-10-25, H66 MGD-F + SGMC-REACT 3-experiment lane — featured download below):** [PhD forensic deconstruction of `GEMSDOE32` (`0.2778`) across focus sites `24–36` & `48–92`, 5 ranked untried hypotheses (`H66-1..H66-5`), and 3 pre-registered holdout experiments — `H66-1` screen PASS (`+0.002486`, `4/4` folds+) / confirm FAIL (`-0.002241`), `Factor C` flank shield `+8/8` (`16/16` combined with `H31-1`), `H66-2` `SGMC-REACT` screen PASS (`+0.013794`, `4/4` folds+, unconfirmed at `3/3` cap) — unique GeoTIFF `da617550a0e9` (`0/21` sibling top-scorers flagged, `30.4%` vs `B2`; OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT)](knowledge/26_h66_outcomes_2026-10-25.md) · pre-registration [`knowledge/25_preregistered_h66_mgd_and_sgmc_react_2026-10-25.md`](knowledge/25_preregistered_h66_mgd_and_sgmc_react_2026-10-25.md) (commit `0f6fc77`, pre-fit) · run card `registry/run_card_h66_2026-10-25.json`.
 
