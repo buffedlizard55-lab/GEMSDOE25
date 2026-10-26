@@ -206,13 +206,17 @@ def test_h36_featured_deliverable_run_card_and_site_banners():
     assert v_out["zeros_independent_strict_validator"]["whole_array_in_0_1"] is True
     assert v_out["zeros_independent_strict_validator"]["cannot_trigger_range_0_1_portal_error"] is True
 
-    # Historical H36 download/status assertions stay on the preserved archive;
-    # the current front page must no longer present it as a new deliverable.
-    for page_rel in ("docs/history.html", "docs/submission-history.html"):
-        html_txt = (root / page_rel).read_text()
-        assert primary["file"] in html_txt
-        assert "OK to download: YES" in html_txt
-        assert "OK to spend a weekly slot: NO" in html_txt
-        assert "DO NOT SUBMIT" in html_txt
+    # H36 remains named in the historical archive, but no page offers it as a competition download.
+    archive = (root / "docs/history.html").read_text()
+    assert primary["file"] in archive
+    assert "Competition-ready download: NO" in archive
+    assert "research-archive access for inspection: YES" in archive
+    assert "not offered as an eligible competition download" in archive
+    assert f'href="downloads/{primary["file"]}"' not in archive
+    submission_guide = (root / "docs/submission-history.html").read_text()
+    assert "Competition-ready download: NO" in submission_guide
+    assert "OK to spend a weekly slot: NO" in submission_guide
+    assert "DO NOT SUBMIT" in submission_guide
+    assert f'href="downloads/{primary["file"]}"' not in submission_guide
     for page_rel in ("index.html", "docs/index.html", "docs/executive-summary.html"):
         assert "OK TO SUBMIT: NO" in (root / page_rel).read_text()

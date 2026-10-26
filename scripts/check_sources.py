@@ -13,6 +13,7 @@ What it checks automatically (when the network allows; the dev sandbox blocks mo
 
 from __future__ import annotations
 
+import argparse
 import datetime as dt
 import json
 import os
@@ -27,9 +28,30 @@ SCIENCEBASE = {
     "Slip/dilation tendency release": "6296974dd34ec53d276bb33d",
     "Great Basin heat-flow release": "6297d2fad34ec53d276c5b28",
 }
+# Fixed review scope plus historical top-scorer mirrors. This is a repository-activity feed,
+# not a score monitor; names come from the pinned local ledgers, not live website discovery.
+FOCUS_SIBLINGS = (
+    "GEMSDOE24", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30", "GEMSDOE31",
+    "GEMSDOE32", "GEMSDOE33", "GEMSDOE36",
+)
 SIBLINGS = [f"{n}GEMSDOE" for n in (5, 6, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)] + [
-    "GEMSDOE", "GEMSDOE2", "GEMSDOE3", "GEMSDOE4", "GEMSDOE9", "GEMSDOE10", "GEMSDOE21", "GEMSDOE22", "GEMSDOE23", "GEMSDOE24",
+    "GEMSDOE", "GEMSDOE2", "GEMSDOE3", "GEMSDOE4", "GEMSDOE9", "GEMSDOE10", "GEMSDOE21", "GEMSDOE22", "GEMSDOE23",
+    *FOCUS_SIBLINGS,
 ]
+
+
+def sibling_repositories() -> list[str]:
+    """Combine the maintained activity list with pinned top-scorer repository names, deduplicated."""
+    names = list(SIBLINGS)
+    top_scorer_path = ROOT / "registry" / "top_scorer_sources.json"
+    if top_scorer_path.exists():
+        rows = json.loads(top_scorer_path.read_text()).get("rasters", [])
+        for row in rows:
+            repo = str(row.get("repo", ""))
+            prefix = "buffedlizard55-lab/"
+            if repo.startswith(prefix):
+                names.append(repo.removeprefix(prefix))
+    return list(dict.fromkeys(name for name in names if name and "/" not in name))
 
 
 def is_blocked(url: str) -> bool:
@@ -104,6 +126,13 @@ def probe(session, url: str) -> dict:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--repositories-only",
+        action="store_true",
+        help="refresh GitHub repo activity only; carry non-GitHub feed rows forward without probing them",
+    )
+    args = parser.parse_args()
     import requests
 
     s = requests.Session()
@@ -114,29 +143,44 @@ def main() -> None:
     if tok:
         gh.headers["Authorization"] = f"Bearer {tok}"
     items = []
-    for src in json.loads((ROOT / "registry" / "sources.json").read_text())["sources"]:
-        p = probe(s, src["url"])
-        items.append(dict(kind="source", title=src["title"], url=src["url"], verified_in_repo=src["verified"], **p))
-    for title, sid in SCIENCEBASE.items():
-        url = f"https://www.sciencebase.gov/catalog/item/{sid}?format=json"
-        response = None
-        try:
-            response = safe_request(s, "GET", url, timeout=30)
-            if response.status_code >= 400:
-                raise RuntimeError(f"HTTP {response.status_code}")
-            j = response.json()
-            last = (j.get("provenance") or {}).get("lastUpdated") or j.get("lastUpdated") or "not provided"
-            items.append(dict(kind="sciencebase", title=title, url=f"https://www.sciencebase.gov/catalog/item/{sid}", status="ok",
-                              detail=f"lastUpdated {last}"))
-        except BlockedRedirect as e:
-            items.append(dict(kind="sciencebase", title=title, url=f"https://www.sciencebase.gov/catalog/item/{sid}",
-                              status="redirect to DrivenData not followed", detail=str(e)))
-        except Exception as e:  # noqa: BLE001
-            items.append(dict(kind="sciencebase", title=title, url=f"https://www.sciencebase.gov/catalog/item/{sid}", status="unreachable", detail=type(e).__name__))
-        finally:
-            if response is not None:
-                response.close()
-    for name in SIBLINGS:
+    refreshed = now()
+    out = ROOT / "docs" / "data" / "feed.json"
+    if args.repositories_only and out.exists():
+        previous = json.loads(out.read_text())
+        for item in previous.get("items", []):
+            if item.get("kind") in ("source", "sciencebase"):
+                cached = dict(item)
+                cached["checked_utc"] = item.get("checked_utc") or previous.get("generated_utc")
+                cached["freshness"] = "cached; not rechecked in this GitHub-only refresh"
+                items.append(cached)
+    elif not args.repositories_only:
+        for src in json.loads((ROOT / "registry" / "sources.json").read_text())["sources"]:
+            p = probe(s, src["url"])
+            items.append(dict(kind="source", title=src["title"], url=src["url"], verified_in_repo=src["verified"],
+                              checked_utc=refreshed, freshness="checked this refresh", **p))
+        for title, sid in SCIENCEBASE.items():
+            url = f"https://www.sciencebase.gov/catalog/item/{sid}?format=json"
+            response = None
+            try:
+                response = safe_request(s, "GET", url, timeout=30)
+                if response.status_code >= 400:
+                    raise RuntimeError(f"HTTP {response.status_code}")
+                j = response.json()
+                last = (j.get("provenance") or {}).get("lastUpdated") or j.get("lastUpdated") or "not provided"
+                items.append(dict(kind="sciencebase", title=title, url=f"https://www.sciencebase.gov/catalog/item/{sid}", status="ok",
+                                  detail=f"lastUpdated {last}", checked_utc=refreshed, freshness="checked this refresh"))
+            except BlockedRedirect as e:
+                items.append(dict(kind="sciencebase", title=title, url=f"https://www.sciencebase.gov/catalog/item/{sid}",
+                                  status="redirect to DrivenData not followed", detail=str(e), checked_utc=refreshed,
+                                  freshness="attempted this refresh; target blocked"))
+            except Exception as e:  # noqa: BLE001
+                items.append(dict(kind="sciencebase", title=title, url=f"https://www.sciencebase.gov/catalog/item/{sid}",
+                                  status="unreachable", detail=type(e).__name__, checked_utc=refreshed,
+                                  freshness="checked this refresh"))
+            finally:
+                if response is not None:
+                    response.close()
+    for name in sibling_repositories():
         url = f"https://api.github.com/repos/buffedlizard55-lab/{name}"
         response = None
         try:
@@ -148,12 +192,14 @@ def main() -> None:
             except Exception:  # noqa: BLE001 - fall back to the gh CLI
                 j, ok, code = gh_api_json(f"repos/buffedlizard55-lab/{name}"), True, 200
             items.append(dict(kind="sibling-repo", title=name, url=f"https://github.com/buffedlizard55-lab/{name}", status="ok" if ok else f"HTTP {code}",
-                              detail=f"pushed_at {j.get('pushed_at')}"))
+                              detail=f"pushed_at {j.get('pushed_at')}", checked_utc=refreshed, freshness="checked this refresh"))
         except BlockedRedirect as e:
             items.append(dict(kind="sibling-repo", title=name, url=f"https://github.com/buffedlizard55-lab/{name}",
-                              status="redirect to DrivenData not followed", detail=str(e)))
+                              status="redirect to DrivenData not followed", detail=str(e), checked_utc=refreshed,
+                              freshness="attempted this refresh; target blocked"))
         except Exception as e:  # noqa: BLE001
-            items.append(dict(kind="sibling-repo", title=name, url=f"https://github.com/buffedlizard55-lab/{name}", status="unreachable", detail=type(e).__name__))
+            items.append(dict(kind="sibling-repo", title=name, url=f"https://github.com/buffedlizard55-lab/{name}", status="unreachable", detail=type(e).__name__,
+                              checked_utc=refreshed, freshness="checked this refresh"))
         finally:
             if response is not None:
                 response.close()
@@ -161,11 +207,14 @@ def main() -> None:
     snap = ls["leaderboard_snapshot"]
     items.append(dict(kind="human-snapshot", title="DrivenData leaderboard (user-provided, unverified claim)", url=snap["source"],
                       status=f"{snap['status']} · reported {snap['reported_utc']}",
-                      detail=f"claimed #1 {snap['top10'][0]['participant']} {snap['top10'][0]['best_public_dti']}; no organizer page/receipt was accessed"))
-    feed = dict(generated_utc=now(), generator="scripts/check_sources.py",
-                policy="Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
+                      detail=f"claimed #1 {snap['top10'][0]['participant']} {snap['top10'][0]['best_public_dti']}; no organizer page/receipt was accessed",
+                      checked_utc=None, freshness="human-provided snapshot; DrivenData not contacted"))
+    scope = ("GitHub repository activity checked; non-GitHub rows carried from the previous feed without probing"
+             if args.repositories_only else "source pages, ScienceBase and GitHub repository activity checked as configured")
+    feed = dict(generated_utc=refreshed, generator="scripts/check_sources.py",
+                refresh_scope=scope,
+                policy="Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down. The human leaderboard snapshot is never fetched.",
                 items=items)
-    out = ROOT / "docs" / "data" / "feed.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(feed, indent=1) + "\n")
     ok = sum(1 for i in items if i["status"] == "ok")

@@ -1,0 +1,176 @@
+{
+ "schema": "planning_hypothesis_queue/v1",
+ "generated_utc": "2026-10-26T16:49:05Z",
+ "evidence_class": "planning judgments only; no new hypothesis was fit and no HOLDOUT-DTI or competition score is claimed",
+ "novelty_scope": "Repository-level search only. The inspected focus sites are owner-mirrored prediction rasters, not complete source-code audits; novelty across sibling projects or competitors is unverified.",
+ "experiment_budget_effect": "No experiment, weekly slot, cache rebuild, or promotion/selection step was used for this queue.",
+ "reviewed_code": [
+  "src/gems25/features.py",
+  "src/gems25/families.py",
+  "knowledge/09_preregistered_hypotheses_2026-10-02.md",
+  "knowledge/10_preregistered_h28_live_anchored_emission_design_2026-10-02.md",
+  "knowledge/11_preregistered_h30_pairwise_relay_factorial_2026-10-03.md",
+  "knowledge/27_preregistered_h71_hgpc_2026-10-26.md",
+  "knowledge/28_h71_outcomes_2026-10-26.md"
+ ],
+ "hypotheses": [
+  {
+   "rank": 1,
+   "id": "H72-1-COND-RAD-EDGE",
+   "name": "Conductive alteration-front / radiometric edge co-orientation",
+   "layers": [
+    "cond_surf",
+    "Th/K ratio",
+    "U/K ratio",
+    "footprint and visible-fault mask"
+   ],
+   "signature_and_transform": "At each scale, compute robustly standardized edge magnitude of log(1+cond_surf) and log-radiometric ratios; reward persistent co-oriented edges (axial cos(2*delta_angle) > 0) in a narrow corridor, with visible catalogue pixels exactly excluded. Freeze scale, signs, thresholds, and missingness handling before any fit.",
+   "blind_fault_rationale": "A buried/poorly exposed permeable structure could focus fluids and clay alteration, perturbing electrical conductance and mobile/immobile radiometric ratios along a corridor that is not represented by the visible fault catalogue. This is a physical hypothesis, not evidence that the hidden labels share the pattern.",
+   "repo_distinction": "The feature code contains separate conductivity gradients, radiometric ratios/edges, and radiometric-versus-DEM directional tests; the reviewed code/register does not contain this explicit conductance-edge \u00d7 radiometric-edge orientation-coherence feature. Exact novelty outside this repository is unknown.",
+   "non_fault_mimics": [
+    "alluvial clay or shallow soil moisture",
+    "lithologic contacts and weathering fronts",
+    "airborne survey seams or resampling edges",
+    "playa evaporites"
+   ],
+   "planning_expected_holdout_delta_dti": {
+    "low": 0.0,
+    "high": 0.003,
+    "label": "planning judgment; not a score or estimate"
+   },
+   "implementation_cost": "One paired spatial screen after the pinned shared feature cache is restored; estimated 0.5\u20131 engineering day including canaries and pre-placement lane audit.",
+   "data_availability": "Required layers exist in the restored owner-mirror input/derived-radiometric bundle and prepared base bands; the shared static_ABCD.npy cache is absent. The official USGS GeoDAWN page confirms the airborne magnetic/radiometric release covers the northwestern Great Basin and marks the work CC0 1.0, but the owner-mirror bytes were not authenticated against the release. Organizer provenance for the local conductivity surface also remains unverified. No new external binary is required; do not rebuild the missing cache without authorization.",
+   "official_manual_review_sources": [
+    {
+     "title": "USGS GeoDAWN data release",
+     "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+     "verification": "fetched 2026-10-26: official USGS/DOE GeoDAWN data-release page; describes survey coverage and CC0 1.0. Direct release bytes were not fetched or matched to the local mirror."
+    },
+    {
+     "title": "Competition data page",
+     "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+     "verification": "manual-review link only; no access automated"
+    }
+   ],
+   "status": "highest-priority planning candidate; not preregistered, not fit, not eligible for a submission"
+  },
+  {
+   "rank": 2,
+   "id": "H72-2-LANDSAT-THERMAL-RESIDUAL",
+   "name": "Season-normalized Landsat surface-temperature lineament residual",
+   "layers": [
+    "Landsat Collection 2 Level-2 surface temperature",
+    "surface reflectance for vegetation/land-cover controls",
+    "provided DEM",
+    "visible-fault mask"
+   ],
+   "signature_and_transform": "For matched clear-sky seasonal observations, estimate a robust pixelwise surface-temperature residual after elevation, vegetation, illumination and seasonal baselines; test only persistent, spatially coherent lineaments and faults inferred from residual gradients. Aggregate to the competition grid only after cloud, emissivity and georegistration QA.",
+   "blind_fault_rationale": "A permeable blind structure may channel warm fluids to the near-surface and produce a persistent thermal/vegetation response; this is indirect and may be absent where cover, depth or seasonal forcing dominates.",
+   "repo_distinction": "The current repo uses airborne radiometry, magnetics, gravity, conductivity, DEM/LiDAR and sparse well/spring attributes; no multi-date satellite land-surface-temperature residual stack is implemented in the reviewed code.",
+   "non_fault_mimics": [
+    "topographic illumination and elevation",
+    "soil moisture and vegetation phenology",
+    "wildfire scars and land-cover change",
+    "anthropogenic heat or exposed lithology"
+   ],
+   "planning_expected_holdout_delta_dti": {
+    "low": 0.0,
+    "high": 0.005,
+    "label": "planning judgment; not a score or estimate"
+   },
+   "implementation_cost": "High; estimate 5\u201310 days after data access for scene selection, QA, seasonal normalization, reprojection and frozen validation.",
+   "data_availability": "USGS confirms Collection 2 Level-2 surface-reflectance and surface-temperature products are available from 1982 to present. Blocked for this AOI: no official scene inventory, coverage, cloud fraction, product-byte, terms or processing check was performed.",
+   "official_manual_review_sources": [
+    {
+     "title": "USGS Landsat Collection 2",
+     "url": "https://www.usgs.gov/landsat-missions/landsat-collection-2",
+     "verification": "fetched 2026-10-26: confirms Collection 2 Level-2 surface-reflectance and surface-temperature product families; no AOI-specific scene search or coverage check."
+    },
+    {
+     "title": "USGS EarthExplorer",
+     "url": "https://earthexplorer.usgs.gov/",
+     "verification": "catalogue entry point only; not queried"
+    }
+   ],
+   "status": "blocked on official scene availability/coverage and QA; not preregistered or fit"
+  },
+  {
+   "rank": 3,
+   "id": "H72-3-ASTER-ALTERATION-BOUNDARY",
+   "name": "Hydrothermal alteration mineral-boundary lineaments",
+   "layers": [
+    "ASTER VNIR/SWIR surface-reflectance products where valid",
+    "provided DEM for terrain/illumination controls",
+    "visible-fault mask"
+   ],
+   "signature_and_transform": "Use only documented, QA-valid mineral-sensitive ratios or indices from suitable ASTER scenes; map persistent clay/iron alteration boundaries, then score line-like boundary coherence at 100 m after terrain, cloud, saturation and scene-date controls. Do not label vents or alteration pixels as fault truth.",
+   "blind_fault_rationale": "A fault can focus hydrothermal fluids and alteration that forms a corridor or sharp alteration boundary even where the fault trace is buried; the hypothesized target remains fault pixels, not geothermal vents.",
+   "repo_distinction": "No ASTER multispectral mineral-index time/scene stack is implemented. Existing airborne radiometric ratios and conductivity are not ASTER SWIR/VNIR mineral indices.",
+   "non_fault_mimics": [
+    "primary lithologic changes",
+    "mine workings and tailings",
+    "saline/playa deposits",
+    "illumination, vegetation or atmospheric residuals"
+   ],
+   "planning_expected_holdout_delta_dti": {
+    "low": 0.0,
+    "high": 0.004,
+    "label": "planning judgment; not a score or estimate"
+   },
+   "implementation_cost": "High; estimate 5\u201310 days after suitable official scenes are confirmed, including band/scene QA and geological mimic controls.",
+   "data_availability": "The NASA LP DAAC access/catalog page lists ASTER among its archived instruments and directs users to Earthdata Search. Blocked for this AOI: no scene inventory, usable-band coverage, product bytes, license/terms review or extraction was checked. A portal listing is not evidence of usable scene coverage.",
+   "official_manual_review_sources": [
+    {
+     "title": "NASA/USGS LP DAAC ASTER data catalog",
+     "url": "https://www.earthdata.nasa.gov/centers/lp-daac/data-access-tools",
+     "verification": "fetched 2026-10-26: official NASA Earthdata LP DAAC catalog/access page lists ASTER products/instrument filter; no ASTER scene/product or AOI coverage query."
+    },
+    {
+     "title": "NASA Earthdata Search",
+     "url": "https://search.earthdata.nasa.gov/",
+     "verification": "catalogue entry point only; not queried"
+    }
+   ],
+   "status": "blocked on scene, band and coverage verification; not preregistered or fit"
+  },
+  {
+   "rank": 4,
+   "id": "H72-4-SENTINEL1-INSAR",
+   "name": "Persistent InSAR line-of-sight displacement discontinuities",
+   "layers": [
+    "Sentinel-1 SAR time series",
+    "DEM for topographic phase correction",
+    "provided fault labels only for buffered hide-and-recover evaluation"
+   ],
+   "signature_and_transform": "After verifying acquisition geometry and coherent time-series coverage, estimate persistent line-of-sight velocity/displacement gradients and cross-trace discontinuities; require temporal and spatial consistency across independent interferograms, then aggregate to the 100 m grid.",
+   "blind_fault_rationale": "Creep or repeated deformation localized on an unmapped structure can reveal a fault without using visible-catalogue geometry as a predictor. Inactive, deep, or poorly coherent structures may be invisible, so expected recall is limited.",
+   "repo_distinction": "The current code uses coarse geodetic strain-rate and seismicity bands, not SAR interferometric phase/time-series products or pixelwise LOS discontinuities.",
+   "non_fault_mimics": [
+    "tropospheric delay",
+    "seasonal soil-moisture change",
+    "mining or groundwater withdrawal",
+    "decorrelation and unwrapping artifacts"
+   ],
+   "planning_expected_holdout_delta_dti": {
+    "low": 0.0,
+    "high": 0.003,
+    "label": "planning judgment; not a score or estimate"
+   },
+   "implementation_cost": "Very high; estimate 2\u20134 weeks after scene availability, orbit pairing, atmospheric correction and geocoding are established.",
+   "data_availability": "Copernicus states that its ecosystem provides free access to Sentinel mission data and APIs. Blocked for this AOI: no Sentinel-1 scene inventory, acquisition-geometry/coherence assessment, baseline suitability, processing test or scene terms check was performed.",
+   "official_manual_review_sources": [
+    {
+     "title": "Copernicus Data Space Ecosystem",
+     "url": "https://dataspace.copernicus.eu/",
+     "verification": "fetched 2026-10-26: official Copernicus Data Space portal confirms free access to Sentinel mission data; no AOI-specific Sentinel-1 catalog query or scene availability check."
+    },
+    {
+     "title": "NASA Alaska Satellite Facility DAAC",
+     "url": "https://asf.alaska.edu/",
+     "verification": "manual-review link only; no data query performed"
+    }
+   ],
+   "status": "lowest-priority planning candidate; blocked on scenes/coverage and compute feasibility"
+  }
+ ]
+}

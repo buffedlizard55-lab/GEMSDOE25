@@ -101,19 +101,21 @@ def test_h38_revalidates_independently_against_template():
     assert r["positive_pixels"] == 48666
 
 
-def test_site_and_readme_surface_h38_verdict_at_top():
+def test_site_and_readme_surface_no_eligible_h38_download():
     primary = next(s for s in J("registry/submissions.json")["files"] if s["role"] == "primary")
     for rel in ("docs/history.html", "docs/submission-history.html"):
         html = (ROOT / rel).read_text()
-        assert "OK to download: YES" in html
+        assert "Competition-ready download: NO" in html
         assert "OK to spend a weekly slot: NO" in html
         assert primary["file"] in html
-        assert html.index("OK to download: YES") < html.index("Prior parallel-lane CF-1 research TIFF")
+        assert "not offered as an eligible competition download" in html
+        assert f'href="downloads/{primary["file"]}"' not in html
     for rel in ("index.html", "docs/index.html", "docs/executive-summary.html"):
         html = (ROOT / rel).read_text()
         assert "OK TO SUBMIT: NO" in html
         assert "DO NOT SUBMIT" in html
         assert "New TIF download: unavailable" not in html
+        assert "Competition-ready download: NO" in html
     readme = (ROOT / "README.md").read_text()
     assert primary["file"] in readme
-    assert "OK to download (local testing): YES · OK to spend a weekly slot: NO — DO NOT SUBMIT" in readme
+    assert "Research-archive downloads: YES for inspection only · Competition-ready download: NO · OK TO SUBMIT: NO — DO NOT SUBMIT" in readme

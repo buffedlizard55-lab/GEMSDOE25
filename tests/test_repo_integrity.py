@@ -143,6 +143,15 @@ def test_feed_manually_blocks_redirects_for_every_request_method():
     assert session.calls == [("GET", original)] and response.closed
 
 
+def test_feed_dom_renderer_uses_safe_text_nodes_and_http_links_only():
+    script = (ROOT / "docs" / "assets" / "app.js").read_text()
+    assert "innerHTML" not in script
+    assert "textContent" in script and "host.replaceChildren" in script
+    assert "url.protocol === 'https:' || url.protocol === 'http:'" in script
+    assert "noopener noreferrer" in script
+    assert "Checked / freshness" in script
+
+
 def test_readme_carries_the_brief_and_core_values():
     t = (ROOT / "README.md").read_text()
     assert "Maximize P(Win)" in t and "Own the Outcome" in t
@@ -154,7 +163,7 @@ def test_readme_carries_the_brief_and_core_values():
 LINK = re.compile(r'(?:href|src)="([^"#?]+)"')
 
 
-@pytest.mark.parametrize("page", ["index.html", "docs/index.html", "docs/executive-summary.html", "docs/research.html", "docs/sources.html"])
+@pytest.mark.parametrize("page", ["index.html", "docs/index.html", "docs/current-review.html", "docs/executive-summary.html", "docs/research.html", "docs/sources.html"])
 def test_site_local_links_resolve(page):
     f = ROOT / page
     assert f.exists(), page
@@ -164,11 +173,12 @@ def test_site_local_links_resolve(page):
         assert (f.parent / ref).resolve().exists(), f"{page}: broken local link {ref}"
 
 
-def test_first_screen_shows_current_stop_before_historical_download():
+def test_first_screen_shows_current_stop_before_any_historical_artifact():
     t = (ROOT / "index.html").read_text()
     primary = next(s for s in J("registry/submissions.json")["files"] if s["role"] == "primary")
-    assert t.index("OK TO SUBMIT: NO") < t.index(primary["file"])
-    assert "OK to download: YES" in t
+    assert t.index("Competition-ready download: NO") < t.index(primary["file"])
+    assert "Competition-download deliverable: NOT AVAILABLE" in t
+    assert f'href="docs/downloads/{primary["file"]}"' not in t
     assert "OK to spend a weekly slot: NO" in t
     assert "DO NOT SUBMIT" in t
     assert "New TIF download: unavailable" not in t
@@ -177,6 +187,7 @@ def test_first_screen_shows_current_stop_before_historical_download():
     assert "0.152003389" not in t  # stale comparator belongs only in the historical archive
     archive = (ROOT / "docs/history.html").read_text()
     assert primary["file"] in archive and "not slot-approved" in archive
+    assert "Competition-ready download: NO" in archive
 
 
 def test_the_invented_footprint_files_are_not_shipped_or_linked():

@@ -76,15 +76,16 @@ def test_h71_tifs_revalidate_when_template_present() -> None:
         assert res["sha256"] == entry["sha256"]
 
 
-def test_h71_site_and_readme_make_submit_status_obvious() -> None:
+def test_h71_site_and_readme_make_no_eligible_download_obvious() -> None:
     for rel in ("index.html", "docs/index.html", "docs/executive-summary.html"):
         html = (ROOT / rel).read_text()
         assert PRIMARY["file"] in html
-        assert "OK to download: YES" in html
+        assert "Competition-ready download: NO" in html
         assert "OK to spend a weekly slot: NO" in html
         assert "DO NOT SUBMIT" in html
         assert "9eb0c31e5149" in html
+        assert f'href="downloads/{PRIMARY["file"]}"' not in html
     readme = (ROOT / "README.md").read_text()
     assert PRIMARY["file"] in readme
-    assert "OK to download (local testing): YES · OK to spend a weekly slot: NO — DO NOT SUBMIT" in readme
+    assert "Research-archive downloads: YES for inspection only · Competition-ready download: NO · OK TO SUBMIT: NO — DO NOT SUBMIT" in readme
     assert (ROOT / "docs" / "downloads" / PRIMARY["zip"]).exists()
