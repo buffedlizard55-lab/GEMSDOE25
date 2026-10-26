@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-26T00:41:10Z",
+ "generated_utc": "2026-10-26T04:57:11Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"14af61f6112679d94db8e2f61405ab39\""
+   "detail": "HTTP 200; ETag: W/\"710386997c5f3792c69f99f9ecb985b9\""
   },
   {
    "kind": "source",
@@ -105,7 +105,7 @@
    "url": "https://www.usgs.gov/3d-elevation-program",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Mon, 26 Oct 2026 00:40:46 GMT; ETag: W/\"1792975246\""
+   "detail": "HTTP 200; Last-Modified: Mon, 26 Oct 2026 04:56:41 GMT; ETag: W/\"1792990601\""
   },
   {
    "kind": "source",
@@ -145,7 +145,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"3a6f019be43538f79fd0a7d4b484dd74\""
+   "detail": "HTTP 200; ETag: W/\"973d0ba0339a41565fc875103e54f84f\""
   },
   {
    "kind": "source",
@@ -153,7 +153,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"90785b52455b2e80421746c73ea6c1b0\""
+   "detail": "HTTP 200; ETag: W/\"2d0b1b0b9591e3030d067f88724f31aa\""
   },
   {
    "kind": "source",
@@ -177,7 +177,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"c551748f2cf3415d8484bd845b2b3695\""
+   "detail": "HTTP 200; ETag: W/\"7575c4acd68262d5a89d77cbffa13e4b\""
   },
   {
    "kind": "source",
@@ -185,7 +185,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"ee8535a8250e0f6ba84a734ea26798aa\""
+   "detail": "HTTP 200; ETag: W/\"e9b8856b2aee84d66c78127e0f030278\""
   },
   {
    "kind": "source",
@@ -193,7 +193,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"14af61f6112679d94db8e2f61405ab39\""
+   "detail": "HTTP 200; ETag: W/\"710386997c5f3792c69f99f9ecb985b9\""
   },
   {
    "kind": "source",
@@ -209,7 +209,7 @@
    "url": "https://www.usgs.gov/data/quaternary-fault-mapping-zapata-and-blanca-sections-sangre-de-cristo-fault-zone-high",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Mon, 26 Oct 2026 00:40:52 GMT; ETag: W/\"1792975252\""
+   "detail": "HTTP 200; Last-Modified: Mon, 26 Oct 2026 04:56:57 GMT; ETag: W/\"1792990617\""
   },
   {
    "kind": "source",
@@ -225,7 +225,7 @@
    "url": "https://www.usgs.gov/data/state-geologic-map-compilation-sgmc-geodatabase-conterminous-united-states",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Mon, 26 Oct 2026 00:40:54 GMT; ETag: W/\"1792975254\""
+   "detail": "HTTP 200; Last-Modified: Mon, 26 Oct 2026 04:57:00 GMT; ETag: W/\"1792990620\""
   },
   {
    "kind": "source",
@@ -233,7 +233,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"19251f1d1092d018f941eb7092c15577\""
+   "detail": "HTTP 200; ETag: W/\"6897f17e838f55e4677804379f48f574\""
   },
   {
    "kind": "source",
@@ -241,7 +241,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE36",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"96405d77694e062bad164458b375e13a\""
+   "detail": "HTTP 200; ETag: W/\"75312072d81987b7c1d9049251f39e7d\""
   },
   {
    "kind": "source",
@@ -249,7 +249,7 @@
    "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Mon, 26 Oct 2026 00:30:58 GMT; Content-Length: 10620; ETag: W/\"6ade9f42-7508\""
+   "detail": "HTTP 200; Last-Modified: Mon, 26 Oct 2026 04:53:08 GMT; Content-Length: 13700; ETag: W/\"6adedcb4-ccb7\""
   },
   {
    "kind": "source",
@@ -257,7 +257,7 @@
    "url": "https://buffedlizard55-lab.github.io/GEMSDOE36/docs/",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Mon, 26 Oct 2026 00:33:34 GMT; Content-Length: 3304; ETag: W/\"6ade9fde-1d03\""
+   "detail": "HTTP 200; Last-Modified: Mon, 26 Oct 2026 04:55:31 GMT; Content-Length: 8149; ETag: W/\"6adedd43-6cfe\""
   },
   {
    "kind": "source",
@@ -265,7 +265,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"bc3a3ef328d9dd0dd92b2ebd5cf24e65\""
+   "detail": "HTTP 200; ETag: W/\"fa6a2c9a4e975e3f7cffbb2aee26cf01\""
   },
   {
    "kind": "source",
@@ -289,7 +289,7 @@
    "url": "https://doi.org/10.1007/BFb0006528",
    "verified_in_repo": false,
    "status": "ok",
-   "detail": "HTTP 200; ETag: \"5e53422facc73fdf6bdf591e11ef00fe\""
+   "detail": "HTTP 200; ETag: \"246ec365632808753b739757e2b7d961\""
   },
   {
    "kind": "source",
@@ -297,7 +297,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"bc3a3ef328d9dd0dd92b2ebd5cf24e65\""
+   "detail": "HTTP 200; ETag: W/\"fa6a2c9a4e975e3f7cffbb2aee26cf01\""
   },
   {
    "kind": "source",
@@ -494,7 +494,7 @@
    "title": "GEMSDOE24",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24",
    "status": "ok",
-   "detail": "pushed_at 2026-10-26T00:35:22Z"
+   "detail": "pushed_at 2026-10-26T02:52:56Z"
   },
   {
    "kind": "human-snapshot",
