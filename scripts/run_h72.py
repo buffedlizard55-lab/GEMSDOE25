@@ -46,6 +46,8 @@ from run_h28_holdout import BASE, EXTRAS, FOLDS  # noqa: E402
 
 FOLD_IDS = (0, 1, 2, 3)
 ARMS = ("G0_D0", "G1_D0", "G0_D1", "G1_D1")
+CATFREE_ARMS = ("G0_D0", "CF_G0", "CF_G1")
+CATFREE_EXTRAS = ("X1_K", "X1_ThK", "X1_UK", "X3_gm", "X3_gd")
 D0_KFRAC = 0.035
 D0_MIN_DIST = 2.4
 OFF_FLANK_PX = 10.0
@@ -111,9 +113,16 @@ def _pooled_dti(rows: list[dict], tp_key: str = "tp", fp_key: str = "fp", n_key:
     return float(tp / denom) if denom > 0 else 0.0
 
 
-def analyze_cells(rows: list[dict], canary_rows: list[dict], stage: str, draws: list[int]) -> dict:
+def analyze_cells(
+    rows: list[dict],
+    canary_rows: list[dict],
+    stage: str,
+    draws: list[int],
+    mode: str = "factorial",
+) -> dict:
+    arm_list = CATFREE_ARMS if mode == "catfree" else ARMS
     by_arm: dict[str, dict] = {}
-    for arm in ARMS:
+    for arm in arm_list:
         ar = [r for r in rows if r["arm"] == arm]
         fold_std = [float(np.mean([r["dti"] for r in ar if r["fold"] == f])) for f in FOLD_IDS]
         fold_off = [float(np.mean([r["dti_off10"] for r in ar if r["fold"] == f])) for f in FOLD_IDS]
@@ -155,6 +164,49 @@ def analyze_cells(rows: list[dict], canary_rows: list[dict], stage: str, draws: 
             per_fold={FOLDS[f]: fvals[f] for f in FOLD_IDS},
         )
 
+    max_by_feat = {}
+    for nm in H72_NAMES:
+        sub = [c for c in canary_rows if c["feature"] == nm]
+        max_by_feat[nm] = dict(
+            max_canary_auc=float(max(c["canary_auc"] for c in sub)),
+            max_missingness_auc=float(max(c["missingness_auc"] for c in sub)),
+            all_passed=bool(all(c["passed"] for c in sub)),
+        )
+    canary_passed = bool(all(v["all_passed"] for v in max_by_feat.values()))
+
+    if mode == "catfree":
+        contrasts_std = dict(
+            CFG1_vs_CFG0=_contrast("dti", lambda m: m["CF_G1"] - m["CF_G0"]),
+            CFG1_vs_G0D0=_contrast("dti", lambda m: m["CF_G1"] - m["G0_D0"]),
+            CFG0_vs_G0D0=_contrast("dti", lambda m: m["CF_G0"] - m["G0_D0"]),
+        )
+        contrasts_off10 = dict(
+            CFG1_vs_CFG0=_contrast("dti_off10", lambda m: m["CF_G1"] - m["CF_G0"]),
+            CFG1_vs_G0D0=_contrast("dti_off10", lambda m: m["CF_G1"] - m["G0_D0"]),
+            CFG0_vs_G0D0=_contrast("dti_off10", lambda m: m["CF_G0"] - m["G0_D0"]),
+        )
+        c_cf = contrasts_std["CFG1_vs_CFG0"]
+        c_cf_off = contrasts_off10["CFG1_vs_CFG0"]
+        gate_cf = bool(
+            canary_passed
+            and c_cf["mean"] >= 0.0010
+            and c_cf["folds_positive"] >= 3
+            and c_cf["worst_fold"] >= -0.0050
+        )
+        return dict(
+            stage=stage,
+            mode=mode,
+            evaluator=EVALUATOR_ID,
+            draws=draws,
+            leakage_canary=dict(passed=canary_passed, cap=LEAKAGE_AUC_CAP, max_by_feature=max_by_feat),
+            arms=by_arm,
+            contrasts_standard_holdout=contrasts_std,
+            contrasts_off_flank_gt10px=contrasts_off10,
+            gates=dict(
+                S_catfree_CFG1_vs_CFG0=dict(passed=gate_cf, detail_std=c_cf, detail_off10=c_cf_off),
+            ),
+        )
+
     contrasts_std = dict(
         G1D0_vs_G0D0=_contrast("dti", lambda m: m["G1_D0"] - m["G0_D0"]),
         G1D1_vs_G0D0=_contrast("dti", lambda m: m["G1_D1"] - m["G0_D0"]),
@@ -171,16 +223,6 @@ def analyze_cells(rows: list[dict], canary_rows: list[dict], stage: str, draws: 
         D_main=_contrast("dti_off10", lambda m: 0.5 * ((m["G0_D1"] - m["G0_D0"]) + (m["G1_D1"] - m["G1_D0"]))),
         G_x_D=_contrast("dti_off10", lambda m: 0.5 * ((m["G1_D1"] - m["G0_D1"]) - (m["G1_D0"] - m["G0_D0"]))),
     )
-
-    max_by_feat = {}
-    for nm in H72_NAMES:
-        sub = [c for c in canary_rows if c["feature"] == nm]
-        max_by_feat[nm] = dict(
-            max_canary_auc=float(max(c["canary_auc"] for c in sub)),
-            max_missingness_auc=float(max(c["missingness_auc"] for c in sub)),
-            all_passed=bool(all(c["passed"] for c in sub)),
-        )
-    canary_passed = bool(all(v["all_passed"] for v in max_by_feat.values()))
 
     c_std = contrasts_std["G1D0_vs_G0D0"]
     gate_s_std = bool(
@@ -201,6 +243,7 @@ def analyze_cells(rows: list[dict], canary_rows: list[dict], stage: str, draws: 
 
     return dict(
         stage=stage,
+        mode=mode,
         evaluator=EVALUATOR_ID,
         draws=draws,
         leakage_canary=dict(passed=canary_passed, cap=LEAKAGE_AUC_CAP, max_by_feature=max_by_feat),
@@ -222,6 +265,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--draws", type=int, nargs="+", required=True)
     ap.add_argument("--stage", default="screen")
+    ap.add_argument("--mode", choices=["factorial", "catfree"], default="factorial")
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
 
@@ -240,6 +284,7 @@ def main() -> None:
     h72 = load_h72_sidecar(work, ext_dir, ctx.foot, ctx.fi)
 
     base_d0 = ctx.columns(BASE) + ctx.named(EXTRAS) + [ctx.col["H27_tip"]]
+    base_cf = ctx.columns("ABCD") + ctx.named(CATFREE_EXTRAS)
     e_dens5_idx = ctx.col["E_dens5"]
     e_dist_idx = ctx.col["E_dist"]
     base_d1 = [c for c in base_d0 if c != e_dens5_idx]
@@ -286,12 +331,19 @@ def main() -> None:
                 dv = distance_transform_edt(~cell.known_c)
                 off10 = dv > OFF_FLANK_PX
 
-                arm_specs = [
-                    ("G0_D0", base_d0, side_g0_tr, side_g0_q, None, False),
-                    ("G1_D0", base_d0, side_g1_tr, side_g1_q, None, False),
-                    ("G0_D1", base_d1, side_g0_tr, side_g0_q, censor_pos_d1, True),
-                    ("G1_D1", base_d1, side_g1_tr, side_g1_q, censor_pos_d1, True),
-                ]
+                if args.mode == "catfree":
+                    arm_specs = [
+                        ("G0_D0", base_d0, side_g0_tr, side_g0_q, None, False),
+                        ("CF_G0", base_cf, side_g0_tr, side_g0_q, None, False),
+                        ("CF_G1", base_cf, side_g1_tr, side_g1_q, None, False),
+                    ]
+                else:
+                    arm_specs = [
+                        ("G0_D0", base_d0, side_g0_tr, side_g0_q, None, False),
+                        ("G1_D0", base_d0, side_g1_tr, side_g1_q, None, False),
+                        ("G0_D1", base_d1, side_g0_tr, side_g0_q, censor_pos_d1, True),
+                        ("G1_D1", base_d1, side_g1_tr, side_g1_q, censor_pos_d1, True),
+                    ]
 
                 for arm_name, bcols, str_m, sq_m, cpos, is_d1 in arm_specs:
                     p, timing = _fit_predict_arm(
@@ -361,7 +413,7 @@ def main() -> None:
                 del cell, h34_q, h72_q, h34_tr, h72_tr, side_g1_tr, side_g1_q
                 gc.collect()
 
-    summary = analyze_cells(rows, canary_rows, args.stage, list(args.draws))
+    summary = analyze_cells(rows, canary_rows, args.stage, list(args.draws), mode=args.mode)
     summary["runtime_seconds"] = round(time.time() - t_start, 2)
     summary["h34_columns"] = H34_NAMES
     summary["h72_columns"] = H72_NAMES

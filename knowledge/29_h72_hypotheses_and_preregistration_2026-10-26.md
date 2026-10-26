@@ -73,3 +73,18 @@ All expected improvement entries below are **qualitative planning judgments, NOT
 * **Overall Weekly-Slot Promotion Rule (Fail-Closed):**
   * A candidate is eligible for `verdict = "promote"` **only if**: (a) all `6` leakage canaries pass (`<= 0.90`), (b) **standard full `HOLDOUT-DTI` beats same-run `G0_D0` (`H35`)** on **both** Screen (`[80, 81]`) and Confirmation (`[82, 83]`), **and** (c) both pre-placement surface (`|Spearman| <= 0.90`) and final dots (`<= 70%` within `3 px`) pass the **strict literal registry lane check** (`scripts/check_lane_surface.py` + `scripts/lane_check_extended.py`).
   * Per the prompt's highest-urgency deliverable requirement, **one genuinely unique, format-valid full-footprint GeoTIFF** (`3-draw` OOF fit with seeds `20261026 + m` on `G1_D1`, solving `IR-25-CATALOGUE-HUG-COLLAPSE` and breaking own-lineage `>70%` overlap while clearing all `27` pinned focus/top-scorer rasters) will be emitted, validated (`16/16` `check_file` + independent plain-`rasterio` check), and audited on surface + final dots; if either standard full `HOLDOUT-DTI` vs `G0_D0` or the literal `r13` dense-lattice lane rule fails, its automated status MUST be **`verdict = "negative"`**, **`slot_approved = false`**, **`OK to download: YES`**, **`OK to spend a weekly slot: NO — DO NOT SUBMIT`**.
+
+### 3.3 Experiment 3 of 3 Pre-Registration (Committed Before Fitting Untouched Draws `[84, 85]`)
+
+* **Post-Experiment-2 Finding Triggering Experiment 3 (final allowed experiment within `<= 3` cap):**
+  * `S_std_G1D0_vs_H35` **passed BOTH Screen (`[80, 81]`, `+0.00520`, `4/4` folds+) and Frozen Confirmation (`[82, 83]`, `+0.00134`, `3/4` folds+; combined 4-draw `+0.00327`, `4/4` folds+, 95% CI `[+0.00183, +0.00471]`)** with `0` leakage-canary trips (`max AUC = 0.598 <= 0.90`).
+  * However, `S_off10_G1D1_discovery` failed (`-0.00304` Screen, `-0.00688` Confirm) because `D1` retained `E_dens20`, `E_dens50`, `E_coh20`, `X2_compat`, `X2_compat_coh`, and `H27_tip` (`58.5%` of emitted dots still fell at `d_vis <= 10 px`), which on full-footprint inference would still retain corridor-density overlap with prior `H35`/`H66`/`ROD` rasters.
+* **Frozen Experiment 3 Design (`--mode catfree --draws 84 85 --stage catfree_ablation`):**
+  * **Untouched draws:** `[84, 85]` $\times$ `4` quadrants (`8` cells).
+  * **Arms (all evaluated on identical `sapd2.4` placement + `~known` mask, zero comparator drift):**
+    1. `G0_D0`: Same-run `H35` reference (`BDE+7 + H27_tip + H34`).
+    2. `CF_G0`: `100%` Catalogue-Free Geophysical/Geomorphic/Lithologic baseline (`Families A + B + C + D + X1_K, X1_ThK, X1_UK, X3_gm, X3_gd + H34` = `72` columns; **zero** `E_*`, `X2_*`, or `H27_*` columns).
+    3. `CF_G1`: `CF_G0 + H72 MBSP-MTG` (`78` strictly catalogue-free columns).
+  * **Gate `S_catfree_CFG1_vs_CFG0`:** `CF_G1` beats `CF_G0` by paired 4-fold mean `>= +0.0010`, `>= 3/4` folds positive, worst fold `>= -0.0050`, and all `6` leakage canaries `<= 0.90`.
+  * **Full-Footprint Unique GeoTIFF Build (`CF_G1` with `B2` `d_cat > 2 px` collar + `37,654`-dot `sapd` budget):** Eliminates `Family E` feature-halo cloning (`<< 70%` 3-px overlap vs all active `H19-5`, `H35`, `H66`, `ROD`, and sibling rasters) while strictly obeying the fail-closed weekly-slot gate (`slot_approved = false`, `verdict = "negative"` unless `CF_G1` also beats same-run `G0_D0` on standard `HOLDOUT-DTI` AND clears literal `r13` dense-lattice overlap).
+
