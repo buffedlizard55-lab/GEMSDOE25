@@ -38,9 +38,20 @@ LATTICE = "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
 
 def groups(cand: Path):
     d = data_dir()
-    ext = [("scored", p) for p in sorted((d / "scored").glob("*.tif"))]
-    ext += [("artifacts", p) for p in sorted((d / "artifacts").glob("*.tif"))] if (d / "artifacts").exists() else []
-    ext += [("registry_top", p) for p in sorted((d / "registry_top").glob("*.tif"))] if (d / "registry_top").exists() else []
+    ext = []
+    seen_ext_sha = set()
+    for grp in ("scored", "calibration", "research", "artifacts"):
+        gdir = d / grp
+        if not gdir.exists():
+            continue
+        for p in sorted(gdir.glob("*.tif")):
+            dig = hashlib.sha256(p.read_bytes()).hexdigest()
+            if dig in seen_ext_sha:
+                continue
+            seen_ext_sha.add(dig)
+            ext.append((grp, p))
+    if (d / "registry_top").exists():
+        ext += [("registry_top", p) for p in sorted((d / "registry_top").glob("*.tif"))]
     own = []
     seen = set()
     cand_stem = cand.stem.replace("-zeros", "").replace("-nan", "")

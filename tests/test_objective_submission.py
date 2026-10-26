@@ -8,7 +8,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CARD = json.loads((ROOT / "registry" / "run_card_objective_2026-10-26.json").read_text())
 SUBS = json.loads((ROOT / "registry" / "submissions.json").read_text())["files"]
-PRIMARY = next(s for s in SUBS if s["role"] == "primary")
+# Merge note: featured rotated to h72-3-subsurf; obj-bin-greedy remains locked as alternate.
+PRIMARY = next(s for s in SUBS if s["id"] == "obj-bin-greedy")
 NAN_TWIN = next(s for s in SUBS if s["id"] == "obj-bin-greedy-nan")
 EXPS = (
     ("experiment_1_tent", "tent_screen_2026-10-26", "TENT-greedy_vs_BIN-greedy"),

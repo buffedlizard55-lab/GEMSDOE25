@@ -1,0 +1,347 @@
+{
+ "schema": "run_card/v1 (PARALLEL-RUN PROTOCOL item 5)",
+ "session": "2026-10-26 H72 PTTG + VCCD/RBDT + MTHS Subsurface Multi-Physics (arena/d64e58fa-gemsdoe25)",
+ "experiments_used": "3 of 3 budget (Exp 1 H72-1 PTTG-DR on draws 80-81; Exp 2 H72-2 VCCD+RBDT on draws 82-83; Exp 3 H72-3 PTTG+MTHS Subsurface on draws 84-85; hard stop reached).",
+ "hypothesis": "H72-3 (primary packaged GeoTIFF) + H72-1/2: Concealed Great Basin accommodation, transfer, and blind geothermal faults offset dense basement and conductive clay-cap / K-metasomatic alteration structures without mapped surface scarps, producing rotationally invariant Phillips horizontal gravity differential curvature K_diff(g), unit-consistent (mGal/km) gravity tilt-derivative crests THDR_g, local 25 km-demeaned geodetic transtensional dilatation anomalies, and subvertical MT conductance x basement-depth steps.",
+ "mechanism": "Strictly DEM-free, LiDAR-free, and catalogue-free supervised HGB (27 static columns: Family D [17] + X3_gm/gd [2] + H34 [3] + PTTG_grav_diffcurv, PTTG_grav_thdr_unit, PTTG_transtension_loc [3] + MTHS_pipe_step, MTHS_k_metasom_halo [2]), 3-split average, ridge NMS (sigma=1.0), d_cat > 2.0 px collar, score_ordered_dots min_dist=3.0 px, kfrac=0.030 on 12-px-eroded domain (41,061 binary dots).",
+ "mimicking_non_fault_process": "Buried Mesozoic pluton-wallrock density contacts, unreactivated caldera ring margins, extinct Miocene quartz-adularia alteration halos, K-rich illite playas, and coarse MT inversion grid stair-stepping.",
+ "preregistrations": [
+  "knowledge/29_preregistered_h72_pttg_ranked_hypotheses_2026-10-26.md (commit 53cb884, prior to Exp 1 & 2)",
+  "knowledge/30_preregistered_h72_3_subsurf_blind_2026-10-26.md (commit fc60bdd, prior to Exp 3)"
+ ],
+ "experiments": {
+  "experiment_1_h72_1_pttg_screen": {
+   "draws": [
+    80,
+    81
+   ],
+   "leakage_canary": {
+    "passed": true,
+    "cap": 0.9,
+    "max_effective_auc": {
+     "PTTG_grav_diffcurv": 0.58723,
+     "PTTG_grav_thdr_unit": 0.54372,
+     "PTTG_transtension_loc": 0.555,
+     "PTTG_concealed_transfer": 0.5278
+    }
+   },
+   "ctrl_h35_mean_dti": 0.158531,
+   "a1_pttg_h35_mean_dti": 0.158469,
+   "a1_vs_h35": {
+    "n_cells": 8,
+    "mean": -6.3e-05,
+    "ci95": [
+     -0.004135,
+     0.003929
+    ],
+    "fold_means": {
+     "NW": -0.000878,
+     "NE": 0.000791,
+     "SW": -0.000242,
+     "SE": 7.8e-05
+    },
+    "folds_positive": 2,
+    "worst_fold": -0.000878,
+    "gate_passed": false
+   },
+   "ctrl_blind_bd_mean_dti": 0.107755,
+   "a3_pttg_deapron_mean_dti": 0.113819,
+   "a3_vs_blind_bd": {
+    "n_cells": 8,
+    "mean": 0.006064,
+    "ci95": [
+     0.004046,
+     0.008673
+    ],
+    "fold_means": {
+     "NW": 0.008884,
+     "NE": 0.006285,
+     "SW": 0.003532,
+     "SE": 0.005555
+    },
+    "folds_positive": 4,
+    "worst_fold": 0.003532,
+    "gate_passed": true
+   },
+   "a3_vs_h35": {
+    "n_cells": 8,
+    "mean": -0.044713,
+    "ci95": [
+     -0.057168,
+     -0.032476
+    ],
+    "fold_means": {
+     "NW": -0.066951,
+     "NE": -0.030387,
+     "SW": -0.052469,
+     "SE": -0.029044
+    },
+    "folds_positive": 0,
+    "worst_fold": -0.066951,
+    "gate_passed": false
+   },
+   "a3_strata": {
+    "frac_le2": 0.0,
+    "frac_2_9": 0.2628,
+    "frac_9_20": 0.2716,
+    "frac_gt20": 0.4656,
+    "median_d_vis": 18.4479
+   }
+  },
+  "experiment_2_h72_2_vccd_rbdt_screen": {
+   "draws": [
+    82,
+    83
+   ],
+   "leakage_canary": {
+    "passed": true,
+    "cap": 0.9,
+    "max_effective_auc": {
+     "PTTG_grav_diffcurv": 0.59812,
+     "PTTG_grav_thdr_unit": 0.5548,
+     "PTTG_transtension_loc": 0.56943,
+     "PTTG_concealed_transfer": 0.54033,
+     "VCCD_subcover_flex": 0.65458,
+     "VCCD_volc_clutter_veto": 0.57988,
+     "RBDT_throw_dipole": 0.60097,
+     "RBDT_non_shoreline_scarp": 0.58689
+    }
+   },
+   "ctrl_h35_mean_dti": 0.145996,
+   "b1_full_h35_mean_dti": 0.146491,
+   "b1_vs_h35": {
+    "n_cells": 8,
+    "mean": 0.000495,
+    "ci95": [
+     -0.004126,
+     0.005127
+    ],
+    "fold_means": {
+     "NW": 0.002818,
+     "NE": 0.001898,
+     "SW": -0.002185,
+     "SE": -0.000552
+    },
+    "folds_positive": 2,
+    "worst_fold": -0.002185,
+    "gate_passed": false
+   },
+   "b1_vs_h35_far_gt9": {
+    "n_cells": 8,
+    "mean": 0.001987,
+    "ci95": [
+     -0.005212,
+     0.009349
+    ],
+    "fold_means": {
+     "NW": 0.005134,
+     "NE": 0.011022,
+     "SW": -0.003891,
+     "SE": -0.004315
+    },
+    "folds_positive": 2,
+    "worst_fold": -0.004315,
+    "gate_passed": false
+   },
+   "b3_full_deapron_mean_dti": 0.107614,
+   "b3_vs_blind_bd": {
+    "n_cells": 8,
+    "mean": 0.007328,
+    "ci95": [
+     0.003924,
+     0.010869
+    ],
+    "fold_means": {
+     "NW": 0.010669,
+     "NE": 0.007567,
+     "SW": 0.004589,
+     "SE": 0.006488
+    },
+    "folds_positive": 4,
+    "worst_fold": 0.004589,
+    "gate_passed": true
+   }
+  },
+  "experiment_3_h72_3_subsurf_screen": {
+   "draws": [
+    84,
+    85
+   ],
+   "leakage_canary": {
+    "passed": true,
+    "cap": 0.9,
+    "max_effective_auc": {
+     "PTTG_grav_diffcurv": 0.63082,
+     "PTTG_grav_thdr_unit": 0.55514,
+     "PTTG_transtension_loc": 0.57219,
+     "MTHS_pipe_step": 0.6034,
+     "MTHS_k_metasom_halo": 0.57871
+    }
+   },
+   "ctrl_h35_mean_dti": 0.155694,
+   "ctrl_subsurf_d_mean_dti": 0.057594,
+   "c1_subsurf_pttg_mths_mean_dti": 0.058993,
+   "c1_vs_subsurf_d": {
+    "n_cells": 8,
+    "mean": 0.001399,
+    "ci95": [
+     -0.003007,
+     0.005265
+    ],
+    "fold_means": {
+     "NW": 0.004929,
+     "NE": -0.004516,
+     "SW": -0.000389,
+     "SE": 0.005573
+    },
+    "folds_positive": 2,
+    "worst_fold": -0.004516,
+    "gate_passed": false
+   },
+   "c1_vs_h35": {
+    "n_cells": 8,
+    "mean": -0.096701,
+    "ci95": [
+     -0.107934,
+     -0.085658
+    ],
+    "fold_means": {
+     "NW": -0.118316,
+     "NE": -0.099148,
+     "SW": -0.076753,
+     "SE": -0.092588
+    },
+    "folds_positive": 0,
+    "worst_fold": -0.118316,
+    "gate_passed": false
+   },
+   "c1_strata": {
+    "frac_le2": 0.0,
+    "frac_2_9": 0.2159,
+    "frac_9_20": 0.2517,
+    "frac_gt20": 0.5325,
+    "median_d_vis": 22.2508
+   }
+  }
+ },
+ "holdout_dti": {
+  "label": "HOLDOUT-DTI",
+  "evaluator_version": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px) via gems25.experiment.Cell.evaluate",
+  "withheld_positives_per_fold": {
+   "NW": 1887,
+   "NE": 2434,
+   "SW": 3673,
+   "SE": 3174
+  },
+  "withheld_positive_occurrences": 22334,
+  "pooled_dti": 0.059431572374364416,
+  "ci95": [
+   0.049419180885707986,
+   0.07343478829077472
+  ],
+  "cell_mean_dti": 0.058993,
+  "cell_ci95": [
+   0.049873,
+   0.069452
+  ],
+  "same_run_h35_pooled_dti": 0.15378587281323894,
+  "same_run_h35_ci95": [
+   0.13557544574951286,
+   0.16943542593537153
+  ],
+  "same_run_subsurf_ctrl_pooled_dti": 0.058245985966197775,
+  "vs_h35_paired_gain": -0.09435430043887452,
+  "vs_h35_paired_ci95": [
+   -0.1104875707141035,
+   -0.0814907806030632
+  ],
+  "vs_subsurf_ctrl_paired_gain": 0.0011855864081666417,
+  "vs_subsurf_ctrl_paired_ci95": [
+   -0.002544395006319658,
+   0.005340900261357959
+  ]
+ },
+ "correlation_overlap_vs_registry": {
+  "registry_rasters_checked": 89,
+  "caps": {
+   "abs_spearman": 0.9,
+   "dots_within_3px": 0.7
+  },
+  "surface_max_abs_spearman": 0.28571,
+  "surface_flagged": [],
+  "final_max_abs_spearman": 0.033213,
+  "focus_21_top_scorers": {
+   "n": 21,
+   "worst_cand_dots_within_3px": 0.39548476656681525,
+   "worst_overlap_file": "g63_cvarlw_0.2303.tif",
+   "worst_abs_spearman_surface": 0.075622,
+   "b2_overlap": 0.2486300869438153,
+   "b2_reverse_overlap": 0.2788548361395868,
+   "b2_spearman_surface": 0.032247,
+   "b2_spearman_final": 0.005824
+  },
+  "own_lineage": {
+   "n": 22,
+   "worst_abs_spearman_surface": 0.079346,
+   "worst_surface_file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+   "worst_abs_spearman_final": 0.030279,
+   "worst_final_file": "gems25-h72-pttg-deapron-sapd2-8-k3p0-20261026-a07ef071c49e-nan.tif",
+   "worst_cand_dots_within_3px": 0.4895886607729963,
+   "worst_overlap_file": "gems25-h72-pttg-deapron-sapd2-8-k3p0-20261026-a07ef071c49e-nan.tif",
+   "lane_pass": true
+  },
+  "literal_flagged": [
+   "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "pindrop-discovery.tif",
+   "pindrop-nodes.tif"
+  ],
+  "density_aware_flagged": [],
+  "lane_clean": false,
+  "lane_clean_density_aware": true,
+  "interpretation": "Density-aware UNIQUE across all 85 indexed registry rasters (flagged_lane = [], surface max |rho| = 0.2857 <= 0.90; max 3-px overlap vs 21 sibling top-scorers = 39.55% <= 70%, 24.86% vs GEMSDOE32 B2 0.2778; max vs 20 own-lineage rasters = 48.96% <= 70%; h23-a-6pct = 62.25% <= 70%). Strict literal 70% cap flags only the 3 non-discriminative rasters whose 3-px halos cover >= 73.4% of the footprint (13gems r13-lattice-s5 99.87%, pindrop-nodes 73.50%, pindrop-discovery 73.41%)."
+ },
+ "raster_sha256": "51f6e3cb83d7371231f3a8cd3ef166f82d5fb7d80a584577500eb36bf7615346",
+ "nan_twin_sha256": "9a631bf64fb98701c6eb175402972b54e57d70b9e29cfdf227d8088d4decad6d",
+ "zip_sha256": "313cb7fccce9274fa66e275f8626d947d00a7efc365c0ff989d389f60649084f",
+ "validator_output": {
+  "gems25_check_file": {
+   "ok_to_upload": true,
+   "format_valid": true,
+   "hard_failures": [],
+   "positive_pixels": 41061
+  },
+  "independent_rasterio": {
+   "zeros_all_hard_checks_pass": true,
+   "nan_all_hard_checks_pass": true,
+   "checks": {
+    "driver_gtiff": true,
+    "single_band": true,
+    "dtype_float32": true,
+    "crs_epsg32611": true,
+    "shape_3730x3292": true,
+    "geotransform_exact": true,
+    "footprint_no_nan_or_inf": true,
+    "footprint_in_0_1": true,
+    "whole_array_finite_in_0_1": true,
+    "zero_known_catalogue_overlap": true
+   }
+  },
+  "ok_to_download": true,
+  "ok_to_submit_slot": false
+ },
+ "submission_name": "gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros",
+ "submission_file": "gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.tif",
+ "nan_twin_file": "gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-nan.tif",
+ "content_id": "88bbebfe79b4",
+ "d_cat_strata": {
+  "frac_le2": 0.0,
+  "frac_2_9": 0.46475,
+  "frac_9_20": 0.29537,
+  "frac_gt20": 0.23989,
+  "median_d_cat_px": 10.0
+ },
+ "note": "GEMSDOE25 H72-3 SUBSURF | holdout FAIL vs H35; no slot; not slot-approved | id 88bbebfe79b4 | unscored",
+ "note_chars": 102,
+ "verdict": "negative",
+ "slot_approved": false
+}

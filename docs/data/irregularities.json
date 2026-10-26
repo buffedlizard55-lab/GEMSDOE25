@@ -721,6 +721,22 @@
    "issue": "In D01 the requested full-footprint dot caps are not fully reached: ridge candidates saturate, so per-quadrant emitted counts are far below the caps (median 960\u20135,012). The diagnostic ranks density regimes; it does not simulate one exact full-grid file.",
    "evidence": "evidence/d01_density_2026-10-26/analysis.json (emitted_median), run_card.json caveat",
    "resolution_or_action": "A direct full-grid density test would need a model fitted on all cells and a full-surface emitter; not run within the 3-experiment / 2-hour budget."
+  },
+  {
+   "id": "IR-25-GRAV-HG-EAST-WEST-DIRECTIONAL",
+   "severity": "high",
+   "status": "fixed",
+   "issue": "Band 18 (`18_iso_grav_anom_hg.npy`) is signed (`p1 = -5.13`, `p99 = +5.40 mGal/km`) and correlates `r = +0.9484` on the eroded footprint with the East-West directional derivative `10 * dg/dx` (Azimuth 90 deg), rather than isotropic horizontal gradient magnitude `|grad_h g|`, blinding it to E-W and WNW-ESE Walker Lane / accommodation-zone transfer faults.",
+   "evidence": "knowledge/29_preregistered_h72_pttg_ranked_hypotheses_2026-10-26.md \u00a71.2; src/gems25/h72_pttg.py; tests/test_h72_pttg.py::test_phillips_diff_curvature_is_azimuth_invariant_on_ns_vs_ew_steps.",
+   "resolution_or_action": "Bypassed band 18 in H72 via unit-consistent isotropic `10 * hypot(dg/dx, dg/dy)` (`mGal/km`) and rotationally invariant Phillips horizontal differential curvature `K_diff(g) = sqrt((g_xx - g_yy)^2 + 4 g_xy^2)`."
+  },
+  {
+   "id": "IR-25-LANE-VALIDATOR-DIR-PARITY-AND-RIBBON-SATURATION",
+   "severity": "high",
+   "status": "fixed",
+   "issue": "`scripts/validate_gem_candidate.py` hardcoded `ROOT / 'data' / 'scored'` instead of `data_dir() / 'scored'`; `check_lane_surface.py` had a fail-open `NaN` correlation branch and omitted `calibration`/`research`/`artifacts`; `check_lane_duplicates.py` and `lane_check_extended.py` omitted `research` or `artifacts`. Full 89-raster parity exposed that two un-thinned historical DEM-scarp ribbon artifacts (`h23-a-6pct.tif` with 335,879 px and `r7-nms3-dem10-scarp.tif` with 103,347 px) overlap 72.9%-82.0% of DEM-scarp `H72-1`, whereas DEM-free subsurface `H72-3` drops them to 62.25% and 60.45% (`flagged_lane = []`).",
+   "evidence": "scripts/validate_gem_candidate.py; scripts/check_lane_surface.py; scripts/check_lane_duplicates.py; scripts/lane_check_extended.py; tests/test_lane_preflight.py; docs/downloads/lane-gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.json.",
+   "resolution_or_action": "Fixed all four shared lane scripts in-place with unit tests. Logged `H72-1` as an `alternate` (`DO NOT SUBMIT`) and built DEM-free `H72-3` (`flagged_lane = []` across all 89 rasters)."
   }
  ]
 }

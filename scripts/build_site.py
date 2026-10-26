@@ -782,7 +782,7 @@ Response: exact sparse-regime DTI of a fixed emission (ridge NMS → top 2.45 % 
     (DOCS / "research.html").write_text(page("Research", research, "research", ""))
     (DOCS / "sources.html").write_text(page("Sources & audit", sources, "sources", ""))
     (DOCS / "current-review.html").write_text(page("Current executive review", render_body(), "current", ""))
-    for name in ("submissions", "live_scores", "irregularities", "sources", "data_manifest", "artifact_ledger"):
+    for name in ("submissions", "live_scores", "irregularities", "sources", "data_manifest", "artifact_ledger", "run_card_h72_2026-10-26"):
         (DOCS / "data" / f"{name}.json").write_text((ROOT / "registry" / f"{name}.json").read_text())
     print("site built:", [p.name for p in DOCS.glob("*.html")] + ["../index.html"])
 

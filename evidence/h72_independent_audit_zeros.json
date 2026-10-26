@@ -1,0 +1,28 @@
+{
+ "file": "gems25-h72-pttg-deapron-sapd2-8-k3p0-20261026-a07ef071c49e-zeros.tif",
+ "bytes": 841490,
+ "sha256": "b18d40027241a77f31315b37b1f7eaeca6c51f6486602a6d7f8f0e943cdedb91",
+ "positive_pixels": 46102,
+ "checks": {
+  "driver_gtiff": true,
+  "single_band": true,
+  "dtype_float32": true,
+  "crs_epsg32611": true,
+  "shape_3730x3292": true,
+  "geotransform_exact": true,
+  "footprint_no_nan_or_inf": true,
+  "footprint_in_0_1": true,
+  "whole_array_finite_in_0_1": true,
+  "zero_known_catalogue_overlap": true
+ },
+ "all_hard_checks_pass": true,
+ "zip": {
+  "file": "gems25-h72-pttg-deapron-sapd2-8-k3p0-20261026-a07ef071c49e-zeros.zip",
+  "bytes": 205408,
+  "sha256": "ddf2cdac004a1e4368cbccf5b1db0e23f378d0e946c5a21802add559137f7552",
+  "entries": [
+   "gems25-h72-pttg-deapron-sapd2-8-k3p0-20261026-a07ef071c49e-zeros.tif"
+  ],
+  "single_tif_at_root": true
+ }
+}
