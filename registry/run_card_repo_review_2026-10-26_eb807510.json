@@ -1,0 +1,59 @@
+{
+  "schema": "run_card/v1",
+  "review_date_utc": "2026-10-26",
+  "branch": "arena/eb807510-gemsdoe25",
+  "review_type": "repository and host-policy review; no geological experiment and no new raster",
+  "hypothesis": {
+    "id": "HXT-1",
+    "status": "planning only; NOT RUN",
+    "statement": "A concealed basement discontinuity may be expressed by multi-scale magnetic phase congruency together with along-strike K/Th/U texture continuity and across-strike texture mismatch.",
+    "lane_assignment": "NOT PROVIDED: the user prompt refers to a single method paragraph below but contains no separate method paragraph. No lane was selected or fitted.",
+    "novelty_scope": "The exact combination is not recorded as implemented in the reviewed checkout; this is not a global sibling-repository novelty proof."
+  },
+  "mechanism": "PLANNING ONLY: test whether a coherent magnetic edge beneath cover co-occurs with cross-strike radiometric texture asymmetry; no feature surface was built.",
+  "named_non_fault_process_that_could_mimic_it": "Buried volcanic-flow or lithologic contacts and airborne survey-mosaic seams.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "status": "NOT RUN — no candidate, no assigned method lane, and no current local feature cache.",
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "ci95": null,
+    "score": null,
+    "note": "This is not a zero score and is not a leaderboard projection."
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "NOT RUN — no candidate surface or final dots exist.",
+    "surface_rank_correlation_max_abs": null,
+    "final_dot_overlap_max_within_3px": null,
+    "registry_count": null,
+    "note": "No lane clearance is asserted."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT RUN — no submission raster was written.",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "submission_note_character_limit": 140,
+  "estimated_organizer_score": null,
+  "score_estimate_reason": "No new candidate or calibrated holdout-to-organizer mapping exists. Historical focus-site figures remain OWNER-REPORTED, not ORGANIZER-CONFIRMED.",
+  "code_review_fix": {
+    "issue_id": "IR-26-FEED-DNS-CANONICALIZATION-20261026",
+    "summary": "Canonicalize IDNA hostnames and DNS terminal dots before applying the no-DrivenData suffix policy; fail closed on malformed hostnames.",
+    "regression_test": "tests/test_feed_host_safety.py"
+  },
+  "verification": {
+    "pytest": "323 passed, 12 skipped; skips require restored data/template inputs.",
+    "ruff": "passed",
+    "compileall": "passed",
+    "node_check": "passed",
+    "git_diff_check": "passed"
+  },
+  "experiments_this_review": 0,
+  "experiment_budget_limit": 3,
+  "weekly_slots_used": 0,
+  "verdict": "negative"
+}
