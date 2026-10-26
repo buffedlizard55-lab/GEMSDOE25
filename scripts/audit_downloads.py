@@ -1,0 +1,92 @@
+#!/usr/bin/env python3
+"""Recheck shipped TIFF bytes with the shared writer's independent validator.
+
+Never infers novelty from a filename, format validity, or a different file hash.
+This is a local download inventory, NOT the cross-site surface/dot lane gate.
+No network access and no competition submission are performed.
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+import numpy as np
+import rasterio
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'src'))
+from gems25.paths import data_dir  # noqa: E402
+from gems25.submission import check_file, sha256_file  # noqa: E402
+
+
+def footprint_digest(values, footprint):
+    """Full SHA-256 of footprint float32 values, independent of compression/outside.
+
+    Not a scored-content id: known catalogue pixels are deliberately included.
+    Invalid values cannot receive an identity/uniqueness assertion.
+    """
+    values = np.asarray(values)
+    footprint = np.asarray(footprint, bool)
+    if values.shape != footprint.shape:
+        raise ValueError('shape mismatch')
+    v = np.asarray(values[footprint], dtype='<f4').copy()
+    if not v.size or not np.isfinite(v).all() or (v < 0).any() or (v > 1).any():
+        raise ValueError('empty, nonfinite or out-of-range footprint')
+    v[v == 0] = 0  # normalize negative zero
+    return hashlib.sha256(v.tobytes()).hexdigest()
+
+
+def audit(downloads, template, expected_template_sha):
+    if sha256_file(template) != expected_template_sha:
+        raise ValueError('template hash does not match pinned manifest')
+    with rasterio.open(template) as ds:
+        footprint = np.isfinite(ds.read(1))
+    rows = []
+    for path in sorted(Path(downloads).glob('*.tif')):
+        row = dict(file=path.name, sha256=sha256_file(path), footprint_sha256=None,
+                   format_valid=False, okay_to_submit=False, estimated_leaderboard_score=None,
+                   novelty='UNPROVEN: full registry surface and final-dot checks required')
+        try:
+            receipt = check_file(path, template)
+            row.update(format_valid=receipt['format_valid'], validator=receipt)
+            if receipt['format_valid']:
+                with rasterio.open(path) as ds:
+                    row['footprint_sha256'] = footprint_digest(ds.read(1), footprint)
+        except (ValueError, rasterio.errors.RasterioError) as exc:
+            row['error'] = str(exc)
+        rows.append(row)
+    for row in rows:
+        digest = row['footprint_sha256']
+        row['identical_footprint_files'] = [r['file'] for r in rows
+            if digest is not None and r['footprint_sha256'] == digest and r['file'] != row['file']]
+    return dict(schema_version=1, generated_utc=datetime.now(timezone.utc).isoformat(),
+                evidence_class='COMPUTED local format and footprint identity only',
+                template_sha256=expected_template_sha, files=rows,
+                okay_to_submit=False,
+                limitations=['No new geological experiment or TIFF generated.',
+                             'Identical footprint means identical local predictions, not cross-site novelty.',
+                             'No candidate has acquired holdout, lane or selector approval from this audit.',
+                             'No calibrated leaderboard score estimator or organizer receipt is available.',
+                             'Template is a pinned owner mirror, not organizer-authenticated.'])
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--out', type=Path, default=ROOT/'docs/data/download_audit.json')
+    args = parser.parse_args()
+    manifest = json.loads((ROOT/'registry/data_manifest.json').read_text())
+    template = next(r for r in manifest['files'] if r['id'] == 'sample_submission')
+    result = audit(ROOT/'docs/downloads', data_dir()/template['dest'], template['sha256'])
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.write_text(json.dumps(result, indent=2, allow_nan=False)+'\n')
+    print(json.dumps(dict(files=len(result['files']), format_valid=sum(r['format_valid'] for r in result['files']),
+                          okay_to_submit=False, receipt=str(args.out))))
+    return 0 if result['files'] and all(r['format_valid'] for r in result['files']) else 1
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())
