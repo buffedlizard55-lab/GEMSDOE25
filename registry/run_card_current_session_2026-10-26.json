@@ -12,7 +12,7 @@
     "required_cached_feature_stack_present": false,
     "observed_data_files": ["data/.gitkeep"],
     "static_ABCD_cache_present": false,
-    "scientific_python_dependencies_present": false,
+    "scientific_python_dependencies_present": true,
     "action": "Stopped before fitting; no private cache rebuild or evaluator fork was made."
   },
   "hypothesis": {
@@ -70,7 +70,7 @@
   "estimated_leaderboard_score": null,
   "limitations": [
     "The task's distinct single-method lane paragraph is missing.",
-    "The required pinned feature cache and scientific Python packages are absent from this checkout.",
+    "The required pinned feature cache is absent from this checkout. Scientific Python packages were installed into the ignored .venv for repository verification, but the missing feature cache still blocks scientific evaluation.",
     "The existing H73 candidate fails the paired same-run holdout gate and strict literal lane gate.",
     "No organizer receipts or current leaderboard snapshot were accessed; automated DrivenData access is prohibited."
   ]
