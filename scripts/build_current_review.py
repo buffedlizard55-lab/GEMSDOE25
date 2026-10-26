@@ -93,7 +93,9 @@ even before spacing constraints. This does <b>not</b> establish that every small
 <p><b>Today: stop at the failed gates.</b> No new competition file is approved. The weekly cap/remaining allowance was not freshly verified.</p>
 <details><summary>Historical file for learning only — never submit as a new file</summary>
 <p>This is the already-existing H66 artifact, not a new deliverable. Its newer user-reported result is 0.0742 (OWNER-REPORTED).</p>
-<a href="downloads/{historical}" download>Download historical H66 TIF — DO NOT SUBMIT</a></details></section>
+<a href="downloads/{historical}" download>Download historical H66 TIF — DO NOT SUBMIT</a>
+<p>Also archived for learning: APFL piedmont-flexure unique research TIF (testing-only, DO NOT SUBMIT) — <a href="downloads/gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-zeros.tif" download>gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-zeros.tif</a> (43,798 px, not slot-approved)</p>
+</details></section>
 <section><h2>Sources, freshness and next work</h2>
 <ul><li><a href="../evidence/focus_audit_2026-10-26.json">Fresh mirror hashes, mask identities and nine source revisions</a> — owner mirrors, not organizer authentication.</li>
 <li><a href="../evidence/focus_format_2026-10-26.json">Automated exact-template format receipts</a> — format only, not performance approval.</li>
