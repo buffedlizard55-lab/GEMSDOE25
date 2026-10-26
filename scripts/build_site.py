@@ -67,9 +67,10 @@ def dl_card(s: dict, prefix: str, big: bool = True) -> str:
     kind = {"scored": "ok"}.get(s["status"], "warn")
     status = s["status"] if s["status"] != "scored" else f"scored {s.get('owner_reported_score'):.4f} (owner-reported)"
     chk = "format verified (all hard checks)" if s.get("format_ok") else "FORMAT CHECK FAILED"
+    download_label = "Download research archive (inspection only)" if not s.get("ok_to_submit_slot") else "Download selector-candidate file"
     return f"""<section class="dl"><h2>{e(s['title'])}</h2>
 <p>{e(s['summary'])}</p>
-<div class="row"><a class="btn" href="{href}" download>↓ Download {e(s['file'])}</a></div>
+<div class="row"><a class="btn" href="{href}" download>↓ {download_label}: {e(s['file'])}</a></div>
 <div class="row">{badge(status, kind)}{badge(chk, 'ok' if s.get('format_ok') else 'bad')}{badge('float32 · [0,1] · ' + ('zeros outside footprint' if s.get('outside') == 'zero' else 'NaN outside footprint'), 'info')}{badge(f"{s['positive_pixels']:,} px emitted", 'info')}</div>
 <p class="small">{fmt_bytes(s['bytes'])} · unique content id <code>{s['content_id']}</code> · SHA-256 <code>{s['sha256'][:16]}…</code> · <a href="{prefix}executive-summary.html">exact upload steps</a></p>
 <p style="margin:10px 0 2px"><b>{'Note to paste in DrivenData only if separately selector-approved' if s.get('ok_to_submit_slot') else 'Research note only — NOT for the competition form (DO NOT SUBMIT)'}</b> <button class="btn alt small" data-copy="{nid}">Copy {'submission note' if s.get('ok_to_submit_slot') else 'research identifier'}</button></p>
@@ -77,18 +78,18 @@ def dl_card(s: dict, prefix: str, big: bool = True) -> str:
 
 
 def verdict_banner(p: dict, prefix: str, exec_page: bool = False) -> str:
-    """Top-of-page status for the primary file, driven by registry/submissions.json (no hand-written status text)."""
-    dl = "YES" if p.get("ok_to_download", p.get("format_ok")) else "NO"
-    slot = "YES" if p.get("ok_to_submit_slot") else "NO"
-    title = "Executive summary &amp; submission guide" if exec_page else "Download the unique, format-valid GeoTIFF"
+    """Top-of-page status separates research-archive access from competition eligibility."""
+    archive = "YES — RESEARCH INSPECTION ONLY" if p.get("ok_to_download", p.get("format_ok")) else "NO"
+    submit = "NO — DO NOT SUBMIT" if not p.get("ok_to_submit_slot") else "REQUIRES SEPARATE OWNER SELECTOR"
+    title = "Executive summary &amp; submission guide" if exec_page else "Archived research artifact — no eligible competition TIF"
     return f"""<div class="hero"><h1>{title}</h1>
-<div class="stats"><div class="stat"><b style="color:#15803d">OK to download: {dl}</b><span>for local testing: unique by content · all hard format checks pass · values in [0,1] · no NaN inside the footprint</span></div>
-<div class="stat"><b style="color:#b91c1c">OK to spend a weekly slot: {slot}</b><span>verdict <b>{e(p.get('verdict', 'n/a'))}</b>: {'eligible for the separate owner selector step — still not slot-approved' if p.get('ok_to_submit_slot') else 'not slot-approved — DO NOT SUBMIT'} ({e(p.get('slot_reason') or 'see registry')})</span></div>
-<div class="stat"><b>{e(p.get('expected_range') or 'n/a')}</b><span>live expectation stated for this file versus the owner-reported 0.2778 best — not a score (HOLDOUT-DTI proxy results are in the run card)</span></div></div>
-<p class="lead"><b>{e(p['title'])}.</b> The download card below has the {'file, checksum, and submission note' if p.get('ok_to_submit_slot') else 'local-testing file, checksum, and research identifier (not for the competition form)'}.</p>
+<div class="stats"><div class="stat"><b style="color:#1d4ed8">Research-archive download: {archive}</b><span>Existing file for local inspection/testing only; format validity and unique file bytes do not establish lane clearance or competition eligibility.</span></div>
+<div class="stat"><b style="color:#b91c1c">Competition-ready TIF / OK TO SUBMIT: {submit}</b><span>verdict <b>{e(p.get('verdict', 'n/a'))}</b>: {'separate owner selector review still required; this is not slot approval' if p.get('ok_to_submit_slot') else 'the current candidate failed required gates and is not slot-approved'} ({e(p.get('slot_reason') or 'see registry')}). Weekly slot: NO.</span></div>
+<div class="stat"><b>{e(p.get('expected_range') or 'n/a')}</b><span>No calibrated live-score estimate is available; HOLDOUT-DTI is a proxy result in the run card, not a competition score.</span></div></div>
+<p class="lead"><b>{e(p['title'])}.</b> The archived download card below is for local inspection only and contains a research identifier, not an authorized submission note.</p>
 <p class="small"><b>Status:</b> {e(p['status'])}. <b>Lane:</b> {e(p.get('lane_summary', 'n/a'))}. <b>Run card:</b> <code>{e(p.get('run_card', ''))}</code>.
-Zip alternative: <a href="{prefix}downloads/{e(p.get('zip', ''))}" download>{e(p.get('zip', ''))}</a>. The earlier "Predicted values must be in range [0, 1]" error came from NaN pixels inside the footprint of an old file; this file has none (zeros outside, no NaN anywhere).
-The frozen holdout comparator 0.152003389 does not reproduce in this environment (IR-25-COMPARATOR-DRIFT); gates use the best same-run control instead.</p></div>"""
+Research ZIP alternative: <a href="{prefix}downloads/{e(p.get('zip', ''))}" download>{e(p.get('zip', ''))}</a>. The earlier "Predicted values must be in range [0, 1]" error came from NaN pixels inside the footprint of an old file; the archived H72-3 file has none (zeros outside, no NaN anywhere).
+The frozen holdout comparator 0.152003389 does not reproduce in this environment (IR-25-COMPARATOR-DRIFT); historical gates use the best same-run control instead.</p></div>"""
 
 
 def main() -> None:

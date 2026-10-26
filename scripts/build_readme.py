@@ -134,7 +134,7 @@ def main() -> None:
     A("**Competition:** [DOE GEMS Prize, DrivenData #306](https://www.drivendata.org/competitions/306/competition-doe-gems/) · "
       "**Live site:** <https://buffedlizard55-lab.github.io/GEMSDOE25/> · **Weekly limit:** 3 submissions · "
       "**Ends:** 3 Dec 2026 (page: 11:59 p.m. UTC; rules: 5:00 p.m. ET — see IR-25-DEADLINE)\n")
-    A("## ⬇ Download the content-distinct testing GeoTIFF (strict lane FAIL — DO NOT SUBMIT)\n")
+    A("## Research archive — existing H72-3 artifact for inspection only (not a competition-ready TIF)\n")
     A(f"**[↓ `{primary['file']}`](docs/downloads/{primary['file']})** — {primary['summary']}\n")
     outside_txt = "zeros outside (no NaN anywhere)" if primary.get("outside") == "zero" else "NaN outside"
     A(f"* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, {outside_txt} "
@@ -149,9 +149,9 @@ def main() -> None:
             A(f"* {o['title']}: [`{o['file']}`](docs/downloads/{o['file']}) ({o['status']}; {o['positive_pixels']:,} px).")
     A("* Step-by-step upload guide: [`docs/executive-summary.html`](https://buffedlizard55-lab.github.io/GEMSDOE25/docs/executive-summary.html).\n")
     A("> ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).\n")
-    A("> **OK to download (local testing): " + ("YES" if primary.get("ok_to_download") else "NO") + " · OK to spend a weekly slot: " + ("YES" if primary.get("ok_to_submit_slot") else "NO") + " — DO NOT SUBMIT** "
+    A("> **Research-archive download (inspection only): " + ("YES" if primary.get("ok_to_download") else "NO") + " · Competition-ready TIF / OK TO SUBMIT: NO · weekly slot: NO — DO NOT SUBMIT** "
       f"(verdict **{primary.get('verdict', 'n/a')}**). Projection: {primary.get('expected_range', 'n/a')}. Lane: {primary.get('lane_summary', 'n/a')}. "
-      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest supplied historical focus-site claim. The featured file is exposed for transparent local testing only; its negative holdout/strict-lane verdict means it must not be submitted.\n")
+      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest supplied historical focus-site claim. This existing file is an archive for local inspection, not a new result; it failed the holdout and strict-lane gates and must not be submitted.\n")
     if h36_spigm_card and h36_spigm_pool:
         p16 = h36_spigm_pool["arms"]
         cmp16 = h36_spigm_pool["comparisons"]

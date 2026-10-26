@@ -1,0 +1,57 @@
+{
+  "schema": "download_audit_session_receipt/v1",
+  "generated_utc": "2026-10-26T20:19:00.564353+00:00",
+  "generated_by": "scripts/audit_downloads.py",
+  "evidence_class": "COMPUTED format checks against a SHA-256-pinned owner-mirror template; not organizer authentication or submission authorization",
+  "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "summary": {
+    "tif_files_audited": 46,
+    "format_valid": 46,
+    "okay_to_submit": false,
+    "estimated_leaderboard_scores": null
+  },
+  "target_existing_artifact": {
+    "file": "gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.tif",
+    "sha256": "51f6e3cb83d7371231f3a8cd3ef166f82d5fb7d80a584577500eb36bf7615346",
+    "footprint_sha256": "ecc50e56378af8aefa226c07e431bf289b21b0c4c70b33793c203a82c403e1d9",
+    "format_valid": true,
+    "okay_to_submit": false,
+    "estimated_leaderboard_score": null,
+    "positive_pixels": 41061,
+    "footprint_pixels": 5167373,
+    "bytes": 831974,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "single_band_float32": true,
+    "finite_in_footprint": true,
+    "in_footprint_min_max": [
+      0.0,
+      1.0
+    ],
+    "zeros_outside_footprint": true,
+    "hard_failures": [],
+    "authorization_note": "ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval",
+    "strict_whole_array_no_nan_check_pass": true,
+    "novelty": "FAIL: strict literal 70% / 3-px overlap rule; see evidence/h72_3_lane_extended.json",
+    "performance": "FAIL: existing HOLDOUT-DTI result vs same-run H35; see registry/run_card_h72_2026-10-26.json",
+    "submission_status": "DO NOT SUBMIT"
+  },
+  "limitations": [
+    "No new geological experiment or TIFF generated.",
+    "Identical footprint means identical local predictions, not cross-site novelty.",
+    "No candidate has acquired holdout, lane or selector approval from this audit.",
+    "No calibrated leaderboard score estimator or organizer receipt is available.",
+    "Template is a pinned owner mirror, not organizer-authenticated."
+  ]
+}
