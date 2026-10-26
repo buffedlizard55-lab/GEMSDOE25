@@ -53,6 +53,26 @@ This is a catalogue-gap proxy, not an organizer score or blind-fault performance
 <a href="../knowledge/28_preregistered_pol3_signed_halfgraben_2026-10-26.md">frozen preregistration</a> ·
 <a href="../registry/run_card_pol3_screen_2026-10-26.json">POL3 run card</a> ·
 <a href="../evidence/pol3_screen_2026-10-26/summary.json">saved-cell result</a>.</p></section>'''
+    olic_path = ROOT/'evidence/olic_screen_2026-10-26/summary.json'
+    olic = json.loads(olic_path.read_text()) if olic_path.exists() else None
+    olic_section = ''
+    if olic:
+        olic_section = f'''<section class="card"><p class="eyebrow">PARALLEL SESSION · OLIC LANE · ONE FROZEN SCREEN · NEGATIVE</p>
+<h2>OLIC oriented line-continuity screen — negative (no new TIF)</h2>
+<p><b>HOLDOUT-DTI</b>, evaluator <code>{e(olic['evaluator'])}</code>, draws <code>{e(str(olic['draws']))}</code>,
+{olic['withheld_positives']:,} withheld positives. Candidate (H35 + 9 oriented line-continuity features) pooled
+<code>{olic['candidate_pooled']['dti']:.6f}</code> vs same-run H35 <code>{olic['control_pooled']['dti']:.6f}</code>;
+paired four-fold mean gain <code>{olic['paired_fold_mean_gain']:+.6f}</code>,
+95% CI <code>[{olic['paired_fold_ci95'][0]:+.6f}, {olic['paired_fold_ci95'][1]:+.6f}]</code>,
+{olic['positive_folds']}/4 folds positive. Feature-alone maximum AUC <code>{olic['max_canary_auc']:.4f}</code> (leakage canary PASS).
+The frozen gate (gain &gt; +0.001 and &ge;3/4 folds) failed, so no confirmation, no surface/lane placement and
+<b>no OLIC GeoTIFF was written</b>; lane clearance is <b>NOT RUN</b>. <b>File to download for submission: NONE. Estimated leaderboard score: NOT ESTIMABLE</b>
+(a projection is never a score). Catalogue-gap proxy only, not an organizer score.</p>
+<p><a href="../knowledge/29_preregistered_olic_line_continuity_2026-10-26.md">Frozen preregistration &amp; ranked hypotheses</a> ·
+<a href="../knowledge/29_olic_outcomes_2026-10-26.md">OLIC outcomes &amp; nine-site executive summary</a> ·
+<a href="../registry/run_card_olic_2026-10-26.json">OLIC run card (JSON)</a> ·
+<a href="../evidence/olic_screen_2026-10-26/summary.json">Screen summary</a></p></section>'''
+
     subs = json.loads((ROOT / "registry" / "submissions.json").read_text())["files"]
     featured = next(s for s in subs if s["role"] == "primary")
     h71 = json.loads((ROOT / "registry" / "run_card_h71_2026-10-26.json").read_text())
@@ -170,6 +190,7 @@ not a copied prediction mask. Volcanic flow lobes, sediment sorting and survey s
 <a href="../evidence/rod_2026-10-26/feature_canaries.json">Every-feature leakage canaries</a> ·
 <a href="../evidence/rod_2026-10-26/surface_lane.json">Pre-placement surface audit</a></p></section>
 {pol3_section}
+{olic_section}
 <section><h2>The novelty constraint needs attention</h2>
 <p>The registered lattice's three-pixel halo covers <b>{coverage['coverage_fraction']*100:.4f}%</b> of eligible pixels.
 Only {coverage['uncovered_pixels']:,} pixels lie outside it. Under the literal overlap rule, a candidate above 21,713 unique dots cannot pass against that lattice,
@@ -222,6 +243,7 @@ def readme_status():
             "[Strict-lane feasibility proof and hypothesis slate](knowledge/29_lane_feasibility_plan_2026-10-26.md) · "
             "[H71 outcomes](knowledge/28_h71_outcomes_2026-10-26.md) · "
             "[ROD run card](evidence/rod_2026-10-26/run_card.json). "
+            "OLIC screen (draws 82-83) FAILED its frozen gate (+0.000849, 2/4 folds); no OLIC TIF was written. "
             "GEMSDOE32 B2 is the strongest supplied historical exemplar (**OWNER-REPORTED 0.2778**), not a new submission. "
             "Do not reinterpret historical downloads or format-only receipts as authorization. "
             "No weekly slot was used.\n\n"
