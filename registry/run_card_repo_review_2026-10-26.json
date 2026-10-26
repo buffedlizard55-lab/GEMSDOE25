@@ -47,5 +47,14 @@
   "submission_name": null,
   "submission_note": null,
   "submission_note_character_limit": 140,
-  "verdict": "negative — no experiment, no new TIF, and no slot approval; use no existing download for scoring"
+  "verdict": "negative \u2014 no experiment, no new TIF, and no slot approval; use no existing download for scoring",
+  "pull_request": {
+    "number": 33,
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/pull/33",
+    "state": "MERGED",
+    "merged_at_utc": "2026-10-26T00:36:15Z",
+    "merge_commit": "dc3fb328777a15c0c3e7e5b2f39ed2a99f6523d2",
+    "checks": "both GitHub pytest checks SUCCESS",
+    "pages_deployment": "not checked"
+  }
 }

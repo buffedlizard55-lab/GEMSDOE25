@@ -764,7 +764,7 @@
    "Verified all nine requested site rows and selected the highest supplied claim for each based on evidence/focus_sites_forensics.json.",
    "Ranked five distinct candidate designs, each with layers, targeted physical signature, catalogue-gap rationale, difference from repo methods, non-fault mimic and availability/cost qualifier; no gain estimate was presented as a score.",
    "No experiment was run because there is no unambiguous single method lane and the shared inputs are absent; strict overlap gate and separate slot selection remain binding.",
-   "No new GeoTIFF or organizer submission was generated; no PR, merge, deployment or organizer receipt is claimed."
+   "No new GeoTIFF or organizer submission was generated; PR #33 merged after successful checks, but no Pages deployment or organizer receipt is claimed."
   ],
   "verification": {
    "pytest": "214 passed, 8 skipped (data/template dependent)",
@@ -774,7 +774,7 @@
    "raster": "NO NEW TIFF; sha256 null",
    "validator": "NOT RUN; required sample template absent",
    "organizer_score": "NONE; all focus-site scores remain owner/user-reported",
-   "pull_request": "No PR created yet; merge/deployment not claimed."
+   "pull_request": "PR #33 merged to main at 2026-10-26T00:36:15Z (merge commit dc3fb328777a15c0c3e7e5b2f39ed2a99f6523d2); both GitHub pytest checks SUCCESS; Pages deployment not checked."
   },
   "open_limitations": [
    "data/ contains only .gitkeep, so current feature stack, labels, template and full fresh registry checks are unavailable.",
