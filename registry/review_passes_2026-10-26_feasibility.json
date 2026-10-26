@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "date_utc": "2026-10-26",
+  "branch": "arena/b9f75df7-gemsdoe25",
+  "verdict": "negative (stopped at mandatory feasibility gate; no slot authorized)",
+  "passes": [
+    {
+      "pass": 1,
+      "scope": "Implement and verify",
+      "completed": [
+        "Reviewed full repository history, previous PRs, 9 focus sites (GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36) and B2 forensic evidence.",
+        "Preregistered strict registry feasibility audit and 3 deferred geological candidate hypotheses in knowledge/29 before execution (commit 06612d8).",
+        "Implemented gems25.lane_feasibility module and scripts/audit_lane_feasibility.py.",
+        "Restored pinned inputs (template, labels, r13 lattice) and computed exact halo geometry and capacity bounds.",
+        "Proved that for standard submission densities (37k-70k dots), overlap with the r13 lattice must exceed 82.7%-90.8%, violating the mandatory 70% lane cap regardless of candidate geology.",
+        "Updated documentation, README, and executive summary with clear audit findings and tables."
+      ],
+      "result": "FEASIBILITY STOP: impossible to satisfy mandatory lane overlap protocol at standard densities without density-aware waiver or lattice exemption."
+    },
+    {
+      "pass": 2,
+      "scope": "Bugs, assumptions, edge cases",
+      "fixed": [
+        "Verified rational arithmetic at cap boundary (capacity_bound with exact Fraction comparisons).",
+        "Tested edge cases: empty reference dots, all-finite grids, integer boundary cases in tests/test_lane_feasibility.py.",
+        "Checked that no candidate raster was fabricated or blessed to bypass the safety gate.",
+        "Re-ran pytest and ruff across the entire repository; 267 passed, 4 skipped (unrestored optional groups), 0 failures."
+      ],
+      "verification": "Pytest clean, ruff clean, git diff check clean."
+    },
+    {
+      "pass": 3,
+      "scope": "Re-check against original brief",
+      "completed": [
+        "Provided executive summary for all 9 focus sites with highest reported submission, estimated score, uniqueness, and download recommendation.",
+        "Answered why GEMSDOE32 B2 achieved 0.2778 with PhD-level synthesis and whether it can be beaten.",
+        "Formulated and ranked 3-5 candidate geological hypotheses with layers, signatures, catalogue-missing rationale, and non-fault mimics.",
+        "Enforced protocol: LANE, REUSE DON'T REBUILD, LABEL EVERY NUMBER, LEAKAGE CANARY, RUN CARD, BUDGET.",
+        "Clear status: OK to download research files for testing/inspection; NOT OK to submit to competition.",
+        "Prepared pull request and merged onto main."
+      ]
+    }
+  ]
+}
