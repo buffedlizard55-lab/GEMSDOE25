@@ -53,14 +53,53 @@ This is a catalogue-gap proxy, not an organizer score or blind-fault performance
 <a href="../knowledge/28_preregistered_pol3_signed_halfgraben_2026-10-26.md">frozen preregistration</a> ·
 <a href="../registry/run_card_pol3_screen_2026-10-26.json">POL3 run card</a> ·
 <a href="../evidence/pol3_screen_2026-10-26/summary.json">saved-cell result</a>.</p></section>'''
+    obj_path = ROOT/'registry/run_card_objective_2026-10-26.json'
+    objc = json.loads(obj_path.read_text()) if obj_path.exists() else None
+    obj_section = ''
+    if objc:
+        ex = objc['experiments']
+        obj_rows = []
+        for key, label in (('experiment_1_tent', '<b>Exp 1 TENT</b> (kernel-regression target)'),
+                           ('experiment_2_hardneg', '<b>Exp 2 HARDNEG</b> (hard-negative mining)'),
+                           ('experiment_3_ign3', '<b>Exp 3 IGN3</b> (ring-excluded negatives)')):
+            x = ex[key]
+            obj_rows.append(f"""<tr><td>{label}</td><td><code>{e(str(x['draws']))}</code> / {x['withheld_positives_total']:,}</td>
+<td>{x['leakage_canary']['max_effective_auc']:.4f}</td>
+<td>{x['candidate_greedy']['pooled_dti']:.6f}</td><td>{x['bin_greedy']['pooled_dti']:.6f}</td>
+<td>{x['paired']['mean_gain']:+.6f} [{x['paired']['ci95'][0]:+.4f}, {x['paired']['ci95'][1]:+.4f}] ({x['paired']['folds_positive']}/4)</td>
+<td><span class="badge b-bad">SCREEN FAIL</span></td></tr>""")
+        fd = objc['registry_correlation_and_overlap']['final_dots']
+        ext, b2o = fd['external_sparse'], fd['vs_gemsdoe32_b2']
+        obj_section = f"""<section class="card"><p class="eyebrow">SEPARATE BRANCH SESSION · THREE SCREENS · 3/3 EXPERIMENT BUDGET</p>
+<h2>Training-objective geometry (TENT / HARDNEG / IGN3) — three negatives</h2>
+<p><b>HOLDOUT-DTI</b>, evaluator <code>{e(ex['experiment_1_tent']['evaluator_version'])}</code>.
+Hypothesis (pre-registered before any fit): the binary classifier labels genuine scarp-crest pixels
+1.5&ndash;3&nbsp;px off the cartographic catalogue trace as negatives although the metric pays inside 300&nbsp;m.
+TENT prices the credit ring with the metric's own triangular kernel; HARDNEG mines fault-like non-fault
+lineaments (roads, shoreline benches, contacts, survey seams); IGN3 excludes the ring from supervision.
+Detector columns and greedy emission are frozen; every comparator is recomputed in the same run.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Objective session experiments"><table><thead><tr>
+<th>Experiment</th><th>Draws / withheld +</th><th>Canary max</th><th>Candidate pooled</th>
+<th>Same-run BIN pooled</th><th>Paired fold-mean gain [95% CI] (folds +)</th><th>Verdict</th></tr></thead>
+<tbody>{''.join(obj_rows)}</tbody></table></div>
+<p>No variant beat the incumbent, so no confirmation draws ran (92&ndash;93 / 96&ndash;97 / 102&ndash;103 permanently unused),
+no objective-scheme TIF was built, and no slot is supported. The featured download is the incumbent stack
+rebuilt with fresh production seeds. It is unique vs scored/external rasters (worst 3-px overlap
+{100*ext['worst_cand_dots_within_3px']:.1f}% &le; 70%; {100*b2o['cand_dots_within_3px']:.1f}% vs GEMSDOE32 B2) but the strict lane
+fails vs this repo's own unscored HGB lineage and the dense lattice. This is a catalogue-gap proxy, not a competition score.</p>
+<p><a href="../knowledge/29_ranked_hypotheses_and_preregistration_2026-10-26.md">Frozen preregistration</a> ·
+<a href="../knowledge/31_objective_outcomes_and_executive_summary_2026-10-26.md">Outcomes &amp; nine-site executive summary</a> ·
+<a href="../registry/run_card_objective_2026-10-26.json">Run card</a> ·
+<a href="../evidence/focus_audit_local_2026-10-26.json">This session's nine-site raster audit</a>.</p></section>
+"""
     subs = json.loads((ROOT / "registry" / "submissions.json").read_text())["files"]
     featured = next(s for s in subs if s["role"] == "primary")
     download = (
         f'<p><b>OK to download: YES</b> for local testing of unique content id '
         f'<code>{e(featured["content_id"])}</code>. '
         f'<b>OK to spend a weekly slot: NO — DO NOT SUBMIT.</b> '
-        f'H71 HGPC-BLIND is format-valid and density-aware unique vs scored rasters; '
-        f'three DIRECT screens failed vs H35. ROD/POL3 wrote no competition TIFF.</p>'
+        f'The objective-lane BIN greedy candidate is format-valid and unique vs scored/external rasters; '
+        f'three training-objective screens failed vs the same-run BIN comparator, so it is not slot-cleared.</p>'
         f'<a class="btn" download href="downloads/{e(featured["file"])}">↓ Download {e(featured["file"])} — testing only</a>'
     )
     historical = 'gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif'
@@ -79,7 +118,7 @@ Not approved as a new submission. SHA-256: <code class="wrap-hash">{row['sha256'
 <p class="lead">Nine focus sites, one auditable comparison, and a new geological test. No renamed reference files. No predicted leaderboard scores.</p></section>
 <section class="review-decision"><span class="badge b-bad">OK TO SUBMIT: NO</span><h2>Unique research GeoTIFF is downloadable — not slot-cleared</h2>
 <p>{e(featured['title'])}. {e(featured['summary'])}</p>
-<p>ROD stop: {status}</p>{download}
+<p>Prior-session ROD stop: {status}</p>{download}
 <div class="row"><a class="btn" href="../evidence/rod_2026-10-26/run_card.json" download>Download decision receipt</a>
 <a class="btn alt" href="#how-to-submit">Submission checklist</a></div></section>
 <section><h2>What is the strongest historical evidence?</h2>
@@ -104,6 +143,7 @@ not a copied prediction mask. Volcanic flow lobes, sediment sorting and survey s
 <a href="../evidence/rod_2026-10-26/feature_canaries.json">Every-feature leakage canaries</a> ·
 <a href="../evidence/rod_2026-10-26/surface_lane.json">Pre-placement surface audit</a></p></section>
 {pol3_section}
+{obj_section}
 <section><h2>The novelty constraint needs attention</h2>
 <p>The registered lattice's three-pixel halo covers <b>{coverage['coverage_fraction']*100:.4f}%</b> of eligible pixels.
 Only {coverage['uncovered_pixels']:,} pixels lie outside it. Under the literal overlap rule, a candidate above 21,713 unique dots cannot pass against that lattice,
@@ -124,6 +164,7 @@ even before spacing constraints. This does <b>not</b> establish that every small
 </details></section>
 <section><h2>Sources, freshness and next work</h2>
 <ul><li><a href="../evidence/focus_audit_2026-10-26.json">Fresh mirror hashes, mask identities and nine source revisions</a> — owner mirrors, not organizer authentication.</li>
+<li><a href="../evidence/focus_audit_local_2026-10-26.json">This branch's independent nine-site raster re-audit</a> — computed geometry from SHA-pinned local mirrors; scores remain OWNER-REPORTED.</li>
 <li><a href="../evidence/focus_format_2026-10-26.json">Automated exact-template format receipts</a> — format only, not performance approval.</li>
 <li><a href="../evidence/official_reference_2026-10-26.json">Fresh official reference-repository evidence</a> — CPU training is supported; its training loss is not an independent distance-weighted scorer.</li>
 <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official problem and format</a> ·
@@ -144,11 +185,13 @@ def readme_status():
     return ("<!-- CURRENT-REVIEW-2026-10-26 -->\n"
             "## Current decision — 2026-10-26\n\n"
             "**OK to download: YES · OK to spend a weekly slot: NO — DO NOT SUBMIT.** "
-            "Featured unique GeoTIFF [`gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif`](docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif) "
-            "(content id `9eb0c31e5149`; HOLDOUT-DTI FAIL vs H35). "
-            "[Nine-site executive review and automated ROD result](docs/current-review.html) · "
-            "[H71 outcomes](knowledge/28_h71_outcomes_2026-10-26.md) · "
-            "[ROD run card](evidence/rod_2026-10-26/run_card.json). "
+            "Featured unique GeoTIFF [`gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.tif`](docs/downloads/gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.tif) "
+            "(content id `3646faf70507`; frozen H35/H38 stack, fresh production seeds). Three pre-registered training-objective screens all failed vs the same-run BIN comparator "
+            "(TENT -0.0003, HARDNEG -0.0427, IGN3 -0.0009 paired fold-mean HOLDOUT-DTI; leakage canaries <= 0.63 PASS). "
+            "The file is unique vs every scored/external registry raster (worst 3-px overlap 69.2% <= 70%; 32.0% vs GEMSDOE32 B2); the strict lane still fails vs this repo's own unscored H38 greedy file (87.2%) and the dense r13 lattice (100%, `IR-25-LANE-DENSITY`). "
+            "[Nine-site executive review](docs/current-review.html) · "
+            "[Objective-session outcomes + executive summary](knowledge/31_objective_outcomes_and_executive_summary_2026-10-26.md) · "
+            "[Run card](registry/run_card_objective_2026-10-26.json). "
             "GEMSDOE32 B2 is the strongest supplied historical exemplar (**OWNER-REPORTED 0.2778**), not a new submission. "
             "Do not reinterpret historical downloads or format-only receipts as authorization. "
             "No weekly slot was used.\n\n"

@@ -8,8 +8,8 @@
 <h1>Know what to submit.<br>Know when to stop.</h1>
 <p class="lead">Nine focus sites, one auditable comparison, and a new geological test. No renamed reference files. No predicted leaderboard scores.</p></section>
 <section class="review-decision"><span class="badge b-bad">OK TO SUBMIT: NO</span><h2>Unique research GeoTIFF is downloadable — not slot-cleared</h2>
-<p>H71-1 HGPC-BLIND signed gravity–basement polarity (sapd3.0, zeros outside) — TESTING ONLY · DO NOT SUBMIT. Unique 2026-10-26 GeoTIFF (59,472 binary dots, min_dist=3.0 px) from pre-registered H71-1 DIRECT emission (signed isostatic-gravity × MT basement half-graben polarity; zero HGB; B=2 collar). Leakage canary PASS (max AUC 0.695). Holdout gate FAIL vs H35. Clears 21/21 sibling top-scorers (15.4% vs GEMSDOE32 B2) and own HGB lineage (max 23.4%). Strict lane gate fails only on the dense r13 lattice. Zero outside footprint (prevents &#x27;Predicted values must be in range [0, 1]&#x27;). Testing only — DO NOT SUBMIT.</p>
-<p>ROD stop: DUPLICATE-LANE: final dots fail literal overlap/rank gate; stopped, no TIFF written</p><p><b>OK to download: YES</b> for local testing of unique content id <code>9eb0c31e5149</code>. <b>OK to spend a weekly slot: NO — DO NOT SUBMIT.</b> H71 HGPC-BLIND is format-valid and density-aware unique vs scored rasters; three DIRECT screens failed vs H35. ROD/POL3 wrote no competition TIFF.</p><a class="btn" download href="docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif">↓ Download gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif — testing only</a>
+<p>Objective-lane BIN greedy candidate (fresh seeds, zeros outside) — TESTING ONLY · DO NOT SUBMIT. Unique-by-content 2026-10-26 GeoTIFF (53,522 binary dots) from the frozen H35/H38 protocol (BDE+7+tip+H34 HGB, greedy marginal-credit emission) rebuilt with fresh production seeds after three pre-registered training-objective experiments (TENT/HARDNEG/IGN3) all failed to beat it on the spatially blocked holdout. Format-valid incl. strict whole-array [0,1] (zeros outside prevents the &#x27;Predicted values must be in range [0, 1]&#x27; portal error). Leakage canaries PASS (max 0.63). Strict lane fails vs own unscored HGB lineage (87.2%) + dense lattice. Testing only — DO NOT SUBMIT.</p>
+<p>Prior-session ROD stop: DUPLICATE-LANE: final dots fail literal overlap/rank gate; stopped, no TIFF written</p><p><b>OK to download: YES</b> for local testing of unique content id <code>3646faf70507</code>. <b>OK to spend a weekly slot: NO — DO NOT SUBMIT.</b> The objective-lane BIN greedy candidate is format-valid and unique vs scored/external rasters; three training-objective screens failed vs the same-run BIN comparator, so it is not slot-cleared.</p><a class="btn" download href="docs/downloads/gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.tif">↓ Download gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.tif — testing only</a>
 <div class="row"><a class="btn" href="evidence/rod_2026-10-26/run_card.json" download>Download decision receipt</a>
 <a class="btn alt" href="#how-to-submit">Submission checklist</a></div></section>
 <section><h2>What is the strongest historical evidence?</h2>
@@ -72,6 +72,40 @@ This is a catalogue-gap proxy, not an organizer score or blind-fault performance
 <a href="knowledge/28_preregistered_pol3_signed_halfgraben_2026-10-26.md">frozen preregistration</a> ·
 <a href="registry/run_card_pol3_screen_2026-10-26.json">POL3 run card</a> ·
 <a href="evidence/pol3_screen_2026-10-26/summary.json">saved-cell result</a>.</p></section>
+<section class="card"><p class="eyebrow">SEPARATE BRANCH SESSION · THREE SCREENS · 3/3 EXPERIMENT BUDGET</p>
+<h2>Training-objective geometry (TENT / HARDNEG / IGN3) — three negatives</h2>
+<p><b>HOLDOUT-DTI</b>, evaluator <code>gems25.holdout 4-quadrant hide-and-recover, hide_frac=0.20, collar=15px</code>.
+Hypothesis (pre-registered before any fit): the binary classifier labels genuine scarp-crest pixels
+1.5&ndash;3&nbsp;px off the cartographic catalogue trace as negatives although the metric pays inside 300&nbsp;m.
+TENT prices the credit ring with the metric's own triangular kernel; HARDNEG mines fault-like non-fault
+lineaments (roads, shoreline benches, contacts, survey seams); IGN3 excludes the ring from supervision.
+Detector columns and greedy emission are frozen; every comparator is recomputed in the same run.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Objective session experiments"><table><thead><tr>
+<th>Experiment</th><th>Draws / withheld +</th><th>Canary max</th><th>Candidate pooled</th>
+<th>Same-run BIN pooled</th><th>Paired fold-mean gain [95% CI] (folds +)</th><th>Verdict</th></tr></thead>
+<tbody><tr><td><b>Exp 1 TENT</b> (kernel-regression target)</td><td><code>[90, 91]</code> / 22,290</td>
+<td>0.6209</td>
+<td>0.157223</td><td>0.157371</td>
+<td>-0.000274 [-0.0077, +0.0071] (2/4)</td>
+<td><span class="badge b-bad">SCREEN FAIL</span></td></tr><tr><td><b>Exp 2 HARDNEG</b> (hard-negative mining)</td><td><code>[94, 95]</code> / 22,073</td>
+<td>0.6239</td>
+<td>0.115419</td><td>0.155776</td>
+<td>-0.042691 [-0.0703, -0.0151] (0/4)</td>
+<td><span class="badge b-bad">SCREEN FAIL</span></td></tr><tr><td><b>Exp 3 IGN3</b> (ring-excluded negatives)</td><td><code>[100, 101]</code> / 22,397</td>
+<td>0.6301</td>
+<td>0.154630</td><td>0.155492</td>
+<td>-0.000895 [-0.0033, +0.0015] (1/4)</td>
+<td><span class="badge b-bad">SCREEN FAIL</span></td></tr></tbody></table></div>
+<p>No variant beat the incumbent, so no confirmation draws ran (92&ndash;93 / 96&ndash;97 / 102&ndash;103 permanently unused),
+no objective-scheme TIF was built, and no slot is supported. The featured download is the incumbent stack
+rebuilt with fresh production seeds. It is unique vs scored/external rasters (worst 3-px overlap
+69.2% &le; 70%; 32.0% vs GEMSDOE32 B2) but the strict lane
+fails vs this repo's own unscored HGB lineage and the dense lattice. This is a catalogue-gap proxy, not a competition score.</p>
+<p><a href="knowledge/29_ranked_hypotheses_and_preregistration_2026-10-26.md">Frozen preregistration</a> ·
+<a href="knowledge/31_objective_outcomes_and_executive_summary_2026-10-26.md">Outcomes &amp; nine-site executive summary</a> ·
+<a href="registry/run_card_objective_2026-10-26.json">Run card</a> ·
+<a href="evidence/focus_audit_local_2026-10-26.json">This session's nine-site raster audit</a>.</p></section>
+
 <section><h2>The novelty constraint needs attention</h2>
 <p>The registered lattice's three-pixel halo covers <b>99.8724%</b> of eligible pixels.
 Only 6,514 pixels lie outside it. Under the literal overlap rule, a candidate above 21,713 unique dots cannot pass against that lattice,
@@ -119,6 +153,7 @@ Not approved as a new submission. SHA-256: <code class="wrap-hash">33003374335d8
 </details></section>
 <section><h2>Sources, freshness and next work</h2>
 <ul><li><a href="evidence/focus_audit_2026-10-26.json">Fresh mirror hashes, mask identities and nine source revisions</a> — owner mirrors, not organizer authentication.</li>
+<li><a href="evidence/focus_audit_local_2026-10-26.json">This branch's independent nine-site raster re-audit</a> — computed geometry from SHA-pinned local mirrors; scores remain OWNER-REPORTED.</li>
 <li><a href="evidence/focus_format_2026-10-26.json">Automated exact-template format receipts</a> — format only, not performance approval.</li>
 <li><a href="evidence/official_reference_2026-10-26.json">Fresh official reference-repository evidence</a> — CPU training is supported; its training loss is not an independent distance-weighted scorer.</li>
 <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official problem and format</a> ·
@@ -129,6 +164,6 @@ Not approved as a new submission. SHA-256: <code class="wrap-hash">33003374335d8
 Automatic source availability is not automatic scientific verification or a live leaderboard feed.</p>
 <p><a href="docs/history.html">Historical experiment/download archive</a></p></section></main>
 <footer><div class="wrap">Core values: <b>Maximize P(Win)</b> · <b>Own the Outcome</b>. Source: <a href="https://github.com/buffedlizard55-lab/GEMSDOE25">github.com/buffedlizard55-lab/GEMSDOE25</a> ·
-built 2026-10-26 01:17 UTC from <code>registry/</code> and <code>evidence/</code> by <code>scripts/build_site.py</code>.
+built 2026-10-26 16:50 UTC from <code>registry/</code> and <code>evidence/</code> by <code>scripts/build_site.py</code>.
 No score here is promised; reported scores are unverified unless an organizer receipt is supplied. This site/feed never contacts drivendata.org.</div></footer>
 <script src="docs/assets/app.js"></script></body></html>
