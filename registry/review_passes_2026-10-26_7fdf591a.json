@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "date_utc": "2026-10-26",
+  "branch": "arena/7fdf591a-gemsdoe25",
+  "passes": [
+    {
+      "pass": 1,
+      "scope": "Implement/review current repository state",
+      "completed": [
+        "Read AGENTS.md, current owner brief, README current decision and historical archive sections, and latest H73 site/holdout review.",
+        "Checked fixed branch and main ancestry, open PR list, remotes, data availability, site download history and existing submission gates.",
+        "Recorded the read-only repository review and a JSON card; surfaced the review at the README start."
+      ],
+      "result": "No eligible new TIFF. The current H73 file is explicitly DO NOT SUBMIT."
+    },
+    {
+      "pass": 2,
+      "scope": "Bugs, assumptions, edge cases",
+      "completed": [
+        "Confirmed absent competition template/cached inputs; did not claim live-file validation.",
+        "Separated this session from sibling branch ROD evidence and from the pre-existing open PR #47.",
+        "Kept OWNER-REPORTED scores, computed software test counts, and absent holdout performance evidence distinct.",
+        "Installed test tooling only inside ignored .venv; no dependency manifest change."
+      ],
+      "result": "ruff passed; compileall passed; pytest 335 passed and 12 skipped for absent raster inputs."
+    },
+    {
+      "pass": 3,
+      "scope": "Reconcile with original request",
+      "completed": [
+        "No candidate fitting, file generation, portal access, or weekly slot use.",
+        "Clearly stated that the mandatory novel-TIF artifact requirement is unfulfilled because the literal duplicate stop and absent exact data prevent safe approval.",
+        "Recorded next steps and official manual-review links without representing them as newly fetched sources."
+      ],
+      "result": "Documentation is honest and traceable; no score uplift is claimed."
+    }
+  ],
+  "budget": {
+    "experiments": 0,
+    "elapsed_experiment_seconds": 0,
+    "weekly_slots_used": 0
+  },
+  "limitations": [
+    "No exact competition template or feature stack restored in this checkout; 12 tests skipped accordingly.",
+    "No current organizer score receipt or leaderboard snapshot verified.",
+    "No new TIF emitted; literal registry overlap policy must be resolved before another candidate can be safely emitted.",
+    "PR #47 is an already-open parallel review on a different branch; not merged or treated as this session's change."
+  ]
+}
