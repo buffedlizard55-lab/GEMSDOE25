@@ -886,7 +886,7 @@
       "run_card_json": "valid JSON",
       "organizer_access": "none; no DrivenData page, leaderboard, submission endpoint or credentials accessed"
     },
-    "pr_merge": "PR #43 remains open. Reconciled origin/main through 2465b91, including the exact-download, separate OLIC, and D01 audits; merge reconciliation is locally tested but not yet pushed. Push, require checks on the new head, and only merge if GitHub reports clean and all checks pass."
+    "pr_merge": "PR #43 remains open on the fixed branch. Reconciled origin/main through 2465b91, including the exact-download, separate OLIC, and D01 audits; the pushed code head is GitHub-checked and reported CLEAN/MERGEABLE. This final run-record status update requires its own push and checks before the GitHub-only merge."
   },
  "arena_88ce763f_download_audit": {
   "pass_1": "Audited standing brief, prior negative results and shared tools; restored pinned template; validated all 36 download TIFFs.",
