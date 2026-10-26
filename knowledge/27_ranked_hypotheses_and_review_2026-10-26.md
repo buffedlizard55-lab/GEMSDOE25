@@ -51,7 +51,7 @@ These were design candidates, not scores or proven gains. The table ranks *expec
 - `scripts/restore_data.py --group core`, `--group external`, and `--group scored` completed. Every restored item was SHA-256 checked against `registry/data_manifest.json`. The inputs are **owner mirrors**, not organizer-authenticated copies.
 - `scripts/prepare_data.py` reported 5,167,373 footprint pixels, 60,988 labeled pixels, and 19 bands. `scripts/build_features.py` built 64 static features; `scripts/build_addons.py` built the add-on cache. The first build attempt failed because external features had not yet been restored; after restoration it completed.
 - Independent `rasterio` validation of the currently featured H66 testing TIFF passed its hard format checks against the pinned owner-mirror template: float32, one band, EPSG:32611, 3730×3292, exact template transform, finite footprint values in [0,1], zeros outside, and zero emitted catalogue pixels. This is a format check only; H66 remains **DO NOT SUBMIT** because the registered MGD confirmation failed and strict lane policy flagged dense-lattice/own-lineage overlap.
-- Full tests after restoring the scored group and adding POL3 tests: **224 passed, 0 skipped**. Ruff and `git diff --check` passed.
+- Pre-merge full tests after restoring the scored group and adding POL3 tests: **224 passed, 0 skipped**. After merging main and adding the separate-session POL3 card to the current-review page: **247 passed**, with one expected `ConstantInputWarning` on the empty-candidate lane-preflight edge case; Ruff and `git diff --check` passed.
 
 ## Official / primary links for manual review
 
