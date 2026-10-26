@@ -42,14 +42,14 @@
         "GEMSDOE32 B2 analysis is described as a conditional metric explanation, not a proven hidden-label cause; 0.3195/0.4413 remain unverified conflicts.",
         "The previous registered 3\u20135 hypothesis work and negative runs are linked, not relabeled as new experiments. New experiment count in this review is zero; no experiment budget or weekly slot was spent.",
         "A JSON run card records the saved holdout result, strict lane stop, SHA-256, independent file checks, null score projection, and negative verdict.",
-        "Final generator, pytest, Ruff, and diff checks were rerun after the run-card regression test was added."
+        "Final generator, pytest, Ruff, and diff checks were rerun after the run-card regression test was added.",
+        "Opened PR #42 from the fixed branch to main; GitHub pytest check passed on initial commit 5e09033. Merge is pending refreshed checks for this documentation receipt update."
       ],
       "not_fulfilled": [
         "No new unique TIF was generated in this review. The available H71 file fails the literal lane rule and holdout gate and must not be submitted.",
         "No leaderboard score can be estimated from catalogue-gap HOLDOUT-DTI. No organizer receipts, current leaderboard snapshot or weekly allowance were verified.",
         "The live template was absent from data/, so exact comparison was to recorded owner-mirror grid values and saved receipts, not a fresh template-file comparison.",
-        "Official web pages were linked for review but not fetched during this pass; owner-mirror bytes are not organizer-authenticated.",
-        "No pull request or merge has been made yet; this session branch is fixed and will be used if GitHub access/checks permit."
+        "Official web pages were linked for review but not fetched during this pass; owner-mirror bytes are not organizer-authenticated."
       ]
     }
   ],

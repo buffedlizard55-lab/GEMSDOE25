@@ -81,6 +81,9 @@
   "score_projection": null,
   "weekly_slots_used": 0,
   "pull_request": {
-    "status": "not opened yet"
+    "number": 42,
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/pull/42",
+    "state_at_review_record": "OPEN; initial pytest check passed; merge pending",
+    "initial_check": "pytest PASS (33s) on commit 5e09033; subsequent commit will require refreshed checks"
   }
 }
