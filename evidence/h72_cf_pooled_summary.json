@@ -1,0 +1,240 @@
+{
+ "schema_version": 1,
+ "label": "HOLDOUT-DTI",
+ "evaluator_version": "gems25.holdout.v1.2-buffered-4quad-pooled-dti; gems25.metric.dti_binary alpha=0.2 beta=0.8 R=3 px (300 m) triangular kernel; 15 px whole-component buffer",
+ "screen_G1D0_vs_H35": {
+  "label": "HOLDOUT-DTI",
+  "arms": {
+   "G0_D0": {
+    "pooled_dti": 0.1561382013840327,
+    "ci95": [
+     0.1401113580415013,
+     0.17347223981370782
+    ],
+    "withheld_positive_occurrences": 22348
+   },
+   "G0_D1": {
+    "pooled_dti": 0.14912325818297698,
+    "ci95": [
+     0.12485998790119739,
+     0.1742281367890114
+    ],
+    "withheld_positive_occurrences": 22348
+   },
+   "G1_D0": {
+    "pooled_dti": 0.16160527005180683,
+    "ci95": [
+     0.1466933908566223,
+     0.17957248616028562
+    ],
+    "withheld_positive_occurrences": 22348
+   },
+   "G1_D1": {
+    "pooled_dti": 0.15071358165975346,
+    "ci95": [
+     0.1291731904686726,
+     0.17557782404971267
+    ],
+    "withheld_positive_occurrences": 22348
+   }
+  },
+  "paired_gain": 0.005467068667774133,
+  "paired_ci95": [
+   0.002703157826579927,
+   0.007597784391542434
+  ],
+  "fold_gains": [
+   0.00439156442725297,
+   0.0012828558761944775,
+   0.007762698127506074,
+   0.0073999549707287615
+  ],
+  "screen_passed": true,
+  "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 72080; 4 clusters"
+ },
+ "confirm_G1D0_vs_H35": {
+  "label": "HOLDOUT-DTI",
+  "arms": {
+   "G0_D0": {
+    "pooled_dti": 0.14488060866104688,
+    "ci95": [
+     0.13243155669503953,
+     0.1597159443518284
+    ],
+    "withheld_positive_occurrences": 22929
+   },
+   "G0_D1": {
+    "pooled_dti": 0.1358076155904559,
+    "ci95": [
+     0.12149674646599251,
+     0.1505046112979257
+    ],
+    "withheld_positive_occurrences": 22929
+   },
+   "G1_D0": {
+    "pooled_dti": 0.14613335659492083,
+    "ci95": [
+     0.1350097580769345,
+     0.1594328182314554
+    ],
+    "withheld_positive_occurrences": 22929
+   },
+   "G1_D1": {
+    "pooled_dti": 0.13375310168797963,
+    "ci95": [
+     0.11840761872660417,
+     0.15098987179856782
+    ],
+    "withheld_positive_occurrences": 22929
+   }
+  },
+  "paired_gain": 0.001252747933873949,
+  "paired_ci95": [
+   -0.0009049735413604876,
+   0.0031950975989261665
+  ],
+  "fold_gains": [
+   0.0017872101474517288,
+   0.003886702196783165,
+   0.0015252627294986831,
+   -0.0018471814626504213
+  ],
+  "screen_passed": false,
+  "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 72082; 4 clusters"
+ },
+ "combined_screen_confirm_G1D0_vs_H35": {
+  "label": "HOLDOUT-DTI",
+  "arms": {
+   "G0_D0": {
+    "pooled_dti": 0.15048622521552002,
+    "ci95": [
+     0.13685628673045674,
+     0.16654246020821512
+    ],
+    "withheld_positive_occurrences": 45277
+   },
+   "G0_D1": {
+    "pooled_dti": 0.1424225160412826,
+    "ci95": [
+     0.12317039411074461,
+     0.16227106445163636
+    ],
+    "withheld_positive_occurrences": 45277
+   },
+   "G1_D0": {
+    "pooled_dti": 0.15383691544535688,
+    "ci95": [
+     0.140837378777022,
+     0.16943923353699236
+    ],
+    "withheld_positive_occurrences": 45277
+   },
+   "G1_D1": {
+    "pooled_dti": 0.14218042022864336,
+    "ci95": [
+     0.12358301618227384,
+     0.16404594247229945
+    ],
+    "withheld_positive_occurrences": 45277
+   }
+  },
+  "paired_gain": 0.0033506902298368613,
+  "paired_ci95": [
+   0.002636078365422456,
+   0.004224137361415137
+  ],
+  "fold_gains": [
+   0.0031002186435435952,
+   0.0025635639894120987,
+   0.004644696510454932,
+   0.0027436689372869194
+  ],
+  "screen_passed": true,
+  "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 72084; 4 clusters"
+ },
+ "catfree_CFG1_vs_H35": {
+  "label": "HOLDOUT-DTI",
+  "arms": {
+   "CF_G0": {
+    "pooled_dti": 0.09024513240430092,
+    "ci95": [
+     0.07337014083556263,
+     0.1099415680089285
+    ],
+    "withheld_positive_occurrences": 22334
+   },
+   "CF_G1": {
+    "pooled_dti": 0.0947813000317226,
+    "ci95": [
+     0.08225176433847306,
+     0.1073111596811859
+    ],
+    "withheld_positive_occurrences": 22334
+   },
+   "G0_D0": {
+    "pooled_dti": 0.15378587281323894,
+    "ci95": [
+     0.13674015353730923,
+     0.16943542593537153
+    ],
+    "withheld_positive_occurrences": 22334
+   }
+  },
+  "paired_gain": -0.05900457278151634,
+  "paired_ci95": [
+   -0.07725104733370411,
+   -0.0441357734866305
+  ],
+  "fold_gains": [
+   -0.08437619109921934,
+   -0.03990029543579021,
+   -0.04759358747670453,
+   -0.071652968071814
+  ],
+  "screen_passed": false,
+  "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 72085; 4 clusters"
+ },
+ "catfree_CFG1_vs_CFG0": {
+  "label": "HOLDOUT-DTI",
+  "arms": {
+   "CF_G0": {
+    "pooled_dti": 0.09024513240430092,
+    "ci95": [
+     0.07337014083556263,
+     0.1099415680089285
+    ],
+    "withheld_positive_occurrences": 22334
+   },
+   "CF_G1": {
+    "pooled_dti": 0.0947813000317226,
+    "ci95": [
+     0.08225176433847306,
+     0.1073111596811859
+    ],
+    "withheld_positive_occurrences": 22334
+   },
+   "G0_D0": {
+    "pooled_dti": 0.15378587281323894,
+    "ci95": [
+     0.13674015353730923,
+     0.16943542593537153
+    ],
+    "withheld_positive_occurrences": 22334
+   }
+  },
+  "paired_gain": 0.004536167627421678,
+  "paired_ci95": [
+   -0.001936308865887984,
+   0.011327749764759407
+  ],
+  "fold_gains": [
+   0.0019641569127119146,
+   -0.004141406838849518,
+   0.013338895523269126,
+   0.004550971010844576
+  ],
+  "screen_passed": false,
+  "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 72086; 4 clusters"
+ },
+ "warning": "The shipped artifact uses the tested CF_G1 detector columns but a B2-collar / 37,654-dot / min_dist=2.8 full-footprint emission. Exact artifact emission was not re-tested after Experiment 3 because the 3-experiment budget was exhausted. CatFree HOLDOUT-DTI is detector-family proxy evidence, not a leaderboard or exact-artifact score."
+}

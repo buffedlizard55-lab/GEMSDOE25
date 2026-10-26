@@ -165,6 +165,30 @@ The frozen gate (gain &gt; +0.001 and &ge;3/4 folds) failed, so no confirmation,
 <tr><td><b>Exp 3</b> <code>[84, 85]</code></td><td><b><code>C1_SUBSURF_PTTG_MTHS</code></b></td><td>{w3:,}</td><td>{c3_auc:.4f}</td><td><code>{e3['arms']['C1_SUBSURF_PTTG_MTHS']['mean_dti']:.5f}</code> [{e3['arms']['C1_SUBSURF_PTTG_MTHS']['ci95_dti'][0]:.4f}, {e3['arms']['C1_SUBSURF_PTTG_MTHS']['ci95_dti'][1]:.4f}]</td><td>Subsurf: <code>{e3['arms']['CTRL_SUBSURF_D']['mean_dti']:.5f}</code><br>H35: <code>{e3['arms']['CTRL_H35']['mean_dti']:.5f}</code></td><td><code>{e3['contrasts']['C1_SUBSURF_PTTG_MTHS_vs_CTRL_SUBSURF_D']['mean']:+.5f}</code> vs Subsurf ({e3['contrasts']['C1_SUBSURF_PTTG_MTHS_vs_CTRL_SUBSURF_D']['folds_positive']}/4)<br><code>{e3['contrasts']['C1_SUBSURF_PTTG_MTHS_vs_CTRL_H35']['mean']:+.5f}</code> vs H35 ({e3['contrasts']['C1_SUBSURF_PTTG_MTHS_vs_CTRL_H35']['folds_positive']}/4)</td><td><span class="badge b-bad">H35 FAIL · UNIQUE LANE</span></td></tr>
 </tbody></table></div>
 <p class="small"><b>89-raster lane uniqueness:</b> <code>flagged_lane = []</code> (<code>UNIQUE vs available registry</code>: {100*top21['b2_overlap']:.2f}% vs GEMSDOE32 B2, {100*top21['worst_cand_dots_within_3px']:.2f}% max across {top21['n']} sibling top-scorers, {100*own72['worst_cand_dots_within_3px']:.2f}% max across {own72['n']} own-lineage rasters, {100*h23_ov:.2f}% vs <code>h23-a-6pct</code>, surface |&rho;| &le; {rc72['surface_max_abs_spearman']:.4f}).</p></section>'''
+    h72_cf_path = ROOT / "registry" / "run_card_h72_cf_2026-10-26.json"
+    h72_cf = json.loads(h72_cf_path.read_text()) if h72_cf_path.exists() else None
+    h72_cf_section = ""
+    if h72_cf:
+        hm = h72_cf["holdout_dti"]["screen_and_confirm_H72_with_H35"]
+        cf = h72_cf["holdout_dti"]["shipped_catfree_detector_family"]
+        fl = h72_cf["correlation_overlap_vs_registry"]["final_dots"]
+        h72_cf_section = f'''<section class="card"><p class="eyebrow">PARALLEL H72-CF LANE · 3/3 PRE-REGISTERED EXPERIMENTS · UNIQUE NEGATIVE ALTERNATE</p>
+<h2>MBSP-MTG macro-basin scarp + concealed MT/gravity/swarm damage</h2>
+<p>The six H72-CF columns replicated as an add-on to H35: <b>HOLDOUT-DTI</b> <code>{hm['candidate_pooled']:.6f}</code>
+[<code>{hm['candidate_ci95'][0]:.4f}, {hm['candidate_ci95'][1]:.4f}</code>] vs same-run H35 <code>{hm['same_run_h35_pooled']:.6f}</code>;
+paired <code>{hm['paired_gain']:+.6f}</code> [<code>{hm['paired_gain_ci95'][0]:+.4f}, {hm['paired_gain_ci95'][1]:+.4f}</code>],
+{hm['withheld_positive_occurrences']:,} withheld-positive occurrences. But the downloadable 100% CatFree detector family is
+<code>{cf['candidate_pooled']:.6f}</code> vs H35 <code>{cf['same_run_h35_pooled']:.6f}</code>
+(paired <code>{cf['paired_gain_vs_H35']:+.6f}</code>, 0/4 folds): performance gate FAIL.</p>
+<p><b>Alternate testing file:</b> <a download href="downloads/{e(h72_cf['submission_name'])}"><code>{e(h72_cf['submission_name'])}</code></a>
+(content <code>{e(h72_cf['raster']['content_id'])}</code>, SHA-256 <code>{e(h72_cf['raster']['sha256'])}</code>).
+No defensible leaderboard estimate exists. Content is unique vs prior registry; final dots clear 27 focus/top rasters (max
+{100*fl['focus_and_top_scorers_27']['max_candidate_dots_within_3px']:.1f}%) and own lineage ({100*fl['own_lineage']['max_candidate_dots_within_3px']:.1f}%),
+but strict lane fails the lattice and four broad historical artifact halos. <b>OK TO DOWNLOAD: YES (testing) · OK TO SUBMIT: NO — DO NOT SUBMIT.</b></p>
+<p><a href="../knowledge/29_h72_cf_hypotheses_and_preregistration_2026-10-26.md">Five ranked hypotheses &amp; preregistration</a> ·
+<a href="../knowledge/30_h72_cf_outcomes_and_executive_decision_2026-10-26.md">Outcomes and nine-site decision</a> ·
+<a href="../registry/run_card_h72_cf_2026-10-26.json">H72-CF run card</a>.</p></section>'''
+
     nid = "note-primary-h72"
     download = (
         f'<p><b>OK to download: YES</b> for local testing of unique content id '
@@ -331,6 +355,7 @@ not a copied prediction mask. Volcanic flow lobes, sediment sorting and survey s
 <a href="../evidence/rod_2026-10-26/feature_canaries.json">Every-feature leakage canaries</a> ·
 <a href="../evidence/rod_2026-10-26/surface_lane.json">Pre-placement surface audit</a></p></section>
 {h72_section}
+{h72_cf_section}
 {pol3_section}
 {obj_section}
 {olic_section}

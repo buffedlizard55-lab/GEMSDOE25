@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-26T17:39:42.004416+00:00",
+  "generated_utc": "2026-10-26T18:21:39.196522+00:00",
   "evidence_class": "COMPUTED local format and footprint identity only",
   "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
   "files": [
@@ -3602,6 +3602,218 @@
       },
       "identical_footprint_files": [
         "gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-nan.tif"
+      ]
+    },
+    {
+      "file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+      "sha256": "9c338a660a5f6016fa59e187af56ebaa687a92d69765b72cc2bd94bf89e0e6b0",
+      "footprint_sha256": "8dc38a9bb767507d7f64b8496f003a80aabc6dae9aee89e3203d81d92a93ca90",
+      "format_valid": true,
+      "okay_to_submit": false,
+      "estimated_leaderboard_score": null,
+      "novelty": "UNPROVEN: full registry surface and final-dot checks required",
+      "validator": {
+        "file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+        "bytes": 1590820,
+        "sha256": "9c338a660a5f6016fa59e187af56ebaa687a92d69765b72cc2bd94bf89e0e6b0",
+        "ok_to_upload": true,
+        "format_valid": true,
+        "authorization_note": "ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval",
+        "hard_failures": [],
+        "official_nan_outside": true,
+        "positive_pixels": 37654,
+        "footprint_pixels": 5167373,
+        "checks": {
+          "template_matches_expected_grid_and_footprint": {
+            "pass_": true,
+            "detail": "(3730, 3292), footprint 5,167,373 px",
+            "hard": true
+          },
+          "single_band": {
+            "pass_": true,
+            "detail": "count=1",
+            "hard": true
+          },
+          "dtype_float32": {
+            "pass_": true,
+            "detail": "dtypes=('float32',)",
+            "hard": true
+          },
+          "crs_epsg_32611": {
+            "pass_": true,
+            "detail": "32611",
+            "hard": true
+          },
+          "shape_matches_template": {
+            "pass_": true,
+            "detail": "(3730, 3292) vs (3730, 3292)",
+            "hard": true
+          },
+          "geotransform_matches_template": {
+            "pass_": true,
+            "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+            "hard": true
+          },
+          "footprint_all_finite": {
+            "pass_": true,
+            "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+            "hard": true
+          },
+          "footprint_values_in_0_1": {
+            "pass_": true,
+            "detail": "min=0.0 max=1.0",
+            "hard": true
+          },
+          "outside_footprint_is_nan_official": {
+            "pass_": true,
+            "detail": "7,111,787/7,111,787 NaN",
+            "hard": false
+          },
+          "outside_footprint_is_nan_or_zero": {
+            "pass_": true,
+            "detail": "NaN (official) or 0 (fallback) outside",
+            "hard": true
+          },
+          "nan_mask_identical_to_template": {
+            "pass_": true,
+            "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+            "hard": true
+          },
+          "nodata_tag": {
+            "pass_": true,
+            "detail": "nodata=nan",
+            "hard": false
+          },
+          "variant_nan_aware_whole_array": {
+            "pass_": true,
+            "detail": "finite range over the whole array; infinity rejected",
+            "hard": true
+          },
+          "variant_masked_read": {
+            "pass_": true,
+            "detail": "rasterio masked read; empty data rejected",
+            "hard": true
+          },
+          "variant_strict_whole_array_no_nan": {
+            "pass_": false,
+            "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+            "hard": false
+          },
+          "profile_matches_template": {
+            "pass_": true,
+            "detail": "compress=lzw (template lzw)",
+            "hard": false
+          }
+        }
+      },
+      "identical_footprint_files": [
+        "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.tif"
+      ]
+    },
+    {
+      "file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.tif",
+      "sha256": "e39517cc95ac4083653299efb69d25a3772bd2bb1bfd4580ff9eb3ae82a8f2bb",
+      "footprint_sha256": "8dc38a9bb767507d7f64b8496f003a80aabc6dae9aee89e3203d81d92a93ca90",
+      "format_valid": true,
+      "okay_to_submit": false,
+      "estimated_leaderboard_score": null,
+      "novelty": "UNPROVEN: full registry surface and final-dot checks required",
+      "validator": {
+        "file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.tif",
+        "bytes": 826520,
+        "sha256": "e39517cc95ac4083653299efb69d25a3772bd2bb1bfd4580ff9eb3ae82a8f2bb",
+        "ok_to_upload": true,
+        "format_valid": true,
+        "authorization_note": "ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval",
+        "hard_failures": [],
+        "official_nan_outside": false,
+        "positive_pixels": 37654,
+        "footprint_pixels": 5167373,
+        "checks": {
+          "template_matches_expected_grid_and_footprint": {
+            "pass_": true,
+            "detail": "(3730, 3292), footprint 5,167,373 px",
+            "hard": true
+          },
+          "single_band": {
+            "pass_": true,
+            "detail": "count=1",
+            "hard": true
+          },
+          "dtype_float32": {
+            "pass_": true,
+            "detail": "dtypes=('float32',)",
+            "hard": true
+          },
+          "crs_epsg_32611": {
+            "pass_": true,
+            "detail": "32611",
+            "hard": true
+          },
+          "shape_matches_template": {
+            "pass_": true,
+            "detail": "(3730, 3292) vs (3730, 3292)",
+            "hard": true
+          },
+          "geotransform_matches_template": {
+            "pass_": true,
+            "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+            "hard": true
+          },
+          "footprint_all_finite": {
+            "pass_": true,
+            "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+            "hard": true
+          },
+          "footprint_values_in_0_1": {
+            "pass_": true,
+            "detail": "min=0.0 max=1.0",
+            "hard": true
+          },
+          "outside_footprint_is_nan_official": {
+            "pass_": false,
+            "detail": "0/7,111,787 NaN",
+            "hard": false
+          },
+          "outside_footprint_is_nan_or_zero": {
+            "pass_": true,
+            "detail": "NaN (official) or 0 (fallback) outside",
+            "hard": true
+          },
+          "nan_mask_identical_to_template": {
+            "pass_": true,
+            "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+            "hard": true
+          },
+          "nodata_tag": {
+            "pass_": true,
+            "detail": "nodata=None",
+            "hard": false
+          },
+          "variant_nan_aware_whole_array": {
+            "pass_": true,
+            "detail": "finite range over the whole array; infinity rejected",
+            "hard": true
+          },
+          "variant_masked_read": {
+            "pass_": true,
+            "detail": "rasterio masked read; empty data rejected",
+            "hard": true
+          },
+          "variant_strict_whole_array_no_nan": {
+            "pass_": true,
+            "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+            "hard": false
+          },
+          "profile_matches_template": {
+            "pass_": true,
+            "detail": "compress=lzw (template lzw)",
+            "hard": false
+          }
+        }
+      },
+      "identical_footprint_files": [
+        "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif"
       ]
     },
     {

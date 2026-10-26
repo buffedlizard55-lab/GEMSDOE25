@@ -1,0 +1,15 @@
+{
+ "candidate": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.tif",
+ "candidate_content_id": "1d7c1e9ea55f",
+ "n_unique_file_sha256_compared": 90,
+ "same_content_encoding_twins": [
+  {
+   "file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+   "sha256": "9c338a660a5f6016fa59e187af56ebaa687a92d69765b72cc2bd94bf89e0e6b0",
+   "content_id": "1d7c1e9ea55f"
+  }
+ ],
+ "same_content_prior_registry_matches": [],
+ "unique_by_scored_content_vs_prior_registry": true,
+ "note": "Content id hashes float32 scored-domain values. Same-session NaN/zeros twins intentionally match; any prior-registry match would fail uniqueness."
+}
