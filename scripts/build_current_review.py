@@ -439,6 +439,11 @@ def readme_status():
 def main():
     from build_site import page
     (ROOT/'docs/current-review.html').write_text(page('Current executive review', render_body(), 'current', ''))
+    try:
+        from announce_h73_site import main as publish_current_status
+    except ImportError:
+        from scripts.announce_h73_site import main as publish_current_status
+    publish_current_status()
 
 
 if __name__ == '__main__':
