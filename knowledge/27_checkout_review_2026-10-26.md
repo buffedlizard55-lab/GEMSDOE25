@@ -74,7 +74,7 @@ No candidate meets the pre-fit requirements in this checkout. `data/` has only `
 - Executive comparison includes each of the nine named sites, its highest supplied score claim and scientific interpretation.
 - Ranked five distinct candidate designs, naming layers, signature, catalogue-missing rationale, repository distinction, non-fault mimic and data/cost status. No numeric performance forecast is presented as a score.
 - No experiment or new TIFF is claimed; no DrivenData slot was used. The run card records null metrics/hash/validator rather than inventing values.
-- Pull request/merge is not claimed here; GitHub operations are separate and must be evidenced by an actual PR/merge receipt.
+- PR [#33](https://github.com/buffedlizard55-lab/GEMSDOE25/pull/33) was opened from the fixed session branch and merged into `main` after both GitHub `pytest` checks completed successfully. Merge commit: `dc3fb328777a15c0c3e7e5b2f39ed2a99f6523d2` (GitHub receipt checked 2026-10-26 UTC). No Pages deployment URL/status was checked.
 
 ## Sources for manual review
 
