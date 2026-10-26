@@ -98,11 +98,12 @@ def test_h72_3_site_and_readme_make_submit_status_obvious() -> None:
     for rel in ("index.html", "docs/index.html", "docs/executive-summary.html", "docs/current-review.html"):
         html = (ROOT / rel).read_text()
         assert html.index("OK TO SUBMIT: NO") < html.index(PRIMARY["file"])
-        assert "OK to download: YES" in html
+        assert "RESEARCH-ARCHIVE DOWNLOAD: YES" in html.upper()
+        assert "Competition-ready" in html
         assert "OK to spend a weekly slot: NO" in html
         assert "DO NOT SUBMIT" in html
         assert "88bbebfe79b4" in html
     readme = (ROOT / "README.md").read_text()
     assert PRIMARY["file"] in readme
-    assert "OK to download (local testing): YES · OK to spend a weekly slot: NO — DO NOT SUBMIT" in readme
+    assert "Research-archive download: YES (inspection/testing only) · Competition-ready TIF: NO · OK TO SUBMIT: NO · weekly slot: NO — DO NOT SUBMIT" in readme
     assert (ROOT / "docs" / "downloads" / PRIMARY["zip"]).exists()

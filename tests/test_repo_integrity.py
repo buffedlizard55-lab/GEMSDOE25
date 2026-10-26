@@ -168,7 +168,8 @@ def test_first_screen_shows_current_stop_before_historical_download():
     t = (ROOT / "index.html").read_text()
     primary = next(s for s in J("registry/submissions.json")["files"] if s["role"] == "primary")
     assert t.index("OK TO SUBMIT: NO") < t.index(primary["file"])
-    assert "OK to download: YES" in t
+    assert "RESEARCH-ARCHIVE DOWNLOAD: YES" in t.upper()
+    assert "COMPETITION-READY TIF: NO" in t.upper()
     assert "OK to spend a weekly slot: NO" in t
     assert "DO NOT SUBMIT" in t
     assert "New TIF download: unavailable" not in t
