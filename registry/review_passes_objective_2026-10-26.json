@@ -1,0 +1,80 @@
+{
+ "schema_version": 1,
+ "date_utc": "2026-10-26",
+ "branch": "arena/f1967d4f-gemsdoe25",
+ "session": "training-objective lane (TENT / HARDNEG / IGN3)",
+ "verdict": "negative",
+ "passes": [
+  {
+   "pass_": 1,
+   "name": "Implement + verify",
+   "summary": "5 ranked hypotheses + Exp1/Exp2 pre-registered (knowledge/29, commit 005e115) before any fit; Exp3 separately pre-registered (knowledge/30, commit 7806b5c) before its fit on fresh draws. All 3 screens FAIL vs same-run BIN comparator (paired fold-mean HOLDOUT-DTI: TENT -0.000274 [2/4], HARDNEG -0.042691 [0/4], IGN3 -0.000895 [1/4]); canaries <=0.63 PASS; caches bit-identical 6/6. Candidate per frozen build rule = BIN protocol fresh seeds 724200+m; independent rasterio audit PASS incl strict whole-array [0,1]; lane PASS vs 31 scored/external sparse (worst 0.69235), FAIL vs own unscored lineage (0.87205) + lattice (1.0). Run card + registry rotation + site/README regenerated from receipts.",
+   "evidence": [
+    "evidence/tent_screen_2026-10-26/results.json",
+    "evidence/hardneg_screen_2026-10-26/results.json",
+    "evidence/ign3_screen_2026-10-26/results.json",
+    "evidence/objective_independent_audit_zeros.json",
+    "evidence/objective_lane_extended.json",
+    "registry/run_card_objective_2026-10-26.json",
+    "tests: 270 passed"
+   ]
+  },
+  {
+   "pass_": 2,
+   "name": "Bug / assumption / edge-case review",
+   "summary": "Analyzer determinism re-verified (re-run on a copy is byte-equal). objective.py containment re-read: ring/far exclude all catalogue pixels and are confined to train_region; test-quadrant truth never read. Recorded assumption: BIN vs TENT/IGN3 far-negative pools differ by definition of the manipulation (same seed formula, different exclusion radius), so contrasts measure the full manipulation, exactly as pre-registered. TENT regressor outputs clipped only below 0; diagnostic sapd emission is rank-based and equally negative, so clipping cannot explain the FAIL. H38 production protocol claim checked (3 draws matches build_h38 defaults). Found+fixed: candidate note missed the locked 'no slot / not slot-approved' guardrail (IR-25-OBJ-NOTE-GUARDRAIL) via deterministic rebuild, TIF bit-identical.",
+   "evidence": [
+    "src/gems25/objective.py",
+    "scripts/run_tent.py",
+    "scripts/build_h38_candidate.py (draws=3)",
+    "IR-25-OBJ-NOTE-GUARDRAIL",
+    "IR-25-OBJ-SAME-LINEAGE"
+   ]
+  },
+  {
+   "pass_": 3,
+   "name": "Full re-check vs request",
+   "summary": "Nine-site executive summary with fresh computed geometry + OWNER-REPORTED labels (knowledge/31 \u00a71, evidence/focus_audit_local_2026-10-26.json); conditional PhD explanation of 0.2778 and credit arithmetic for beating it (\u00a72); unique-by-content downloadable TIF with one-click links at README top + site banner and OK/NO badges; submission checklist on executive-summary + current-review pages; owner prompt preserved verbatim in README; Maximize P(Win)/Own the Outcome retained. No DrivenData page accessed; 0 weekly slots used; promotion remains the owner's selector step.",
+   "evidence": [
+    "knowledge/31_objective_outcomes_and_executive_summary_2026-10-26.md",
+    "README.md",
+    "docs/index.html",
+    "docs/executive-summary.html",
+    "docs/current-review.html"
+   ]
+  }
+ ],
+ "scientific_budget": {
+  "experiments_used": 3,
+  "experiments_cap": 3,
+  "draws_spent": [
+   90,
+   91,
+   94,
+   95,
+   100,
+   101
+  ],
+  "draws_permanently_unused": [
+   92,
+   93,
+   96,
+   97,
+   102,
+   103
+  ],
+  "weekly_slots_used": 0
+ },
+ "limitations": [
+  "Holdout truth is the catalogue itself; it cannot measure true off-catalogue discovery or validate near-catalogue pruning (proxy-vs-live Spearman +0.33 n.s., n=24).",
+  "All nine-site scores are OWNER-REPORTED; overall-leader figures 0.3195 vs 0.4413 conflict and are unused (IR-25-LEADERBOARD-CONFLICT).",
+  "The candidate is same-lineage as the repo's unscored H38 file (IR-25-OBJ-SAME-LINEAGE) and the literal lane rule is unsatisfiable for >21,713-dot files (IR-25-LANE-DENSITY).",
+  "Cache rebuild is bit-identical to pinned hashes, but Family A unit provenance remains an open prior irregularity (IR-25-UNIT-FIX-DOCUMENTATION-DRIFT)."
+ ],
+ "next_steps": [
+  "Owner/selector: decide lane policy (density-normalised two-sided overlap) before any future promotion.",
+  "Owner/selector: consider one organizer-anchored score for the H35/H38 lineage to recalibrate proxy-vs-live.",
+  "Future pre-registered session: 2-D spatial-context model (needs GPU-class compute) \u2014 the only remaining high-ceiling detector lever."
+ ],
+ "pr_and_deployment": "Push session branch, open PR to main, merge via GitHub after checks; GitHub Pages redeploys from main."
+}
