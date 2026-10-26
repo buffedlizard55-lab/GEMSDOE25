@@ -97,6 +97,18 @@ def test_censor_catalogue_proximity_clamps_dist_and_zeros_dens5():
     assert e[3, 0] == pytest.approx(0.4)
 
 
+def test_full_builder_matches_catfree_x3_and_holdout_quadrant_protocol():
+    """Regression for IR-25-H72-FULL-BUILD-X3-MISMATCH-FIXED-20261026."""
+    from pathlib import Path
+
+    source = (Path(__file__).resolve().parents[1] / "scripts" / "build_h72_candidate.py").read_text()
+    assert "np.asarray(ctx.addon[:3]" in source
+    assert "(gh * mh).astype(np.float32)" in source
+    assert "(gh * db).astype(np.float32)" in source
+    assert "ctx.holdout.quad == q" in source
+    assert "foot.shape[0] // 2" not in source
+
+
 def test_emit_debiased_b2_greedy_respects_flank_shield_and_preserves_tip():
     h, w = 80, 80
     dom = np.ones((h, w), dtype=bool)

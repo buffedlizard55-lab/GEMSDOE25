@@ -1,0 +1,57 @@
+{
+ "file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.tif",
+ "bytes": 826520,
+ "sha256": "e39517cc95ac4083653299efb69d25a3772bd2bb1bfd4580ff9eb3ae82a8f2bb",
+ "meta": {
+  "count": 1,
+  "dtypes": [
+   "float32"
+  ],
+  "crs": "EPSG:32611",
+  "epsg": 32611,
+  "shape": [
+   3730,
+   3292
+  ],
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "nodata": null
+ },
+ "footprint_px": 5167373,
+ "positive_pixels": 37654,
+ "distinct_values": [
+  0.0,
+  1.0
+ ],
+ "outside_convention": "zeros",
+ "checks": {
+  "template_footprint_px_is_5167373": true,
+  "single_band": true,
+  "dtype_float32": true,
+  "crs_epsg_32611_and_equals_template": true,
+  "shape_equals_template": true,
+  "transform_equals_template": true,
+  "transform_is_100m_243350_4508550": true,
+  "footprint_all_finite": true,
+  "footprint_values_in_0_1": true,
+  "outside_all_zero": true,
+  "outside_all_nan": false,
+  "strict_whole_array_0_le_x_le_1": true,
+  "no_emission_on_catalogue": true
+ },
+ "all_hard_checks_pass": true,
+ "zip": {
+  "file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.zip",
+  "sha256": "a095997d9771ae4ea1c0e1dc0cd035644fce9357d4fc1eca2f54b93ace325982",
+  "members": [
+   "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.tif"
+  ],
+  "contains_exactly_candidate_bytes": true
+ }
+}

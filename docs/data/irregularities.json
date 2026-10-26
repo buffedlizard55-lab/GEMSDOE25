@@ -398,9 +398,9 @@
    "id": "IR-25-DUPLICATE-MASKS-ACROSS-SITES",
    "severity": "high",
    "status": "flagged",
-   "issue": "Byte-and-mask forensic audit across the focus projects shows that several sibling repositories shipped pixel-identical or byte-identical masks under different filenames: GEMSDOE30 d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca (owner-reported 0.2600) has the exact 44,090-pixel mask (content_id e56ea318af89) and file SHA-256 (91eae1ca...) of GEMSDOE25 d2-8; GEMSDOE31 h27-4-solo-d28-20261004-8acb75e1-nan (owner-reported 0.2708) has the exact 40,199-pixel mask (content_id 8acb75e1f2cc) of GEMSDOE28 h27-4; and GEMSDOE50 / GEMSDOE58 (owner-reported 0.2778) carry the exact SHA-256 prefix (c55bafc4) and 37,654-pixel count of GEMSDOE32 h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros (content_id 4311d7454b8e).",
-   "evidence": "COMPUTED on fetched rasters in data/focus_sites/ and data/scored/; SHA-256 and content_id recorded in knowledge/13 and knowledge/14.",
-   "resolution_or_action": "Enforced in tests/test_repo_integrity.py and tests/test_h31.py: our shipped H31-1 submission (content_id c213681203f6, 43,771 px) is blocked from matching any prior content_id and is verified against all 41 registry rasters to have max surface rank-correlation 0.1697 <= 0.90 and max 3-px dot overlap 0.6707 <= 0.70 (0.3175 vs GEMSDOE32)."
+   "issue": "Byte-and-mask forensic audit across the focus projects shows that several sibling repositories shipped pixel-identical or byte-identical masks under different filenames: GEMSDOE30 d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca (owner-reported 0.2600) has the exact 44,090-pixel mask (content_id e56ea318af89) and file SHA-256 (91eae1ca...) of GEMSDOE25 d2-8; and GEMSDOE31 h27-4-solo-d28-20261004-8acb75e1-nan (owner-reported 0.2708) has the exact 40,199-pixel mask (content_id 8acb75e1f2cc) of GEMSDOE28 h27-4. (Correction 2026-10-26: an earlier session also cited GEMSDOE50/GEMSDOE58 as 0.2778 copies; direct repo verification proved those rows were fabricated and purged under IR-25-HALLUCINATED-LEDGER-ROWS-20261026.)",
+   "evidence": "COMPUTED on fetched rasters in data/focus_sites/, data/registry_top/, and data/scored/; SHA-256 and content_id recorded in knowledge/13, knowledge/14, and evidence/focus_audit_2026-10-26.json.",
+   "resolution_or_action": "Enforced in tests/test_repo_integrity.py and shared lane checkers: every shipped submission is blocked from matching any prior content_id and is verified against all restored scored + top-scorer rasters."
   },
   {
    "id": "IR-25-GEMSDOE33-DUAL-SCORE-CLAIM",
@@ -657,6 +657,54 @@
    "issue": "README describes the Family A potential-field unit mismatch as fixed, but the current shared build_static still forms A_mag_tilt directly from provider tmi_vg/tmi_hg. The narrative and implementation need reconciliation; no new unit calibration was performed in this session.",
    "evidence": "src/gems25/features.py build_static Family A; README IR-25-POTENTIAL-FIELD-UNIT-MISMATCH",
    "resolution_or_action": "Audit source units and cached hashes before any new Family A run. ROD is catalogue-free radiometric/scarp work; its H35 comparator uses the existing BDE+7/H34 recipe, not a newly repaired A stack."
+  },
+  {
+   "id": "IR-25-HALLUCINATED-LEDGER-ROWS-20261026",
+   "severity": "high",
+   "status": "fixed",
+   "issue": "Cross-checking registry/live_scores.json against GEMSDOE32:docs/score-ledger.csv, GEMSDOE87:registry/historical_index.json, GEMSDOE91:README.md verbatim brief, and direct git trees of GEMSDOE50..92 revealed that 21 rows (h50-b2-d28... through h92-tpcr-pinn..., claiming 0.1816-0.2778) existed in NO sibling repository and NO owner brief, directly contradicting authentic owner-reported entries (e.g. GEMSDOE50 0.0764, GEMSDOE78 0.1564, GEMSDOE81 0.0041, GEMSDOE92 0.0255) and corrupting README.md's top-10 ledger.",
+   "evidence": "registry/live_scores.json prior indices 48..68; GEMSDOE32:docs/score-ledger.csv; GEMSDOE87:registry/historical_index.json; knowledge/owner_brief_2026-10-26_verbatim.txt",
+   "resolution_or_action": "Purged all 21 fabricated rows from registry/live_scores.json, replaced them with SHA-256-verified / brief-verified owner-reported entries (all strictly labeled user-provided-unverified), and corrected the inherited GEMSDOE50/58 mention in IR-25-DUPLICATE-MASKS-ACROSS-SITES."
+  },
+  {
+   "id": "IR-25-CATALOGUE-HUG-COLLAPSE-20261026",
+   "severity": "high",
+   "status": "verified",
+   "issue": "Owner-reported live scores on 2026-10-25 submissions show a 3x-4x collapse for Family-E-dominated models (GEMSDOE25 H66-1 da617550a0e9: 0.0742; GEMSDOE24 gvc1 abe8e51c719d: 0.0859) compared to catalogue-free / off-flank detectors (GEMSDOE32 B2: 0.2778; GEMSDOE70 P5: 0.2478; GEMSDOE27 H29: 0.2190). Pixel-exact distance forensics proves the mechanism: Holdout hides 20% of 8-connected catalogue fragments while leaving adjacent sibling fragments visible (55.6% of withheld test pixels lie at d(visible) <= 10 px), causing Family-E HGB models to cram 75.7% (H66-1) and 74.3% (G24 gvc1) of full-catalogue dots into the barren d(cat) <= 10 px collar (med_d = 5.7-5.8 px), whereas every >=0.219 live scorer places 61.8%-69.8% of dots at d(cat) > 10 px (med_d = 16.2-19.6 px).",
+   "evidence": "COMPUTED across 27 pinned rasters in registry/top_scorer_sources.json + docs/downloads/ (knowledge/29_h72_hypotheses_and_preregistration_2026-10-26.md)",
+   "resolution_or_action": "Tested explicitly in H72 (Factor D: training-time short-range catalogue-proximity censoring d >= 15 px + B2-Tip 37,654-dot greedy 300 m tent allocation) alongside standard Holdout and off-flank (d_vis > 10 px) discovery diagnostics."
+  },
+  {
+   "id": "IR-25-VALIDATOR-DATA-DIR-FIXED-20261026",
+   "severity": "medium",
+   "status": "fixed",
+   "issue": "scripts/validate_gem_candidate.py and scripts/lane_check_gem1.py hardcoded REGISTRY_DIR = ROOT / 'data' / 'scored' at module import time instead of resolving gems25.paths.data_dir() / 'scored', silently omitting data/scored/ (including the 13gems 5-px lattice) whenever GEMS_DATA_DIR pointed to external storage.",
+   "evidence": "scripts/validate_gem_candidate.py; scripts/lane_check_gem1.py",
+   "resolution_or_action": "Fixed once in place per Parallel-Run Protocol Rule 2 so default REGISTRY_DIR dynamically resolves via gems25.paths.data_dir() / 'scored' while preserving test monkeypatching."
+  },
+  {
+   "id": "IR-25-H72-FULL-BUILD-X3-MISMATCH-FIXED-20261026",
+   "severity": "critical",
+   "status": "fixed",
+   "issue": "Pass-2 audit found two H72-CF full-build engineering mismatches before publication: (1) the first uncommitted build treated cached addon rows 4-5 (S_dem_c2/S_dem_s2) as Experiment-3 X3_gm/X3_gd; (2) the corrected-feature intermediate used the rectangular grid midpoint (1865,1646) for OOF quadrants instead of gems25.holdout's irregular-footprint medians (936,1504). Thus uncommitted content ids 526191a4dd56 and 69e240f10b14 did not exactly reproduce the tested CF_G1 feature/spatial protocol.",
+   "evidence": "src/gems25/experiment.py::gather_columns; src/gems25.holdout.quadrant_ids; scripts/build_h72_candidate.py; both removed uncommitted receipts",
+   "resolution_or_action": "Fixed the builder to reproduce gather_columns and ctx.holdout.quad exactly, deleted both intermediate TIFF/ZIP/lane/receipt sets before publication, rebuilt unchanged frozen model settings as final content id 1d7c1e9ea55f, and re-ran surface/final lane plus independent exact-file audits. No holdout refit, scientific parameter change, or extra experiment occurred."
+  },
+  {
+   "id": "IR-25-H72-ARTIFACT-NOT-COMPARATOR-WINNER-20261026",
+   "severity": "high",
+   "status": "disclosed",
+   "issue": "H72 MBSP-MTG replicated as an additive block on the Family-E H35 lineage (combined G1_D0 HOLDOUT-DTI 0.153837 vs same-run H35 0.150486, paired +0.003351 [0.002636,0.004224], 45,277 withheld-positive occurrences), but that lineage cannot meet the literal own-registry overlap rule. The shipped 100% CatFree artifact breaks own-lineage overlap (49.9%) yet its detector-family diagnostic is only HOLDOUT-DTI 0.094781 vs same-run H35 0.153786 (paired -0.059005 [-0.077251,-0.044136], 0/4 folds). Its exact B2/min2.8/37,654 artifact emission was not granted a fourth experiment after the 3/3 budget cap.",
+   "evidence": "evidence/h72_pooled_summary.json; registry/run_card_h72_2026-10-26.json; knowledge/30_h72_outcomes_and_executive_decision_2026-10-26.md",
+   "resolution_or_action": "H72-CF is content-unique and format-valid but registered verdict=negative, slot_approved=false, DO NOT SUBMIT. Do not claim the additive H72 win as evidence for this different artifact lineage."
+  },
+  {
+   "id": "IR-25-H72-STRICT-LANE-STOP-20261026",
+   "severity": "high",
+   "status": "stopped",
+   "issue": "The final corrected H72-CF candidate's surface passes the rank gate (max |Spearman| 0.2177), and final dots clear all 27 pinned focus/top scorers (max 64.02%) plus every own-lineage raster (max 49.86%), but final dots exceed 70% within 3 px of five registry rasters: r13 lattice 100%, pindrop-nodes 85.50%, h23-a-6pct 81.79%, pindrop-discovery 79.68%, and r7-nms3-dem10-scarp 72.39%.",
+   "evidence": "docs/downloads/lane-gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.json; evidence/h72_lane_surface.json",
+   "resolution_or_action": "Mandatory duplicate/stop applied. No density exception, registry-driven relocation, jitter, or additional emission experiment was run. File remains testing-only and not slot-approved."
   }
  ]
 }

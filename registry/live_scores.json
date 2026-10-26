@@ -1,7 +1,7 @@
 {
  "schema_version": 2,
- "generated_utc": "2026-10-25",
- "warning": "All competition DTI values in this registry are user- or owner-reported claims, not organizer receipts (not ORGANIZER-CONFIRMED). The 0.2477, 0.2600, 0.2708, 0.2750, 0.2778 submission results and the 0.3195 / 0.4413 leaderboard claims were not independently verified here; the local raster analysis verifies deterministic pixel transformations and SHA-256 digests, not competition scores. No DrivenData page was accessed or monitored.",
+ "generated_utc": "2026-10-26",
+ "warning": "All competition DTI values in this registry are user- or owner-reported claims, not organizer receipts (not ORGANIZER-CONFIRMED). The 2026-10-26 owner-prompt archive is included for completeness; duplicate filenames/value claims are retained and labeled. Twenty-one fabricated microvariant rows discovered in this checkout were purged under IR-25-HALLUCINATED-LEDGER-ROWS-20261026. Local raster analysis verifies deterministic pixel transformations and SHA-256 digests, not competition scores. No DrivenData page was accessed or monitored.",
  "artifacts": [
   {
    "project": "GEMSDOE",
@@ -485,6 +485,426 @@
    "score": 0.0255,
    "status": "user-provided-unverified",
    "note": "owner-reported 2026-10-26 brief (0.0255 also attached to sbf-c2-rankmean in GEMSDOE91 brief copy); pinned in top_scorer_sources.json (sha256 91e26530...)"
+  },
+  {
+   "project": "GEMSDOE23",
+   "label": "h30-arrangement-matched-habitat-20261002-0d4e02e8-nan",
+   "score": 0.1352,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE26",
+   "label": "dilcond-oof-v1-20261003-47629f496133-nan",
+   "score": 0.1223,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE34",
+   "label": "h34-scatter-q50-arr-matched-20261004T223317Z",
+   "score": 0.0778,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE35",
+   "label": "h35-06-aaa86efb25-20261004T225420098147Z-candidate",
+   "score": 0.0418,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE37",
+   "label": "h6-physics-dotted-80k-20261005T055000Z-0bef9211631c",
+   "score": 0.1193,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE38",
+   "label": "D-step-3p0-07pct-tipProt-20261005-ecfbf59e2b48-zero",
+   "score": 0.0763,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE42",
+   "label": "xscale-worm-persistence-20261006T000541Z-nan",
+   "score": 0.0581,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE43",
+   "label": "sup01-hgb21-sep40-n40000-20261006-bc2e4e9a8d6f-nan",
+   "score": 0.0424,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE45",
+   "label": "h51-km-faultzone-20261006-zeros",
+   "score": 0.0106,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE29",
+   "label": "efd28-repro-20261003-1cc7dc534d51-nan",
+   "score": 0.26,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE29",
+   "label": "repo-c0-habitat-emission-20261003-a4d439b07426-nan",
+   "score": 0.0041,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE29",
+   "label": "sgmc-off-catalogue-44k-20261003-c8dcd780e3fd-nan",
+   "score": 0.0512,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE29",
+   "label": "wormrank-d28-20261003-59dcaf6dd11d-zeros",
+   "score": 0.256,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE29",
+   "label": "wormsurv-filter-20261003-921f10960d6e-zeros",
+   "score": 0.0532,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE29",
+   "label": "xfit-c0-habitat-20261003-ca879db0089a-zeros",
+   "score": 0.0439,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE29",
+   "label": "xfit-h41-union-qfaults-20261003-9edb34b99e3a-zeros",
+   "score": 0.0356,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE46",
+   "label": "r11f-scarp-radiometric-fusion-00e049b51218-zeros",
+   "score": 0.1589,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE46",
+   "label": "r12-scarp-rad-concordance-23e807e2de9f-zeros",
+   "score": 0.0843,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE39",
+   "label": "h40-e-disc-h40e-30k-zeros",
+   "score": 0.0339,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE40",
+   "label": "h8-euler-lineament-depthcluster-20261006-785c4f5d5ce1",
+   "score": 0.0355,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE40",
+   "label": "h8-euler-lineament-depthcluster-20261006-785c4f5d5ce1-hard",
+   "score": 0.0397,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE40",
+   "label": "h45-eulerdepthreadcluster-20261006-f28e5cff6826-zeros",
+   "score": 0.0984,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE41",
+   "label": "h42-submission-primary",
+   "score": 0.0245,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE44",
+   "label": "h46-twostageAB_20261006T160000Z_b0cfe956-zeros",
+   "score": 0.0715,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE47",
+   "label": "h60-lidarscarp-s2p0-20261007-nanoutside",
+   "score": 0.043,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE51",
+   "label": "h53-twostage-20261008T040951Z-9a0b32c871",
+   "score": 0.1047,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE52",
+   "label": "h97b-candidate",
+   "score": 0.0856,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE53",
+   "label": "h8-tiprelay-ridgeconcord-pr2-n80000-20261009-49bec522-zeros",
+   "score": 0.0159,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE54",
+   "label": "h54c-manifest-edge-20261009T025732Z-73454bc5",
+   "score": 0.0449,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "55GEMSDOE",
+   "label": "tensor_full-n16000-sep3-20261009T211747Z-nan",
+   "score": 0.029,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "56GEMSDOE",
+   "label": "h56-final-dotted-ridge-d2p8-20261009T190421Z",
+   "score": 0.0658,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "57GEMSDOE",
+   "label": "h57r-joint-strata-38000-20261010T214547Z-00cf5b2066f1-zeros",
+   "score": 0.0254,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "58GEMSDOE",
+   "label": "ml-binary-ridge-20261012T000000Z",
+   "score": 0.018,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "59GEMSDOE",
+   "label": "h59j-coherence-consensus-dotted-20261011T043000Z",
+   "score": 0.0499,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "60GEMSDOE",
+   "label": "h73-chi-coherent-corridor-12000-20261011T195818Z-zeros",
+   "score": 0.0351,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "61GEMSDOE",
+   "label": "h61a-basement-step-20000dots-20261011T012029Z-eb2ae4bb024b-zeros",
+   "score": 0.0009,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "61GEMSDOE",
+   "label": "h61o-vardepth-none-40000dots-20261011T160711Z-28d4fac611ea-zeros-zeros",
+   "score": 0.0751,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "62GEMSDOE",
+   "label": "datum-lahontan-strain-gauge-defensible-440dots-zeros",
+   "score": 0.0,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE64",
+   "label": "h64-lidar-scarp-cv-20261011T220000Z",
+   "score": 0.0383,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE65",
+   "label": "sar-em-propensity-half-20261011T223500Z-5e4660cd-zeros",
+   "score": 0.0431,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE66",
+   "label": "gems66-lidar03-cvretrain-reliefdecile-37654dots-20261020T190152Z-zeros",
+   "score": 0.1152,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE67",
+   "label": "h67a-orientip-lane-29447dots-20261012T021226Z-allfinite",
+   "score": 0.0356,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE67",
+   "label": "ovtr-ml-cover-tau3p0-20261012-nan",
+   "score": 0.1426,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE68",
+   "label": "gems68-autoctx-s3-strands-35000dots-20261020T210000Z-849a0f04-nan",
+   "score": 0.0437,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE68",
+   "label": "gems68-autoctx-s3-strands-35000dots-20261020T210000Z-849a0f04-zeros",
+   "score": 0.0437,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE69",
+   "label": "h69-joint-relayramp-pullapart-38669-20261020T201504Z-f29b6df5",
+   "score": 0.0053,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE74",
+   "label": "gemsdoe74-triregime-radon-piedmont-37654-20261021T051000Z-zeros",
+   "score": 0.0669,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE76",
+   "label": "gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros",
+   "score": 0.1555,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE77",
+   "label": "gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros",
+   "score": 0.0964,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE79",
+   "label": "gems79-tilt-ring-100000dots-20261022T212135Z-50a5d7498c71-zeros",
+   "score": 0.0005,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE80",
+   "label": "gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros",
+   "score": 0.0943,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE83",
+   "label": "gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros",
+   "score": 0.0573,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE84",
+   "label": "gems84-h84-kthm-tworegime-58000px-20261022T235900Z-zeros",
+   "score": 0.0132,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE85",
+   "label": "gemsdoe85-hjcd-ventbridge-submod-zeros",
+   "score": 0.111,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE87",
+   "label": "h87-h87-cmgep-20261022T060000Z-8f394f43",
+   "score": 0.05,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE89",
+   "label": "gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros",
+   "score": 0.0301,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE90",
+   "label": "gems90-cnc-35000dots-20261024T084324Z",
+   "score": 0.0749,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt."
+  },
+  {
+   "project": "GEMSDOE91",
+   "label": "gems91-s17-cwpc-e3-20261025T163842Z-5c025d56-zeros",
+   "score": 0.1367,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt. The current prompt also supplied a different filename carrying the same value; both claims are retained, not silently reconciled."
+  },
+  {
+   "project": "GEMSDOE91",
+   "label": "gems91-s17-lftg",
+   "score": 0.1823,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt. The current prompt also supplied a different filename carrying the same value; both claims are retained, not silently reconciled."
+  },
+  {
+   "project": "GEMSDOE92",
+   "label": "gemsdoe92-sbf-c2-rankmean-thr0p8-20261023T081905Z-fa0404c1-zeros",
+   "score": 0.0255,
+   "status": "user-provided-unverified",
+   "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt. The current prompt also supplied a different filename carrying the same value; both claims are retained, not silently reconciled."
   }
  ],
  "leaderboard_snapshot": {

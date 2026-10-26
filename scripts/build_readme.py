@@ -49,6 +49,7 @@ def main() -> None:
     h38_card = opt("registry/run_card_h38_ospc_2026-10-25.json")
     h66_card = opt("registry/run_card_h66_2026-10-25.json")
     h71_card = opt("registry/run_card_h71_2026-10-26.json")
+    h72_card = opt("registry/run_card_h72_2026-10-26.json")
     h36_spigm_card = opt("registry/run_card_h36_spigm_2026-10-25.json")
     h36_spigm_pool = opt("evidence/h36_spigm_pooled_16cells.json")
     focus_forensics = opt("evidence/focus_sites_forensics.json")
@@ -57,18 +58,26 @@ def main() -> None:
     brief = (ROOT / "knowledge" / "owner_brief_verbatim.txt").read_text().rstrip()
     active_brief = (ROOT / "knowledge" / "current_project_brief_2026-10-03.md").read_text().rstrip()
     session8_brief = (ROOT / "knowledge" / "current_project_brief_2026-10-25_session8.md").read_text().rstrip()
+    current_verbatim = (ROOT / "knowledge" / "owner_brief_2026-10-26_verbatim.txt").read_text().rstrip()
     L = []
     A = L.append
     A("# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize\n")
     A(readme_status())
     A("## Start here every session — owner mandate, 2026-10-25\n")
     A("**MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.** The project's decision principles are **Maximize P(Win)** and **Own the Outcome**. Review the original owner prompt and this README each session; follow `AGENTS.md`. Test catalogue-free geological hypotheses on buffered, spatially blocked hide-and-recover folds; test each feature alone for leakage (AUC >0.90 is presumptive leakage); check surface and final dots against every available registry raster (|rank correlation| >0.90 or >70% within 3 pixels is a duplicate-lane stop). Report pooled HOLDOUT-DTI with withheld-positive count and 95% CI, never present a projection or owner-reported claim as an organizer-confirmed score. Never spend a weekly slot before a separate selector decision. Exact-file format checks do not imply submission approval. Read the complete historical owner brief at the bottom. The current owner's very long updated prompt is not claimed to be transcribed verbatim here; this section records its actionable protocol, not the complete message.\n")
+    if h72_card:
+        h72_main = h72_card["holdout_dti"]["screen_and_confirm_H72_with_H35"]
+        h72_cf = h72_card["holdout_dti"]["shipped_catfree_detector_family"]
+        h72_lane = h72_card["correlation_overlap_vs_registry"]["final_dots"]
+        A("**Latest session (2026-10-26, H72 MBSP-MTG × DEBIAS 3-experiment lane — featured download below):** "
+          f"[catalogue-hug collapse forensics, 5 ranked untried hypotheses, and 3 pre-registered experiments — H72 add-on replicated on H35 with combined HOLDOUT-DTI `{h72_main['candidate_pooled']:.6f}` vs same-run H35 `{h72_main['same_run_h35_pooled']:.6f}` (paired `{h72_main['paired_gain']:+.6f}`; 95% CI `[{h72_main['paired_gain_ci95'][0]:+.6f}, {h72_main['paired_gain_ci95'][1]:+.6f}]`; `{h72_main['withheld_positive_occurrences']:,}` withheld occurrences), but shipped CatFree lineage is `{h72_cf['candidate_pooled']:.6f}` vs H35 `{h72_cf['same_run_h35_pooled']:.6f}` (`{h72_cf['paired_gain_vs_H35']:+.6f}`, FAIL). Unique GeoTIFF `1d7c1e9ea55f` passes format and clears 27 focus/top scorers (max `{100*h72_lane['focus_and_top_scorers_27']['max_candidate_dots_within_3px']:.1f}%`) plus own lineage (`{100*h72_lane['own_lineage']['max_candidate_dots_within_3px']:.1f}%`), but strict lane fails on lattice + 4 broad artifacts; OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT](knowledge/30_h72_outcomes_and_executive_decision_2026-10-26.md) · "
+          "pre-registration [`knowledge/29_h72_hypotheses_and_preregistration_2026-10-26.md`](knowledge/29_h72_hypotheses_and_preregistration_2026-10-26.md) (commits `2750fe9`, `7ba8333`, pre-fit) · run card `registry/run_card_h72_2026-10-26.json`.\n")
     if h71_card:
         e1_71 = h71_card["experiments"]["experiment_1_h71_1_hgpc_screen"]
         e2_71 = h71_card["experiments"]["experiment_2_h71_3_akf_screen"]
         e3_71 = h71_card["experiments"]["experiment_3_h71_4_mag_screen"]
         rc71 = h71_card["registry_correlation_and_overlap"]
-        A("**Latest session (2026-10-26, H71 HGPC-BLIND DIRECT + AKF + MAG-ANISO 3-experiment lane — featured download below):** "
+        A("**Prior session (2026-10-26, H71 HGPC-BLIND DIRECT + AKF + MAG-ANISO 3-experiment lane):** "
           f"[why `GEMSDOE32` `H33-2-B2` scored `0.2778`, 5 ranked untried hypotheses (`H71-1..H71-5`), and 3 pre-registered DIRECT-emission screens — `H71-1` HGPC-BLIND HOLDOUT-DTI `{e1_71['candidate_pooled_holdout_dti']:.4f}` vs H35 `{e1_71['control_h35_pooled_holdout_dti']:.4f}` (`{e1_71['gate']['vs_named']['CTRL_H35_24']['mean_gain']:+.4f}`, `0/4` folds, GATE FAIL) / vs crest `{e1_71['gate']['vs_named']['CTRL_CREST_B2']['mean_gain']:+.4f}`; `H71-3` AKF `{e2_71['candidate_pooled_holdout_dti']:.4f}` FAIL vs H35; `H71-4` MAG `{e3_71['candidate_pooled_holdout_dti']:.4f}` FAIL vs H35 — unique GeoTIFF `9eb0c31e5149` (`{100*rc71['focus_21_top_scorers']['b2_overlap']:.1f}%` vs B2, own HGB lineage `{100*rc71['own_lineage']['worst_cand_dots_within_3px']:.1f}%`, first GEMSDOE25 file to clear own HGB 70% wall; OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT)](knowledge/28_h71_outcomes_2026-10-26.md) · "
           "pre-registration [`knowledge/27_preregistered_h71_hgpc_2026-10-26.md`](knowledge/27_preregistered_h71_hgpc_2026-10-26.md) (commit `d4d4bf7`, pre-fit) · run card `registry/run_card_h71_2026-10-26.json`.\n")
     if h66_card:
@@ -124,7 +133,7 @@ def main() -> None:
     A("> ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).\n")
     A("> **OK to download (local testing): " + ("YES" if primary.get("ok_to_download") else "NO") + " · OK to spend a weekly slot: " + ("YES" if primary.get("ok_to_submit_slot") else "NO") + " — DO NOT SUBMIT** "
       f"(verdict **{primary.get('verdict', 'n/a')}**). Projection: {primary.get('expected_range', 'n/a')}. Lane: {primary.get('lane_summary', 'n/a')}. "
-      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest known file. Why this negative file is featured: unique DIRECT-physics emission that clears own HGB lineage (`knowledge/28`); prior rationale IR-25-H38-REGIME-SPLIT / IR-25-XG1-FEATURED-NEGATIVE / IR-25-FEATURED-DOWNLOAD-RATIONALE still applies to earlier downloads.\n")
+      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest supplied historical file. Why this negative file is featured: it is this session's genuinely new content-unique, automatically format-validated artifact with the required unmistakable DO NOT SUBMIT verdict (`knowledge/30`); featuring never implies slot approval.\n")
     if h36_spigm_card and h36_spigm_pool:
         p16 = h36_spigm_pool["arms"]
         cmp16 = h36_spigm_pool["comparisons"]
@@ -327,23 +336,12 @@ def main() -> None:
     A("6. **The owner-claim-calibrated model has a scope limit (IR-25-LIVE-MODEL-SCOPE):** conditional on its reported-score anchors, it matches the H19-5 family and blind lattice within 0.004 DTI but under-predicts surfaces outside that band by up to 0.059; it is not an independent score estimate.")
     A("7. **The frozen holdout comparator is environment-specific (IR-25-COMPARATOR-DRIFT):** 0.152003389 recomputes to 0.149668 here. Any future gate must recompute its comparator in the same run.\n")
     A("## Next work (order matters)\n")
-    if h30_confirm:
-        if h30_confirm.get("confirmation_gate_passed"):
-            A("1. H30-1 passed its fresh-draw proxy gate. This is still not a slot approval: any later full-data candidate must be newly built from the confirmed specification, beat the current comparable same-run spatial holdout best, and pass an exact-file audit. Do not submit automatically.")
-        else:
-            A("1. H30-1 failed its fresh-draw confirmation. Stop this candidate; do not create a TIFF or use a weekly slot. Any new idea requires a genuinely new preregistration.")
-    elif h30_screen:
-        if h30_screen.get("screen_gate_passed"):
-            A("1. H30-1 screen passed. First commit the complete screen evidence (`evidence/h30_relay_screen/`) so the confirmation runner starts from a clean, auditable tree; it rechecks the raw-cell hashes and recomputes the gate. Then run only the frozen confirmation on draws 8,9 (`.venv/bin/python scripts/run_h30_relay_factorial.py --stage confirm && .venv/bin/python scripts/analyze_h30_relay_factorial.py --dir evidence/h30_relay_confirm`). No TIFF or weekly slot before confirmation and the subsequent same-run/exact-file gates.")
-        else:
-            A("1. H30-1 screen failed its registered paired gate. Stop; do not run confirmation, create a TIFF, or use a weekly slot. Any follow-up needs a new preregistration.")
-    else:
-        A("1. Run the frozen H30-1 paired-relay screen on draws 6,7 (`.venv/bin/python scripts/run_h30_relay_factorial.py --stage screen && .venv/bin/python scripts/analyze_h30_relay_factorial.py --dir evidence/h30_relay_screen`). The runner saves the design before fitting and refuses to overwrite evidence.")
-    A("2. Keep the prior five-family A–E Resolution V factorial separate: its complete `evidence/factorial/` record is present and was reproduced byte-for-byte; see `IR-25-FACTORIAL-STATE` for the handoff-state discrepancy. H30 is an additional hypothesis-specific 2², not a replacement.")
-    A("3. Keep H26/H27/H29 outcomes and registrations labeled as prior work. H27-1 failed its gate; the old H29 list is registered already and must not be relabeled as novel.")
-    A("4. Refresh the official-source/evidence tables and static site/feed (`scripts/check_sources.py`, then `scripts/build_site.py` and `scripts/build_readme.py`). The feed must never request or follow `drivendata.org`.")
-    A("5. Keep the H31-C file unscored and NOT slot-cleared (lane flag open). Never submit the withdrawn D2.8 duplicate as new. A passing H30 proxy gate is not a competition score, not confirmation until the fresh draw, and not authorization to upload.")
-    A("6. Open a PR from the fixed Arena session branch, review the checks, and merge only through the GitHub PR workflow if permitted; never claim an unverified merge or deployment.\n")
+    A("1. **Stop H72.** The `3/3` experiment budget is exhausted. Preserve the replicated H72 add-on result and the negative CatFree artifact; do not retune its columns, placement, or registry overlap and do not use a weekly slot.")
+    A("2. Resolve the literal dense-lattice / broad-artifact lane policy in a separate selector decision before another large-budget candidate. Never jitter dots or exclude a registry raster after seeing overlap.")
+    A("3. The highest-P(Win) independent next lane is the ranked 2D spatial-context ResUNet (`H72-4`) with strict group/spatial patches and a differentiable 300 m DTI objective. It requires a GPU-capable session and a fresh preregistration; compare to same-run H35 and catalogue-free controls.")
+    A("4. Keep every historical H26–H72 result labeled as prior work. In particular, the H72 additive win belongs to the H35 lineage and is not evidence for the downloadable CatFree file (`IR-25-H72-ARTIFACT-NOT-COMPARATOR-WINNER-20261026`).")
+    A("5. Refresh only permitted official-source feeds (`scripts/check_sources.py`), then the static site/README. The feed must never request or follow `drivendata.org`; OWNER-REPORTED scores remain unverified until an artifact-linked receipt exists.")
+    A("6. Open a PR from the fixed Arena session branch, review all checks, and merge only through the explicit GitHub PR workflow; never claim an unverified merge, Pages deployment, score, or weekly allowance.\n")
     A("## Standing session charter\n")
     A("Read this README, both the verbatim owner brief and the current continuation brief below, then `AGENTS.md` at the start of every session. First commands: `git fetch origin`, compare with the fixed session branch, `gh pr list --state open`. Pre-register before fitting. No weekly slot unless the specific candidate beats the current comparable same-run holdout best and passes the exact-file audit; no exception is authorized here. Never automate `drivendata.org`. Review in three passes. Unknown stays unknown.\n")
     A("## Reproduce\n")
@@ -378,6 +376,11 @@ def main() -> None:
       ".venv/bin/python scripts/run_h36_holdout.py --draws 20 21 --out evidence/h36_spigm_screen && .venv/bin/python scripts/analyze_h36_holdout.py --dirs evidence/h36_spigm_screen --out evidence/h36_spigm_screen/analysis.json\n"
       ".venv/bin/python scripts/run_h36_holdout.py --draws 22 23 --out evidence/h36_spigm_confirm && .venv/bin/python scripts/analyze_h36_holdout.py --dirs evidence/h36_spigm_screen evidence/h36_spigm_confirm --out evidence/h36_spigm_pooled_16cells.json\n"
       ".venv/bin/python scripts/build_h36_submission.py && .venv/bin/python scripts/register_h36_spigm_submission.py\n"
+      "# H72 MBSP-MTG x DEBIAS (historical reproduction only: 3/3 budget already exhausted; knowledge/29-30)\n"
+      ".venv/bin/python scripts/run_h72.py --draws 80 81 --stage screen --out evidence/h72_screen\n"
+      ".venv/bin/python scripts/run_h72.py --draws 82 83 --stage confirm --out evidence/h72_confirm\n"
+      ".venv/bin/python scripts/run_h72.py --mode catfree --draws 84 85 --stage catfree_ablation --out evidence/h72_catfree\n"
+      ".venv/bin/python scripts/build_h72_candidate.py\n"
       "# files, site, README\n"
       ".venv/bin/python scripts/build_candidate.py --help            # train on the full catalogue, emit, verify (exploratory surface)\n"
       ".venv/bin/python scripts/package_submissions.py --exploratory-receipt docs/downloads/checks-<file>.json\n"
@@ -386,6 +389,11 @@ def main() -> None:
     A("Set `GEMS_DATA_DIR` / `GEMS_WORK_DIR` to keep the 419 MB raster and the ~1.5 GB feature cache outside the checkout.\n")
     A("## Repository map\n")
     A("| Path | Role |\n|---|---|\n| `src/gems25/` | metric (official DTI + brute-force twin), hide-and-recover holdout, thinning/NMS, families & features, H30 relay/scarp add-ons, factorial engine, experiment cells, strict submission writer/checker |\n| `scripts/` | restore, build, run, analyse, package, site, README, feed, score recorder |\n| `registry/` | sources (with verification status), irregularities, score ledger, data pins, shipped submissions |\n| `evidence/` | machine-readable results and forensics |\n| `knowledge/` | pre-registrations, ranked hypotheses, verified research digest, the brief |\n| `docs/`, `index.html` | GitHub Pages site (root `index.html` is the landing page; Pages builds from `main:/`) |\n| `tests/` | unit, parity, integrity and reproduction tests |\n")
+    A("## Current owner brief 2026-10-26 (cross-repository verbatim archive) — read every session\n")
+    A("Preserved from the same owner prompt archived in the GEMSDOE91 repository; score claims remain OWNER-REPORTED and unverified. The normalized active constraints at the top of this README control if any historical wording conflicts.\n")
+    A("<details><summary><strong>Full current owner prompt archive</strong></summary>\n")
+    A("~~~text\n" + current_verbatim + "\n~~~\n")
+    A("</details>\n")
     A("## Owner brief 2026-10-25, session 6 (agent reconstruction, not guaranteed verbatim) — read every session\n")
     A("Reconstructed after context condensation; the 21 owner-reported scores that were transcribed independently all match (IR-25-BRIEF-RECONSTRUCTED). "
       "A shorter parallel-session copy is `knowledge/owner_brief_2026-10-25_verbatim.txt`. Owner: paste the original over either file to make it authoritative.\n")

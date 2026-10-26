@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "date_utc": "2026-10-26",
+  "branch": "arena/11487c37-gemsdoe25",
+  "session": "H72 MBSP-MTG x DEBIAS",
+  "verdict": "negative; unique content and format pass, shipped-family holdout and strict lane fail, DO NOT SUBMIT",
+  "pass_1_implement_and_verify": {
+    "completed": [
+      "Read AGENTS.md plus the complete README/owner brief; fetched origin and audited open PRs/parallel branches before work.",
+      "Restored and SHA-256-verified all 22 core/external/scored manifest inputs and all 27 top/focus raster pins into external gitignored storage; prepared 19 bands and rebuilt the shared 64-column and add-on caches.",
+      "Cross-checked the nine focus sites and the owner score ledger; purged 21 fabricated microvariant rows and restored the complete 2026-10-26 owner-prompt score list without reclassifying any claim as organizer-confirmed.",
+      "Ranked five untried hypotheses with exact layers, transforms, missing-fault rationale, novelty limits, mimics, cost, and official-source availability; committed the H72 design before feature implementation or fitting.",
+      "Ran exactly three preregistered experiments on untouched draws 80-85: H72 screen, frozen confirmation, and CatFree ablation; tested all six features alone including inversion/missingness canaries; recomputed H35 in every cell.",
+      "Generated a new 37,654-dot content-addressed H72-CF GeoTIFF/ZIP, independently format-validated it, and ran the surface plus exact-final-dot full registry lane checks.",
+      "Created the H72 JSON run card, nine-site executive decision, one-click testing download, explicit no-estimate field, submission guide, limitations, and next-work order."
+    ],
+    "scientific_result": "H72 add-on replicated against H35 (combined HOLDOUT-DTI 0.153837 vs 0.150486; paired +0.003351 [0.002636,0.004224], 45,277 withheld-positive occurrences), but the shipped CatFree detector family failed vs H35 (0.094781 vs 0.153786; paired -0.059005 [-0.077251,-0.044136], 0/4 folds).",
+    "artifact_result": "Final content id 1d7c1e9ea55f, SHA-256 e39517cc95ac4083653299efb69d25a3772bd2bb1bfd4580ff9eb3ae82a8f2bb; exact format pass; content-new; strict overlap fail; verdict negative."
+  },
+  "pass_2_bug_assumption_edge_case_review": {
+    "found_and_fixed": [
+      "Found 21 fabricated score rows absent from every direct sibling git tree and owner prompt; purged them, restored authentic rows, and added regression tests (IR-25-HALLUCINATED-LEDGER-ROWS-20261026).",
+      "Found shared lane-validator registry paths hardcoded to repo data/, silently skipping scored rasters with GEMS_DATA_DIR; fixed both shared loaders and preserved monkeypatch tests (IR-25-VALIDATOR-DATA-DIR-FIXED-20261026).",
+      "Found first uncommitted H72 full build mapped cached DEM-orientation rows to X3_gm/X3_gd; removed every output and rebuilt with gather_columns-exact formulas.",
+      "Found second uncommitted full build split OOF by rectangular grid midpoint instead of the holdout footprint medians; removed every output and rebuilt using ctx.holdout.quad. Neither intermediate artifact was published or retained.",
+      "Re-ran surface/final lane, content uniqueness, independent rasterio/ZIP audit, registry, site and run card against only the final 1d7c1e9ea55f bytes.",
+      "Kept the exact artifact's performance status fail-closed: no fourth holdout run after the 3/3 cap, and no inference from the additive H72 lineage to the CatFree file."
+    ],
+    "known_residual_risks": [
+      "Catalogue hide-and-recover is biased toward visible-sibling geometry and is not hidden competition truth.",
+      "Four spatial quadrants give low-resolution cluster-bootstrap intervals.",
+      "Owner mirrors are hash-pinned but not organizer-authenticated; zero organizer receipts exist.",
+      "The strict lattice and four broad artifact halos fail the literal final-dot gate; no density exception is authorized.",
+      "The exact B2/min2.8/37,654 artifact emission differs from Experiment-3 sapd2.4 diagnostic and was not evaluated after the experiment cap."
+    ]
+  },
+  "pass_3_original_request_reconciliation": {
+    "mapping": {
+      "review repository and nine focus sites": "knowledge/30, evidence/focus_audit_2026-10-26.json, and the current-review site table/cards",
+      "clear best historical submission and why 0.2778": "GEMSDOE32 B2 is labeled OWNER-REPORTED historical best; exact D2.8 -> R1 -> B2 collar lineage and marginal DTI algebra in knowledge/30",
+      "3-5 hypotheses before implementation": "five ranked hypotheses and frozen design in knowledge/29; commit 2750fe9 predates implementation/fitting",
+      "spatial holdout and leakage canary": "evidence/h72_{screen,confirm,catfree}/ and evidence/h72_pooled_summary.json; all six canaries <=0.90",
+      "unique downloadable TIF and [0,1] portal fix": "docs/downloads/gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.tif plus independent audit/ZIP receipt",
+      "score estimate and uniqueness table": "site first-screen decision table says NO DEFENSIBLE LEADERBOARD ESTIMATE, reports labeled HOLDOUT-DTI, scored-content uniqueness, strict lane failure, and DO NOT SUBMIT",
+      "one JSON run card": "registry/run_card_h72_2026-10-26.json",
+      "three experiments/two hours/no slot": "3/3 experiments, approximately 36.5 minutes total fitting runtime; 0 weekly slots",
+      "prompt and core values in README": "README current owner archive, normalized brief, Maximize P(Win), Own the Outcome",
+      "official links and limitations": "knowledge/29-30, registry/sources.json, docs/sources.html; unverified stays unverified",
+      "three passes": "this receipt; every Pass-2 defect was fixed before Pass-3 verification",
+      "PR and merge": "pending explicit GitHub PR/check/merge workflow; no merge or Pages deployment claimed before receipt"
+    },
+    "not_fulfilled": [
+      "No submission is scientifically/strict-lane approved; the downloadable TIF is testing-only and must not use a weekly slot.",
+      "No defensible leaderboard score estimate or organizer score receipt exists.",
+      "No GPU was available for the highest-ceiling spatial-context ResUNet hypothesis.",
+      "NASA OPERA InSAR bytes could not be fetched under the current host allowlist and were not used."
+    ],
+    "verification": {
+      "pytest": "271 passed with one expected scipy ConstantInputWarning in the empty-candidate fail-closed test",
+      "ruff": "all checks passed",
+      "git_diff_check": "passed",
+      "site": "all eight generated pages and local paths tested; current first screen links final 1d7c1e9ea55f bytes and says OK TO DOWNLOAD YES / OK TO SUBMIT NO / DO NOT SUBMIT"
+    }
+  },
+  "scientific_budget": {
+    "experiments": 3,
+    "screen_seconds": 796.62,
+    "confirmation_seconds": 766.33,
+    "catfree_seconds": 624.4,
+    "total_experiment_seconds": 2187.35,
+    "weekly_slots_used": 0
+  },
+  "pr_and_deployment": "pending; update only from verified gh URLs/status after merge"
+}
