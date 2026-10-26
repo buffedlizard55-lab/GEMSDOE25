@@ -1,10 +1,474 @@
 {
  "schema_version": 1,
- "generated_by": "merge: H71 featured primary onto 2026-10-26 main (APFL/POL3/ROD retained as alternate/history)",
+ "generated_by": "scripts/register_h72_submission.py (2026-10-26, H72 PTTG/VCCD/MTHS session)",
  "files": [
   {
-   "id": "h71-hgpc-blind",
+   "id": "h72-3-subsurf",
    "role": "primary",
+   "file": "gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.tif",
+   "path": "docs/downloads/gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.tif",
+   "bytes": 831974,
+   "sha256": "51f6e3cb83d7371231f3a8cd3ef166f82d5fb7d80a584577500eb36bf7615346",
+   "content_id": "88bbebfe79b4",
+   "positive_pixels": 41061,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "finite range over the whole array; infinity rejected",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read; empty data rejected",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.json",
+   "outside": "zero",
+   "status": "UNIQUE BY CONTENT \u00b7 FORMAT-VALID \u00b7 HOLDOUT FAIL vs H35 \u00b7 STRICT LANE FAIL (literal >=73.4%-halo lattice/pindrop only) \u00b7 DENSITY-AWARE UNIQUE across all 85 registry rasters (flagged_lane = []) \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "zip": "gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.zip",
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "expected_range": "no live projection computed \u2014 H72-3 screen FAIL vs H35 (not a score)",
+   "lane": {
+    "lane_clear": false,
+    "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+    "density_aware_verdict": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
+    "lattice_overlap": 1.0,
+    "focus_winners": {
+     "n": 21,
+     "worst_cand_dots_within_3px": 0.39548476656681525,
+     "worst_overlap_file": "g63_cvarlw_0.2303.tif",
+     "worst_abs_spearman_surface": 0.075622,
+     "b2_overlap": 0.2486300869438153,
+     "b2_reverse_overlap": 0.2788548361395868,
+     "b2_spearman_surface": 0.032247,
+     "b2_spearman_final": 0.005824
+    },
+    "external_sparse": {
+     "n": 50,
+     "worst_abs_spearman_surface": 0.28571,
+     "worst_surface_file": "structural-area06.tif",
+     "worst_abs_spearman_final": 0.033213,
+     "worst_final_file": "structural-area06.tif",
+     "worst_cand_dots_within_3px": 0.7463773410292005,
+     "worst_overlap_file": "pindrop-discovery.tif",
+     "lane_pass": false
+    },
+    "own_lineage": {
+     "n": 20,
+     "worst_abs_spearman_surface": 0.079346,
+     "worst_surface_file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+     "worst_abs_spearman_final": 0.030279,
+     "worst_final_file": "gems25-h72-pttg-deapron-sapd2-8-k3p0-20261026-a07ef071c49e-nan.tif",
+     "worst_cand_dots_within_3px": 0.4895886607729963,
+     "worst_overlap_file": "gems25-h72-pttg-deapron-sapd2-8-k3p0-20261026-a07ef071c49e-nan.tif",
+     "lane_pass": true
+    },
+    "receipt": "docs/downloads/lane-gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.json",
+    "extended_receipt": "evidence/h72_3_lane_extended.json",
+    "surface_receipt": "evidence/h72_3_lane_surface.json"
+   },
+   "lane_summary": "STRICT LANE FAIL only on >=73.4%-footprint-halo rasters (r13 lattice 100%, pindrop-discovery 74.6%, pindrop-nodes 74.0%). DENSITY-AWARE UNIQUE across all 85 registry rasters (flagged_lane = []): max 3-px overlap vs 21 sibling top-scorers 39.5% (24.9% vs GEMSDOE32 B2 0.2778), max vs 20 own-lineage rasters 49.0%, h23-a-6pct 62.2%, surface |Spearman| 0.2857 <= 0.90.",
+   "slot_reason": "All 3 pre-registered H72 experiments failed the same-run CTRL_H35 holdout gate (H72-1 -0.00006, H72-2 +0.00050 in 2/4 folds, H72-3 -0.0944 pooled although +0.0012 over DEM-free CTRL_SUBSURF_D and +0.010 over H71). Not slot-approved.",
+   "run_card": "registry/run_card_h72_2026-10-26.json",
+   "title": "H72-3 PTTG+MTHS DEM-free subsurface multi-physics HGB (sapd3.0, zeros outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
+   "summary": "Unique 2026-10-26 GeoTIFF (41,061 binary dots, min_dist=3.0 px, d_cat > 2.0 px) from pre-registered H72-3 100% DEM-free & catalogue-free supervised HGB (Phillips gravity differential curvature + unit-consistent gravity THDR + local transtensional strain partitioning + MT pipe steps + K-metasomatic alteration halos). Leakage canary PASS (max AUC 0.631). Pooled HOLDOUT-DTI 0.0594 vs CTRL_SUBSURF_D 0.0582 (+0.0012) and same-run CTRL_H35 0.1538 (holdout gate FAIL). Density-aware unique across all 85 registry rasters (24.9% vs GEMSDOE32 B2, max 39.5% vs 21 top-scorers, max 49.0% vs 20 own-lineage, 62.2% vs h23-a-6pct). Strict lane gate flags only >=73.4%-halo lattice/pindrop rasters. Finite [0, 1] everywhere \u2014 DO NOT SUBMIT.",
+   "note": "GEMSDOE25 H72-3 SUBSURF | holdout FAIL vs H35; no slot; not slot-approved | id 88bbebfe79b4 | unscored"
+  },
+  {
+   "id": "h72-3-subsurf-nan",
+   "role": "fallback",
+   "file": "gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-nan.tif",
+   "path": "docs/downloads/gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-nan.tif",
+   "bytes": 1597478,
+   "sha256": "9a631bf64fb98701c6eb175402972b54e57d70b9e29cfdf227d8088d4decad6d",
+   "content_id": "88bbebfe79b4",
+   "positive_pixels": 41061,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": true,
+     "detail": "7,111,787/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=nan",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "finite range over the whole array; infinity rejected",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read; empty data rejected",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": false,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.json",
+   "outside": "nan",
+   "status": "UNIQUE BY CONTENT \u00b7 NaN-outside twin of H72-3 \u00b7 holdout FAIL vs H35 \u00b7 STRICT LANE FAIL (lattice/pindrop) \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "run_card": "registry/run_card_h72_2026-10-26.json",
+   "title": "H72-3 PTTG+MTHS subsurface HGB (NaN-outside template twin) \u2014 DO NOT SUBMIT",
+   "summary": "Pixel-identical on the 5,167,373-pixel footprint to the H72-3 zeros-outside primary (content_id 88bbebfe79b4, 41,061 dots), with NaN outside the footprint; strict lane gate fails on dense halo rasters \u2014 DO NOT SUBMIT.",
+   "note": "GEMSDOE25 H72-3 SUBSURF | holdout FAIL vs H35; no slot; not slot-approved | id 88bbebfe79b4 | unscored"
+  },
+  {
+   "id": "h72-1-deapron",
+   "role": "alternate",
+   "file": "gems25-h72-pttg-deapron-sapd2-8-k3p0-20261026-a07ef071c49e-zeros.tif",
+   "path": "docs/downloads/gems25-h72-pttg-deapron-sapd2-8-k3p0-20261026-a07ef071c49e-zeros.tif",
+   "bytes": 841490,
+   "sha256": "b18d40027241a77f31315b37b1f7eaeca6c51f6486602a6d7f8f0e943cdedb91",
+   "content_id": "a07ef071c49e",
+   "positive_pixels": 46102,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "finite range over the whole array; infinity rejected",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read; empty data rejected",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-h72-pttg-deapron-sapd2-8-k3p0-20261026-a07ef071c49e-zeros.json",
+   "outside": "zero",
+   "status": "UNIQUE BY CONTENT \u00b7 H72-1 De-Aproned Dual-Regime (HOLDOUT-DTI 0.1138, 4/4 folds > CTRL_BLIND_BD, FAIL vs H35) \u00b7 STRICT LANE FAIL (h23-a-6pct & r7-nms3 DEM ribbons + lattice) \u00b7 DO NOT SUBMIT",
+   "zip": "gems25-h72-pttg-deapron-sapd2-8-k3p0-20261026-a07ef071c49e-zeros.zip",
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "run_card": "registry/run_card_h72_2026-10-26.json",
+   "title": "H72-1 PTTG De-Aproned Dual-Regime HGB (sapd2.8, zeros outside) \u2014 RESEARCH ALTERNATE \u00b7 DO NOT SUBMIT",
+   "summary": "H72-1 A3_PTTG_DEAPRON (46,102 dots, content_id a07ef071c49e): broke own-lineage halo convergence (max 55.5% <= 70% across 19 own-lineage rasters; surface |rho| <= 0.333) with HOLDOUT-DTI 0.1138 (+0.0061 over CTRL_BLIND_BD in 4/4 folds), but failed CTRL_H35 and strict lane gate on un-thinned historical DEM-scarp ribbons (['h23-a-6pct.tif', 'r7-nms3-dem10-scarp.tif']). DO NOT SUBMIT.",
+   "note": "GEMSDOE25 H72-1 PTTG-DA | holdout FAIL vs H35; no slot; not slot-approved | id a07ef071c49e | unscored"
+  },
+  {
+   "id": "h72-1-deapron-nan",
+   "role": "alternate",
+   "file": "gems25-h72-pttg-deapron-sapd2-8-k3p0-20261026-a07ef071c49e-nan.tif",
+   "path": "docs/downloads/gems25-h72-pttg-deapron-sapd2-8-k3p0-20261026-a07ef071c49e-nan.tif",
+   "bytes": 1607410,
+   "sha256": "753d761462ba1c3cb17bf63ec2c3c38fad53c3473f9a837bf53b471a73fcdf3d",
+   "content_id": "a07ef071c49e",
+   "positive_pixels": 46102,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": true,
+     "detail": "7,111,787/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=nan",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "finite range over the whole array; infinity rejected",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read; empty data rejected",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": false,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-h72-pttg-deapron-sapd2-8-k3p0-20261026-a07ef071c49e-zeros.json",
+   "outside": "nan",
+   "status": "NaN-outside twin of H72-1 De-Aproned \u00b7 strict lane gate fail \u00b7 DO NOT SUBMIT",
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "run_card": "registry/run_card_h72_2026-10-26.json",
+   "title": "H72-1 PTTG De-Aproned Dual-Regime HGB (NaN-outside twin) \u2014 DO NOT SUBMIT",
+   "summary": "NaN-outside template twin of H72-1 A3_PTTG_DEAPRON (46,102 dots); fails strict lane gate \u2014 DO NOT SUBMIT.",
+   "note": "GEMSDOE25 H72-1 PTTG-DA | holdout FAIL vs H35; no slot; not slot-approved | id a07ef071c49e | unscored"
+  },
+  {
+   "id": "h71-hgpc-blind",
+   "role": "alternate",
    "file": "gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif",
    "path": "docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif",
    "bytes": 863096,
@@ -151,7 +615,7 @@
   },
   {
    "id": "h71-hgpc-blind-nan",
-   "role": "fallback",
+   "role": "alternate",
    "file": "gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-nan.tif",
    "path": "docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-nan.tif",
    "bytes": 1631210,

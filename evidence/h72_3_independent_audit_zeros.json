@@ -1,0 +1,28 @@
+{
+ "file": "gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.tif",
+ "bytes": 831974,
+ "sha256": "51f6e3cb83d7371231f3a8cd3ef166f82d5fb7d80a584577500eb36bf7615346",
+ "positive_pixels": 41061,
+ "checks": {
+  "driver_gtiff": true,
+  "single_band": true,
+  "dtype_float32": true,
+  "crs_epsg32611": true,
+  "shape_3730x3292": true,
+  "geotransform_exact": true,
+  "footprint_no_nan_or_inf": true,
+  "footprint_in_0_1": true,
+  "whole_array_finite_in_0_1": true,
+  "zero_known_catalogue_overlap": true
+ },
+ "all_hard_checks_pass": true,
+ "zip": {
+  "file": "gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.zip",
+  "bytes": 187349,
+  "sha256": "313cb7fccce9274fa66e275f8626d947d00a7efc365c0ff989d389f60649084f",
+  "entries": [
+   "gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.tif"
+  ],
+  "single_tif_at_root": true
+ }
+}

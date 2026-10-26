@@ -1,0 +1,49 @@
+{
+ "experiment": "H72_3",
+ "preregistration": "knowledge/30_preregistered_h72_3_subsurf_blind_2026-10-26.md",
+ "draws": [
+  84,
+  85
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "fold_names": [
+  "NW",
+  "NE",
+  "SW",
+  "SE"
+ ],
+ "new_columns": [
+  "PTTG_grav_diffcurv",
+  "PTTG_grav_thdr_unit",
+  "PTTG_transtension_loc",
+  "MTHS_pipe_step",
+  "MTHS_k_metasom_halo"
+ ],
+ "h34_columns": [
+  "H34_resmag_shallow_ridge",
+  "H34_resmag_mid_ridge",
+  "H34_baseflex_ridge"
+ ],
+ "arms": [
+  "CTRL_H35",
+  "CTRL_SUBSURF_D",
+  "C1_SUBSURF_PTTG_MTHS"
+ ],
+ "kfrac_h35": 0.035,
+ "min_dist_h35": 2.4,
+ "kfrac_subsurf": 0.03,
+ "min_dist_subsurf": 3.0,
+ "cat_buf_subsurf": 2.0,
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px) via gems25.experiment.Cell.evaluate",
+ "leakage_auc_cap": 0.9,
+ "gate": {
+  "mean_gain_gt": 0.001,
+  "folds_positive_min": 3,
+  "worst_fold_min": -0.01
+ }
+}

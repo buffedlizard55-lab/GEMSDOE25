@@ -97,26 +97,40 @@ def analyze_dir(ev_dir: Path) -> dict:
             strata_mean=strata_mean,
         )
 
-    a_h35_new = design["arms"][2]
-    a_blind_new = design["arms"][3]
-    a_deapron = design["arms"][4]
+    if len(design["arms"]) == 3:
+        c_arm = design["arms"][2]
+        ctrl_sub = design["arms"][1]
+        contrasts = {
+            f"{c_arm}_vs_{ctrl_sub}": paired_summary(by_arm[c_arm], by_arm[ctrl_sub], "dti"),
+            f"{c_arm}_vs_{ctrl_sub}_far_gt9": paired_summary(by_arm[c_arm], by_arm[ctrl_sub], "far_gt9_dti"),
+            f"{c_arm}_vs_CTRL_H35": paired_summary(by_arm[c_arm], by_arm["CTRL_H35"], "dti"),
+            f"{c_arm}_vs_CTRL_H35_far_gt9": paired_summary(by_arm[c_arm], by_arm["CTRL_H35"], "far_gt9_dti"),
+        }
+        pooled = {
+            f"{c_arm}_vs_{ctrl_sub}": pooled_summary(rows, candidate=c_arm, control=ctrl_sub),
+            f"{c_arm}_vs_CTRL_H35": pooled_summary(rows, candidate=c_arm, control="CTRL_H35"),
+        }
+    else:
+        a_h35_new = design["arms"][2]
+        a_blind_new = design["arms"][3]
+        a_deapron = design["arms"][4]
 
-    contrasts = {
-        f"{a_h35_new}_vs_CTRL_H35": paired_summary(by_arm[a_h35_new], by_arm["CTRL_H35"], "dti"),
-        f"{a_h35_new}_vs_CTRL_H35_far_gt9": paired_summary(by_arm[a_h35_new], by_arm["CTRL_H35"], "far_gt9_dti"),
-        f"{a_blind_new}_vs_CTRL_BLIND_BD": paired_summary(by_arm[a_blind_new], by_arm["CTRL_BLIND_BD"], "dti"),
-        f"{a_blind_new}_vs_CTRL_BLIND_BD_far_gt9": paired_summary(by_arm[a_blind_new], by_arm["CTRL_BLIND_BD"], "far_gt9_dti"),
-        f"{a_deapron}_vs_CTRL_BLIND_BD": paired_summary(by_arm[a_deapron], by_arm["CTRL_BLIND_BD"], "dti"),
-        f"{a_deapron}_vs_CTRL_H35": paired_summary(by_arm[a_deapron], by_arm["CTRL_H35"], "dti"),
-        f"{a_deapron}_vs_CTRL_H35_far_gt9": paired_summary(by_arm[a_deapron], by_arm["CTRL_H35"], "far_gt9_dti"),
-    }
+        contrasts = {
+            f"{a_h35_new}_vs_CTRL_H35": paired_summary(by_arm[a_h35_new], by_arm["CTRL_H35"], "dti"),
+            f"{a_h35_new}_vs_CTRL_H35_far_gt9": paired_summary(by_arm[a_h35_new], by_arm["CTRL_H35"], "far_gt9_dti"),
+            f"{a_blind_new}_vs_CTRL_BLIND_BD": paired_summary(by_arm[a_blind_new], by_arm["CTRL_BLIND_BD"], "dti"),
+            f"{a_blind_new}_vs_CTRL_BLIND_BD_far_gt9": paired_summary(by_arm[a_blind_new], by_arm["CTRL_BLIND_BD"], "far_gt9_dti"),
+            f"{a_deapron}_vs_CTRL_BLIND_BD": paired_summary(by_arm[a_deapron], by_arm["CTRL_BLIND_BD"], "dti"),
+            f"{a_deapron}_vs_CTRL_H35": paired_summary(by_arm[a_deapron], by_arm["CTRL_H35"], "dti"),
+            f"{a_deapron}_vs_CTRL_H35_far_gt9": paired_summary(by_arm[a_deapron], by_arm["CTRL_H35"], "far_gt9_dti"),
+        }
 
-    pooled = {
-        f"{a_h35_new}_vs_CTRL_H35": pooled_summary(rows, candidate=a_h35_new, control="CTRL_H35"),
-        f"{a_blind_new}_vs_CTRL_BLIND_BD": pooled_summary(rows, candidate=a_blind_new, control="CTRL_BLIND_BD"),
-        f"{a_deapron}_vs_CTRL_BLIND_BD": pooled_summary(rows, candidate=a_deapron, control="CTRL_BLIND_BD"),
-        f"{a_deapron}_vs_CTRL_H35": pooled_summary(rows, candidate=a_deapron, control="CTRL_H35"),
-    }
+        pooled = {
+            f"{a_h35_new}_vs_CTRL_H35": pooled_summary(rows, candidate=a_h35_new, control="CTRL_H35"),
+            f"{a_blind_new}_vs_CTRL_BLIND_BD": pooled_summary(rows, candidate=a_blind_new, control="CTRL_BLIND_BD"),
+            f"{a_deapron}_vs_CTRL_BLIND_BD": pooled_summary(rows, candidate=a_deapron, control="CTRL_BLIND_BD"),
+            f"{a_deapron}_vs_CTRL_H35": pooled_summary(rows, candidate=a_deapron, control="CTRL_H35"),
+        }
 
     summary = dict(
         label="HOLDOUT-DTI",

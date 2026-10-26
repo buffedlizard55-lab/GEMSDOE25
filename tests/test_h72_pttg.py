@@ -128,3 +128,42 @@ def test_vccd_shoreline_veto_suppresses_contour_parallel_scarps(tmp_path):
     ns = grids["RBDT_non_shoreline_scarp"]
     assert float(ns[16:48, 38:56].mean()) > 10.0 * float(ns[16:48, 8:26].mean() + 1e-6)
 
+
+def test_compute_mths_grids_dem_free_and_ignores_quarantined_column(tmp_path):
+    import rasterio
+    from affine import Affine
+    from gems25.h72_pttg import H72_MTHS_NAMES, compute_mths_grids
+
+    shape = (48, 48)
+    rng = np.random.default_rng(11)
+    foot = np.ones(shape, dtype=bool)
+    # Note: zero DEM keys in base (`det_elev` / `det_elev_slope` absent!)
+    base = {
+        "cond_surf": np.abs(rng.normal(8.0, 4.0, shape)).astype(np.float32),
+        "depth_to_base_surf": np.abs(rng.normal(800.0, 300.0, shape)).astype(np.float32),
+    }
+    ext = rng.integers(30, 220, size=(3, *shape), dtype=np.uint8)
+    with rasterio.open(
+        tmp_path / "geodawn_extensions_u8.tif",
+        "w",
+        driver="GTiff",
+        height=48,
+        width=48,
+        count=3,
+        dtype="uint8",
+        crs="EPSG:32611",
+        transform=Affine(100, 0, 0, 0, -100, 4800),
+    ) as dst:
+        dst.write(ext)
+    (tmp_path / "gdr_wellspring_in_footprint.csv").write_text(
+        "row,col,geothermquartz_c,dist_known_fault_px\n24,24,165.0,0.0\n"
+    )
+    grids = compute_mths_grids(base, tmp_path, foot)
+    assert list(grids.keys()) == H72_MTHS_NAMES
+    for nm, g in grids.items():
+        assert g.shape == shape and g.dtype == np.float32
+        assert np.isfinite(g).all()
+        assert 0.0 <= float(g.min()) <= float(g.max()) <= 1.000001
+        assert float(g.max()) > 0.0
+
+

@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CARD = json.loads((ROOT / "registry" / "run_card_h71_2026-10-26.json").read_text())
 SUBS = json.loads((ROOT / "registry" / "submissions.json").read_text())["files"]
-PRIMARY = next(s for s in SUBS if s["role"] == "primary")
+PRIMARY = next(s for s in SUBS if s["id"] == "h71-hgpc-blind")
 NAN_TWIN = next(s for s in SUBS if s["id"] == "h71-hgpc-blind-nan")
 
 

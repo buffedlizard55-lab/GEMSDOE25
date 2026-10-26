@@ -154,6 +154,30 @@ def main() -> None:
     h38_card = opt('registry/run_card_h38_ospc_2026-10-25.json')
     h66_card = opt('registry/run_card_h66_2026-10-25.json')
     h71_card = opt('registry/run_card_h71_2026-10-26.json')
+    h72_card = opt('registry/run_card_h72_2026-10-26.json')
+
+    def h72_summary_card(prefix: str) -> str:
+        if not h72_card:
+            return ''
+        e1 = opt('evidence/h72_1_screen/analysis.json')
+        e2 = opt('evidence/h72_2_screen/analysis.json')
+        e3 = opt('evidence/h72_3_screen/analysis.json')
+        lane_lit = opt(primary['lane']['receipt'])
+        if not (e1 and e2 and e3 and lane_lit):
+            return ''
+        h23_ov = next(r['dots_within_3px'] for r in lane_lit['rows'] if r['file'] == 'h23-a-6pct.tif')
+        rc = h72_card['correlation_overlap_vs_registry']
+        fw = rc['focus_21_top_scorers']
+        w1 = len(e1['draws']) * sum(e1['withheld_positives_per_fold'].values())
+        w2 = len(e2['draws']) * sum(e2['withheld_positives_per_fold'].values())
+        w3 = len(e3['draws']) * sum(e3['withheld_positives_per_fold'].values())
+        kbase = "../knowledge" if not prefix else "knowledge"
+        return f'''<div class="card"><h2>Latest 3-Experiment Pre-Registered Session — H72 PTTG + VCCD + DEM-Free MTHS Subsurface · featured download above</h2>
+<p><b>Pre-registrations:</b> <a href="{kbase}/29_preregistered_h72_pttg_ranked_hypotheses_2026-10-26.md"><code>knowledge/29</code></a> (<code>53cb884</code>) &amp; <a href="{kbase}/30_preregistered_h72_3_subsurf_blind_2026-10-26.md"><code>knowledge/30</code></a> (<code>fc60bdd</code>) · <b>Outcomes &amp; 9-site synthesis:</b> <a href="{kbase}/31_h72_outcomes_and_portfolio_synthesis_2026-10-26.md"><code>knowledge/31</code></a> · <b>Run card:</b> <code>registry/run_card_h72_2026-10-26.json</code>.</p>
+<ul><li><b>Exp 1 (draws <code>{e1['draws']}</code>, {w1:,} pos):</b> <code>A3_PTTG_DEAPRON</code> mean <code>HOLDOUT-DTI = {e1['arms']['A3_PTTG_DEAPRON']['mean_dti']:.5f}</code> (<code>{e1['contrasts']['A3_PTTG_DEAPRON_vs_CTRL_BLIND_BD']['mean']:+.5f}</code> vs Blind in {e1['contrasts']['A3_PTTG_DEAPRON_vs_CTRL_BLIND_BD']['folds_positive']}/4 folds; FAIL vs H35 <code>{e1['arms']['CTRL_H35']['mean_dti']:.5f}</code>).</li>
+<li><b>Exp 2 (draws <code>{e2['draws']}</code>, {w2:,} pos):</b> <code>B3_FULL_DEAPRON</code> mean <code>HOLDOUT-DTI = {e2['arms']['B3_FULL_DEAPRON']['mean_dti']:.5f}</code> (<code>{e2['contrasts']['B3_FULL_DEAPRON_vs_CTRL_BLIND_BD']['mean']:+.5f}</code> vs Blind in {e2['contrasts']['B3_FULL_DEAPRON_vs_CTRL_BLIND_BD']['folds_positive']}/4 folds); <code>B1_FULL_H35</code> <code>{e2['contrasts']['B1_FULL_H35_vs_CTRL_H35']['mean']:+.5f}</code> vs H35 ({e2['contrasts']['B1_FULL_H35_vs_CTRL_H35']['folds_positive']}/4 folds &rarr; FAIL).</li>
+<li><b>Exp 3 (draws <code>{e3['draws']}</code>, {w3:,} pos):</b> DEM-free <code>C1_SUBSURF_PTTG_MTHS</code> mean <code>HOLDOUT-DTI = {e3['arms']['C1_SUBSURF_PTTG_MTHS']['mean_dti']:.5f}</code> (<code>{e3['contrasts']['C1_SUBSURF_PTTG_MTHS_vs_CTRL_SUBSURF_D']['mean']:+.5f}</code> vs Subsurf control in {e3['contrasts']['C1_SUBSURF_PTTG_MTHS_vs_CTRL_SUBSURF_D']['folds_positive']}/4 folds; FAIL vs H35 <code>{e3['arms']['CTRL_H35']['mean_dti']:.5f}</code>).</li>
+<li><b>85-raster lane uniqueness:</b> <b><code>flagged_lane = []</code> (<code>UNIQUE vs available registry</code>)</b> — max {100*rc['own_lineage']['worst_cand_dots_within_3px']:.2f}% own-lineage, {100*fw['b2_overlap']:.2f}% vs GEMSDOE32 B2 (max sibling {100*fw['worst_cand_dots_within_3px']:.2f}%), {100*h23_ov:.2f}% vs <code>h23-a-6pct</code>, surface |&rho;| &le; {rc['surface_max_abs_spearman']:.4f}. <b>OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT.</b></li></ul></div>'''
 
     def latest_diagnostic(prefix: str) -> str:
         if cf1 is None or cf1_card is None:
@@ -238,7 +262,7 @@ is not a lane clearance. Format verification is against an owner-mirrored templa
 
     def home(prefix: str) -> str:
         hero = verdict_banner(primary, prefix)
-        cards = dl_card(primary, prefix) + h71_summary_card(prefix) + pol3_summary_card(prefix) + h66_summary_card(prefix) + h38_summary_card(prefix) + latest_diagnostic(prefix)
+        cards = dl_card(primary, prefix) + h72_summary_card(prefix) + h71_summary_card(prefix) + pol3_summary_card(prefix) + h66_summary_card(prefix) + h38_summary_card(prefix) + latest_diagnostic(prefix)
         alt = "".join(f"""<div class="card"><b>{e(o['title'])}</b> {badge(o['status'], 'ok' if o['status']=='scored' else 'warn')}
 <p class="small" style="margin:.3em 0">{e(o['summary'])}</p><a class="btn alt small" href="{prefix}downloads/{o['file']}" download>↓ {e(o['file'])}</a>
  <span class="small">· {o['positive_pixels']:,} px · <code>{o['content_id']}</code></span></div>""" for o in others if o["role"] in ("fallback", "alternate"))
@@ -743,7 +767,7 @@ Response: exact sparse-regime DTI of a fixed emission (ridge NMS → top 2.45 % 
     (DOCS / "research.html").write_text(page("Research", research, "research", ""))
     (DOCS / "sources.html").write_text(page("Sources & audit", sources, "sources", ""))
     (DOCS / "current-review.html").write_text(page("Current executive review", render_body(), "current", ""))
-    for name in ("submissions", "live_scores", "irregularities", "sources", "data_manifest", "artifact_ledger"):
+    for name in ("submissions", "live_scores", "irregularities", "sources", "data_manifest", "artifact_ledger", "run_card_h72_2026-10-26"):
         (DOCS / "data" / f"{name}.json").write_text((ROOT / "registry" / f"{name}.json").read_text())
     print("site built:", [p.name for p in DOCS.glob("*.html")] + ["../index.html"])
 

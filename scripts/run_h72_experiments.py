@@ -31,8 +31,11 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from gems25.experiment import HGB_PARAMS, Cell, load_context  # noqa: E402
 from gems25.h34 import H34_NAMES, load_h34_sidecar  # noqa: E402
 from gems25.h72_pttg import (  # noqa: E402
+    H72_MTHS_NAMES,
     H72_PTTG_NAMES,
+    H72_SUBSURF_NAMES,
     H72_VCCD_NAMES,
+    load_h72_mths_sidecar,
     load_h72_pttg_sidecar,
     load_h72_vccd_sidecar,
 )
@@ -157,6 +160,10 @@ def run_experiment(exp: str, draws: list[int], out: Path) -> None:
         raise SystemExit(f"Refusing to overwrite existing evidence directory: {out}")
     out.mkdir(parents=True, exist_ok=False)
 
+    if exp == "h72_3":
+        run_h72_3_subsurf(draws, out)
+        return
+
     use_vccd = exp == "h72_2"
     new_names = H72_PTTG_NAMES + (H72_VCCD_NAMES if use_vccd else [])
     arms = (
@@ -267,9 +274,86 @@ def run_experiment(exp: str, draws: list[int], out: Path) -> None:
                 gc.collect()
 
 
+def run_h72_3_subsurf(draws: list[int], out: Path) -> None:
+    arms = ["CTRL_H35", "CTRL_SUBSURF_D", "C1_SUBSURF_PTTG_MTHS"]
+    design = dict(
+        experiment="H72_3",
+        preregistration="knowledge/30_preregistered_h72_3_subsurf_blind_2026-10-26.md",
+        draws=draws,
+        folds=list(FOLD_IDS),
+        fold_names=list(FOLDS),
+        new_columns=H72_SUBSURF_NAMES,
+        h34_columns=H34_NAMES,
+        arms=arms,
+        kfrac_h35=KFRAC_H35,
+        min_dist_h35=MIN_DIST_H35,
+        kfrac_subsurf=KFRAC_DEAPRON,
+        min_dist_subsurf=3.0,
+        cat_buf_subsurf=CAT_BUF_DEAPRON,
+        evaluator=EVALUATOR,
+        leakage_auc_cap=LEAKAGE_AUC_CAP,
+        gate=dict(mean_gain_gt=0.001, folds_positive_min=3, worst_fold_min=-0.010),
+    )
+    (out / "design.json").write_text(json.dumps(design, indent=1) + "\n")
+
+    work, ext_dir = work_dir(), data_dir() / "external"
+    ctx = load_context(work)
+    h34_sc = load_h34_sidecar(work, ctx.fi)
+    pttg_sc = load_h72_pttg_sidecar(work, ctx.fi)
+    mths_sc = load_h72_mths_sidecar(work, ext_dir, ctx.fi)
+    pttg_3 = pttg_sc[:3]  # strictly DEM-free trio
+    canary_pairs = [(pttg_3, H72_PTTG_NAMES[:3]), (mths_sc, H72_MTHS_NAMES)]
+
+    bde7_tip_cols = ctx.columns("BDE") + ctx.named(EXTRAS) + [ctx.col["H27_tip"]]
+    subsurf_cols = ctx.columns("D") + ctx.named(["X3_gm", "X3_gd"])
+
+    t_start = time.time()
+    cells_path = out / "cells.jsonl"
+    with cells_path.open("w") as sink:
+        for fold in FOLD_IDS:
+            for draw in draws:
+                t_cell = time.time()
+                cell = Cell(ctx, fold, draw, extras=True, h27=True, h30=False)
+                d_vis_c = distance_transform_edt(~cell.known_c).astype(np.float32)
+                canary = run_canaries(cell, canary_pairs)
+
+                p_h35, auc_h35, m_h35 = fit_predict_sidecars(cell, bde7_tip_cols, [h34_sc], seed=draw)
+                em_h35 = emit_buffered_dots(cell, p_h35, d_vis_c, kfrac=KFRAC_H35, min_dist=MIN_DIST_H35, cat_buf_px=0.0)
+
+                p_cd, auc_cd, m_cd = fit_predict_sidecars(cell, subsurf_cols, [h34_sc], seed=draw)
+                em_cd = emit_buffered_dots(cell, p_cd, d_vis_c, kfrac=KFRAC_DEAPRON, min_dist=3.0, cat_buf_px=CAT_BUF_DEAPRON)
+
+                p_c1, auc_c1, m_c1 = fit_predict_sidecars(cell, subsurf_cols, [h34_sc, pttg_3, mths_sc], seed=draw)
+                em_c1 = emit_buffered_dots(cell, p_c1, d_vis_c, kfrac=KFRAC_DEAPRON, min_dist=3.0, cat_buf_px=CAT_BUF_DEAPRON)
+
+                arm_records = [
+                    (arms[0], em_h35, auc_h35, m_h35),
+                    (arms[1], em_cd, auc_cd, m_cd),
+                    (arms[2], em_c1, auc_c1, m_c1),
+                ]
+                for arm_name, em, auc_val, meta in arm_records:
+                    rec = dict(
+                        fold=fold,
+                        fold_name=FOLDS[fold],
+                        draw=draw,
+                        arm=arm_name,
+                        **eval_arm_full(cell, em, d_vis_c, auc_val, meta, canary),
+                    )
+                    sink.write(json.dumps(rec) + "\n")
+                sink.flush()
+                evs = {nm: cell.evaluate(em)["dti"] for nm, em, _, _ in arm_records}
+                print(
+                    f"[{time.time() - t_start:6.1f}s] {FOLDS[fold]} d={draw} ({time.time() - t_cell:.1f}s) | "
+                    + " | ".join(f"{k}={v:.5f}" for k, v in evs.items()),
+                    flush=True,
+                )
+                del cell, d_vis_c, p_h35, p_cd, p_c1
+                gc.collect()
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--exp", choices=("h72_1", "h72_2"), required=True)
+    ap.add_argument("--exp", choices=("h72_1", "h72_2", "h72_3"), required=True)
     ap.add_argument("--draws", type=int, nargs="+", required=True)
     ap.add_argument("--out", required=True)
     args = ap.parse_args()

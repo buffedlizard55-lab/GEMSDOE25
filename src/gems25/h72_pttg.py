@@ -65,6 +65,19 @@ H72_VCCD_NAMES = [
     "RBDT_non_shoreline_scarp",
 ]
 
+H72_MTHS_NAMES = [
+    "MTHS_pipe_step",
+    "MTHS_k_metasom_halo",
+]
+
+H72_SUBSURF_NAMES = [
+    "PTTG_grav_diffcurv",
+    "PTTG_grav_thdr_unit",
+    "PTTG_transtension_loc",
+    "MTHS_pipe_step",
+    "MTHS_k_metasom_halo",
+]
+
 
 def _pct_scale_eroded(arr: np.ndarray, foot: np.ndarray, erode_px: int = 4) -> np.ndarray:
     """Scale finite footprint values to [0, 1] using 1st-99th percentiles on eroded interior."""
@@ -305,3 +318,78 @@ def load_h72_vccd_sidecar(work: Path, ext_dir: Path, fi: np.ndarray) -> np.ndarr
     mm.flush()
     meta_path.write_text(json.dumps(H72_VCCD_NAMES) + "\n")
     return np.load(out_path, mmap_mode="r")
+
+
+def compute_mths_grids(
+    base: dict[str, np.ndarray],
+    external_dir: Path,
+    footprint: np.ndarray,
+) -> dict[str, np.ndarray]:
+    """Compute the 2 static DEM-free `H72_MTHS_NAMES` grids (knowledge/30 §2).
+
+    Strictly reads only ``row``, ``col``, ``geothermquartz_c`` from
+    ``gdr_wellspring_in_footprint.csv``; ``dist_known_fault_px`` is never read.
+    """
+    foot = np.asarray(footprint, dtype=bool)
+    shape = foot.shape
+
+    cond = np.log1p(np.maximum(nearest_fill(np.asarray(base["cond_surf"], dtype=np.float32)), 0.0))
+    db = np.log1p(np.maximum(nearest_fill(np.asarray(base["depth_to_base_surf"], dtype=np.float32)), 0.0))
+    cond_n = _pct_scale_eroded(cond, foot)
+    db_step_n = _pct_scale_eroded(grad_mag(db, 1.5), foot)
+    pipe_step = np.where(foot, np.sqrt(cond_n * db_step_n), 0.0).astype(np.float32)
+    del cond, db, cond_n, db_step_n
+
+    with rasterio.open(external_dir / "geodawn_extensions_u8.tif") as src:
+        ext = src.read()
+    thk_raw = np.where(ext[0] > 0, ext[0].astype(np.float32), np.nan)
+    uk_raw = np.where(ext[1] > 0, ext[1].astype(np.float32), np.nan)
+    del ext
+    thk_valid = foot & np.isfinite(thk_raw)
+    thk_inv = np.where(thk_valid, 1.0 - _pct_scale_eroded(np.nan_to_num(thk_raw, nan=0.0), thk_valid, erode_px=0), 0.0)
+    uk_edge = _pct_scale_eroded(grad_mag(nearest_fill(uk_raw), 1.5), foot)
+    del thk_raw, uk_raw, thk_valid
+
+    ws_csv = external_dir / "gdr_wellspring_in_footprint.csv"
+    qmask = np.zeros(shape, dtype=bool)
+    if ws_csv.exists():
+        df = pd.read_csv(ws_csv, usecols=["row", "col", "geothermquartz_c"])
+        ok = (
+            (df["row"] >= 0)
+            & (df["row"] < shape[0])
+            & (df["col"] >= 0)
+            & (df["col"] < shape[1])
+            & np.isfinite(df["geothermquartz_c"])
+            & (df["geothermquartz_c"] > 100.0)
+        )
+        qmask[df.loc[ok, "row"].to_numpy(int), df.loc[ok, "col"].to_numpy(int)] = True
+    qprox = np.exp(-distance_transform_edt(~qmask) / 40.0).astype(np.float32) if qmask.any() else np.zeros(shape, np.float32)
+    k_metasom = np.where(foot, np.sqrt(thk_inv * uk_edge) * qprox, 0.0).astype(np.float32)
+
+    return {
+        "MTHS_pipe_step": np.nan_to_num(pipe_step, nan=0.0, posinf=0.0, neginf=0.0),
+        "MTHS_k_metasom_halo": np.nan_to_num(k_metasom, nan=0.0, posinf=0.0, neginf=0.0),
+    }
+
+
+def load_h72_mths_sidecar(work: Path, ext_dir: Path, fi: np.ndarray) -> np.ndarray:
+    """Build or open cached ``(2, n_footprint)`` float32 memmap for `H72_MTHS_NAMES`."""
+    out_path = work / "h72_mths.npy"
+    meta_path = work / "h72_mths.names.json"
+    if out_path.exists() and meta_path.exists():
+        names = json.loads(meta_path.read_text())
+        if names == H72_MTHS_NAMES:
+            mm = np.load(out_path, mmap_mode="r")
+            if mm.shape == (len(H72_MTHS_NAMES), fi.size):
+                return mm
+
+    foot = np.load(work / "bands" / "_footprint.npy")
+    base = load_base(work / "bands")
+    grids = compute_mths_grids(base, ext_dir, foot)
+    mm = np.lib.format.open_memmap(out_path, mode="w+", dtype=np.float32, shape=(len(H72_MTHS_NAMES), fi.size))
+    for i, nm in enumerate(H72_MTHS_NAMES):
+        mm[i] = grids[nm].ravel()[fi]
+    mm.flush()
+    meta_path.write_text(json.dumps(H72_MTHS_NAMES) + "\n")
+    return np.load(out_path, mmap_mode="r")
+

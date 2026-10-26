@@ -653,10 +653,26 @@
   {
    "id": "IR-25-UNIT-FIX-DOCUMENTATION-DRIFT",
    "severity": "medium",
-   "status": "open",
-   "issue": "README describes the Family A potential-field unit mismatch as fixed, but the current shared build_static still forms A_mag_tilt directly from provider tmi_vg/tmi_hg. The narrative and implementation need reconciliation; no new unit calibration was performed in this session.",
-   "evidence": "src/gems25/features.py build_static Family A; README IR-25-POTENTIAL-FIELD-UNIT-MISMATCH",
-   "resolution_or_action": "Audit source units and cached hashes before any new Family A run. ROD is catalogue-free radiometric/scarp work; its H35 comparator uses the existing BDE+7/H34 recipe, not a newly repaired A stack."
+   "status": "disclosed",
+   "issue": "README describes the Family A potential-field unit mismatch as fixed, but the current shared build_static still forms A_mag_tilt directly from provider tmi_vg/tmi_hg. The narrative and implementation need reconciliation; H72 audited exact physical units on the cached bands and implemented unit-consistent tilt/curvature operators in src/gems25/h72_pttg.py without mutating frozen historical static_ABCD.npy.",
+   "evidence": "src/gems25/features.py build_static Family A; src/gems25/h72_pttg.py unit_consistent_thdr; knowledge/29_preregistered_h72_pttg_ranked_hypotheses_2026-10-26.md §1.2.",
+   "resolution_or_action": "Historical static_ABCD.npy kept untouched for exact H35 comparator reproducibility; new Family A/C physics uses verified mGal/km (10 * |grad_h g| vs band 11) and nT/km (10 * |grad_h T| vs 1000 * band 09) scaling."
+  },
+  {
+   "id": "IR-25-GRAV-HG-EAST-WEST-DIRECTIONAL",
+   "severity": "high",
+   "status": "fixed",
+   "issue": "Band 18 (`18_iso_grav_anom_hg.npy`) is signed (`p1 = -5.13`, `p99 = +5.40 mGal/km`) and correlates `r = +0.9484` on the eroded footprint with the East-West directional derivative `10 * dg/dx` (Azimuth 90 deg), rather than isotropic horizontal gradient magnitude `|grad_h g|`. Consequently, band 18 has near-zero sensitivity (`cos 90 deg = 0`) to E-W and WNW-ESE Walker Lane / accommodation-zone transfer faults.",
+   "evidence": "knowledge/29_preregistered_h72_pttg_ranked_hypotheses_2026-10-26.md §1.2; src/gems25/h72_pttg.py; tests/test_h72_pttg.py::test_phillips_diff_curvature_is_azimuth_invariant_on_ns_vs_ew_steps.",
+   "resolution_or_action": "Bypassed band 18 in H72 via isotropic `10 * hypot(dg/dx, dg/dy)` (`mGal/km`) and rotationally invariant Phillips horizontal differential curvature `K_diff(g) = sqrt((g_xx - g_yy)^2 + 4 g_xy^2)`."
+  },
+  {
+   "id": "IR-25-LANE-VALIDATOR-DIR-PARITY-AND-RIBBON-SATURATION",
+   "severity": "high",
+   "status": "fixed",
+   "issue": "`scripts/validate_gem_candidate.py` hardcoded `ROOT / 'data' / 'scored'` instead of `data_dir() / 'scored'` and emitted `ConstantInputWarning` on zero-variance inputs; `check_lane_surface.py` had a fail-open `NaN` correlation branch and omitted `calibration`/`research`/`artifacts`; `check_lane_duplicates.py` and `lane_check_extended.py` omitted `research` or `artifacts`. Restoring full 83-85 raster directory parity exposed that two un-thinned historical DEM-scarp ribbon artifacts (`h23-a-6pct.tif` with 335,879 positive pixels = 6.50% of footprint, and `r7-nms3-dem10-scarp.tif` with 103,347 pixels) overlap 72.9%-82.0% of any Family-B DEM-scarp detector (`H72-1`), whereas DEM-free subsurface `H72-3` drops them to 62.25% and 60.45% (`flagged_lane = []`).",
+   "evidence": "scripts/validate_gem_candidate.py; scripts/check_lane_surface.py; scripts/check_lane_duplicates.py; scripts/lane_check_extended.py; tests/test_lane_preflight.py; docs/downloads/lane-gems25-h72-pttg-deapron-sapd2-8-k3p0-20261026-a07ef071c49e-zeros.json; docs/downloads/lane-gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.json.",
+   "resolution_or_action": "Fixed all four shared lane scripts in-place with unit tests. Logged `H72-1` as an `alternate` (`DO NOT SUBMIT`) and built DEM-free `H72-3` (`flagged_lane = []` across all 85 rasters)."
   }
  ]
 }
