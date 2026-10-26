@@ -83,7 +83,18 @@
   "pull_request": {
     "number": 42,
     "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/pull/42",
-    "state_at_review_record": "OPEN; initial pytest check passed; merge pending",
-    "initial_check": "pytest PASS (33s) on commit 5e09033; subsequent commit will require refreshed checks"
+    "state_at_review_record": "OPEN; origin/main merge incorporated on the fixed session branch; refreshed CI pending",
+    "initial_check": "pytest PASS (33s) on original review commit 5e09033; refreshed checks required for merge commit"
+  },
+  "registry_feasibility_geometry": {
+    "evidence_class": "COMPUTED GEOMETRY; inherited from the merged parallel-session audit, not a score or a new experiment",
+    "reference": "evidence/lane_feasibility_2026-10-26.json",
+    "r13_halo_covered_eligible_pixels": 5099871,
+    "eligible_pixels": 5106385,
+    "uncovered_pixels": 6514,
+    "minimum_overlap_at_37654_dots": 0.8270037711796887,
+    "minimum_overlap_at_44090_dots": 0.8522567475618054,
+    "overlap_cap": 0.7,
+    "scope": "Necessary condition against one registry raster only; not a full-registry uniqueness check and does not prove all smaller candidates are feasible."
   }
 }

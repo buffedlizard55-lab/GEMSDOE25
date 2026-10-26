@@ -61,11 +61,36 @@ This is a catalogue-gap proxy, not an organizer score or blind-fault performance
         f'<p><b>OK to download: YES</b> for local testing of content id '
         f'<code>{e(featured["content_id"])}</code>. '
         f'<b>OK to spend a weekly slot: NO — DO NOT SUBMIT.</b> '
-        f'This file is content-distinct from scored mirrors, but it FAILS the literal lane rule '
-        f'(100% final-dot overlap within 3 px of the registered r13 lattice); do not call it lane-unique. '
+        f'This file is content-distinct from scored mirrors but FAILS the literal lane rule: '
+        f'100% of final dots are within 3 px of the registered r13 lattice (70% cap). '
         f'The three DIRECT screens failed vs H35. ROD/POL3 wrote no competition TIFF.</p>'
         f'<a class="btn" download href="downloads/{e(featured["file"])}">↓ Download {e(featured["file"])} — testing only</a>'
     )
+    inventory_path = ROOT/'docs/data/download_audit.json'
+    inventory_section = ''
+    if inventory_path.exists():
+        inventory = json.loads(inventory_path.read_text())
+        inventory_rows = ''.join(
+            f'<tr><td><a download href="downloads/{e(r["file"])}">{e(r["file"])}</a></td>'
+            f'<td>{"PASS" if r["format_valid"] else "FAIL"} (local only)</td>'
+            '<td>Unknown — no calibrated estimate</td>'
+            f'<td>{len(r["identical_footprint_files"])} identical local footprint variant(s); '
+            'cross-site novelty unproven</td><td>NO — testing only</td></tr>'
+            for r in inventory['files'])
+        inventory_section = f'''<section><h2>Exactly what can I download and submit?</h2>
+<p><a href="../knowledge/29_download_audit_and_next_hypotheses_2026-10-26.md">Latest audit, ranked future hypotheses and limitations</a>.</p>
+<p><b>No file is currently approved to submit.</b> The table below audits the actual shipped files,
+not their names. Format validity does not predict a high score or prove novelty.
+Audit time: <code>{e(inventory['generated_utc'])}</code>.
+{len(inventory['files'])} TIFFs; {len({r['footprint_sha256'] for r in inventory['files'] if r['footprint_sha256']})}
+ distinct finite footprint prediction arrays. NaN-outside and zero-outside variants are not new predictions.</p>
+<p><a href="data/download_audit.json" download>Download all exact-file validator receipts and identity groups (JSON)</a>.
+Leaderboard estimates are unknown: a catalogue-gap HOLDOUT-DTI is not a calibrated competition prediction.
+Historical scores in the nine-site table are OWNER-REPORTED, not ORGANIZER-CONFIRMED.</p>
+<details><summary>Show every downloadable TIFF, estimated score and submission status</summary>
+<div class="table-scroll"><table><thead><tr><th>File to download (research only)</th><th>Format</th>
+<th>Estimated leaderboard score</th><th>Unique?</th><th>OK to submit?</th></tr></thead>
+<tbody>{inventory_rows}</tbody></table></div></details></section>'''
     historical = 'gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif'
     rows, cards = [], []
     exact_mask_notes = {
@@ -89,29 +114,46 @@ This is a catalogue-gap proxy, not an organizer score or blind-fault performance
 <p class="small">{row['positive_pixels']:,} positive pixels · Local format checks: {'pass' if row['local_format_pass'] else 'fail'} ·
 Not approved as a new submission. SHA-256: <code class="wrap-hash">{row['sha256']}</code></p>
 <a href="{e(row['source_url'])}">Pinned source revision</a> · <a href="{e(row['site_url'])}">Original site</a></article>''')
+    feasibility = json.loads((ROOT/'evidence/lane_feasibility_2026-10-26.json').read_text())
+    geometry = feasibility['geometry']
+    bounds = ''.join(f"<tr><td>{r['dots']:,}</td><td>{r['minimum_overlap']:.2%}</td><td>Impossible at this density</td></tr>"
+                     for r in feasibility['cases'])
     coverage = focus['lattice_coverage']
     body = f'''<section class="hero"><p class="eyebrow">RESEARCH DECISION BRIEF / 26 OCTOBER 2026</p>
 <h1>Know what to submit.<br>Know when to stop.</h1>
 <p class="lead">Nine focus sites, one auditable comparison, and a new geological test. No renamed reference files. No predicted leaderboard scores.</p></section>
-<section class="review-decision"><span class="badge b-bad">OK TO SUBMIT: NO</span><h2>Testing GeoTIFF is downloadable — strict novelty and performance gates failed</h2>
+<section class="review-decision"><span class="badge b-bad">OK TO SUBMIT: NO</span><h2>Content-distinct testing GeoTIFF is downloadable — strict lane and performance gates failed</h2>
 <p>{e(featured['title'])}. {e(featured['summary'])}</p>
 <p>ROD stop: {status}</p>{download}
 <div class="row"><a class="btn" href="../evidence/rod_2026-10-26/run_card.json" download>Download decision receipt</a>
 <a class="btn alt" href="#how-to-submit">Submission checklist</a></div></section>
-<section><h2>Current downloadable file: score estimate and uniqueness gate</h2>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Current candidate assessment"><table><thead><tr><th>File</th><th>Estimated competition score</th><th>Observed HOLDOUT-DTI (proxy only)</th><th>Unique under literal lane rule?</th><th>Decision</th></tr></thead><tbody>
+{inventory_section}
+<section><h2>Current downloadable file: estimate and uniqueness decision</h2>
+<div class="table-scroll"><table><thead><tr><th>File</th><th>Estimated competition score</th><th>Saved HOLDOUT-DTI (proxy)</th><th>Unique under literal lane rule?</th><th>Decision</th></tr></thead><tbody>
 <tr><td class="submission-id">{e(featured['file'])}</td>
-<td>NOT ESTIMATED — no defensible leaderboard projection</td>
+<td>NOT ESTIMATED — no calibrated leaderboard projection</td>
 <td>HOLDOUT-DTI {h71_result['pooled_dti']:.6f}; evaluator {e(h71_result['evaluator_version'])}; {h71_result['withheld_positives']:,} withheld positives; 95% CI [{h71_result['ci_95'][0]:.6f}, {h71_result['ci_95'][1]:.6f}]</td>
-<td><b>NO.</b> Final dots overlap the registered r13 lattice 100% within 3 px; literal threshold is 70%.</td>
-<td><b>DO NOT SUBMIT.</b> Holdout gate failed against same-run H35; testing download only.</td></tr></tbody></table></div>
-<p class="small">HOLDOUT-DTI is a catalogue-gap recovery proxy, not a forecast of organizer score. H71 holdout result is cited from the saved H71 run card; it was not rerun in this review. Surface correlation/overlap and final-dot lane results are not interchangeable.</p></section>
+<td><b>NO.</b> 100% within 3 px of the registered r13 lattice; threshold 70%.</td>
+<td><b>DO NOT SUBMIT.</b> Holdout failed vs H35; testing only.</td></tr></tbody></table></div>
+<p>Saved H71 evidence, not rerun in this review. HOLDOUT-DTI is a catalogue-gap proxy, not an organizer score or leaderboard forecast.</p></section>
+<section id="lane-feasibility"><h2>New audit: the strict overlap gate blocks typical densities</h2>
+<p>Freshly restored SHA-pinned template, labels and registry lattice match CRS, shape and transform.
+Only <b>{geometry['uncovered_pixels']:,}</b> eligible pixels lie outside that lattice's 3-pixel halo.
+For K distinct dots, at least max(0, K − {geometry['uncovered_pixels']:,}) must overlap.
+These are <b>COMPUTED GEOMETRY diagnostics, not performance scores</b>.</p>
+<table><thead><tr><th>Candidate dot budget K</th><th>Minimum unavoidable overlap</th><th>Literal 70% gate</th></tr></thead><tbody>{bounds}</tbody></table>
+<p>At most <b>21,713 dots</b> are not ruled out by this one necessary condition. Smaller budgets are not automatically feasible,
+unique, high-scoring or approved. No candidate was placed; no geological model was fitted in this audit.
+We did not exclude the dense reference or substitute a density-aware waiver.</p>
+<p><a href="../evidence/lane_feasibility_2026-10-26.json">Download the reproducible geometry receipt</a> ·
+<a href="../knowledge/29_lane_feasibility_plan_2026-10-26.md">Preregistered proof and three deferred geological hypotheses</a></p>
+<p><b>No new TIFF generated:</b> the preregistered budgets cannot pass the required gate. The existing research download above remains DO NOT SUBMIT.</p></section>
 <section><h2>What is the strongest historical evidence?</h2>
 <p><b>GEMSDOE32 B2 — 0.2778, OWNER-REPORTED.</b> It is the highest supplied historical result among these focus sites.
 It is already an earlier submission, so it is <b>not</b> eligible as a new unique artifact. No organizer receipt has been supplied.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Nine historical exemplars"><table><thead><tr><th>Site</th><th>Highest supplied historical TIF / filename</th><th>Score evidence</th><th>Exact-mask relation within focus set</th><th>New-slot eligible?</th></tr></thead>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Nine historical exemplars"><table><thead><tr><th>Site</th><th>Highest supplied historical filename</th><th>Score evidence</th><th>Exact-mask relation within focus set</th><th>New-slot eligible?</th></tr></thead>
 <tbody>{''.join(rows)}</tbody></table></div>
-<p class="small">The values are owner-reported historical results, not score estimates. Exact-mask equivalences and lineage are from the locally hashed owner-mirror audit; this does not authenticate competition receipts or establish new-slot uniqueness. The conflicting overall-leader claims 0.3195 and 0.4413 remain unverified.</p></section>
+<p class="small">Not a live leaderboard query and not a slot selection. The conflicting overall-leader claims 0.3195 and 0.4413 remain unverified.</p></section>
 <section><h2>Why B2 can work — and what it does not prove</h2>
 <p>Fresh pixel checks show B2 is exactly D2.8 with 6,436 predictions within 200 m of the supplied catalogue removed.
 GEMSDOE36 is B2 plus 1,200 predictions. GEMSDOE25 and 30 have identical masks; GEMSDOE28 R1 and 31 have identical masks.</p>
@@ -156,12 +198,13 @@ even before spacing constraints. This does <b>not</b> establish that every small
 <a href="https://www.usgs.gov/3d-elevation-program">USGS 3DEP</a> — manual-review links, not freshly fetched here.</li></ul>
 <p>Next: resolve the dense-lattice policy before another high-budget run; address SGMC proxy contamination before confirmation; authenticate external source bytes and preserve all failed results.
 Automatic source availability is not automatic scientific verification or a live leaderboard feed.</p>
-<p><a href="../knowledge/29_repository_review_2026-10-26.md">Full repository review and limitations</a> ·
-<a href="../registry/run_card_repo_review_2026-10-26_session.json">This review's JSON run card</a> ·
+<p><a href="../knowledge/29_repository_review_2026-10-26.md">This repository review and limitations</a> ·
+<a href="../registry/run_card_repo_review_2026-10-26_session.json">This review's run card</a> ·
 <a href="history.html">Historical experiment/download archive</a></p></section>'''
     if root_page:
         body = body.replace('href="../', 'href="').replace('href="downloads/', 'href="docs/downloads/')
         body = body.replace('href="history.html"', 'href="docs/history.html"')
+        body = body.replace('href="data/', 'href="docs/data/')
     return body
 
 
@@ -175,6 +218,8 @@ def readme_status():
             "[Nine-site executive review and automated ROD result](docs/current-review.html) · "
             "[This repository review](knowledge/29_repository_review_2026-10-26.md) · "
             "[This review's JSON run card](registry/run_card_repo_review_2026-10-26_session.json) · "
+            "[Download audit and three deferred hypotheses](knowledge/29_download_audit_and_next_hypotheses_2026-10-26.md) · "
+            "[Strict-lane feasibility proof and hypothesis slate](knowledge/29_lane_feasibility_plan_2026-10-26.md) · "
             "[H71 outcomes](knowledge/28_h71_outcomes_2026-10-26.md) · "
             "[ROD run card](evidence/rod_2026-10-26/run_card.json). "
             "GEMSDOE32 B2 is the strongest supplied historical exemplar (**OWNER-REPORTED 0.2778**), not a new submission. "
