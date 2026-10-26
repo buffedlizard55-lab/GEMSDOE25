@@ -743,5 +743,46 @@
       "All 6 PARALLEL-RUN PROTOCOL rules satisfied: pre-placement surface + final-dot lane checks logged, shared template feature stack/holdout/writer reused, strict HOLDOUT-DTI vs OWNER-CLAIM labeling, single-feature <=0.90 leakage canaries, machine-verified JSON Run Card (registry/run_card_h66_2026-10-25.json), stopped at 3/3 experiments, 0 weekly slots spent.",
       "Session prompt preserved in README.md alongside Arena Core Values (Maximize P(Win), Own the Outcome), verified official links table, flagged irregularities, limitations, and ranked next steps."
     ]
-  }
+  },
+ "current_turn_review_2026_10_26_arena_d956e0a6": {
+  "session_branch": "arena/d956e0a6-gemsdoe25",
+  "focus": "Review repository and focus-site evidence; update the public executive-summary subpage with the requested nine-site comparison; record blockers and ranked hypotheses without exceeding the experimental lane or claiming a submission.",
+  "pass_1_implement_and_verify": [
+   "Read AGENTS.md and the relevant README mandate, focus-site forensics, H66/H38 run cards, submission writer/guide, source manifest and site content.",
+   "Confirmed current branch and origin/main SHA, no open PR listed, no local data beyond data/.gitkeep, and focus-site score claims are owner/user-reported.",
+   "Added knowledge/27_checkout_review_2026-10-26.md with nine-site executive comparison, B2 forensic interpretation, five ranked candidate hypotheses, limitations, sources and three-pass review.",
+   "Added registry/run_card_repo_review_2026-10-26.json with null holdout/lane/raster/validator metrics because no experiment or fresh raster validation was possible.",
+   "Linked the review from README.md and added an owner-claim-labeled nine-site table to docs/executive-summary.html."
+  ],
+  "pass_2_bugs_assumptions_edge_cases": [
+   "Kept OWNER-REPORTED scores separate from COMPUTED pixel identities and HOLDOUT-DTI; no organizer confirmation or projected score is asserted.",
+   "Kept unique bytes, format validation, lane clearance, holdout gate and slot authorization separate; all existing downloadable artifacts remain testing-only / DO NOT SUBMIT.",
+   "Marked source retrieval blocked where official source domains cannot be reached under the runner allowlist; did not infer data availability, schema or licence from citations alone.",
+   "Installed pinned requirements into ignored .venv; full pytest result 214 passed, 8 skipped (all skips require restored data/template), Ruff check passed, git diff --check passed."
+  ],
+  "pass_3_recheck_against_original_brief": [
+   "Verified all nine requested site rows and selected the highest supplied claim for each based on evidence/focus_sites_forensics.json.",
+   "Ranked five distinct candidate designs, each with layers, targeted physical signature, catalogue-gap rationale, difference from repo methods, non-fault mimic and availability/cost qualifier; no gain estimate was presented as a score.",
+   "No experiment was run because there is no unambiguous single method lane and the shared inputs are absent; strict overlap gate and separate slot selection remain binding.",
+   "No new GeoTIFF or organizer submission was generated; no PR, merge, deployment or organizer receipt is claimed."
+  ],
+  "verification": {
+   "pytest": "214 passed, 8 skipped (data/template dependent)",
+   "ruff": "ruff check src scripts tests passed",
+   "git_diff_check": "passed",
+   "holdout_dti": "NOT RUN; no fresh evaluator result, withheld positive count or CI",
+   "raster": "NO NEW TIFF; sha256 null",
+   "validator": "NOT RUN; required sample template absent",
+   "organizer_score": "NONE; all focus-site scores remain owner/user-reported",
+   "pull_request": "No PR created yet; merge/deployment not claimed."
+  },
+  "open_limitations": [
+   "data/ contains only .gitkeep, so current feature stack, labels, template and full fresh registry checks are unavailable.",
+   "The prompt's lane selection refers to a single method paragraph that is not uniquely designated in the active user text.",
+   "The strict 70% overlap rule is binding; historical H66 output failed against the r13 lattice, which is reported to cover 99.87% of the footprint within 3 px.",
+   "Official non-GitHub sources were not fetched due outbound host allowlist; links are provided for manual review.",
+   "No organizer-confirmed receipt is present; 0.2778, 0.3195 and 0.4413 claims must not be conflated."
+  ],
+  "verdict": "negative; repository review and summary documentation only; no new TIFF, experiment, slot approval or competition score."
+ }
 }
