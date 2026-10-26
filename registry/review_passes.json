@@ -1024,5 +1024,58 @@
    "knowledge/32_repository_review_2026-10-26_eb807510.md",
    "registry/run_card_repo_review_2026-10-26_eb807510.json"
   ]
+ },
+ "arena_f5b9b632_repository_review_2026_10_26": {
+  "schema_version": 1,
+  "date_utc": "2026-10-26",
+  "branch": "arena/f5b9b632-gemsdoe25",
+  "verdict": "no eligible new submission; no new experiment, TIFF, slot, or organizer access",
+  "pass_1_implement_and_verify": {
+   "completed": [
+    "Read standing instructions and relevant prior run/review receipts; restored only the SHA-pinned core data group.",
+    "Freshly checked the existing H72-3 GeoTIFF against the restored sample template; the check is format-only and not submission authorization.",
+    "Audited the nine-site owner-reported artifact table, H72-3 saved holdout receipt, and saved literal-lane receipt.",
+    "Reviewed the relevant proposed changes in open PR #47 to avoid duplicating its four-hypothesis queue."
+   ],
+   "result": "No new candidate or experiment; H72-3 remains negative and ineligible."
+  },
+  "pass_2_bugs_assumptions_edge_cases": {
+   "found_and_fixed": [
+    "The H72 test asserted the density-aware empty flag list without asserting that the independent literal lane fails; strengthened it to require the 100% r13 overlap, strict stop verdict, and density-aware/literal distinction."
+   ],
+   "known_residual_risks": [
+    "H72-3 holdout and lane metrics are from saved prior-run receipts, not rerun here; scored registry rasters and the derived cache were not restored.",
+    "All nine historical scores are owner-reported, with no organizer receipts; the GEMSDOE36 focus audit and separate ledger disagree (0.2750 vs 0.2683).",
+    "The 0.3195 and 0.4413/0.4437 overall-leader claims remain conflicting and unverified.",
+    "The H72 experiment allowance is already 3/3; the requested distinct method paragraph remains unspecified."
+   ]
+  },
+  "pass_3_original_request_reconciliation": {
+   "completed": [
+    "Recorded the nine-site evidence class, B2 mask/score caveats, no defensible current score estimate, and H72-3 format/performance/lane distinction in knowledge/32_repository_review_2026-10-26.md.",
+    "Left the four planning hypotheses in PR #47 rather than duplicating them; the PR remains a separate open, conflicting PR and no hypothesis was fit.",
+    "Made no new TIF, weekly-slot decision, promotion decision, DrivenData access, or organizer upload."
+   ],
+   "unfulfilled": [
+    "No gate-cleared new submission TIF or organizer-confirmed score/receipt.",
+    "No new geological experiment; no current shared derived feature cache or scored registry raster group restored.",
+    "No external AOI scene availability was verified in this review."
+   ]
+  },
+  "scientific_budget": {
+   "new_experiments": 0,
+   "prior_h72_experiments": 3,
+   "weekly_slots_used": 0,
+   "new_tifs": 0
+  },
+  "verification": {
+   "pytest": "320 passed, 4 skipped; skips require scored-data group or external rasters not restored",
+   "ruff": "passed",
+   "compileall": "passed",
+   "javascript_syntax": "passed",
+   "git_diff_check": "passed",
+   "h72_format": "fresh template check passed; format-only, not eligibility"
+  },
+  "pr_and_deployment": "pending; no PR, merge, or deployment claimed in this receipt"
  }
 }
