@@ -3,6 +3,8 @@
 <!-- CURRENT-REVIEW-2026-10-26 -->
 ## Current decision — 2026-10-26
 
+**Repository review (fixed session branch, 2026-10-26):** no new experiment or GeoTIFF was created; software checks passed (335 tests, 12 input-dependent skips). Existing H73-PM remains **inspection only / DO NOT SUBMIT**. Strict final-dot lane checks and absent competition template/data prevent responsibly clearing a new submission. See [review note](knowledge/34_repository_review_2026-10-26.md) and [review run card](registry/run_card_repo_review_2026-10-26_7fdf591a.json).
+
 <!-- H73-PM-2026-10-26 -->
 **H73-PM decision (2026-10-26):** research GeoTIFF [gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif](docs/downloads/gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif) (content id `1b7533ebb62b`, 42,997 dots). **OK to download: YES (inspection only) · competition-ready: NO · OK TO SUBMIT: NO — DO NOT SUBMIT.** HOLDOUT-DTI 0.11343 vs same-run CTRL_H35 0.15239; paired gain -0.03896, 95% CI [-0.04717, -0.02456], 22,290 withheld-positive occurrences. This is not a leaderboard estimate. It also fails the literal lane gate on the r13 lattice (no density-aware waiver). [Current nine-site review](knowledge/34_current_session_review_2026-10-26.md) · [H73 outcomes](knowledge/33_h73_outcomes_and_executive_summary_2026-10-26.md) · [Run card](registry/run_card_h73_2026-10-26.json). No weekly slot was used.
 

@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "session_branch": "arena/7fdf591a-gemsdoe25",
+  "review_date_utc": "2026-10-26",
+  "hypothesis": null,
+  "mechanism": null,
+  "named_non_fault_mimic": null,
+  "experiment_run": false,
+  "holdout_dti": null,
+  "holdout_ci95": null,
+  "evaluator_version": null,
+  "withheld_positive_count": null,
+  "correlation_overlap_vs_registry": null,
+  "raster_sha256": null,
+  "validator_output": null,
+  "submission_name": null,
+  "submission_note": null,
+  "verdict": "negative",
+  "okay_to_download": null,
+  "okay_to_submit": false,
+  "reason": "Read-only repository review; no experiment run, no TIF created. Candidate construction is blocked pending resolution of strict literal registry overlap feasibility; do not upload any existing research artifact.",
+  "software_verification": {
+    "ruff": "passed",
+    "compileall": "passed",
+    "pytest_passed": 335,
+    "pytest_skipped": 12,
+    "skip_reason": "competition template, scored raster, or external-band inputs absent from this checkout"
+  },
+  "sibling_branch_evidence": {
+    "branch": "arena/20ed4aa1-gemsdoe25",
+    "run_card": "evidence/rod_2026-10-26/run_card.json",
+    "status": "not this session's experiment; not imported as a result",
+    "holdout_dti": 0.06904088244998727,
+    "ci95": [0.055788275765469, 0.07723532767825059],
+    "withheld_occurrences": 22813,
+    "final_lane_flag": "r13 lattice overlap; duplicate-lane stop; no raster written"
+  }
+}
