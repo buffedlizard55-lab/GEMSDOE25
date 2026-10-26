@@ -1,0 +1,61 @@
+{
+ "experiment": "H74_BLOCK25KM",
+ "mode": "block25km",
+ "preregistration": "knowledge/35_preregistered_h74_rmps_bw_2026-10-26.md",
+ "preregistration_commit": "af10a19",
+ "draws": [
+  110,
+  111
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "fold_names": [
+  "NW",
+  "NE",
+  "SW",
+  "SE"
+ ],
+ "arms": [
+  "CTRL_H35",
+  "H74_APRON",
+  "CTRL_BLIND",
+  "H74_BLIND"
+ ],
+ "arm_feature_counts": {
+  "CTRL_H35": 59,
+  "H74_APRON": 63,
+  "CTRL_BLIND": 74,
+  "H74_BLIND": 78
+ },
+ "n_neg": 300000,
+ "hgb_params": {
+  "max_iter": 100,
+  "learning_rate": 0.12,
+  "max_leaf_nodes": 31,
+  "min_samples_leaf": 50,
+  "l2_regularization": 1.0,
+  "class_weight": {
+   "0": 1,
+   "1": 5
+  },
+  "early_stopping": false
+ },
+ "kfrac_h35": 0.035,
+ "min_dist_h35": 2.4,
+ "kfrac_blind": 0.035,
+ "cat_buf_blind": 2.0,
+ "full_b2_budget": 37654,
+ "block_px": 250,
+ "leakage_auc_cap": 0.9,
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px)",
+ "evaluator_hashes": {
+  "src/gems25/metric.py": "4f6e4732029efd0238388aec74590e56bc2727df7441220ca09af7d02e9da230",
+  "src/gems25/holdout.py": "f0455eb17921e50365342ffb658504a5fcc0ddb3d2bd82f4bf0568d772be2bc1",
+  "src/gems25/validation.py": "bb2faea55b6bd827196f56758e5fbbf1e4e620e92779e6b9b53703c3bdf42ac3",
+  "src/gems25/h74_rmps.py": "0e337938c0345ee00f018721b8eae9539a8881dba6ff2e97f252fddd6c2e2fd2"
+ }
+}
