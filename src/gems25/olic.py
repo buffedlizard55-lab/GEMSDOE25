@@ -48,7 +48,7 @@ def compute_olic_grids(channels: list[np.ndarray], footprint: np.ndarray) -> lis
         l10 = line_means(g, HALF_LENGTHS[1])
         feats = (l5.max(axis=0), l10.max(axis=0), l5.max(axis=0) - l5.mean(axis=0))
         for f in feats:
-            f = np.where(foot, np.clip(f, 0.0, 1.0), 0.0).astype(np.float32)
+            f = np.where(footprint, np.clip(f, 0.0, 1.0), 0.0).astype(np.float32)
             if not np.isfinite(f[foot]).all():
                 raise ValueError("OLIC feature non-finite inside footprint")
             out.append(f)
@@ -60,8 +60,8 @@ def _scale01(values: np.ndarray, footprint: np.ndarray) -> np.ndarray:
     sel = footprint & np.isfinite(v)
     lo, hi = np.percentile(v[sel], [1, 99])
     if hi <= lo:
-        return np.where(foot, 0.0, 0.0).astype(np.float32)
-    return np.where(foot, np.clip((v - lo) / (hi - lo), 0, 1), 0.0).astype(np.float32)
+        return np.where(footprint, 0.0, 0.0).astype(np.float32)
+    return np.where(footprint, np.clip((v - lo) / (hi - lo), 0, 1), 0.0).astype(np.float32)
 
 
 def build_olic_sidecar(static, static_names, footprint, footprint_idx, out_path) -> list[str]:
