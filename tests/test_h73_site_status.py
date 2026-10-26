@@ -12,12 +12,14 @@ RUN_CARD = json.loads(CARD_PATH.read_text())
 def test_h73_is_prominent_but_explicitly_not_submission_eligible() -> None:
     for rel in ("index.html", "docs/index.html", "docs/current-review.html", "docs/executive-summary.html"):
         page = (ROOT / rel).read_text()
+        assert "H73-BW: BLOCKED BEFORE FIT" in page, rel
+        assert "NO NEW TIF" in page, rel
         assert "OK TO SUBMIT: NO — DO NOT SUBMIT" in page, rel
         assert "COMPETITION-READY TIF: NO" in page, rel
-        assert "HOLDOUT-DTI 0.11343 vs same-run CTRL_H35 0.15239" in page, rel
-        assert "literal uniqueness gate fails" in page, rel
+        assert "HOLDOUT-DTI 0.11343 vs same-run H35 0.15239" in page, rel
+        assert "literal lane audit flags 100%" in page, rel
         assert "Estimated competition score: UNKNOWN (not calibrated)" in page, rel
-        assert page.index("H73-PM-2026-10-26") < page.index("PRIOR H72-3 ARCHIVE"), rel
+        assert page.index("H73-BW-2026-10-26") < page.index("Archived H72-3 research artifact only"), rel
 
 
 def test_h73_status_matches_saved_run_card_and_strict_lane_receipt() -> None:

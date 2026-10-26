@@ -11,14 +11,19 @@ e = html.escape
 
 
 def current_banner(prefix):
-    return f'''<aside class="current-status" aria-label="Current submission status">
-<strong>26 OCT 2026 · RESEARCH-ARCHIVE DOWNLOAD: YES (INSPECTION ONLY) · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
-<span>Existing H72-3 artifact <code>88bbebfe79b4</code> is archived for inspection, not a new result. It failed the same-run H35 holdout gate and the literal registry lane; no eligible competition TIF is available.</span>
-<a href="{prefix}current-review.html">Read the nine-site executive review, 0.2778 PhD proof, H72 outcomes &amp; run card →</a></aside>'''
+    h73 = json.loads((ROOT/'registry/run_card_h73_2026-10-26.json').read_text())
+    dti = h73['holdout_dti']
+    return f'''<!-- H73-BW-2026-10-26 --><aside class="current-status" aria-label="Current submission status">
+<strong>26 OCT 2026 · NO NEW TIF · H73-BW HOLDOUT: BLOCKED BEFORE FIT · RESEARCH-ARCHIVE DOWNLOAD: YES (INSPECTION ONLY) · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
+<span>Prior H73-PM HOLDOUT-DTI {dti['pm_deapron_pooled']:.6f} vs same-run H35 {dti['ctrl_h35_pooled']:.6f}; not a leaderboard estimate. The H73-BW diagnostic is cache-blocked; the older H73-PM research raster is inspection-only and failed its strict lane gate.</span>
+<a href="{prefix}current-review.html#h73-status">Read H73-BW status, cache receipt, prior HOLDOUT-DTI and exact-file decision →</a></aside>'''
 
 
 def render_body(root_page=False):
     focus = json.loads((ROOT/'evidence/focus_audit_2026-10-26.json').read_text())
+    h73 = json.loads((ROOT/'registry/run_card_h73_2026-10-26.json').read_text())
+    h73bw = json.loads((ROOT/'registry/run_card_h73_bw_2026-10-26.json').read_text())
+    h73preflight = json.loads((ROOT/'evidence/h73_bw_preflight_2026-10-26.json').read_text())
     path = ROOT/'evidence/rod_2026-10-26/run_card.json'
     card = json.loads(path.read_text()) if path.exists() else None
     audit = ROOT/'evidence/rod_2026-10-26/analysis.json'
@@ -237,6 +242,37 @@ Historical scores in the nine-site table are OWNER-REPORTED, not ORGANIZER-CONFI
 <th>Estimated leaderboard score</th><th>Unique?</th><th>OK to submit?</th></tr></thead>
 <tbody>{inventory_rows}</tbody></table></div></details></section>'''
 
+    pm = h73['holdout_dti']
+    bw = h73bw['holdout_dti']
+    pm_lane = h73['correlation_overlap_vs_registry']
+    missing_cache = [x['path'] for x in h73preflight['required_artifacts'] if not x['exists']]
+    h73_section = f'''<section id="h73-status" class="review-decision">
+<span class="badge b-bad">NO NEW TIF · H73-BW BLOCKED BEFORE FIT · NO SLOT</span>
+<h2>Latest diagnostic: H73-PM remains negative; H73-BW cache gate is blocked</h2>
+<p>The prior H73-PM propensity-matched H35 screen recorded <b>HOLDOUT-DTI {pm['pm_deapron_pooled']:.6f}</b>
+(95% CI [{pm['pm_deapron_ci95'][0]:.6f}, {pm['pm_deapron_ci95'][1]:.6f}]; {pm['withheld_positive_occurrences']:,}
+withheld-positive occurrences; evaluator <code>{e(pm['evaluator'])}</code>) versus same-run CTRL_H35
+<code>{pm['ctrl_h35_pooled']:.6f}</code>. It failed its same-run gate; these values are catalogue-gap proxy metrics,
+<b>not competition scores or projections</b>. Its far-field score beat the blind control by +0.006740 but remained below H35.
+The old H73-PM artifact's exact content is distinct, but the strict literal lane audit flags the dense r13 lattice;
+that file is inspection-only, not lane-cleared.</p>
+<div class="table-scroll"><table><thead><tr><th>Downloadable file</th><th>Estimated competition score</th><th>Saved HOLDOUT-DTI (proxy)</th><th>Unique / lane status</th><th>OK to submit?</th></tr></thead><tbody>
+<tr><td><a download href="downloads/{e(h73['submission_name'])}"><code>{e(h73['submission_name'])}</code></a></td>
+<td>NOT ESTIMATED</td><td>{pm['pm_deapron_pooled']:.6f} [{pm['pm_deapron_ci95'][0]:.6f}, {pm['pm_deapron_ci95'][1]:.6f}]; {pm['withheld_positive_occurrences']:,} withheld positives</td>
+<td>Content id <code>{e(h73['content_id'])}</code> is distinct; strict literal lane FAIL ({e(pm_lane['strict_verdict'])}; flagged: {e(', '.join(pm_lane['flagged_literal']))})</td><td><b>NO — DO NOT SUBMIT</b></td></tr>
+<tr><td>H73-BW diagnostic candidate: <b>no file produced</b></td><td>NOT ESTIMATED</td><td>{e(bw['reason'])}</td><td>Not assessed; no surface or final dots</td><td><b>NO</b></td></tr>
+</tbody></table></div>
+<p><b>Why no H73-BW result:</b> the read-only preflight is <code>{e(h73preflight['status'])}</code>; all {len(missing_cache)} required shared-cache artifacts are missing
+({e(', '.join(missing_cache))}). The loader that can build the H34 sidecar was not called. No restore, cache rebuild, feature canary, model fit,
+HOLDOUT-DTI, candidate surface, lane check, or new raster was run. The conditional decision permits one evaluation-only diagnostic because
+H73-PM had far-field lift over the blind control, but it does not waive H73-PM's failure against H35 or authorize promotion.</p>
+<p><a href="../knowledge/34_h73_bw_block_selector_2026-10-26.md">H73-BW conditional go/no-go and frozen design</a> ·
+<a href="../evidence/h73_bw_preflight_2026-10-26.json">Read-only cache receipt</a> ·
+<a href="../registry/run_card_h73_bw_2026-10-26.json">H73-BW run card (metrics null)</a> ·
+<a href="../knowledge/35_h73_bw_followup_review_2026-10-26.md">H73-BW follow-up review</a> ·
+<a href="../knowledge/33_h73_outcomes_and_executive_summary_2026-10-26.md">Prior H73-PM outcomes</a> ·
+<a href="../registry/run_card_h73_2026-10-26.json">Prior H73-PM run card</a>.</p></section>'''
+
     apfl2_path = ROOT/'registry/run_card_apfl2_2026-10-26.json'
     apfl2 = json.loads(apfl2_path.read_text()) if apfl2_path.exists() else None
     apfl2_section = ''
@@ -305,7 +341,8 @@ Requested caps saturate at available ridge candidates, so this orders density re
     coverage = focus['lattice_coverage']
     body = f'''<section class="hero"><p class="eyebrow">RESEARCH DECISION BRIEF / 26 OCTOBER 2026</p>
 <h1>Know what to submit.<br>Know when to stop.</h1>
-<p class="lead">Nine focus sites, one auditable comparison, and a clear stop. No new experiment or TIF in this review. No predicted leaderboard scores.</p></section>
+<p class="lead">Nine focus sites, one auditable comparison, and a clear stop. The H73-BW diagnostic is blocked before fit; no new TIF or slot is approved. No predicted leaderboard scores.</p></section>
+{h73_section}
 <section class="review-decision"><span class="badge b-bad">NO ELIGIBLE COMPETITION TIF · OK TO SUBMIT: NO</span><h2>Archived H72-3 research artifact only — no competition-ready download (DO NOT SUBMIT)</h2>
 <p>{e(featured['title'])}. {e(featured['summary'])}</p>
 <p>Prior-session ROD stop: {status}</p>{download}
@@ -407,9 +444,15 @@ Automatic source availability is not automatic scientific verification or a live
 
 def readme_status():
     brief = (ROOT/'knowledge/current_project_brief_2026-10-26.md').read_text()
+    h73 = json.loads((ROOT/'registry/run_card_h73_2026-10-26.json').read_text())
+    h73bw = json.loads((ROOT/'registry/run_card_h73_bw_2026-10-26.json').read_text())
+    pm = h73['holdout_dti']
+    bw = h73bw['holdout_dti']
     return ("<!-- CURRENT-REVIEW-2026-10-26 -->\n"
             "## Current decision — 2026-10-26\n\n"
-            "**Research-archive download: YES (inspection/testing only) · Competition-ready TIF: NO · OK TO SUBMIT: NO · weekly slot: NO — DO NOT SUBMIT.** "
+            "<!-- H73-BW-2026-10-26 -->\n"
+            f"**H73-BW diagnostic: {h73bw['status'].upper()} · NO NEW TIF · OK TO SUBMIT: NO.** The one registered, evaluation-only block-selector run is blocked before fit because the shared cache is absent. Prior H73-PM HOLDOUT-DTI {pm['pm_deapron_pooled']:.6f} (95% CI [{pm['pm_deapron_ci95'][0]:.6f}, {pm['pm_deapron_ci95'][1]:.6f}]; {pm['withheld_positive_occurrences']:,} withheld positives; evaluator {pm['evaluator']}) failed same-run H35 {pm['ctrl_h35_pooled']:.6f}; it is not a leaderboard score or projection. Its prior research raster [`{h73['submission_name']}`](docs/downloads/{h73['submission_name']}) (content id `{h73['content_id']}`, {h73['positive_pixels']:,} dots) is inspection-only, not strict-lane cleared, and remains DO NOT SUBMIT. [H73-BW design](knowledge/34_h73_bw_block_selector_2026-10-26.md) · [cache receipt](evidence/h73_bw_preflight_2026-10-26.json) · [run card](registry/run_card_h73_bw_2026-10-26.json) · [follow-up review](knowledge/35_h73_bw_followup_review_2026-10-26.md) · [prior H73-PM outcomes](knowledge/33_h73_outcomes_and_executive_summary_2026-10-26.md). The metrics for this H73-BW screen are null: {bw['reason']}\n\n"
+            "**Research-archive download: YES (inspection/testing only) · Competition-ready TIF: NO · OK TO SUBMIT: NO · weekly slot: NO — DO NOT SUBMIT.** Older H72 research archive: "
             "Existing H72-3 research artifact (not created in this review): [`gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.tif`](docs/downloads/gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.tif) "
             "(content id `88bbebfe79b4`, `41,061` binary dots; DEM-free 4-fold OOF PTTG + MTHS subsurface stack). No new TIF was created. "
             "Three pre-registered H72 screens (draws 80–85) passed standalone leakage canaries (max AUC <= 0.655): de-aproned `H72-1` (+0.0061) and `H72-2` (+0.0073) beat blind controls in 4/4 folds, and `H72-3` (+0.0014) beat its subsurface control, while all three failed vs same-run Family-E `H35`. "
