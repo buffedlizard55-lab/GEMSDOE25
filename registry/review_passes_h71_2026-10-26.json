@@ -1,0 +1,53 @@
+{
+ "schema_version": 1,
+ "date_utc": "2026-10-26",
+ "session_branch": "arena/71b61fac-gemsdoe25",
+ "method": "Three passes as requested. Each pass builds on the previous one; findings are real defects/gaps found and fixed, or explicitly recorded limitations.",
+ "pass_1_implement_and_verify": {
+  "scope": "Review GEMSDOE25; executive answer on GEMSDOE32 0.2778 vs claimed live 0.4413/0.3195; pre-register H71-1..5 before any fit; run <=3 catalogue-free DIRECT-emission holdout screens on cached stack; build a unique format-valid GeoTIFF; make download vs submit status obvious; GitHub Pages + README; PR then merge; no weekly slot.",
+  "done": [
+   "Pre-registration knowledge/27 committed as d4d4bf7 before any fit. Frozen stopping rule followed: H71-1 FAIL vs H35 -> skip 72/73; Exp 2 AKF; Exp 3 MAG-ANISO; TIF from HGPC-BLIND as fallback.",
+   "Three HOLDOUT-DTI screens (evaluator gems25.holdout.v1.2-buffered-4quad-pooled-dti): HGPC-BLIND 0.050577 vs H35 0.149887 (0/4, GATE FAIL, vs crest +0.0262); AKF 0.058204 vs H35 0.147963 (FAIL); MAG 0.049192 vs H35 0.148109 (FAIL). Leakage canaries 0.6945 / 0.6177 / 0.5523 all PASS.",
+   "Unique TIF gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif (59,472 dots, SHA-256 44ee60289f21030b…eba1808) + NaN twin + zip. Independent rasterio audit all_hard_checks_pass; strict whole-array [0,1]; 0 catalogue pixels.",
+   "Lane: density-aware UNIQUE vs 21 top-scorers (15.4% vs GEMSDOE32 B2; worst 25.1%) and own HGB lineage (23.4% — first GEMSDOE25 file to clear the 70% own-HGB wall). Literal FAIL only r13 lattice (IR-25-LANE-DENSITY). Surface |rho| 0.030.",
+   "Featured download registered with ok_to_download true, ok_to_submit_slot false, slot_approved false. Site hero + README: OK to download YES / OK to spend a weekly slot NO — DO NOT SUBMIT. pytest 236 passed, ruff clean."
+  ]
+ },
+ "pass_2_bugs_assumptions_edge_cases": {
+  "found_and_fixed": [
+   "scripts/fetch_top_scorers.py wrote a 538-byte GitHub Contents API JSON error body as g27_topo-gap-d1-5_0.2449.tif (CPLE_OpenFailedError). Replaced the file via git blob-fetch; rewrote the script to use shallow git as primary, refuse payloads <10 kB, and never loop gh api after 403.",
+   "H71-3 first D8 implementation used drop-magnitude instead of steepest downhill slope, so diagonal neighbours won. Fixed to steepest-slope; synthetic tests assert leftward flow on a right-increasing ramp.",
+   "build_h71_candidate first wrote *-zero.tif (singular); renamed to *-zeros.tif to match the registry convention and rebuilt the zip.",
+   "tests/test_h66_submission.py looked up role==primary; retargeted to id==h66-mgd-flank so H66 locks survive the H71 featured-role move.",
+   "H71 site table first hard-coded 4/4 and 0/4 fold counts; rebuilt from run-card vs_named.folds_positive.",
+   "build_readme H71 paragraph first used a double-escaped \\\\n (literal backslash-n). Corrected before the README rebuild."
+  ],
+  "known_residual_risks": [
+   "Hide-and-recover HOLDOUT-DTI is a catalogue-gap proxy (IR-25-PROXY-LIMITS). Catalogue-free DIRECT detectors beating crest but losing to H35 is expected on this proxy and does not price live off-catalogue credit.",
+   "Same-run H35 pooled DTI drifted 0.14796–0.14989 across the three experiments (IR-25-COMPARATOR-DRIFT); gates use same-run controls only.",
+   "Prompt live claims 0.3195 / 0.4413 remain unverified; DrivenData was not contacted. Group-best 0.2778 is OWNER-REPORTED.",
+   "Template, labels, and top-scorer rasters are owner mirrors pinned by SHA-256, not organizer-authenticated (IR-25-PROVENANCE)."
+  ]
+ },
+ "pass_3_recheck_against_original_brief": {
+  "mapping": {
+   "unique TIF, not a copy of prior GEMSDOE files": "content id 9eb0c31e5149; 15.4% 3-px vs B2; own HGB max 23.4%; surface |rho| 0.030. Direct physics emission, not an HGB add-on.",
+   "obvious whether OK to download and submit": "index.html / docs/executive-summary.html / README hero: OK to download YES, OK to spend a weekly slot NO — DO NOT SUBMIT. Note is a research identifier (91 chars) and is labelled not for the competition form.",
+   "predicted values in [0,1]; unique name + short note": "zeros-outside primary, independent strict whole-array check; filename content-addressed; note 91 chars with no slot / unscored / not slot-approved.",
+   "validation through the project, no human inspector": "gems25.submission.check_file + scripts/verify_candidate_independent.py + tests/test_h71_submission.py. 236 pytest, ruff clean.",
+   "never automate drivendata.org; never upload": "unchanged; no slot spent.",
+   "pre-register before running; no weekly slot unless holdout beat + exact-file audit": "knowledge/27 at d4d4bf7 pre-fit; all 3 screens FAIL vs H35; ok_to_submit_slot false.",
+   "HOLDOUT-DTI vs ORGANIZER-CONFIRMED labels; never write a projection as a score": "run card / site / knowledge/28 label HOLDOUT-DTI and OWNER-REPORTED; expected_range says 'no live projection computed'.",
+   "lane stop |Spearman|>0.90 or >70% within 3 px of a registry raster": "literal r13 100% FAIL recorded; density-aware UNIQUE vs scored + own lineage. Verdict negative on the literal rule.",
+   "reuse cached stack / evaluate_holdout / submission_writer": "scripts/run_h71_experiments.py uses gems25.holdout and gems25.cell; build_h71_candidate.py uses gems25.submission.write_submission.",
+   "stay on arena/71b61fac-gemsdoe25; PR then merge": "this file; PR opened from this branch (status in the PR/final message, not asserted here).",
+   "GitHub Pages, executive-summary subpage, README with prompt": "root index.html + docs/*.html rebuilt; README retains the owner mandate and verbatim brief and prepends the H71 session line.",
+   "study GEMSDOE32 h33-h33-2-b2 0.2778 vs claimed live 0.4413/0.3195": "knowledge/28 §1: B2 is nested H19-5 thinning + collar deletion; live 0.3195/0.4413 unverified.",
+   "3-5 untried hypotheses; <=3 experiments or 2 hours": "H71-1..5 ranked in knowledge/27; 3/3 screens run; H71-5 HARD-SGMC not run (budget + compilation-overlap risk)."
+  },
+  "gaps_found_and_closed": [
+   "Featured-role move would have broken tests/test_h66_submission.py (role==primary); retargeted to id.",
+   "GitHub Contents API 403 left a fake GeoTIFF in data/registry_top; fetch_top_scorers.py now prefers git blobs and refuses undersized payloads."
+  ]
+ }
+}

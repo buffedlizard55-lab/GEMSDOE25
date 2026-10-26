@@ -46,6 +46,7 @@ def main() -> None:
     h31_aniso_card = opt("evidence/h31_experiments/run_card.json")
     h38_card = opt("registry/run_card_h38_ospc_2026-10-25.json")
     h66_card = opt("registry/run_card_h66_2026-10-25.json")
+    h71_card = opt("registry/run_card_h71_2026-10-26.json")
     h36_spigm_card = opt("registry/run_card_h36_spigm_2026-10-25.json")
     h36_spigm_pool = opt("evidence/h36_spigm_pooled_16cells.json")
     focus_forensics = opt("evidence/focus_sites_forensics.json")
@@ -59,11 +60,19 @@ def main() -> None:
     A("# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize\n")
     A("## Start here every session — owner mandate, 2026-10-25\n")
     A("**MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.** The project's decision principles are **Maximize P(Win)** and **Own the Outcome**. Review the original owner prompt and this README each session; follow `AGENTS.md`. Test catalogue-free geological hypotheses on buffered, spatially blocked hide-and-recover folds; test each feature alone for leakage (AUC >0.90 is presumptive leakage); check surface and final dots against every available registry raster (|rank correlation| >0.90 or >70% within 3 pixels is a duplicate-lane stop). Report pooled HOLDOUT-DTI with withheld-positive count and 95% CI, never present a projection or owner-reported claim as an organizer-confirmed score. Never spend a weekly slot before a separate selector decision. Exact-file format checks do not imply submission approval. Read the complete historical owner brief at the bottom. The current owner's very long updated prompt is not claimed to be transcribed verbatim here; this section records its actionable protocol, not the complete message.\n")
+    if h71_card:
+        e1_71 = h71_card["experiments"]["experiment_1_h71_1_hgpc_screen"]
+        e2_71 = h71_card["experiments"]["experiment_2_h71_3_akf_screen"]
+        e3_71 = h71_card["experiments"]["experiment_3_h71_4_mag_screen"]
+        rc71 = h71_card["registry_correlation_and_overlap"]
+        A("**Latest session (2026-10-26, H71 HGPC-BLIND DIRECT + AKF + MAG-ANISO 3-experiment lane — featured download below):** "
+          f"[why `GEMSDOE32` `H33-2-B2` scored `0.2778`, 5 ranked untried hypotheses (`H71-1..H71-5`), and 3 pre-registered DIRECT-emission screens — `H71-1` HGPC-BLIND HOLDOUT-DTI `{e1_71['candidate_pooled_holdout_dti']:.4f}` vs H35 `{e1_71['control_h35_pooled_holdout_dti']:.4f}` (`{e1_71['gate']['vs_named']['CTRL_H35_24']['mean_gain']:+.4f}`, `0/4` folds, GATE FAIL) / vs crest `{e1_71['gate']['vs_named']['CTRL_CREST_B2']['mean_gain']:+.4f}`; `H71-3` AKF `{e2_71['candidate_pooled_holdout_dti']:.4f}` FAIL vs H35; `H71-4` MAG `{e3_71['candidate_pooled_holdout_dti']:.4f}` FAIL vs H35 — unique GeoTIFF `9eb0c31e5149` (`{100*rc71['focus_21_top_scorers']['b2_overlap']:.1f}%` vs B2, own HGB lineage `{100*rc71['own_lineage']['worst_cand_dots_within_3px']:.1f}%`, first GEMSDOE25 file to clear own HGB 70% wall; OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT)](knowledge/28_h71_outcomes_2026-10-26.md) · "
+          "pre-registration [`knowledge/27_preregistered_h71_hgpc_2026-10-26.md`](knowledge/27_preregistered_h71_hgpc_2026-10-26.md) (commit `d4d4bf7`, pre-fit) · run card `registry/run_card_h71_2026-10-26.json`.\n")
     if h66_card:
         e1_66 = h66_card["experiments"]["experiment_1_h66_1_screen"]
         e2_66 = h66_card["experiments"]["experiment_2_h66_1_confirm"]
         e3_66 = h66_card["experiments"]["experiment_3_h66_2_sgmc_react_screen"]
-        A("**Latest session (2026-10-25, H66 MGD-F + SGMC-REACT 3-experiment lane — featured download below):** "
+        A("**Prior session (2026-10-25, H66 MGD-F + SGMC-REACT 3-experiment lane):** "
           f"[PhD forensic deconstruction of `GEMSDOE32` (`0.2778`) across focus sites `24–36` & `48–92`, 5 ranked untried hypotheses (`H66-1..H66-5`), and 3 pre-registered holdout experiments — `H66-1` screen PASS (`{e1_66['gate']['mean_gain']:+.6f}`, `4/4` folds+) / confirm FAIL (`{e2_66['gate']['mean_gain']:+.6f}`), `Factor C` flank shield `+8/8` (`16/16` combined with `H31-1`), `H66-2` `SGMC-REACT` screen PASS (`{e3_66['gate']['mean_gain']:+.6f}`, `4/4` folds+, unconfirmed at `3/3` cap) — unique GeoTIFF `da617550a0e9` (`0/21` sibling top-scorers flagged, `30.4%` vs `B2`; OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT)](knowledge/26_h66_outcomes_2026-10-25.md) · "
           "pre-registration [`knowledge/25_preregistered_h66_mgd_and_sgmc_react_2026-10-25.md`](knowledge/25_preregistered_h66_mgd_and_sgmc_react_2026-10-25.md) (commit `0f6fc77`, pre-fit) · run card `registry/run_card_h66_2026-10-25.json`.\n")
     if h38_card:
@@ -112,7 +121,7 @@ def main() -> None:
     A("> ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).\n")
     A("> **OK to download (local testing): " + ("YES" if primary.get("ok_to_download") else "NO") + " · OK to spend a weekly slot: " + ("YES" if primary.get("ok_to_submit_slot") else "NO") + " — DO NOT SUBMIT** "
       f"(verdict **{primary.get('verdict', 'n/a')}**). Projection: {primary.get('expected_range', 'n/a')}. Lane: {primary.get('lane_summary', 'n/a')}. "
-      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest known file. Why this negative file is featured: IR-25-H38-REGIME-SPLIT / IR-25-XG1-FEATURED-NEGATIVE / IR-25-FEATURED-DOWNLOAD-RATIONALE (see also H38 greedy-credit `18de99d38bb0` in `knowledge/26_h38_outcomes_and_0.2778_answer_2026-10-25.md` and H36-SPIGM `3937b96ce366` in `knowledge/22_h36_outcomes_and_forensics_2026-10-25.md`).\n")
+      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest known file. Why this negative file is featured: unique DIRECT-physics emission that clears own HGB lineage (`knowledge/28`); prior rationale IR-25-H38-REGIME-SPLIT / IR-25-XG1-FEATURED-NEGATIVE / IR-25-FEATURED-DOWNLOAD-RATIONALE still applies to earlier downloads.\n")
     if h36_spigm_card and h36_spigm_pool:
         p16 = h36_spigm_pool["arms"]
         cmp16 = h36_spigm_pool["comparisons"]
