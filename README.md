@@ -1,5 +1,14 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
+## Latest exact-file audit — 2026-10-26
+
+**OK TO SUBMIT: NO.** [Executive summary and one-click research downloads](docs/current-review.html) · [Machine-readable audit](docs/data/download_audit.json) · [Review and next hypotheses](knowledge/29_download_audit_and_next_hypotheses_2026-10-26.md).
+Fresh validation: **36/36 shipped TIFFs pass local format checks**, but represent only **19 distinct footprint arrays**. Different exterior conventions do not make a unique prediction. No new TIFF or experiment was produced this session; no holdout/lane/selector gate was overridden. Leaderboard estimates remain unknown. Reproduce with `.venv/bin/python scripts/audit_downloads.py` after restoring the pinned template.
+
+### Continuing owner requirements
+
+Read the full standing brief below on every session. This turn reiterates it: prioritize a genuinely unique, automatically validated, high-scoring TIFF; provide the nine-site executive table, short submission note and honest score evidence; propose hypotheses before implementation; use the shared buffered holdout/writer and feature leakage canaries; stop on duplicate-lane results; use at most three experiments/two hours; never spend a weekly slot without a comparable holdout win and separate selector. **Maximize P(Win)** and **Own the Outcome** mean reporting an unfulfilled artifact requirement rather than falsely approving a failed file. The current prompt has no explicit single-method paragraph. This paragraph is a condensed addendum, not a verbatim transcript; the longer preserved owner briefs remain below.
+
 <!-- CURRENT-REVIEW-2026-10-26 -->
 ## Current decision — 2026-10-26
 

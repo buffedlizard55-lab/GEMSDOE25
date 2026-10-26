@@ -835,5 +835,17 @@
    "The merged main branch also carries independent ROD and APFL work. Their results/artifacts are not part of the POL3 experiment budget or validation; APFL holdout is pending and is not slot-approved."
   ],
   "verdict": "negative; one screen completed, POL3 failed frozen holdout gate; no candidate raster, no lane clearance, no slot approval."
+ },
+ "arena_88ce763f_download_audit": {
+  "pass_1": "Audited standing brief, prior negative results and shared tools; restored pinned template; validated all 36 download TIFFs.",
+  "pass_2": "Tested invalid values, negative zero, exterior-independent identity and hash pinning; fixed root-page JSON receipt link exposed by link tests.",
+  "pass_3": "Rebuilt executive pages; checked nine-site summaries, no numerical score projection, strict-lane wording, no new TIFF/no experiment/no slot claims.",
+  "verification": {
+   "pytest": "265 passed, 4 data-dependent skipped, one existing ConstantInputWarning",
+   "ruff": "passed",
+   "git_diff_check": "passed",
+   "official_reference_head": "aebe92f7c8a990f0e3443451b7a825d9afd6336b"
+  },
+  "unfulfilled": "No new unique high-scoring slot-cleared TIFF. No geological validation run. Current owner brief preserved as condensed addendum, not falsely described as verbatim."
  }
 }
