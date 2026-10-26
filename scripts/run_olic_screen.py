@@ -58,7 +58,9 @@ def canaries(cell, olic):
 
 
 def pooled(rows):
-    tp = sum(r["tp"] for r in rows); fp = sum(r["fp"] for r in rows); n = sum(r["n_truth"] for r in rows)
+    tp = sum(r["tp"] for r in rows)
+    fp = sum(r["fp"] for r in rows)
+    n = sum(r["n_truth"] for r in rows)
     return {"dti": float(tp / (tp + 0.2 * fp + 0.8 * (n - tp) + 1e-7)), "withheld_positives": int(n),
             "tp": float(tp), "fp": float(fp), "fn": float(n - tp)}
 
@@ -94,7 +96,8 @@ def main() -> None:
                 raise SystemExit(f"OLIC leakage canary failed fold={fold} draw={draw}: {leak}")
             pc = fit_predict(cell, cols, h34, None, draw)
             pp = fit_predict(cell, cols, h34, olic, draw)
-            ec, dc = emit(cell, pc); ep, dp = emit(cell, pp)
+            ec, dc = emit(cell, pc)
+            ep, dp = emit(cell, pp)
             rc, rp = cell.evaluate(ec), cell.evaluate(ep)
             row = {"fold": fold, "fold_name": FOLDS[fold], "draw": draw, "withheld_positives": rc["n_truth"],
                    "control": rc, "candidate": rp, "paired_gain": rp["dti"] - rc["dti"],
