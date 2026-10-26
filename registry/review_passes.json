@@ -848,7 +848,7 @@
         "Updated shared site-generation source and README status so the older H71 file is described as a testing artifact with a literal lattice lane failure; the saved ROD run is clearly stated to have written no TIFF.",
         "Expanded the generated nine-site table with historical file, OWNER-REPORTED score, unestimated new-file score, mask identity note, and explicit ineligibility for a new slot.",
         "Integrated the exact-file audit from the concurrently merged main: 36/36 shipped TIFFs pass local format checks but resolve to only 19 distinct in-footprint arrays; no file is promoted or score-estimated.",
-        "Reconciled the separately preregistered OLIC parallel-lane screen from main, clearly labeled it independent of this review: its frozen HOLDOUT-DTI gate failed and it wrote no TIFF.",
+        "Reconciled the separately preregistered OLIC screen and D01 density diagnostic from main, clearly labeled them as independent parallel results; did not perform either experiment in this review or use them to approve a TIFF.",
         "Integrated the concurrently merged preregistered strict-lattice feasibility audit (no model fits): the B2-sized 37,654-dot budget has at least 82.70% unavoidable overlap vs the 70% cap; this is a geometric bound, not a score or full-registry uniqueness result."
       ],
       "result": "No new experiment or TIFF. ROD remains a prior negative result; H71 remains testing-only and not lane-unique under the literal rule."
@@ -886,7 +886,7 @@
       "run_card_json": "valid JSON",
       "organizer_access": "none; no DrivenData page, leaderboard, submission endpoint or credentials accessed"
     },
-    "pr_merge": "PR #43 remains open. Reconciled origin/main through 8774b61, including the exact-download and separate OLIC audits; merge reconciliation is locally tested but not yet pushed. Push, require checks on the new head, and only merge if GitHub reports clean and all checks pass."
+    "pr_merge": "PR #43 remains open. Reconciled origin/main through 2465b91, including the exact-download, separate OLIC, and D01 audits; merge reconciliation is locally tested but not yet pushed. Push, require checks on the new head, and only merge if GitHub reports clean and all checks pass."
   },
  "arena_88ce763f_download_audit": {
   "pass_1": "Audited standing brief, prior negative results and shared tools; restored pinned template; validated all 36 download TIFFs.",
