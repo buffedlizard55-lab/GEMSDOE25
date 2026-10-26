@@ -14,6 +14,8 @@ import json
 import sys
 from pathlib import Path
 
+from build_current_review import current_banner, render_body
+
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 e = html.escape
@@ -34,7 +36,8 @@ def fmt_bytes(n: int) -> str:
 
 def page(title: str, body: str, active: str, prefix: str) -> str:
     """``prefix`` is the path from the page to docs/ ('' inside docs, 'docs/' from the root)."""
-    nav = [("index", "Start here", "index.html"), ("exec", "How to submit", "executive-summary.html"),
+    nav = [("index", "Start here", "index.html"), ("current", "Current review", "current-review.html"),
+           ("exec", "How to submit", "executive-summary.html"),
            ("research", "Research", "research.html"), ("sources", "Sources & audit", "sources.html")]
     links = []
     for key, label, href in nav:
@@ -43,7 +46,7 @@ def page(title: str, body: str, active: str, prefix: str) -> str:
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{e(title)} · GEMSDOE25</title><link rel="stylesheet" href="{prefix}assets/style.css"></head><body>
 <header class="top"><div class="wrap"><div class="brand">GEMSDOE25<small>DOE GEMS Prize · DrivenData #306 · designed factorial experiments</small></div><nav>{''.join(links)}</nav></div></header>
-<main class="wrap">{body}</main>
+<main class="wrap">{current_banner(prefix)}{body}</main>
 <footer><div class="wrap">Core values: <b>Maximize P(Win)</b> · <b>Own the Outcome</b>. Source: <a href="https://github.com/buffedlizard55-lab/GEMSDOE25">github.com/buffedlizard55-lab/GEMSDOE25</a> ·
 built {dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} from <code>registry/</code> and <code>evidence/</code> by <code>scripts/build_site.py</code>.
 No score here is promised; reported scores are unverified unless an organizer receipt is supplied. This site/feed never contacts drivendata.org.</div></footer>
@@ -700,11 +703,14 @@ Response: exact sparse-regime DTI of a fixed emission (ridge NMS → top 2.45 % 
 <h2>Leaderboard values supplied in the task (unverified; reported {snap['reported_utc']})</h2><table><thead><tr><th>Claimed rank</th><th>Participant claim</th><th class="num">Claimed public DTI</th><th class="num">Claimed submissions</th></tr></thead><tbody>{lbt}</tbody></table>"""
 
     DOCS.mkdir(exist_ok=True)
-    (DOCS / "index.html").write_text(page("Start here", home(""), "index", ""))
-    (ROOT / "index.html").write_text(page("Start here", home("docs/"), "index", "docs/"))
-    (DOCS / "executive-summary.html").write_text(page("How to submit", exec_body, "exec", ""))
+    (DOCS / "history.html").write_text(page("Historical archive", home(""), "history", ""))
+    (DOCS / "submission-history.html").write_text(page("Historical submission guide", exec_body, "history", ""))
+    (DOCS / "index.html").write_text(page("Start here", render_body(), "index", ""))
+    (ROOT / "index.html").write_text(page("Start here", render_body(root_page=True), "index", "docs/"))
+    (DOCS / "executive-summary.html").write_text(page("Executive summary & submission guide", render_body(), "exec", ""))
     (DOCS / "research.html").write_text(page("Research", research, "research", ""))
     (DOCS / "sources.html").write_text(page("Sources & audit", sources, "sources", ""))
+    (DOCS / "current-review.html").write_text(page("Current executive review", render_body(), "current", ""))
     for name in ("submissions", "live_scores", "irregularities", "sources", "data_manifest", "artifact_ledger"):
         (DOCS / "data" / f"{name}.json").write_text((ROOT / "registry" / f"{name}.json").read_text())
     print("site built:", [p.name for p in DOCS.glob("*.html")] + ["../index.html"])

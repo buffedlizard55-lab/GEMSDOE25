@@ -284,11 +284,15 @@ class Cell:
 
     def feature_canary_auc(self, col_idx: int) -> dict[str, float]:
         """Compute single-feature ROC-AUC on the holdout quadrant (`max(auc, 1-auc)` and signed `auc`)."""
-        vals = self.Xq[:, int(col_idx)]
-        raw_auc = self.auc(vals)
-        if not np.isfinite(raw_auc):
-            return {"raw_auc": float("nan"), "canary_auc": float("nan")}
-        return {"raw_auc": float(raw_auc), "canary_auc": float(max(raw_auc, 1.0 - raw_auc))}
+        from .validation import feature_canary
+
+        idx = np.concatenate([self.auc_pos, self.auc_neg])
+        y = np.concatenate([np.ones(self.auc_pos.size), np.zeros(self.auc_neg.size)])
+        rec = feature_canary(self.Xq[idx, int(col_idx)], y)
+        # Preserve legacy numeric keys, but fail closed on unverifiable columns.
+        return {"raw_auc": rec["auc"] if rec["auc"] is not None else float("nan"),
+                "canary_auc": rec["canary_auc"] if rec["canary_auc"] is not None else float("inf"),
+                "missingness_auc": rec["missingness_auc"], "passed": rec["passed"]}
 
     def evaluate(self, emitted_c: np.ndarray) -> dict:
         r = dti_binary(emitted_c, self.truth_c, valid=self.dom_c, known=self.known_c)

@@ -103,12 +103,16 @@ def test_h38_revalidates_independently_against_template():
 
 def test_site_and_readme_surface_h38_verdict_at_top():
     primary = next(s for s in J("registry/submissions.json")["files"] if s["role"] == "primary")
-    for rel in ("index.html", "docs/index.html", "docs/executive-summary.html"):
+    for rel in ("docs/history.html", "docs/submission-history.html"):
         html = (ROOT / rel).read_text()
         assert "OK to download: YES" in html
         assert "OK to spend a weekly slot: NO" in html
         assert primary["file"] in html
         assert html.index("OK to download: YES") < html.index("Prior parallel-lane CF-1 research TIFF")
+    for rel in ("index.html", "docs/index.html", "docs/executive-summary.html"):
+        html = (ROOT / rel).read_text()
+        assert "OK TO SUBMIT: NO" in html
+        assert "New TIF download: unavailable" in html
     readme = (ROOT / "README.md").read_text()
     assert primary["file"] in readme
     assert "OK to download (local testing): YES · OK to spend a weekly slot: NO — DO NOT SUBMIT" in readme

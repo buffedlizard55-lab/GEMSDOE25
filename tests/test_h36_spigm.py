@@ -206,10 +206,13 @@ def test_h36_featured_deliverable_run_card_and_site_banners():
     assert v_out["zeros_independent_strict_validator"]["whole_array_in_0_1"] is True
     assert v_out["zeros_independent_strict_validator"]["cannot_trigger_range_0_1_portal_error"] is True
 
-    # Front-page & Executive Summary status banner visibility
-    for page_rel in ("index.html", "docs/index.html", "docs/executive-summary.html"):
+    # Historical H36 download/status assertions stay on the preserved archive;
+    # the current front page must no longer present it as a new deliverable.
+    for page_rel in ("docs/history.html", "docs/submission-history.html"):
         html_txt = (root / page_rel).read_text()
         assert primary["file"] in html_txt
         assert "OK to download: YES" in html_txt
         assert "OK to spend a weekly slot: NO" in html_txt
         assert "DO NOT SUBMIT" in html_txt
+    for page_rel in ("index.html", "docs/index.html", "docs/executive-summary.html"):
+        assert "OK TO SUBMIT: NO" in (root / page_rel).read_text()

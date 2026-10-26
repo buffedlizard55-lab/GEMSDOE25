@@ -1,0 +1,60 @@
+{
+  "schema": "run_card/v1 (parallel-run protocol)",
+  "review_date_utc": "2026-10-26",
+  "session_branch": "arena/d956e0a6-gemsdoe25",
+  "review_type": "repository/source/evidence review; no model experiment",
+  "hypothesis": "No geological hypothesis was fitted. Review conclusion: the available records explain GEMSDOE32 B2's owner-reported 0.2778 as a plausible gain from removing low-credit near-catalogue emission mass, but the score is not organizer-confirmed and no current candidate can be approved from this checkout.",
+  "mechanism": "COMPUTED mirrored-raster identity: the supplied B2 raster is a pruned subset in the H19-5 -> D2.8 -> R1 -> B2 chain. Conditional on the reported scores, pruning low-marginal-credit dots can improve the DTI denominator trade-off without improving fault detection. This mechanism is an inference about scoring, not verified hidden-label truth.",
+  "named_non_fault_process_that_could_mimic_it": "Lithologic contacts and volcanic-flow boundaries can create aligned magnetic, gravity, radiometric or conductivity edges; hydrologic incision, alluvial-fan margins and survey seams can imitate fault/scarp signals.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "status": "NOT RUN in this review",
+    "evaluator_version": "gems25.holdout.v1.2-buffered-4quad-pooled-dti (referenced in prior run cards; no current execution)",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel": "300 m triangular",
+    "withheld_positive_count": null,
+    "mean": null,
+    "ci95": null,
+    "reason": "data/ contains only .gitkeep; no restored labels, feature stack or submission template. No candidate was fitted."
+  },
+  "correlation_overlap_vs_registry": {
+    "label": "LANE CHECK",
+    "status": "NO NEW SURFACE OR FINAL DOTS; no fresh lane check",
+    "strict_thresholds": {
+      "absolute_rank_correlation_stop_gt": 0.9,
+      "candidate_dots_within_3px_stop_gt_fraction": 0.7
+    },
+    "current_surface_correlation": null,
+    "current_final_dot_overlap": null,
+    "historical_context_not_recomputed": "Prior H66 receipt reports 100% overlap against the r13 lattice and other strict lane failures; it is not a fresh result for a new candidate."
+  },
+  "raster": {
+    "generated": false,
+    "sha256": null,
+    "submission_name": null,
+    "reason": "No fresh artifact generated: missing data/cache, no unambiguous single-method lane, and no current experiment/validator result. Existing downloads remain testing-only."
+  },
+  "validator_output": {
+    "status": "NOT RUN in this review",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "template_present": false,
+    "format_validation_fresh": false,
+    "prior_receipts_are_current": false
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "submission_note_character_limit": 140,
+  "verdict": "negative \u2014 no experiment, no new TIF, and no slot approval; use no existing download for scoring",
+  "pull_request": {
+    "number": 33,
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/pull/33",
+    "state": "MERGED",
+    "merged_at_utc": "2026-10-26T00:36:15Z",
+    "merge_commit": "dc3fb328777a15c0c3e7e5b2f39ed2a99f6523d2",
+    "checks": "both GitHub pytest checks SUCCESS",
+    "pages_deployment": "not checked"
+  }
+}

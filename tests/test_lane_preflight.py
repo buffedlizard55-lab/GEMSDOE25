@@ -75,3 +75,30 @@ def test_registry_loader_includes_top_scorers_and_keeps_arrays_out_of_ram(tmp_pa
     assert [row["file"] for row in registry] == ["top.tif"]
     assert "arr" not in registry[0]
     assert validator._registry_array(registry[0]).shape == (8, 9)
+
+
+def test_final_lane_reads_file_backed_registry(tmp_path):
+    import rasterio
+    from affine import Affine
+
+    ctx = _ctx((40, 40))
+    dots = np.zeros(ctx.foot.shape, np.float32)
+    dots[::4, ::4] = 1
+    path = tmp_path / 'reference.tif'
+    with rasterio.open(path, 'w', driver='GTiff', height=40, width=40,
+                       count=1, dtype='float32', crs='EPSG:32611',
+                       transform=Affine(100, 0, 0, 0, -100, 4000)) as dst:
+        dst.write(dots, 1)
+    rows = validator.lane_check(ctx, dots, dots, [{'file': path.name, 'path': path}])
+    assert rows[0]['overlap_within_3px'] == 1
+    assert rows[0]['duplicate'] is True
+    assert not validator.lane_is_clear(rows)
+
+
+def test_final_lane_empty_candidate_cannot_pass():
+    ctx = _ctx((40, 40))
+    zero = np.zeros(ctx.foot.shape)
+    ref = np.zeros(ctx.foot.shape)
+    ref[::4, ::4] = 1
+    rows = validator.lane_check(ctx, zero, zero, [{'file': 'reference', 'arr': ref}])
+    assert not validator.lane_is_clear(rows)
