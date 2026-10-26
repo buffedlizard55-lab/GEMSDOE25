@@ -1188,7 +1188,15 @@
    "tests/test_h73_bw_preflight.py",
    "tests/test_h73_bw_review.py"
   ],
-  "pr_and_deployment": "Rebased onto origin/main c04766f. PR from this branch not yet opened; no merge or deployment claimed.",
-  "integrated_origin_main_commit": "c04766f"
+  "pr_and_deployment": "PR #58 opened from the fixed Arena branch against main; two pytest checks are pending. No merge or Pages deployment claimed at this receipt time.",
+  "integrated_origin_main_commit": "c04766f",
+  "pull_request": {
+   "number": 58,
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/pull/58",
+   "base": "main at c04766f",
+   "head": "arena/c1c20eed-gemsdoe25",
+   "status": "open; GitHub reports mergeable=true while required pytest checks are pending",
+   "merge": "not yet attempted"
+  }
  }
 }
