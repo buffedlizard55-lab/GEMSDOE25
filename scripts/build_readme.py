@@ -67,9 +67,8 @@ def main() -> None:
         e1_71 = h71_card["experiments"]["experiment_1_h71_1_hgpc_screen"]
         e2_71 = h71_card["experiments"]["experiment_2_h71_3_akf_screen"]
         e3_71 = h71_card["experiments"]["experiment_3_h71_4_mag_screen"]
-        rc71 = h71_card["registry_correlation_and_overlap"]
         A("**Latest session (2026-10-26, H71 HGPC-BLIND DIRECT + AKF + MAG-ANISO 3-experiment lane — featured download below):** "
-          f"[why `GEMSDOE32` `H33-2-B2` scored `0.2778`, 5 ranked untried hypotheses (`H71-1..H71-5`), and 3 pre-registered DIRECT-emission screens — `H71-1` HGPC-BLIND HOLDOUT-DTI `{e1_71['candidate_pooled_holdout_dti']:.4f}` vs H35 `{e1_71['control_h35_pooled_holdout_dti']:.4f}` (`{e1_71['gate']['vs_named']['CTRL_H35_24']['mean_gain']:+.4f}`, `0/4` folds, GATE FAIL) / vs crest `{e1_71['gate']['vs_named']['CTRL_CREST_B2']['mean_gain']:+.4f}`; `H71-3` AKF `{e2_71['candidate_pooled_holdout_dti']:.4f}` FAIL vs H35; `H71-4` MAG `{e3_71['candidate_pooled_holdout_dti']:.4f}` FAIL vs H35 — unique GeoTIFF `9eb0c31e5149` (`{100*rc71['focus_21_top_scorers']['b2_overlap']:.1f}%` vs B2, own HGB lineage `{100*rc71['own_lineage']['worst_cand_dots_within_3px']:.1f}%`, first GEMSDOE25 file to clear own HGB 70% wall; OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT)](knowledge/28_h71_outcomes_2026-10-26.md) · "
+          f"[why `GEMSDOE32` `H33-2-B2` scored `0.2778`, 5 ranked untried hypotheses (`H71-1..H71-5`), and 3 pre-registered DIRECT-emission screens — `H71-1` HGPC-BLIND HOLDOUT-DTI `{e1_71['candidate_pooled_holdout_dti']:.4f}` vs H35 `{e1_71['control_h35_pooled_holdout_dti']:.4f}` (`{e1_71['gate']['vs_named']['CTRL_H35_24']['mean_gain']:+.4f}`, `0/4` folds, GATE FAIL) / vs crest `{e1_71['gate']['vs_named']['CTRL_CREST_B2']['mean_gain']:+.4f}`; `H71-3` AKF `{e2_71['candidate_pooled_holdout_dti']:.4f}` FAIL vs H35; `H71-4` MAG `{e3_71['candidate_pooled_holdout_dti']:.4f}` FAIL vs H35 — content-distinct testing GeoTIFF `9eb0c31e5149` (strict lane FAIL: 100% candidate dots within 3 px of the r13 lattice; density-aware comparisons do not waive the literal stop; OK TO DOWNLOAD FOR TESTING: YES · OK TO SUBMIT: NO — DO NOT SUBMIT)](knowledge/28_h71_outcomes_2026-10-26.md) · "
           "pre-registration [`knowledge/27_preregistered_h71_hgpc_2026-10-26.md`](knowledge/27_preregistered_h71_hgpc_2026-10-26.md) (commit `d4d4bf7`, pre-fit) · run card `registry/run_card_h71_2026-10-26.json`.\n")
     if h66_card:
         e1_66 = h66_card["experiments"]["experiment_1_h66_1_screen"]
@@ -107,12 +106,12 @@ def main() -> None:
     A("**Competition:** [DOE GEMS Prize, DrivenData #306](https://www.drivendata.org/competitions/306/competition-doe-gems/) · "
       "**Live site:** <https://buffedlizard55-lab.github.io/GEMSDOE25/> · **Weekly limit:** 3 submissions · "
       "**Ends:** 3 Dec 2026 (page: 11:59 p.m. UTC; rules: 5:00 p.m. ET — see IR-25-DEADLINE)\n")
-    A("## ⬇ Download the unique, format-valid GeoTIFF (testing only — DO NOT SUBMIT)\n")
+    A("## ⬇ Download the content-distinct testing GeoTIFF (strict lane FAIL — DO NOT SUBMIT)\n")
     A(f"**[↓ `{primary['file']}`](docs/downloads/{primary['file']})** — {primary['summary']}\n")
     outside_txt = "zeros outside (no NaN anywhere)" if primary.get("outside") == "zero" else "NaN outside"
     A(f"* Format: single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, values in [0, 1] at **all 5,167,373 footprint pixels**, {outside_txt} "
       f"(verified against the pinned owner-mirror template, not organizer-authenticated; independent check receipt: `docs/downloads/{primary['receipt']}`).")
-    A(f"* Unique content id `{primary['content_id']}` · SHA-256 `{primary['sha256']}` · {primary['positive_pixels']:,} emitted pixels · status: **{primary['status']}**.")
+    A(f"* Content id `{primary['content_id']}` · SHA-256 `{primary['sha256']}` · {primary['positive_pixels']:,} emitted pixels · status: **{primary['status']}**.")
     if primary.get("ok_to_submit_slot"):
         A(f"* **Note to paste** in DrivenData's *Note (optional)* field: `{primary['note']}`")
     else:
@@ -124,7 +123,7 @@ def main() -> None:
     A("> ⚠ **Withdrawn:** the earlier D2.8 download (`e56ea318af89`, SHA-256 `91eae1ca…`) was byte-identical to a listed submission and is a duplicate. Do not submit it as new (IR-25-DUPLICATE-DOWNLOAD).\n")
     A("> **OK to download (local testing): " + ("YES" if primary.get("ok_to_download") else "NO") + " · OK to spend a weekly slot: " + ("YES" if primary.get("ok_to_submit_slot") else "NO") + " — DO NOT SUBMIT** "
       f"(verdict **{primary.get('verdict', 'n/a')}**). Projection: {primary.get('expected_range', 'n/a')}. Lane: {primary.get('lane_summary', 'n/a')}. "
-      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest known file. Why this negative file is featured: unique DIRECT-physics emission that clears own HGB lineage (`knowledge/28`); prior rationale IR-25-H38-REGIME-SPLIT / IR-25-XG1-FEATURED-NEGATIVE / IR-25-FEATURED-DOWNLOAD-RATIONALE still applies to earlier downloads.\n")
+      f"Run card: `{primary.get('run_card', '')}`. H33-2-B2 (GEMSDOE32, owner-reported 0.2778) remains the strongest supplied historical focus-site claim. This H71 file is featured for transparent local testing only; it fails both the holdout comparison and literal lane rule, so it must not be submitted.\n")
     if h36_spigm_card and h36_spigm_pool:
         p16 = h36_spigm_pool["arms"]
         cmp16 = h36_spigm_pool["comparisons"]
