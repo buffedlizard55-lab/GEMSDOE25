@@ -55,12 +55,15 @@ This is a catalogue-gap proxy, not an organizer score or blind-fault performance
 <a href="../evidence/pol3_screen_2026-10-26/summary.json">saved-cell result</a>.</p></section>'''
     subs = json.loads((ROOT / "registry" / "submissions.json").read_text())["files"]
     featured = next(s for s in subs if s["role"] == "primary")
+    h71 = json.loads((ROOT / "registry" / "run_card_h71_2026-10-26.json").read_text())
+    h71_result = h71["holdout_dti"]
     download = (
-        f'<p><b>OK to download: YES</b> for local testing of unique content id '
+        f'<p><b>OK to download: YES</b> for local testing of content id '
         f'<code>{e(featured["content_id"])}</code>. '
         f'<b>OK to spend a weekly slot: NO — DO NOT SUBMIT.</b> '
-        f'H71 HGPC-BLIND is format-valid but NOT strict-lane-cleared (dense-lattice overlap); '
-        f'three DIRECT screens failed vs H35. ROD/POL3 wrote no competition TIFF.</p>'
+        f'This file is content-distinct from scored mirrors but FAILS the literal lane rule: '
+        f'100% of final dots are within 3 px of the registered r13 lattice (70% cap). '
+        f'The three DIRECT screens failed vs H35. ROD/POL3 wrote no competition TIFF.</p>'
         f'<a class="btn" download href="downloads/{e(featured["file"])}">↓ Download {e(featured["file"])} — testing only</a>'
     )
     inventory_path = ROOT/'docs/data/download_audit.json'
@@ -90,10 +93,23 @@ Historical scores in the nine-site table are OWNER-REPORTED, not ORGANIZER-CONFI
 <tbody>{inventory_rows}</tbody></table></div></details></section>'''
     historical = 'gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif'
     rows, cards = [], []
+    exact_mask_notes = {
+        "GEMSDOE24": "Different mask; D1.5 thinning of the older H19-5 parent.",
+        "GEMSDOE25": "Exact-mask duplicate of GEMSDOE30 (D2.8).",
+        "GEMSDOE27": "Different mask; 97.95% lies in the older H19-5/D1.5 lineage.",
+        "GEMSDOE28": "Exact-mask duplicate of GEMSDOE31 (R1).",
+        "GEMSDOE30": "Exact-mask duplicate of GEMSDOE25 (D2.8).",
+        "GEMSDOE31": "Exact-mask duplicate of GEMSDOE28 (R1).",
+        "GEMSDOE32": "Different mask; nested B2 pruning of D2.8/R1.",
+        "GEMSDOE33": "Different mask; R1 plus re-admitted collar/tip pixels.",
+        "GEMSDOE36": "Different mask; B2 plus 1,200 additional pixels.",
+    }
     for row in sorted(focus['sites'], key=lambda r: -r['owner_reported_score']):
         rows.append(f'''<tr><th scope="row"><a href="{e(row['site_url'])}">{e(row['site'])}</a></th>
-<td>{row['owner_reported_score']:.4f}<small>OWNER-REPORTED</small></td>
-<td class="submission-id">{e(row['submission'])}</td><td>Unavailable — no validated leaderboard estimate</td><td>Previously submitted; not new</td><td><span class="badge b-warn">Historical only</span></td></tr>''')
+<td class="submission-id">{e(row['submission'])}.tif</td>
+<td>{row['owner_reported_score']:.4f}<small>OWNER-REPORTED · not an estimate</small></td>
+<td>{e(exact_mask_notes[row['site']])}<small>Pixel identity / lineage from local mirror audit</small></td>
+<td><span class="badge b-warn">NO — historical; not slot-approved</span></td></tr>''')
         cards.append(f'''<article class="card"><h3>{e(row['site'])}</h3><p>{e(row['mechanism'])}</p>
 <p class="small">{row['positive_pixels']:,} positive pixels · Local format checks: {'pass' if row['local_format_pass'] else 'fail'} ·
 Not approved as a new submission. SHA-256: <code class="wrap-hash">{row['sha256']}</code></p>
@@ -106,12 +122,20 @@ Not approved as a new submission. SHA-256: <code class="wrap-hash">{row['sha256'
     body = f'''<section class="hero"><p class="eyebrow">RESEARCH DECISION BRIEF / 26 OCTOBER 2026</p>
 <h1>Know what to submit.<br>Know when to stop.</h1>
 <p class="lead">Nine focus sites, one auditable comparison, and a new geological test. No renamed reference files. No predicted leaderboard scores.</p></section>
-<section class="review-decision"><span class="badge b-bad">OK TO SUBMIT: NO</span><h2>Unique research GeoTIFF is downloadable — not slot-cleared</h2>
+<section class="review-decision"><span class="badge b-bad">OK TO SUBMIT: NO</span><h2>Content-distinct testing GeoTIFF is downloadable — strict lane and performance gates failed</h2>
 <p>{e(featured['title'])}. {e(featured['summary'])}</p>
 <p>ROD stop: {status}</p>{download}
 <div class="row"><a class="btn" href="../evidence/rod_2026-10-26/run_card.json" download>Download decision receipt</a>
 <a class="btn alt" href="#how-to-submit">Submission checklist</a></div></section>
 {inventory_section}
+<section><h2>Current downloadable file: estimate and uniqueness decision</h2>
+<div class="table-scroll"><table><thead><tr><th>File</th><th>Estimated competition score</th><th>Saved HOLDOUT-DTI (proxy)</th><th>Unique under literal lane rule?</th><th>Decision</th></tr></thead><tbody>
+<tr><td class="submission-id">{e(featured['file'])}</td>
+<td>NOT ESTIMATED — no calibrated leaderboard projection</td>
+<td>HOLDOUT-DTI {h71_result['pooled_dti']:.6f}; evaluator {e(h71_result['evaluator_version'])}; {h71_result['withheld_positives']:,} withheld positives; 95% CI [{h71_result['ci_95'][0]:.6f}, {h71_result['ci_95'][1]:.6f}]</td>
+<td><b>NO.</b> 100% within 3 px of the registered r13 lattice; threshold 70%.</td>
+<td><b>DO NOT SUBMIT.</b> Holdout failed vs H35; testing only.</td></tr></tbody></table></div>
+<p>Saved H71 evidence, not rerun in this review. HOLDOUT-DTI is a catalogue-gap proxy, not an organizer score or leaderboard forecast.</p></section>
 <section id="lane-feasibility"><h2>New audit: the strict overlap gate blocks typical densities</h2>
 <p>Freshly restored SHA-pinned template, labels and registry lattice match CRS, shape and transform.
 Only <b>{geometry['uncovered_pixels']:,}</b> eligible pixels lie outside that lattice's 3-pixel halo.
@@ -127,7 +151,7 @@ We did not exclude the dense reference or substitute a density-aware waiver.</p>
 <section><h2>What is the strongest historical evidence?</h2>
 <p><b>GEMSDOE32 B2 — 0.2778, OWNER-REPORTED.</b> It is the highest supplied historical result among these focus sites.
 It is already an earlier submission, so it is <b>not</b> eligible as a new unique artifact. No organizer receipt has been supplied.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Nine historical exemplars"><table><thead><tr><th>Site</th><th>Reported result</th><th>Highest supplied historical submission</th><th>Estimated score</th><th>Unique new file?</th><th>Use</th></tr></thead>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Nine historical exemplars"><table><thead><tr><th>Site</th><th>Highest supplied historical filename</th><th>Score evidence</th><th>Exact-mask relation within focus set</th><th>New-slot eligible?</th></tr></thead>
 <tbody>{''.join(rows)}</tbody></table></div>
 <p class="small">Not a live leaderboard query and not a slot selection. The conflicting overall-leader claims 0.3195 and 0.4413 remain unverified.</p></section>
 <section><h2>Why B2 can work — and what it does not prove</h2>
@@ -174,7 +198,9 @@ even before spacing constraints. This does <b>not</b> establish that every small
 <a href="https://www.usgs.gov/3d-elevation-program">USGS 3DEP</a> — manual-review links, not freshly fetched here.</li></ul>
 <p>Next: resolve the dense-lattice policy before another high-budget run; address SGMC proxy contamination before confirmation; authenticate external source bytes and preserve all failed results.
 Automatic source availability is not automatic scientific verification or a live leaderboard feed.</p>
-<p><a href="history.html">Historical experiment/download archive</a></p></section>'''
+<p><a href="../knowledge/29_repository_review_2026-10-26.md">This repository review and limitations</a> ·
+<a href="../registry/run_card_repo_review_2026-10-26_session.json">This review's run card</a> ·
+<a href="history.html">Historical experiment/download archive</a></p></section>'''
     if root_page:
         body = body.replace('href="../', 'href="').replace('href="downloads/', 'href="docs/downloads/')
         body = body.replace('href="history.html"', 'href="docs/history.html"')
@@ -187,9 +213,13 @@ def readme_status():
     return ("<!-- CURRENT-REVIEW-2026-10-26 -->\n"
             "## Current decision — 2026-10-26\n\n"
             "**OK to download: YES · OK to spend a weekly slot: NO — DO NOT SUBMIT.** "
-            "Featured unique GeoTIFF [`gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif`](docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif) "
-            "(content id `9eb0c31e5149`; HOLDOUT-DTI FAIL vs H35). "
+            "Featured content-distinct testing GeoTIFF [`gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif`](docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif) "
+            "(content id `9eb0c31e5149`; HOLDOUT-DTI FAIL vs H35; strict lane FAIL: 100% within 3 px of r13 lattice). "
             "[Nine-site executive review and automated ROD result](docs/current-review.html) · "
+            "[This repository review](knowledge/29_repository_review_2026-10-26.md) · "
+            "[This review's JSON run card](registry/run_card_repo_review_2026-10-26_session.json) · "
+            "[Download audit and three deferred hypotheses](knowledge/29_download_audit_and_next_hypotheses_2026-10-26.md) · "
+            "[Strict-lane feasibility proof and hypothesis slate](knowledge/29_lane_feasibility_plan_2026-10-26.md) · "
             "[H71 outcomes](knowledge/28_h71_outcomes_2026-10-26.md) · "
             "[ROD run card](evidence/rod_2026-10-26/run_card.json). "
             "GEMSDOE32 B2 is the strongest supplied historical exemplar (**OWNER-REPORTED 0.2778**), not a new submission. "
