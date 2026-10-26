@@ -1,0 +1,158 @@
+{
+ "label": "HOLDOUT-DTI",
+ "experiment": "H74_EXP3_SUBSURF_BW25KM",
+ "preregistration": "knowledge/36_preregistered_h74_exp3_subsurface_2026-10-26.md",
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px)",
+ "draws": [
+  112,
+  113
+ ],
+ "n_cells_per_arm": 8,
+ "per_arm": {
+  "CTRL_H35": {
+   "pooled_dti": 0.12821352453459553,
+   "mean_cell_dti": 0.12384770235910803,
+   "mean_auc": 0.717872125,
+   "pooled_far_gt9_dti": 0.13267215385303377,
+   "pooled_vfar_gt20_dti": 0.1390064100700661,
+   "withheld_positive_occurrences": 25308,
+   "mean_emitted_dots": 11214.125,
+   "mean_emit_frac_2_9": 0.04572625,
+   "mean_emit_frac_gt20": 0.8707750000000001,
+   "mean_emit_median_d_vis": 64.77425
+  },
+  "CTRL_SUBSURF": {
+   "pooled_dti": 0.039880228648045066,
+   "mean_cell_dti": 0.03995342358169019,
+   "mean_auc": 0.50589225,
+   "pooled_far_gt9_dti": 0.04233296330484309,
+   "pooled_vfar_gt20_dti": 0.04559425031416267,
+   "withheld_positive_occurrences": 25308,
+   "mean_emitted_dots": 7781.25,
+   "mean_emit_frac_2_9": 0.15136499999999997,
+   "mean_emit_frac_gt20": 0.65159875,
+   "mean_emit_median_d_vis": 32.547625000000004
+  },
+  "H74_SUBSURF": {
+   "pooled_dti": 0.0390574467025743,
+   "mean_cell_dti": 0.03845533839640343,
+   "mean_auc": 0.508846375,
+   "pooled_far_gt9_dti": 0.04194323479126739,
+   "pooled_vfar_gt20_dti": 0.04454226877402135,
+   "withheld_positive_occurrences": 25308,
+   "mean_emitted_dots": 7846.375,
+   "mean_emit_frac_2_9": 0.15427875,
+   "mean_emit_frac_gt20": 0.64918875,
+   "mean_emit_median_d_vis": 32.664
+  }
+ },
+ "contrasts": {
+  "h74_subsurf_vs_ctrl_subsurf": {
+   "label": "HOLDOUT-DTI",
+   "arms": {
+    "CTRL_H35": {
+     "pooled_dti": 0.12821352453459553,
+     "ci95": [
+      0.10091337813135065,
+      0.14893827745280172
+     ],
+     "withheld_positive_occurrences": 25308
+    },
+    "CTRL_SUBSURF": {
+     "pooled_dti": 0.039880228648045066,
+     "ci95": [
+      0.023877960915724503,
+      0.05420523638337417
+     ],
+     "withheld_positive_occurrences": 25308
+    },
+    "H74_SUBSURF": {
+     "pooled_dti": 0.0390574467025743,
+     "ci95": [
+      0.026077441992597556,
+      0.04889465231686535
+     ],
+     "withheld_positive_occurrences": 25308
+    }
+   },
+   "paired_gain": -0.0008227819454707658,
+   "paired_ci95": [
+    -0.008024977498907217,
+    0.003904093277089557
+   ],
+   "fold_gains": [
+    -0.01360908551221135,
+    -0.0018393050744115041,
+    0.00319057776196369,
+    0.004635125443696195
+   ],
+   "screen_passed": false,
+   "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+  },
+  "h74_subsurf_vs_ctrl_h35": {
+   "label": "HOLDOUT-DTI",
+   "arms": {
+    "CTRL_H35": {
+     "pooled_dti": 0.12821352453459553,
+     "ci95": [
+      0.10091337813135065,
+      0.14893827745280172
+     ],
+     "withheld_positive_occurrences": 25308
+    },
+    "CTRL_SUBSURF": {
+     "pooled_dti": 0.039880228648045066,
+     "ci95": [
+      0.023877960915724503,
+      0.05420523638337417
+     ],
+     "withheld_positive_occurrences": 25308
+    },
+    "H74_SUBSURF": {
+     "pooled_dti": 0.0390574467025743,
+     "ci95": [
+      0.026077441992597556,
+      0.04889465231686535
+     ],
+     "withheld_positive_occurrences": 25308
+    }
+   },
+   "paired_gain": -0.08915607783202123,
+   "paired_ci95": [
+    -0.11613229055187073,
+    -0.05885502965279237
+   ],
+   "fold_gains": [
+    -0.04900889253800927,
+    -0.06712678433245164,
+    -0.12878321734753037,
+    -0.09460604180930288
+   ],
+   "screen_passed": false,
+   "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+  }
+ },
+ "gate_g3_subsurf": {
+  "paired_gain": -0.0008227819454707658,
+  "paired_ci95": [
+   -0.008024977498907217,
+   0.003904093277089557
+  ],
+  "fold_gains": [
+   -0.01360908551221135,
+   -0.0018393050744115041,
+   0.00319057776196369,
+   0.004635125443696195
+  ],
+  "folds_positive": 2,
+  "passed": false
+ },
+ "slot_gate_passed": false,
+ "canary": {
+  "cap": 0.9,
+  "max_canary_auc": 0.801654,
+  "max_canary_column": "deq_n100a15",
+  "max_h74_canary_auc": 0.557815,
+  "all_passed": true
+ }
+}

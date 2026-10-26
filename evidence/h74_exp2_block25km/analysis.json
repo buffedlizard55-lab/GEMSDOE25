@@ -1,0 +1,372 @@
+{
+ "label": "HOLDOUT-DTI",
+ "mode": "block25km",
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px)",
+ "evaluator_hashes": {
+  "src/gems25/metric.py": "4f6e4732029efd0238388aec74590e56bc2727df7441220ca09af7d02e9da230",
+  "src/gems25/holdout.py": "f0455eb17921e50365342ffb658504a5fcc0ddb3d2bd82f4bf0568d772be2bc1",
+  "src/gems25/validation.py": "bb2faea55b6bd827196f56758e5fbbf1e4e620e92779e6b9b53703c3bdf42ac3",
+  "src/gems25/h74_rmps.py": "0e337938c0345ee00f018721b8eae9539a8881dba6ff2e97f252fddd6c2e2fd2"
+ },
+ "draws": [
+  110,
+  111
+ ],
+ "n_cells_per_arm": 8,
+ "truth_d_vis_profile": {
+  "mean_truth_frac_le2": 0.00067875,
+  "mean_truth_frac_2_9": 0.04115125,
+  "mean_truth_frac_gt9": 0.95817,
+  "mean_truth_frac_gt20": 0.87622,
+  "mean_median_truth_d_vis": 66.91274999999999
+ },
+ "per_arm": {
+  "CTRL_H35": {
+   "pooled_dti": 0.12582009128402147,
+   "mean_cell_dti": 0.12516210337384293,
+   "mean_auc": 0.7128909999999999,
+   "pooled_far_gt9_dti": 0.129650821633255,
+   "pooled_vfar_gt20_dti": 0.13421829251587195,
+   "withheld_positive_occurrences": 27455,
+   "far_gt9_withheld_occurrences": 26245,
+   "vfar_gt20_withheld_occurrences": 23843,
+   "mean_emitted_dots": 11236.875,
+   "mean_emit_frac_le2": 0.0014874999999999999,
+   "mean_emit_frac_2_9": 0.0500775,
+   "mean_emit_frac_9_20": 0.085115,
+   "mean_emit_frac_gt20": 0.8633225,
+   "mean_emit_median_d_vis": 62.52012499999999
+  },
+  "H74_APRON": {
+   "pooled_dti": 0.12620287250509532,
+   "mean_cell_dti": 0.12606276363389907,
+   "mean_auc": 0.71212925,
+   "pooled_far_gt9_dti": 0.1301098973346592,
+   "pooled_vfar_gt20_dti": 0.13487003218224464,
+   "withheld_positive_occurrences": 27455,
+   "far_gt9_withheld_occurrences": 26245,
+   "vfar_gt20_withheld_occurrences": 23843,
+   "mean_emitted_dots": 11252.5,
+   "mean_emit_frac_le2": 0.00147875,
+   "mean_emit_frac_2_9": 0.04869875,
+   "mean_emit_frac_9_20": 0.08675125,
+   "mean_emit_frac_gt20": 0.8630737500000001,
+   "mean_emit_median_d_vis": 62.565125
+  },
+  "CTRL_BLIND": {
+   "pooled_dti": 0.10226403357473926,
+   "mean_cell_dti": 0.1009306916032051,
+   "mean_auc": 0.634226875,
+   "pooled_far_gt9_dti": 0.10698783655900204,
+   "pooled_vfar_gt20_dti": 0.1132625391965785,
+   "withheld_positive_occurrences": 27455,
+   "far_gt9_withheld_occurrences": 26245,
+   "vfar_gt20_withheld_occurrences": 23843,
+   "mean_emitted_dots": 8212.375,
+   "mean_emit_frac_le2": 0.0,
+   "mean_emit_frac_2_9": 0.16019625,
+   "mean_emit_frac_9_20": 0.1775325,
+   "mean_emit_frac_gt20": 0.66226875,
+   "mean_emit_median_d_vis": 39.550875
+  },
+  "H74_BLIND": {
+   "pooled_dti": 0.10463840873094288,
+   "mean_cell_dti": 0.10318643190967085,
+   "mean_auc": 0.642473125,
+   "pooled_far_gt9_dti": 0.1095304040636091,
+   "pooled_vfar_gt20_dti": 0.11474821892879854,
+   "withheld_positive_occurrences": 27455,
+   "far_gt9_withheld_occurrences": 26245,
+   "vfar_gt20_withheld_occurrences": 23843,
+   "mean_emitted_dots": 8096.625,
+   "mean_emit_frac_le2": 0.0,
+   "mean_emit_frac_2_9": 0.15439124999999998,
+   "mean_emit_frac_9_20": 0.16731875,
+   "mean_emit_frac_gt20": 0.67828625,
+   "mean_emit_median_d_vis": 42.141999999999996
+  }
+ },
+ "factorial_2x2": {
+  "effect_h74_in_apron": 0.0003827812210738524,
+  "effect_h74_in_blind": 0.0023743751562036175,
+  "main_effect_h74": 0.001378578188638735,
+  "main_effect_blind_vs_apron": -0.022560260741717325,
+  "interaction_h74_x_blind": 0.0009957969675648826
+ },
+ "contrasts": {
+  "h74_apron_vs_ctrl_h35": {
+   "label": "HOLDOUT-DTI",
+   "arms": {
+    "CTRL_BLIND": {
+     "pooled_dti": 0.10226403357473926,
+     "ci95": [
+      0.06926443731385776,
+      0.13577446483084377
+     ],
+     "withheld_positive_occurrences": 27455
+    },
+    "CTRL_H35": {
+     "pooled_dti": 0.12582009128402147,
+     "ci95": [
+      0.11354154858503804,
+      0.13931116728845122
+     ],
+     "withheld_positive_occurrences": 27455
+    },
+    "H74_APRON": {
+     "pooled_dti": 0.12620287250509532,
+     "ci95": [
+      0.11507341791481032,
+      0.14119234042562878
+     ],
+     "withheld_positive_occurrences": 27455
+    },
+    "H74_BLIND": {
+     "pooled_dti": 0.10463840873094288,
+     "ci95": [
+      0.0689616355590941,
+      0.14109608314193786
+     ],
+     "withheld_positive_occurrences": 27455
+    }
+   },
+   "paired_gain": 0.0003827812210738524,
+   "paired_ci95": [
+    -0.002432038805535844,
+    0.0028106716438231344
+   ],
+   "fold_gains": [
+    0.003408864162039227,
+    0.0019753540615182197,
+    -0.0035734292453382804,
+    0.001345157351431675
+   ],
+   "screen_passed": false,
+   "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+  },
+  "h74_blind_vs_ctrl_h35": {
+   "label": "HOLDOUT-DTI",
+   "arms": {
+    "CTRL_BLIND": {
+     "pooled_dti": 0.10226403357473926,
+     "ci95": [
+      0.06926443731385776,
+      0.13577446483084377
+     ],
+     "withheld_positive_occurrences": 27455
+    },
+    "CTRL_H35": {
+     "pooled_dti": 0.12582009128402147,
+     "ci95": [
+      0.11354154858503804,
+      0.13931116728845122
+     ],
+     "withheld_positive_occurrences": 27455
+    },
+    "H74_APRON": {
+     "pooled_dti": 0.12620287250509532,
+     "ci95": [
+      0.11507341791481032,
+      0.14119234042562878
+     ],
+     "withheld_positive_occurrences": 27455
+    },
+    "H74_BLIND": {
+     "pooled_dti": 0.10463840873094288,
+     "ci95": [
+      0.0689616355590941,
+      0.14109608314193786
+     ],
+     "withheld_positive_occurrences": 27455
+    }
+   },
+   "paired_gain": -0.02118168255307859,
+   "paired_ci95": [
+    -0.046938075667787404,
+    0.009250328034326502
+   ],
+   "fold_gains": [
+    -0.05261685029775369,
+    -0.014925229466289852,
+    -0.044018517809044505,
+    0.023429855075115552
+   ],
+   "screen_passed": false,
+   "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+  },
+  "h74_blind_vs_ctrl_blind": {
+   "label": "HOLDOUT-DTI",
+   "arms": {
+    "CTRL_BLIND": {
+     "pooled_dti": 0.10226403357473926,
+     "ci95": [
+      0.06926443731385776,
+      0.13577446483084377
+     ],
+     "withheld_positive_occurrences": 27455
+    },
+    "CTRL_H35": {
+     "pooled_dti": 0.12582009128402147,
+     "ci95": [
+      0.11354154858503804,
+      0.13931116728845122
+     ],
+     "withheld_positive_occurrences": 27455
+    },
+    "H74_APRON": {
+     "pooled_dti": 0.12620287250509532,
+     "ci95": [
+      0.11507341791481032,
+      0.14119234042562878
+     ],
+     "withheld_positive_occurrences": 27455
+    },
+    "H74_BLIND": {
+     "pooled_dti": 0.10463840873094288,
+     "ci95": [
+      0.0689616355590941,
+      0.14109608314193786
+     ],
+     "withheld_positive_occurrences": 27455
+    }
+   },
+   "paired_gain": 0.0023743751562036175,
+   "paired_ci95": [
+    -0.0012873779108689698,
+    0.005321618311094095
+   ],
+   "fold_gains": [
+    -0.0035764441042583153,
+    0.006741362776782667,
+    0.001652062071469465,
+    0.0040914472559934745
+   ],
+   "screen_passed": false,
+   "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+  },
+  "ctrl_blind_vs_ctrl_h35": {
+   "label": "HOLDOUT-DTI",
+   "arms": {
+    "CTRL_BLIND": {
+     "pooled_dti": 0.10226403357473926,
+     "ci95": [
+      0.06926443731385776,
+      0.13577446483084377
+     ],
+     "withheld_positive_occurrences": 27455
+    },
+    "CTRL_H35": {
+     "pooled_dti": 0.12582009128402147,
+     "ci95": [
+      0.11354154858503804,
+      0.13931116728845122
+     ],
+     "withheld_positive_occurrences": 27455
+    },
+    "H74_APRON": {
+     "pooled_dti": 0.12620287250509532,
+     "ci95": [
+      0.11507341791481032,
+      0.14119234042562878
+     ],
+     "withheld_positive_occurrences": 27455
+    },
+    "H74_BLIND": {
+     "pooled_dti": 0.10463840873094288,
+     "ci95": [
+      0.0689616355590941,
+      0.14109608314193786
+     ],
+     "withheld_positive_occurrences": 27455
+    }
+   },
+   "paired_gain": -0.023556057709282208,
+   "paired_ci95": [
+    -0.046635273913023745,
+    0.006739805429631138
+   ],
+   "fold_gains": [
+    -0.049040406193495374,
+    -0.02166659224307252,
+    -0.04567057988051397,
+    0.019338407819122078
+   ],
+   "screen_passed": false,
+   "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+  }
+ },
+ "canary": {
+  "cap": 0.9,
+  "n_cells": 8,
+  "n_columns": 86,
+  "max_canary_auc": 0.82595,
+  "max_canary_column": "E_dens50",
+  "max_h74_canary_auc": 0.551577,
+  "max_h74_canary_column": "H74_remanent_skew_crest",
+  "all_passed": true
+ },
+ "gates": {
+  "g1_h74_apron_vs_ctrl_h35": {
+   "paired_gain": 0.0003827812210738524,
+   "paired_ci95": [
+    -0.002432038805535844,
+    0.0028106716438231344
+   ],
+   "fold_gains": [
+    0.003408864162039227,
+    0.0019753540615182197,
+    -0.0035734292453382804,
+    0.001345157351431675
+   ],
+   "folds_positive": 3,
+   "worst_fold_gain": -0.0035734292453382804,
+   "passed": false
+  },
+  "g1_h74_blind_vs_ctrl_h35": {
+   "paired_gain": -0.02118168255307859,
+   "paired_ci95": [
+    -0.046938075667787404,
+    0.009250328034326502
+   ],
+   "fold_gains": [
+    -0.05261685029775369,
+    -0.014925229466289852,
+    -0.044018517809044505,
+    0.023429855075115552
+   ],
+   "folds_positive": 1,
+   "worst_fold_gain": -0.05261685029775369,
+   "passed": false
+  },
+  "g2_h74_apron_vs_ctrl_h35": {
+   "paired_gain": 0.0003827812210738524,
+   "paired_ci95": [
+    -0.002432038805535844,
+    0.0028106716438231344
+   ],
+   "fold_gains": [
+    0.003408864162039227,
+    0.0019753540615182197,
+    -0.0035734292453382804,
+    0.001345157351431675
+   ],
+   "folds_positive": 3,
+   "passed": true
+  },
+  "g2_h74_blind_vs_ctrl_blind": {
+   "paired_gain": 0.0023743751562036175,
+   "paired_ci95": [
+    -0.0012873779108689698,
+    0.005321618311094095
+   ],
+   "fold_gains": [
+    -0.0035764441042583153,
+    0.006741362776782667,
+    0.001652062071469465,
+    0.0040914472559934745
+   ],
+   "folds_positive": 3,
+   "passed": true
+  }
+ }
+}

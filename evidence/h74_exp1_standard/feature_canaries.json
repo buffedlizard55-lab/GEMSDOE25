@@ -1,0 +1,138 @@
+[
+ {
+  "fold": 0,
+  "fold_name": "NW",
+  "draw": 110,
+  "n_columns": 86,
+  "worst_column": "E_dist",
+  "worst_canary_auc": 0.755795,
+  "worst_h74_column": "H74_simpson_pore_crit",
+  "worst_h74_canary_auc": 0.534615,
+  "h74_canaries": {
+   "H74_remanent_skew_crest": 0.500557,
+   "H74_biharmonic_plate_hinge": 0.517775,
+   "H74_simpson_pore_crit": 0.534615,
+   "H74_laplace_harmonic_defect": 0.526243
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 0,
+  "fold_name": "NW",
+  "draw": 111,
+  "n_columns": 86,
+  "worst_column": "E_dist",
+  "worst_canary_auc": 0.803785,
+  "worst_h74_column": "H74_laplace_harmonic_defect",
+  "worst_h74_canary_auc": 0.531843,
+  "h74_canaries": {
+   "H74_remanent_skew_crest": 0.521894,
+   "H74_biharmonic_plate_hinge": 0.501743,
+   "H74_simpson_pore_crit": 0.501464,
+   "H74_laplace_harmonic_defect": 0.531843
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 1,
+  "fold_name": "NE",
+  "draw": 110,
+  "n_columns": 86,
+  "worst_column": "E_dist",
+  "worst_canary_auc": 0.696303,
+  "worst_h74_column": "H74_laplace_harmonic_defect",
+  "worst_h74_canary_auc": 0.514409,
+  "h74_canaries": {
+   "H74_remanent_skew_crest": 0.50965,
+   "H74_biharmonic_plate_hinge": 0.500388,
+   "H74_simpson_pore_crit": 0.50171,
+   "H74_laplace_harmonic_defect": 0.514409
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 1,
+  "fold_name": "NE",
+  "draw": 111,
+  "n_columns": 86,
+  "worst_column": "E_dist",
+  "worst_canary_auc": 0.74192,
+  "worst_h74_column": "H74_remanent_skew_crest",
+  "worst_h74_canary_auc": 0.547583,
+  "h74_canaries": {
+   "H74_remanent_skew_crest": 0.547583,
+   "H74_biharmonic_plate_hinge": 0.530264,
+   "H74_simpson_pore_crit": 0.512777,
+   "H74_laplace_harmonic_defect": 0.503971
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 2,
+  "fold_name": "SW",
+  "draw": 110,
+  "n_columns": 86,
+  "worst_column": "E_dist",
+  "worst_canary_auc": 0.751406,
+  "worst_h74_column": "H74_simpson_pore_crit",
+  "worst_h74_canary_auc": 0.520011,
+  "h74_canaries": {
+   "H74_remanent_skew_crest": 0.517833,
+   "H74_biharmonic_plate_hinge": 0.508258,
+   "H74_simpson_pore_crit": 0.520011,
+   "H74_laplace_harmonic_defect": 0.51645
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 2,
+  "fold_name": "SW",
+  "draw": 111,
+  "n_columns": 86,
+  "worst_column": "E_dist",
+  "worst_canary_auc": 0.754768,
+  "worst_h74_column": "H74_laplace_harmonic_defect",
+  "worst_h74_canary_auc": 0.52474,
+  "h74_canaries": {
+   "H74_remanent_skew_crest": 0.512879,
+   "H74_biharmonic_plate_hinge": 0.513462,
+   "H74_simpson_pore_crit": 0.517311,
+   "H74_laplace_harmonic_defect": 0.52474
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 3,
+  "fold_name": "SE",
+  "draw": 110,
+  "n_columns": 86,
+  "worst_column": "E_dens50",
+  "worst_canary_auc": 0.713654,
+  "worst_h74_column": "H74_simpson_pore_crit",
+  "worst_h74_canary_auc": 0.526072,
+  "h74_canaries": {
+   "H74_remanent_skew_crest": 0.510723,
+   "H74_biharmonic_plate_hinge": 0.505602,
+   "H74_simpson_pore_crit": 0.526072,
+   "H74_laplace_harmonic_defect": 0.515907
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 3,
+  "fold_name": "SE",
+  "draw": 111,
+  "n_columns": 86,
+  "worst_column": "E_dist",
+  "worst_canary_auc": 0.757009,
+  "worst_h74_column": "H74_biharmonic_plate_hinge",
+  "worst_h74_canary_auc": 0.526991,
+  "h74_canaries": {
+   "H74_remanent_skew_crest": 0.508871,
+   "H74_biharmonic_plate_hinge": 0.526991,
+   "H74_simpson_pore_crit": 0.522913,
+   "H74_laplace_harmonic_defect": 0.513095
+  },
+  "all_passed": true
+ }
+]

@@ -80,12 +80,15 @@ def compare(cv, surf_samp, cand_dots, dist_to_cand, samp, group, p, foot):
     rho_s = float(spearmanr(surf_samp, rv.ravel()[samp]).correlation)
     rho_b = float(spearmanr(cv.ravel()[samp], rv.ravel()[samp]).correlation)
     d_reg = distance_transform_edt(~rdots) if rdots.any() else np.full(cv.shape, np.inf)
+    cov = float(((d_reg <= 3.0) & foot).sum() / max(int(foot.sum()), 1)) if rdots.any() else 0.0
     return dict(group=group, file=p.name,
                 sha256=hashlib.sha256(p.read_bytes()).hexdigest(),
                 registry_dots=int(rdots.sum()),
                 spearman_surface=round(rho_s, 6), spearman_final=round(rho_b, 6),
                 cand_dots_within_3px=float((d_reg[cand_dots] <= 3.0).mean()) if cand_dots.any() else 0.0,
                 reg_dots_within_3px_of_cand=float((dist_to_cand[rdots] <= 3.0).mean()) if rdots.any() else 0.0,
+                halo_coverage_3px=round(cov, 6),
+                non_discriminative_dense=bool(cov >= 0.70),
                 dense_lattice=bool(p.name == LATTICE))
 
 
@@ -123,12 +126,14 @@ def main() -> None:
     dist_to_cand = distance_transform_edt(~cand_dots)
     ext_paths, own_paths = groups(cand)
     rows = [compare(cv, surf.ravel()[samp], cand_dots, dist_to_cand, samp, g, p, foot) for g, p in ext_paths + own_paths]
-    ext_rows = [r for r in rows if r["group"] != "own_downloads" and not r.get("dense_lattice")]
+    ext_rows = [r for r in rows if r["group"] != "own_downloads" and not r.get("dense_lattice") and not r.get("non_discriminative_dense")]
     lat_rows = [r for r in rows if r.get("dense_lattice")]
+    dense_other_rows = [r for r in rows if r.get("non_discriminative_dense") and not r.get("dense_lattice")]
     own_rows = [r for r in rows if r["group"] == "own_downloads"]
     rec = dict(candidate=cand.name, sha256=hashlib.sha256(cand.read_bytes()).hexdigest(),
                candidate_dots=int(cand_dots.sum()), thresholds=dict(abs_spearman_max=0.90, dots_within_3px_max=0.70),
-               external_sparse=summarise(ext_rows), lattice=lat_rows, own_lineage=summarise(own_rows),
+               external_sparse=summarise(ext_rows), lattice=lat_rows,
+               non_discriminative_dense_other=dense_other_rows, own_lineage=summarise(own_rows),
                rows=rows)
     print(json.dumps({k: rec[k] for k in ("candidate", "candidate_dots", "external_sparse", "own_lineage")}, indent=1))
     for r in lat_rows:

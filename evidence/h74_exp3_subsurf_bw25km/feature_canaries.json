@@ -1,0 +1,90 @@
+[
+ {
+  "fold": 0,
+  "fold_name": "NW",
+  "draw": 112,
+  "n_columns": 86,
+  "worst_column": "geod_dilaterate",
+  "worst_canary_auc": 0.794757,
+  "worst_h74_column": "H74_remanent_skew_crest",
+  "worst_h74_canary_auc": 0.533192,
+  "all_passed": true
+ },
+ {
+  "fold": 0,
+  "fold_name": "NW",
+  "draw": 113,
+  "n_columns": 86,
+  "worst_column": "E_dens50",
+  "worst_canary_auc": 0.700273,
+  "worst_h74_column": "H74_laplace_harmonic_defect",
+  "worst_h74_canary_auc": 0.543994,
+  "all_passed": true
+ },
+ {
+  "fold": 1,
+  "fold_name": "NE",
+  "draw": 112,
+  "n_columns": 86,
+  "worst_column": "E_dens50",
+  "worst_canary_auc": 0.751007,
+  "worst_h74_column": "H74_remanent_skew_crest",
+  "worst_h74_canary_auc": 0.537962,
+  "all_passed": true
+ },
+ {
+  "fold": 1,
+  "fold_name": "NE",
+  "draw": 113,
+  "n_columns": 86,
+  "worst_column": "E_dens50",
+  "worst_canary_auc": 0.735356,
+  "worst_h74_column": "H74_biharmonic_plate_hinge",
+  "worst_h74_canary_auc": 0.535281,
+  "all_passed": true
+ },
+ {
+  "fold": 2,
+  "fold_name": "SW",
+  "draw": 112,
+  "n_columns": 86,
+  "worst_column": "E_dens50",
+  "worst_canary_auc": 0.704691,
+  "worst_h74_column": "H74_simpson_pore_crit",
+  "worst_h74_canary_auc": 0.540064,
+  "all_passed": true
+ },
+ {
+  "fold": 2,
+  "fold_name": "SW",
+  "draw": 113,
+  "n_columns": 86,
+  "worst_column": "deq_n100a15",
+  "worst_canary_auc": 0.801654,
+  "worst_h74_column": "H74_simpson_pore_crit",
+  "worst_h74_canary_auc": 0.557815,
+  "all_passed": true
+ },
+ {
+  "fold": 3,
+  "fold_name": "SE",
+  "draw": 112,
+  "n_columns": 86,
+  "worst_column": "E_dens50",
+  "worst_canary_auc": 0.76903,
+  "worst_h74_column": "H74_biharmonic_plate_hinge",
+  "worst_h74_canary_auc": 0.543408,
+  "all_passed": true
+ },
+ {
+  "fold": 3,
+  "fold_name": "SE",
+  "draw": 113,
+  "n_columns": 86,
+  "worst_column": "E_dens50",
+  "worst_canary_auc": 0.739171,
+  "worst_h74_column": "H74_simpson_pore_crit",
+  "worst_h74_canary_auc": 0.536407,
+  "all_passed": true
+ }
+]
