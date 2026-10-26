@@ -1,10 +1,258 @@
 {
  "schema_version": 1,
- "generated_by": "merge: H71 featured primary onto 2026-10-26 main (APFL/POL3/ROD retained as alternate/history)",
+ "generated_by": "scripts/register_objective_submission.py (2026-10-26 training-objective session)",
  "files": [
   {
-   "id": "h71-hgpc-blind",
+   "id": "obj-bin-greedy",
    "role": "primary",
+   "file": "gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.tif",
+   "path": "docs/downloads/gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.tif",
+   "bytes": 854680,
+   "sha256": "160dbdc0c2abc25bd40a3f38a36c2a69f8a02503337dea7ab706f6d77a08934d",
+   "content_id": "3646faf70507",
+   "positive_pixels": 53522,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "finite range over the whole array; infinity rejected",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read; empty data rejected",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.json",
+   "outside": "zero",
+   "status": "UNIQUE BY CONTENT vs scored rasters \u00b7 FORMAT-VALID \u00b7 HOLDOUT: 3/3 objective experiments FAIL vs same-run BIN \u00b7 STRICT LANE FAIL (own unscored HGB lineage 87.2% + literal lattice) \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "zip": "gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.zip",
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "expected_range": "no live projection computed \u2014 holdout experiments negative vs BIN (not a score)",
+   "lane": {
+    "lane_clear": false,
+    "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+    "density_aware_verdict": "DUPLICATE/LANE OVERLAP (density-aware) - do not package",
+    "lattice_overlap": 1.0,
+    "external_sparse": {
+     "n": 31,
+     "worst_abs_spearman_surface": 0.10848,
+     "worst_surface_file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+     "worst_abs_spearman_final": 0.053707,
+     "worst_final_file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+     "worst_cand_dots_within_3px": 0.6923508090131161,
+     "worst_overlap_file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+     "lane_pass": true
+    },
+    "own_lineage": {
+     "n": 19,
+     "worst_abs_spearman_surface": 0.151525,
+     "worst_surface_file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+     "worst_abs_spearman_final": 0.183076,
+     "worst_final_file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+     "worst_cand_dots_within_3px": 0.8720526138784052,
+     "worst_overlap_file": "gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+     "lane_pass": false
+    },
+    "vs_gemsdoe32_b2": {
+     "cand_dots_within_3px": 0.32031687904039463,
+     "reg_dots_within_3px_of_cand": 0.38973283050937485,
+     "spearman_surface": 0.058849,
+     "spearman_final": 0.02611
+    },
+    "receipt": "docs/downloads/lane-gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.json",
+    "extended_receipt": "evidence/objective_lane_extended.json"
+   },
+   "lane_summary": "STRICT LANE FAIL: 87.2% of dots within 3 px of this repo's own unscored H38 greedy file (same frozen stack, fresh production seeds) and 100% vs the dense r13 lattice. Unique vs scored/external sparse rasters (worst 69.2% <= 70%; 32.0% vs GEMSDOE32 B2); surface |Spearman| <= 0.108 external.",
+   "slot_reason": "No pre-registered experiment beat the same-run BIN comparator (TENT -0.0003, HARDNEG -0.0427, IGN3 -0.0009 paired fold-mean HOLDOUT-DTI). Candidate is the previously validated BIN/H38 protocol with fresh seeds; strict lane fails vs own unscored lineage + literal lattice. Selector must not spend a weekly slot on this evidence.",
+   "run_card": "registry/run_card_objective_2026-10-26.json",
+   "title": "Objective-lane BIN greedy candidate (fresh seeds, zeros outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
+   "summary": "Unique-by-content 2026-10-26 GeoTIFF (53,522 binary dots) from the frozen H35/H38 protocol (BDE+7+tip+H34 HGB, greedy marginal-credit emission) rebuilt with fresh production seeds after three pre-registered training-objective experiments (TENT/HARDNEG/IGN3) all failed to beat it on the spatially blocked holdout. Format-valid incl. strict whole-array [0,1] (zeros outside prevents the 'Predicted values must be in range [0, 1]' portal error). Leakage canaries PASS (max 0.63). Strict lane fails vs own unscored HGB lineage (87.2%) + dense lattice. Testing only \u2014 DO NOT SUBMIT.",
+   "note": "GEMSDOE25 BIN greedy k3.5% | HOLDOUT negative; DO NOT SUBMIT; no slot; not slot-approved; unscored | id 3646faf70507"
+  },
+  {
+   "id": "obj-bin-greedy-nan",
+   "role": "fallback",
+   "file": "gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-nan.tif",
+   "path": "docs/downloads/gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-nan.tif",
+   "bytes": 1620936,
+   "sha256": "cf5a813c4237e88729b44322559e87a4eb5601b2787e5ccf2ea2f40d5983f30b",
+   "content_id": "3646faf70507",
+   "positive_pixels": 53522,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": true,
+     "detail": "7,111,787/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=nan",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "finite range over the whole array; infinity rejected",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read; empty data rejected",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": false,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.json",
+   "outside": "nan",
+   "status": "NaN-outside twin of obj-bin-greedy \u00b7 holdout experiments negative \u00b7 STRICT LANE FAIL \u00b7 DO NOT SUBMIT",
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "run_card": "registry/run_card_objective_2026-10-26.json",
+   "title": "Objective-lane BIN greedy (NaN-outside template twin) \u2014 DO NOT SUBMIT",
+   "summary": "Pixel-identical on the footprint to the zeros-outside primary (content id 3646faf70507), NaN outside. DO NOT SUBMIT either file.",
+   "note": "GEMSDOE25 BIN greedy k3.5% | HOLDOUT negative; DO NOT SUBMIT; no slot; not slot-approved; unscored | id 3646faf70507"
+  },
+  {
+   "id": "h71-hgpc-blind",
+   "role": "alternate",
    "file": "gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif",
    "path": "docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif",
    "bytes": 863096,
@@ -151,7 +399,7 @@
   },
   {
    "id": "h71-hgpc-blind-nan",
-   "role": "fallback",
+   "role": "alternate",
    "file": "gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-nan.tif",
    "path": "docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-nan.tif",
    "bytes": 1631210,

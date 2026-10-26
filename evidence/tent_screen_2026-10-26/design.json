@@ -1,0 +1,72 @@
+{
+ "hypothesis": "TENT kernel-regression training target vs BIN binary classifier on the frozen B35 stack (knowledge/29 Exp 1)",
+ "preregistration": "knowledge/29_ranked_hypotheses_and_preregistration_2026-10-26.md",
+ "preregistration_commit": "fed209169dc0833f01c49bd1aa349d2d280d933f",
+ "draws": [
+  90,
+  91
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "arms": [
+  "BIN",
+  "TENT",
+  "IGN3"
+ ],
+ "features": {
+  "base": "BDE",
+  "extras": [
+   "X1_K",
+   "X1_ThK",
+   "X1_UK",
+   "X2_compat",
+   "X2_compat_coh",
+   "X3_gm",
+   "X3_gd"
+  ],
+  "tip_column": "H27_tip",
+  "h34_columns": [
+   "H34_resmag_shallow_ridge",
+   "H34_resmag_mid_ridge",
+   "H34_baseflex_ridge"
+  ]
+ },
+ "classifier": {
+  "max_iter": 100,
+  "learning_rate": 0.12,
+  "max_leaf_nodes": 31,
+  "min_samples_leaf": 50,
+  "l2_regularization": 1.0,
+  "class_weight": {
+   "0": 1,
+   "1": 5
+  },
+  "early_stopping": false
+ },
+ "regressor": {
+  "max_iter": 100,
+  "learning_rate": 0.12,
+  "max_leaf_nodes": 31,
+  "min_samples_leaf": 50,
+  "l2_regularization": 1.0,
+  "early_stopping": false
+ },
+ "tent_rule": "target=k(EDT(hidden_train)) on trace+ring (0<d<=3, non-catalogue); 300k uniform far negatives d>3; seed 777+31*fold+draw; train_region only",
+ "emission_primary": "greedy marginal-credit on ridge-NMS top-3.5% pool (H38 rule), n_hat=0.25*|visible in domain|",
+ "emission_diagnostic": "score_ordered_dots min_dist=2.4 on the same pool",
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px) via gems25.experiment.Cell.evaluate",
+ "leakage_auc_cap": 0.9,
+ "gate": {
+  "primary": "TENT-greedy vs BIN-greedy",
+  "mean_gain_gt": 0.001,
+  "folds_positive_min": 3,
+  "worst_fold_min": -0.01,
+  "mean_hug_increase_max": 0.1
+ },
+ "cache_hashes_file": "evidence/work_cache_hashes.json",
+ "runner_sha256": "d82f3e1cafd9ecf26765e1b7ad5c8d09da5fd619c91f88ade75268b199e7f3b0"
+}

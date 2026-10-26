@@ -154,6 +154,7 @@ def main() -> None:
     h38_card = opt('registry/run_card_h38_ospc_2026-10-25.json')
     h66_card = opt('registry/run_card_h66_2026-10-25.json')
     h71_card = opt('registry/run_card_h71_2026-10-26.json')
+    obj_card = opt('registry/run_card_objective_2026-10-26.json')
 
     def latest_diagnostic(prefix: str) -> str:
         if cf1 is None or cf1_card is None:
@@ -198,7 +199,7 @@ is not a lane clearance. Format verification is against an owner-mirrored templa
         rc = h71_card['registry_correlation_and_overlap']
         fw = rc['focus_21_top_scorers']
         kbase = "../knowledge" if not prefix else "knowledge"
-        return f'''<div class="card"><h2>Latest 3-Experiment Pre-Registered Session — H71 DIRECT physics (HGPC-BLIND, AKF knickpoints, MAG-ANISO) · featured download above</h2>
+        return f'''<div class="card"><h2>Prior 3-Experiment Session — H71 DIRECT physics (HGPC-BLIND, AKF knickpoints, MAG-ANISO)</h2>
 <p><b>Pre-registration:</b> <a href="{kbase}/27_preregistered_h71_hgpc_2026-10-26.md"><code>knowledge/27</code></a> (commit <code>d4d4bf7</code>, before any fit) · <b>Outcomes:</b> <a href="{kbase}/28_h71_outcomes_2026-10-26.md"><code>knowledge/28</code></a> · <b>Run card:</b> <code>registry/run_card_h71_2026-10-26.json</code>.</p>
 <table><thead><tr><th>Experiment (3/3 budget)</th><th>Draws / Withheld Pos</th><th class="num">Canary max AUC</th><th class="num">Candidate Pooled HOLDOUT-DTI [95% CI]</th><th class="num">Same-Run H35 Control</th><th class="num">vs crest / vs H35 (folds +)</th><th>Stage Verdict</th></tr></thead><tbody>
 <tr><td><b>Exp 1: H71-1 HGPC-BLIND</b> (<code>HGPC_BLIND_B2</code>)</td><td><code>{e(str(e1['draws']))}</code> / {e1['withheld_positives']:,}</td><td class="num">{e1['leakage_canary']['max_feature_auc']:.4f}</td><td class="num">{e1['candidate_pooled_holdout_dti']:.6f} [{e1['candidate_pooled_ci95'][0]:.4f}, {e1['candidate_pooled_ci95'][1]:.4f}]</td><td class="num">{e1['control_h35_pooled_holdout_dti']:.6f}</td><td class="num">{e1['gate']['vs_named']['CTRL_CREST_B2']['mean_gain']:+.4f} ({e1['gate']['vs_named']['CTRL_CREST_B2']['folds_positive']}/4) / {e1['gate']['vs_named']['CTRL_H35_24']['mean_gain']:+.4f} ({e1['gate']['vs_named']['CTRL_H35_24']['folds_positive']}/4)</td><td>{badge('SCREEN FAIL vs H35', 'bad')}</td></tr>
@@ -206,6 +207,26 @@ is not a lane clearance. Format verification is against an owner-mirrored templa
 <tr><td><b>Exp 3: H71-4 MAG-ANISO</b> (<code>MAG_ANISO_B2</code>)</td><td><code>{e(str(e3['draws']))}</code> / {e3['withheld_positives']:,}</td><td class="num">{e3['leakage_canary']['max_feature_auc']:.4f}</td><td class="num">{e3['candidate_pooled_holdout_dti']:.6f} [{e3['candidate_pooled_ci95'][0]:.4f}, {e3['candidate_pooled_ci95'][1]:.4f}]</td><td class="num">{e3['control_h35_pooled_holdout_dti']:.6f}</td><td class="num">{e3['gate']['vs_named']['CTRL_CREST_B2']['mean_gain']:+.4f} ({e3['gate']['vs_named']['CTRL_CREST_B2']['folds_positive']}/4) / {e3['gate']['vs_named']['CTRL_H35_24']['mean_gain']:+.4f} ({e3['gate']['vs_named']['CTRL_H35_24']['folds_positive']}/4)</td><td>{badge('SCREEN FAIL vs H35', 'bad')}</td></tr>
 </tbody></table>
 <p class="small"><b>Key scientific findings:</b> (1) Three independent catalogue-free physical fields each beat unsupervised Family-B crest emission and each fail vs Family-E H35 on the catalogue-gap proxy (honest negative). (2) Featured GeoTIFF is the first GEMSDOE25 file to clear own HGB lineage under the 70% 3-px rule (max {100*rc['own_lineage']['worst_cand_dots_within_3px']:.1f}%; {100*fw['b2_overlap']:.1f}% vs GEMSDOE32 B2 0.2778; max sibling {100*fw['worst_cand_dots_within_3px']:.1f}%; surface |&rho;| {rc['surface_max_abs_spearman']:.4f} &le; 0.90). (3) Literal strict lane still fails on the dense r13 5-px lattice (100%; <code>IR-25-LANE-DENSITY</code>). (4) <b>OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT</b> (no weekly slot).</p></div>'''
+
+
+    def objective_summary_card(prefix: str) -> str:
+        if not obj_card:
+            return ''
+        x1 = obj_card['experiments']['experiment_1_tent']
+        x2 = obj_card['experiments']['experiment_2_hardneg']
+        x3 = obj_card['experiments']['experiment_3_ign3']
+        fd = obj_card['registry_correlation_and_overlap']['final_dots']
+        ext = fd['external_sparse']
+        b2o = fd['vs_gemsdoe32_b2']
+        kbase = "../knowledge" if not prefix else "knowledge"
+        return f"""<div class="card"><h2>Latest 3-Experiment Pre-Registered Session — training-objective geometry (TENT, HARDNEG, IGN3) · featured download above</h2>
+<p><b>Pre-registrations:</b> <a href="{kbase}/29_ranked_hypotheses_and_preregistration_2026-10-26.md"><code>knowledge/29</code></a> (commit <code>005e115</code>, before any fit), <a href="{kbase}/30_preregistered_ign3_experiment3_2026-10-26.md"><code>knowledge/30</code></a> · <b>Outcomes &amp; nine-site executive summary:</b> <a href="{kbase}/31_objective_outcomes_and_executive_summary_2026-10-26.md"><code>knowledge/31</code></a> · <b>Run card:</b> <code>registry/run_card_objective_2026-10-26.json</code>.</p>
+<table><thead><tr><th>Experiment (3/3 budget) — all HOLDOUT-DTI</th><th>Draws / Withheld +</th><th class="num">Canary max</th><th class="num">Candidate pooled</th><th class="num">Same-run BIN pooled</th><th class="num">Paired &Delta; [95% CI] (folds +)</th><th>Verdict</th></tr></thead><tbody>
+<tr><td><b>Exp 1 TENT</b> (kernel-regression target)</td><td><code>{e(str(x1['draws']))}</code> / {x1['withheld_positives_total']:,}</td><td class="num">{x1['leakage_canary']['max_effective_auc']:.4f}</td><td class="num">{x1['candidate_greedy']['pooled_dti']:.6f}</td><td class="num">{x1['bin_greedy']['pooled_dti']:.6f}</td><td class="num">{x1['paired']['mean_gain']:+.6f} [{x1['paired']['ci95'][0]:+.4f}, {x1['paired']['ci95'][1]:+.4f}] ({x1['paired']['folds_positive']}/4)</td><td>{badge('SCREEN FAIL', 'bad')}</td></tr>
+<tr><td><b>Exp 2 HARDNEG</b> (hard-negative mining)</td><td><code>{e(str(x2['draws']))}</code> / {x2['withheld_positives_total']:,}</td><td class="num">{x2['leakage_canary']['max_effective_auc']:.4f}</td><td class="num">{x2['candidate_greedy']['pooled_dti']:.6f}</td><td class="num">{x2['bin_greedy']['pooled_dti']:.6f}</td><td class="num">{x2['paired']['mean_gain']:+.6f} [{x2['paired']['ci95'][0]:+.4f}, {x2['paired']['ci95'][1]:+.4f}] ({x2['paired']['folds_positive']}/4)</td><td>{badge('SCREEN FAIL', 'bad')}</td></tr>
+<tr><td><b>Exp 3 IGN3</b> (ring-excluded negatives)</td><td><code>{e(str(x3['draws']))}</code> / {x3['withheld_positives_total']:,}</td><td class="num">{x3['leakage_canary']['max_effective_auc']:.4f}</td><td class="num">{x3['candidate_greedy']['pooled_dti']:.6f}</td><td class="num">{x3['bin_greedy']['pooled_dti']:.6f}</td><td class="num">{x3['paired']['mean_gain']:+.6f} [{x3['paired']['ci95'][0]:+.4f}, {x3['paired']['ci95'][1]:+.4f}] ({x3['paired']['folds_positive']}/4)</td><td>{badge('SCREEN FAIL', 'bad')}</td></tr>
+</tbody></table>
+<p class="small">No training-objective variant beat the frozen binary classifier; the featured GeoTIFF is that incumbent stack rebuilt with fresh production seeds. Unique vs scored/external rasters (worst overlap {100*ext['worst_cand_dots_within_3px']:.1f}% &le; 70%; {100*b2o['cand_dots_within_3px']:.1f}% vs GEMSDOE32 B2 0.2778); strict lane fails vs own unscored HGB lineage + r13 lattice. <b>OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT.</b></p></div>"""
 
     def h66_summary_card(prefix: str) -> str:
         if not h66_card:
@@ -238,7 +259,7 @@ is not a lane clearance. Format verification is against an owner-mirrored templa
 
     def home(prefix: str) -> str:
         hero = verdict_banner(primary, prefix)
-        cards = dl_card(primary, prefix) + h71_summary_card(prefix) + pol3_summary_card(prefix) + h66_summary_card(prefix) + h38_summary_card(prefix) + latest_diagnostic(prefix)
+        cards = dl_card(primary, prefix) + objective_summary_card(prefix) + h71_summary_card(prefix) + pol3_summary_card(prefix) + h66_summary_card(prefix) + h38_summary_card(prefix) + latest_diagnostic(prefix)
         alt = "".join(f"""<div class="card"><b>{e(o['title'])}</b> {badge(o['status'], 'ok' if o['status']=='scored' else 'warn')}
 <p class="small" style="margin:.3em 0">{e(o['summary'])}</p><a class="btn alt small" href="{prefix}downloads/{o['file']}" download>↓ {e(o['file'])}</a>
  <span class="small">· {o['positive_pixels']:,} px · <code>{o['content_id']}</code></span></div>""" for o in others if o["role"] in ("fallback", "alternate"))
@@ -386,6 +407,7 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
     exec_body = f"""{verdict_banner(primary, '', exec_page=True)}
 <div class="callout"><b>Current featured unique research artifact: {e(selected['file'])}.</b> <b>OK to download for local inspection/reproduction: YES.</b> Automated validation (<code>gems25.submission.check_file</code> 16/16 checks + plain-<code>rasterio</code> <code>scripts/verify_candidate_independent.py</code>) passed freshly against the SHA-256-pinned template (<code>2176d08e…</code>, owner-mirrored, not organizer-authenticated): every pixel is finite in <code>{{0.0, 1.0}} &sub; [0, 1]</code>, zero NaN anywhere, exact <code>EPSG:32611</code> / <code>3730 &times; 3292</code> grid. <b>OK to submit to a competition scoring slot: NO — DO NOT SUBMIT.</b> Three pre-registered H71 DIRECT-emission screens (HGPC-BLIND, AKF, MAG-ANISO) each beat unsupervised crest emission and each failed vs same-run H35 (0/4 folds). Density-aware lane is UNIQUE vs 21 top-scorers (15.4% vs GEMSDOE32 B2) and own HGB lineage (23.4%); literal strict lane fails only on the dense <code>r13</code> lattice (100%; <code>IR-25-LANE-DENSITY</code>). No weekly slot. Parallel-session research GeoTIFFs (including <code>gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif</code>, <code>gems25-h38-ospc-submod-20261025-680d62616417-zeros.tif</code>, <code>gems25-h36-spigm-subsurface-submod300-20261025-3937b96ce366-zeros.tif</code>, and <code>gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.tif</code>) remain available in the registry below and are likewise testing-only (<b>DO NOT SUBMIT</b>).</div>
 {dl_card(selected, '')}
+{objective_summary_card('')}
 {h71_summary_card('')}
 {pol3_summary_card('')}
 {h66_summary_card('')}
