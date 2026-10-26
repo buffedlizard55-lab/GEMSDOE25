@@ -9,12 +9,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CARD = json.loads((ROOT / "registry" / "run_card_apfl2_2026-10-26.json").read_text())
 SUBS = json.loads((ROOT / "registry" / "submissions.json").read_text())["files"]
-PRIMARY = next(s for s in SUBS if s["role"] == "primary")
+# Merge note: featured rotated to obj-bin-greedy by PR #48 (merged first); APFL2 is alternate.
+PRIMARY = next(s for s in SUBS if s["id"] == "apfl2-h35plus-apfl-b2-zeros")
 NAN_TWIN = next(s for s in SUBS if s["id"] == "apfl2-h35plus-apfl-b2-nan")
 
 
 def test_apfl2_is_featured_primary_and_matches_run_card() -> None:
     assert PRIMARY["id"] == "apfl2-h35plus-apfl-b2-zeros"
+    assert PRIMARY["role"] == "alternate"
     assert PRIMARY["sha256"] == CARD["raster_sha256"]
     assert PRIMARY["content_id"] == NAN_TWIN["content_id"] == CARD["submission"]["content_id"] == "2e9e4189f554"
     assert PRIMARY["positive_pixels"] == NAN_TWIN["positive_pixels"] == 48658
@@ -74,13 +76,14 @@ def test_apfl2_tifs_revalidate_when_template_present() -> None:
 
 
 def test_apfl2_site_and_readme_make_submit_status_obvious() -> None:
+    # Current pages feature the newer obj-bin file; APFL2 stays on history + section.
     for rel in ("index.html", "docs/index.html", "docs/executive-summary.html"):
         html = (ROOT / rel).read_text()
-        assert PRIMARY["file"] in html
-        assert "OK to download: YES" in html
-        assert "OK to spend a weekly slot: NO" in html
-        assert "DO NOT SUBMIT" in html
-        assert "2e9e4189f554" in html
+        assert "OK TO SUBMIT: NO" in html or "DO NOT SUBMIT" in html
+        assert "0.148880" in html or "APFL piedmont-flexure completion" in html
+    history = (ROOT / "docs/history.html").read_text()
+    assert PRIMARY["file"] in history
+    assert "2e9e4189f554" in history
     readme = (ROOT / "README.md").read_text()
     assert PRIMARY["file"] in readme
     assert "DO NOT SUBMIT" in readme

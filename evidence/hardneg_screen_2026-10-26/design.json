@@ -1,0 +1,62 @@
+{
+ "hypothesis": "HARDNEG two-stage hard-negative mining vs BIN on the frozen B35 stack (knowledge/29 Exp 2)",
+ "preregistration": "knowledge/29_ranked_hypotheses_and_preregistration_2026-10-26.md",
+ "implementation_commit": "ba5e5c4fdb40214e7c67cec2a8d4ceea691edf52",
+ "draws": [
+  94,
+  95
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "arms": [
+  "BIN",
+  "HNEG"
+ ],
+ "features": {
+  "base": "BDE",
+  "extras": [
+   "X1_K",
+   "X1_ThK",
+   "X1_UK",
+   "X2_compat",
+   "X2_compat_coh",
+   "X3_gm",
+   "X3_gd"
+  ],
+  "tip_column": "H27_tip",
+  "h34_columns": [
+   "H34_resmag_shallow_ridge",
+   "H34_resmag_mid_ridge",
+   "H34_baseflex_ridge"
+  ]
+ },
+ "classifier": {
+  "max_iter": 100,
+  "learning_rate": 0.12,
+  "max_leaf_nodes": 31,
+  "min_samples_leaf": 50,
+  "l2_regularization": 1.0,
+  "class_weight": {
+   "0": 1,
+   "1": 5
+  },
+  "early_stopping": false
+ },
+ "hardneg_rule": "stage2 negatives = 150k uniform (seed 777+31*fold+draw) + 150k highest stage-1-scored remaining pool pixels; pool = train_region & ~catalogue & EDT(hidden_train)>3; positives identical to BIN",
+ "emission_primary": "greedy marginal-credit on ridge-NMS top-3.5% pool (H38 rule), n_hat=0.25*|visible in domain|",
+ "emission_diagnostic": "score_ordered_dots min_dist=2.4 on the same pool",
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3px) via gems25.experiment.Cell.evaluate",
+ "leakage_auc_cap": 0.9,
+ "gate": {
+  "primary": "HNEG-greedy vs BIN-greedy",
+  "mean_gain_gt": 0.001,
+  "folds_positive_min": 3,
+  "worst_fold_min": -0.01,
+  "mean_hug_increase_max": 0.1
+ },
+ "runner_sha256": "8d86f905918496a2b5dec007e6b022bc89a884b43f0cb6d3d55e5768a1d15900"
+}

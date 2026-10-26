@@ -427,6 +427,22 @@
    "resolution_or_action": "File removed. src/gems25/submission.py takes the footprint from the template mirror, refuses NaN inside it, and check_file() reproduces the local failure (tests/test_submission.py). Cause is an inference from mirrored data, not confirmed by DrivenData; neither the template nor portal validator is organizer-authenticated here."
   },
   {
+   "id": "IR-25-OBJ-NOTE-GUARDRAIL",
+   "severity": "low",
+   "status": "resolved",
+   "issue": "First objective-lane candidate build used a research note ('HOLDOUT: no Exp beat BIN; DO NOT SUBMIT; unscored') that missed the repo's locked 'no slot / not slot-approved' phrasing enforced by tests/test_repo_integrity.py.",
+   "evidence": "tests/test_repo_integrity.py::test_shipped_downloads_match_registry_hashes_and_are_small failed on the note assertions; note lives in the checks JSON, not in TIF bytes.",
+   "resolution_or_action": "Builder rerun with compliant verdict note; TIF/ZIP regenerated bit-identical (SHA-256 160dbdc0... unchanged), audits/lane/register/site rebuilt; full suite green (270). No score or geometry changed."
+  },
+  {
+   "id": "IR-25-OBJ-SAME-LINEAGE",
+   "severity": "medium",
+   "status": "open",
+   "issue": "The objective session's candidate is the frozen H35/H38 stack with fresh production seeds; 87.2% of its dots fall within 3 px of this repo's own unscored H38 greedy file, so the strict lane fails vs own lineage even though it clears every scored/external raster (worst 0.692).",
+   "evidence": "evidence/objective_lane_extended.json own_lineage group; docs/downloads/lane-gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.json verdict DUPLICATE/LANE OVERLAP.",
+   "resolution_or_action": "Candidate held DO NOT SUBMIT with verdict negative. Any future promotion requires either an owner selector supersession of the own-lineage rule or a genuinely different detector; seed changes do not create a new lane."
+  },
+  {
    "id": "IR-25-OFFCAT-VACUOUS",
    "severity": "medium",
    "status": "disclosed",

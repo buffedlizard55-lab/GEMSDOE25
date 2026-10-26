@@ -383,5 +383,6 @@
  },
  "score_scenarios": "evidence/apfl2_score_scenarios.json (INFERENCE only)",
  "focus_audit": "evidence/focus_audit_session_2026-10-26.json",
- "verdict": "negative \u2014 both screens failed the frozen gate vs same-run H35; lane-duplicate vs own HGB lineage; DO NOT SUBMIT. Negative result is the deliverable."
+ "verdict": "negative \u2014 both screens failed the frozen gate vs same-run H35; lane-duplicate vs own HGB lineage; DO NOT SUBMIT. Negative result is the deliverable.",
+ "registry_note_post_merge": "Featured primary at build time; after merging PR #48 (objective-lane BIN session, merged first) this file is registry role 'alternate'. Verdict, hashes and DO NOT SUBMIT status unchanged."
 }

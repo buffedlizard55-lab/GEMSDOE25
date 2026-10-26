@@ -190,3 +190,14 @@ GDR 1391 (INGENIOUS): <https://gdr.openei.org/submissions/1391> · INGENIOUS pro
 <https://gbcge.org/current-projects/ingenious/> · EPSG:32611: <https://epsg.io/32611> · Tversky index:
 <https://en.wikipedia.org/wiki/Tversky_index>. Internal: knowledge/03 (staff clarifications as recorded),
 knowledge/17 & 27 (prior 0.2778 forensics), knowledge/29 (this session's pre-registration).
+
+---
+
+## Merge note (added during PR #46 merge, after parallel PRs #43–45 and #48)
+
+Parallel sessions merged first: a download audit, OLIC screen, D01 density
+experiment, lane-feasibility proof (PRs #43–45) and an objective-lane BIN
+session (PR #48) whose testing file (`3646faf70507`, verdict negative) is now
+the registry's featured primary. The APFL2 file in §5 is therefore registered
+as **alternate**; every number, hash, gate result and DO NOT SUBMIT verdict in
+this document is unchanged. Irregularities registry after union: 90 issues.
