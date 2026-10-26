@@ -6,7 +6,7 @@
  "mechanism": "A normal-fault range front follows a regional basin-margin contour rather than downslope drainage; concealed hydrothermal conduits can also produce aligned density contacts, conductive clay-gouge/base shoaling, and fluid-driven earthquake swarm excess under transtension. The shipped 78-column OOF raster uses no catalogue-derived model feature, then applies only a B2 output collar.",
  "named_non_fault_process_that_could_mimic_it": "Pleistocene Lake Lahontan/Bonneville shoreline benches, unfaulted basin-margin evaporite pinchouts, volcanic flow fronts, and stratigraphic contacts can mimic contour-parallel scarps and gravity/MT edges.",
  "preregistration": {
-  "file": "knowledge/29_h72_hypotheses_and_preregistration_2026-10-26.md",
+  "file": "knowledge/29_h72_cf_hypotheses_and_preregistration_2026-10-26.md",
   "commit_before_feature_implementation_or_fit": "2750fe9",
   "implementation_commit_before_fit": "59f5c04",
   "experiment_3_addendum_commit_before_fit": "7ba8333",
@@ -189,7 +189,7 @@
   "no_emission_on_catalogue": true,
   "zip_contains_exact_candidate": true,
   "template_provenance": "SHA-256-pinned owner mirror; not organizer-authenticated",
-  "source": "evidence/h72_independent_audit.json"
+  "source": "evidence/h72_cf_independent_audit.json"
  },
  "submission_name": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.tif",
  "submission_note": "H72-CF MBSP-MTG; no slot; unscored; not slot-approved | id 1d7c1e9ea55f",

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run the pre-registered H72 (MBSP-MTG x DEBIAS) 2x2 factorial holdout experiment.
 
-Pre-registered in ``knowledge/29_h72_hypotheses_and_preregistration_2026-10-26.md``
+Pre-registered in ``knowledge/29_h72_cf_hypotheses_and_preregistration_2026-10-26.md``
 (committed at ``2750fe9`` before feature implementation or fitting).
 
 Arms evaluated on the exact same holdout cells (no comparator drift):
@@ -37,7 +37,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from gems25.experiment import HGB_PARAMS, Cell, load_context  # noqa: E402
 from gems25.h34 import H34_NAMES, load_h34_sidecar  # noqa: E402
-from gems25.h72 import CENSOR_MIN_DIST_PX, H72_NAMES, emit_debiased_b2_greedy, load_h72_sidecar  # noqa: E402
+from gems25.h72_cf import CENSOR_MIN_DIST_PX, H72_NAMES, emit_debiased_b2_greedy, load_h72_sidecar  # noqa: E402
 from gems25.metric import ALPHA, BETA, dti_binary  # noqa: E402
 from gems25.paths import data_dir, work_dir  # noqa: E402
 from gems25.thinning import score_ordered_dots  # noqa: E402

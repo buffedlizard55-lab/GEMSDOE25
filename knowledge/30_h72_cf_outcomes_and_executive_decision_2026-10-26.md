@@ -1,9 +1,9 @@
 # 30 · H72 MBSP-MTG Outcomes, Nine-Site Executive Decision, and Unique GeoTIFF Audit (`1d7c1e9ea55f`, 2026-10-26)
 
 * **Branch:** `arena/11487c37-gemsdoe25`
-* **Pre-registration:** [`knowledge/29_h72_hypotheses_and_preregistration_2026-10-26.md`](29_h72_hypotheses_and_preregistration_2026-10-26.md), commit `2750fe9` before feature implementation/fitting; Experiment 3 addendum commit `7ba8333` before untouched draws `[84,85]`.
+* **Pre-registration:** [`knowledge/29_h72_cf_hypotheses_and_preregistration_2026-10-26.md`](29_h72_hypotheses_and_preregistration_2026-10-26.md), commit `2750fe9` before feature implementation/fitting; Experiment 3 addendum commit `7ba8333` before untouched draws `[84,85]`.
 * **Experiments:** `3 / 3` (Screen, frozen Confirmation, CatFree ablation); `0` weekly slots used.
-* **Machine Run Card:** [`registry/run_card_h72_2026-10-26.json`](../registry/run_card_h72_2026-10-26.json).
+* **Machine Run Card:** [`registry/run_card_h72_cf_2026-10-26.json`](../registry/run_card_h72_cf_2026-10-26.json).
 * **Evidence labels:** all competition values are **OWNER-REPORTED** (unverified) unless backed by a receipt; this repository contains **zero ORGANIZER-CONFIRMED scores**. Every local number below is labeled **COMPUTED** or **HOLDOUT-DTI**. No DrivenData page was accessed.
 
 ---

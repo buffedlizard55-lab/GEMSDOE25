@@ -1,7 +1,7 @@
 """H72 — Macro-Basin Contour-Parallel Piedmont Scarp & Concealed MT–Gravity–Swarm Damage
 Corridor (``MBSP-MTG``) crossed with Training-Time Catalogue-Proximity Censoring (``DEBIAS``).
 
-Pre-registered in ``knowledge/29_h72_hypotheses_and_preregistration_2026-10-26.md``
+Pre-registered in ``knowledge/29_h72_cf_hypotheses_and_preregistration_2026-10-26.md``
 (committed at ``2750fe9`` before feature implementation or fitting).
 
 Design invariants:
@@ -253,9 +253,9 @@ def load_h72_sidecar(
     footprint: np.ndarray,
     footprint_idx: np.ndarray,
 ) -> np.ndarray:
-    """Load or build the cached ``work/h72_sidecar.npy`` memmap."""
+    """Load or build the cached ``work/h72_cf_sidecar.npy`` memmap."""
     work = Path(work)
-    out = work / "h72_sidecar.npy"
+    out = work / "h72_cf_sidecar.npy"
     names_file = Path(str(out) + ".names.json")
     fi = np.asarray(footprint_idx)
     if not out.exists() or not names_file.exists():

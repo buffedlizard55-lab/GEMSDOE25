@@ -17,7 +17,7 @@ def J(path: str) -> dict:
 
 
 def test_h72_primary_bytes_format_and_registry_status():
-    card = J("registry/run_card_h72_2026-10-26.json")
+    card = J("registry/run_card_h72_cf_2026-10-26.json")
     subs = J("registry/submissions.json")["files"]
     primary = next(x for x in subs if x["role"] == "primary")
     p = ROOT / "docs" / "downloads" / FILE
@@ -44,7 +44,7 @@ def test_h72_primary_bytes_format_and_registry_status():
 
 
 def test_h72_holdout_labels_counts_and_negative_artifact_gate():
-    card = J("registry/run_card_h72_2026-10-26.json")
+    card = J("registry/run_card_h72_cf_2026-10-26.json")
     hold = card["holdout_dti"]
     main = hold["screen_and_confirm_H72_with_H35"]
     cf = hold["shipped_catfree_detector_family"]
@@ -63,8 +63,8 @@ def test_h72_holdout_labels_counts_and_negative_artifact_gate():
 
 
 def test_h72_content_unique_but_strict_lane_negative():
-    card = J("registry/run_card_h72_2026-10-26.json")
-    uniq = J("evidence/h72_content_uniqueness.json")
+    card = J("registry/run_card_h72_cf_2026-10-26.json")
+    uniq = J("evidence/h72_cf_content_uniqueness.json")
     lane = card["correlation_overlap_vs_registry"]
 
     assert uniq["unique_by_scored_content_vs_prior_registry"] is True

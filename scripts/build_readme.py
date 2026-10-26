@@ -49,7 +49,7 @@ def main() -> None:
     h38_card = opt("registry/run_card_h38_ospc_2026-10-25.json")
     h66_card = opt("registry/run_card_h66_2026-10-25.json")
     h71_card = opt("registry/run_card_h71_2026-10-26.json")
-    h72_card = opt("registry/run_card_h72_2026-10-26.json")
+    h72_card = opt("registry/run_card_h72_cf_2026-10-26.json")
     h36_spigm_card = opt("registry/run_card_h36_spigm_2026-10-25.json")
     h36_spigm_pool = opt("evidence/h36_spigm_pooled_16cells.json")
     focus_forensics = opt("evidence/focus_sites_forensics.json")
@@ -70,8 +70,8 @@ def main() -> None:
         h72_cf = h72_card["holdout_dti"]["shipped_catfree_detector_family"]
         h72_lane = h72_card["correlation_overlap_vs_registry"]["final_dots"]
         A("**Latest session (2026-10-26, H72 MBSP-MTG × DEBIAS 3-experiment lane — featured download below):** "
-          f"[catalogue-hug collapse forensics, 5 ranked untried hypotheses, and 3 pre-registered experiments — H72 add-on replicated on H35 with combined HOLDOUT-DTI `{h72_main['candidate_pooled']:.6f}` vs same-run H35 `{h72_main['same_run_h35_pooled']:.6f}` (paired `{h72_main['paired_gain']:+.6f}`; 95% CI `[{h72_main['paired_gain_ci95'][0]:+.6f}, {h72_main['paired_gain_ci95'][1]:+.6f}]`; `{h72_main['withheld_positive_occurrences']:,}` withheld occurrences), but shipped CatFree lineage is `{h72_cf['candidate_pooled']:.6f}` vs H35 `{h72_cf['same_run_h35_pooled']:.6f}` (`{h72_cf['paired_gain_vs_H35']:+.6f}`, FAIL). Unique GeoTIFF `1d7c1e9ea55f` passes format and clears 27 focus/top scorers (max `{100*h72_lane['focus_and_top_scorers_27']['max_candidate_dots_within_3px']:.1f}%`) plus own lineage (`{100*h72_lane['own_lineage']['max_candidate_dots_within_3px']:.1f}%`), but strict lane fails on lattice + 4 broad artifacts; OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT](knowledge/30_h72_outcomes_and_executive_decision_2026-10-26.md) · "
-          "pre-registration [`knowledge/29_h72_hypotheses_and_preregistration_2026-10-26.md`](knowledge/29_h72_hypotheses_and_preregistration_2026-10-26.md) (commits `2750fe9`, `7ba8333`, pre-fit) · run card `registry/run_card_h72_2026-10-26.json`.\n")
+          f"[catalogue-hug collapse forensics, 5 ranked untried hypotheses, and 3 pre-registered experiments — H72 add-on replicated on H35 with combined HOLDOUT-DTI `{h72_main['candidate_pooled']:.6f}` vs same-run H35 `{h72_main['same_run_h35_pooled']:.6f}` (paired `{h72_main['paired_gain']:+.6f}`; 95% CI `[{h72_main['paired_gain_ci95'][0]:+.6f}, {h72_main['paired_gain_ci95'][1]:+.6f}]`; `{h72_main['withheld_positive_occurrences']:,}` withheld occurrences), but shipped CatFree lineage is `{h72_cf['candidate_pooled']:.6f}` vs H35 `{h72_cf['same_run_h35_pooled']:.6f}` (`{h72_cf['paired_gain_vs_H35']:+.6f}`, FAIL). Unique GeoTIFF `1d7c1e9ea55f` passes format and clears 27 focus/top scorers (max `{100*h72_lane['focus_and_top_scorers_27']['max_candidate_dots_within_3px']:.1f}%`) plus own lineage (`{100*h72_lane['own_lineage']['max_candidate_dots_within_3px']:.1f}%`), but strict lane fails on lattice + 4 broad artifacts; OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT](knowledge/30_h72_cf_outcomes_and_executive_decision_2026-10-26.md) · "
+          "pre-registration [`knowledge/29_h72_cf_hypotheses_and_preregistration_2026-10-26.md`](knowledge/29_h72_cf_hypotheses_and_preregistration_2026-10-26.md) (commits `2750fe9`, `7ba8333`, pre-fit) · run card `registry/run_card_h72_cf_2026-10-26.json`.\n")
     if h71_card:
         e1_71 = h71_card["experiments"]["experiment_1_h71_1_hgpc_screen"]
         e2_71 = h71_card["experiments"]["experiment_2_h71_3_akf_screen"]
@@ -377,10 +377,10 @@ def main() -> None:
       ".venv/bin/python scripts/run_h36_holdout.py --draws 22 23 --out evidence/h36_spigm_confirm && .venv/bin/python scripts/analyze_h36_holdout.py --dirs evidence/h36_spigm_screen evidence/h36_spigm_confirm --out evidence/h36_spigm_pooled_16cells.json\n"
       ".venv/bin/python scripts/build_h36_submission.py && .venv/bin/python scripts/register_h36_spigm_submission.py\n"
       "# H72 MBSP-MTG x DEBIAS (historical reproduction only: 3/3 budget already exhausted; knowledge/29-30)\n"
-      ".venv/bin/python scripts/run_h72.py --draws 80 81 --stage screen --out evidence/h72_screen\n"
-      ".venv/bin/python scripts/run_h72.py --draws 82 83 --stage confirm --out evidence/h72_confirm\n"
-      ".venv/bin/python scripts/run_h72.py --mode catfree --draws 84 85 --stage catfree_ablation --out evidence/h72_catfree\n"
-      ".venv/bin/python scripts/build_h72_candidate.py\n"
+      ".venv/bin/python scripts/run_h72_cf.py --draws 80 81 --stage screen --out evidence/h72_cf_screen\n"
+      ".venv/bin/python scripts/run_h72_cf.py --draws 82 83 --stage confirm --out evidence/h72_cf_confirm\n"
+      ".venv/bin/python scripts/run_h72_cf.py --mode catfree --draws 84 85 --stage catfree_ablation --out evidence/h72_cf_catfree\n"
+      ".venv/bin/python scripts/build_h72_cf_candidate.py\n"
       "# files, site, README\n"
       ".venv/bin/python scripts/build_candidate.py --help            # train on the full catalogue, emit, verify (exploratory surface)\n"
       ".venv/bin/python scripts/package_submissions.py --exploratory-receipt docs/downloads/checks-<file>.json\n"

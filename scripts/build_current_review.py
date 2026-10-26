@@ -19,7 +19,7 @@ def current_banner(prefix):
 
 def render_body(root_page=False):
     focus = json.loads((ROOT/'evidence/focus_audit_2026-10-26.json').read_text())
-    h72_path = ROOT/'registry/run_card_h72_2026-10-26.json'
+    h72_path = ROOT/'registry/run_card_h72_cf_2026-10-26.json'
     card = json.loads(h72_path.read_text()) if h72_path.exists() else None
     status = e(card['verdict_reason']) if card else 'Run incomplete. No submission file is authorized.'
     outcome = '<p>No valid HOLDOUT-DTI result is available. This is not a score of zero.</p>'
@@ -83,7 +83,7 @@ Not approved as a new submission. SHA-256: <code class="wrap-hash">{row['sha256'
 <td><b>NO DEFENSIBLE LEADERBOARD ESTIMATE</b><small>CatFree HOLDOUT-DTI 0.0948 [0.0823, 0.1073] is a proxy, not a score.</small></td>
 <td><b>Content: YES</b><small>0 prior content matches; focus/top + own lineage pass.</small><br><b>Strict lane: NO</b><small>lattice + four broad artifact halos fail.</small></td>
 <td><span class="badge b-bad">NO — DO NOT SUBMIT</span></td></tr></tbody></table></div>
-<div class="row"><a class="btn" href="../registry/run_card_h72_2026-10-26.json" download>Download H72 decision receipt</a>
+<div class="row"><a class="btn" href="../registry/run_card_h72_cf_2026-10-26.json" download>Download H72 decision receipt</a>
 <a class="btn alt" href="#how-to-submit">Submission checklist</a></div></section>
 <section><h2>What is the strongest historical evidence?</h2>
 <p><b>GEMSDOE32 B2 — 0.2778, OWNER-REPORTED.</b> It is the highest supplied historical result among these focus sites.
@@ -103,10 +103,10 @@ Thinning can preserve coverage while removing redundant predictions. Collar prun
 <section><h2>New test: H72 macro-basin contour scarps + concealed MT/gravity/swarm damage</h2>
 <p>H72 targets a fault scarp that follows the macro-basin contour rather than down-slope drainage, plus concealed density contacts, conductive clay-gouge/base shoaling and transtensional earthquake-swarm excess. Lake shoreline benches, stratigraphic contacts and volcanic fronts are named mimics.</p>
 {outcome}<p><b>Decision:</b> the six H72 columns replicated as an add-on to H35, but the genuinely catalogue-free downloadable lineage did not beat H35. Surface rank passes; final-dot overlap fails the strict registry rule. Negative result, no slot.</p>
-<p><a href="../knowledge/29_h72_hypotheses_and_preregistration_2026-10-26.md">Five ranked hypotheses &amp; frozen design</a> ·
-<a href="../knowledge/30_h72_outcomes_and_executive_decision_2026-10-26.md">Complete outcomes and nine-site decision</a> ·
-<a href="../registry/run_card_h72_2026-10-26.json">H72 run card</a> ·
-<a href="../evidence/h72_lane_surface.json">Pre-placement surface audit</a></p></section>
+<p><a href="../knowledge/29_h72_cf_hypotheses_and_preregistration_2026-10-26.md">Five ranked hypotheses &amp; frozen design</a> ·
+<a href="../knowledge/30_h72_cf_outcomes_and_executive_decision_2026-10-26.md">Complete outcomes and nine-site decision</a> ·
+<a href="../registry/run_card_h72_cf_2026-10-26.json">H72 run card</a> ·
+<a href="../evidence/h72_cf_lane_surface.json">Pre-placement surface audit</a></p></section>
 {pol3_section}
 <section><h2>The novelty constraint needs attention</h2>
 <p>The registered lattice's three-pixel halo covers <b>{coverage['coverage_fraction']*100:.4f}%</b> of eligible pixels.
@@ -130,7 +130,7 @@ even before spacing constraints. This does <b>not</b> establish that every small
 <ul><li><a href="../evidence/focus_audit_2026-10-26.json">Fresh mirror hashes, mask identities and nine source revisions</a> — owner mirrors, not organizer authentication.</li>
 <li><a href="../evidence/focus_format_2026-10-26.json">Automated exact-template format receipts</a> — format only, not performance approval.</li>
 <li><a href="../evidence/official_reference_2026-10-26.json">Fresh official reference-repository evidence</a> — CPU training is supported; its training loss is not an independent distance-weighted scorer.</li>
-<li><a href="../evidence/h72_pooled_summary.json">H72 pooled HOLDOUT-DTI + CIs</a> · <a href="../evidence/h72_content_uniqueness.json">exact scored-content uniqueness</a> · <a href="../evidence/h72_independent_audit.json">independent exact-file audit</a>.</li>
+<li><a href="../evidence/h72_cf_pooled_summary.json">H72 pooled HOLDOUT-DTI + CIs</a> · <a href="../evidence/h72_cf_content_uniqueness.json">exact scored-content uniqueness</a> · <a href="../evidence/h72_cf_independent_audit.json">independent exact-file audit</a>.</li>
 <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official problem and format</a> ·
 <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Rules PDF</a> ·
 <a href="https://gdr.openei.org/submissions/1391">GDR 1391</a> ·
@@ -152,8 +152,8 @@ def readme_status():
             "Featured unique GeoTIFF [`gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.tif`](docs/downloads/gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.tif) "
             "(content id `1d7c1e9ea55f`; format PASS; shipped CatFree HOLDOUT-DTI FAIL vs H35; strict lane FAIL). "
             "[Nine-site executive review and automated H72 decision](docs/current-review.html) · "
-            "[H72 outcomes](knowledge/30_h72_outcomes_and_executive_decision_2026-10-26.md) · "
-            "[H72 run card](registry/run_card_h72_2026-10-26.json). "
+            "[H72 outcomes](knowledge/30_h72_cf_outcomes_and_executive_decision_2026-10-26.md) · "
+            "[H72 run card](registry/run_card_h72_cf_2026-10-26.json). "
             "GEMSDOE32 B2 is the strongest supplied historical exemplar (**OWNER-REPORTED 0.2778**), not a new submission. "
             "Do not reinterpret historical downloads or format-only receipts as authorization. "
             "No weekly slot was used.\n\n"

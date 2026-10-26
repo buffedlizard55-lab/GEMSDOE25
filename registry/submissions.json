@@ -30,11 +30,11 @@
     "focus_top_27_max_overlap": 0.6401975885696075,
     "own_lineage_max_overlap": 0.49856588941413926,
     "receipt": "docs/downloads/lane-gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.json",
-    "surface_receipt": "evidence/h72_lane_surface.json"
+    "surface_receipt": "evidence/h72_cf_lane_surface.json"
    },
    "lane_summary": "Surface PASS (max |Spearman| 0.2177 <= 0.90). Final dots PASS vs 27 focus/top scorers (max 64.0%) and own lineage (49.9%), but STRICT FAIL vs r13 lattice (100%) and four historical artifact halos (worst 85.5%)",
    "slot_reason": "Shipped CatFree lineage is HOLDOUT-DTI 0.0948 vs same-run H35 0.1538 (-0.0590; 0/4 folds); exact artifact emission was not re-tested at the 3-experiment cap; strict final-dot lane fails. Not slot-approved.",
-   "run_card": "registry/run_card_h72_2026-10-26.json",
+   "run_card": "registry/run_card_h72_cf_2026-10-26.json",
    "note": "H72-CF MBSP-MTG; no slot; unscored; not slot-approved | id 1d7c1e9ea55f",
    "checks": {
     "template_matches_expected_grid_and_footprint": {
@@ -152,11 +152,11 @@
     "focus_top_27_max_overlap": 0.6401975885696075,
     "own_lineage_max_overlap": 0.49856588941413926,
     "receipt": "docs/downloads/lane-gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.json",
-    "surface_receipt": "evidence/h72_lane_surface.json"
+    "surface_receipt": "evidence/h72_cf_lane_surface.json"
    },
    "lane_summary": "Surface PASS (max |Spearman| 0.2177 <= 0.90). Final dots PASS vs 27 focus/top scorers (max 64.0%) and own lineage (49.9%), but STRICT FAIL vs r13 lattice (100%) and four historical artifact halos (worst 85.5%)",
    "slot_reason": "Shipped CatFree lineage is HOLDOUT-DTI 0.0948 vs same-run H35 0.1538 (-0.0590; 0/4 folds); exact artifact emission was not re-tested at the 3-experiment cap; strict final-dot lane fails. Not slot-approved.",
-   "run_card": "registry/run_card_h72_2026-10-26.json",
+   "run_card": "registry/run_card_h72_cf_2026-10-26.json",
    "note": "H72-CF MBSP-MTG; no slot; unscored; not slot-approved | id 1d7c1e9ea55f",
    "checks": {
     "template_matches_expected_grid_and_footprint": {

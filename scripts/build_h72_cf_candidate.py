@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the genuinely unique H72-CF (MBSP-MTG 100% Catalogue-Free OOF) full-footprint GeoTIFFs.
 
-Follows `knowledge/29_h72_hypotheses_and_preregistration_2026-10-26.md` §3.3:
+Follows `knowledge/29_h72_cf_hypotheses_and_preregistration_2026-10-26.md` §3.3:
   * Feature stack (78 strictly catalogue-free columns, matching Experiment 3 arm `CF_G1`):
       Families A + B + C + D (64) + X1_K, X1_ThK, X1_UK, X3_gm, X3_gd (5)
       + H34 residual-magnetic/base-flexure contrasts (3) + H72 MBSP-MTG (6).
@@ -33,7 +33,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from gems25.experiment import DOMAIN_ERODE, HGB_PARAMS, N_NEG, load_context  # noqa: E402
 from gems25.h34 import H34_NAMES, load_h34_sidecar  # noqa: E402
-from gems25.h72 import H72_NAMES, load_h72_sidecar  # noqa: E402
+from gems25.h72_cf import H72_NAMES, load_h72_sidecar  # noqa: E402
 from gems25.paths import data_dir, work_dir  # noqa: E402
 from gems25.submission import check_file, content_id, make_filename, write_submission, zip_single  # noqa: E402
 from gems25.thinning import ridge_nms, score_ordered_dots, select_top_positive  # noqa: E402
@@ -128,7 +128,7 @@ def main() -> None:
             )
         p_oof[q_vec] = p_q_sum / float(args.draws)
 
-    scores_path = work / "h72_catfree_full_scores.npy"
+    scores_path = work / "h72_cf_full_scores.npy"
     np.save(scores_path, p_oof)
     print(f"[{time.time() - t0:.1f}s] Saved continuous OOF surface -> {scores_path}", flush=True)
 
@@ -203,7 +203,7 @@ def main() -> None:
         share_d_cat_le_10px=round(share_le_10, 4),
         content_id=cid,
         note=note,
-        scores_npy="${GEMS_WORK_DIR:-data/work}/h72_catfree_full_scores.npy",
+        scores_npy="${GEMS_WORK_DIR:-data/work}/h72_cf_full_scores.npy",
         seconds=round(time.time() - t0, 2),
         files=dict(zeros=recs["zeros"], nan=recs["nan"], zip=f"docs/downloads/{zpath.name}"),
     )

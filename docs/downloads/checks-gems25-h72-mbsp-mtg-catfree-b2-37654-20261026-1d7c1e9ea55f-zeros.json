@@ -27,7 +27,7 @@
  "share_d_cat_le_10px": 0.3141,
  "content_id": "1d7c1e9ea55f",
  "note": "H72-CF MBSP-MTG; no slot; unscored; not slot-approved | id 1d7c1e9ea55f",
- "scores_npy": "${GEMS_WORK_DIR:-data/work}/h72_catfree_full_scores.npy",
+ "scores_npy": "${GEMS_WORK_DIR:-data/work}/h72_cf_full_scores.npy",
  "seconds": 303.63,
  "files": {
   "zeros": {

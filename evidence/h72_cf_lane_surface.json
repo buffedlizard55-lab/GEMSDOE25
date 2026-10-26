@@ -1,5 +1,5 @@
 {
- "scores": "/tmp/gems25_data/work/h72_catfree_full_scores.npy",
+ "scores": "/tmp/gems25_data/work/h72_cf_full_scores.npy",
  "sample": 400000,
  "rho_max": 0.9,
  "worst_abs_spearman": 0.159911,

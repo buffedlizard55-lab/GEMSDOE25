@@ -154,7 +154,7 @@ def main() -> None:
     h38_card = opt('registry/run_card_h38_ospc_2026-10-25.json')
     h66_card = opt('registry/run_card_h66_2026-10-25.json')
     h71_card = opt('registry/run_card_h71_2026-10-26.json')
-    h72_card = opt('registry/run_card_h72_2026-10-26.json')
+    h72_card = opt('registry/run_card_h72_cf_2026-10-26.json')
 
     def latest_diagnostic(prefix: str) -> str:
         if cf1 is None or cf1_card is None:
@@ -201,7 +201,7 @@ is not a lane clearance. Format verification is against an owner-mirrored templa
         own = lane['own_lineage']
         kbase = "../knowledge" if not prefix else "knowledge"
         return f'''<div class="card"><h2>Latest 3/3-experiment session — H72 MBSP-MTG &times; DEBIAS · featured download above</h2>
-<p><b>Pre-registration:</b> <a href="{kbase}/29_h72_hypotheses_and_preregistration_2026-10-26.md"><code>knowledge/29</code></a> (commits <code>2750fe9</code> and <code>7ba8333</code>, before fitting) · <b>Full outcomes and nine-site decision:</b> <a href="{kbase}/30_h72_outcomes_and_executive_decision_2026-10-26.md"><code>knowledge/30</code></a> · <b>Run card:</b> <code>registry/run_card_h72_2026-10-26.json</code>.</p>
+<p><b>Pre-registration:</b> <a href="{kbase}/29_h72_hypotheses_and_preregistration_2026-10-26.md"><code>knowledge/29</code></a> (commits <code>2750fe9</code> and <code>7ba8333</code>, before fitting) · <b>Full outcomes and nine-site decision:</b> <a href="{kbase}/30_h72_outcomes_and_executive_decision_2026-10-26.md"><code>knowledge/30</code></a> · <b>Run card:</b> <code>registry/run_card_h72_cf_2026-10-26.json</code>.</p>
 <table><thead><tr><th>Evidence</th><th class="num">Candidate HOLDOUT-DTI [95% CI]</th><th class="num">Same-run H35</th><th class="num">Paired gain [95% CI]</th><th>Decision</th></tr></thead><tbody>
 <tr><td><b>H72 add-on + H35</b> · Screen + Confirmation · {main['withheld_positive_occurrences']:,} withheld-positive occurrences</td><td class="num">{main['candidate_pooled']:.6f} [{main['candidate_ci95'][0]:.4f}, {main['candidate_ci95'][1]:.4f}]</td><td class="num">{main['same_run_h35_pooled']:.6f}</td><td class="num">{main['paired_gain']:+.6f} [{main['paired_gain_ci95'][0]:+.4f}, {main['paired_gain_ci95'][1]:+.4f}]</td><td>{badge('ADD-ON PASS', 'ok')}</td></tr>
 <tr><td><b>Shipped CatFree detector family</b> · {cf['withheld_positive_occurrences']:,} withheld-positive occurrences</td><td class="num">{cf['candidate_pooled']:.6f} [{cf['candidate_ci95'][0]:.4f}, {cf['candidate_ci95'][1]:.4f}]</td><td class="num">{cf['same_run_h35_pooled']:.6f}</td><td class="num">{cf['paired_gain_vs_H35']:+.6f} [{cf['paired_gain_vs_H35_ci95'][0]:+.4f}, {cf['paired_gain_vs_H35_ci95'][1]:+.4f}]</td><td>{badge('ARTIFACT FAMILY FAIL', 'bad')}</td></tr>

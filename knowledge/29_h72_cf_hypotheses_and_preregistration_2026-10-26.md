@@ -50,7 +50,7 @@ All expected improvement entries below are **qualitative planning judgments, NOT
 
 ### 3.1 Clean $2 \times 2$ Factorial Design (Reusing Shared `gems25.holdout`, `gems25.experiment`, `gems25.metric`, `gems25.h31`, `gems25.greedy`, `gems25.submission`)
 
-* **Factor `G` (`MBSP-MTG` 6 strictly catalogue-free columns in `src/gems25/h72.py`, `labels.tif` never read):**
+* **Factor `G` (`MBSP-MTG` 6 strictly catalogue-free columns in `src/gems25/h72_cf.py`, `labels.tif` never read):**
   * `G = 0`: `H35` static feature stack (`BDE+7` + `H27_tip` + `H34` `3` cols = `82` cols when `D=0`; `80` cols when `D=1` since `E_dens5` is dropped).
   * `G = 1`: Appends the `6` `H72` columns (`H72_contour_scarp_lidar`, `H72_contour_scarp_dem`, `H72_grav_contour_scarp`, `H72_mt_gouge_step`, `H72_grav_vg_zero_step`, `H72_transtension_swarm`), keeping `NaN` in `H72_contour_scarp_lidar` where `L_valid == 0`.
 * **Factor `D` (Short-Range Catalogue-Proximity Censoring + `B2-Tip` `37,654`-Dot Greedy `300 m` Tent Allocation):**

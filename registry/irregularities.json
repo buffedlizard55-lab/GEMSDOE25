@@ -671,7 +671,7 @@
    "severity": "high",
    "status": "verified",
    "issue": "Owner-reported live scores on 2026-10-25 submissions show a 3x-4x collapse for Family-E-dominated models (GEMSDOE25 H66-1 da617550a0e9: 0.0742; GEMSDOE24 gvc1 abe8e51c719d: 0.0859) compared to catalogue-free / off-flank detectors (GEMSDOE32 B2: 0.2778; GEMSDOE70 P5: 0.2478; GEMSDOE27 H29: 0.2190). Pixel-exact distance forensics proves the mechanism: Holdout hides 20% of 8-connected catalogue fragments while leaving adjacent sibling fragments visible (55.6% of withheld test pixels lie at d(visible) <= 10 px), causing Family-E HGB models to cram 75.7% (H66-1) and 74.3% (G24 gvc1) of full-catalogue dots into the barren d(cat) <= 10 px collar (med_d = 5.7-5.8 px), whereas every >=0.219 live scorer places 61.8%-69.8% of dots at d(cat) > 10 px (med_d = 16.2-19.6 px).",
-   "evidence": "COMPUTED across 27 pinned rasters in registry/top_scorer_sources.json + docs/downloads/ (knowledge/29_h72_hypotheses_and_preregistration_2026-10-26.md)",
+   "evidence": "COMPUTED across 27 pinned rasters in registry/top_scorer_sources.json + docs/downloads/ (knowledge/29_h72_cf_hypotheses_and_preregistration_2026-10-26.md)",
    "resolution_or_action": "Tested explicitly in H72 (Factor D: training-time short-range catalogue-proximity censoring d >= 15 px + B2-Tip 37,654-dot greedy 300 m tent allocation) alongside standard Holdout and off-flank (d_vis > 10 px) discovery diagnostics."
   },
   {
@@ -687,7 +687,7 @@
    "severity": "critical",
    "status": "fixed",
    "issue": "Pass-2 audit found two H72-CF full-build engineering mismatches before publication: (1) the first uncommitted build treated cached addon rows 4-5 (S_dem_c2/S_dem_s2) as Experiment-3 X3_gm/X3_gd; (2) the corrected-feature intermediate used the rectangular grid midpoint (1865,1646) for OOF quadrants instead of gems25.holdout's irregular-footprint medians (936,1504). Thus uncommitted content ids 526191a4dd56 and 69e240f10b14 did not exactly reproduce the tested CF_G1 feature/spatial protocol.",
-   "evidence": "src/gems25/experiment.py::gather_columns; src/gems25.holdout.quadrant_ids; scripts/build_h72_candidate.py; both removed uncommitted receipts",
+   "evidence": "src/gems25/experiment.py::gather_columns; src/gems25.holdout.quadrant_ids; scripts/build_h72_cf_candidate.py; both removed uncommitted receipts",
    "resolution_or_action": "Fixed the builder to reproduce gather_columns and ctx.holdout.quad exactly, deleted both intermediate TIFF/ZIP/lane/receipt sets before publication, rebuilt unchanged frozen model settings as final content id 1d7c1e9ea55f, and re-ran surface/final lane plus independent exact-file audits. No holdout refit, scientific parameter change, or extra experiment occurred."
   },
   {
@@ -695,7 +695,7 @@
    "severity": "high",
    "status": "disclosed",
    "issue": "H72 MBSP-MTG replicated as an additive block on the Family-E H35 lineage (combined G1_D0 HOLDOUT-DTI 0.153837 vs same-run H35 0.150486, paired +0.003351 [0.002636,0.004224], 45,277 withheld-positive occurrences), but that lineage cannot meet the literal own-registry overlap rule. The shipped 100% CatFree artifact breaks own-lineage overlap (49.9%) yet its detector-family diagnostic is only HOLDOUT-DTI 0.094781 vs same-run H35 0.153786 (paired -0.059005 [-0.077251,-0.044136], 0/4 folds). Its exact B2/min2.8/37,654 artifact emission was not granted a fourth experiment after the 3/3 budget cap.",
-   "evidence": "evidence/h72_pooled_summary.json; registry/run_card_h72_2026-10-26.json; knowledge/30_h72_outcomes_and_executive_decision_2026-10-26.md",
+   "evidence": "evidence/h72_cf_pooled_summary.json; registry/run_card_h72_cf_2026-10-26.json; knowledge/30_h72_cf_outcomes_and_executive_decision_2026-10-26.md",
    "resolution_or_action": "H72-CF is content-unique and format-valid but registered verdict=negative, slot_approved=false, DO NOT SUBMIT. Do not claim the additive H72 win as evidence for this different artifact lineage."
   },
   {
@@ -703,7 +703,7 @@
    "severity": "high",
    "status": "stopped",
    "issue": "The final corrected H72-CF candidate's surface passes the rank gate (max |Spearman| 0.2177), and final dots clear all 27 pinned focus/top scorers (max 64.02%) plus every own-lineage raster (max 49.86%), but final dots exceed 70% within 3 px of five registry rasters: r13 lattice 100%, pindrop-nodes 85.50%, h23-a-6pct 81.79%, pindrop-discovery 79.68%, and r7-nms3-dem10-scarp 72.39%.",
-   "evidence": "docs/downloads/lane-gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.json; evidence/h72_lane_surface.json",
+   "evidence": "docs/downloads/lane-gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.json; evidence/h72_cf_lane_surface.json",
    "resolution_or_action": "Mandatory duplicate/stop applied. No density exception, registry-driven relocation, jitter, or additional emission experiment was run. File remains testing-only and not slot-approved."
   }
  ]

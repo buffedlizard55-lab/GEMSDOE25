@@ -3,7 +3,7 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from gems25.h72 import (
+from gems25.h72_cf import (
     CENSOR_MIN_DIST_PX,
     H72_NAMES,
     censor_catalogue_proximity,
@@ -101,7 +101,7 @@ def test_full_builder_matches_catfree_x3_and_holdout_quadrant_protocol():
     """Regression for IR-25-H72-FULL-BUILD-X3-MISMATCH-FIXED-20261026."""
     from pathlib import Path
 
-    source = (Path(__file__).resolve().parents[1] / "scripts" / "build_h72_candidate.py").read_text()
+    source = (Path(__file__).resolve().parents[1] / "scripts" / "build_h72_cf_candidate.py").read_text()
     assert "np.asarray(ctx.addon[:3]" in source
     assert "(gh * mh).astype(np.float32)" in source
     assert "(gh * db).astype(np.float32)" in source
