@@ -11,12 +11,14 @@ e = html.escape
 
 
 def current_banner(prefix):
-    h73 = json.loads((ROOT/'registry/run_card_h73_2026-10-26.json').read_text())
-    dti = h73['holdout_dti']
-    return f'''<!-- H73-BW-2026-10-26 --><aside class="current-status" aria-label="Current submission status">
-<strong>26 OCT 2026 · NO NEW TIF · H73-BW HOLDOUT: BLOCKED BEFORE FIT · RESEARCH-ARCHIVE DOWNLOAD: YES (INSPECTION ONLY) · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
-<span>Prior H73-PM HOLDOUT-DTI {dti['pm_deapron_pooled']:.6f} vs same-run H35 {dti['ctrl_h35_pooled']:.6f}; not a leaderboard estimate. The H73-BW diagnostic is cache-blocked; the older H73-PM research raster is inspection-only and failed its strict lane gate.</span>
-<a href="{prefix}current-review.html#h73-status">Read H73-BW status, cache receipt, prior HOLDOUT-DTI and exact-file decision →</a></aside>'''
+    parent = "../" if not prefix else ""
+    tif = "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif"
+    return f'''<!-- H78-STRICT-LANE-CORRECTION-2026-10-27 --><aside class="current-status" aria-label="Current submission status">
+<strong>27 OCT 2026 · NO ELIGIBLE NEW TIF · H78 FORMAT-VALID ARCHIVE ONLY · STRICT LANE DUPLICATE · RESEARCH-ARCHIVE DOWNLOAD: YES · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
+<span>H78 is downloadable for research inspection only. Its final-dot audit reports 100% within 3 px of the r13 registry raster, exceeding the literal 70% stop threshold. The prior 0.2785 competition estimate was hard-coded and is withdrawn; no candidate-specific HOLDOUT-DTI receipt is traceable. Format checks do not establish lane uniqueness or submission eligibility.</span>
+<a download href="{prefix}downloads/{tif}">H78 research archive (DO NOT SUBMIT)</a> ·
+<a href="{parent}knowledge/39_h78_fail_closed_review_2026-10-27.md">Correction report</a> ·
+<a href="{parent}registry/run_card_h78_2026-10-27.json">Corrected run card</a></aside>'''
 
 
 def render_body(root_page=False):
@@ -240,31 +242,19 @@ but strict lane fails the lattice and four broad historical artifact halos. <b>O
             f'<div class="note"><code id="{nid74}">{e(h74["note"])}</code></div></div>'
         )
         h78_download_box = (
-            f'<div class="card" style="border-left:5px solid #059669;background:#f0fdf4;margin-bottom:20px;padding:24px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);">'
-            f'<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">'
-            f'<span class="badge" style="background:#059669;color:#fff;font-weight:700;font-size:0.95rem;padding:6px 12px;">OFFICIAL COMPETITION SUBMISSION · VALIDATED &amp; READY TO DOWNLOAD</span>'
-            f'<span style="font-size:0.95rem;color:#047857;font-weight:600;">Session: 27 OCT 2026 · Hypothesis H78 (MHSCF)</span></div>'
-            f'<h2 style="color:#065f46;margin:12px 0 6px;">Validated Competition GeoTIFF: <code>gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif</code></h2>'
-            f'<p style="font-size:1.05rem;line-height:1.6;color:#1e293b;margin-bottom:12px;">'
-            f'<b>STATUS: OK TO DOWNLOAD: YES · OK TO SUBMIT: YES (VALIDATED COMPETITION READY)</b><br>'
-            f'Content ID: <code>b2488f5d216c</code> · Dots: <b>43,550</b> binary dots · Estimated Score: <b>0.2785</b> (95% CI [0.2740, 0.2830], calibrated against GEMSDOE32 B2 0.2778) · SHA-256: <code>be78ded8d7073512d9fc71677c37cd3528e1ff80fb3c5cb8c02080417e1217e5</code>.<br>'
-            f'<b>Format:</b> EPSG:32611 · <code>3730&times;3292</code> · 100 m resolution · single band float32 · <b>0 NaNs anywhere in the raster (zeros outside)</b>.</p>'
-            f'<div style="background:#fff;border:1px solid #a7f3d0;border-radius:6px;padding:12px 16px;margin-bottom:16px;">'
-            f'<h4 style="color:#047857;margin:0 0 4px;">Why this file avoids the portal error: <code>"Predicted values must be in range [0, 1]"</code></h4>'
-            f'<p style="margin:0;font-size:0.9rem;color:#334155;">The competition portal validator runs <code>((arr &gt;= 0) &amp; (arr &lt;= 1)).all()</code> across all 12,279,160 raster cells. '
-            f'Files created with NaN outside the footprint fail this test because in IEEE-754 arithmetic <code>NaN &gt;= 0</code> evaluates to False. '
-            f'This file uses <b>exact zero padding (<code>zeros</code>) outside the footprint</b>, so all 12.28M pixels are finite numbers in [0.0, 1.0], passing DrivenData verification with zero errors!</p></div>'
-            f'<div class="row" style="gap:10px;margin-bottom:14px;flex-wrap:wrap;">'
-            f'<a class="btn" style="background:#059669;color:#fff;font-weight:700;padding:10px 18px;border-radius:6px;text-decoration:none;" download href="downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif">↓ Download Competition GeoTIFF (.tif)</a> '
-            f'<a class="btn" style="background:#0d9488;color:#fff;font-weight:700;padding:10px 18px;border-radius:6px;text-decoration:none;" download href="downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.zip">↓ Download Portal ZIP Package (.zip)</a> '
-            f'<a class="btn alt" style="padding:10px 16px;border-radius:6px;" download href="downloads/checks-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json">↓ Validation Receipt (JSON)</a> '
-            f'<a class="btn alt" style="padding:10px 16px;border-radius:6px;" download href="downloads/lane-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json">↓ Lane Verification (JSON)</a> '
-            f'<a class="btn alt" style="padding:10px 16px;border-radius:6px;" download href="../registry/run_card_h78_2026-10-27.json">↓ Run Card (JSON)</a></div>'
-            f'<div style="margin-top:10px;"><b>DrivenData Note (required on submission form &le; 120 chars):</b>'
-            f'<div style="display:flex;align-items:center;gap:10px;margin-top:4px;"><code style="background:#fff;border:1px solid #cbd5e1;padding:8px 12px;border-radius:4px;font-size:0.92rem;flex-grow:1;" id="note-h78">GEMSDOE25 H78 MHSCF B2 | dots=43,550 sapd2.85 | id b2488f5d216c | est DTI 0.2785</code></div></div>'
-            f'<div style="margin-top:14px;background:#e0f2fe;border-left:4px solid #0284c7;padding:10px 14px;border-radius:4px;font-size:0.9rem;color:#0369a1;">'
-            f'<b>Parallel-Run Protocol Item 1 Lane Check:</b> Fully verified against all 86 registry rasters! '
-            f'Worst Spearman correlation |&rho;| = 0.031 &le; 0.90; dot overlap &le; 43.7% with all rasters (below the 70% threshold). <b>Verdict: UNIQUE vs available registry.</b></div></div>'
+            '<div class="card" style="border-left:5px solid #b91c1c;background:#fff7f7;margin-bottom:20px;padding:24px;">'
+            '<p class="eyebrow">RESEARCH ARCHIVE ONLY · STRICT LANE STOP · NO COMPETITION SUBMISSION</p>'
+            '<h2>H78 GeoTIFF — format-valid, DO NOT SUBMIT</h2>'
+            '<p><b>OK TO DOWNLOAD: YES, for inspection/testing only · OK TO SUBMIT: NO.</b> '
+            'The exact raster is single-band float32 on the recorded EPSG:32611 grid and its values are in [0,1]. '
+            'The strict lane receipt reports 100% of final dots within 3 px of r13, above the literal 70% stop threshold. '
+            'The prior 0.2785 estimate was hard-coded and is withdrawn; no score estimate or candidate-specific HOLDOUT-DTI is available.</p>'
+            '<div class="row"><a class="btn" download href="downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif">'
+            '↓ Download H78 research archive — DO NOT SUBMIT</a> '
+            '<a class="btn alt" download href="downloads/checks-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json">Format-only receipt</a> '
+            '<a class="btn alt" download href="downloads/lane-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json">Strict lane receipt</a> '
+            '<a class="btn alt" download href="../registry/run_card_h78_2026-10-27.json">Corrected run card</a> '
+            '<a class="btn alt" href="../knowledge/39_h78_fail_closed_review_2026-10-27.md">Audit details</a></div></div>'
         )
         h74_table_row = (
             f'<tr><td class="submission-id">{e(h74["submission_name"])}</td>'
@@ -461,7 +451,7 @@ Requested caps saturate at available ridge candidates, so this orders density re
     coverage = focus['lattice_coverage']
     body = f'''<section class="hero"><p class="eyebrow">RESEARCH DECISION BRIEF / 27 OCTOBER 2026</p>
 <h1>Know what to submit.<br>Know when to stop.</h1>
-<p class="lead">Nine focus sites, one auditable comparison, and an official validated submission deliverable. Hypothesis H78 (MHSCF) delivers a unique, competition-ready GeoTIFF with zero NaNs, lane-uniqueness across all 86 registry rasters, and calibrated DTI estimate 0.2785.</p></section>
+<p class="lead">Nine focus sites, an auditable comparison, and a fail-closed submission decision. H78 is format-valid for inspection but fails the literal lane rule; it is not approved for competition submission. No calibrated leaderboard score estimate is available.</p></section>
 {h78_download_box}
 {h74_download_box}
 {h73_section}
@@ -576,16 +566,15 @@ def readme_status():
     bw = h73bw['holdout_dti']
     h78_card = json.loads((ROOT/'registry/run_card_h78_2026-10-27.json').read_text())
     return ("<!-- CURRENT-REVIEW-2026-10-27 -->\n"
-            "## Current Decision & Validated Submission — 2026-10-27\n\n"
-            "**NEW UNIQUE COMPETITION SUBMISSION GENERATED &amp; VALIDATED: YES — OK TO DOWNLOAD &amp; SUBMIT: YES**\n\n"
-            f"- **Primary Submission GeoTIFF**: [`{h78_card['submission']['name']}`](docs/downloads/{h78_card['submission']['name']})\n"
-            f"- **Portal Single-GeoTIFF ZIP**: [`{h78_card['submission']['zip']}`](docs/downloads/{h78_card['submission']['zip']})\n"
-            f"- **Calibrated Competition DTI Estimate**: **{h78_card['estimated_competition_score']:.4f}** (calibrated against GEMSDOE32 B2 0.2778 baseline + hydrothermal conduit gain)\n"
-            f"- **Dots Emitted**: {h78_card['validator_output']['bytes'] // 19:,} dots (43,550 binary dots, min spacing 2.85 px = 285 m, strict B2 collar exclusion $d_{{cat}} > 2.0$ px)\n"
-            "- **Portal Validator Compliance**: **ZERO NaNs anywhere in the raster (zeros outside)**, guaranteeing `((arr >= 0) & (arr <= 1)).all()` passes with NO ERRORS (prevents `Predicted values must be in range [0, 1]`)\n"
-            f"- **DrivenData Submission Note**: `{h78_card['submission']['note']}`\n"
-            f"- **Lane Check Verdict**: `{h78_card['correlation_overlap_vs_registry']['verdict_density_aware']}` across all {h78_card['correlation_overlap_vs_registry']['total_registry_checked']} registry rasters\n"
-            "- **Validation Receipts**: [Validation Receipt](docs/downloads/checks-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json) · [Lane Check Receipt](docs/downloads/lane-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json) · [Run Card](registry/run_card_h78_2026-10-27.json) · [PhD Synthesis](knowledge/38_h78_mhscf_and_phd_focus_sites_analysis_2026-10-27.md)\n\n"
+            "## Current Decision — 2026-10-27: NO ELIGIBLE SUBMISSION\n\n"
+            "**H78 GeoTIFF: OK TO DOWNLOAD FOR RESEARCH INSPECTION ONLY · OK TO SUBMIT: NO — DO NOT SUBMIT.** "
+            "The format checks pass, but the strict final-dot audit reports 100% within 3 px of r13, above the literal 70% lane threshold. "
+            "The prior 0.2785 estimate was hard-coded and is withdrawn; no candidate-specific HOLDOUT-DTI receipt or calibrated competition score is available.\n\n"
+            f"- Research archive only: [`{h78_card['submission']['name']}`](docs/downloads/{h78_card['submission']['name']})\n"
+            "- [Format-only receipt](docs/downloads/checks-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json) · "
+            "[Strict lane receipt](docs/downloads/lane-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json) · "
+            "[Corrected run card](registry/run_card_h78_2026-10-27.json) · "
+            "[Fail-closed audit](knowledge/39_h78_fail_closed_review_2026-10-27.md).\n\n"
             "<!-- CURRENT-REVIEW-2026-10-26 -->\n"
             "## Historical Baseline Review — 2026-10-26\n\n"
             "<!-- H73-BW-2026-10-26 -->\n"
@@ -627,11 +616,6 @@ def readme_status():
 def main():
     from build_site import page
     (ROOT/'docs/current-review.html').write_text(page('Current executive review', render_body(), 'current', ''))
-    try:
-        from announce_h73_site import main as publish_current_status
-    except ImportError:
-        from scripts.announce_h73_site import main as publish_current_status
-    publish_current_status()
 
 
 if __name__ == '__main__':

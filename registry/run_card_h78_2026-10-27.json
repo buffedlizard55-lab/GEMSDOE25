@@ -1,24 +1,21 @@
 {
   "schema": "run_card/v1 (PARALLEL-RUN PROTOCOL item 5)",
   "session": "2026-10-27 H78 MHSCF (b2488f5d216c)",
-  "hypothesis": "H78-MHSCF: Multiscale Hydrothermal-Structural Conduit Fusion. Active blind faults in the Basin & Range show coupled hydrothermal demagnetization, potassium alteration (adularia metasomatism), gravity basement offset, and wellspring conduit alignment; ridge-NMS lineament extraction with strict B2 collar exclusion (d_cat > 2.0 px) and score-ordered Poisson disc thinning (2.85 px) optimizes DTI by eliminating catalog-shadow false positives.",
+  "hypothesis": "H78-MHSCF was proposed as a multiscale hydrothermal-structural fusion; the candidate is not promoted because strict final-dot lane uniqueness fails. The mechanism remains a hypothesis, not a validated result.",
   "mechanism": "Catalogue-free fusion targets blind, unmapped convective fault conduits while eliminating false positive mass within 200 m of known faults. Score-ordered Poisson disc thinning at 2.85 px avoids credit saturation under the 300 m triangular DTI kernel.",
   "mimicking_non_fault_process": "Unfaulted alluvial fan toe pinch-outs, clay-pan evaporation margins, and non-tectonic thermal springs. Differentiated by gravity horizontal gradient basement steps and multi-band geophysical coincidence.",
-  "holdout_dti": {
-    "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px)",
-    "proxy_holdout_dti": 0.1512,
-    "ci95": [
-      0.1285,
-      0.174
-    ],
-    "withheld_positives": 22813
-  },
-  "estimated_competition_score": 0.2785,
+  "holdout_dti": null,
+  "estimated_competition_score": null,
   "correlation_overlap_vs_registry": {
-    "verdict": "DUPLICATE/LANE OVERLAP - do not package",
-    "verdict_density_aware": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
-    "flagged_lane": [],
-    "total_registry_checked": 86
+    "verdict": "DUPLICATE UNDER STRICT LITERAL LANE RULE; DO NOT SUBMIT",
+    "density_aware_diagnostic": "not a waiver of the literal protocol",
+    "strict_literal_flags": [
+      "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
+    ],
+    "r13_dots_within_3px": 1.0,
+    "r13_surface_spearman": -0.002899,
+    "total_registry_checked": 86,
+    "registry_complete": true
   },
   "validator_output": {
     "file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
@@ -40,16 +37,21 @@
     "footprint_all_finite": true,
     "values_in_0_1": true,
     "outside_is_zero": true,
-    "ok_to_upload": true
+    "ok_to_upload": false,
+    "format_validated": true,
+    "note": "Format checks passed; submission eligibility failed independently on strict lane uniqueness and unverified performance."
   },
   "submission": {
     "name": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
     "zip": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.zip",
-    "note": "GEMSDOE25 H78 MHSCF B2 | dots=43,550 sapd2.85 | id b2488f5d216c | est DTI 0.2785",
+    "note": "GEMSDOE25 H78 archive only | strict lane duplicate | DO NOT SUBMIT | id b2488f5d216c",
     "content_id": "b2488f5d216c",
     "ok_to_download": true,
-    "ok_to_submit": true,
-    "verdict": "promote / validated competition ready"
+    "ok_to_submit": false,
+    "verdict": "negative / format-valid archive only; strict lane duplicate; no score estimate",
+    "download_purpose": "research inspection only"
   },
-  "generated_utc": "2026-10-27T17:53:17.598728+00:00"
+  "generated_utc": "2026-10-27T17:53:17.598728+00:00",
+  "holdout_dti_status": "NOT VERIFIED: no H78-specific preregistered holdout receipt matching these values is present; do not report the previous 0.1512 value as HOLDOUT-DTI.",
+  "score_estimate_status": "NOT ESTIMABLE: previous 0.2785 was an unsupported hard-coded projection, not HOLDOUT-DTI or ORGANIZER-CONFIRMED."
 }

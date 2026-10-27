@@ -1,5 +1,7 @@
 # Executive Summary & PhD-Level Synthesis: GEMSDOE Focus Sites, GEMSDOE32 Analysis, and Hypothesis H78 (MHSCF)
 
+> **2026-10-27 correction / superseding decision:** This historical synthesis contains H78 score, holdout, and submission-eligibility claims that were not adequately supported. The previous `0.2785` estimate was hard-coded, the cited candidate-specific `0.1512` HOLDOUT-DTI receipt is not traceable in the evidence tree, and the strict lane receipt flags 100% of final dots within 3 px of the r13 raster. **H78 is format-valid for research inspection only; DO NOT SUBMIT.** Its score estimate is withdrawn. See [corrected audit](39_h78_fail_closed_review_2026-10-27.md), [corrected run card](../registry/run_card_h78_2026-10-27.json), and [strict lane receipt](../docs/downloads/lane-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json). The remainder below is preserved as an historical record, not current authorization.
+
 **Date**: 2026-10-27  
 **Repository**: `buffedlizard55-lab/GEMSDOE25`  
 **Branch**: `arena/3abd7f73-gemsdoe25`  
