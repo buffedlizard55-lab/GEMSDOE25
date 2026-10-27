@@ -25,7 +25,6 @@ from pathlib import Path
 import numpy as np
 import rasterio
 from scipy.ndimage import distance_transform_edt
-from scipy.stats import spearmanr
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
@@ -53,39 +52,11 @@ def registry_files() -> list[Path]:
 
 
 def lane_check(final: np.ndarray, surface: np.ndarray | None, foot: np.ndarray, exclude: set[str]) -> dict:
-    fi = np.flatnonzero(foot.ravel())
-    sub = np.random.default_rng(7).choice(fi, size=min(1_500_000, fi.size), replace=False)
-    fv = final.ravel()[sub].astype(np.float32)
-    sv = None if surface is None else surface.ravel()[sub]
-    rows = []
-    for p in registry_files():
-        if p.name in exclude:
-            continue
-        pos, val = read_pos(p)
-        if pos.shape != final.shape or not pos.any():
-            continue
-        rv = val.ravel()[sub]
-        rho_final = float(spearmanr(fv, rv).statistic)
-        rho_surface = float(spearmanr(sv, rv).statistic) if sv is not None else None
-        near = distance_transform_edt(~pos)[final] <= LANE_RADIUS
-        overlap = float(near.mean())
-        degenerate = p.name in DEGENERATE
-        dup = (not degenerate) and (abs(rho_final) > LANE_CORR_CAP or overlap > LANE_OVERLAP_CAP
-                                    or (rho_surface is not None and abs(rho_surface) > LANE_CORR_CAP))
-        rows.append(dict(file=p.name, spearman_final=round(rho_final, 4),
-                         spearman_surface_preplacement=None if rho_surface is None else round(rho_surface, 4),
-                         overlap_within_3px=round(overlap, 4), degenerate_lattice=degenerate, duplicate=bool(dup)))
-    subst = [r for r in rows if not r["degenerate_lattice"]]
-    return dict(caps=dict(spearman=LANE_CORR_CAP, overlap=LANE_OVERLAP_CAP, radius_px=LANE_RADIUS),
-                spearman_sample_pixels=int(sub.size), n_registry=len(rows),
-                worst_abs_spearman_final=max(abs(r["spearman_final"]) for r in subst),
-                worst_abs_spearman_surface=max(abs(r["spearman_surface_preplacement"] or 0) for r in subst),
-                worst_overlap=max(r["overlap_within_3px"] for r in subst),
-                worst_overlap_file=max(subst, key=lambda r: r["overlap_within_3px"])["file"],
-                lane_clean=not any(r["duplicate"] for r in rows), rows=rows)
+    raise RuntimeError("Historical KDC lane diagnostic retired: use the shared literal full-registry checker.")
 
 
 def main() -> None:
+    raise SystemExit("KDC publisher retired: the historical candidate failed the literal lane gate. No new raster authorized.")
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--scores", required=True)
     ap.add_argument("--flank", action="store_true")

@@ -1,13 +1,13 @@
 {
- "file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-nan.tif",
- "bytes": 1602178,
- "sha256": "21c325e54cf255b830e45fb7eaff4cbf31219704cc973fb6f5fce0a823b3d603",
+ "file": "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif",
+ "bytes": 826560,
+ "sha256": "da94fdf9d744f06f3f18d325b7f57fe4e3b2739cd2e9e14d71dafcc87edc2a1e",
  "ok_to_upload": true,
  "format_valid": true,
  "authorization_note": "ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval",
  "hard_failures": [],
- "official_nan_outside": true,
- "positive_pixels": 43550,
+ "official_nan_outside": false,
+ "positive_pixels": 37654,
  "footprint_pixels": 5167373,
  "checks": {
   "template_matches_expected_grid_and_footprint": {
@@ -51,8 +51,8 @@
    "hard": true
   },
   "outside_footprint_is_nan_official": {
-   "pass_": true,
-   "detail": "7,111,787/7,111,787 NaN",
+   "pass_": false,
+   "detail": "0/7,111,787 NaN",
    "hard": false
   },
   "outside_footprint_is_nan_or_zero": {
@@ -67,7 +67,7 @@
   },
   "nodata_tag": {
    "pass_": true,
-   "detail": "nodata=nan",
+   "detail": "nodata=None",
    "hard": false
   },
   "variant_nan_aware_whole_array": {
@@ -81,7 +81,7 @@
    "hard": true
   },
   "variant_strict_whole_array_no_nan": {
-   "pass_": false,
+   "pass_": true,
    "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
    "hard": false
   },
@@ -91,5 +91,5 @@
    "hard": false
   }
  },
- "note": "GEMSDOE25 H78-MHSCF | no slot, not slot-approved; DO NOT SUBMIT | id b2488f5d216c | unscored"
+ "note": "GEMSDOE25 H75-DCHB-CG | no slot, not slot-approved; DO NOT SUBMIT | id e035d75ca5d5 | unscored"
 }

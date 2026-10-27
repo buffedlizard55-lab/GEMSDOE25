@@ -9,7 +9,9 @@ to which it was used and how**; the competitor stays responsible for accuracy, a
   fractional factorial and add-on experiments; built the GitHub Pages site, registries and knowledge documents; verified sources. In the latest
   session it also fetched the group's 30 competition rasters from the owner's public mirrors, content-hashed them, matched 25 to the owner's own
   hash↔score ledger, and fitted/validated a forward model of the live metric from them (`src/gems25/livecal.py`,
-  `knowledge/10_preregistered_h28_live_anchored_emission_design_2026-10-02.md`).
+  `knowledge/10_preregistered_h28_live_anchored_emission_design_2026-10-02.md`). In subsequent 2026-10-26/27 sessions it also implemented
+  strictly catalogue-free potential-field, hydrogeologic, and Corridor-Gated Dual-Regime LOQO feature stacks (`src/gems25/h72_cf.py`,
+  `src/gems25/h74_rmps.py`, `src/gems25/h75_dchb.py`) and evaluated them on 25-km full-checkerboard `BlockHoldout` (`src/gems25/block_holdout.py`).
 * **What humans did.** The owner wrote the brief, supplied the competition files through their own GitHub mirrors, ran the sibling projects whose
   rasters and scores are analysed here, and decides which file (if any) to upload.
 * **Where AI judgement is most likely to be wrong.** (1) The hide-and-recover holdout is a catalogue-gap proxy, not new-fault truth; (2) the

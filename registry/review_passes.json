@@ -1233,5 +1233,105 @@
     "Verified full pytest suite passes in BOTH full-data mode (GEMS_DATA_DIR=/tmp/gems_data) AND clean CI mode (unset GEMS_DATA_DIR/GEMS_WORK_DIR), ruff check passes with 0 warnings, python -m compileall passes, all local HTML/Markdown links resolve, and zero files > 6 MB or data/* artifacts are tracked."
    ]
   }
+ },
+ "current_turn_review_2026_10_27_arena_b498883a": {
+  "session_branch": "arena/b498883a-gemsdoe25",
+  "date_utc": "2026-10-27",
+  "scope": "Review repository and H78 promotion claim; enforce literal lane rule, score-label hygiene, fail-closed build/site status, and full regression verification. No new model fit, TIFF build, upload, or weekly slot.",
+  "pass_1_implement_and_verify": {
+   "done": [
+    "Audited H78 run card, format receipt, final-dot lane receipt, builder, tests, README, generated site, and current review generator.",
+    "Independently read the exact stored H78 GeoTIFF: EPSG:32611, shape 3730x3292, one float32 band, transform [100,0,243350,0,-100,4508550], all array values finite in [0,1], 43,550 positive cells, SHA-256 be78ded8d7073512d9fc71677c37cd3528e1ff80fb3c5cb8c02080417e1217e5.",
+    "Confirmed saved strict lane receipt reports 100% candidate dots within 3 px of the r13 raster; literal threshold is 70%. Surface rank correlation is below 0.90 but cannot waive final-dot overlap.",
+    "Withdrew unsupported hard-coded 0.2785 competition estimate and untraceable H78-specific 0.1512 holdout number; corrected exact-file receipt/run card to format-valid research archive, ok_to_submit=false, score unknown.",
+    "Retired H78 builder before any input load or output; updated generated site/README sources and rendered pages to show DO NOT SUBMIT prominently; added H78-specific regression tests and irregularity record."
+   ],
+   "unfulfilled": [
+    "No new submission-eligible TIFF: strict lane criterion requires stop, not another experiment or submission.",
+    "No H78 holdout rerun: data/ contains only .gitkeep; the pinned 1.32 GB shared static_ABCD cache and companion arrays in evidence/work_cache_hashes.json are absent. No cached stack was rebuilt privately.",
+    "No new geological experiment or feature leakage canary was run; therefore no HOLDOUT-DTI, score estimate, or promotion result is claimed."
+   ]
+  },
+  "pass_2_bugs_assumptions_edge_cases": {
+   "found_and_fixed": [
+    "The H78 builder used a fixed 0.2785 projection and wrote ok_to_submit=true even though its own saved lane audit said duplicate/lane overlap; removed the builder rather than patching its unsupported score logic.",
+    "The old H78 receipt used a density-aware uniqueness label to contradict a literal 100% final-dot overlap; now the strict literal result controls eligibility.",
+    "The old static pages and README had conflicting current banners and regenerated content could restore the false promotion; updated the source generators and removed historical H73 announcement post-processing from current-site generation."
+   ],
+   "remaining_risks": [
+    "Template binary is absent in this checkout; exact metadata was checked against stored receipt values and the documented competition grid, but a fresh direct template comparison could not be run.",
+    "The 0.2778 GEMSDOE32 value remains owner-reported and unverified by an organizer receipt. Current public leaderboard values 0.3195/0.4413 were not accessed or verified.",
+    "A sibling open PR #47 overlaps the broader nine-site/hypothesis review; this session did not merge or alter that other session branch."
+   ]
+  },
+  "pass_3_original_request_reconciliation": {
+   "verified": [
+    "The prominent README, landing page, and executive summary now say H78 research inspection only and DO NOT SUBMIT; the linked archive is not presented as a competition deliverable.",
+    "The prompt-required numeric gate is enforced literally: 100% exceeds the 70% limit, hence negative verdict regardless of density-aware diagnostics.",
+    "No score is labeled as HOLDOUT-DTI without a specific evaluator/receipt or ORGANIZER-CONFIRMED without an organizer receipt; H78 score estimate is null.",
+    "No DrivenData access, automated monitoring, authentication, or upload occurred; no weekly slot was used."
+   ],
+   "not_completed": [
+    "A genuinely new high-performing submission is not produced. The existing H78 raster is an archive; creating another TIF without shared cache, fresh canary/holdout and surface+final lane clearance would violate the user's protocol.",
+    "The four-candidate new hypothesis ranking/source audit is available in open PR #47, not duplicated here; no hypothesis is described as tested or viable in this correction."
+   ]
+  },
+  "verification": {
+   "focused_pytest": "6 passed (H78 exact artifact, run card, builder retirement, site statuses, receipts)",
+   "full_pytest": "364 passed, 12 skipped; skips require absent owner-mirror competition template, scored rasters, or external bands",
+   "ruff": "passed: .venv/bin/ruff check src scripts tests",
+   "compileall": "passed: scripts and tests",
+   "javascript": "passed: node --check docs/assets/app.js",
+   "git_diff_check": "passed",
+   "tif_readback": "passed; metadata/value/hash recorded in this review and run card",
+   "experiments": 0,
+   "new_tifs": 0,
+   "weekly_slots": 0
+  },
+  "pull_request": {
+   "number": 61,
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/pull/61",
+   "head": "arena/b498883a-gemsdoe25",
+   "base": "main",
+   "status": "open; CI passed; merge not yet attempted at receipt update"
+  }
+ },
+ "session_2026_10_27_h75_eu3d_poe": {
+  "schema_version": 1,
+  "date_utc": "2026-10-27",
+  "session_branch": "arena/2a7235ac-gemsdoe25",
+  "method": "Three cumulative passes per owner instructions and AGENTS.md Rule 9: Pass 1 implements and verifies end-to-end; Pass 2 audits bugs, assumptions, edge cases, and parallel-session merges and fixes everything found; Pass 3 reconciles line-by-line against the full user prompt and verifies full-data + clean-CI pytest, ruff, compileall, JS syntax, link resolution, and git hygiene.",
+  "pass_1_implement_and_verify": {
+   "scope": "Autonomous data & shared-cache restoration (core, external, 30 artifact mirrors, 27 top-scorer rasters; 6/6 work-cache SHA-256 matches); restore truncated knowledge/36; pre-register 4 ranked untried geological hypotheses (H75-1..4) and frozen H75_EU3D + Two-Stage PoE + 25-km Checkerboard BlockHoldout design (commit 3053f69) prior to writing code or fitting; execute Experiment 1 (BlockHoldout draws 130-131, completing H73-BW) and Experiment 2 (Standard Holdout draws 132-133); build and stage-verify unique LOQO GeoTIFF.",
+   "done": [
+    "Restored all SHA-256-pinned core/external/artifact/top-scorer rasters and built static_ABCD.npy + addons.npy matching evidence/work_cache_hashes.json 6/6 byte-for-byte.",
+    "Committed knowledge/38_preregistered_h75_eu3d_poe_block25km_2026-10-27.md (3053f69) and restored truncated knowledge/36_preregistered_h74_exp3_subsurface_2026-10-26.md from commit 32897de before implementing src/gems25/h75_eu3d.py.",
+    "Implemented src/gems25/h75_eu3d.py (vectorized strip-streaming 7x7 3-D Euler homogeneity contact-vs-plug solver verified to <1e-5 against brute-force lstsq, Morris 1996 WNW-ESE basement-strike slip/dilation criticality, basin-normalized MT-thermal conduit, and poe_combine) + tests/test_h75_eu3d_poe.py (4/4 pass).",
+    "Executed Experiment 1 (25-km Checkerboard BlockHoldout, virgin draws 130-131, 760 canaries <= 0.6397): PM_DEAPRON (0.13942) beat CTRL_H35 (0.13749) by +0.00193 (3/4 folds; far_gt9 +0.00223, reversing -0.02515 std penalty by +0.02708); H75_POE65 +123.9% over ROOT_H75 in 4/4 folds.",
+    "Executed Experiment 2 (Standard Holdout, virgin draws 132-133, 760 canaries <= 0.8038): H75_APRON (0.15118) beat CTRL_H35 (0.14942) by +0.00176 (95% CI [+0.00066, +0.00262], 4/4 folds PASS!); H75_POE65 scored 0.08641 (+40.7% over ROOT_H75 in 4/4 folds).",
+    "Evaluated frozen staging cascade (poe50 -> poe65 -> root): poe50 halted cleanly at 73.91% vs h23-a-6pct.tif without publishing; poe65 cleared all 105 rasters density-aware (flagged_lane = [], 69.84% <= 70% vs h23-a-6pct.tif, 35.77% vs GEMSDOE32 B2, 63.78% max own-lineage) and published gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif (-nan.tif, .zip; verdict=negative, DO NOT SUBMIT)."
+   ]
+  },
+  "pass_2_bugs_assumptions_edge_cases": {
+   "found_and_fixed": [
+    "Caught 500x vertical-derivative unit mismatch risk on raw band 11 iso_grav_anom_vg (mGal/km vs mGal/m) before coding Euler deconvolution; enforced harmonic_vertical_derivative_fft(cell_m=100.0) so horizontal and vertical derivatives match 1:1 in [field]/m.",
+    "Caught correlate1d vs convolve1d kernel-flip sign reversal and 3.8 GiB RAM strip-allocation bound in euler_3d_window_solve; refactored to 256-row reflect-padded strips and locked brute-force lstsq parity + analytical depth/index recovery in tests/test_h75_eu3d_poe.py.",
+    "Caught and purged uncommitted initial-turn ad-hoc heuristic script that had used non-virgin draws 110-111 and full-label B2 pruning; logged transparently as IR-25-H75-DRAFT-ABORTED-20261027 and restricted formal runs to 2 experiments on virgin draws 130-133.",
+    "Merged concurrent PR #60 (cf7d2d9) from origin/main and discovered critical irregularity IR-25-H78-FABRICATED-METRICS-20261027: scripts/build_h78_submission.py emitted hardcoded uncomputed holdout/live-score literals (0.1512, 22813, 0.2785) and ok_to_submit = True without running any Holdout fit. Retracted those literals to null, quarantined H78 as DO NOT SUBMIT, updated tests/test_h78_submission.py, and re-ran H75 lane checks across all 105 rasters (27.37% overlap vs H78).",
+    "Fixed predict_s timing telemetry in scripts/run_h75_experiments.py, note character count label (92 chars) in knowledge/39, and chronological eyebrow on H74's archive card."
+   ],
+   "known_residual_risks": [
+    "Literal 70% 3-px overlap remains geometrically impossible at 37,654 dots against r13-lattice-s5 (99.87% footprint halo) and pindrop (>73.4% footprint halo) without an explicit owner selector rule (IR-25-LATTICE-CAP-20261026).",
+    "External 3-D MT (USGS ScienceBase) and InSAR/dense GPS (ARIA/UNR NGL) hosts lie outside the sandbox network allowlist and require external mirroring before testing H75-3 and H75-4.",
+    "All live DTI numbers (0.2778, 0.2478, 0.3195, 0.4413) remain OWNER-REPORTED claims without organizer receipts."
+   ]
+  },
+  "pass_3_recheck_against_original_brief": {
+   "gaps_found_and_closed": [
+    "Added the 4 Ranked Untried Geological Hypotheses (H75-1..4) HTML table and the Updated 2026-10-27 9-Focus-Site Executive Audit HTML table directly to index.html, docs/index.html, docs/executive-summary.html, and docs/current-review.html, and expanded the DrivenData portal upload checklist on executive-summary.html.",
+    "Updated knowledge/owner_prompt_2026-10-27.txt and README.md with the complete standing 2026-10-27 prompt, Parallel-Run Protocol, Core Values (Maximize P(Win) & Own the Outcome), and verified official manual-review links.",
+    "Added tests/test_h75_submission.py and verified full pytest suite in BOTH full-data mode and clean CI mode (empty GEMS_DATA_DIR/GEMS_WORK_DIR), ruff check, python -m compileall, node --check docs/assets/app.js, HTML/Markdown link resolution, and git diff --check."
+   ]
+  }
  }
 }

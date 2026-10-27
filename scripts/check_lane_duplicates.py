@@ -1,17 +1,12 @@
 #!/usr/bin/env python3
-"""Lane / duplicate check for a candidate raster against every registry raster available in this repo.
+"""Fail-closed final-dot lane audit against the restored, declared registry.
 
-PARALLEL-RUN PROTOCOL, items 1 and 5:
-* duplicate if Spearman rank-correlation with any registry raster > 0.90;
-* duplicate if more than 70 % of the candidate's dots lie within 3 px of one registry raster's dots;
-* byte duplicate if SHA-256 matches any registry raster or any ledger entry.
-
-Registry rasters = every restored file under data/scored, data/calibration, plus docs/downloads/*.tif and the SHA-256s
-pinned in registry/artifact_ledger.json. Writes a JSON receipt when --out is given.
-
-    python scripts/check_lane_duplicates.py docs/downloads/<candidate>.tif --out docs/downloads/lane-<candidate>.json
+A duplicate is any reference with |Spearman| > .90 or >70% of candidate
+positive pixels within 3 pixels. Missing pins, wrong grids, invalid data and
+undefined correlations are not evidence of uniqueness. The process exits
+nonzero on a duplicate OR an incomplete audit; a separate surface-stage audit is
+also required. --reference is for diagnosing a known pair, never clearance.
 """
-
 from __future__ import annotations
 
 import argparse
@@ -22,131 +17,209 @@ from pathlib import Path
 
 import numpy as np
 import rasterio
-from scipy.ndimage import binary_dilation
+from scipy.ndimage import distance_transform_edt
 from scipy.stats import spearmanr
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from gems25.paths import data_dir  # noqa: E402
+from gems25.submission import EXPECTED  # noqa: E402
 
 RHO_MAX, OVERLAP_MAX, OVERLAP_DIST = 0.90, 0.70, 3.0
-SAMPLE = 400_000
 
 
 def sha256(p: Path) -> str:
-    h = hashlib.sha256()
+    digest = hashlib.sha256()
     with p.open("rb") as f:
         for chunk in iter(lambda: f.read(1 << 20), b""):
-            h.update(chunk)
-    return h.hexdigest()
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 def registry_rasters() -> list[Path]:
+    """List locally available registry files, including byte-identical paths.
+
+    Keeping both paths matters when the candidate itself is in the registry:
+    dropping duplicates first can hide an earlier byte-identical reference.
+    """
     paths = []
     for sub in ("scored", "calibration", "research", "artifacts", "registry_top"):
-        paths += sorted((data_dir() / sub).glob("*.tif")) if (data_dir() / sub).exists() else []
-    paths += sorted((ROOT / "docs" / "downloads").glob("*.tif"))
-    seen: set[str] = set()
-    unique = []
-    for p in paths:
-        digest = sha256(p)
-        if digest in seen:
-            continue
-        seen.add(digest)
-        unique.append(p)
-    return unique
+        paths.extend(sorted((data_dir() / sub).glob("*.tif")))
+    paths.extend(sorted((ROOT / "docs" / "downloads").glob("*.tif")))
+    return paths
 
 
-def main() -> None:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("candidate")
-    ap.add_argument("--template", default=str(data_dir() / "sample_submission.tif"))
-    ap.add_argument("--out", default=None)
-    a = ap.parse_args()
-    cand = Path(a.candidate)
-    cand_sha = sha256(cand)
-    ledger = json.loads((ROOT / "registry" / "artifact_ledger.json").read_text())
-    rows_ledger = ledger.get("artifacts", []) if isinstance(ledger, dict) else ledger
-    ledger_sha = {row.get("sha256") for row in rows_ledger if isinstance(row, dict)}
-    with rasterio.open(a.template) as t:
-        foot = np.isfinite(t.read(1))
-    with rasterio.open(cand) as s:
-        cv = np.nan_to_num(s.read(1), nan=0.0)
+def declared_hashes() -> set[str]:
+    """Inventory hash-pinned historical references; no claim about unlisted sites."""
+    ledger = json.loads((ROOT / "registry/artifact_ledger.json").read_text())
+    top = json.loads((ROOT / "registry/top_scorer_sources.json").read_text())
+    manifest = json.loads((ROOT / "registry/data_manifest.json").read_text())
+    submissions = json.loads((ROOT / "registry/submissions.json").read_text())
+    extra = json.loads((ROOT / "registry/lane_reference_pins.json").read_text())
+    mirrors = json.loads((ROOT / "registry/artifact_mirrors.json").read_text())
+    required_ids = {row.get("id") for row in mirrors["mirrors"]} | set(mirrors["already_pinned_locally"]["ids"])
+    ledger_ids = {row.get("id") for row in ledger["artifacts"]}
+    if None in required_ids or not required_ids.issubset(ledger_ids):
+        raise ValueError("declared artifact mirror is missing from the hash-pinned ledger")
+    values = [row.get("sha256") for row in ledger["artifacts"]]
+    values += [row.get("sha256") for row in top["rasters"]]
+    values += [row.get("sha256") for row in manifest["files"] if row.get("group") == "scored"]
+    values += [row.get("sha256") for row in submissions["files"]]
+    values += [row.get("sha256") for row in extra["rasters"]]
+    if any(not isinstance(s, str) or len(s) != 64 or any(c not in "0123456789abcdef" for c in s) for s in values):
+        raise ValueError("a declared reference is missing a valid SHA-256 pin")
+    return set(values)
+
+
+def validate_template(path: Path) -> str:
+    """Require the pinned owner-mirror grid; matching a bad template is not clearance."""
+    manifest = json.loads((ROOT / "registry/data_manifest.json").read_text())["files"]
+    entries = [x for x in manifest if x.get("id") == "sample_submission"]
+    if len(entries) != 1 or not isinstance(entries[0].get("sha256"), str):
+        raise ValueError("missing or ambiguous template SHA-256 pin")
+    entry = entries[0]
+    digest = sha256(path)
+    if digest != entry["sha256"]:
+        raise ValueError("template SHA-256 does not match the declared owner-mirror pin")
+    with rasterio.open(path) as src:
+        if (src.count != 1 or src.crs is None or src.crs.to_epsg() != EXPECTED["epsg"]
+                or src.shape != EXPECTED["shape"] or tuple(src.transform)[:6] != EXPECTED["transform"]
+                or int(np.isfinite(src.read(1)).sum()) != EXPECTED["footprint_pixels"]):
+            raise ValueError("template CRS, shape, transform or footprint does not match expected grid")
+    return digest
+
+
+def registry_inventory(paths: list[Path], expected: set[str]) -> dict:
+    present = {sha256(p) for p in paths}
+    missing = sorted(expected - present)
+    manifest_sha = hashlib.sha256("\n".join(sorted(expected)).encode("ascii")).hexdigest() if expected else None
+    return dict(declared_hashes=len(expected), available_files=len(paths), registry_manifest_sha256=manifest_sha,
+                missing_sha256=missing, complete=bool(expected) and not missing,
+                scope="declared pinned registry only; not every submission on every site")
+
+
+def compare_arrays(candidate: np.ndarray, reference: np.ndarray, footprint: np.ndarray) -> dict:
+    """Literal comparison. Undefined rank or nonfinite footprint values fail closed."""
+    cv, rv, foot = np.asarray(candidate), np.asarray(reference), np.asarray(footprint, dtype=bool)
+    if foot.ndim != 2 or cv.shape != foot.shape or rv.shape != foot.shape:
+        raise ValueError("candidate/reference/footprint must have matching 2-D shapes")
+    if not foot.any() or not np.isfinite(cv[foot]).all() or not np.isfinite(rv[foot]).all():
+        raise ValueError("empty footprint or nonfinite candidate/reference within footprint")
+    if (cv[foot] < 0).any() or (cv[foot] > 1).any():
+        raise ValueError("candidate values inside footprint must be within [0,1]")
+    if (cv[~foot] > 0).any():
+        raise ValueError("candidate has positive values outside the footprint")
     cand_dots = (cv > 0) & foot
-    rng = np.random.default_rng(0)
-    fidx = np.flatnonzero(foot.ravel())
-    samp = np.sort(rng.choice(fidx, min(SAMPLE, fidx.size), replace=False))
-    cvals = cv.ravel()[samp]
-    foot_n = max(int(foot.sum()), 1)
-    rad_i = int(np.floor(OVERLAP_DIST))
-    yy, xx = np.ogrid[-rad_i : rad_i + 1, -rad_i : rad_i + 1]
-    disk_r = (yy * yy + xx * xx) <= (OVERLAP_DIST * OVERLAP_DIST + 1e-12)
-    cand_halo = binary_dilation(cand_dots, structure=disk_r) if cand_dots.any() else np.zeros(cv.shape, dtype=bool)
-    rows = []
-    for p in registry_rasters():
-        if p.resolve() == cand.resolve():
-            continue
-        if p.stem.replace("-zeros", "-nan") == cand.stem.replace("-zeros", "-nan"):
-            continue  # same predictions, other outside-convention sibling (not an independent registry raster)
-        with rasterio.open(p) as r:
-            if r.shape != cv.shape:
-                rows.append(dict(file=p.name, skipped="shape differs"))
-                continue
-            rv = np.nan_to_num(r.read(1), nan=0.0)
-        rho = float(spearmanr(cvals, rv.ravel()[samp]).correlation)
-        rdots = (rv > 0) & foot
-        reg_halo = binary_dilation(rdots, structure=disk_r) if rdots.any() else np.zeros(cv.shape, dtype=bool)
-        ov = float(reg_halo[cand_dots].mean()) if cand_dots.any() else 0.0
-        ov_rev = float(cand_halo[rdots].mean()) if rdots.any() else 0.0
-        # Density-aware companion (pre-registered knowledge/22 section 4): halo
-        # coverage = footprint fraction within 3 px of the registry dots = the
-        # overlap a uniformly random candidate would score. At coverage >= 0.70 the
-        # literal candidate-side test cannot discriminate; the symmetric statistic
-        # decides for those rasters. The literal flag is kept and always reported.
-        coverage = float((reg_halo & foot).sum() / foot_n) if rdots.any() else 0.0
-        dense_nondiscriminative = bool(coverage >= OVERLAP_MAX)
-        sym_min = float(min(ov, ov_rev))
-        lane_overlap_flag = bool(sym_min > OVERLAP_MAX) if dense_nondiscriminative else bool(ov > OVERLAP_MAX)
-        rows.append(dict(file=p.name, sha256=sha256(p), byte_identical=sha256(p) == cand_sha,
-                         spearman=round(rho, 6), dots_within_3px=round(ov, 6), registry_dots_within_3px_of_candidate=round(ov_rev, 6),
-                         registry_dots=int(rdots.sum()),
-                         flag_rank=bool(abs(rho) > RHO_MAX), flag_overlap=bool(ov > OVERLAP_MAX),
-                         halo_coverage_3px=round(coverage, 6),
-                         excess_overlap_over_coverage=round(ov - coverage, 6),
-                         symmetric_min_overlap_3px=round(sym_min, 6),
-                         non_discriminative_dense=dense_nondiscriminative,
-                         flag_overlap_lane=lane_overlap_flag,
-                         density_caveat=("registry raster halo covers >= 70% of the footprint; candidate-side overlap is not discriminative, symmetric statistic used"
-                                         if dense_nondiscriminative else "")))
-    flagged = [r for r in rows if r.get("flag_rank") or r.get("flag_overlap") or r.get("byte_identical")]
-    flagged_lane = [r for r in rows if r.get("flag_rank") or r.get("flag_overlap_lane") or r.get("byte_identical")]
-    in_ledger = cand_sha in ledger_sha
-    registry_complete = bool(rows)
-    rec = dict(candidate=cand.name, sha256=cand_sha, candidate_dots=int(cand_dots.sum()),
-               thresholds=dict(spearman_max=RHO_MAX, dots_within_3px_max=OVERLAP_MAX, dist_px=OVERLAP_DIST),
-               sha_in_artifact_ledger=in_ledger, registry_checked=len(rows), registry_complete=registry_complete,
-               flagged=[r["file"] for r in flagged],
-               flagged_literal=[r["file"] for r in flagged],
-               flagged_lane=[r["file"] for r in flagged_lane],
-               verdict=("UNVERIFIED - empty registry; fail closed" if not registry_complete
-                        else ("DUPLICATE/LANE OVERLAP - do not package" if (flagged or in_ledger)
-                              else "UNIQUE vs available registry")),
-               verdict_density_aware=("UNVERIFIED - empty registry; fail closed" if not registry_complete
-                                      else ("DUPLICATE/LANE OVERLAP (density-aware) - do not package" if (flagged_lane or in_ledger)
-                                            else "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)")),
-               rows=rows,
-               note=("Spearman is computed on a 400k random footprint sample of raw values; binary rasters have heavy "
-                     "ties, so rho is a conservative rank summary, not a continuous rank correlation."))
-    print(json.dumps({k: rec[k] for k in ("candidate", "sha256", "candidate_dots", "sha_in_artifact_ledger",
-                                          "registry_checked", "flagged", "verdict", "flagged_lane",
-                                          "verdict_density_aware")}, indent=1))
-    for r in rows:
-        if "spearman" in r:
-            print(f"  {r['file'][:70]:70s} rho={r['spearman']:+.3f} within3px={r['dots_within_3px']:.3f} "
-                  f"rev={r['registry_dots_within_3px_of_candidate']:.3f} identical={r['byte_identical']}")
-    if a.out:
-        Path(a.out).write_text(json.dumps(rec, indent=1) + "\n")
+    if not cand_dots.any():
+        raise ValueError("empty candidate cannot pass a lane audit")
+    rdots = (rv > 0) & foot
+    # The mandate is a threshold over the entire footprint, not a sample that
+    # could miss a correlation just above the limit.
+    cvals, rvals = cv[foot], rv[foot]
+    if not len(cvals) or np.ptp(cvals) == 0 or np.ptp(rvals) == 0:
+        rho = None
+    else:
+        value = float(spearmanr(cvals, rvals).statistic)
+        rho = value if np.isfinite(value) else None
+    # A reference with no positive pixels has no halo; rank still has to be defined.
+    dist = distance_transform_edt(~rdots) if rdots.any() else np.full(foot.shape, np.inf)
+    overlap = float((dist[cand_dots] <= OVERLAP_DIST).mean())
+    coverage = float((dist[foot] <= OVERLAP_DIST).mean())
+    reverse_dist = distance_transform_edt(~cand_dots)
+    reverse = float((reverse_dist[rdots] <= OVERLAP_DIST).mean()) if rdots.any() else 0.0
+    flag_rank = rho is None or abs(rho) > RHO_MAX
+    flag_overlap = overlap > OVERLAP_MAX
+    return dict(spearman=rho, dots_within_3px=overlap,
+                registry_dots_within_3px_of_candidate=reverse,
+                registry_dots=int(rdots.sum()), halo_coverage_3px=coverage,
+                flag_rank=flag_rank, rank_undefined=rho is None, flag_overlap=flag_overlap,
+                duplicate=bool((rho is not None and abs(rho) > RHO_MAX) or flag_overlap),
+                # This number is diagnostic and never changes the literal decision.
+                symmetric_min_overlap_3px=min(overlap, reverse))
+
+
+def _read_aligned(path: Path, template_profile: tuple, footprint: np.ndarray) -> np.ndarray:
+    with rasterio.open(path) as src:
+        if src.count != 1 or (src.shape, src.crs, src.transform) != template_profile:
+            raise ValueError(f"single-band grid/CRS/transform mismatch: {path}")
+        arr = src.read(1)
+    if not np.isfinite(arr[footprint]).all():
+        raise ValueError(f"nonfinite reference values within footprint: {path}")
+    return arr
+
+
+def audit(candidate: Path, template: Path, references: list[Path], expected: set[str],
+          *, selected_only: bool = False) -> dict:
+    candidate, template = Path(candidate), Path(template)
+    template_sha = validate_template(template)
+    with rasterio.open(template) as src:
+        if src.count != 1 or src.crs is None:
+            raise ValueError("template must have a CRS and exactly one band")
+        foot = np.isfinite(src.read(1))
+        profile = (src.shape, src.crs, src.transform)
+    cv = _read_aligned(candidate, profile, foot)
+    cand_sha = sha256(candidate)
+    inventory = registry_inventory(references, expected)
+    refs = [p for p in references if p.resolve() != candidate.resolve()]
+    # Do not omit same-stem twins: filenames do not prove prediction identity.
+    rows, errors = [], []
+    for p in refs:
+        try:
+            rv = _read_aligned(p, profile, foot)
+            row = compare_arrays(cv, rv, foot)
+            row.update(file=p.name, sha256=sha256(p), byte_identical=sha256(p) == cand_sha)
+            row["duplicate"] = bool(row["duplicate"] or row["byte_identical"])
+            rows.append(row)
+        except (OSError, ValueError, rasterio.errors.RasterioError) as exc:
+            errors.append(dict(file=p.name, error=str(exc)))
+            break
+        if row["duplicate"] or row["rank_undefined"]:
+            break
+    flags = [r["file"] for r in rows if r["duplicate"]]
+    exact_in_ledger = cand_sha in expected
+    evaluated_all = bool(refs) and len(rows) == len(refs) and not errors
+    complete = bool(not selected_only and inventory["complete"] and evaluated_all
+                    and all(not r["rank_undefined"] for r in rows))
+    if flags or exact_in_ledger:
+        verdict = "DUPLICATE/LANE OVERLAP - stop; do not package"
+    elif not complete:
+        verdict = "UNVERIFIED - incomplete or invalid registry; stop"
+    else:
+        verdict = "FINAL-DOT CHECK CLEAR vs declared registry only; surface and other gates still required"
+    return dict(candidate=candidate.name, sha256=cand_sha, template_sha256=template_sha,
+                candidate_dots=int(((cv > 0) & foot).sum()),
+                thresholds=dict(spearman_max=RHO_MAX, dots_within_3px_max=OVERLAP_MAX, dist_px=OVERLAP_DIST),
+                registry_inventory=inventory, registry_manifest_sha256=inventory["registry_manifest_sha256"],
+                registry_checked=len(rows), registry_complete=complete,
+                selected_references_only=selected_only, errors=errors,
+                sha_in_artifact_ledger=exact_in_ledger, sha_is_registered_reference=exact_in_ledger,
+                flagged=flags, flagged_literal=flags, rows=rows, verdict=verdict,
+                lane_clear=complete and not flags and not exact_in_ledger,
+                rank_footprint_pixels=int(foot.sum()),
+                note="A symmetric overlap is diagnostic only; no density exception is authorized. "
+                     "Spearman covers the full footprint and can have heavy ties. Surface audit is separate. "
+                     "The legacy sha_in_artifact_ledger field includes all declared reference pins.")
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("candidate", type=Path)
+    ap.add_argument("--template", type=Path, default=data_dir() / "sample_submission.tif")
+    ap.add_argument("--reference", type=Path, action="append", help="diagnose selected reference(s), never a full clearance")
+    ap.add_argument("--out", type=Path)
+    args = ap.parse_args()
+    try:
+        refs = args.reference if args.reference is not None else registry_rasters()
+        result = audit(args.candidate, args.template, refs, declared_hashes(), selected_only=args.reference is not None)
+    except (OSError, ValueError, KeyError, json.JSONDecodeError, rasterio.errors.RasterioError) as exc:
+        result = dict(candidate=str(args.candidate), verdict="UNVERIFIED - audit error; stop", lane_clear=False, error=str(exc))
+    text = json.dumps(result, indent=2, allow_nan=False) + "\n"
+    if args.out:
+        args.out.parent.mkdir(parents=True, exist_ok=True)
+        args.out.write_text(text)
+    print(text, end="")
+    return 0 if result["lane_clear"] else 2
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

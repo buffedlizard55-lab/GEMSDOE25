@@ -19,8 +19,8 @@ def J(rel: str):
 
 
 def test_h79_run_card_and_registry_consistency() -> None:
-    card = J("registry/run_card_h79_2026-10-27.json")
-    docs_card = J("docs/data/run_card_h79_2026-10-27.json")
+    card = J("registry/run_card_h79_cthm_2026-10-27.json")
+    docs_card = J("docs/data/run_card_h79_cthm_2026-10-27.json")
     assert card == docs_card
 
     subs = J("registry/submissions.json")["files"]
@@ -47,7 +47,7 @@ def test_h79_run_card_and_registry_consistency() -> None:
 
 
 def test_h79_three_experiments_virgin_draws_canaries_and_discoveries() -> None:
-    card = J("registry/run_card_h79_2026-10-27.json")
+    card = J("registry/run_card_h79_cthm_2026-10-27.json")
     joint = J("evidence/h79_joint_analysis.json")
     hd = card["holdout_dti"]
     x1 = hd["experiment_1_standard_holdout"]
@@ -91,7 +91,7 @@ def test_h79_three_experiments_virgin_draws_canaries_and_discoveries() -> None:
 
 
 def test_h79_geotiffs_portal_range_safety_uniqueness_and_staging_stops() -> None:
-    card = J("registry/run_card_h79_2026-10-27.json")
+    card = J("registry/run_card_h79_cthm_2026-10-27.json")
     zeros_p = ROOT / "docs" / "downloads" / card["submission_name"]
     nan_p = ROOT / "docs" / "downloads" / card["nan_twin_name"]
     zip_p = ROOT / "docs" / "downloads" / card["zip_name"]

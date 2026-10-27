@@ -2,7 +2,7 @@
 
 **Date:** `2026-10-27` · **Branch:** `arena/5e2cf679-gemsdoe25` · **Core Values:** `Maximize P(Win)` · `Own the Outcome`  
 **Pre-registration (committed pre-fit):** [`knowledge/39_preregistered_h79_cthm_poe_2026-10-27.md`](39_preregistered_h79_cthm_poe_2026-10-27.md) (`commit b59b129`)  
-**JSON Run Card:** [`registry/run_card_h79_2026-10-27.json`](../registry/run_card_h79_2026-10-27.json)
+**JSON Run Card:** [`registry/run_card_h79_cthm_2026-10-27.json`](../registry/run_card_h79_cthm_2026-10-27.json)
 
 ---
 

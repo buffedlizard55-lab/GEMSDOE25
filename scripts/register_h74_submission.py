@@ -27,6 +27,7 @@ def J(rel: str):
 
 
 def main() -> None:
+    raise SystemExit("Historical registration retired: density-aware wording cannot override literal lane failure. Do not re-register these files.")
     joint = J("evidence/h74_joint_analysis.json")
     exp1 = joint["exp1_standard"]
     exp2 = joint["exp2_block25km"]

@@ -46,6 +46,8 @@ def main() -> None:
     surf = J("evidence/h79_crustal_sgmc_surface_lane.json")
     lane_lit = J("evidence/h79_crustal_sgmc_lane_literal.json")
     lane_ext = J("evidence/h79_crustal_sgmc_lane_extended.json")
+    ind_exact = J("evidence/h79_cthm_independent_audit_2026-10-27.json")
+    post_merge_109 = J("evidence/h79_cthm_post_merge_109_audit.json")
 
     chk_z = dict(build["zeros"]["validator"], note=NOTE)
     chk_n = dict(build["nan"]["validator"], note=NOTE)
@@ -84,6 +86,7 @@ def main() -> None:
         flagged_literal=lane_lit["flagged_literal"],
         registry_checked=lane_lit["registry_checked"],
         surface_worst_abs_spearman=surf["worst_abs_spearman"],
+        post_merge_109_audit=post_merge_109,
         focus_winners=dict(
             n=len(rt),
             worst_cand_dots_within_3px=max(r["cand_dots_within_3px"] for r in rt),
@@ -189,181 +192,52 @@ def main() -> None:
             lane=lane_block,
             lane_summary=lane_summary,
             slot_reason=slot_reason,
-            run_card="registry/run_card_h79_2026-10-27.json",
+            run_card="registry/run_card_h79_cthm_2026-10-27.json",
             title=f"H79-CTHM+SGMC topography-free crustal LOQO B2 (37,654 dots, {outside} outside) — TESTING ONLY · DO NOT SUBMIT",
             summary=summary,
             note=NOTE,
         )
 
-    # Remediate H78 checks, run card, and registry entries using measured holdout & full 103-raster lane audit
-    audit78 = J("evidence/h78_measured_holdout_audit_2026-10-27.json")
-    lane78 = J(f"docs/downloads/lane-{H78_STEM_Z}.json")
-    import sys
-    sys.path.insert(0, str(ROOT / "src"))
-    from gems25.paths import data_dir
-    from gems25.submission import check_file
-
-    tmpl_p = data_dir() / "sample_submission.tif"
-    chk78_z = check_file(ROOT / "docs" / "downloads" / f"{H78_STEM_Z}.tif", tmpl_p)
-    chk78_z["note"] = H78_NOTE
-    (ROOT / "docs" / "downloads" / f"checks-{H78_STEM_Z}.json").write_text(json.dumps(chk78_z, indent=1) + "\n")
-    chk78_n = check_file(ROOT / "docs" / "downloads" / f"{H78_STEM_N}.tif", tmpl_p)
-    chk78_n["note"] = H78_NOTE
-    (ROOT / "docs" / "downloads" / f"checks-{H78_STEM_N}.json").write_text(json.dumps(chk78_n, indent=1) + "\n")
-
-    card78 = dict(
-        schema="run_card/v1 (PARALLEL-RUN PROTOCOL item 5 — remediated 2026-10-27)",
-        session="2026-10-27 H78 MHSCF (b2488f5d216c) — remediated post-PR#60 audit",
-        remediation_irregularity="IR-25-H78-FABRICATED-HOLDOUT-AND-CI-FAILURE-20261027",
-        hypothesis=(
-            "H78-MHSCF: Heuristic static linear combination of gravity analytic signal/horizontal gradient, "
-            "basement depth gradient, magnetic horizontal gradient, DEM crest/slope, spring/vent proximity, "
-            "and X1_ThK alteration with ridge-NMS, B2 collar (d_cat > 2.0 px), and 2.85-px Poisson disc thinning."
-        ),
-        mechanism="Static heuristic weighted fusion without supervised LOQO training; post-hoc audited on draws [60, 61].",
-        named_non_fault_mimic="Intrusive pluton boundaries, unfaulted volcanic flow fronts, hydrothermally altered calderas, erosional terrace scarps.",
-        holdout_dti=dict(
-            label="HOLDOUT-DTI",
-            evaluator=audit78["evaluator"],
-            draws=audit78["draws"],
-            pooled_dti=audit78["pooled_dti"],
-            ci95=audit78["ci95"],
-            withheld_positive_occurrences=audit78["withheld_positive_occurrences"],
-            fold_pooled_dtis=audit78["fold_pooled_dtis"],
-            remediation_note=(
-                "PR #60 hardcoded 0.1512 (copied from H74 ctrl_h35_pooled) and [0.1285, 0.1740] (copied from apfl2) "
-                "without calling HoldoutEvaluator; measured HOLDOUT-DTI on draws [60, 61] is 0.058389."
-            ),
-        ),
-        organizer_confirmed_score=None,
-        estimated_competition_score=None,
-        correlation_overlap_vs_registry=dict(
-            lane_clear=False,
-            total_registry_checked=lane78["registry_checked"],
-            worst_abs_spearman=audit78["worst_abs_spearman"],
-            worst_sparse_overlap=audit78["worst_sparse_overlap"],
-            worst_sparse_file=audit78["worst_sparse_file"],
-            flagged_literal=lane78["flagged_literal"],
-            flagged_lane=lane78["flagged_lane"],
-            verdict=lane78["verdict"],
-            verdict_density_aware=lane78["verdict_density_aware"],
-            receipt=f"docs/downloads/lane-{H78_STEM_Z}.json",
-        ),
-        raster_sha256=chk78_z["sha256"],
-        nan_twin_sha256=chk78_n["sha256"],
-        validator_output=dict(
-            format_valid=bool(chk78_z["format_valid"]),
-            ok_to_upload_format_only=bool(chk78_z["ok_to_upload"]),
-            bytes=chk78_z["bytes"],
-            positive_pixels=chk78_z["positive_pixels"],
-            hard_failures=chk78_z["hard_failures"],
-        ),
-        submission=dict(
-            name=f"{H78_STEM_Z}.tif",
-            nan_twin=f"{H78_STEM_N}.tif",
-            zip=f"{H78_STEM_Z}.zip",
-            content_id=H78_CID,
-            note=H78_NOTE,
-            note_chars=len(H78_NOTE),
-            verdict="negative",
-            slot_approved=False,
-            ok_to_download=True,
-            ok_to_submit=False,
-        ),
-        verdict="negative",
-        slot_approved=False,
-        ok_to_download_inspection=True,
-        ok_to_submit_slot=False,
-    )
-    for out_rel in ("registry/run_card_h78_2026-10-27.json", "docs/data/run_card_h78_2026-10-27.json"):
-        (ROOT / out_rel).write_text(json.dumps(card78, indent=1) + "\n")
-
-    def make_h78_entry(stem: str, chk: dict, outside: str, id_: str, role: str) -> dict:
-        return dict(
-            id=id_,
-            role=role,
-            file=f"{stem}.tif",
-            path=f"docs/downloads/{stem}.tif",
-            bytes=chk["bytes"],
-            sha256=chk["sha256"],
-            content_id=H78_CID,
-            positive_pixels=chk["positive_pixels"],
-            format_ok=bool(chk["format_valid"]),
-            checks=chk["checks"],
-            receipt=f"checks-{stem}.json",
-            outside=outside,
-            status=(
-                f"UNIQUE BY CONTENT (density-aware across {lane78['registry_checked']} rasters; literal lattice fail) · "
-                f"FORMAT-VALID · MEASURED HOLDOUT-DTI {audit78['pooled_dti']:.5f} FAIL vs CTRL_H35 · verdict negative · DO NOT SUBMIT"
-            ),
-            zip=f"{H78_STEM_Z}.zip" if outside == "zero" else None,
-            verdict="negative",
-            slot_approved=False,
-            do_not_resubmit=True,
-            ok_to_download=True,
-            ok_to_submit_slot=False,
-            expected_range="NOT ESTIMATED — prior PR #60 0.2785 projection retracted (IR-25-H78-FABRICATED-HOLDOUT-AND-CI-FAILURE-20261027)",
-            lane=card78["correlation_overlap_vs_registry"],
-            lane_summary=(
-                f"Density-aware unique across {lane78['registry_checked']} rasters (flagged_lane = [], worst sparse overlap "
-                f"{100 * audit78['worst_sparse_overlap']:.2f}% vs {audit78['worst_sparse_file']}); strict literal 70% fails vs r13 lattice and pindrop."
-            ),
-            slot_reason=(
-                f"Post-hoc audited HOLDOUT-DTI on draws [60, 61] is {audit78['pooled_dti']:.5f} "
-                f"(95% CI [{audit78['ci95'][0]:.4f}, {audit78['ci95'][1]:.4f}], {audit78['withheld_positive_occurrences']:,} withheld +), "
-                "below H35 control; not slot-approved."
-            ),
-            run_card="registry/run_card_h78_2026-10-27.json",
-            title=f"H78-MHSCF static heuristic B2 (43,550 dots, {outside} outside) — REMEDIATED ARCHIVE · DO NOT SUBMIT",
-            summary=(
-                f"Archived 2026-10-27 static heuristic GeoTIFF (43,550 binary dots, {outside} outside); strict lane gate flags "
-                f"the 3 >70%-halo rasters while density-aware max sparse overlap is {100 * audit78['worst_sparse_overlap']:.1f}% vs {audit78['worst_sparse_file']}. "
-                f"Measured HOLDOUT-DTI {audit78['pooled_dti']:.5f} (PR #60 hardcoded 0.1512/0.2785 retracted) — DO NOT SUBMIT."
-            ),
-            note=H78_NOTE,
-        )
-
     drop_ids = {
         "h79-cthm-crustal-sgmc",
         "h79-cthm-crustal-sgmc-nan",
-        "h78-mhscf",
-        "h78-mhscf-nan",
     }
     for reg_path in ("registry/submissions.json", "docs/data/submissions.json"):
         reg = J(reg_path)
-        reg["files"] = [f for f in reg["files"] if f["id"] not in drop_ids]
-        reg["files"] = [
-            make_h79_entry(STEM_Z, chk_z, "zero", "h79-cthm-crustal-sgmc", "research-h79"),
-            make_h79_entry(STEM_N, chk_n, "nan", "h79-cthm-crustal-sgmc-nan", "research-h79-nan"),
-            make_h78_entry(H78_STEM_Z, chk78_z, "zero", "h78-mhscf", "research-h78"),
-            make_h78_entry(H78_STEM_N, chk78_n, "nan", "h78-mhscf-nan", "research-h78-nan"),
-        ] + reg["files"]
-        reg["generated_by"] = "scripts/register_h79_submission.py (2026-10-27, H79-CTHM-PoE + H78 remediation)"
+        clean_files = [f for f in reg["files"] if f["id"] not in drop_ids]
+        insert_at = 2 if len(clean_files) >= 2 and clean_files[0]["id"] == "h75-dchb-cg" else 0
+        reg["files"] = (
+            clean_files[:insert_at]
+            + [
+                make_h79_entry(STEM_Z, chk_z, "zero", "h79-cthm-crustal-sgmc", "research-h79-cthm"),
+                make_h79_entry(STEM_N, chk_n, "nan", "h79-cthm-crustal-sgmc-nan", "research-h79-cthm-nan"),
+            ]
+            + clean_files[insert_at:]
+        )
         (ROOT / reg_path).write_text(json.dumps(reg, indent=1) + "\n")
 
     # Log 2026-10-27 irregularities idempotently
+    audit78 = J("evidence/h78_measured_holdout_audit_2026-10-27.json")
     new_irrs = [
         dict(
             id="IR-25-H78-FABRICATED-HOLDOUT-AND-CI-FAILURE-20261027",
             severity="high",
             status="resolved",
             issue=(
-                "Merged PR #60 (commit 77be1ae, scripts/build_h78_submission.py & registry/run_card_h78_2026-10-27.json) "
-                "hardcoded holdout_dti = 0.1512 (copied from H74 ctrl_h35_pooled), ci_95 = [0.1285, 0.1740] (copied from apfl2), "
-                "and estimated_competition_score = 0.2785 without running HoldoutEvaluator, reported lane checks over 86 rasters "
-                "instead of the full 103-raster registry (true max sparse overlap 58.59% on h19-c.tif + 3 literal dense-halo flags), "
-                "set ok_to_submit = True without selector authorization, and introduced 36 ruff lint errors that broke main CI."
+                "Merged PR #60 (commit 77be1ae, scripts/build_h78_submission.py) hardcoded its holdout_dti, CI, and "
+                "competition projection without running HoldoutEvaluator, checked only 86 rasters, set ok_to_submit = True "
+                "without selector authorization, and introduced 36 ruff lint errors on main."
             ),
             evidence=(
                 "evidence/h78_measured_holdout_audit_2026-10-27.json; "
-                "docs/downloads/lane-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json; "
+                "evidence/h78_independent_reaudit_2026-10-27.json; "
+                "evidence/h78_literal_lane_reaudit_2026-10-27.json; "
                 "registry/run_card_h78_2026-10-27.json."
             ),
             resolution_or_action=(
-                "Evaluated H78 on draws [60, 61] (22,813 withheld positives -> measured HOLDOUT-DTI = 0.058389, "
-                "95% CI [0.046604, 0.067958]), ran full 103-raster lane verification, retracted the uncalibrated 0.2785 score "
-                "estimate, set ok_to_submit = False / slot_approved = False / verdict = 'negative' in registry/run_card_h78_2026-10-27.json "
-                "and registry/submissions.json, and fixed all 36 ruff lint errors across scripts/."
+                f"Evaluated H78 on draws [60, 61] (22,813 withheld positives -> measured HOLDOUT-DTI = {audit78['pooled_dti']:.6f}, "
+                f"95% CI [{audit78['ci95'][0]:.6f}, {audit78['ci95'][1]:.6f}]), retracted uncomputed metrics, set ok_to_submit = False "
+                "and slot_approved = False, and restored ruff check across scripts/ to 0 errors."
             ),
         ),
         dict(
@@ -380,13 +254,14 @@ def main() -> None:
             evidence=(
                 "evidence/h79_poe_sgmc_stopped_lane.json; evidence/h79_poe_sgmc_stopped_extended.json; "
                 "evidence/h79_subsurf_stopped_lane.json; evidence/h79_subsurf_stopped_extended.json; "
-                "evidence/h79_crustal_sgmc_lane_literal.json; evidence/h79_crustal_sgmc_lane_extended.json."
+                "evidence/h79_crustal_sgmc_lane_literal.json; evidence/h79_crustal_sgmc_lane_extended.json; "
+                "evidence/h79_cthm_post_merge_109_audit.json."
             ),
             resolution_or_action=(
                 "Pre-publish staging guards halted both runs before touching docs/downloads/. Evaluating the exact 56-column "
                 "zero-topography M_crustal expert from Exp 3 (H79_SUBSURF + H79_sgmc_coulomb_react = H79_CRUSTAL_SGMC, e7ad8a4bf3ed) "
-                "broke own-lineage tie-breaking (49.69% <= 70% vs H74_SUBSURF) while keeping external sparse overlap <= 58.02% "
-                "(55.49% on h23-a-6pct.tif, 23.54% on GEMSDOE32 B2), achieving flagged_lane = [] across all 103 registry rasters."
+                "broke own-lineage tie-breaking (49.69% <= 70% vs H74_SUBSURF, 44.20% vs H75-DCHB-CG, 44.17% vs H75-EU3D-POE65) "
+                "while keeping all 106 sparse rasters <= 58.02% (55.49% on h23-a-6pct.tif, 23.54% on GEMSDOE32 B2)."
             ),
         ),
     ]
@@ -538,6 +413,7 @@ def main() -> None:
             ok_to_upload_format_only=bool(chk_z["ok_to_upload"] and chk_n["ok_to_upload"]),
             hard_failures_zeros=chk_z["hard_failures"],
             hard_failures_nan=chk_n["hard_failures"],
+            independent_exact_file_audit=ind_exact,
             independent_rasterio_zeros=ind_z,
             independent_rasterio_nan=ind_n,
             footprint_pixels=chk_z["footprint_pixels"],
@@ -549,6 +425,7 @@ def main() -> None:
         submission_name=f"{STEM_Z}.tif",
         nan_twin_name=f"{STEM_N}.tif",
         zip_name=f"{STEM_BASE}.zip",
+        zip_zeros_name=f"{STEM_Z}.zip",
         note=NOTE,
         note_chars=len(NOTE),
         verdict="negative",
@@ -556,11 +433,11 @@ def main() -> None:
         ok_to_download_inspection=True,
         ok_to_submit_slot=False,
     )
-    for out_rel in ("registry/run_card_h79_2026-10-27.json", "docs/data/run_card_h79_2026-10-27.json"):
+    for out_rel in ("registry/run_card_h79_cthm_2026-10-27.json", "docs/data/run_card_h79_cthm_2026-10-27.json"):
         (ROOT / out_rel).write_text(json.dumps(card79, indent=1) + "\n")
     print(
-        f"Registered {STEM_Z}.tif ({CONTENT_ID}, {chk_z['positive_pixels']:,} dots) & remediated H78 ({H78_CID}); "
-        "run_card_h79_2026-10-27.json written; verdict=negative"
+        f"Registered {STEM_Z}.tif ({CONTENT_ID}, {chk_z['positive_pixels']:,} dots); "
+        "run_card_h79_cthm_2026-10-27.json written; verdict=negative"
     )
 
 
