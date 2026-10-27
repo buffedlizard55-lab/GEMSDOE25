@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-27T19:33:40.720549+00:00",
+  "generated_utc": "2026-10-27T20:05:01.844102+00:00",
   "evidence_class": "COMPUTED local format and footprint identity only",
   "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
   "files": [
@@ -4665,6 +4665,539 @@
       ]
     },
     {
+      "file": "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-nan.tif",
+      "sha256": "e226ce0b101ddb09c8b54a75c2a6f922357109df21b9e63a49931c7cb8a01f21",
+      "footprint_sha256": "2c8c30552b5a7546ffbcf8ca8039d5af8ab0d5ff0d53fa28814e9bdbc56bd596",
+      "format_valid": true,
+      "okay_to_submit": false,
+      "estimated_leaderboard_score": null,
+      "novelty": "UNPROVEN: full registry surface and final-dot checks required",
+      "validator": {
+        "file": "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-nan.tif",
+        "bytes": 1591270,
+        "sha256": "e226ce0b101ddb09c8b54a75c2a6f922357109df21b9e63a49931c7cb8a01f21",
+        "ok_to_upload": true,
+        "format_valid": true,
+        "authorization_note": "ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval",
+        "hard_failures": [],
+        "official_nan_outside": true,
+        "positive_pixels": 37654,
+        "footprint_pixels": 5167373,
+        "checks": {
+          "template_matches_expected_grid_and_footprint": {
+            "pass_": true,
+            "detail": "(3730, 3292), footprint 5,167,373 px",
+            "hard": true
+          },
+          "single_band": {
+            "pass_": true,
+            "detail": "count=1",
+            "hard": true
+          },
+          "dtype_float32": {
+            "pass_": true,
+            "detail": "dtypes=('float32',)",
+            "hard": true
+          },
+          "crs_epsg_32611": {
+            "pass_": true,
+            "detail": "32611",
+            "hard": true
+          },
+          "shape_matches_template": {
+            "pass_": true,
+            "detail": "(3730, 3292) vs (3730, 3292)",
+            "hard": true
+          },
+          "geotransform_matches_template": {
+            "pass_": true,
+            "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+            "hard": true
+          },
+          "footprint_all_finite": {
+            "pass_": true,
+            "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+            "hard": true
+          },
+          "footprint_values_in_0_1": {
+            "pass_": true,
+            "detail": "min=0.0 max=1.0",
+            "hard": true
+          },
+          "outside_footprint_is_nan_official": {
+            "pass_": true,
+            "detail": "7,111,787/7,111,787 NaN",
+            "hard": false
+          },
+          "outside_footprint_is_nan_or_zero": {
+            "pass_": true,
+            "detail": "NaN (official) or 0 (fallback) outside",
+            "hard": true
+          },
+          "nan_mask_identical_to_template": {
+            "pass_": true,
+            "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+            "hard": true
+          },
+          "nodata_tag": {
+            "pass_": true,
+            "detail": "nodata=nan",
+            "hard": false
+          },
+          "variant_nan_aware_whole_array": {
+            "pass_": true,
+            "detail": "finite range over the whole array; infinity rejected",
+            "hard": true
+          },
+          "variant_masked_read": {
+            "pass_": true,
+            "detail": "rasterio masked read; empty data rejected",
+            "hard": true
+          },
+          "variant_strict_whole_array_no_nan": {
+            "pass_": false,
+            "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+            "hard": false
+          },
+          "profile_matches_template": {
+            "pass_": true,
+            "detail": "compress=lzw (template lzw)",
+            "hard": false
+          }
+        }
+      },
+      "identical_footprint_files": [
+        "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif"
+      ]
+    },
+    {
+      "file": "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif",
+      "sha256": "7b5ce15848362077572bd091353eda82e8092b544a4d2ff24f81711cc8fbc71c",
+      "footprint_sha256": "2c8c30552b5a7546ffbcf8ca8039d5af8ab0d5ff0d53fa28814e9bdbc56bd596",
+      "format_valid": true,
+      "okay_to_submit": false,
+      "estimated_leaderboard_score": null,
+      "novelty": "UNPROVEN: full registry surface and final-dot checks required",
+      "validator": {
+        "file": "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif",
+        "bytes": 826682,
+        "sha256": "7b5ce15848362077572bd091353eda82e8092b544a4d2ff24f81711cc8fbc71c",
+        "ok_to_upload": true,
+        "format_valid": true,
+        "authorization_note": "ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval",
+        "hard_failures": [],
+        "official_nan_outside": false,
+        "positive_pixels": 37654,
+        "footprint_pixels": 5167373,
+        "checks": {
+          "template_matches_expected_grid_and_footprint": {
+            "pass_": true,
+            "detail": "(3730, 3292), footprint 5,167,373 px",
+            "hard": true
+          },
+          "single_band": {
+            "pass_": true,
+            "detail": "count=1",
+            "hard": true
+          },
+          "dtype_float32": {
+            "pass_": true,
+            "detail": "dtypes=('float32',)",
+            "hard": true
+          },
+          "crs_epsg_32611": {
+            "pass_": true,
+            "detail": "32611",
+            "hard": true
+          },
+          "shape_matches_template": {
+            "pass_": true,
+            "detail": "(3730, 3292) vs (3730, 3292)",
+            "hard": true
+          },
+          "geotransform_matches_template": {
+            "pass_": true,
+            "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+            "hard": true
+          },
+          "footprint_all_finite": {
+            "pass_": true,
+            "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+            "hard": true
+          },
+          "footprint_values_in_0_1": {
+            "pass_": true,
+            "detail": "min=0.0 max=1.0",
+            "hard": true
+          },
+          "outside_footprint_is_nan_official": {
+            "pass_": false,
+            "detail": "0/7,111,787 NaN",
+            "hard": false
+          },
+          "outside_footprint_is_nan_or_zero": {
+            "pass_": true,
+            "detail": "NaN (official) or 0 (fallback) outside",
+            "hard": true
+          },
+          "nan_mask_identical_to_template": {
+            "pass_": true,
+            "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+            "hard": true
+          },
+          "nodata_tag": {
+            "pass_": true,
+            "detail": "nodata=None",
+            "hard": false
+          },
+          "variant_nan_aware_whole_array": {
+            "pass_": true,
+            "detail": "finite range over the whole array; infinity rejected",
+            "hard": true
+          },
+          "variant_masked_read": {
+            "pass_": true,
+            "detail": "rasterio masked read; empty data rejected",
+            "hard": true
+          },
+          "variant_strict_whole_array_no_nan": {
+            "pass_": true,
+            "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+            "hard": false
+          },
+          "profile_matches_template": {
+            "pass_": true,
+            "detail": "compress=lzw (template lzw)",
+            "hard": false
+          }
+        }
+      },
+      "identical_footprint_files": [
+        "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-nan.tif"
+      ]
+    },
+    {
+      "file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-nan.tif",
+      "sha256": "21c325e54cf255b830e45fb7eaff4cbf31219704cc973fb6f5fce0a823b3d603",
+      "footprint_sha256": "d51c7f23dd7fc25016c5ae42b1392f7d20e4343acb649ade3b2beb41b6c8afbf",
+      "format_valid": true,
+      "okay_to_submit": false,
+      "estimated_leaderboard_score": null,
+      "novelty": "UNPROVEN: full registry surface and final-dot checks required",
+      "validator": {
+        "file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-nan.tif",
+        "bytes": 1602178,
+        "sha256": "21c325e54cf255b830e45fb7eaff4cbf31219704cc973fb6f5fce0a823b3d603",
+        "ok_to_upload": true,
+        "format_valid": true,
+        "authorization_note": "ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval",
+        "hard_failures": [],
+        "official_nan_outside": true,
+        "positive_pixels": 43550,
+        "footprint_pixels": 5167373,
+        "checks": {
+          "template_matches_expected_grid_and_footprint": {
+            "pass_": true,
+            "detail": "(3730, 3292), footprint 5,167,373 px",
+            "hard": true
+          },
+          "single_band": {
+            "pass_": true,
+            "detail": "count=1",
+            "hard": true
+          },
+          "dtype_float32": {
+            "pass_": true,
+            "detail": "dtypes=('float32',)",
+            "hard": true
+          },
+          "crs_epsg_32611": {
+            "pass_": true,
+            "detail": "32611",
+            "hard": true
+          },
+          "shape_matches_template": {
+            "pass_": true,
+            "detail": "(3730, 3292) vs (3730, 3292)",
+            "hard": true
+          },
+          "geotransform_matches_template": {
+            "pass_": true,
+            "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+            "hard": true
+          },
+          "footprint_all_finite": {
+            "pass_": true,
+            "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+            "hard": true
+          },
+          "footprint_values_in_0_1": {
+            "pass_": true,
+            "detail": "min=0.0 max=1.0",
+            "hard": true
+          },
+          "outside_footprint_is_nan_official": {
+            "pass_": true,
+            "detail": "7,111,787/7,111,787 NaN",
+            "hard": false
+          },
+          "outside_footprint_is_nan_or_zero": {
+            "pass_": true,
+            "detail": "NaN (official) or 0 (fallback) outside",
+            "hard": true
+          },
+          "nan_mask_identical_to_template": {
+            "pass_": true,
+            "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+            "hard": true
+          },
+          "nodata_tag": {
+            "pass_": true,
+            "detail": "nodata=nan",
+            "hard": false
+          },
+          "variant_nan_aware_whole_array": {
+            "pass_": true,
+            "detail": "finite range over the whole array; infinity rejected",
+            "hard": true
+          },
+          "variant_masked_read": {
+            "pass_": true,
+            "detail": "rasterio masked read; empty data rejected",
+            "hard": true
+          },
+          "variant_strict_whole_array_no_nan": {
+            "pass_": false,
+            "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+            "hard": false
+          },
+          "profile_matches_template": {
+            "pass_": true,
+            "detail": "compress=lzw (template lzw)",
+            "hard": false
+          }
+        }
+      },
+      "identical_footprint_files": [
+        "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif"
+      ]
+    },
+    {
+      "file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
+      "sha256": "be78ded8d7073512d9fc71677c37cd3528e1ff80fb3c5cb8c02080417e1217e5",
+      "footprint_sha256": "d51c7f23dd7fc25016c5ae42b1392f7d20e4343acb649ade3b2beb41b6c8afbf",
+      "format_valid": true,
+      "okay_to_submit": false,
+      "estimated_leaderboard_score": null,
+      "novelty": "UNPROVEN: full registry surface and final-dot checks required",
+      "validator": {
+        "file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
+        "bytes": 836294,
+        "sha256": "be78ded8d7073512d9fc71677c37cd3528e1ff80fb3c5cb8c02080417e1217e5",
+        "ok_to_upload": true,
+        "format_valid": true,
+        "authorization_note": "ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval",
+        "hard_failures": [],
+        "official_nan_outside": false,
+        "positive_pixels": 43550,
+        "footprint_pixels": 5167373,
+        "checks": {
+          "template_matches_expected_grid_and_footprint": {
+            "pass_": true,
+            "detail": "(3730, 3292), footprint 5,167,373 px",
+            "hard": true
+          },
+          "single_band": {
+            "pass_": true,
+            "detail": "count=1",
+            "hard": true
+          },
+          "dtype_float32": {
+            "pass_": true,
+            "detail": "dtypes=('float32',)",
+            "hard": true
+          },
+          "crs_epsg_32611": {
+            "pass_": true,
+            "detail": "32611",
+            "hard": true
+          },
+          "shape_matches_template": {
+            "pass_": true,
+            "detail": "(3730, 3292) vs (3730, 3292)",
+            "hard": true
+          },
+          "geotransform_matches_template": {
+            "pass_": true,
+            "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+            "hard": true
+          },
+          "footprint_all_finite": {
+            "pass_": true,
+            "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+            "hard": true
+          },
+          "footprint_values_in_0_1": {
+            "pass_": true,
+            "detail": "min=0.0 max=1.0",
+            "hard": true
+          },
+          "outside_footprint_is_nan_official": {
+            "pass_": false,
+            "detail": "0/7,111,787 NaN",
+            "hard": false
+          },
+          "outside_footprint_is_nan_or_zero": {
+            "pass_": true,
+            "detail": "NaN (official) or 0 (fallback) outside",
+            "hard": true
+          },
+          "nan_mask_identical_to_template": {
+            "pass_": true,
+            "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+            "hard": true
+          },
+          "nodata_tag": {
+            "pass_": true,
+            "detail": "nodata=None",
+            "hard": false
+          },
+          "variant_nan_aware_whole_array": {
+            "pass_": true,
+            "detail": "finite range over the whole array; infinity rejected",
+            "hard": true
+          },
+          "variant_masked_read": {
+            "pass_": true,
+            "detail": "rasterio masked read; empty data rejected",
+            "hard": true
+          },
+          "variant_strict_whole_array_no_nan": {
+            "pass_": true,
+            "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+            "hard": false
+          },
+          "profile_matches_template": {
+            "pass_": true,
+            "detail": "compress=lzw (template lzw)",
+            "hard": false
+          }
+        }
+      },
+      "identical_footprint_files": [
+        "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-nan.tif"
+      ]
+    },
+    {
+      "file": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif",
+      "sha256": "e98b9a35609db124f5838cff415a1b0bdf462d65a746161c0bee706add3983d8",
+      "footprint_sha256": "66772eeec27a53cf35bddeaa9a1e22f9a6d384c64109b99498e1910b76bd6dfe",
+      "format_valid": true,
+      "okay_to_submit": false,
+      "estimated_leaderboard_score": null,
+      "novelty": "Recorded one-reference lane audit: DUPLICATE/LANE OVERLAP - stop; do not package",
+      "validator": {
+        "file": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif",
+        "bytes": 824568,
+        "sha256": "e98b9a35609db124f5838cff415a1b0bdf462d65a746161c0bee706add3983d8",
+        "ok_to_upload": true,
+        "format_valid": true,
+        "authorization_note": "ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval",
+        "hard_failures": [],
+        "official_nan_outside": false,
+        "positive_pixels": 37654,
+        "footprint_pixels": 5167373,
+        "checks": {
+          "template_matches_expected_grid_and_footprint": {
+            "pass_": true,
+            "detail": "(3730, 3292), footprint 5,167,373 px",
+            "hard": true
+          },
+          "single_band": {
+            "pass_": true,
+            "detail": "count=1",
+            "hard": true
+          },
+          "dtype_float32": {
+            "pass_": true,
+            "detail": "dtypes=('float32',)",
+            "hard": true
+          },
+          "crs_epsg_32611": {
+            "pass_": true,
+            "detail": "32611",
+            "hard": true
+          },
+          "shape_matches_template": {
+            "pass_": true,
+            "detail": "(3730, 3292) vs (3730, 3292)",
+            "hard": true
+          },
+          "geotransform_matches_template": {
+            "pass_": true,
+            "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+            "hard": true
+          },
+          "footprint_all_finite": {
+            "pass_": true,
+            "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+            "hard": true
+          },
+          "footprint_values_in_0_1": {
+            "pass_": true,
+            "detail": "min=0.0 max=1.0",
+            "hard": true
+          },
+          "outside_footprint_is_nan_official": {
+            "pass_": false,
+            "detail": "0/7,111,787 NaN",
+            "hard": false
+          },
+          "outside_footprint_is_nan_or_zero": {
+            "pass_": true,
+            "detail": "NaN (official) or 0 (fallback) outside",
+            "hard": true
+          },
+          "nan_mask_identical_to_template": {
+            "pass_": true,
+            "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+            "hard": true
+          },
+          "nodata_tag": {
+            "pass_": true,
+            "detail": "nodata=None",
+            "hard": false
+          },
+          "variant_nan_aware_whole_array": {
+            "pass_": true,
+            "detail": "finite range over the whole array; infinity rejected",
+            "hard": true
+          },
+          "variant_masked_read": {
+            "pass_": true,
+            "detail": "rasterio masked read; empty data rejected",
+            "hard": true
+          },
+          "variant_strict_whole_array_no_nan": {
+            "pass_": true,
+            "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+            "hard": false
+          },
+          "profile_matches_template": {
+            "pass_": true,
+            "detail": "compress=lzw (template lzw)",
+            "hard": false
+          }
+        }
+      },
+      "recorded_catalogue_positive_pixels": 416,
+      "recorded_reaudits": [
+        "evidence/h79_independent_reaudit_2026-10-27.json",
+        "evidence/h79_literal_lane_reaudit_2026-10-27.json"
+      ],
+      "identical_footprint_files": []
+    },
+    {
       "file": "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-nan.tif",
       "sha256": "77990b107784119d68feb63f61314cf5c5403d6c35cfa9226f3840bf30387399",
       "footprint_sha256": "26c1a71f6266049a8639f03e2feb36b15e87c778c8d779c4c0ba79318b8ea417",
@@ -5515,8 +6048,9 @@
   ],
   "okay_to_submit": false,
   "limitations": [
-    "No new geological experiment or TIFF generated.",
+    "No new geological experiment or TIFF generated by this audit.",
     "Identical footprint means identical local predictions, not cross-site novelty.",
+    "Catalogue masking is not tested by this format inventory; recorded re-audits are linked separately.",
     "No candidate has acquired holdout, lane or selector approval from this audit.",
     "No calibrated leaderboard score estimator or organizer receipt is available.",
     "Template is a pinned owner mirror, not organizer-authenticated."

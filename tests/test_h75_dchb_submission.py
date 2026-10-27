@@ -15,8 +15,8 @@ def J(rel: str):
 
 
 def test_h75_run_card_and_registry_consistency() -> None:
-    card = J("registry/run_card_h75_2026-10-27.json")
-    docs_card = J("docs/data/run_card_h75_2026-10-27.json")
+    card = J("registry/run_card_h75_dchb_cg_2026-10-27.json")
+    docs_card = J("docs/data/run_card_h75_dchb_cg_2026-10-27.json")
     assert card == docs_card
 
     subs = J("registry/submissions.json")["files"]
@@ -44,7 +44,7 @@ def test_h75_run_card_and_registry_consistency() -> None:
 
 
 def test_h75_three_experiments_virgin_draws_canaries_and_blockholdout_g2() -> None:
-    card = J("registry/run_card_h75_2026-10-27.json")
+    card = J("registry/run_card_h75_dchb_cg_2026-10-27.json")
     x1 = card["holdout_dti"]["experiment_1_standard_holdout"]
     x2 = card["holdout_dti"]["experiment_2_block25km_holdout"]
     x3 = card["holdout_dti"]["experiment_3_checkerboard25km_full_block_holdout"]
@@ -93,12 +93,13 @@ def test_h75_three_experiments_virgin_draws_canaries_and_blockholdout_g2() -> No
 
 
 def test_h75_geotiffs_uniqueness_across_108_rasters_and_deconfounding_irregularity() -> None:
-    card = J("registry/run_card_h75_2026-10-27.json")
+    card = J("registry/run_card_h75_dchb_cg_2026-10-27.json")
     zeros_p = ROOT / "docs" / "downloads" / card["submission_name"]
     nan_p = ROOT / "docs" / "downloads" / card["nan_twin_name"]
     zip_p = ROOT / "docs" / "downloads" / card["zip_name"]
+    zip_zeros_p = ROOT / "docs" / "downloads" / card["zip_zeros_name"]
 
-    assert zeros_p.exists() and nan_p.exists() and zip_p.exists()
+    assert zeros_p.exists() and nan_p.exists() and zip_p.exists() and zip_zeros_p.exists()
     assert hashlib.sha256(zeros_p.read_bytes()).hexdigest() == card["raster_sha256"]
     assert hashlib.sha256(nan_p.read_bytes()).hexdigest() == card["nan_twin_sha256"]
     assert hashlib.sha256(zip_p.read_bytes()).hexdigest() == card["zip_sha256"]
@@ -109,6 +110,8 @@ def test_h75_geotiffs_uniqueness_across_108_rasters_and_deconfounding_irregulari
     val = card["validator_output"]
     assert val["format_valid"] is True
     assert val["hard_failures_zeros"] == [] and val["hard_failures_nan"] == []
+    assert val["independent_exact_file_audit"]["all_hard_checks_pass"] is True
+    assert val["independent_exact_file_audit"]["zip"]["contains_exactly_candidate_bytes"] is True
     assert val["independent_rasterio_zeros"]["crs"] == "EPSG:32611"
     assert val["independent_rasterio_zeros"]["shape"] == [3730, 3292]
     assert val["independent_rasterio_zeros"]["inside_in_0_1"] is True
@@ -119,7 +122,7 @@ def test_h75_geotiffs_uniqueness_across_108_rasters_and_deconfounding_irregulari
     assert card["d_cat_strata_full_build"]["min_d_cat_px"] > 2.0
 
     lane = card["correlation_overlap_vs_registry"]
-    assert lane["lane_clear"] is False  # literal >73%-halo rasters reported honestly
+    assert lane["lane_clear"] is False  # literal >73%-halo & post-merge concurrent POE reported honestly
     assert lane["flagged_lane"] == []
     assert lane["registry_checked"] >= 108
     assert lane["surface_worst_abs_spearman"] <= 0.90
@@ -130,27 +133,32 @@ def test_h75_geotiffs_uniqueness_across_108_rasters_and_deconfounding_irregulari
     assert lane["vs_h72_catfree"]["cand_dots_within_3px"] <= 0.70
     assert lane["focus_winners"]["n"] == 32
     assert lane["focus_winners"]["b2_overlap"] < 0.40
+    # Post-merge full-footprint 116-raster audit also recorded honestly
+    pm = lane["post_merge_full_footprint_116"]
+    assert pm["rank_footprint_pixels"] == 5_167_373
+    assert pm["total_aligned_rasters_checked"] >= 116
+    assert pm["max_abs_surface_spearman_full_5167373"] <= 0.90
 
     irr_ids = {i["id"] for i in J("registry/irregularities.json")["issues"]}
     assert "IR-25-CORRIDOR-GATED-DECONFOUNDING-20261027" in irr_ids
 
 
 def test_h75_pages_readme_and_20261027_live_scores() -> None:
-    card = J("registry/run_card_h75_2026-10-27.json")
+    card = J("registry/run_card_h75_dchb_cg_2026-10-27.json")
     for rel in ("index.html", "docs/index.html", "docs/executive-summary.html", "docs/current-review.html"):
         txt = (ROOT / rel).read_text()
         assert card["submission_name"] in txt, rel
         assert card["content_id"] in txt, rel
         assert card["note"] in txt, rel
         assert "OK TO DOWNLOAD" in txt and "DO NOT SUBMIT" in txt, rel
-        # Prominent above H74 download box
         assert txt.index(card["submission_name"]) < txt.index("3751606e1ce5"), rel
 
     readme = (ROOT / "README.md").read_text()
     assert card["submission_name"] in readme
-    assert "39_h75_outcomes_and_executive_summary_2026-10-27.md" in readme
-    assert "run_card_h75_2026-10-27.json" in readme
-    assert "owner_brief_2026-10-27_verbatim.txt" in readme
+    assert "40_h75_dchb_cg_outcomes_and_executive_summary_2026-10-27.md" in readme
+    assert "run_card_h75_dchb_cg_2026-10-27.json" in readme
+    brief = (ROOT / "knowledge/owner_brief_2026-10-27_verbatim.txt").read_text().strip()
+    assert brief in readme
     assert "Maximize P(Win)" in readme and "Own the Outcome" in readme
 
     # Verify all 8 new 2026-10-27 OWNER-REPORTED scores are recorded as owner_reported (never organizer_confirmed)
@@ -161,6 +169,6 @@ def test_h75_pages_readme_and_20261027_live_scores() -> None:
     assert all(a["status"] != "organizer_confirmed" for a in ls)
 
     # Verify 9 focus sites + extended sibling groups in 2026-10-27 executive summary artifact
-    foc = J("evidence/focus_sites_h75_latest_2026-10-27.json")
+    foc = J("evidence/focus_sites_h75_dchb_cg_latest_2026-10-27.json")
     assert {r["site"] for r in foc["sites"]} == {f"GEMSDOE{n}" for n in (24, 25, 27, 28, 30, 31, 32, 33, 36)}
     assert len(foc["extended_sibling_sites"]) >= 15

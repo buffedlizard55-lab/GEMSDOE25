@@ -1,0 +1,42 @@
+# Current Session Standing Prompt — 2026-10-27 (Read Before Every Session)
+
+Review the repo.
+
+1. FOCUS SITES & PORTFOLIO AUDIT:
+   Focus on the highest scoring submissions from the nine focus sites:
+   GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, GEMSDOE36
+   (plus broader sibling context GEMSDOE..GEMSDOE92, KANLERGEMSDOE1..3, EUGGEMSDOE1..3, WBGGEMSDOE1..3, GINNYGEMSDOE1..3).
+   Provide a clear, unmistakable executive summary table listing for every site:
+   - Exact file to download / historical reference file
+   - Properly labeled score / holdout proxy (HOLDOUT-DTI with evaluator version, withheld positives, 95% CI; or OWNER-REPORTED vs ORGANIZER-CONFIRMED; never write a projection as a score; Estimated competition score = NOT ESTIMATED unless organizer-confirmed)
+   - Uniqueness vs all GEMSDOE registry rasters
+   - Explicit readiness verdict: OK TO DOWNLOAD vs OK TO SUBMIT (YES / NO — DO NOT SUBMIT)
+
+2. HIGHEST URGENCY MANDATE — UNIQUE & VALIDATED GEOTIFF:
+   MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. BUT WE MUST GENERATE A UNIQUE TIF SUBMISSION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.
+   - Validate automatically without human intervention (single-band float32, EPSG:32611, 3730 x 3292, geotransform (100, 0, 243350, 0, -100, 4508550), 0 NaN/Inf inside 5,167,373-px footprint, values strictly in [0, 1] fixing "Predicted values must be in range [0, 1]", unique content-addressed filename, note <= 140 / <= 120 chars).
+   - Provide one-click download at the very beginning of the site and an executive-summary subpage explaining exactly how to submit on DrivenData.
+
+3. PARALLEL-RUN PROTOCOL (ITEMS 1–6):
+   - 1. LANE: Stay inside one method lane. Check continuous surface BEFORE placement AND final binary dots against all registry rasters. |Spearman| > 0.90 or > 70% of candidate dots within 3 px of a registry raster => log duplicate and stop.
+   - 2. REUSE, DON'T REBUILD: Use shared cached feature stack, Holdout / BlockHoldout, dti_binary (alpha=0.2, beta=0.8, R=300 m = 3 px triangular kernel), and submission.py. Derive every catalogue feature strictly from visible faults; mask visible faults pixel-exactly.
+   - 3. LABEL EVERY NUMBER: HOLDOUT-DTI (evaluator, withheld positives, 95% CI) or ORGANIZER-CONFIRMED (or OWNER-REPORTED user claim). A projection is never written as a score.
+   - 4. LEAKAGE CANARY: Test each feature alone on the holdout before trusting any result; AUC > 0.90 is presumptive leakage.
+   - 5. RUN CARD: Emit one complete JSON card (hypothesis, mechanism, named non-fault mimic, holdout DTI + CI, correlation/overlap vs registry, raster sha256, validator output, submission name + note <= 140 chars, verdict promote / negative). Negative results are deliverables.
+   - 6. BUDGET: Stop after 3 experiments or 2 hours. Do not pick submissions: promotion to a real weekly slot is a separate selector step.
+
+4. PHD FORENSIC PROOF & NOVEL GEOLOGICAL HYPOTHESES:
+   - Study, analyze, and prove at a PhD level why GEMSDOE32 h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros achieved 0.2778 (OWNER-REPORTED) and how to surpass 0.2778 (noting unverified overall leaderboard figures 0.4413 and 0.3195).
+   - Before implementing, propose and rank 3–5 untried geological hypotheses naming layers, physical signature/transform, why missed by USGS/INGENIOUS, distinction from repo code, non-fault mimic, planning ΔDTI bracket, cost, and verified obtainability of any free official external data.
+   - Work on next steps from previous sessions first, complete data placement autonomously (`scripts/download_competition_data.sh` / `restore_data.py` + `prepare_data.py`), never automate access to drivendata.org, uphold Arena Core Values (`Maximize P(Win)` and `Own the Outcome`), run 3 verification passes, flag all irregularities, and open + merge the PR onto `main`.
+
+5. OFFICIAL VERIFIED REFERENCE LINKS (MANUAL REVIEW):
+   - Competition overview & metric: https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
+   - Competition leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
+   - Rules PDF (NREL/NLR): https://docs.nlr.gov/docs/fy26osti/96647.pdf
+   - Reference solution: https://github.com/drivendataorg/gems-prize-reference-solution
+   - USGS GeoDAWN: https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and
+   - GBCGE INGENIOUS: https://gbcge.org/current-projects/ingenious/
+   - DOE GDR #1391: https://gdr.openei.org/submissions/1391
+   - EPSG:32611: https://epsg.io/32611
+   - Tversky index: https://en.wikipedia.org/wiki/Tversky_index

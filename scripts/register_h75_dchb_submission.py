@@ -49,6 +49,11 @@ def main() -> None:
     surf = J("evidence/h75_cg_surface_lane.json")
     lane_lit = J("evidence/h75_cg_lane_literal.json")
     lane_ext = J("evidence/h75_cg_lane_extended.json")
+    full116 = J("evidence/h75_cg_full_footprint_116_audit.json")
+    ind_exact = J("evidence/h75_cg_independent_audit_2026-10-27.json")
+    eu3d_row = next(r for r in full116["rows"] if r["file"].startswith("gems25-h75-eu3d-poe65") and r["file"].endswith("-zeros.tif"))
+    h78_row = next(r for r in full116["rows"] if r["file"].startswith("gems25-h78-mhscf-conduit") and r["file"].endswith("-zeros.tif"))
+    h79_row = next(r for r in full116["rows"] if r["file"].startswith("gems25-h79-spatial-poisson"))
 
     chk_z = dict(build["zeros"]["validator"], note=NOTE)
     chk_n = dict(build["nan"]["validator"], note=NOTE)
@@ -125,23 +130,44 @@ def main() -> None:
         receipt=f"docs/downloads/lane-{STEM_Z}.json",
         extended_receipt="evidence/h75_cg_lane_extended.json",
         surface_receipt="evidence/h75_cg_surface_lane.json",
+        full_footprint_116_receipt="evidence/h75_cg_full_footprint_116_audit.json",
+        post_merge_full_footprint_116=dict(
+            rank_footprint_pixels=full116["rank_footprint_pixels"],
+            total_aligned_rasters_checked=full116["total_aligned_rasters_checked"],
+            pre_merge_108_sparse_duplicate_flags=[],
+            post_merge_116_sparse_duplicate_flags=full116["post_merge_116_sparse_duplicate_flags"],
+            literal_duplicate_flags=full116["literal_duplicate_flags"],
+            max_abs_surface_spearman_full_5167373=full116["max_abs_surface_spearman_full_5167373"],
+            vs_concurrent_h75_eu3d_poe65=dict(
+                file=eu3d_row["file"],
+                spearman_surface_full_5167373=eu3d_row["spearman_surface_full_5167373"],
+                spearman_final_full_5167373=eu3d_row["spearman"],
+                cand_dots_within_3px=eu3d_row["dots_within_3px"],
+                reg_dots_within_3px_of_cand=eu3d_row["registry_dots_within_3px_of_candidate"],
+            ),
+            vs_h78_mhscf=dict(
+                file=h78_row["file"],
+                spearman_surface_full_5167373=h78_row["spearman_surface_full_5167373"],
+                cand_dots_within_3px=h78_row["dots_within_3px"],
+            ),
+            vs_h79_poisson=dict(
+                file=h79_row["file"],
+                cand_dots_within_3px=h79_row["dots_within_3px"],
+            ),
+        ),
     )
 
     lane_summary = (
-        f"DENSITY-AWARE UNIQUE across ALL {lane_lit['registry_checked']} registry rasters (flagged_lane = []; "
-        f"surface |Spearman| {surf['worst_abs_spearman']:.4f} <= 0.90; binary |Spearman| "
-        f"{max(lane_ext['external_sparse']['worst_abs_spearman_final'], lane_ext['own_lineage']['worst_abs_spearman_final']):.4f} <= 0.90). "
-        "Corridor-Gated gamma=0.60 coupling resolved IR-25-LIDAR-BLIND-CONVERGENCE-20261026 despite keeping full ABCD scarps "
-        f"({100 * h23['cand_dots_within_3px']:.2f}% vs h23-a-6pct <= 70%, {100 * h72_cf['cand_dots_within_3px']:.2f}% vs H72-CF <= 70%). "
-        "Literal 70% flags only the 3 >73%-halo rasters (r13-lattice-s5 99.87%, pindrop-nodes 73.50%, pindrop-discovery 73.41%). "
-        f"Final-dot overlap: {100 * b2['cand_dots_within_3px']:.2f}% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), "
-        f"{100 * g27_h31['cand_dots_within_3px']:.2f}% vs GEMSDOE27 H31-1 (0.2250 OWNER-REPORTED), "
-        f"worst {100 * max(r['cand_dots_within_3px'] for r in rt):.2f}% across {len(rt)} registry_top rasters."
+        f"Pre-merge 108-raster sparse check cleared ALL 108 rasters (flagged_lane = []; {100 * h23['cand_dots_within_3px']:.2f}% <= 70% vs h23-a-6pct, "
+        f"{100 * h72_cf['cand_dots_within_3px']:.2f}% <= 70% vs H72-CF, {100 * b2['cand_dots_within_3px']:.2f}% vs GEMSDOE32 B2). "
+        f"Post-merge 116-raster full-footprint (5,167,373 px) audit flags literal r13 lattice (100.00%, 82.70% geometric min), pindrop (>73% halo), "
+        f"and {100 * eu3d_row['dots_within_3px']:.2f}% 3-px dot convergence vs concurrent 2026-10-27 sibling h75-eu3d-poe65 (surface Spearman {eu3d_row['spearman_surface_full_5167373']:.4f}); "
+        f"27.22% vs H78, 20.44% vs H79. Fail-closed: lane_clear = False · DO NOT SUBMIT."
     )
     status = (
-        f"UNIQUE BY CONTENT (density-aware across {lane_lit['registry_checked']} rasters; resolved Family-B LiDAR convergence) · "
+        "UNIQUE BY CONTENT (cleared 108 pre-merge sparse rasters; post-merge 72.34% convergence vs concurrent H75-EU3D-POE65 + literal r13 lattice fail) · "
         "FORMAT-VALID · EXP 3 25-KM CHECKERBOARD GATE G2 PASS (+0.02031 vs CTRL_SUBSURF 4/4 folds; +0.00384 vs CTRL_BLIND_ABCD 3/4 folds; "
-        "L_gap DTI 0.10816 beats CTRL_H35 0.10602), SLOT GATE G1 FAIL vs CTRL_H35 (-0.00377) & LITERAL LATTICE FLAG · verdict negative · DO NOT SUBMIT"
+        "L_gap DTI 0.10816 beats CTRL_H35 0.10602), SLOT GATE G1 FAIL vs CTRL_H35 (-0.00377) · verdict negative · DO NOT SUBMIT"
     )
     pa1, pa2, pa3 = exp1["per_arm"], exp2["per_arm"], exp3["per_arm"]
     c3_sub = exp3["contrasts"]["h75_cg_vs_ctrl_subsurf"]
@@ -196,7 +222,7 @@ def main() -> None:
             lane=lane_block,
             lane_summary=lane_summary,
             slot_reason=slot_reason,
-            run_card="registry/run_card_h75_2026-10-27.json",
+            run_card="registry/run_card_h75_dchb_cg_2026-10-27.json",
             title=f"H75-DCHB-CG Corridor-Gated Dual-Regime LOQO B2 (37,654 dots, {outside} outside) — TESTING ONLY · DO NOT SUBMIT",
             summary=summary,
             note=NOTE,
@@ -206,10 +232,10 @@ def main() -> None:
         reg = J(reg_path)
         reg["files"] = [f for f in reg["files"] if f["id"] not in ("h75-dchb-cg", "h75-dchb-cg-nan")]
         reg["files"] = [
-            make_entry(STEM_Z, chk_z, "zero", "h75-dchb-cg", "research-h75"),
-            make_entry(STEM_N, chk_n, "nan", "h75-dchb-cg-nan", "research-h75-nan"),
+            make_entry(STEM_Z, chk_z, "zero", "h75-dchb-cg", "research-h75-dchb"),
+            make_entry(STEM_N, chk_n, "nan", "h75-dchb-cg-nan", "research-h75-dchb-nan"),
         ] + reg["files"]
-        reg["generated_by"] = "scripts/register_h75_submission.py (2026-10-27, H75-DCHB-CG session)"
+        reg["generated_by"] = "scripts/register_h75_dchb_submission.py (2026-10-27, H75-DCHB-CG + EU3D-POE merged)"
         (ROOT / reg_path).write_text(json.dumps(reg, indent=1) + "\n")
 
     # Record IR-25-CORRIDOR-GATED-DECONFOUNDING-20261027 idempotently in registry/irregularities.json
@@ -222,18 +248,21 @@ def main() -> None:
             "Follow-up to IR-25-LIDAR-BLIND-CONVERGENCE-20261026 and IR-25-LATTICE-CAP-20261026: tested whether "
             "Corridor-Gated Dual-Regime coupling (P_cor^0.60 * P_trace^0.40 on L_valid=1; quantile-calibrated P_cor^0.60 * P_gap^0.40 "
             "on the 24.66% L_valid=0 3DEP gap) breaks Family-B LiDAR scarp convergence (>74% 3-px dot overlap in H74_BLIND) "
-            "without discarding 1-m LiDAR scarps."
+            "without discarding 1-m LiDAR scarps, and audited post-merge convergence against concurrent 2026-10-27 H75-EU3D-POE65."
         ),
         evidence=(
             "evidence/h75_cg_surface_lane.json; evidence/h75_cg_lane_literal.json; "
-            "evidence/h75_cg_lane_extended.json; evidence/h75_exp3_checkerboard25km/analysis.json."
+            "evidence/h75_cg_lane_extended.json; evidence/h75_cg_full_footprint_116_audit.json; "
+            "evidence/h75_exp3_checkerboard25km/analysis.json."
         ),
         resolution_or_action=(
-            f"Verified on full 108-raster registry: H75_CG_BLIND (e035d75ca5d5, 37,654 dots) achieved flagged_lane = [] across all "
+            f"Verified on pre-merge 108-raster registry: H75_CG_BLIND (e035d75ca5d5, 37,654 dots) achieved flagged_lane = [] across all "
             f"{lane_lit['registry_checked']} rasters, reducing overlap to {100 * h23['cand_dots_within_3px']:.2f}% <= 70% vs h23-a-6pct.tif "
             f"and {100 * h72_cf['cand_dots_within_3px']:.2f}% <= 70% vs H72-CF while passing Exp 3 25-km full-checkerboard Gate G2 "
             f"(+{c3_sub['paired_gain']:.5f} vs CTRL_SUBSURF, +{c3_abcd['paired_gain']:.5f} vs CTRL_BLIND_ABCD). "
-            "Strict literal 70% still flags the 3 >73%-halo rasters (r13 lattice, pindrop), so verdict remains negative / DO NOT SUBMIT."
+            f"Post-merge full-footprint 116-raster audit also found {100 * eu3d_row['dots_within_3px']:.2f}% 3-px dot convergence against "
+            f"concurrent sibling branch h75-eu3d-poe65 (0a97fd71c3f3, surface Spearman {eu3d_row['spearman_surface_full_5167373']:.4f}) "
+            "plus the 3 >73%-halo rasters (r13 lattice, pindrop); fail-closed: verdict remains negative / DO NOT SUBMIT."
         ),
     )
     for irr_rel in ("registry/irregularities.json", "docs/data/irregularities.json"):
@@ -299,15 +328,18 @@ def main() -> None:
             hard_failures_nan=chk_n["hard_failures"],
             independent_rasterio_zeros=ind_z,
             independent_rasterio_nan=ind_n,
+            independent_exact_file_audit=ind_exact,
             footprint_pixels=chk_z["footprint_pixels"],
             checks_receipts=[
                 f"docs/downloads/checks-{STEM_Z}.json",
                 f"docs/downloads/checks-{STEM_N}.json",
+                "evidence/h75_cg_independent_audit_2026-10-27.json",
             ],
         ),
         submission_name=f"{STEM_Z}.tif",
         nan_twin_name=f"{STEM_N}.tif",
         zip_name=f"{STEM_BASE}.zip",
+        zip_zeros_name=f"{STEM_Z}.zip",
         note=NOTE,
         note_chars=len(NOTE),
         verdict="negative",
@@ -315,9 +347,9 @@ def main() -> None:
         ok_to_download_inspection=True,
         ok_to_submit_slot=False,
     )
-    for out_rel in ("registry/run_card_h75_2026-10-27.json", "docs/data/run_card_h75_2026-10-27.json"):
+    for out_rel in ("registry/run_card_h75_dchb_cg_2026-10-27.json", "docs/data/run_card_h75_dchb_cg_2026-10-27.json"):
         (ROOT / out_rel).write_text(json.dumps(card, indent=1) + "\n")
-    print(f"Registered {STEM_Z}.tif ({CONTENT_ID}, {chk_z['positive_pixels']:,} dots); run_card_h75 written; verdict=negative")
+    print(f"Registered {STEM_Z}.tif ({CONTENT_ID}, {chk_z['positive_pixels']:,} dots); run_card_h75_dchb_cg written; verdict=negative")
 
 
 if __name__ == "__main__":

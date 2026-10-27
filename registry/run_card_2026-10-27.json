@@ -1,0 +1,82 @@
+{
+  "schema": "run_card/v1 — single current continuation decision",
+  "date_utc": "2026-10-27",
+  "session_branch": "arena/e4d14c1d-gemsdoe25",
+  "preregistration_commit": "95149bc7373fc939313c1bb09cbc8940ed3fad78",
+  "hypothesis": "Independent crustal-root and scarp experts may corroborate concealed faults better than either alone; the topological pair of experts is an extension of an earlier H36 approach, not a wholly new architecture.",
+  "mechanism": "Separately fit potential-field and scarp-localization experts, then multiply their outputs and evaluate on buffered spatially blocked hide-and-recover folds, only if the frozen preflight permits a run.",
+  "named_non_fault_mimic": "Alluvial fan margins crossing buried lithologic contacts; ancient lake shorelines.",
+  "method_lane_qualification": "The prompt refers to a single method paragraph, but no uniquely identified paragraph was found. This provisional continuation follows the prior H74 handoff, not an owner-confirmed lane choice.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "status": "NOT RUN — preflight stopped before model fit and canaries",
+    "evaluator_planned": "gems25.block_holdout / gems25.holdout / gems25.metric.dti_binary; alpha=0.2, beta=0.8, 300 m triangular kernel",
+    "evaluator_version_used": null,
+    "pooled_dti": null,
+    "confidence_interval_95": null,
+    "withheld_positive_occurrences": null,
+    "feature_canaries": "NOT RUN"
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "NO CANDIDATE SURFACE OR FINAL DOTS; full-registry lane audit NOT RUN",
+    "surface_spearman": null,
+    "final_spearman": null,
+    "final_overlap": null,
+    "geometric_preflight": {
+      "reference": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "eligible_pixels": 5106385,
+      "eligible_pixels_outside_3px_halo": 6514,
+      "preregistered_dot_budget": 37654,
+      "minimum_forced_overlap_pixels": 31140,
+      "minimum_forced_overlap_fraction": 0.8270037711796887,
+      "maximum_allowed_fraction": 0.7,
+      "status": "IMPOSSIBLE at this frozen budget against this reference",
+      "evidence": "evidence/lane_preflight_2026-10-27.json"
+    },
+    "scope": "A necessary bound against one registered raster; smaller budgets and other registry entries remain unassessed."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT RUN for a new candidate — this continuation generated no TIFF",
+    "finite_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform": null,
+    "catalogue_mask": null,
+    "zip": null
+  },
+  "previous_h78_reaudit": {
+    "artifact_sha256": "be78ded8d7073512d9fc71677c37cd3528e1ff80fb3c5cb8c02080417e1217e5",
+    "artifact_created_this_run": false,
+    "format_result": "PASS locally only: finite [0,1] across the whole array, single float32 band, EPSG:32611, 3730x3292, 100 m affine; catalogue pixels masked; ZIP exact",
+    "literal_lane_result": "FAIL: 100% of 43,550 dots within three pixels of r13; full-footprint rank correlation -0.00021257143898282906",
+    "organizer_acceptance": "unknown",
+    "okay_to_submit": false,
+    "evidence": [
+      "evidence/h78_independent_reaudit_2026-10-27.json",
+      "evidence/h78_literal_lane_reaudit_2026-10-27.json"
+    ]
+  },
+  "submission_name": null,
+  "submission_note": "No submission: preregistered lane stop; this run fitted no model and generated no TIFF.",
+  "submission_note_character_limit": 140,
+  "estimated_organizer_score": null,
+  "organizer_confirmed_score": null,
+  "experiments_fitted": 0,
+  "new_raster_created": false,
+  "slot_selected_or_used": false,
+  "verdict": "negative",
+  "reason": "The preregistered 37,654-dot budget cannot satisfy the literal 70% / 3-pixel overlap limit against r13; stop before fitting or placement.",
+  "concurrent_h79_reaudit": {
+    "artifact_sha256": "e98b9a35609db124f5838cff415a1b0bdf462d65a746161c0bee706add3983d8",
+    "artifact_created_this_run": false,
+    "source": "Existing random-dot scaffold independently added to main by PR #62.",
+    "format_result": "Local range/grid and exact ZIP pass; catalogue mask fails: 416 positive cells on mirrored known faults.",
+    "literal_lane_result": "FAIL: 99.86986774313485% of 37,654 dots within 3 pixels of r13; full-footprint Spearman 0.0005383076712475076.",
+    "holdout_dti": null,
+    "okay_to_submit": false,
+    "evidence": [
+      "evidence/h79_independent_reaudit_2026-10-27.json",
+      "evidence/h79_literal_lane_reaudit_2026-10-27.json"
+    ]
+  }
+}

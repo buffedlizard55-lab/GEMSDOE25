@@ -1,10 +1,10 @@
 {
  "schema_version": 1,
- "generated_by": "scripts/register_h75_submission.py (2026-10-27, H75-DCHB-CG session)",
+ "generated_by": "scripts/register_h75_dchb_submission.py (2026-10-27, H75-DCHB-CG + EU3D-POE merged)",
  "files": [
   {
    "id": "h75-dchb-cg",
-   "role": "research-h75",
+   "role": "research-h75-dchb",
    "file": "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif",
    "path": "docs/downloads/gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif",
    "bytes": 826560,
@@ -96,7 +96,7 @@
    },
    "receipt": "checks-gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.json",
    "outside": "zero",
-   "status": "UNIQUE BY CONTENT (density-aware across 108 rasters; resolved Family-B LiDAR convergence) \u00b7 FORMAT-VALID \u00b7 EXP 3 25-KM CHECKERBOARD GATE G2 PASS (+0.02031 vs CTRL_SUBSURF 4/4 folds; +0.00384 vs CTRL_BLIND_ABCD 3/4 folds; L_gap DTI 0.10816 beats CTRL_H35 0.10602), SLOT GATE G1 FAIL vs CTRL_H35 (-0.00377) & LITERAL LATTICE FLAG \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "status": "UNIQUE BY CONTENT (cleared 108 pre-merge sparse rasters; post-merge 72.34% convergence vs concurrent H75-EU3D-POE65 + literal r13 lattice fail) \u00b7 FORMAT-VALID \u00b7 EXP 3 25-KM CHECKERBOARD GATE G2 PASS (+0.02031 vs CTRL_SUBSURF 4/4 folds; +0.00384 vs CTRL_BLIND_ABCD 3/4 folds; L_gap DTI 0.10816 beats CTRL_H35 0.10602), SLOT GATE G1 FAIL vs CTRL_H35 (-0.00377) \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
    "zip": "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5.zip",
    "verdict": "negative",
    "slot_approved": false,
@@ -218,18 +218,52 @@
     ],
     "receipt": "docs/downloads/lane-gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.json",
     "extended_receipt": "evidence/h75_cg_lane_extended.json",
-    "surface_receipt": "evidence/h75_cg_surface_lane.json"
+    "surface_receipt": "evidence/h75_cg_surface_lane.json",
+    "full_footprint_116_receipt": "evidence/h75_cg_full_footprint_116_audit.json",
+    "post_merge_full_footprint_116": {
+     "rank_footprint_pixels": 5167373,
+     "total_aligned_rasters_checked": 116,
+     "pre_merge_108_sparse_duplicate_flags": [],
+     "post_merge_116_sparse_duplicate_flags": [
+      "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-nan.tif",
+      "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif"
+     ],
+     "literal_duplicate_flags": [
+      "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "pindrop-discovery.tif",
+      "pindrop-nodes.tif",
+      "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-nan.tif",
+      "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif"
+     ],
+     "max_abs_surface_spearman_full_5167373": 0.19352213485784903,
+     "vs_concurrent_h75_eu3d_poe65": {
+      "file": "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif",
+      "spearman_surface_full_5167373": 0.1106225048285872,
+      "spearman_final_full_5167373": 0.11090588976283167,
+      "cand_dots_within_3px": 0.7234291177564136,
+      "reg_dots_within_3px_of_cand": 0.7019440165719445
+     },
+     "vs_h78_mhscf": {
+      "file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
+      "spearman_surface_full_5167373": 0.011818754329357471,
+      "cand_dots_within_3px": 0.27218887767567856
+     },
+     "vs_h79_poisson": {
+      "file": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif",
+      "cand_dots_within_3px": 0.2043607584851543
+     }
+    }
    },
-   "lane_summary": "DENSITY-AWARE UNIQUE across ALL 108 registry rasters (flagged_lane = []; surface |Spearman| 0.1950 <= 0.90; binary |Spearman| 0.0785 <= 0.90). Corridor-Gated gamma=0.60 coupling resolved IR-25-LIDAR-BLIND-CONVERGENCE-20261026 despite keeping full ABCD scarps (68.58% vs h23-a-6pct <= 70%, 59.97% vs H72-CF <= 70%). Literal 70% flags only the 3 >73%-halo rasters (r13-lattice-s5 99.87%, pindrop-nodes 73.50%, pindrop-discovery 73.41%). Final-dot overlap: 34.83% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), 48.01% vs GEMSDOE27 H31-1 (0.2250 OWNER-REPORTED), worst 52.19% across 32 registry_top rasters.",
+   "lane_summary": "Pre-merge 108-raster sparse check cleared ALL 108 rasters (flagged_lane = []; 68.58% <= 70% vs h23-a-6pct, 59.97% <= 70% vs H72-CF, 34.83% vs GEMSDOE32 B2). Post-merge 116-raster full-footprint (5,167,373 px) audit flags literal r13 lattice (100.00%, 82.70% geometric min), pindrop (>73% halo), and 72.34% 3-px dot convergence vs concurrent 2026-10-27 sibling h75-eu3d-poe65 (surface Spearman 0.1106); 27.22% vs H78, 20.44% vs H79. Fail-closed: lane_clear = False \u00b7 DO NOT SUBMIT.",
    "slot_reason": "3/3 experiments completed (~75 min total <= 2 h; 2,184 canary checks <= 0.8179). Exp 1 (standard Holdout, draws 120-121): H75_CG_BLIND 0.08339 (+0.02793 vs CTRL_SUBSURF 0.05546 in 4/4 folds; -0.01346 vs CTRL_BLIND_ABCD 0.09685; CTRL_H35 0.15784). Exp 2 (25-km tile-sampled H75-BW, draws 120-121): H75_CG_BLIND 0.05475 (+0.01434 vs CTRL_SUBSURF; L_gap DTI 0.04769 beats BOTH CTRL_SUBSURF 0.03113 and CTRL_BLIND_ABCD 0.04013). Exp 3 (25-km full BlockHoldout with 100% test-block hiding, virgin draws 122-123, 95,188 withheld +): Gate G2 PASS \u2014 H75_CG_BLIND 0.12210 beats CTRL_SUBSURF 0.10180 (+0.02031, 4/4 folds) AND CTRL_BLIND_ABCD 0.11826 (+0.00384, 3/4 folds), beats CTRL_H35 in 2/4 folds and on L_gap (0.10816 vs 0.10602), but pooled G1 vs CTRL_H35 (-0.00377) and literal r13 lattice remain negative. Not slot-approved.",
-   "run_card": "registry/run_card_h75_2026-10-27.json",
+   "run_card": "registry/run_card_h75_dchb_cg_2026-10-27.json",
    "title": "H75-DCHB-CG Corridor-Gated Dual-Regime LOQO B2 (37,654 dots, zero outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
    "summary": "Unique 2026-10-27 Corridor-Gated Dual-Regime GeoTIFF (37,654 binary dots, M_corridor 54 subsurface cols x M_trace 83 ABCD+H75_DCHB cols / M_gap 70 LiDAR-free cols, gamma=0.60, gap_scale=0.95, zero Family E, 4-quadrant LOQO OOF + B2 submodular greedy_dots; d_cat median 17.80 px, 26.7% in 2-9 px, 73.3% > 9 px, 45.4% > 20 px, 17.1% in L_valid=0 gap). Density-aware unique across ALL 108 rasters (flagged_lane = [], 34.83% vs B2, 68.58% vs h23-a-6pct); literal 70% flags only the 3 >73%-halo rasters. 25-km full-checkerboard BlockHoldout HOLDOUT-DTI 0.12210 on 95,188 withheld-positive occurrences (G2 PASS vs both blind controls; G1 FAIL vs H35 0.12587). Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
    "note": "GEMSDOE25 H75-DCHB-CG | no slot, not slot-approved; DO NOT SUBMIT | id e035d75ca5d5 | unscored"
   },
   {
    "id": "h75-dchb-cg-nan",
-   "role": "research-h75-nan",
+   "role": "research-h75-dchb-nan",
    "file": "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-nan.tif",
    "path": "docs/downloads/gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-nan.tif",
    "bytes": 1590678,
@@ -321,7 +355,7 @@
    },
    "receipt": "checks-gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-nan.json",
    "outside": "nan",
-   "status": "UNIQUE BY CONTENT (density-aware across 108 rasters; resolved Family-B LiDAR convergence) \u00b7 FORMAT-VALID \u00b7 EXP 3 25-KM CHECKERBOARD GATE G2 PASS (+0.02031 vs CTRL_SUBSURF 4/4 folds; +0.00384 vs CTRL_BLIND_ABCD 3/4 folds; L_gap DTI 0.10816 beats CTRL_H35 0.10602), SLOT GATE G1 FAIL vs CTRL_H35 (-0.00377) & LITERAL LATTICE FLAG \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "status": "UNIQUE BY CONTENT (cleared 108 pre-merge sparse rasters; post-merge 72.34% convergence vs concurrent H75-EU3D-POE65 + literal r13 lattice fail) \u00b7 FORMAT-VALID \u00b7 EXP 3 25-KM CHECKERBOARD GATE G2 PASS (+0.02031 vs CTRL_SUBSURF 4/4 folds; +0.00384 vs CTRL_BLIND_ABCD 3/4 folds; L_gap DTI 0.10816 beats CTRL_H35 0.10602), SLOT GATE G1 FAIL vs CTRL_H35 (-0.00377) \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
    "zip": null,
    "verdict": "negative",
    "slot_approved": false,
@@ -443,14 +477,514 @@
     ],
     "receipt": "docs/downloads/lane-gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.json",
     "extended_receipt": "evidence/h75_cg_lane_extended.json",
-    "surface_receipt": "evidence/h75_cg_surface_lane.json"
+    "surface_receipt": "evidence/h75_cg_surface_lane.json",
+    "full_footprint_116_receipt": "evidence/h75_cg_full_footprint_116_audit.json",
+    "post_merge_full_footprint_116": {
+     "rank_footprint_pixels": 5167373,
+     "total_aligned_rasters_checked": 116,
+     "pre_merge_108_sparse_duplicate_flags": [],
+     "post_merge_116_sparse_duplicate_flags": [
+      "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-nan.tif",
+      "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif"
+     ],
+     "literal_duplicate_flags": [
+      "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "pindrop-discovery.tif",
+      "pindrop-nodes.tif",
+      "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-nan.tif",
+      "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif"
+     ],
+     "max_abs_surface_spearman_full_5167373": 0.19352213485784903,
+     "vs_concurrent_h75_eu3d_poe65": {
+      "file": "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif",
+      "spearman_surface_full_5167373": 0.1106225048285872,
+      "spearman_final_full_5167373": 0.11090588976283167,
+      "cand_dots_within_3px": 0.7234291177564136,
+      "reg_dots_within_3px_of_cand": 0.7019440165719445
+     },
+     "vs_h78_mhscf": {
+      "file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
+      "spearman_surface_full_5167373": 0.011818754329357471,
+      "cand_dots_within_3px": 0.27218887767567856
+     },
+     "vs_h79_poisson": {
+      "file": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif",
+      "cand_dots_within_3px": 0.2043607584851543
+     }
+    }
    },
-   "lane_summary": "DENSITY-AWARE UNIQUE across ALL 108 registry rasters (flagged_lane = []; surface |Spearman| 0.1950 <= 0.90; binary |Spearman| 0.0785 <= 0.90). Corridor-Gated gamma=0.60 coupling resolved IR-25-LIDAR-BLIND-CONVERGENCE-20261026 despite keeping full ABCD scarps (68.58% vs h23-a-6pct <= 70%, 59.97% vs H72-CF <= 70%). Literal 70% flags only the 3 >73%-halo rasters (r13-lattice-s5 99.87%, pindrop-nodes 73.50%, pindrop-discovery 73.41%). Final-dot overlap: 34.83% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), 48.01% vs GEMSDOE27 H31-1 (0.2250 OWNER-REPORTED), worst 52.19% across 32 registry_top rasters.",
+   "lane_summary": "Pre-merge 108-raster sparse check cleared ALL 108 rasters (flagged_lane = []; 68.58% <= 70% vs h23-a-6pct, 59.97% <= 70% vs H72-CF, 34.83% vs GEMSDOE32 B2). Post-merge 116-raster full-footprint (5,167,373 px) audit flags literal r13 lattice (100.00%, 82.70% geometric min), pindrop (>73% halo), and 72.34% 3-px dot convergence vs concurrent 2026-10-27 sibling h75-eu3d-poe65 (surface Spearman 0.1106); 27.22% vs H78, 20.44% vs H79. Fail-closed: lane_clear = False \u00b7 DO NOT SUBMIT.",
    "slot_reason": "3/3 experiments completed (~75 min total <= 2 h; 2,184 canary checks <= 0.8179). Exp 1 (standard Holdout, draws 120-121): H75_CG_BLIND 0.08339 (+0.02793 vs CTRL_SUBSURF 0.05546 in 4/4 folds; -0.01346 vs CTRL_BLIND_ABCD 0.09685; CTRL_H35 0.15784). Exp 2 (25-km tile-sampled H75-BW, draws 120-121): H75_CG_BLIND 0.05475 (+0.01434 vs CTRL_SUBSURF; L_gap DTI 0.04769 beats BOTH CTRL_SUBSURF 0.03113 and CTRL_BLIND_ABCD 0.04013). Exp 3 (25-km full BlockHoldout with 100% test-block hiding, virgin draws 122-123, 95,188 withheld +): Gate G2 PASS \u2014 H75_CG_BLIND 0.12210 beats CTRL_SUBSURF 0.10180 (+0.02031, 4/4 folds) AND CTRL_BLIND_ABCD 0.11826 (+0.00384, 3/4 folds), beats CTRL_H35 in 2/4 folds and on L_gap (0.10816 vs 0.10602), but pooled G1 vs CTRL_H35 (-0.00377) and literal r13 lattice remain negative. Not slot-approved.",
-   "run_card": "registry/run_card_h75_2026-10-27.json",
+   "run_card": "registry/run_card_h75_dchb_cg_2026-10-27.json",
    "title": "H75-DCHB-CG Corridor-Gated Dual-Regime LOQO B2 (37,654 dots, nan outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
    "summary": "Unique 2026-10-27 Corridor-Gated Dual-Regime GeoTIFF (37,654 binary dots, M_corridor 54 subsurface cols x M_trace 83 ABCD+H75_DCHB cols / M_gap 70 LiDAR-free cols, gamma=0.60, gap_scale=0.95, zero Family E, 4-quadrant LOQO OOF + B2 submodular greedy_dots; d_cat median 17.80 px, 26.7% in 2-9 px, 73.3% > 9 px, 45.4% > 20 px, 17.1% in L_valid=0 gap). Density-aware unique across ALL 108 rasters (flagged_lane = [], 34.83% vs B2, 68.58% vs h23-a-6pct); literal 70% flags only the 3 >73%-halo rasters. 25-km full-checkerboard BlockHoldout HOLDOUT-DTI 0.12210 on 95,188 withheld-positive occurrences (G2 PASS vs both blind controls; G1 FAIL vs H35 0.12587). Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
    "note": "GEMSDOE25 H75-DCHB-CG | no slot, not slot-approved; DO NOT SUBMIT | id e035d75ca5d5 | unscored"
+  },
+  {
+   "id": "h75-eu3d-poe65",
+   "role": "research-h75",
+   "file": "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif",
+   "path": "docs/downloads/gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif",
+   "bytes": 826682,
+   "sha256": "7b5ce15848362077572bd091353eda82e8092b544a4d2ff24f81711cc8fbc71c",
+   "content_id": "0a97fd71c3f3",
+   "positive_pixels": 37654,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": false,
+     "detail": "0/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=None",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "finite range over the whole array; infinity rejected",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read; empty data rejected",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": true,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.json",
+   "outside": "zero",
+   "status": "UNIQUE BY CONTENT (density-aware across 106 rasters; breaks LiDAR scarp convergence) \u00b7 FORMAT-VALID \u00b7 H75_APRON SCREEN PASS (+0.00176, 4/4 folds) & H73-BW PM_DEAPRON +0.00193 (3/4 folds), SHIPPED CATFREE POE65 SLOT GATE FAIL vs CTRL_H35 \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "zip": "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3.zip",
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "expected_range": "NOT ESTIMATED \u2014 no calibrated leaderboard projection (HOLDOUT-DTI is a proxy, not a score)",
+   "lane": {
+    "lane_clear": false,
+    "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+    "density_aware_verdict": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
+    "flagged_lane": [],
+    "flagged_literal": [
+     "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+     "pindrop-discovery.tif",
+     "pindrop-nodes.tif"
+    ],
+    "registry_checked": 106,
+    "surface_worst_abs_spearman": 0.202132,
+    "focus_winners": {
+     "n": 27,
+     "worst_cand_dots_within_3px": 0.5168906357890264,
+     "worst_overlap_file": "g63_cvarlw_0.2303.tif",
+     "b2_overlap": 0.35770436075848516,
+     "b2_reverse_overlap": 0.4174589685026823,
+     "b2_spearman_surface": 0.066403,
+     "b2_spearman_final": 0.025327
+    },
+    "vs_prior_h74_subsurf": {
+     "file": "gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-nan.tif",
+     "spearman_surface": 0.096246,
+     "spearman_final": 0.045565,
+     "cand_dots_within_3px": 0.6378074042598396,
+     "reg_dots_within_3px_of_cand": 0.6507675147394699
+    },
+    "vs_h78_mhscf": {
+     "file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-nan.tif",
+     "spearman_surface": 0.011411,
+     "spearman_final": 0.009916,
+     "cand_dots_within_3px": 0.273676103468423,
+     "reg_dots_within_3px_of_cand": 0.24036739380022962
+    },
+    "vs_h72_catfree": {
+     "file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+     "spearman_surface": 0.106684,
+     "spearman_final": 0.066979,
+     "cand_dots_within_3px": 0.5558771976416849,
+     "reg_dots_within_3px_of_cand": 0.6644446805120306
+    },
+    "vs_h23_a_6pct": {
+     "file": "h23-a-6pct.tif",
+     "cand_dots_within_3px": 0.6984384129176183,
+     "reg_dots_within_3px_of_cand": 0.33080960703110346
+    },
+    "external_sparse": {
+     "n": 54,
+     "worst_abs_spearman_surface": 0.202132,
+     "worst_surface_file": "structural-area06.tif",
+     "worst_abs_spearman_final": 0.039629,
+     "worst_final_file": "h23-a-6pct.tif",
+     "worst_cand_dots_within_3px": 0.6984384129176183,
+     "worst_overlap_file": "h23-a-6pct.tif",
+     "lane_pass": true
+    },
+    "own_lineage": {
+     "n": 28,
+     "worst_abs_spearman_surface": 0.106684,
+     "worst_surface_file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+     "worst_abs_spearman_final": 0.066979,
+     "worst_final_file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+     "worst_cand_dots_within_3px": 0.6378074042598396,
+     "worst_overlap_file": "gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-nan.tif",
+     "lane_pass": true
+    },
+    "lattice": [
+     {
+      "group": "scored",
+      "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "registry_dots": 206895,
+      "spearman_surface": -0.000504,
+      "spearman_final": -0.0011,
+      "cand_dots_within_3px": 1.0,
+      "reg_dots_within_3px_of_cand": 0.17138161869547355,
+      "halo_coverage_3px": 0.998713,
+      "non_discriminative_dense": true,
+      "dense_lattice": true
+     }
+    ],
+    "non_discriminative_dense_other": [
+     {
+      "group": "artifacts",
+      "file": "pindrop-discovery.tif",
+      "sha256": "37f9d5b855ee1b6c302cb81cdae1414db94db427f5dc9da3538474df37cf1cad",
+      "registry_dots": 155021,
+      "spearman_surface": 0.006136,
+      "spearman_final": 0.003319,
+      "cand_dots_within_3px": 0.7704095182450735,
+      "reg_dots_within_3px_of_cand": 0.18096257926345463,
+      "halo_coverage_3px": 0.734134,
+      "non_discriminative_dense": true,
+      "dense_lattice": false
+     },
+     {
+      "group": "artifacts",
+      "file": "pindrop-nodes.tif",
+      "sha256": "f347b70daa95170bfc967b1c0b6bbf951496c2b74764a7102848ad6178829aca",
+      "registry_dots": 155021,
+      "spearman_surface": 0.014183,
+      "spearman_final": 0.011613,
+      "cand_dots_within_3px": 0.79598449035959,
+      "reg_dots_within_3px_of_cand": 0.1855361531663452,
+      "halo_coverage_3px": 0.735046,
+      "non_discriminative_dense": true,
+      "dense_lattice": false
+     }
+    ],
+    "halted_poe50_staging_audit": {
+     "surface_worst_abs_spearman": 0.214749,
+     "flagged_lane": [
+      "h23-a-6pct.tif"
+     ],
+     "h23_overlap": 0.739072,
+     "own_worst_overlap": 0.5686248472937802,
+     "stopped_before_publish": true,
+     "receipt": "evidence/h75_poe50_stopped_lane.json"
+    },
+    "receipt": "docs/downloads/lane-gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.json",
+    "extended_receipt": "evidence/h75_published_lane_extended.json",
+    "surface_receipt": "evidence/h75_poe65_surface_lane.json"
+   },
+   "lane_summary": "DENSITY-AWARE UNIQUE (flagged_lane = [] across all 106 rasters; surface |Spearman| 0.2021 <= 0.90; binary |Spearman| 0.0670 <= 0.90). Literal 70% flags only the 3 dense-halo rasters whose 3-px halos cover >73% of the entire footprint (r13-lattice-s5 99.87%, pindrop-nodes 73.50%, pindrop-discovery 73.41%). Final-dot overlap: 35.77% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), worst 51.69% across 27 registry_top rasters, 63.78% vs H74-SUBSURF, 55.59% vs H72-CF, 63.78% max own-lineage, 69.84% max sparse external.",
+   "slot_reason": "2 formal pre-registered experiments (+ 1 disclosed aborted pre-commit draft = 3/3 budget). Exp 1 (25-km Checkerboard BlockHoldout, draws 130-131): PM_DEAPRON 0.13942 beat CTRL_H35 0.13749 (+0.00193, 3/4 folds; far_gt9 +0.00223, 95.5% >20 px, CI_lo -0.00133); H75_POE65 0.03243 (+123.9% over ROOT_H75 0.01448 in 4/4 folds). Exp 2 (standard Holdout, draws 132-133): H75_APRON 0.15118 beat CTRL_H35 0.14942 (+0.00176, 95% CI [+0.00066, +0.00262], 4/4 folds PASS); shipped catalogue-free H75_POE65 scored 0.08641 (+40.7% over ROOT_H75 in 4/4 folds, highest flagged_lane=[] CatFree GeoTIFF, but below CTRL_H35). Not slot-approved.",
+   "run_card": "registry/run_card_h75_2026-10-27.json",
+   "title": "H75-EU3D-POE65 two-stage crustal-root x scarp LOQO B2 (37,654 dots, zero outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
+   "summary": "Unique 2026-10-27 Two-Stage Crustal-Root Product-of-Experts GeoTIFF (37,654 binary dots, P_scarp^0.35 * P_root^0.65 combining 28 static Family-B/RBDT scarp columns with 55 static ACD + H34 + H74_RMPS + H75_EU3D 3-D Euler homogeneity / Anderson slip-dilation / basin-normalized MT-thermal columns, zero Family E, 4-quadrant LOQO OOF + B2 greedy_dots; d_cat min 2.24 px, median 18.4 px, 74.3% > 9 px, 47.0% > 20 px). First Family-B-inclusive blind candidate to pass density-aware uniqueness across all 106 rasters (flagged_lane = [], 35.8% vs B2, 69.84% vs h23-a-6pct <= 70%, 63.8% max own-lineage); literal 70% flags only the 3 >73%-halo rasters. Standard HOLDOUT-DTI 0.08641 (22,959 withheld +) & 25-km BlockHoldout 0.03243 (116,556 withheld +) \u2014 catalogue-gap proxies, not live scores. Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
+   "note": "GEMSDOE25 H75-POE65 | no slot, not slot-approved; DO NOT SUBMIT | id 0a97fd71c3f3 | unscored"
+  },
+  {
+   "id": "h75-eu3d-poe65-nan",
+   "role": "research-h75-nan",
+   "file": "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-nan.tif",
+   "path": "docs/downloads/gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-nan.tif",
+   "bytes": 1591270,
+   "sha256": "e226ce0b101ddb09c8b54a75c2a6f922357109df21b9e63a49931c7cb8a01f21",
+   "content_id": "0a97fd71c3f3",
+   "positive_pixels": 37654,
+   "format_ok": true,
+   "checks": {
+    "template_matches_expected_grid_and_footprint": {
+     "pass_": true,
+     "detail": "(3730, 3292), footprint 5,167,373 px",
+     "hard": true
+    },
+    "single_band": {
+     "pass_": true,
+     "detail": "count=1",
+     "hard": true
+    },
+    "dtype_float32": {
+     "pass_": true,
+     "detail": "dtypes=('float32',)",
+     "hard": true
+    },
+    "crs_epsg_32611": {
+     "pass_": true,
+     "detail": "32611",
+     "hard": true
+    },
+    "shape_matches_template": {
+     "pass_": true,
+     "detail": "(3730, 3292) vs (3730, 3292)",
+     "hard": true
+    },
+    "geotransform_matches_template": {
+     "pass_": true,
+     "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+     "hard": true
+    },
+    "footprint_all_finite": {
+     "pass_": true,
+     "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+     "hard": true
+    },
+    "footprint_values_in_0_1": {
+     "pass_": true,
+     "detail": "min=0.0 max=1.0",
+     "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+     "pass_": true,
+     "detail": "7,111,787/7,111,787 NaN",
+     "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+     "pass_": true,
+     "detail": "NaN (official) or 0 (fallback) outside",
+     "hard": true
+    },
+    "nan_mask_identical_to_template": {
+     "pass_": true,
+     "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+     "hard": true
+    },
+    "nodata_tag": {
+     "pass_": true,
+     "detail": "nodata=nan",
+     "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+     "pass_": true,
+     "detail": "finite range over the whole array; infinity rejected",
+     "hard": true
+    },
+    "variant_masked_read": {
+     "pass_": true,
+     "detail": "rasterio masked read; empty data rejected",
+     "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+     "pass_": false,
+     "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+     "hard": false
+    },
+    "profile_matches_template": {
+     "pass_": true,
+     "detail": "compress=lzw (template lzw)",
+     "hard": false
+    }
+   },
+   "receipt": "checks-gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-nan.json",
+   "outside": "nan",
+   "status": "UNIQUE BY CONTENT (density-aware across 106 rasters; breaks LiDAR scarp convergence) \u00b7 FORMAT-VALID \u00b7 H75_APRON SCREEN PASS (+0.00176, 4/4 folds) & H73-BW PM_DEAPRON +0.00193 (3/4 folds), SHIPPED CATFREE POE65 SLOT GATE FAIL vs CTRL_H35 \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "zip": null,
+   "verdict": "negative",
+   "slot_approved": false,
+   "do_not_resubmit": true,
+   "ok_to_download": true,
+   "ok_to_submit_slot": false,
+   "expected_range": "NOT ESTIMATED \u2014 no calibrated leaderboard projection (HOLDOUT-DTI is a proxy, not a score)",
+   "lane": {
+    "lane_clear": false,
+    "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+    "density_aware_verdict": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
+    "flagged_lane": [],
+    "flagged_literal": [
+     "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+     "pindrop-discovery.tif",
+     "pindrop-nodes.tif"
+    ],
+    "registry_checked": 106,
+    "surface_worst_abs_spearman": 0.202132,
+    "focus_winners": {
+     "n": 27,
+     "worst_cand_dots_within_3px": 0.5168906357890264,
+     "worst_overlap_file": "g63_cvarlw_0.2303.tif",
+     "b2_overlap": 0.35770436075848516,
+     "b2_reverse_overlap": 0.4174589685026823,
+     "b2_spearman_surface": 0.066403,
+     "b2_spearman_final": 0.025327
+    },
+    "vs_prior_h74_subsurf": {
+     "file": "gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-nan.tif",
+     "spearman_surface": 0.096246,
+     "spearman_final": 0.045565,
+     "cand_dots_within_3px": 0.6378074042598396,
+     "reg_dots_within_3px_of_cand": 0.6507675147394699
+    },
+    "vs_h78_mhscf": {
+     "file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-nan.tif",
+     "spearman_surface": 0.011411,
+     "spearman_final": 0.009916,
+     "cand_dots_within_3px": 0.273676103468423,
+     "reg_dots_within_3px_of_cand": 0.24036739380022962
+    },
+    "vs_h72_catfree": {
+     "file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+     "spearman_surface": 0.106684,
+     "spearman_final": 0.066979,
+     "cand_dots_within_3px": 0.5558771976416849,
+     "reg_dots_within_3px_of_cand": 0.6644446805120306
+    },
+    "vs_h23_a_6pct": {
+     "file": "h23-a-6pct.tif",
+     "cand_dots_within_3px": 0.6984384129176183,
+     "reg_dots_within_3px_of_cand": 0.33080960703110346
+    },
+    "external_sparse": {
+     "n": 54,
+     "worst_abs_spearman_surface": 0.202132,
+     "worst_surface_file": "structural-area06.tif",
+     "worst_abs_spearman_final": 0.039629,
+     "worst_final_file": "h23-a-6pct.tif",
+     "worst_cand_dots_within_3px": 0.6984384129176183,
+     "worst_overlap_file": "h23-a-6pct.tif",
+     "lane_pass": true
+    },
+    "own_lineage": {
+     "n": 28,
+     "worst_abs_spearman_surface": 0.106684,
+     "worst_surface_file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+     "worst_abs_spearman_final": 0.066979,
+     "worst_final_file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+     "worst_cand_dots_within_3px": 0.6378074042598396,
+     "worst_overlap_file": "gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-nan.tif",
+     "lane_pass": true
+    },
+    "lattice": [
+     {
+      "group": "scored",
+      "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "registry_dots": 206895,
+      "spearman_surface": -0.000504,
+      "spearman_final": -0.0011,
+      "cand_dots_within_3px": 1.0,
+      "reg_dots_within_3px_of_cand": 0.17138161869547355,
+      "halo_coverage_3px": 0.998713,
+      "non_discriminative_dense": true,
+      "dense_lattice": true
+     }
+    ],
+    "non_discriminative_dense_other": [
+     {
+      "group": "artifacts",
+      "file": "pindrop-discovery.tif",
+      "sha256": "37f9d5b855ee1b6c302cb81cdae1414db94db427f5dc9da3538474df37cf1cad",
+      "registry_dots": 155021,
+      "spearman_surface": 0.006136,
+      "spearman_final": 0.003319,
+      "cand_dots_within_3px": 0.7704095182450735,
+      "reg_dots_within_3px_of_cand": 0.18096257926345463,
+      "halo_coverage_3px": 0.734134,
+      "non_discriminative_dense": true,
+      "dense_lattice": false
+     },
+     {
+      "group": "artifacts",
+      "file": "pindrop-nodes.tif",
+      "sha256": "f347b70daa95170bfc967b1c0b6bbf951496c2b74764a7102848ad6178829aca",
+      "registry_dots": 155021,
+      "spearman_surface": 0.014183,
+      "spearman_final": 0.011613,
+      "cand_dots_within_3px": 0.79598449035959,
+      "reg_dots_within_3px_of_cand": 0.1855361531663452,
+      "halo_coverage_3px": 0.735046,
+      "non_discriminative_dense": true,
+      "dense_lattice": false
+     }
+    ],
+    "halted_poe50_staging_audit": {
+     "surface_worst_abs_spearman": 0.214749,
+     "flagged_lane": [
+      "h23-a-6pct.tif"
+     ],
+     "h23_overlap": 0.739072,
+     "own_worst_overlap": 0.5686248472937802,
+     "stopped_before_publish": true,
+     "receipt": "evidence/h75_poe50_stopped_lane.json"
+    },
+    "receipt": "docs/downloads/lane-gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.json",
+    "extended_receipt": "evidence/h75_published_lane_extended.json",
+    "surface_receipt": "evidence/h75_poe65_surface_lane.json"
+   },
+   "lane_summary": "DENSITY-AWARE UNIQUE (flagged_lane = [] across all 106 rasters; surface |Spearman| 0.2021 <= 0.90; binary |Spearman| 0.0670 <= 0.90). Literal 70% flags only the 3 dense-halo rasters whose 3-px halos cover >73% of the entire footprint (r13-lattice-s5 99.87%, pindrop-nodes 73.50%, pindrop-discovery 73.41%). Final-dot overlap: 35.77% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), worst 51.69% across 27 registry_top rasters, 63.78% vs H74-SUBSURF, 55.59% vs H72-CF, 63.78% max own-lineage, 69.84% max sparse external.",
+   "slot_reason": "2 formal pre-registered experiments (+ 1 disclosed aborted pre-commit draft = 3/3 budget). Exp 1 (25-km Checkerboard BlockHoldout, draws 130-131): PM_DEAPRON 0.13942 beat CTRL_H35 0.13749 (+0.00193, 3/4 folds; far_gt9 +0.00223, 95.5% >20 px, CI_lo -0.00133); H75_POE65 0.03243 (+123.9% over ROOT_H75 0.01448 in 4/4 folds). Exp 2 (standard Holdout, draws 132-133): H75_APRON 0.15118 beat CTRL_H35 0.14942 (+0.00176, 95% CI [+0.00066, +0.00262], 4/4 folds PASS); shipped catalogue-free H75_POE65 scored 0.08641 (+40.7% over ROOT_H75 in 4/4 folds, highest flagged_lane=[] CatFree GeoTIFF, but below CTRL_H35). Not slot-approved.",
+   "run_card": "registry/run_card_h75_2026-10-27.json",
+   "title": "H75-EU3D-POE65 two-stage crustal-root x scarp LOQO B2 (37,654 dots, nan outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
+   "summary": "Unique 2026-10-27 Two-Stage Crustal-Root Product-of-Experts GeoTIFF (37,654 binary dots, P_scarp^0.35 * P_root^0.65 combining 28 static Family-B/RBDT scarp columns with 55 static ACD + H34 + H74_RMPS + H75_EU3D 3-D Euler homogeneity / Anderson slip-dilation / basin-normalized MT-thermal columns, zero Family E, 4-quadrant LOQO OOF + B2 greedy_dots; d_cat min 2.24 px, median 18.4 px, 74.3% > 9 px, 47.0% > 20 px). First Family-B-inclusive blind candidate to pass density-aware uniqueness across all 106 rasters (flagged_lane = [], 35.8% vs B2, 69.84% vs h23-a-6pct <= 70%, 63.8% max own-lineage); literal 70% flags only the 3 >73%-halo rasters. Standard HOLDOUT-DTI 0.08641 (22,959 withheld +) & 25-km BlockHoldout 0.03243 (116,556 withheld +) \u2014 catalogue-gap proxies, not live scores. Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
+   "note": "GEMSDOE25 H75-POE65 | no slot, not slot-approved; DO NOT SUBMIT | id 0a97fd71c3f3 | unscored"
   },
   {
    "id": "h74-rmps-subsurf",
@@ -673,11 +1207,11 @@
     "extended_receipt": "evidence/h74_subsurf_lane_extended.json",
     "surface_receipt": "evidence/h74_subsurf_surface_lane.json"
    },
-   "lane_summary": "DENSITY-AWARE UNIQUE (flagged_lane = [] across all 101 rasters; surface |Spearman| 0.1279 <= 0.90; binary |Spearman| 0.0171 <= 0.90). Literal 70% flags only the 3 dense-halo rasters whose 3-px halos cover >73% of the entire footprint (r13-lattice-s5 99.87%, pindrop-nodes 73.50%, pindrop-discovery 73.41%). Final-dot overlap: 23.63% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), worst 38.36% across 27 registry_top rasters, 33.13% vs H72-3-subsurf, 43.22% max own-lineage, 53.24% max sparse external.",
+   "lane_summary": "STRICT LITERAL LANE FAIL \u2014 100% of dots overlap the r13 3-pixel halo. Historical density-aware statistics below are diagnostic only, not an authorized waiver. Historical density-adjusted diagnostic (flagged_lane = [] across all 101 rasters; surface |Spearman| 0.1279 <= 0.90; binary |Spearman| 0.0171 <= 0.90). Literal 70% flags only the 3 dense-halo rasters whose 3-px halos cover >73% of the entire footprint (r13-lattice-s5 99.87%, pindrop-nodes 73.50%, pindrop-discovery 73.41%). Final-dot overlap: 23.63% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), worst 38.36% across 27 registry_top rasters, 33.13% vs H72-3-subsurf, 43.22% max own-lineage, 53.24% max sparse external.",
    "slot_reason": "3/3 experiments completed. Exp 1 (standard Holdout, draws 110-111): H74_APRON 0.15030 vs CTRL_H35 0.15116 (-0.00086, G1 FAIL); H74_BLIND 0.09156 (+0.00394 vs CTRL_BLIND). Exp 2 (25-km block-withheld H74-BW, draws 110-111): BOTH passed G2 (H74_APRON +0.00038 3/4 folds; H74_BLIND +0.00237 3/4 folds, SE fold +0.02343 above CTRL_H35) and apron advantage collapsed 62.9% (+0.06353 -> +0.02356), but ABCD blind staging hit Family-B LiDAR scarp convergence (>74% vs H72-CF/h23-a-6pct) and stopped before publish. Exp 3 (25-km block-withheld topography-free H74_SUBSURF, virgin draws 112-113): 0.03906 vs CTRL_SUBSURF 0.03988 (-0.00082, 2/4 folds) and CTRL_H35 0.12821. Not slot-approved.",
    "run_card": "registry/run_card_h74_2026-10-26.json",
    "title": "H74-RMPS topography-free subsurface LOQO B2 (37,654 dots, zero outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
-   "summary": "Unique 2026-10-26 topography-free & catalogue-free GeoTIFF (37,654 binary dots, 51 static ACD + H34 + H74_RMPS subsurface columns, zero DEM/LiDAR Family B, zero catalogue Family E, 4-quadrant LOQO OOF + B2 submodular greedy_dots; d_cat median 19.0 px, 75.6% > 9 px, 47.8% > 20 px). Strict lane gate flags only the 3 >73%-halo rasters (r13 lattice + pindrop dense maps); density-aware unique (flagged_lane = [] across all 101 rasters; 23.6% vs B2, 33.1% vs H72-3-subsurf). 25-km block-withheld HOLDOUT-DTI 0.03906 on 25,308 withheld-positive occurrences \u2014 catalogue-gap proxy, not a live score. Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
+   "summary": "Historical research 2026-10-26 topography-free & catalogue-free GeoTIFF (37,654 binary dots, 51 static ACD + H34 + H74_RMPS subsurface columns, zero DEM/LiDAR Family B, zero catalogue Family E, 4-quadrant LOQO OOF + B2 submodular greedy_dots; d_cat median 19.0 px, 75.6% > 9 px, 47.8% > 20 px). Strict lane gate flags only the 3 >73%-halo rasters (r13 lattice + pindrop dense maps); density-aware unique (flagged_lane = [] across all 101 rasters; 23.6% vs B2, 33.1% vs H72-3-subsurf). 25-km block-withheld HOLDOUT-DTI 0.03906 on 25,308 withheld-positive occurrences \u2014 catalogue-gap proxy, not a live score. Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
    "note": "GEMSDOE25 H74-SUBSURF | no slot, not slot-approved; DO NOT SUBMIT | id 3751606e1ce5 | unscored"
   },
   {
@@ -901,11 +1435,11 @@
     "extended_receipt": "evidence/h74_subsurf_lane_extended.json",
     "surface_receipt": "evidence/h74_subsurf_surface_lane.json"
    },
-   "lane_summary": "DENSITY-AWARE UNIQUE (flagged_lane = [] across all 101 rasters; surface |Spearman| 0.1279 <= 0.90; binary |Spearman| 0.0171 <= 0.90). Literal 70% flags only the 3 dense-halo rasters whose 3-px halos cover >73% of the entire footprint (r13-lattice-s5 99.87%, pindrop-nodes 73.50%, pindrop-discovery 73.41%). Final-dot overlap: 23.63% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), worst 38.36% across 27 registry_top rasters, 33.13% vs H72-3-subsurf, 43.22% max own-lineage, 53.24% max sparse external.",
+   "lane_summary": "STRICT LITERAL LANE FAIL \u2014 100% of dots overlap the r13 3-pixel halo. Historical density-aware statistics below are diagnostic only, not an authorized waiver. Historical density-adjusted diagnostic (flagged_lane = [] across all 101 rasters; surface |Spearman| 0.1279 <= 0.90; binary |Spearman| 0.0171 <= 0.90). Literal 70% flags only the 3 dense-halo rasters whose 3-px halos cover >73% of the entire footprint (r13-lattice-s5 99.87%, pindrop-nodes 73.50%, pindrop-discovery 73.41%). Final-dot overlap: 23.63% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), worst 38.36% across 27 registry_top rasters, 33.13% vs H72-3-subsurf, 43.22% max own-lineage, 53.24% max sparse external.",
    "slot_reason": "3/3 experiments completed. Exp 1 (standard Holdout, draws 110-111): H74_APRON 0.15030 vs CTRL_H35 0.15116 (-0.00086, G1 FAIL); H74_BLIND 0.09156 (+0.00394 vs CTRL_BLIND). Exp 2 (25-km block-withheld H74-BW, draws 110-111): BOTH passed G2 (H74_APRON +0.00038 3/4 folds; H74_BLIND +0.00237 3/4 folds, SE fold +0.02343 above CTRL_H35) and apron advantage collapsed 62.9% (+0.06353 -> +0.02356), but ABCD blind staging hit Family-B LiDAR scarp convergence (>74% vs H72-CF/h23-a-6pct) and stopped before publish. Exp 3 (25-km block-withheld topography-free H74_SUBSURF, virgin draws 112-113): 0.03906 vs CTRL_SUBSURF 0.03988 (-0.00082, 2/4 folds) and CTRL_H35 0.12821. Not slot-approved.",
    "run_card": "registry/run_card_h74_2026-10-26.json",
    "title": "H74-RMPS topography-free subsurface LOQO B2 (37,654 dots, nan outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
-   "summary": "Unique 2026-10-26 topography-free & catalogue-free GeoTIFF (37,654 binary dots, 51 static ACD + H34 + H74_RMPS subsurface columns, zero DEM/LiDAR Family B, zero catalogue Family E, 4-quadrant LOQO OOF + B2 submodular greedy_dots; d_cat median 19.0 px, 75.6% > 9 px, 47.8% > 20 px). Strict lane gate flags only the 3 >73%-halo rasters (r13 lattice + pindrop dense maps); density-aware unique (flagged_lane = [] across all 101 rasters; 23.6% vs B2, 33.1% vs H72-3-subsurf). 25-km block-withheld HOLDOUT-DTI 0.03906 on 25,308 withheld-positive occurrences \u2014 catalogue-gap proxy, not a live score. Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
+   "summary": "Historical research 2026-10-26 topography-free & catalogue-free GeoTIFF (37,654 binary dots, 51 static ACD + H34 + H74_RMPS subsurface columns, zero DEM/LiDAR Family B, zero catalogue Family E, 4-quadrant LOQO OOF + B2 submodular greedy_dots; d_cat median 19.0 px, 75.6% > 9 px, 47.8% > 20 px). Strict lane gate flags only the 3 >73%-halo rasters (r13 lattice + pindrop dense maps); density-aware unique (flagged_lane = [] across all 101 rasters; 23.6% vs B2, 33.1% vs H72-3-subsurf). 25-km block-withheld HOLDOUT-DTI 0.03906 on 25,308 withheld-positive occurrences \u2014 catalogue-gap proxy, not a live score. Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
    "note": "GEMSDOE25 H74-SUBSURF | no slot, not slot-approved; DO NOT SUBMIT | id 3751606e1ce5 | unscored"
   },
   {
@@ -1053,11 +1587,11 @@
     "extended_receipt": "evidence/h73_lane_extended.json",
     "surface_receipt": "evidence/h73_lane_surface.json"
    },
-   "lane_summary": "DENSITY-AWARE UNIQUE (flagged_lane = [] across 80 literal-checker rasters; surface |Spearman| 0.129 <= 0.90). Literal 70% flags only the dense r13 lattice (206,895 dots, ~100% 3-px halo \u2014 geometrically unavoidable at this budget, knowledge/29_lane_feasibility_plan). Final-dot overlap: 37.5% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), worst 56.0% across 27 registry_top rasters, worst 61.4% own-lineage.",
+   "lane_summary": "STRICT LITERAL LANE FAIL \u2014 100% of dots overlap the r13 3-pixel halo. Historical density-aware statistics below are diagnostic only, not an authorized waiver. Historical density-adjusted diagnostic (flagged_lane = [] across 80 literal-checker rasters; surface |Spearman| 0.129 <= 0.90). Literal 70% flags only the dense r13 lattice (206,895 dots, ~100% 3-px halo \u2014 geometrically unavoidable at this budget, knowledge/29_lane_feasibility_plan). Final-dot overlap: 37.5% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), worst 56.0% across 27 registry_top rasters, worst 61.4% own-lineage.",
    "slot_reason": "Pre-registered Experiment 1 (draws 90-91, 8 cells/arm) failed the slot gate: PM_DEAPRON pooled HOLDOUT-DTI 0.11343 vs same-run CTRL_H35 0.15239 (paired -0.03896, cluster 95% CI [-0.04717, -0.02456]); far-field screen also failed (pooled far DTI 0.08212 vs CTRL_H35 0.09787, although +0.00674 vs CTRL_BLIND_BD in 3/4 folds). Experiments 2-3 not run per frozen rule. Not slot-approved.",
    "run_card": "registry/run_card_h73_2026-10-26.json",
    "title": "H73-PM propensity-matched H35 de-aproned HGB (sapd2.8, zero outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
-   "summary": "Unique 2026-10-26 GeoTIFF (42,997 binary dots, min_dist=2.8 px, d_cat > 2.0 px; d_cat strata 2-9px 33.9%, >20px 37.3%) from pre-registered H73-PM: H35 feature stack retrained with propensity-matched negatives in d_vis bins (sampler removes the catalogue-apron prior tilt; no new feature). Strict lane gate flags only the dense r13 lattice; density-aware unique. HOLDOUT-DTI (PM_DEAPRON arm) 0.11343 on 22,290 withheld-positive occurrences \u2014 a catalogue-gap proxy, not a live score. Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
+   "summary": "Historical research 2026-10-26 GeoTIFF (42,997 binary dots, min_dist=2.8 px, d_cat > 2.0 px; d_cat strata 2-9px 33.9%, >20px 37.3%) from pre-registered H73-PM: H35 feature stack retrained with propensity-matched negatives in d_vis bins (sampler removes the catalogue-apron prior tilt; no new feature). Strict lane gate flags only the dense r13 lattice; density-aware unique. HOLDOUT-DTI (PM_DEAPRON arm) 0.11343 on 22,290 withheld-positive occurrences \u2014 a catalogue-gap proxy, not a live score. Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
    "note": "GEMSDOE25 H73-PM | propensity-matched H35 deapron; holdout FAIL vs H35; DO NOT SUBMIT | id 1b7533ebb62b | unscored"
   },
   {
@@ -1205,11 +1739,11 @@
     "extended_receipt": "evidence/h73_lane_extended.json",
     "surface_receipt": "evidence/h73_lane_surface.json"
    },
-   "lane_summary": "DENSITY-AWARE UNIQUE (flagged_lane = [] across 80 literal-checker rasters; surface |Spearman| 0.129 <= 0.90). Literal 70% flags only the dense r13 lattice (206,895 dots, ~100% 3-px halo \u2014 geometrically unavoidable at this budget, knowledge/29_lane_feasibility_plan). Final-dot overlap: 37.5% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), worst 56.0% across 27 registry_top rasters, worst 61.4% own-lineage.",
+   "lane_summary": "STRICT LITERAL LANE FAIL \u2014 100% of dots overlap the r13 3-pixel halo. Historical density-aware statistics below are diagnostic only, not an authorized waiver. Historical density-adjusted diagnostic (flagged_lane = [] across 80 literal-checker rasters; surface |Spearman| 0.129 <= 0.90). Literal 70% flags only the dense r13 lattice (206,895 dots, ~100% 3-px halo \u2014 geometrically unavoidable at this budget, knowledge/29_lane_feasibility_plan). Final-dot overlap: 37.5% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), worst 56.0% across 27 registry_top rasters, worst 61.4% own-lineage.",
    "slot_reason": "Pre-registered Experiment 1 (draws 90-91, 8 cells/arm) failed the slot gate: PM_DEAPRON pooled HOLDOUT-DTI 0.11343 vs same-run CTRL_H35 0.15239 (paired -0.03896, cluster 95% CI [-0.04717, -0.02456]); far-field screen also failed (pooled far DTI 0.08212 vs CTRL_H35 0.09787, although +0.00674 vs CTRL_BLIND_BD in 3/4 folds). Experiments 2-3 not run per frozen rule. Not slot-approved.",
    "run_card": "registry/run_card_h73_2026-10-26.json",
    "title": "H73-PM propensity-matched H35 de-aproned HGB (sapd2.8, nan outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
-   "summary": "Unique 2026-10-26 GeoTIFF (42,997 binary dots, min_dist=2.8 px, d_cat > 2.0 px; d_cat strata 2-9px 33.9%, >20px 37.3%) from pre-registered H73-PM: H35 feature stack retrained with propensity-matched negatives in d_vis bins (sampler removes the catalogue-apron prior tilt; no new feature). Strict lane gate flags only the dense r13 lattice; density-aware unique. HOLDOUT-DTI (PM_DEAPRON arm) 0.11343 on 22,290 withheld-positive occurrences \u2014 a catalogue-gap proxy, not a live score. Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
+   "summary": "Historical research 2026-10-26 GeoTIFF (42,997 binary dots, min_dist=2.8 px, d_cat > 2.0 px; d_cat strata 2-9px 33.9%, >20px 37.3%) from pre-registered H73-PM: H35 feature stack retrained with propensity-matched negatives in d_vis bins (sampler removes the catalogue-apron prior tilt; no new feature). Strict lane gate flags only the dense r13 lattice; density-aware unique. HOLDOUT-DTI (PM_DEAPRON arm) 0.11343 on 22,290 withheld-positive occurrences \u2014 a catalogue-gap proxy, not a live score. Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
    "note": "GEMSDOE25 H73-PM | propensity-matched H35 deapron; holdout FAIL vs H35; DO NOT SUBMIT | id 1b7533ebb62b | unscored"
   },
   {
@@ -1585,7 +2119,7 @@
    "status": "UNIQUE BY CONTENT \u00b7 FORMAT-VALID \u00b7 H72 add-on PASS screen+confirm on H35 lineage \u00b7 SHIPPED CATFREE LINEAGE HOLDOUT FAIL vs H35 \u00b7 STRICT LANE FAIL (lattice + artifacts) \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
    "zip": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-zeros.zip",
    "title": "H72-CF MBSP-MTG 100% catalogue-free OOF fault detector (37,654 dots) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
-   "summary": "Unique 2026-10-26 GeoTIFF from 78 catalogue-free 4-quadrant OOF features: macro-basin contour-parallel LiDAR/DEM scarps, gravity margins, MT gouge/base shoaling and transtensional swarms; B2 output collar; 37,654 dots. H72 features improved H35 on screen+confirmation, but the shipped catalogue-free lineage scored HOLDOUT-DTI 0.0948 vs same-run H35 0.1538. Format checks pass; strict lane fails. Zero outside prevents the reported '[0,1]' portal error. Testing only \u2014 DO NOT SUBMIT."
+   "summary": "Historical research 2026-10-26 GeoTIFF from 78 catalogue-free 4-quadrant OOF features: macro-basin contour-parallel LiDAR/DEM scarps, gravity margins, MT gouge/base shoaling and transtensional swarms; B2 output collar; 37,654 dots. H72 features improved H35 on screen+confirmation, but the shipped catalogue-free lineage scored HOLDOUT-DTI 0.0948 vs same-run H35 0.1538. Format checks pass; strict lane fails. Zero outside prevents the reported '[0,1]' portal error. Testing only \u2014 DO NOT SUBMIT."
   },
   {
    "id": "h72-mbsp-mtg-catfree-nan",

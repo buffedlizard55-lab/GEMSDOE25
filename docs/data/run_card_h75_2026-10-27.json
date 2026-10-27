@@ -1,0 +1,610 @@
+{
+ "schema": "run_card/v1 (PARALLEL-RUN PROTOCOL item 5)",
+ "session": "2026-10-27 H75 EU3D-POE Two-Stage Crustal-Root x Scarp & 25-km Checkerboard BlockHoldout (arena/2a7235ac-gemsdoe25)",
+ "experiments_used": "2 formal pre-registered experiments on virgin draws 130-133 (+ 1 disclosed aborted pre-commit draft = 3 of 3 budget)",
+ "preregistrations": [
+  "knowledge/38_preregistered_h75_eu3d_poe_block25km_2026-10-27.md (commit 3053f69)"
+ ],
+ "hypothesis": "H75-1 (EU3D-POE) + H73-BW BlockHoldout: Sliding-window 3-D Euler homogeneity structural-index deconvolution (N=0.5 fault contact vs N=2.0/2.5 equant plug), Morris (1996) WNW-ESE basement-strike slip/dilation criticality, and basin-thickness-normalized MT-thermal conduit columns capture blind/concealed Great Basin faults, while de-coupled multiplicative Product-of-Experts gating (P_scarp^0.35 * P_root^0.65) preserves 300-m scarp localization AND breaks Family-B LiDAR scarp convergence (<=70% sparse dot overlap across all 103 rasters).",
+ "mechanism": "1) Vectorized 7x7 (700 m) 3-D Euler homogeneity solver with FFT downward vertical derivatives on isostatic gravity (N_c=0.5 vs N_p=2.0) and RTP magnetics (N_c=0.5 vs N_p=2.5), requiring horizontal apex offset <=250 m and crustal depth 50..3500 m. 2) Morris (1996) resolved normal dilation & shear tendency projected onto local basement gravity-contact normal under N65W-S65E Great Basin extension (az=115 deg). 3) High-pass surface conductance normalized by depth_to_base_surf (suppressing conductive playa fills) x heat-flow excess & Euler root. 4) Independent 4-quadrant LOQO OOF HGB experts P_scarp (28 Family-B/RBDT cols) and P_root (55 ACD+H34+H74+H75 cols) combined as P_scarp^0.35 * P_root^0.65 + B2 (d_cat > 2 px) submodular greedy_dots (37,654 dots).",
+ "named_non_fault_mimic": "Unfaulted steep Mesozoic granitoid-metasedimentary roof contacts or Tertiary caldera ring-fracture walls crossed by incised range-front alluvial fan channels or pluvial Lake Lahontan shoreline benches (producing N~0.5 density/magnetic contacts plus surficial scarps without Quaternary tectonic slip).",
+ "holdout_dti": {
+  "label": "HOLDOUT-DTI",
+  "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px)",
+  "evaluator_hashes": {
+   "src/gems25/holdout.py": "f0455eb17921e50365342ffb658504a5fcc0ddb3d2bd82f4bf0568d772be2bc1",
+   "src/gems25/block_holdout.py": "baad5b5301d4e623a8100593f7be0ab4fd791b712576eb411a5a740225a9fa6e",
+   "src/gems25/metric.py": "4f6e4732029efd0238388aec74590e56bc2727df7441220ca09af7d02e9da230",
+   "src/gems25/validation.py": "bb2faea55b6bd827196f56758e5fbbf1e4e620e92779e6b9b53703c3bdf42ac3",
+   "src/gems25/h75_eu3d.py": "9e30c67f75c85a60169a2bedc6d5bc4fa48fd312c2a4fa9f3c7801a35bfaf351"
+  },
+  "experiment_1_block25km_checkerboard": {
+   "draws": [
+    130,
+    131
+   ],
+   "cells_per_arm": 8,
+   "withheld_positive_occurrences": 116556,
+   "median_truth_d_vis_px": 62.437,
+   "frac_truth_gt20_px": 0.90453,
+   "ctrl_h35_pooled": 0.1374893292928296,
+   "ctrl_h35_ci95": [
+    0.1299267465055865,
+    0.14484468474732967
+   ],
+   "pm_deapron_pooled": 0.13941677220923662,
+   "pm_deapron_ci95": [
+    0.12969943301853742,
+    0.14930958605989136
+   ],
+   "scarp_only_pooled": 0.06230785397451058,
+   "root_h75_pooled": 0.014482298923683183,
+   "h75_poe50_pooled": 0.04206923529589678,
+   "h75_poe65_pooled": 0.032426363950560054,
+   "h75_poe65_ci95": [
+    0.02738179678352052,
+    0.03692540364488037
+   ],
+   "pm_deapron_vs_ctrl_h35": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+     "CTRL_H35": {
+      "pooled_dti": 0.1374893292928296,
+      "ci95": [
+       0.1299267465055865,
+       0.14484468474732967
+      ],
+      "withheld_positive_occurrences": 116556
+     },
+     "PM_DEAPRON": {
+      "pooled_dti": 0.13941677220923662,
+      "ci95": [
+       0.12969943301853742,
+       0.14930958605989136
+      ],
+      "withheld_positive_occurrences": 116556
+     }
+    },
+    "paired_gain": 0.001927442916407035,
+    "paired_ci95": [
+     -0.0014193846558106515,
+     0.00446490131256172
+    ],
+    "fold_gains": [
+     0.003214280594549618,
+     0.0006468047887673856,
+     0.005596931396971955,
+     -0.003753632672838625
+    ],
+    "screen_passed": false,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+   },
+   "pm_deapron_far_gt9_vs_ctrl_h35": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+     "CTRL_H35": {
+      "pooled_dti": 0.13899514682844935,
+      "ci95": [
+       0.1312759778272644,
+       0.14647282357414623
+      ],
+      "withheld_positive_occurrences": 114376
+     },
+     "PM_DEAPRON": {
+      "pooled_dti": 0.14122823049026373,
+      "ci95": [
+       0.1312644715114049,
+       0.15144426125762375
+      ],
+      "withheld_positive_occurrences": 114376
+     }
+    },
+    "paired_gain": 0.002233083661814378,
+    "paired_ci95": [
+     -0.0013281204206259944,
+     0.00497143768347752
+    ],
+    "fold_gains": [
+     0.00349677343302629,
+     0.0008997594750277116,
+     0.006181119179141464,
+     -0.0037729433511466126
+    ],
+    "screen_passed": false,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+   },
+   "poe65_vs_root_h75": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+     "H75_POE65": {
+      "pooled_dti": 0.032426363950560054,
+      "ci95": [
+       0.02738179678352052,
+       0.03692540364488037
+      ],
+      "withheld_positive_occurrences": 116556
+     },
+     "ROOT_H75": {
+      "pooled_dti": 0.014482298923683183,
+      "ci95": [
+       0.013470289368323632,
+       0.0153297933341518
+      ],
+      "withheld_positive_occurrences": 116556
+     }
+    },
+    "paired_gain": 0.01794406502687687,
+    "paired_ci95": [
+     0.012672774731943828,
+     0.022042147217195412
+    ],
+    "fold_gains": [
+     0.0200818390401699,
+     0.02425986793075416,
+     0.016179120639503157,
+     0.008883264863880126
+    ],
+    "screen_passed": true,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+   },
+   "poe50_vs_root_h75": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+     "H75_POE50": {
+      "pooled_dti": 0.04206923529589678,
+      "ci95": [
+       0.032703314911810936,
+       0.04838605760277494
+      ],
+      "withheld_positive_occurrences": 116556
+     },
+     "ROOT_H75": {
+      "pooled_dti": 0.014482298923683183,
+      "ci95": [
+       0.013470289368323632,
+       0.0153297933341518
+      ],
+      "withheld_positive_occurrences": 116556
+     }
+    },
+    "paired_gain": 0.0275869363722136,
+    "paired_ci95": [
+     0.01737352157765914,
+     0.03402884490862891
+    ],
+    "fold_gains": [
+     0.02974532513473621,
+     0.036127296557371465,
+     0.028623373643937678,
+     0.011042081757048815
+    ],
+    "screen_passed": true,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+   },
+   "h73_bw_selector_gate": {
+    "passed": false,
+    "overall_paired_gain_vs_h35": 0.001927442916407035,
+    "overall_folds_positive": 3,
+    "far_gt9_paired_gain_vs_h35": 0.002233083661814378,
+    "far_gt9_ci95_vs_h35": [
+     -0.0013281204206259944,
+     0.00497143768347752
+    ],
+    "far_gt9_folds_positive": 3,
+    "mean_frac_emitted_gt20": 0.95491
+   },
+   "g2_bw_poe50_gate": {
+    "passed": false,
+    "gain_vs_root_h75": 0.0275869363722136,
+    "folds_pos_vs_root_h75": 4,
+    "gain_vs_scarp_only": -0.020238618678613797,
+    "folds_pos_vs_scarp_only": 0
+   },
+   "leakage_canary": {
+    "cap": 0.9,
+    "n_cells": 8,
+    "n_columns_per_cell": 95,
+    "total_canaries_checked": 760,
+    "all_passed": true,
+    "max_canary_auc": 0.641495,
+    "max_canary_column": "NEG_D_VIS",
+    "max_h75_canary_auc": 0.564604,
+    "max_h75_canary_column": "H75_anderson_slip_dilation"
+   }
+  },
+  "experiment_2_standard_holdout": {
+   "draws": [
+    132,
+    133
+   ],
+   "cells_per_arm": 8,
+   "withheld_positive_occurrences": 22960,
+   "median_truth_d_vis_px": 9.513,
+   "frac_truth_gt20_px": 0.21775,
+   "ctrl_h35_pooled": 0.14942394059851707,
+   "ctrl_h35_ci95": [
+    0.13699378998812217,
+    0.16124902055220633
+   ],
+   "h75_apron_pooled": 0.15118403936866934,
+   "h75_apron_ci95": [
+    0.13933815889709594,
+    0.16284976249873168
+   ],
+   "pm_deapron_pooled": 0.12427638622385355,
+   "scarp_only_pooled": 0.10670503742722297,
+   "root_h75_pooled": 0.06143311527385992,
+   "h75_poe50_pooled": 0.09648640330853016,
+   "h75_poe65_pooled": 0.08641053031072404,
+   "h75_poe65_ci95": [
+    0.0745177961103914,
+    0.09898255636255207
+   ],
+   "h75_apron_vs_ctrl_h35": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+     "CTRL_H35": {
+      "pooled_dti": 0.14942394059851707,
+      "ci95": [
+       0.13699378998812217,
+       0.16124902055220633
+      ],
+      "withheld_positive_occurrences": 22960
+     },
+     "H75_APRON": {
+      "pooled_dti": 0.15118403936866934,
+      "ci95": [
+       0.13933815889709594,
+       0.16284976249873168
+      ],
+      "withheld_positive_occurrences": 22960
+     }
+    },
+    "paired_gain": 0.001760098770152263,
+    "paired_ci95": [
+     0.0006593998805371482,
+     0.00262455135827086
+    ],
+    "fold_gains": [
+     0.0003753067034213131,
+     0.0008931008114715366,
+     0.002730236561262367,
+     0.0025487517357396516
+    ],
+    "screen_passed": true,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+   },
+   "poe65_vs_root_h75": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+     "H75_POE65": {
+      "pooled_dti": 0.08641053031072404,
+      "ci95": [
+       0.0745177961103914,
+       0.09898255636255207
+      ],
+      "withheld_positive_occurrences": 22960
+     },
+     "ROOT_H75": {
+      "pooled_dti": 0.06143311527385992,
+      "ci95": [
+       0.054742795603685855,
+       0.06988350775169978
+      ],
+      "withheld_positive_occurrences": 22960
+     }
+    },
+    "paired_gain": 0.024977415036864126,
+    "paired_ci95": [
+     0.017947864343108515,
+     0.03199954329980666
+    ],
+    "fold_gains": [
+     0.02122001189002877,
+     0.029702994125375193,
+     0.015825270668289128,
+     0.03410926300367043
+    ],
+    "screen_passed": true,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+   },
+   "poe50_vs_root_h75": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+     "H75_POE50": {
+      "pooled_dti": 0.09648640330853016,
+      "ci95": [
+       0.08274792652034349,
+       0.10935072974091707
+      ],
+      "withheld_positive_occurrences": 22960
+     },
+     "ROOT_H75": {
+      "pooled_dti": 0.06143311527385992,
+      "ci95": [
+       0.054742795603685855,
+       0.06988350775169978
+      ],
+      "withheld_positive_occurrences": 22960
+     }
+    },
+    "paired_gain": 0.03505328803467024,
+    "paired_ci95": [
+     0.026149110777616544,
+     0.04415686878875797
+    ],
+    "fold_gains": [
+     0.03357934301018618,
+     0.03899221260035855,
+     0.022767089872931433,
+     0.04681532070945848
+    ],
+    "screen_passed": true,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+   },
+   "h75_apron_screen_gate": {
+    "passed": true,
+    "paired_gain_vs_ctrl_h35": 0.001760098770152263,
+    "paired_ci95_vs_ctrl_h35": [
+     0.0006593998805371482,
+     0.00262455135827086
+    ],
+    "fold_gains": [
+     0.0003753067034213131,
+     0.0008931008114715366,
+     0.002730236561262367,
+     0.0025487517357396516
+    ],
+    "folds_positive": 4
+   },
+   "g1_slot_poe_passed": false,
+   "leakage_canary": {
+    "cap": 0.9,
+    "n_cells": 8,
+    "n_columns_per_cell": 95,
+    "total_canaries_checked": 760,
+    "all_passed": true,
+    "max_canary_auc": 0.803808,
+    "max_canary_column": "E_dist",
+    "max_h75_canary_auc": 0.599997,
+    "max_h75_canary_column": "H75_anderson_slip_dilation"
+   }
+  },
+  "checkerboard_instrument_shift": {
+   "std_median_truth_d_vis_px": 9.513,
+   "bw_checkerboard_median_truth_d_vis_px": 62.437,
+   "pm_minus_h35_standard": -0.025147554374663525,
+   "pm_minus_h35_block25km": 0.001927442916407035,
+   "pm_penalty_eliminated_delta": 0.02707499729107056,
+   "pm_far_gt9_minus_h35_block25km": 0.002233083661814378
+  }
+ },
+ "organizer_confirmed_score": null,
+ "estimated_leaderboard_score": null,
+ "correlation_overlap_vs_registry": {
+  "lane_clear": false,
+  "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+  "density_aware_verdict": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
+  "flagged_lane": [],
+  "flagged_literal": [
+   "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "pindrop-discovery.tif",
+   "pindrop-nodes.tif"
+  ],
+  "registry_checked": 106,
+  "surface_worst_abs_spearman": 0.202132,
+  "focus_winners": {
+   "n": 27,
+   "worst_cand_dots_within_3px": 0.5168906357890264,
+   "worst_overlap_file": "g63_cvarlw_0.2303.tif",
+   "b2_overlap": 0.35770436075848516,
+   "b2_reverse_overlap": 0.4174589685026823,
+   "b2_spearman_surface": 0.066403,
+   "b2_spearman_final": 0.025327
+  },
+  "vs_prior_h74_subsurf": {
+   "file": "gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-nan.tif",
+   "spearman_surface": 0.096246,
+   "spearman_final": 0.045565,
+   "cand_dots_within_3px": 0.6378074042598396,
+   "reg_dots_within_3px_of_cand": 0.6507675147394699
+  },
+  "vs_h78_mhscf": {
+   "file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-nan.tif",
+   "spearman_surface": 0.011411,
+   "spearman_final": 0.009916,
+   "cand_dots_within_3px": 0.273676103468423,
+   "reg_dots_within_3px_of_cand": 0.24036739380022962
+  },
+  "vs_h72_catfree": {
+   "file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+   "spearman_surface": 0.106684,
+   "spearman_final": 0.066979,
+   "cand_dots_within_3px": 0.5558771976416849,
+   "reg_dots_within_3px_of_cand": 0.6644446805120306
+  },
+  "vs_h23_a_6pct": {
+   "file": "h23-a-6pct.tif",
+   "cand_dots_within_3px": 0.6984384129176183,
+   "reg_dots_within_3px_of_cand": 0.33080960703110346
+  },
+  "external_sparse": {
+   "n": 54,
+   "worst_abs_spearman_surface": 0.202132,
+   "worst_surface_file": "structural-area06.tif",
+   "worst_abs_spearman_final": 0.039629,
+   "worst_final_file": "h23-a-6pct.tif",
+   "worst_cand_dots_within_3px": 0.6984384129176183,
+   "worst_overlap_file": "h23-a-6pct.tif",
+   "lane_pass": true
+  },
+  "own_lineage": {
+   "n": 28,
+   "worst_abs_spearman_surface": 0.106684,
+   "worst_surface_file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+   "worst_abs_spearman_final": 0.066979,
+   "worst_final_file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
+   "worst_cand_dots_within_3px": 0.6378074042598396,
+   "worst_overlap_file": "gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-nan.tif",
+   "lane_pass": true
+  },
+  "lattice": [
+   {
+    "group": "scored",
+    "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "registry_dots": 206895,
+    "spearman_surface": -0.000504,
+    "spearman_final": -0.0011,
+    "cand_dots_within_3px": 1.0,
+    "reg_dots_within_3px_of_cand": 0.17138161869547355,
+    "halo_coverage_3px": 0.998713,
+    "non_discriminative_dense": true,
+    "dense_lattice": true
+   }
+  ],
+  "non_discriminative_dense_other": [
+   {
+    "group": "artifacts",
+    "file": "pindrop-discovery.tif",
+    "sha256": "37f9d5b855ee1b6c302cb81cdae1414db94db427f5dc9da3538474df37cf1cad",
+    "registry_dots": 155021,
+    "spearman_surface": 0.006136,
+    "spearman_final": 0.003319,
+    "cand_dots_within_3px": 0.7704095182450735,
+    "reg_dots_within_3px_of_cand": 0.18096257926345463,
+    "halo_coverage_3px": 0.734134,
+    "non_discriminative_dense": true,
+    "dense_lattice": false
+   },
+   {
+    "group": "artifacts",
+    "file": "pindrop-nodes.tif",
+    "sha256": "f347b70daa95170bfc967b1c0b6bbf951496c2b74764a7102848ad6178829aca",
+    "registry_dots": 155021,
+    "spearman_surface": 0.014183,
+    "spearman_final": 0.011613,
+    "cand_dots_within_3px": 0.79598449035959,
+    "reg_dots_within_3px_of_cand": 0.1855361531663452,
+    "halo_coverage_3px": 0.735046,
+    "non_discriminative_dense": true,
+    "dense_lattice": false
+   }
+  ],
+  "halted_poe50_staging_audit": {
+   "surface_worst_abs_spearman": 0.214749,
+   "flagged_lane": [
+    "h23-a-6pct.tif"
+   ],
+   "h23_overlap": 0.739072,
+   "own_worst_overlap": 0.5686248472937802,
+   "stopped_before_publish": true,
+   "receipt": "evidence/h75_poe50_stopped_lane.json"
+  },
+  "receipt": "docs/downloads/lane-gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.json",
+  "extended_receipt": "evidence/h75_published_lane_extended.json",
+  "surface_receipt": "evidence/h75_poe65_surface_lane.json"
+ },
+ "raster_sha256": "7b5ce15848362077572bd091353eda82e8092b544a4d2ff24f81711cc8fbc71c",
+ "nan_twin_sha256": "e226ce0b101ddb09c8b54a75c2a6f922357109df21b9e63a49931c7cb8a01f21",
+ "zip_sha256": "9fa4ca3cd41b1bcde156ffcd55c2554d2bbb06f9e87e662a421d0cc212d2946d",
+ "content_id": "0a97fd71c3f3",
+ "selected_cascade_arm": "poe65",
+ "poe_gamma": 0.65,
+ "positive_pixels": 37654,
+ "d_cat_strata_full_build": {
+  "min_d_cat_px": 2.2361,
+  "median_d_cat_px": 18.4391,
+  "frac_2_9": 0.25673,
+  "frac_gt9": 0.74327,
+  "frac_gt20": 0.46986
+ },
+ "validator_output": {
+  "format_valid": true,
+  "ok_to_upload_format_only": true,
+  "hard_failures_zeros": [],
+  "hard_failures_nan": [],
+  "independent_rasterio_zeros": {
+   "path": "docs/downloads/gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif",
+   "size_bytes": 826682,
+   "sha256": "7b5ce15848362077572bd091353eda82e8092b544a4d2ff24f81711cc8fbc71c",
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "count": 1,
+   "dtype": "float32",
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "crs_matches": true,
+   "shape_matches": true,
+   "transform_matches": true,
+   "inside_nan_count": 0,
+   "inside_inf_count": 0,
+   "inside_min": 0.0,
+   "inside_max": 1.0,
+   "inside_in_0_1": true,
+   "inside_positive_dots": 37654,
+   "inside_unique_values": [
+    0.0,
+    1.0
+   ],
+   "outside_all_zero": true
+  },
+  "independent_rasterio_nan": {
+   "path": "docs/downloads/gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-nan.tif",
+   "size_bytes": 1591270,
+   "sha256": "e226ce0b101ddb09c8b54a75c2a6f922357109df21b9e63a49931c7cb8a01f21",
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "count": 1,
+   "dtype": "float32",
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "crs_matches": true,
+   "shape_matches": true,
+   "transform_matches": true,
+   "inside_nan_count": 0,
+   "inside_inf_count": 0,
+   "inside_min": 0.0,
+   "inside_max": 1.0,
+   "inside_in_0_1": true,
+   "inside_positive_dots": 37654,
+   "inside_unique_values": [
+    0.0,
+    1.0
+   ],
+   "outside_all_nan": true
+  },
+  "footprint_pixels": 5167373,
+  "checks_receipts": [
+   "docs/downloads/checks-gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.json",
+   "docs/downloads/checks-gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-nan.json"
+  ]
+ },
+ "submission_name": "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif",
+ "nan_twin_name": "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-nan.tif",
+ "zip_name": "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3.zip",
+ "note": "GEMSDOE25 H75-POE65 | no slot, not slot-approved; DO NOT SUBMIT | id 0a97fd71c3f3 | unscored",
+ "note_chars": 92,
+ "verdict": "negative",
+ "slot_approved": false,
+ "ok_to_download_inspection": true,
+ "ok_to_submit_slot": false
+}

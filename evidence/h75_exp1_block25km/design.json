@@ -1,0 +1,69 @@
+{
+ "experiment": "H75_BLOCK25KM",
+ "mode": "block25km",
+ "preregistration": "knowledge/38_preregistered_h75_eu3d_poe_block25km_2026-10-27.md",
+ "preregistration_commit": "3053f69",
+ "draws": [
+  130,
+  131
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "fold_names": [
+  "block_parity_00",
+  "block_parity_01",
+  "block_parity_10",
+  "block_parity_11"
+ ],
+ "arms": [
+  "CTRL_H35",
+  "PM_DEAPRON",
+  "SCARP_ONLY",
+  "ROOT_H75",
+  "H75_POE50",
+  "H75_POE65"
+ ],
+ "arm_feature_counts": {
+  "CTRL_H35": 59,
+  "PM_DEAPRON": 59,
+  "SCARP_ONLY": 28,
+  "ROOT_H75": 55,
+  "H75_POE50": "PoE(28 scarp x 55 root)",
+  "H75_POE65": "PoE(28 scarp x 55 root)"
+ },
+ "n_neg": 300000,
+ "hgb_params": {
+  "max_iter": 100,
+  "learning_rate": 0.12,
+  "max_leaf_nodes": 31,
+  "min_samples_leaf": 50,
+  "l2_regularization": 1.0,
+  "class_weight": {
+   "0": 1,
+   "1": 5
+  },
+  "early_stopping": false
+ },
+ "kfrac_h35": 0.035,
+ "min_dist_h35": 2.4,
+ "kfrac_pm": 0.03,
+ "min_dist_pm": 2.8,
+ "cat_buf_pm": 2.0,
+ "kfrac_blind": 0.035,
+ "cat_buf_blind": 2.0,
+ "full_b2_budget": 37654,
+ "block_size_px": 250,
+ "leakage_auc_cap": 0.9,
+ "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px)",
+ "evaluator_hashes": {
+  "src/gems25/holdout.py": "f0455eb17921e50365342ffb658504a5fcc0ddb3d2bd82f4bf0568d772be2bc1",
+  "src/gems25/block_holdout.py": "baad5b5301d4e623a8100593f7be0ab4fd791b712576eb411a5a740225a9fa6e",
+  "src/gems25/metric.py": "4f6e4732029efd0238388aec74590e56bc2727df7441220ca09af7d02e9da230",
+  "src/gems25/validation.py": "bb2faea55b6bd827196f56758e5fbbf1e4e620e92779e6b9b53703c3bdf42ac3",
+  "src/gems25/h75_eu3d.py": "9e30c67f75c85a60169a2bedc6d5bc4fa48fd312c2a4fa9f3c7801a35bfaf351"
+ }
+}

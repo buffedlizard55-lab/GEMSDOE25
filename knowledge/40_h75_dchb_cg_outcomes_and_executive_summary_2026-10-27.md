@@ -3,7 +3,7 @@
 - **Date:** `2026-10-27` (`UTC`)
 - **Repository / Branch:** `buffedlizard55-lab/GEMSDOE25` (`arena/7c80c351-gemsdoe25`)
 - **Pre-registration (committed BEFORE feature build or fitting — `AGENTS.md` Rule #4):** [`knowledge/38_preregistered_h75_dchb_cg_2026-10-27.md`](38_preregistered_h75_dchb_cg_2026-10-27.md) (`commit 12931bb52bda9195495797590bd66ac073ee5589`)
-- **Canonical JSON Run Card:** [`registry/run_card_h75_2026-10-27.json`](../registry/run_card_h75_2026-10-27.json)
+- **Canonical JSON Run Card:** [`registry/run_card_h75_dchb_cg_2026-10-27.json`](../registry/run_card_h75_dchb_cg_2026-10-27.json)
 - **Arena Core Values:** **Maximize P(Win)** · **Own the Outcome**
 
 ---

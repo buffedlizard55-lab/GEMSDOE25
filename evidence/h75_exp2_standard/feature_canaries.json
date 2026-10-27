@@ -1,0 +1,146 @@
+[
+ {
+  "fold": 0,
+  "fold_name": "NW",
+  "draw": 132,
+  "n_columns_checked": 95,
+  "all_passed": true,
+  "worst_column": "NEG_D_VIS",
+  "worst_canary_auc": 0.788351,
+  "worst_h75_column": "H75_euler_mag_contact",
+  "worst_h75_canary_auc": 0.538491,
+  "h75_canaries": {
+   "H75_euler_grav_contact": 0.501302,
+   "H75_euler_mag_contact": 0.538491,
+   "H75_anderson_slip_dilation": 0.514136,
+   "H75_mt_thermal_conduit": 0.518678
+  },
+  "neg_d_vis_canary_auc": 0.788351
+ },
+ {
+  "fold": 0,
+  "fold_name": "NW",
+  "draw": 133,
+  "n_columns_checked": 95,
+  "all_passed": true,
+  "worst_column": "E_dist",
+  "worst_canary_auc": 0.803808,
+  "worst_h75_column": "H75_euler_mag_contact",
+  "worst_h75_canary_auc": 0.541802,
+  "h75_canaries": {
+   "H75_euler_grav_contact": 0.520521,
+   "H75_euler_mag_contact": 0.541802,
+   "H75_anderson_slip_dilation": 0.52891,
+   "H75_mt_thermal_conduit": 0.506465
+  },
+  "neg_d_vis_canary_auc": 0.803718
+ },
+ {
+  "fold": 1,
+  "fold_name": "NE",
+  "draw": 132,
+  "n_columns_checked": 95,
+  "all_passed": true,
+  "worst_column": "NEG_D_VIS",
+  "worst_canary_auc": 0.781167,
+  "worst_h75_column": "H75_anderson_slip_dilation",
+  "worst_h75_canary_auc": 0.580776,
+  "h75_canaries": {
+   "H75_euler_grav_contact": 0.511915,
+   "H75_euler_mag_contact": 0.526367,
+   "H75_anderson_slip_dilation": 0.580776,
+   "H75_mt_thermal_conduit": 0.528105
+  },
+  "neg_d_vis_canary_auc": 0.781167
+ },
+ {
+  "fold": 1,
+  "fold_name": "NE",
+  "draw": 133,
+  "n_columns_checked": 95,
+  "all_passed": true,
+  "worst_column": "E_dist",
+  "worst_canary_auc": 0.658318,
+  "worst_h75_column": "H75_anderson_slip_dilation",
+  "worst_h75_canary_auc": 0.599997,
+  "h75_canaries": {
+   "H75_euler_grav_contact": 0.529647,
+   "H75_euler_mag_contact": 0.522125,
+   "H75_anderson_slip_dilation": 0.599997,
+   "H75_mt_thermal_conduit": 0.527707
+  },
+  "neg_d_vis_canary_auc": 0.654162
+ },
+ {
+  "fold": 2,
+  "fold_name": "SW",
+  "draw": 132,
+  "n_columns_checked": 95,
+  "all_passed": true,
+  "worst_column": "NEG_D_VIS",
+  "worst_canary_auc": 0.70602,
+  "worst_h75_column": "H75_anderson_slip_dilation",
+  "worst_h75_canary_auc": 0.553679,
+  "h75_canaries": {
+   "H75_euler_grav_contact": 0.509031,
+   "H75_euler_mag_contact": 0.510023,
+   "H75_anderson_slip_dilation": 0.553679,
+   "H75_mt_thermal_conduit": 0.528753
+  },
+  "neg_d_vis_canary_auc": 0.70602
+ },
+ {
+  "fold": 2,
+  "fold_name": "SW",
+  "draw": 133,
+  "n_columns_checked": 95,
+  "all_passed": true,
+  "worst_column": "E_dist",
+  "worst_canary_auc": 0.735443,
+  "worst_h75_column": "H75_anderson_slip_dilation",
+  "worst_h75_canary_auc": 0.529944,
+  "h75_canaries": {
+   "H75_euler_grav_contact": 0.525455,
+   "H75_euler_mag_contact": 0.506111,
+   "H75_anderson_slip_dilation": 0.529944,
+   "H75_mt_thermal_conduit": 0.504922
+  },
+  "neg_d_vis_canary_auc": 0.735443
+ },
+ {
+  "fold": 3,
+  "fold_name": "SE",
+  "draw": 132,
+  "n_columns_checked": 95,
+  "all_passed": true,
+  "worst_column": "E_dens20",
+  "worst_canary_auc": 0.700812,
+  "worst_h75_column": "H75_anderson_slip_dilation",
+  "worst_h75_canary_auc": 0.531909,
+  "h75_canaries": {
+   "H75_euler_grav_contact": 0.505236,
+   "H75_euler_mag_contact": 0.512583,
+   "H75_anderson_slip_dilation": 0.531909,
+   "H75_mt_thermal_conduit": 0.513083
+  },
+  "neg_d_vis_canary_auc": 0.697037
+ },
+ {
+  "fold": 3,
+  "fold_name": "SE",
+  "draw": 133,
+  "n_columns_checked": 95,
+  "all_passed": true,
+  "worst_column": "NEG_D_VIS",
+  "worst_canary_auc": 0.697366,
+  "worst_h75_column": "H75_anderson_slip_dilation",
+  "worst_h75_canary_auc": 0.586381,
+  "h75_canaries": {
+   "H75_euler_grav_contact": 0.526282,
+   "H75_euler_mag_contact": 0.519029,
+   "H75_anderson_slip_dilation": 0.586381,
+   "H75_mt_thermal_conduit": 0.526158
+  },
+  "neg_d_vis_canary_auc": 0.697366
+ }
+]

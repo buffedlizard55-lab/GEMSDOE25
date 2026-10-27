@@ -815,7 +815,41 @@
   ],
   "receipt": "docs/downloads/lane-gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.json",
   "extended_receipt": "evidence/h75_cg_lane_extended.json",
-  "surface_receipt": "evidence/h75_cg_surface_lane.json"
+  "surface_receipt": "evidence/h75_cg_surface_lane.json",
+  "full_footprint_116_receipt": "evidence/h75_cg_full_footprint_116_audit.json",
+  "post_merge_full_footprint_116": {
+   "rank_footprint_pixels": 5167373,
+   "total_aligned_rasters_checked": 116,
+   "pre_merge_108_sparse_duplicate_flags": [],
+   "post_merge_116_sparse_duplicate_flags": [
+    "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-nan.tif",
+    "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif"
+   ],
+   "literal_duplicate_flags": [
+    "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "pindrop-discovery.tif",
+    "pindrop-nodes.tif",
+    "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-nan.tif",
+    "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif"
+   ],
+   "max_abs_surface_spearman_full_5167373": 0.19352213485784903,
+   "vs_concurrent_h75_eu3d_poe65": {
+    "file": "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif",
+    "spearman_surface_full_5167373": 0.1106225048285872,
+    "spearman_final_full_5167373": 0.11090588976283167,
+    "cand_dots_within_3px": 0.7234291177564136,
+    "reg_dots_within_3px_of_cand": 0.7019440165719445
+   },
+   "vs_h78_mhscf": {
+    "file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
+    "spearman_surface_full_5167373": 0.011818754329357471,
+    "cand_dots_within_3px": 0.27218887767567856
+   },
+   "vs_h79_poisson": {
+    "file": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif",
+    "cand_dots_within_3px": 0.2043607584851543
+   }
+  }
  },
  "raster_sha256": "da94fdf9d744f06f3f18d325b7f57fe4e3b2739cd2e9e14d71dafcc87edc2a1e",
  "nan_twin_sha256": "11dcd970ee3a73377d946b7aac7273552cdfa23016c6278666840261e524bd08",
@@ -903,15 +937,81 @@
    ],
    "outside_all_nan": true
   },
+  "independent_exact_file_audit": {
+   "file": "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif",
+   "bytes": 826560,
+   "sha256": "da94fdf9d744f06f3f18d325b7f57fe4e3b2739cd2e9e14d71dafcc87edc2a1e",
+   "meta": {
+    "count": 1,
+    "dtypes": [
+     "float32"
+    ],
+    "crs": "EPSG:32611",
+    "epsg": 32611,
+    "shape": [
+     3730,
+     3292
+    ],
+    "transform": [
+     100.0,
+     0.0,
+     243350.0,
+     0.0,
+     -100.0,
+     4508550.0
+    ],
+    "nodata": null
+   },
+   "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+   "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+   "footprint_px": 5167373,
+   "positive_pixels": 37654,
+   "catalogue_positive_pixels": 0,
+   "distinct_values": [
+    0.0,
+    1.0
+   ],
+   "outside_convention": "zeros",
+   "checks": {
+    "template_sha256_matches_pin": true,
+    "labels_sha256_matches_pin": true,
+    "template_crs_shape_transform_matches_expected": true,
+    "template_footprint_px_is_expected": true,
+    "labels_grid_matches_template": true,
+    "single_band": true,
+    "dtype_float32": true,
+    "crs_epsg_matches_template": true,
+    "shape_equals_template": true,
+    "transform_equals_template": true,
+    "footprint_all_finite": true,
+    "footprint_values_in_0_1": true,
+    "outside_all_zero": true,
+    "outside_all_nan": false,
+    "strict_whole_array_0_le_x_le_1": true,
+    "no_emission_on_catalogue": true
+   },
+   "all_hard_checks_pass": true,
+   "zip": {
+    "file": "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.zip",
+    "sha256": "09a87e19a627ee62e50cc32d9a5790383ea4c4b9686ec89d919a2b9d0dc73148",
+    "members": [
+     "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif"
+    ],
+    "contains_exactly_candidate_bytes": true
+   },
+   "scope": "local exact-file format and catalogue-mask checks only; no organizer or slot approval"
+  },
   "footprint_pixels": 5167373,
   "checks_receipts": [
    "docs/downloads/checks-gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.json",
-   "docs/downloads/checks-gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-nan.json"
+   "docs/downloads/checks-gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-nan.json",
+   "evidence/h75_cg_independent_audit_2026-10-27.json"
   ]
  },
  "submission_name": "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif",
  "nan_twin_name": "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-nan.tif",
  "zip_name": "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5.zip",
+ "zip_zeros_name": "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.zip",
  "note": "GEMSDOE25 H75-DCHB-CG | no slot, not slot-approved; DO NOT SUBMIT | id e035d75ca5d5 | unscored",
  "note_chars": 94,
  "verdict": "negative",

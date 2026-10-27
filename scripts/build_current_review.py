@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Evidence-driven current executive subpage; never labels an old TIF as new."""
+"""Render the current, evidence-led decision without upgrading archives into submissions."""
 from __future__ import annotations
 
 import html
@@ -10,714 +10,196 @@ ROOT = Path(__file__).resolve().parents[1]
 e = html.escape
 
 
-def current_banner(prefix):
-    h73 = json.loads((ROOT/'registry/run_card_h73_2026-10-26.json').read_text())
-    dti = h73['holdout_dti']
-    return f'''<!-- H73-BW-2026-10-26 --><aside class="current-status" aria-label="Current submission status">
-<strong>26 OCT 2026 · NO NEW TIF · H73-BW HOLDOUT: BLOCKED BEFORE FIT · RESEARCH-ARCHIVE DOWNLOAD: YES (INSPECTION ONLY) · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
-<span>Prior H73-PM HOLDOUT-DTI {dti['pm_deapron_pooled']:.6f} vs same-run H35 {dti['ctrl_h35_pooled']:.6f}; not a leaderboard estimate. The H73-BW diagnostic is cache-blocked; the older H73-PM research raster is inspection-only and failed its strict lane gate.</span>
-<a href="{prefix}current-review.html#h73-status">Read H73-BW status, cache receipt, prior HOLDOUT-DTI and exact-file decision →</a></aside>'''
+def read_json(path: str):
+    return json.loads((ROOT / path).read_text())
 
 
-def render_body(root_page=False):
-    focus = json.loads((ROOT/'evidence/focus_audit_2026-10-26.json').read_text())
-    h73 = json.loads((ROOT/'registry/run_card_h73_2026-10-26.json').read_text())
-    h73bw = json.loads((ROOT/'registry/run_card_h73_bw_2026-10-26.json').read_text())
-    h73preflight = json.loads((ROOT/'evidence/h73_bw_preflight_2026-10-26.json').read_text())
-    path = ROOT/'evidence/rod_2026-10-26/run_card.json'
-    card = json.loads(path.read_text()) if path.exists() else None
-    audit = ROOT/'evidence/rod_2026-10-26/analysis.json'
-    analysis = json.loads(audit.read_text()) if audit.exists() else None
-    status = e(card['reason']) if card else 'Run incomplete. No submission file is authorized.'
-    outcome = '<p>No valid HOLDOUT-DTI result is available. This is not a score of zero.</p>'
-    if analysis:
-        c, b = analysis['arms']['ROD'], analysis['arms']['H35']
-        outcome = f'''<div class="review-metrics"><div><span>ROD · HOLDOUT-DTI</span><strong>{c['pooled_dti']:.4f}</strong>
-<small>95% CI {c['ci95'][0]:.4f}–{c['ci95'][1]:.4f}</small></div>
-<div><span>Same-run H35 · HOLDOUT-DTI</span><strong>{b['pooled_dti']:.4f}</strong>
-<small>95% CI {b['ci95'][0]:.4f}–{b['ci95'][1]:.4f}</small></div></div>
-<p>{c['withheld_positive_occurrences']:,} withheld-positive occurrences; {analysis['distinct_withheld_pixels']:,} distinct pixels.
-Four buffered spatial quadrants, whole components withheld. {e(analysis['ci_method'])}.
-Evaluator: <code>gems25.metric.dti_binary</code>, α=0.2, β=0.8, 300 m triangular kernel;
-<a href="../evidence/rod_2026-10-26/analysis.json">version hashes and full paired results</a>.
-This estimates catalogue-gap recovery, not leaderboard performance.</p>'''
-    pol3_path = ROOT/'evidence/pol3_screen_2026-10-26/summary.json'
-    pol3 = json.loads(pol3_path.read_text()) if pol3_path.exists() else None
-    pol3_section = ''
-    if pol3:
-        pol3_section = f'''<section class="card"><p class="eyebrow">SEPARATE BRANCH SESSION · ONE SCREEN · NOT COMBINED WITH ROD BUDGET</p>
-<h2>POL3 signed half-graben screen — negative</h2>
-<p><b>HOLDOUT-DTI</b>, evaluator <code>{e(pol3['evaluator'])}</code>, draws <code>{e(str(pol3['draws']))}</code>,
-{pol3['withheld_positives']:,} withheld positives. Candidate pooled <code>{pol3['candidate_pooled']['dti']:.6f}</code> vs same-run H35
-<code>{pol3['control_pooled']['dti']:.6f}</code>; paired four-fold mean gain <code>{pol3['paired_fold_mean_gain']:+.6f}</code>,
-95% CI <code>[{pol3['paired_fold_ci95'][0]:+.6f}, {pol3['paired_fold_ci95'][1]:+.6f}]</code>,
-{pol3['positive_folds']}/4 folds positive. Feature-alone maximum AUC <code>{pol3['max_canary_auc']:.4f}</code>.
-The frozen screen gate failed. No confirmation, catalogue surface, placement or POL3 raster was run; lane clearance is <b>NOT RUN</b>.
-This is a catalogue-gap proxy, not an organizer score or blind-fault performance claim.</p>
-<p><a href="../knowledge/27_ranked_hypotheses_and_review_2026-10-26.md">POL3 session review</a> ·
-<a href="../knowledge/28_preregistered_pol3_signed_halfgraben_2026-10-26.md">frozen preregistration</a> ·
-<a href="../registry/run_card_pol3_screen_2026-10-26.json">POL3 run card</a> ·
-<a href="../evidence/pol3_screen_2026-10-26/summary.json">saved-cell result</a>.</p></section>'''
-    obj_path = ROOT/'registry/run_card_objective_2026-10-26.json'
-    objc = json.loads(obj_path.read_text()) if obj_path.exists() else None
-    obj_section = ''
-    if objc:
-        ex = objc['experiments']
-        obj_rows = []
-        for key, label in (('experiment_1_tent', '<b>Exp 1 TENT</b> (kernel-regression target)'),
-                           ('experiment_2_hardneg', '<b>Exp 2 HARDNEG</b> (hard-negative mining)'),
-                           ('experiment_3_ign3', '<b>Exp 3 IGN3</b> (ring-excluded negatives)')):
-            x = ex[key]
-            obj_rows.append(f"""<tr><td>{label}</td><td><code>{e(str(x['draws']))}</code> / {x['withheld_positives_total']:,}</td>
-<td>{x['leakage_canary']['max_effective_auc']:.4f}</td>
-<td>{x['candidate_greedy']['pooled_dti']:.6f}</td><td>{x['bin_greedy']['pooled_dti']:.6f}</td>
-<td>{x['paired']['mean_gain']:+.6f} [{x['paired']['ci95'][0]:+.4f}, {x['paired']['ci95'][1]:+.4f}] ({x['paired']['folds_positive']}/4)</td>
-<td><span class="badge b-bad">SCREEN FAIL</span></td></tr>""")
-        fd = objc['registry_correlation_and_overlap']['final_dots']
-        ext, b2o = fd['external_sparse'], fd['vs_gemsdoe32_b2']
-        obj_section = f"""<section class="card"><p class="eyebrow">SEPARATE BRANCH SESSION · THREE SCREENS · 3/3 EXPERIMENT BUDGET</p>
-<h2>Training-objective geometry (TENT / HARDNEG / IGN3) — three negatives</h2>
-<p><b>HOLDOUT-DTI</b>, evaluator <code>{e(ex['experiment_1_tent']['evaluator_version'])}</code>.
-Hypothesis (pre-registered before any fit): the binary classifier labels genuine scarp-crest pixels
-1.5&ndash;3&nbsp;px off the cartographic catalogue trace as negatives although the metric pays inside 300&nbsp;m.
-TENT prices the credit ring with the metric's own triangular kernel; HARDNEG mines fault-like non-fault
-lineaments (roads, shoreline benches, contacts, survey seams); IGN3 excludes the ring from supervision.
-Detector columns and greedy emission are frozen; every comparator is recomputed in the same run.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Objective session experiments"><table><thead><tr>
-<th>Experiment</th><th>Draws / withheld +</th><th>Canary max</th><th>Candidate pooled</th>
-<th>Same-run BIN pooled</th><th>Paired fold-mean gain [95% CI] (folds +)</th><th>Verdict</th></tr></thead>
-<tbody>{''.join(obj_rows)}</tbody></table></div>
-<p>No variant beat the incumbent, so no confirmation draws ran (92&ndash;93 / 96&ndash;97 / 102&ndash;103 permanently unused),
-no objective-scheme TIF was built, and no slot is supported. The featured download is the incumbent stack
-rebuilt with fresh production seeds. It is unique vs scored/external rasters (worst 3-px overlap
-{100*ext['worst_cand_dots_within_3px']:.1f}% &le; 70%; {100*b2o['cand_dots_within_3px']:.1f}% vs GEMSDOE32 B2) but the strict lane
-fails vs this repo's own unscored HGB lineage and the dense lattice. This is a catalogue-gap proxy, not a competition score.</p>
-<p><a href="../knowledge/29_ranked_hypotheses_and_preregistration_2026-10-26.md">Frozen preregistration</a> ·
-<a href="../knowledge/31_objective_outcomes_and_executive_summary_2026-10-26.md">Outcomes &amp; nine-site executive summary</a> ·
-<a href="../registry/run_card_objective_2026-10-26.json">Run card</a> ·
-<a href="../evidence/focus_audit_local_2026-10-26.json">This session's nine-site raster audit</a>.</p></section>
-"""
-    olic_path = ROOT/'evidence/olic_screen_2026-10-26/summary.json'
-    olic = json.loads(olic_path.read_text()) if olic_path.exists() else None
-    olic_section = ''
-    if olic:
-        olic_section = f'''<section class="card"><p class="eyebrow">PARALLEL SESSION · OLIC LANE · ONE FROZEN SCREEN · NEGATIVE</p>
-<h2>OLIC oriented line-continuity screen — negative (no new TIF)</h2>
-<p><b>HOLDOUT-DTI</b>, evaluator <code>{e(olic['evaluator'])}</code>, draws <code>{e(str(olic['draws']))}</code>,
-{olic['withheld_positives']:,} withheld positives. Candidate (H35 + 9 oriented line-continuity features) pooled
-<code>{olic['candidate_pooled']['dti']:.6f}</code> vs same-run H35 <code>{olic['control_pooled']['dti']:.6f}</code>;
-paired four-fold mean gain <code>{olic['paired_fold_mean_gain']:+.6f}</code>,
-95% CI <code>[{olic['paired_fold_ci95'][0]:+.6f}, {olic['paired_fold_ci95'][1]:+.6f}]</code>,
-{olic['positive_folds']}/4 folds positive. Feature-alone maximum AUC <code>{olic['max_canary_auc']:.4f}</code> (leakage canary PASS).
-The frozen gate (gain &gt; +0.001 and &ge;3/4 folds) failed, so no confirmation, no surface/lane placement and
-<b>no OLIC GeoTIFF was written</b>; lane clearance is <b>NOT RUN</b>. <b>File to download for submission: NONE. Estimated leaderboard score: NOT ESTIMABLE</b>
-(a projection is never a score). Catalogue-gap proxy only, not an organizer score.</p>
-<p><a href="../knowledge/29_preregistered_olic_line_continuity_2026-10-26.md">Frozen preregistration &amp; ranked hypotheses</a> ·
-<a href="../knowledge/29_olic_outcomes_2026-10-26.md">OLIC outcomes &amp; nine-site executive summary</a> ·
-<a href="../registry/run_card_olic_2026-10-26.json">OLIC run card (JSON)</a> ·
-<a href="../evidence/olic_screen_2026-10-26/summary.json">Screen summary</a></p></section>'''
+def current_banner(prefix: str) -> str:
+    old = read_json("registry/run_card_h73_2026-10-26.json")["holdout_dti"]
+    return f'''<!-- H73-BW-2026-10-26 --><aside class="current-status" aria-label="Current decision">
+<strong>27 OCT 2026 · NO NEW TIF IN THIS RUN · H73-BW: BLOCKED BEFORE FIT · RESEARCH-ARCHIVE DOWNLOAD: YES (INSPECTION ONLY) · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
+<span>Current preregistered lane stopped before model fitting: at least 82.70% overlap is unavoidable at its fixed budget.
+The earlier H73-PM HOLDOUT-DTI {old['pm_deapron_pooled']:.5f} vs same-run H35 {old['ctrl_h35_pooled']:.5f}
+(evaluator {e(old['evaluator'])}; {old['withheld_positive_occurrences']:,} withheld positive occurrences;
+95% CI [{old['pm_deapron_ci95'][0]:.5f}, {old['pm_deapron_ci95'][1]:.5f}]) was a negative proxy, not an organizer score.
+Its literal lane audit flags 100% of dots within 3 px of the r13 lattice. Estimated competition score: UNKNOWN (not calibrated).</span>
+<a href="{prefix}current-review.html">Review decision and evidence →</a></aside>'''
 
-    subs = json.loads((ROOT / "registry" / "submissions.json").read_text())["files"]
-    featured = next(s for s in subs if s["role"] == "primary")
-    h71 = json.loads((ROOT / "registry" / "run_card_h71_2026-10-26.json").read_text())
-    h71_result = h71["holdout_dti"]
-    h72_path = ROOT / "registry" / "run_card_h72_2026-10-26.json"
-    h72 = json.loads(h72_path.read_text()) if h72_path.exists() else None
-    h72_section = ""
-    h72_table_row = ""
-    if h72:
-        e1 = json.loads((ROOT / "evidence/h72_1_screen/analysis.json").read_text())
-        e2 = json.loads((ROOT / "evidence/h72_2_screen/analysis.json").read_text())
-        e3 = json.loads((ROOT / "evidence/h72_3_screen/analysis.json").read_text())
-        lane_lit = json.loads((ROOT / featured["lane"]["receipt"]).read_text())
-        h23_ov = next(r["dots_within_3px"] for r in lane_lit["rows"] if r["file"] == "h23-a-6pct.tif")
-        rc72 = h72["correlation_overlap_vs_registry"]
-        top21 = rc72["focus_21_top_scorers"]
-        own72 = rc72["own_lineage"]
-        w1 = len(e1["draws"]) * sum(e1["withheld_positives_per_fold"].values())
-        w2 = len(e2["draws"]) * sum(e2["withheld_positives_per_fold"].values())
-        w3 = len(e3["draws"]) * sum(e3["withheld_positives_per_fold"].values())
-        c1_auc = max(e1["leakage_canary"]["max_effective_auc"].values())
-        c2_auc = max(e2["leakage_canary"]["max_effective_auc"].values())
-        c3_auc = max(e3["leakage_canary"]["max_effective_auc"].values())
-        hd72 = h72["holdout_dti"]
-        lane_extended = json.loads((ROOT/'evidence/h72_3_lane_extended.json').read_text())
-        r13_overlap = lane_extended['lattice'][0]['cand_dots_within_3px']
-        sparse_overlap = lane_extended['external_sparse']['worst_cand_dots_within_3px']
-        sparse_overlap_file = lane_extended['external_sparse']['worst_overlap_file']
-        h72_table_row = f"""<tr><td class="submission-id">{e(featured['file'])}</td>
-<td>NOT ESTIMATED — no calibrated leaderboard projection</td>
-<td>HOLDOUT-DTI {hd72['pooled_dti']:.6f}; evaluator {e(hd72['evaluator_version'])}; {hd72['withheld_positive_occurrences']:,} withheld positives; 95% CI [{hd72['ci95'][0]:.6f}, {hd72['ci95'][1]:.6f}]</td>
-<td><b>NO.</b> Literal 70% / 3-px uniqueness fails: {100*r13_overlap:.2f}% of final dots are within 3 px of the registered r13 lattice; the sparse-registry maximum is {100*sparse_overlap:.2f}% vs <code>{e(sparse_overlap_file)}</code>. No density-aware exception applies.</td>
-<td><b>DO NOT SUBMIT.</b> Holdout failed vs H35; archived research artifact only.</td></tr>"""
-        h72_section = f'''<section class="card"><p class="eyebrow">PRIOR SESSION · 3 PRE-REGISTERED EXPERIMENTS (DRAWS 80–85) · ARCHIVED RESEARCH ARTIFACT, NOT ELIGIBLE</p>
-<h2>H72 Unit-Consistent Tensor Gradient, Valley-Crossing Contrast &amp; DEM-Free Magnetic Depth-Splay</h2>
-<p><b>Pre-registered before fitting:</b>
-<a href="../knowledge/29_preregistered_h72_pttg_ranked_hypotheses_2026-10-26.md">4 ranked hypotheses &amp; H72-1/2 design (<code>53cb884</code>)</a> ·
-<a href="../knowledge/30_preregistered_h72_3_subsurf_blind_2026-10-26.md">H72-3 DEM-free subsurface design (<code>fc60bdd</code>)</a> ·
-<a href="../knowledge/31_h72_outcomes_and_portfolio_synthesis_2026-10-26.md">Full PhD 0.2778 proof, how to beat 0.2778 &amp; 9-site synthesis</a> ·
-<a href="../registry/run_card_h72_2026-10-26.json">H72 JSON Run Card</a> ·
-<a href="../registry/review_passes_h72_2026-10-26.json">3-pass review receipt</a>.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Four ranked H72 geological hypotheses">
-<table><thead><tr><th>Rank</th><th>Hypothesis &amp; Cached Layers</th><th>Physical Signature &amp; Why Catalogue Misses It</th><th>Named Non-Fault Mimic</th><th>Repo Novelty, Cost &amp; Official Data</th><th>Expected ΔDTI / Status</th></tr></thead>
-<tbody>
-<tr><td><b>1</b></td><td><b>H72-A · PTTG-DR</b><br><small>Bands 02, 03, 09, 10, 11, 12, 16, 17</small></td><td>Unit-consistent isotropic gravity/magnetic THDR + Phillips horizontal differential curvature <code>K_diff</code> (fixes <code>r=+0.948</code> E–W directional bias of band 18 and ~40&times; TMI unit mismatch) + de-aproned OOF HGB; catches concealed pediment/playa &amp; E–W transfer faults.</td><td>Caldera ring-fracture walls, pluton aureoles, basaltic feeder dikes</td><td>First rotationally invariant gravity tensor curvature + propensity-de-aproned HGB; ~16 min CPU; cached GDR #1391 potential fields.</td><td><code>+0.003..+0.012</code><br><b>Exp 1:</b> <code>+0.0061</code> vs Blind (4/4); FAIL vs H35</td></tr>
-<tr><td><b>2</b></td><td><b>H72-B · VCCD + RBDT</b><br><small>Bands 01, 02, 05, 06, 07, 13, 14, 15, 19</small></td><td>Anisotropic across- vs along-strike Mahalanobis step in K/Th/U + 2 m temperature + heatflow gated by 100 m LiDAR scarp coherence; catches active range-front/relay splays vs contour-parallel shorelines.</td><td>Pluvial Lake Lahontan/Bonneville shorelines, welded tuff cooling units, fan toes</td><td>Across/along-strike contrast ratio rather than isotropic gradient or ROD shift; ~16 min CPU; cached USGS NURE + 3DEP 100 m LiDAR.</td><td><code>+0.002..+0.008</code><br><b>Exp 2:</b> <code>+0.0073</code> vs Blind (4/4); <code>+0.0005</code> vs H35 (2/4)</td></tr>
-<tr><td><b>3</b></td><td><b>H72-C · MTHS</b><br><small>Bands 03, 09, 10, 11, 12, 17 (zero DEM/LiDAR)</small></td><td>Multi-scale upward-continued (200 m / 600 m / 1.5 km) magnetic tilt-zero lateral depth-splay + strike-coherent gravity curvature; catches blind steeply dipping intrabasinal faults beneath alluvial fans while structurally immune to DEM-scarp ribbon collisions.</td><td>Tilted ash-flow tuff sheets, buried pluton roof pendants, paleochannel basalts</td><td>First multi-altitude upward-continued magnetic tilt-locus migration (zero DEM/LiDAR/Family E); ~7 min CPU; cached GDR #1391 potential fields.</td><td><code>+0.001..+0.006</code> vs Subsurf<br><b>Exp 3:</b> <code>+0.0014</code> vs Subsurf, <code>flagged_lane=[]</code>; FAIL vs H35</td></tr>
-<tr><td><b>4</b></td><td><b>H72-D · BDFP</b><br><small>Bands 02, 10, 11, 12, 16, 19</small></td><td>Paired antithetic gravity inflection across narrow intrabasinal horsts/step-overs weighted by strain rate; catches buried accommodation relays.</td><td>Exhumed metamorphic core-complex domes, dense carbonate horst blocks</td><td>Pairs opposing signed second-derivative walls across 0.8–3.0 km basin horsts; ~15 min CPU; cached GDR #1391 gravity + Kreemer strain.</td><td><code>0.000..+0.005</code><br>Reserve (3/3 budget cap)</td></tr>
-</tbody></table></div>
-<div class="table-scroll" tabindex="0" role="region" aria-label="H72 3-experiment holdout results">
-<table><thead><tr><th>Exp / Draws</th><th>Candidate Arm</th><th>Withheld +</th><th>Canary Max</th><th>Candidate HOLDOUT-DTI [95% CI]</th><th>Same-Run Control(s)</th><th>Paired Contrast (Folds +)</th><th>Verdict</th></tr></thead>
-<tbody>
-<tr><td><b>Exp 1</b> <code>[80, 81]</code></td><td><code>A3_PTTG_DEAPRON</code></td><td>{w1:,}</td><td>{c1_auc:.4f}</td><td><code>{e1['arms']['A3_PTTG_DEAPRON']['mean_dti']:.5f}</code> [{e1['arms']['A3_PTTG_DEAPRON']['ci95_dti'][0]:.4f}, {e1['arms']['A3_PTTG_DEAPRON']['ci95_dti'][1]:.4f}]</td><td>Blind: <code>{e1['arms']['CTRL_BLIND_BD']['mean_dti']:.5f}</code><br>H35: <code>{e1['arms']['CTRL_H35']['mean_dti']:.5f}</code></td><td><b><code>{e1['contrasts']['A3_PTTG_DEAPRON_vs_CTRL_BLIND_BD']['mean']:+.5f}</code></b> vs Blind ({e1['contrasts']['A3_PTTG_DEAPRON_vs_CTRL_BLIND_BD']['folds_positive']}/4)<br><code>{e1['contrasts']['A3_PTTG_DEAPRON_vs_CTRL_H35']['mean']:+.5f}</code> vs H35 ({e1['contrasts']['A3_PTTG_DEAPRON_vs_CTRL_H35']['folds_positive']}/4)</td><td><span class="badge b-warn">Blind PASS / H35 FAIL</span></td></tr>
-<tr><td><b>Exp 2</b> <code>[82, 83]</code></td><td><code>B3_FULL_DEAPRON</code></td><td>{w2:,}</td><td>{c2_auc:.4f}</td><td><code>{e2['arms']['B3_FULL_DEAPRON']['mean_dti']:.5f}</code> [{e2['arms']['B3_FULL_DEAPRON']['ci95_dti'][0]:.4f}, {e2['arms']['B3_FULL_DEAPRON']['ci95_dti'][1]:.4f}]</td><td>Blind: <code>{e2['arms']['CTRL_BLIND_BD']['mean_dti']:.5f}</code><br>H35: <code>{e2['arms']['CTRL_H35']['mean_dti']:.5f}</code></td><td><b><code>{e2['contrasts']['B3_FULL_DEAPRON_vs_CTRL_BLIND_BD']['mean']:+.5f}</code></b> vs Blind ({e2['contrasts']['B3_FULL_DEAPRON_vs_CTRL_BLIND_BD']['folds_positive']}/4)<br><code>B1</code> vs H35: <code>{e2['contrasts']['B1_FULL_H35_vs_CTRL_H35']['mean']:+.5f}</code> ({e2['contrasts']['B1_FULL_H35_vs_CTRL_H35']['folds_positive']}/4)</td><td><span class="badge b-warn">Blind PASS / H35 FAIL</span></td></tr>
-<tr><td><b>Exp 3</b> <code>[84, 85]</code></td><td><b><code>C1_SUBSURF_PTTG_MTHS</code></b></td><td>{w3:,}</td><td>{c3_auc:.4f}</td><td><code>{e3['arms']['C1_SUBSURF_PTTG_MTHS']['mean_dti']:.5f}</code> [{e3['arms']['C1_SUBSURF_PTTG_MTHS']['ci95_dti'][0]:.4f}, {e3['arms']['C1_SUBSURF_PTTG_MTHS']['ci95_dti'][1]:.4f}]</td><td>Subsurf: <code>{e3['arms']['CTRL_SUBSURF_D']['mean_dti']:.5f}</code><br>H35: <code>{e3['arms']['CTRL_H35']['mean_dti']:.5f}</code></td><td><code>{e3['contrasts']['C1_SUBSURF_PTTG_MTHS_vs_CTRL_SUBSURF_D']['mean']:+.5f}</code> vs Subsurf ({e3['contrasts']['C1_SUBSURF_PTTG_MTHS_vs_CTRL_SUBSURF_D']['folds_positive']}/4)<br><code>{e3['contrasts']['C1_SUBSURF_PTTG_MTHS_vs_CTRL_H35']['mean']:+.5f}</code> vs H35 ({e3['contrasts']['C1_SUBSURF_PTTG_MTHS_vs_CTRL_H35']['folds_positive']}/4)</td><td><span class="badge b-bad">H35 FAIL · STRICT LANE FAIL</span></td></tr>
-</tbody></table></div>
-<p class="small"><b>Literal global lane outcome: FAIL.</b> Surface/final rank-correlation maxima are {rc72['surface_max_abs_spearman']:.5f} / {rc72['final_max_abs_spearman']:.5f} (below 0.90), but final-dot overlap exceeds 70%: {100*sparse_overlap:.2f}% vs <code>{e(sparse_overlap_file)}</code> and {100*r13_overlap:.2f}% vs the r13 lattice. The separate density-aware subset comparison ({100*top21['b2_overlap']:.2f}% vs B2; {100*top21['worst_cand_dots_within_3px']:.2f}% max across {top21['n']} sibling top-scorers; {100*own72['worst_cand_dots_within_3px']:.2f}% max across {own72['n']} own-lineage rasters; {100*h23_ov:.2f}% vs <code>h23-a-6pct</code>) does not waive this strict stop.</p></section>'''
-    h72_cf_path = ROOT / "registry" / "run_card_h72_cf_2026-10-26.json"
-    h72_cf = json.loads(h72_cf_path.read_text()) if h72_cf_path.exists() else None
-    h72_cf_section = ""
-    if h72_cf:
-        hm = h72_cf["holdout_dti"]["screen_and_confirm_H72_with_H35"]
-        cf = h72_cf["holdout_dti"]["shipped_catfree_detector_family"]
-        fl = h72_cf["correlation_overlap_vs_registry"]["final_dots"]
-        h72_cf_section = f'''<section class="card"><p class="eyebrow">PARALLEL H72-CF LANE · 3/3 PRE-REGISTERED EXPERIMENTS · UNIQUE NEGATIVE ALTERNATE</p>
-<h2>MBSP-MTG macro-basin scarp + concealed MT/gravity/swarm damage</h2>
-<p>The six H72-CF columns replicated as an add-on to H35: <b>HOLDOUT-DTI</b> <code>{hm['candidate_pooled']:.6f}</code>
-[<code>{hm['candidate_ci95'][0]:.4f}, {hm['candidate_ci95'][1]:.4f}</code>] vs same-run H35 <code>{hm['same_run_h35_pooled']:.6f}</code>;
-paired <code>{hm['paired_gain']:+.6f}</code> [<code>{hm['paired_gain_ci95'][0]:+.4f}, {hm['paired_gain_ci95'][1]:+.4f}</code>],
-{hm['withheld_positive_occurrences']:,} withheld-positive occurrences. But the downloadable 100% CatFree detector family is
-<code>{cf['candidate_pooled']:.6f}</code> vs H35 <code>{cf['same_run_h35_pooled']:.6f}</code>
-(paired <code>{cf['paired_gain_vs_H35']:+.6f}</code>, 0/4 folds): performance gate FAIL.</p>
-<p><b>Alternate testing file:</b> <a download href="downloads/{e(h72_cf['submission_name'])}"><code>{e(h72_cf['submission_name'])}</code></a>
-(content <code>{e(h72_cf['raster']['content_id'])}</code>, SHA-256 <code>{e(h72_cf['raster']['sha256'])}</code>).
-No defensible leaderboard estimate exists. Content is unique vs prior registry; final dots clear 27 focus/top rasters (max
-{100*fl['focus_and_top_scorers_27']['max_candidate_dots_within_3px']:.1f}%) and own lineage ({100*fl['own_lineage']['max_candidate_dots_within_3px']:.1f}%),
-but strict lane fails the lattice and four broad historical artifact halos. <b>OK TO DOWNLOAD: YES (testing) · OK TO SUBMIT: NO — DO NOT SUBMIT.</b></p>
-<p><a href="../knowledge/29_h72_cf_hypotheses_and_preregistration_2026-10-26.md">Five ranked hypotheses &amp; preregistration</a> ·
-<a href="../knowledge/30_h72_cf_outcomes_and_executive_decision_2026-10-26.md">Outcomes and nine-site decision</a> ·
-<a href="../registry/run_card_h72_cf_2026-10-26.json">H72-CF run card</a>.</p></section>'''
 
-    h74_path = ROOT / "registry" / "run_card_h74_2026-10-26.json"
-    h74 = json.loads(h74_path.read_text()) if h74_path.exists() else None
-    h74_download_box = ""
-    h74_table_row = ""
-    h74_section = ""
-    if h74:
-        hd74 = h74["holdout_dti"]
-        x1_74 = hd74["experiment_1_standard_holdout"]
-        x2_74 = hd74["experiment_2_block25km_holdout"]
-        x3_74 = hd74["experiment_3_subsurf_block25km_shipped_family"]
-        ln74 = h74["correlation_overlap_vs_registry"]
-        fw74 = ln74["focus_winners"]
-        ext74 = ln74["external_sparse"]
-        own74 = ln74["own_lineage"]
-        sh74 = x2_74["apron_advantage_collapse"]
-        nid74 = "note-research-h74"
-        h74_download_box = (
-            f'<div class="card" style="border-left:4px solid #b91c1c;margin-bottom:14px">'
-            f'<p class="eyebrow">LATEST SESSION DELIVERABLE · H74 RMPS-BFP SUBSURFACE LOQO B2 (3/3 BUDGET COMPLETE)</p>'
-            f'<h3>New Unique Research GeoTIFF: <code>{e(h74["submission_name"])}</code> — OK TO DOWNLOAD (TESTING): YES · OK TO SUBMIT: NO — DO NOT SUBMIT</h3>'
-            f'<p>Content id <code>{e(h74["content_id"])}</code> · <code>{h74["positive_pixels"]:,}</code> binary dots · '
-            f'SHA-256 <code>{e(h74["raster_sha256"][:16])}…</code> · EPSG:32611 · <code>3730&times;3292</code> · '
-            f'0 NaN/Inf inside 5,167,373-px footprint · all values in <code>[0, 1]</code> · '
-            f'51 static topography-free &amp; catalogue-free subsurface columns (zero Family B DEM/LiDAR, zero Family E catalogue). '
-            f'<b>Density-aware unique across all {ln74["registry_checked"]} rasters</b> (<code>flagged_lane = []</code>; '
-            f'surface |&rho;| &le; {ln74["surface_worst_abs_spearman"]:.4f}; {100*fw74["b2_overlap"]:.2f}% vs GEMSDOE32 B2; '
-            f'{100*ln74["vs_prior_subsurface_h72_3"]["cand_dots_within_3px"]:.2f}% vs H72-3-subsurf; '
-            f'{100*own74["worst_cand_dots_within_3px"]:.2f}% max own-lineage; {100*ext74["worst_cand_dots_within_3px"]:.2f}% max sparse external), '
-            f'while literal 70% flags the 3 &gt;73%-halo rasters (r13 lattice 100%, pindrop 76.2%). '
-            f'<b>Verdict: <code>{e(h74["verdict"])}</code> · OK to spend a weekly slot: NO — DO NOT SUBMIT.</b></p>'
-            f'<div class="row">'
-            f'<a class="btn" download href="downloads/{e(h74["submission_name"])}">↓ Download H74 unique research TIF (zeros outside) — DO NOT SUBMIT</a> '
-            f'<a class="btn alt" download href="downloads/{e(h74["nan_twin_name"])}">↓ NaN-outside twin ({e(h74["nan_twin_name"])})</a> '
-            f'<a class="btn alt" download href="downloads/{e(h74["zip_name"])}">↓ Single-TIFF ZIP ({e(h74["zip_name"])})</a> '
-            f'<a class="btn alt" download href="../registry/run_card_h74_2026-10-26.json">↓ H74 JSON Run Card</a> '
-            f'<a class="btn alt" href="../knowledge/37_h74_outcomes_and_executive_summary_2026-10-26.md">Full H74 report &amp; 0.2778 PhD proof</a>'
-            f'</div>'
-            f'<p class="small" style="margin:8px 0 2px"><b>DrivenData-format research identifier ({h74["note_chars"]} chars &le; 120 — DO NOT SUBMIT):</b> '
-            f'<button class="btn alt small" data-copy="{nid74}">Copy H74 research note</button></p>'
-            f'<div class="note"><code id="{nid74}">{e(h74["note"])}</code></div></div>'
-        )
-        h74_table_row = (
-            f'<tr><td class="submission-id">{e(h74["submission_name"])}</td>'
-            f'<td>NOT ESTIMATED — no calibrated leaderboard projection</td>'
-            f'<td>HOLDOUT-DTI {x3_74["h74_subsurf_pooled"]:.6f} (Exp 3 25-km block-withheld; evaluator {e(hd74["evaluator"])}; '
-            f'{x3_74["withheld_positive_occurrences"]:,} withheld positives; 95% CI [{x3_74["h74_subsurf_ci95"][0]:.6f}, {x3_74["h74_subsurf_ci95"][1]:.6f}]); '
-            f'Exp 2 H74_BLIND {x2_74["h74_blind_pooled"]:.6f} (+{x2_74["blind_h74_vs_ctrl_blind"]["paired_gain"]:.5f} vs blind, 3/4 folds PASS)</td>'
-            f'<td><b>LITERAL: NO / DENSITY-AWARE: YES.</b> <code>flagged_lane = []</code> across all {ln74["registry_checked"]} rasters '
-            f'({100*fw74["b2_overlap"]:.2f}% vs B2, {100*ext74["worst_cand_dots_within_3px"]:.2f}% max sparse vs <code>{e(ext74["worst_overlap_file"])}</code>, '
-            f'{100*own74["worst_cand_dots_within_3px"]:.2f}% max own-lineage); literal 70% fails vs r13 lattice (100.00%) &amp; pindrop (76.19%).</td>'
-            f'<td><b>DO NOT SUBMIT.</b> Exp 2 G2 passed, but Slot Gate G1 &amp; Exp 3 failed vs H35; research/inspection only.</td></tr>'
-        )
-        foc_latest = json.loads((ROOT / "evidence" / "focus_sites_h74_latest_2026-10-26.json").read_text())["sites"]
-        foc_latest_rows = "".join(
-            f'<tr><th scope="row"><a href="{e(s["repo_url"])}">{e(s["site"])}</a></th>'
-            f'<td class="submission-id">{e(s["latest_20261026_file"])}</td>'
-            f'<td>{e(s["latest_metric_label"])}<br><small>Historical best: {s["historical_score_owner_reported"]:.4f} OWNER-REPORTED ({e(s["historical_file"])})</small></td>'
-            f'<td>{e(s["estimated_leaderboard_score"])}</td>'
-            f'<td>{e(s["uniqueness_audit"])}</td>'
-            f'<td><b>{e(s["ok_to_submit"])}</b></td></tr>'
-            for s in foc_latest
-        )
-        h74_section = f'''<section class="card" id="h74-session"><p class="eyebrow">LATEST SESSION (26 OCT 2026) · 3/3 PRE-REGISTERED EXPERIMENTS (DRAWS 110–113) · UNIQUE SUBSURFACE RESEARCH GEOTIFF</p>
-<h2>H74 Remanent-Magnetic Phase Skewness &amp; Biharmonic Broken-Plate Flexure (RMPS-BFP) &times; 25-km Block-Withheld Holdout (H74-BW)</h2>
-<p><b>Pre-registered before fitting:</b>
-<a href="../knowledge/35_preregistered_h74_rmps_bw_2026-10-26.md">4 ranked hypotheses &amp; 25-km block holdout design (<code>af10a19</code>)</a> ·
-<a href="../knowledge/36_preregistered_h74_exp3_subsurface_2026-10-26.md">Exp 3 topography-free subsurface addendum (<code>32897de</code>)</a> ·
-<a href="../knowledge/37_h74_outcomes_and_executive_summary_2026-10-26.md">Executive summary, 0.2778 PhD proof &amp; H74 outcomes</a> ·
-<a href="../registry/run_card_h74_2026-10-26.json">H74 JSON Run Card</a> ·
-<a href="../registry/review_passes_h74_2026-10-26.json">3-pass review receipt</a> ·
-<a href="../evidence/h74_joint_analysis.json">Exp 1–2 joint analysis</a> ·
-<a href="../evidence/h74_exp3_subsurf_bw25km/analysis.json">Exp 3 subsurface analysis</a>.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Four ranked H74 geological hypotheses">
-<table><thead><tr><th>Rank</th><th>Hypothesis &amp; Layers</th><th>Physical Signature &amp; Why Catalogue Misses It</th><th>Named Non-Fault Mimic</th><th>Repo Novelty, Cost &amp; Official Data</th><th>Expected &Delta;DTI / Status</th></tr></thead>
-<tbody>
-<tr><td><b>1</b></td><td><b>H74-1 · RMPS-BFP</b><br><small><code>mag_tmi</code>, <code>mag_rtp</code>, <code>mag_tilt</code>, <code>mag_up2km</code>, <code>mag_up4km</code>, <code>grav_bouguer_up2km</code>, <code>geod_dilaterate</code>, <code>geod_maxshear</code>, <code>temp_2m</code>, <code>deq_n100a15</code></small></td><td>Standardized TMI-vs-RTP remanent phase-skewness crest + normalized biharmonic broken-plate hinge &nabla;<sup>4</sup>h<sub>b</sub> (<code>truncate=6.0</code>) + Simpson pore-fluid dilation criticality + harmonic Laplace defect; catches reversed-polarity volcanic &amp; playa-concealed basement faults.</td><td>Unfaulted caldera ring-dike margins, basaltic feeder vents, buried granitoid pluton contacts, evaporite diapir edges</td><td>First remanent TMI-vs-RTP phase-skewness + biharmonic &nabla;<sup>4</sup>h<sub>b</sub> + harmonic defect in GEMSDOE portfolio; ~38 min CPU total across 3 exps; cached GDR #1391 / USGS potential fields.</td><td>Planning: <code>+0.002..+0.008</code><br><b>Exp 2 G2 PASS</b> (<code>+0.0024</code> blind, <code>+0.0004</code> apron); Slot Gate G1 &amp; Exp 3 FAIL</td></tr>
-<tr><td><b>2</b></td><td><b>H74-2 · MS-EU3D</b><br><small>Cached Bouguer + TMI + upward continuations</small></td><td>Multi-scale Thompson/Reid Euler structural-index deconvolution separating SI&approx;0.5–1.0 steep fault contacts from SI&approx;2–3 equant pluton/caldera bodies beneath cover.</td><td>Tabular Mesozoic sills, dipping stratigraphic basalt pinch-outs</td><td>Estimates depth z<sub>0</sub> &amp; structural index N directly rather than gradient magnitude; ~15 min CPU; cached GDR #1391 grids.</td><td>Planning: <code>+0.001..+0.005</code><br>Deferred (3/3 budget cap)</td></tr>
-<tr><td><b>3</b></td><td><b>H74-3 · MT-BTD</b><br><small>USArray/EarthScope 3D MT resistivity + <code>heatflow</code></small></td><td>Caldwell–Bibby–Brown magnetotelluric phase-tensor skew &beta;<sub>MT</sub> &amp; 5–15 km brittle-ductile sub-vertical conductor roots of deep fluid-bearing faults beneath conductive playas.</td><td>Graphitic Paleozoic black-shale belts (Roberts Mountains thrust), closed-basin lithium brines</td><td>True 3D crustal electrical tensor vs scalar 1D cached MT slices; ~25 min CPU + fetch; free CC0 USGS ScienceBase release.</td><td>Planning: <code>+0.002..+0.009</code><br>Deferred (external fetch + 3/3 cap)</td></tr>
-<tr><td><b>4</b></td><td><b>H74-4 · RTHS</b><br><small>USGS GeoDAWN / NURE <code>K</code>, <code>eTh</code>, <code>eU</code> + <code>temp_2m</code></small></td><td>Regression-residual hydrothermal potassium metasomatism excess K<sub>excess</sub> = K &minus; (a&middot;eTh + b) coupled with 2-m thermal upflow along blind argillic/adularia fault zones.</td><td>Potassic rhyolite domes, evaporitic playa-margin K-feldspar deflation lags</td><td>Thorium-normalized geochemical alteration excess rather than spatial K/Th/U step; ~12 min CPU; cached GDR #1391 + CC0 USGS GeoDAWN.</td><td>Planning: <code>+0.001..+0.004</code><br>Deferred (3/3 budget cap)</td></tr>
-</tbody></table></div>
-<div class="table-scroll" tabindex="0" role="region" aria-label="H74 3-experiment paired holdout results">
-<table><thead><tr><th>Experiment &amp; Virgin Draws</th><th>Withheld + (median d_vis)</th><th>Canary Max</th><th>Control HOLDOUT-DTI [95% CI]</th><th>Candidate HOLDOUT-DTI [95% CI]</th><th>Paired Gain [95% CI] (Folds +)</th><th>Gate Outcome</th></tr></thead>
-<tbody>
-<tr><td><b>Exp 1 · Standard 20%-Component Holdout</b><br><code>draws [110, 111]</code></td><td>{x1_74['withheld_positive_occurrences']:,}<br><small>({x1_74['median_truth_d_vis_px']:.2f} px; {100*x1_74['frac_truth_gt20_px']:.1f}% &gt;20 px)</small></td><td>{x1_74['leakage_canary']['max_canary_auc']:.4f}</td><td>H35: <code>{x1_74['ctrl_h35_pooled']:.5f}</code> [{x1_74['ctrl_h35_ci95'][0]:.4f}, {x1_74['ctrl_h35_ci95'][1]:.4f}]<br>Blind: <code>{x1_74['ctrl_blind_pooled']:.5f}</code></td><td>Apron: <code>{x1_74['h74_apron_pooled']:.5f}</code><br>Blind: <code>{x1_74['h74_blind_pooled']:.5f}</code></td><td>Apron vs H35: <code>{x1_74['apron_vs_ctrl_h35']['paired_gain']:+.5f}</code> (2/4)<br><b>Blind vs Blind: <code>{x1_74['blind_h74_vs_ctrl_blind']['paired_gain']:+.5f}</code></b> (NE <code>+0.0190</code>)</td><td><span class="badge b-bad">Slot Gate G1 FAIL</span></td></tr>
-<tr><td><b>Exp 2 · 25-km Block-Withheld H74-BW</b><br><code>draws [110, 111]</code></td><td>{x2_74['withheld_positive_occurrences']:,}<br><small>(<b>{x2_74['median_truth_d_vis_px']:.2f} px</b>; <b>{100*x2_74['frac_truth_gt20_px']:.1f}% &gt;20 px</b>)</small></td><td>{x2_74['leakage_canary']['max_canary_auc']:.4f}</td><td>H35: <code>{x2_74['ctrl_h35_pooled']:.5f}</code> [{x2_74['ctrl_h35_ci95'][0]:.4f}, {x2_74['ctrl_h35_ci95'][1]:.4f}]<br>Blind: <code>{x2_74['ctrl_blind_pooled']:.5f}</code></td><td>Apron: <code>{x2_74['h74_apron_pooled']:.5f}</code><br>Blind: <code>{x2_74['h74_blind_pooled']:.5f}</code></td><td><b>Apron vs H35: <code>{x2_74['apron_vs_ctrl_h35']['paired_gain']:+.5f}</code> (3/4)</b><br><b>Blind vs Blind: <code>{x2_74['blind_h74_vs_ctrl_blind']['paired_gain']:+.5f}</code> (3/4; SE <code>+0.0234</code> vs H35)</b></td><td><span class="badge b-ok">Gate G2 PASS (both)</span><br><small>Apron lead &minus;62.9%</small></td></tr>
-<tr><td><b>Exp 3 · 25-km Block-Withheld H74_SUBSURF</b><br><code>draws [112, 113]</code> (51 ACD cols, zero DEM/LiDAR)</td><td>{x3_74['withheld_positive_occurrences']:,}<br><small>(~72.3 px; ~88% &gt;20 px)</small></td><td>{x3_74['leakage_canary']['max_canary_auc']:.4f}</td><td>Subsurf: <code>{x3_74['ctrl_subsurf_pooled']:.5f}</code><br>H35: <code>{x3_74['ctrl_h35_pooled']:.5f}</code></td><td><b><code>{x3_74['h74_subsurf_pooled']:.5f}</code></b> [{x3_74['h74_subsurf_ci95'][0]:.4f}, {x3_74['h74_subsurf_ci95'][1]:.4f}]</td><td>vs Subsurf: <code>{x3_74['paired_gain_vs_ctrl_subsurf']:+.5f}</code> (2/4; SW/SE +)<br>vs H35: <code>{x3_74['paired_gain_vs_ctrl_h35']:+.5f}</code></td><td><span class="badge b-bad">G3 FAIL · DO NOT SUBMIT</span></td></tr>
-</tbody></table></div>
-<p class="small"><b>Key scientific findings:</b> (1) Switching from 20% component split to 25-km block withholding collapsed <code>CTRL_H35 &minus; CTRL_BLIND</code> by <b>62.9%</b> (<code>+{sh74['ctrl_h35_minus_ctrl_blind_standard']:.5f}</code> &rarr; <code>+{sh74['ctrl_h35_minus_ctrl_blind_block25km']:.5f}</code>), explaining why Family-E apron models win standard holdout yet score 0.0742 live. (2) Pre-publish staging caught <code>IR-25-LIDAR-BLIND-CONVERGENCE-20261026</code> on ABCD <code>H74_BLIND</code> (76.88% vs <code>h23-a-6pct.tif</code>, 74.52% vs <code>H72-CF</code>) and halted before writing to <code>docs/downloads/</code>; removing Family B in <code>H74_SUBSURF</code> cleared all 101 rasters density-aware (<code>flagged_lane = []</code>).</p>
-<h3>Nine Focus Sites (GEMSDOE24–36): Latest 2026-10-26 Candidate Audit, Scores/Estimates, Uniqueness &amp; Readiness</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Nine focus sites latest 2026-10-26 candidate audit">
-<table><thead><tr><th>Focus Site</th><th>Latest 2026-10-26 File (and Historical Reference)</th><th>Score / Holdout Proxy (Properly Labeled)</th><th>Estimated Leaderboard Score</th><th>Uniqueness vs GEMSDOE Portfolio</th><th>OK to Submit?</th></tr></thead>
-<tbody>{foc_latest_rows}</tbody></table></div></section>'''
-
-    h75_path = ROOT / "registry" / "run_card_h75_2026-10-27.json"
-    h75 = json.loads(h75_path.read_text()) if h75_path.exists() else None
-    h75_download_box = ""
-    h75_table_row = ""
-    h75_section = ""
-    if h75:
-        hd75 = h75["holdout_dti"]
-        x1_75 = hd75["experiment_1_standard_holdout"]
-        x2_75 = hd75["experiment_2_block25km_holdout"]
-        x3_75 = hd75["experiment_3_checkerboard25km_full_block_holdout"]
-        ln75 = h75["correlation_overlap_vs_registry"]
-        fw75 = ln75["focus_winners"]
-        ext75 = ln75["external_sparse"]
-        own75 = ln75["own_lineage"]
-        c3_sub = x3_75["contrasts"]["h75_cg_vs_ctrl_subsurf"]
-        c3_abcd = x3_75["contrasts"]["h75_cg_vs_ctrl_blind_abcd"]
-        c3_h35 = x3_75["contrasts"]["h75_cg_vs_ctrl_h35"]
-        cg3_ci = c3_sub["arms"]["H75_CG_BLIND"]["ci95"]
-        h35_3_ci = c3_h35["arms"]["CTRL_H35"]["ci95"]
-        nid75 = "note-research-h75"
-        h75_download_box = (
-            f'<div class="card" style="border-left:5px solid #1d4ed8;margin-bottom:14px">'
-            f'<p class="eyebrow">ACTIVE SESSION DELIVERABLE (27 OCT 2026) · H75 DCHB-CG CORRIDOR-GATED DUAL-REGIME LOQO B2 (3/3 BUDGET COMPLETE)</p>'
-            f'<h3>New Unique Research GeoTIFF: <code>{e(h75["submission_name"])}</code> — OK TO DOWNLOAD (TESTING / ARCHIVE): YES (AUTO-VALIDATED) · OK TO SUBMIT: NO — DO NOT SUBMIT</h3>'
-            f'<p>Content id <code>{e(h75["content_id"])}</code> · <code>{h75["positive_pixels"]:,}</code> binary dots · '
-            f'SHA-256 <code>{e(h75["raster_sha256"][:16])}…</code> · EPSG:32611 · <code>3730&times;3292</code> · '
-            f'0 NaN/Inf inside 5,167,373-px footprint · all values strictly in <code>[0, 1]</code> (prevents <code>Predicted values must be in range [0, 1]</code>) · '
-            f'3-expert Corridor-Gated LOQO (<code>M_corridor</code> 54 subsurface cols &times; <code>M_trace</code> 83 ABCD+H75_DCHB cols / <code>M_gap</code> 70 LiDAR-free cols, &gamma;=0.60, gap_scale=0.95; zero Family E). '
-            f'<b>Density-aware unique across ALL {ln75["registry_checked"]} registry rasters</b> (<code>flagged_lane = []</code>; '
-            f'resolved Family-B LiDAR scarp convergence <code>IR-25-LIDAR-BLIND-CONVERGENCE-20261026</code>: '
-            f'{100*ln75["vs_h23_a_6pct"]["cand_dots_within_3px"]:.2f}% vs <code>h23-a-6pct.tif</code> &le; 70%, '
-            f'{100*ln75["vs_h72_catfree"]["cand_dots_within_3px"]:.2f}% vs <code>H72-CF</code> &le; 70%, '
-            f'{100*fw75["b2_overlap"]:.2f}% vs <code>GEMSDOE32 B2</code>, {100*fw75["g27_h31_overlap"]:.2f}% vs <code>GEMSDOE27 H31-1</code>, '
-            f'{100*own75["worst_cand_dots_within_3px"]:.2f}% max own-lineage, {100*ext75["worst_cand_dots_within_3px"]:.2f}% max sparse external; '
-            f'surface |&rho;| &le; {ln75["surface_worst_abs_spearman"]:.4f}), while literal 70% flags the 3 &gt;73%-halo rasters (r13 lattice, pindrop). '
-            f'<b>Exp 3 25-km full-checkerboard BlockHoldout Gate G2 PASS</b> (<code>{x3_75["per_arm"]["H75_CG_BLIND"]["pooled_dti"]:.6f}</code> on '
-            f'<code>{x3_75["withheld_positive_occurrences"]:,}</code> withheld +; <code>{c3_sub["paired_gain"]:+.6f}</code> vs <code>CTRL_SUBSURF</code> in 4/4 folds; '
-            f'<code>{c3_abcd["paired_gain"]:+.6f}</code> vs <code>CTRL_BLIND_ABCD</code> in 3/4 folds; <code>L_gap</code> DTI <code>{x3_75["per_arm"]["H75_CG_BLIND"]["lidar_gap_dti"]:.6f}</code> '
-            f'beats <code>CTRL_H35</code> <code>{x3_75["per_arm"]["CTRL_H35"]["lidar_gap_dti"]:.6f}</code>), but pooled Slot Gate G1 vs <code>CTRL_H35</code> '
-            f'(<code>{c3_h35["paired_gain"]:+.6f}</code>) and literal r13 lattice remain negative. '
-            f'<b>Verdict: <code>{e(h75["verdict"])}</code> · OK to spend a weekly slot: NO — DO NOT SUBMIT.</b></p>'
-            f'<div class="row">'
-            f'<a class="btn" download href="downloads/{e(h75["submission_name"])}">↓ Download H75 unique research TIF (zeros outside) — DO NOT SUBMIT</a> '
-            f'<a class="btn alt" download href="downloads/{e(h75["nan_twin_name"])}">↓ NaN-outside twin ({e(h75["nan_twin_name"])})</a> '
-            f'<a class="btn alt" download href="downloads/{e(h75["zip_name"])}">↓ Single-TIFF ZIP ({e(h75["zip_name"])})</a> '
-            f'<a class="btn alt" download href="../registry/run_card_h75_2026-10-27.json">↓ H75 JSON Run Card</a> '
-            f'<a class="btn alt" href="../knowledge/39_h75_outcomes_and_executive_summary_2026-10-27.md">Full H75 2026-10-27 executive summary &amp; 0.2778 PhD proof</a>'
-            f'</div>'
-            f'<p class="small" style="margin:8px 0 2px"><b>DrivenData-format research identifier ({h75["note_chars"]} chars &le; 140 — DO NOT SUBMIT):</b> '
-            f'<button class="btn alt small" data-copy="{nid75}">Copy H75 research note</button></p>'
-            f'<div class="note"><code id="{nid75}">{e(h75["note"])}</code></div></div>'
-        )
-        h75_table_row = (
-            f'<tr><td class="submission-id">{e(h75["submission_name"])}</td>'
-            f'<td>NOT ESTIMATED — no calibrated leaderboard projection</td>'
-            f'<td>HOLDOUT-DTI {x3_75["per_arm"]["H75_CG_BLIND"]["pooled_dti"]:.6f} (Exp 3 25-km full BlockHoldout; evaluator {e(hd75["evaluator"])}; '
-            f'{x3_75["withheld_positive_occurrences"]:,} withheld positives; 95% CI [{cg3_ci[0]:.6f}, {cg3_ci[1]:.6f}]; '
-            f'G2 PASS: {c3_sub["paired_gain"]:+.5f} vs CTRL_SUBSURF 4/4 folds, {c3_abcd["paired_gain"]:+.5f} vs CTRL_BLIND_ABCD 3/4 folds; '
-            f'L_gap {x3_75["per_arm"]["H75_CG_BLIND"]["lidar_gap_dti"]:.5f} &gt; CTRL_H35 {x3_75["per_arm"]["CTRL_H35"]["lidar_gap_dti"]:.5f})</td>'
-            f'<td><b>LITERAL: NO / DENSITY-AWARE: YES.</b> <code>flagged_lane = []</code> across ALL {ln75["registry_checked"]} rasters '
-            f'({100*fw75["b2_overlap"]:.2f}% vs B2, {100*fw75["g27_h31_overlap"]:.2f}% vs G27 H31-1, '
-            f'{100*ext75["worst_cand_dots_within_3px"]:.2f}% max sparse vs <code>{e(ext75["worst_overlap_file"])}</code>, '
-            f'{100*own75["worst_cand_dots_within_3px"]:.2f}% max own-lineage); literal 70% flags only r13 lattice &amp; pindrop (&gt;73% halos).</td>'
-            f'<td><b>DO NOT SUBMIT.</b> Exp 3 G2 passed vs both blind controls, but pooled Slot Gate G1 ({c3_h35["paired_gain"]:+.5f} vs H35) &amp; literal r13 lattice remain negative.</td></tr>'
-        )
-        foc27_doc = json.loads((ROOT / "evidence" / "focus_sites_h75_latest_2026-10-27.json").read_text())
-        foc27_rows = "".join(
-            f'<tr><th scope="row"><a href="{e(s["repo_url"])}">{e(s["site"])}</a></th>'
-            f'<td class="submission-id">{e(s["latest_file"])}<br><small>Hist: <code>{e(s["historical_file"])}</code> ({s["historical_score_owner_reported"]:.4f} OWNER-REPORTED)</small></td>'
-            f'<td>{e(s["latest_metric_label"])}<br><small>Recent ML live: {e(s["latest_scored_ml"])}</small></td>'
-            f'<td>{e(s["estimated_leaderboard_score"])}</td>'
-            f'<td>{e(s["uniqueness_audit"])}</td>'
-            f'<td><b>{e(s["ok_to_submit"])}</b></td></tr>'
-            for s in foc27_doc["sites"]
-        )
-        sib27_rows = "".join(
-            f'<tr><th scope="row">{e(s["site"])}</th><td class="submission-id">{e(s["file"])}</td>'
-            f'<td>{e(s["status"])}</td><td>{e(s["uniqueness"])}</td><td><b>{e(s["ok_to_submit"])}</b></td></tr>'
-            for s in foc27_doc["extended_sibling_sites"]
-        )
-        h75_section = f'''<section class="card" id="h75-session"><p class="eyebrow">ACTIVE SESSION (27 OCT 2026) · 3/3 PRE-REGISTERED EXPERIMENTS (DRAWS 120–123) · FIRST REAL-DATA 25-KM FULL CHECKERBOARD BLOCKHOLDOUT</p>
-<h2>H75 Darcy Piezometric Seepage Barrier, U/Th Sinter Emergence, Oblique Riedel Shear &amp; Corridor-Gated Dual-Regime LOQO (DCHB-CG)</h2>
-<p><b>Pre-registered before feature build or fitting:</b>
-<a href="../knowledge/38_preregistered_h75_dchb_cg_2026-10-27.md">4 ranked hypotheses &amp; frozen DCHB-CG design (<code>12931bb</code>)</a> ·
-<a href="../knowledge/39_h75_outcomes_and_executive_summary_2026-10-27.md">2026-10-27 Multi-site executive summary, 17-raster live forensics &amp; 0.2778 PhD proof</a> ·
-<a href="../registry/run_card_h75_2026-10-27.json">H75 JSON Run Card</a> ·
-<a href="../registry/review_passes_h75_2026-10-27.json">3-pass review receipt</a> ·
-<a href="../evidence/h75_exp1_standard/analysis.json">Exp 1 standard analysis</a> ·
-<a href="../evidence/h75_exp2_block25km/analysis.json">Exp 2 block25km analysis</a> ·
-<a href="../evidence/h75_exp3_checkerboard25km/analysis.json">Exp 3 full-checkerboard BlockHoldout analysis</a>.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Four ranked H75 geological hypotheses">
-<table><thead><tr><th>Rank</th><th>Hypothesis &amp; Official Layers</th><th>Physical Signature &amp; Why INGENIOUS Catalogue Misses It</th><th>Named Non-Fault Mimic</th><th>Repo Novelty, Cost &amp; Official Data</th><th>Planning Bracket &amp; Outcome</th></tr></thead>
-<tbody>
-<tr><td><b>1</b></td><td><b>H75-1 · DCHB-CG</b><br><small>GDR #1391 <code>det_elev</code>, <code>cond_surf</code>, <code>depth_to_base_surf</code>, <code>rtp</code>, <code>iso_grav_anom</code>, <code>geod_shearrate</code>, <code>gdr_wellspring</code> (<code>temp_c</code>, <code>geothermquartz_c</code>; <code>dist_known_fault_px</code> banned); GeoDAWN <code>Th</code>, <code>UTh</code>, <code>TMI_up150</code>; 3DEP <code>L_step_max</code>, <code>L_coh100</code>, <code>L_strike</code>, <code>L_valid</code></small></td><td>Directed 3-km Darcy seepage impinging on smectite gouge / basement steps + Th-normalized U/Th sinter/travertine emergence + sin<sup>2</sup>(&theta;<sub>mic</sub>&minus;&theta;<sub>mac</sub>) shoreline deconfounder + &plusmn;17&deg; Byerlee Riedel R-shear resonance + E&ndash;W flight-line-destriped Blakely contact spine, coupled via &gamma;=0.60 Corridor-Gated Dual-Regime LOQO across the 24.66% <code>L_valid=0</code> gap.</td><td>Unfaulted volcanic-front permeability pinch-outs, perched cold-spring caliche aprons, oblique Lake Lahontan spit cusps, dipping Mesozoic pluton contacts</td><td>First Darcy hydraulic-head &times; MT gouge barrier, first U/Th &times; quartz-enthalpy emergence, first &plusmn;17&deg; Riedel shear operator, first E&ndash;W aeromagnetic destriper, and first real-data <code>BlockHoldout</code> + <code>L_valid=0</code> dual-regime gate (~75.1 min CPU across 3 exps; SHA-pinned GDR #1391 + GeoDAWN + 3DEP).</td><td>Planning: <code>+0.002..+0.008</code><br><b>Exp 3 BlockHoldout G2 PASS</b> (<code>+0.0203</code> vs Subsurf, <code>+0.0038</code> vs ABCD; <code>L_gap</code> &gt; H35); Slot G1 FAIL</td></tr>
-<tr><td><b>2</b></td><td><b>H75-2 · VVEA</b><br><small>GDR #1391 <code>gdr_volcanic_vents_in_footprint.csv</code> (428 vents, <code>dist_known_fault_px</code> excluded), <code>rtp</code>, <code>TMI_up150</code>, <code>iso_grav_anom_hg</code></small></td><td>Two-point anisotropic volcanic-vent feeder-dike alignment azimuths corroborated by upward-continued magnetic/gravity gradients beneath intact Cenozoic basalt tables.</td><td>Constructional lava-flow inflation ridges &amp; radial caldera ring fractures</td><td><code>gdr_volcanic_vents_in_footprint.csv</code> has never been read by any <code>src/gems25/*.py</code> module (~20 min CPU; already SHA-pinned locally from GDR #1391).</td><td>Planning: <code>+0.002..+0.006</code><br>Deferred (3/3 budget cap)</td></tr>
-<tr><td><b>3</b></td><td><b>H75-3 · BTHP</b><br><small>GDR #1391 <code>tc</code>, <code>depth_to_base_surf</code>, <code>cond_surf</code>, <code>det_elev</code>, <code>D_gdr_quartz5km</code></small></td><td>1-D conductive sediment-blanket thermal resistance R<sub>blanket</sub> = H<sub>sed</sub>/k<sub>sed</sub> residual isolating deep convective upflow plumes beneath thick (&gt;500 m, 36.2% footprint) grabens.</td><td>Radiogenic Mesozoic granites &amp; dark low-albedo basaltic talus</td><td>First conductive-blanket heat-flow de-masking of <code>tc</code> (~15 min CPU; cached GDR #1391).</td><td>Planning: <code>+0.001..+0.005</code><br>Deferred (3/3 budget cap)</td></tr>
-<tr><td><b>4</b></td><td><b>H75-4 · WSM-SHMAX</b><br><small>GFZ World Stress Map 2025 <code>wsm2025.csv</code> + <code>geod_shearrate</code>, <code>iso_grav_anom_hg</code>, <code>L_strike</code></small></td><td>Spatially interpolated borehole-breakout / focal-mechanism S<sub>Hmax</sub>(x) Barton&ndash;Zoback slip-dilation criticality &tau;/&sigma;&prime;<sub>n</sub> across Walker Lane &rarr; Basin-and-Range rotation.</td><td>Regional ductile shear zones &amp; gravitational sackung scarps</td><td>First observational borehole/focal stress-azimuth field vs scalar strain invariants (~35 min CPU + pin; GFZ CC-BY 4.0).</td><td>Planning: <code>+0.002..+0.007</code><br>Deferred (external fetch + 3/3 cap)</td></tr>
-</tbody></table></div>
-<div class="table-scroll" tabindex="0" role="region" aria-label="H75 3-experiment paired holdout results">
-<table><thead><tr><th>Experiment &amp; Virgin Draws</th><th>Withheld +</th><th>Canary Max</th><th>Controls HOLDOUT-DTI</th><th>H75_CG_BLIND HOLDOUT-DTI [95% CI]</th><th>Paired Contrasts (Folds +)</th><th>Gate Outcome</th></tr></thead>
-<tbody>
-<tr><td><b>Exp 1 · Standard 20%-Component Holdout</b><br><code>draws [120, 121]</code></td><td>{x1_75['withheld_positive_occurrences']:,}</td><td>{x1_75['leakage_canary']['max_canary_auc']:.4f}</td><td>H35: <code>{x1_75['per_arm']['CTRL_H35']['pooled_dti']:.5f}</code><br>Subsurf: <code>{x1_75['per_arm']['CTRL_SUBSURF']['pooled_dti']:.5f}</code><br>Blind ABCD: <code>{x1_75['per_arm']['CTRL_BLIND_ABCD']['pooled_dti']:.5f}</code></td><td><b><code>{x1_75['per_arm']['H75_CG_BLIND']['pooled_dti']:.5f}</code></b><br><small>L_gap: <code>{x1_75['per_arm']['H75_CG_BLIND']['lidar_gap_dti']:.5f}</code></small></td><td><b>vs Subsurf: <code>{x1_75['contrasts']['h75_cg_vs_ctrl_subsurf']['paired_gain']:+.5f}</code> (4/4)</b><br>vs Blind ABCD: <code>{x1_75['contrasts']['h75_cg_vs_ctrl_blind_abcd']['paired_gain']:+.5f}</code><br>vs H35: <code>{x1_75['contrasts']['h75_cg_vs_ctrl_h35']['paired_gain']:+.5f}</code></td><td><span class="badge b-bad">Slot Gate G1 FAIL</span></td></tr>
-<tr><td><b>Exp 2 · 25-km Tile-Sampled H75-BW</b><br><code>draws [120, 121]</code></td><td>{x2_75['withheld_positive_occurrences']:,}</td><td>{x2_75['leakage_canary']['max_canary_auc']:.4f}</td><td>H35: <code>{x2_75['per_arm']['CTRL_H35']['pooled_dti']:.5f}</code><br>Subsurf: <code>{x2_75['per_arm']['CTRL_SUBSURF']['pooled_dti']:.5f}</code><br>Blind ABCD: <code>{x2_75['per_arm']['CTRL_BLIND_ABCD']['pooled_dti']:.5f}</code></td><td><b><code>{x2_75['per_arm']['H75_CG_BLIND']['pooled_dti']:.5f}</code></b><br><small><b>L_gap: <code>{x2_75['per_arm']['H75_CG_BLIND']['lidar_gap_dti']:.5f}</code></b> (+18.8% vs ABCD)</small></td><td><b>vs Subsurf: <code>{x2_75['contrasts']['h75_cg_vs_ctrl_subsurf']['paired_gain']:+.5f}</code> (3/4)</b><br>vs Blind ABCD: <code>{x2_75['contrasts']['h75_cg_vs_ctrl_blind_abcd']['paired_gain']:+.5f}</code> (SE <code>+0.0266</code>)</td><td><span class="badge b-warn">L_gap PASS · G1 FAIL</span></td></tr>
-<tr><td><b>Exp 3 · 25-km Full Checkerboard BlockHoldout</b><br><code>virgin draws [122, 123]</code> (100% test-block hiding)</td><td><b>{x3_75['withheld_positive_occurrences']:,}</b></td><td><b>{x3_75['leakage_canary']['max_canary_auc']:.4f}</b></td><td>H35: <code>{x3_75['per_arm']['CTRL_H35']['pooled_dti']:.5f}</code> [{h35_3_ci[0]:.4f}, {h35_3_ci[1]:.4f}]<br>Subsurf: <code>{x3_75['per_arm']['CTRL_SUBSURF']['pooled_dti']:.5f}</code><br>Blind ABCD: <code>{x3_75['per_arm']['CTRL_BLIND_ABCD']['pooled_dti']:.5f}</code></td><td><b><code>{x3_75['per_arm']['H75_CG_BLIND']['pooled_dti']:.5f}</code></b> [{cg3_ci[0]:.4f}, {cg3_ci[1]:.4f}]<br><small><b>L_gap: <code>{x3_75['per_arm']['H75_CG_BLIND']['lidar_gap_dti']:.5f}</code> (&gt; CTRL_H35!)</b></small></td><td><b>vs Subsurf: <code>{c3_sub['paired_gain']:+.5f}</code> (4/4, 8/8 cells)</b><br><b>vs Blind ABCD: <code>{c3_abcd['paired_gain']:+.5f}</code> (3/4)</b><br>vs H35: <code>{c3_h35['paired_gain']:+.5f}</code> (<b>beats H35 in 2/4 folds!</b>)</td><td><span class="badge b-ok">Gate G2 PASS</span><br><span class="badge b-bad">Slot G1 FAIL</span></td></tr>
-</tbody></table></div>
-<h3>Nine Focus Sites (GEMSDOE24–36): Updated 2026-10-27 Executive Summary, Live Scores, Uniqueness &amp; Eligibility</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Nine focus sites 2026-10-27 executive summary">
-<table><thead><tr><th>Focus Site</th><th>Latest File to Download (and Historical Scored Anchor)</th><th>Score / Holdout Status (Strictly Labeled)</th><th>Estimated Leaderboard Score</th><th>Uniqueness Across GEMSDOE Portfolio</th><th>Eligible to Submit?</th></tr></thead>
-<tbody>{foc27_rows}</tbody></table></div>
-<h3>Extended Sibling Sites (GEMSDOE48–92, KANLERGEMSDOE1–3, WBGGEMSDOE1–3, EUGGEMSDOE1–3, GINNYGEMSDOE1–3)</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Extended sibling sites 2026-10-27 audit">
-<table><thead><tr><th>Sibling Site / Group</th><th>Audited File(s)</th><th>Score / Holdout Status (Strictly Labeled)</th><th>Uniqueness &amp; Audit Note</th><th>Eligible to Submit?</th></tr></thead>
-<tbody>{sib27_rows}</tbody></table></div></section>'''
-
-    nid = "note-primary-h72"
-    download = (
-        f'<p><b>Research-archive download: YES (local inspection/testing only). Competition-ready download: NO.</b> '
-        f'The already-existing artifact has content id <code>{e(featured["content_id"])}</code> '
-        f'(<code>{featured["positive_pixels"]:,}</code> binary dots, EPSG:32611, <code>3730&times;3292</code>, '
-        f'zeros outside, zero NaN/Inf, all values in <code>[0, 1]</code>). No new TIF was generated in this review. '
-        f'<b>OK TO SUBMIT: NO · OK to spend a weekly slot: NO — DO NOT SUBMIT.</b> '
-        f'H72-3 passed the format validator but fails the strict literal registry lane despite its density-aware comparison; '
-        f'it also failed the same-run H35 holdout gate. ROD/POL3/OLIC/D01 wrote no new competition TIFF.</p>'
-        f'<div class="row">'
-        f'<a class="btn" download href="downloads/{e(featured["file"])}">↓ Download research archive for inspection — DO NOT SUBMIT</a> '
-        f'<a class="btn alt" download href="downloads/{e(featured["zip"])}">↓ Research ZIP ({e(featured["zip"])})</a> '
-        f'<a class="btn alt" download href="../registry/run_card_h72_2026-10-26.json">↓ H72 research run card JSON</a>'
-        f'</div>'
-        f'<p class="small" style="margin:8px 0 2px"><b>Research identifier note (&le;140 chars — NOT for DrivenData):</b> '
-        f'<button class="btn alt small" data-copy="{nid}">Copy research identifier</button></p>'
-        f'<div class="note"><code id="{nid}">{e(featured["note"])}</code></div>'
-    )
-    inventory_path = ROOT/'docs/data/download_audit.json'
-    inventory_section = ''
-    if inventory_path.exists():
-        inventory = json.loads(inventory_path.read_text())
-        inventory_rows = ''.join(
-            f'<tr><td><a download href="downloads/{e(r["file"])}">{e(r["file"])}</a></td>'
-            f'<td>{"PASS" if r["format_valid"] else "FAIL"} (local only)</td>'
-            '<td>Unknown — no calibrated estimate</td>'
-            f'<td>{len(r["identical_footprint_files"])} identical local footprint variant(s); '
-            'cross-site novelty unproven</td><td>NO — testing only</td></tr>'
-            for r in inventory['files'])
-        inventory_section = f'''<section><h2>Exactly what can I download and submit?</h2>
-<p><a href="../knowledge/29_download_audit_and_next_hypotheses_2026-10-26.md">Latest audit, ranked future hypotheses and limitations</a>.</p>
-<p><b>No file is currently approved to submit.</b> The table below audits the actual shipped files,
-not their names. Format validity does not predict a high score or prove novelty.
-Audit time: <code>{e(inventory['generated_utc'])}</code>.
-{len(inventory['files'])} TIFFs; {len({r['footprint_sha256'] for r in inventory['files'] if r['footprint_sha256']})}
- distinct finite footprint prediction arrays. NaN-outside and zero-outside variants are not new predictions.</p>
-<p><a href="data/download_audit.json" download>Download all exact-file validator receipts and identity groups (JSON)</a>.
-Leaderboard estimates are unknown: a catalogue-gap HOLDOUT-DTI is not a calibrated competition prediction.
-Historical scores in the nine-site table are OWNER-REPORTED, not ORGANIZER-CONFIRMED.</p>
-<details><summary>Show every downloadable TIFF, estimated score and submission status</summary>
-<div class="table-scroll"><table><thead><tr><th>File to download (research only)</th><th>Format</th>
-<th>Estimated leaderboard score</th><th>Unique?</th><th>OK to submit?</th></tr></thead>
-<tbody>{inventory_rows}</tbody></table></div></details></section>'''
-
-    pm = h73['holdout_dti']
-    bw = h73bw['holdout_dti']
-    pm_lane = h73['correlation_overlap_vs_registry']
-    missing_cache = [x['path'] for x in h73preflight['required_artifacts'] if not x['exists']]
-    h73_section = f'''<section id="h73-status" class="review-decision">
-<span class="badge b-bad">NO NEW TIF · H73-BW BLOCKED BEFORE FIT · NO SLOT</span>
-<h2>Latest diagnostic: H73-PM remains negative; H73-BW cache gate is blocked</h2>
-<p>The prior H73-PM propensity-matched H35 screen recorded <b>HOLDOUT-DTI {pm['pm_deapron_pooled']:.6f}</b>
-(95% CI [{pm['pm_deapron_ci95'][0]:.6f}, {pm['pm_deapron_ci95'][1]:.6f}]; {pm['withheld_positive_occurrences']:,}
-withheld-positive occurrences; evaluator <code>{e(pm['evaluator'])}</code>) versus same-run CTRL_H35
-<code>{pm['ctrl_h35_pooled']:.6f}</code>. It failed its same-run gate; these values are catalogue-gap proxy metrics,
-<b>not competition scores or projections</b>. Its far-field score beat the blind control by +0.006740 but remained below H35.
-The old H73-PM artifact's exact content is distinct, but the strict literal lane audit flags the dense r13 lattice;
-that file is inspection-only, not lane-cleared.</p>
-<div class="table-scroll"><table><thead><tr><th>Downloadable file</th><th>Estimated competition score</th><th>Saved HOLDOUT-DTI (proxy)</th><th>Unique / lane status</th><th>OK to submit?</th></tr></thead><tbody>
-<tr><td><a download href="downloads/{e(h73['submission_name'])}"><code>{e(h73['submission_name'])}</code></a></td>
-<td>NOT ESTIMATED</td><td>{pm['pm_deapron_pooled']:.6f} [{pm['pm_deapron_ci95'][0]:.6f}, {pm['pm_deapron_ci95'][1]:.6f}]; {pm['withheld_positive_occurrences']:,} withheld positives</td>
-<td>Content id <code>{e(h73['content_id'])}</code> is distinct; strict literal lane FAIL ({e(pm_lane['strict_verdict'])}; flagged: {e(', '.join(pm_lane['flagged_literal']))})</td><td><b>NO — DO NOT SUBMIT</b></td></tr>
-<tr><td>H73-BW diagnostic candidate: <b>no file produced</b></td><td>NOT ESTIMATED</td><td>{e(bw['reason'])}</td><td>Not assessed; no surface or final dots</td><td><b>NO</b></td></tr>
-</tbody></table></div>
-<p><b>Why no H73-BW result:</b> the read-only preflight is <code>{e(h73preflight['status'])}</code>; all {len(missing_cache)} required shared-cache artifacts are missing
-({e(', '.join(missing_cache))}). The loader that can build the H34 sidecar was not called. No restore, cache rebuild, feature canary, model fit,
-HOLDOUT-DTI, candidate surface, lane check, or new raster was run. The conditional decision permits one evaluation-only diagnostic because
-H73-PM had far-field lift over the blind control, but it does not waive H73-PM's failure against H35 or authorize promotion.</p>
-<p><a href="../knowledge/34_h73_bw_block_selector_2026-10-26.md">H73-BW conditional go/no-go and frozen design</a> ·
-<a href="../evidence/h73_bw_preflight_2026-10-26.json">Read-only cache receipt</a> ·
-<a href="../registry/run_card_h73_bw_2026-10-26.json">H73-BW run card (metrics null)</a> ·
-<a href="../knowledge/35_h73_bw_followup_review_2026-10-26.md">H73-BW follow-up review</a> ·
-<a href="../knowledge/33_h73_outcomes_and_executive_summary_2026-10-26.md">Prior H73-PM outcomes</a> ·
-<a href="../registry/run_card_h73_2026-10-26.json">Prior H73-PM run card</a>.</p></section>'''
-
-    apfl2_path = ROOT/'registry/run_card_apfl2_2026-10-26.json'
-    apfl2 = json.loads(apfl2_path.read_text()) if apfl2_path.exists() else None
-    apfl2_section = ''
-    if apfl2:
-        x1 = apfl2['holdout_dti']['exp1_direct']
-        x2 = apfl2['holdout_dti']['exp2_hgb']
-        cnd, ctl = x2['candidate'], x2['control_h35']
-        apfl2_section = f'''<section class="card"><p class="eyebrow">PARALLEL SESSION · APFL LANE · TWO FROZEN SCREENS + OCEM DIAGNOSTIC · NEGATIVE</p>
-<h2>APFL piedmont-flexure completion — both screens negative</h2>
-<p><b>Exp 1 (DIRECT, draws 60–61):</b> HOLDOUT-DTI <code>{x1['candidate']['pooled_dti']:.6f}</code> vs same-run H35 <code>{x1['control_h35']['pooled_dti']:.6f}</code> (gain {x1['gate']['mean_gain']:+.4f}, {x1['gate']['folds_positive']}/4 folds) — FAIL.
-<b>Exp 2 (H35+APFL columns, draws 62–63):</b> HOLDOUT-DTI <code>{cnd['pooled_dti']:.6f}</code> [{cnd['ci_95'][0]:.4f}, {cnd['ci_95'][1]:.4f}], {cnd['withheld_positives']:,} withheld positives, vs H35 <code>{ctl['pooled_dti']:.6f}</code> (gain {x2['gate']['mean_gain']:+.4f}, {x2['gate']['folds_positive']}/4 folds) — FAIL.
-Canary max AUC {x1['canary']['max_feature_auc']:.3f} / {x2['canary']['max_feature_auc']:.3f} (≤0.90). Evaluator <code>gems25.holdout.v1.2-buffered-4quad-pooled-dti</code>. Catalogue-gap proxy only — not a leaderboard score or estimate.</p>
-<p><b>Exp 3 (OCEM diagnostic):</b> B=2 collar with budget refill is ~neutral on this proxy; the live B2 effect was deletion without refill. A ≥200 m off-catalogue truth restriction is vacuous here.</p>
-<p><a href="../knowledge/29_preregistered_apfl_completion_2026-10-26.md">Pre-registration</a> ·
-<a href="../knowledge/30_executive_summary_and_apfl_outcomes_2026-10-26.md">Executive summary &amp; outcomes (knowledge/30)</a> ·
-<a href="../registry/run_card_apfl2_2026-10-26.json">Run card</a> ·
-<a href="../evidence/focus_audit_session_2026-10-26.json">Fresh nine-site pixel audit</a>.</p></section>'''
-    historical = 'gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif'
-    rows, cards = [], []
-    exact_mask_notes = {
-        "GEMSDOE24": "Different mask; D1.5 thinning of the older H19-5 parent.",
+def render_body(root_page: bool = False) -> str:
+    card = read_json("registry/run_card_2026-10-27.json")
+    focus = read_json("evidence/focus_winners_reaudit_2026-10-27.json")
+    geometry = read_json("evidence/lane_preflight_2026-10-27.json")
+    h78 = read_json("registry/run_card_h78_2026-10-27.json")
+    h79 = read_json("registry/run_card_h79_2026-10-27.json")
+    h74 = read_json("registry/run_card_h74_2026-10-26.json")
+    h75 = read_json("registry/run_card_h75_2026-10-27.json")
+    h75_cg = read_json("registry/run_card_h75_dchb_cg_2026-10-27.json")
+    sib_cg = read_json("evidence/focus_sites_h75_dchb_cg_latest_2026-10-27.json")
+    h71 = read_json("registry/run_card_h71_2026-10-26.json")["holdout_dti"]
+    subs = read_json("registry/submissions.json")["files"]
+    archive = {s["content_id"]: s for s in subs if s["file"].endswith("-zeros.tif")}
+    download = "docs/downloads/" if root_page else "downloads/"
+    repo = "" if root_page else "../"
+    h78_name = h78["submission"]["name"]
+    descriptions = {
+        "GEMSDOE24": "Different positive mask in this nine-file comparison; H19-5 D1.5 lineage.",
         "GEMSDOE25": "Exact-mask duplicate of GEMSDOE30 (D2.8).",
-        "GEMSDOE27": "Different mask; 97.95% lies in the older H19-5/D1.5 lineage.",
-        "GEMSDOE28": "Exact-mask duplicate of GEMSDOE31 (R1).",
+        "GEMSDOE27": "Different mask; D1.5 topographic gap-closure lineage.",
+        "GEMSDOE28": "Rung30 winner differs from GEMSDOE31; GEMSDOE28's lower-scoring R1 is an Exact-mask duplicate of GEMSDOE31 (R1).",
         "GEMSDOE30": "Exact-mask duplicate of GEMSDOE25 (D2.8).",
-        "GEMSDOE31": "Exact-mask duplicate of GEMSDOE28 (R1).",
-        "GEMSDOE32": "Different mask; nested B2 pruning of D2.8/R1.",
-        "GEMSDOE33": "Different mask; R1 plus re-admitted collar/tip pixels.",
-        "GEMSDOE36": "Different mask; B2 plus 1,200 additional pixels.",
+        "GEMSDOE31": "R1 equals GEMSDOE28's lower-scoring R1, not its Rung30 winner.",
+        "GEMSDOE32": "B2 is D2.8 after removing pixels within 200 m of the mirrored catalogue; historical, not new.",
+        "GEMSDOE33": "Different mask in this nine-file comparison; not cleared against the full registry.",
+        "GEMSDOE36": "Contains the B2 mask plus 1,200 additional positive pixels.",
     }
-    for row in sorted(focus['sites'], key=lambda r: -r['owner_reported_score']):
-        rows.append(f'''<tr><th scope="row"><a href="{e(row['site_url'])}">{e(row['site'])}</a></th>
-<td class="submission-id">{e(row['submission'])}.tif</td>
-<td>{row['owner_reported_score']:.4f}<small>OWNER-REPORTED · not an organizer receipt</small></td>
-<td>Not estimated<small>No validated live-score model</small></td>
-<td>{e(exact_mask_notes[row['site']])}<small>Pixel identity / lineage from local mirror audit</small></td>
-<td><span class="badge b-warn">NO — historical; not slot-approved</span></td></tr>''')
-        cards.append(f'''<article class="card"><h3>{e(row['site'])}</h3><p>{e(row['mechanism'])}</p>
-<p class="small">{row['positive_pixels']:,} positive pixels · Local format checks: {'pass' if row['local_format_pass'] else 'fail'} ·
-Not approved as a new submission. SHA-256: <code class="wrap-hash">{row['sha256']}</code></p>
-<a href="{e(row['source_url'])}">Pinned source revision</a> · <a href="{e(row['site_url'])}">Original site</a></article>''')
-    d01_path = ROOT/'evidence/d01_density_2026-10-26/analysis.json'
-    d01_section = ''
-    if d01_path.exists():
-        d01 = json.loads(d01_path.read_text())
-        d01_rows = ''.join(
-            f'<tr><td>{int(k):,}</td><td>{v["pooled_dti"]:.4f}</td>'
-            f'<td>{v["ci95"][0]:.4f}–{v["ci95"][1]:.4f}</td><td>{v["emitted_median"]:,.0f}</td></tr>'
-            for k, v in d01['arms'].items())
-        lane_arm, cur_arm = d01['arms']['21713'], d01['arms']['70524']
-        d01_section = f'''<section id="d01-density"><h2>New test: what the lane budget costs in proxy performance</h2>
-<p>The strict gate alone does not say whether a lane-clean file could be competitive, so the preregistered D01 diagnostic measured the incumbent H35 surface at seven fixed emission caps.
-One fit per buffered quadrant, draws 60/61, spacing 2.4 px, every feature canary passed (maximum AUC 0.8025). <b>HOLDOUT-DTI</b>, α=0.2, β=0.8, 300 m kernel:</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="D01 density response"><table><thead><tr><th>Requested cap (full-footprint dots)</th><th>HOLDOUT-DTI</th><th>95% CI</th><th>Median emitted per quadrant</th></tr></thead><tbody>{d01_rows}</tbody></table></div>
-<p>The lane-compatible cap gives <b>{lane_arm['pooled_dti']:.4f}</b> versus <b>{cur_arm['pooled_dti']:.4f}</b> at the current request: paired difference
-<b>{lane_arm['paired_gain_vs_current']:+.4f}</b>, 95% CI [{lane_arm['paired_ci95'][0]:+.4f}, {lane_arm['paired_ci95'][1]:+.4f}], worse in every quadrant and both draws.
-Uniform thinning is therefore <b>not</b> a route to a higher score; the reported B2 gain is better explained by selective near-catalogue collar pruning than by uniform density reduction.
-Requested caps saturate at available ridge candidates, so this orders density regimes rather than simulating one exact file (recorded as IR-26-REQUESTED-CAP-SATURATION).</p>
-<p><a href="../knowledge/31_d01_outcome_2026-10-26.md">Scientific write-up and the policy decision required</a> ·
-<a href="../evidence/d01_density_2026-10-26/run_card.json">D01 run card</a> ·
-<a href="../evidence/d01_density_2026-10-26/analysis.json">Full paired results and evaluator hashes</a></p></section>'''
-    feasibility = json.loads((ROOT/'evidence/lane_feasibility_2026-10-26.json').read_text())
-    geometry = feasibility['geometry']
-    bounds = ''.join(f"<tr><td>{r['dots']:,}</td><td>{r['minimum_overlap']:.2%}</td><td>Impossible at this density</td></tr>"
-                     for r in feasibility['cases'])
-    coverage = focus['lattice_coverage']
+    winner_rows = []
+    for row in sorted(focus["sites"], key=lambda r: -r["owner_reported_score"]):
+        winner_rows.append(
+            f'<tr><th><a href="{e(row["site_url"])}">{e(row["site"])}</a></th>'
+            f'<td><a download href="{e(row["download_url"])}"><code>{e(row["file"])}</code></a>'
+            f'<small>{row["footprint_positive_pixels"]:,} positive pixels; pinned public mirror</small></td>'
+            f'<td>{row["owner_reported_score"]:.4f}<small>OWNER-REPORTED · no organizer receipt</small></td>'
+            f'<td>{e(descriptions[row["site"]])}</td><td><b>NO — historical file</b></td></tr>'
+        )
+    archive_rows = []
+    for cid, explanation in (
+        ("e035d75ca5d5", "H75-DCHB-CG: Exp 3 25-km Checkerboard Gate G2 PASS (+0.02031 vs SUBSURF, +0.00384 vs ABCD; L_gap beats H35); cleared 108 pre-merge sparse rasters, literal r13 & 72.34% post-merge EU3D-POE65 convergence fail."),
+        ("0a97fd71c3f3", "H75-POE65: H75_APRON 4/4 screen pass (+0.00176); CatFree POE65 literal r13 fail & below H35."),
+        ("3751606e1ce5", "H74: strict lane failed; H35 holdout gate failed."),
+        ("88bbebfe79b4", "H72-3: H35 FAIL · STRICT LANE FAIL."),
+        ("1d7c1e9ea55f", "H72-CF: holdout and literal lane failed."),
+        ("3646faf70507", "Objective diagnostic: no slot approval."),
+        ("1b7533ebb62b", "H73-PM: strict lane and H35 holdout failed."),
+    ):
+        item = archive[cid]
+        archive_rows.append(
+            f'<tr><td><a download href="{download}{e(item["file"])}"><code>{e(item["file"])}</code></a>'
+            f'<small>Research identifier: {e(item["note"])}</small></td>'
+            f'<td>NOT ESTIMATED</td><td>{e(explanation)}</td><td><b>NO — DO NOT SUBMIT</b></td></tr>'
+        )
+    cg_x1 = h75_cg["holdout_dti"]["experiment_1_standard_holdout"]
+    cg_x2 = h75_cg["holdout_dti"]["experiment_2_block25km_holdout"]
+    cg_x3 = h75_cg["holdout_dti"]["experiment_3_checkerboard25km_full_block_holdout"]
+    cg_ln = h75_cg["correlation_overlap_vs_registry"]
+    cg_ci3 = cg_x3["contrasts"]["h75_cg_vs_ctrl_subsurf"]["arms"]["H75_CG_BLIND"]["ci95"]
+    sib_rows = "".join(
+        f'<tr><td><b>{e(r["site"])}</b></td><td><code>{e(r["file"])}</code></td>'
+        f'<td>{e(r["status"])}</td><td>{e(r["uniqueness"])}</td><td><b>{e(r["ok_to_submit"])}</b></td></tr>'
+        for r in sib_cg["extended_sibling_sites"]
+    )
+    x1_75 = h75["holdout_dti"]["experiment_1_block25km_checkerboard"]
+    x2_75 = h75["holdout_dti"]["experiment_2_standard_holdout"]
+    ln75 = h75["correlation_overlap_vs_registry"]
+    bounds = "".join(f"<tr><td>{x['dots']:,}</td><td>{x['minimum_overlap']:.2%}</td><td>Impossible</td></tr>"
+                     for x in geometry["cases"])
     body = f'''<section class="hero"><p class="eyebrow">RESEARCH DECISION BRIEF / 27 OCTOBER 2026</p>
-<h1>Know what to submit.<br>Know when to stop.</h1>
-<p class="lead">Nine focus sites + 18 sibling site groups, one auditable comparison, and an unmistakable top-of-page verdict: <b>NEW UNIQUE H75-DCHB-CG RESEARCH TIF (<code>gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif</code>) — OK TO DOWNLOAD (TESTING / INSPECTION): YES (AUTO-VALIDATED) · OK TO SUBMIT TO DRIVENDATA: NO — DO NOT SUBMIT.</b> No predicted leaderboard scores.</p></section>
-{h75_download_box}
-{h74_download_box}
-{h73_section}
-<section class="review-decision"><span class="badge b-bad">NO ELIGIBLE COMPETITION TIF · OK TO SUBMIT: NO</span><h2>Archived H72-3 research artifact only — no competition-ready download (DO NOT SUBMIT)</h2>
-<p>{e(featured['title'])}. {e(featured['summary'])}</p>
-<p>Prior-session ROD stop: {status}</p>{download}
-<div class="row"><a class="btn" href="../evidence/rod_2026-10-26/run_card.json" download>Download ROD decision receipt</a>
-<a class="btn alt" href="#how-to-submit">Submission checklist</a>
-<a class="btn alt" href="../knowledge/39_h75_outcomes_and_executive_summary_2026-10-27.md">H75 2026-10-27 outcomes, 9-site + sibling tables &amp; 0.2778 PhD proof</a>
-<a class="btn alt" href="../registry/run_card_h75_2026-10-27.json">H75 run card</a>
-<a class="btn alt" href="../knowledge/37_h74_outcomes_and_executive_summary_2026-10-26.md">H74 outcomes, 0.2778 PhD proof &amp; 9-site table</a>
-<a class="btn alt" href="../registry/run_card_h74_2026-10-26.json">H74 run card</a>
-<a class="btn alt" href="../knowledge/31_h72_outcomes_and_portfolio_synthesis_2026-10-26.md">H72 outcomes, 0.2778 PhD proof &amp; 9-site synthesis</a>
-<a class="btn alt" href="../knowledge/32_repo_review_2026-10-26_61f81983.md">This review</a>
-<a class="btn alt" href="../registry/run_card_review_61f81983_2026-10-26.json">Review run card</a>
-<a class="btn alt" href="../evidence/download_audit_61f81983_2026-10-26.json">Exact-file audit</a>
-<a class="btn alt" href="../knowledge/29_current_checkout_review_2026-10-26.md">Current-checkout review</a></div></section>
-{inventory_section}
-<section><h2>Current H75-DCHB-CG, H74-SUBSURF &amp; existing H72-3 research archives: validation and eligibility decision</h2>
-<div class="table-scroll"><table><thead><tr><th>File</th><th>Estimated competition score</th><th>Saved HOLDOUT-DTI (proxy)</th><th>Unique under literal lane rule?</th><th>Decision</th></tr></thead><tbody>
-{h75_table_row}
-{h74_table_row}
-{h72_table_row}
-<tr><td class="submission-id">gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif</td>
-<td>NOT ESTIMATED — no calibrated leaderboard projection</td>
-<td>HOLDOUT-DTI {h71_result['pooled_dti']:.6f}; evaluator {e(h71_result['evaluator_version'])}; {h71_result['withheld_positives']:,} withheld positives; 95% CI [{h71_result['ci_95'][0]:.6f}, {h71_result['ci_95'][1]:.6f}]</td>
-<td><b>NO.</b> 100% within 3 px of the registered r13 lattice; threshold 70%.</td>
-<td><b>DO NOT SUBMIT.</b> Holdout failed vs H35; testing only.</td></tr></tbody></table></div>
-<p>HOLDOUT-DTI is a catalogue-gap proxy, not an organizer score or leaderboard forecast.</p></section>
-<section id="lane-feasibility"><h2>Strict-overlap feasibility audit</h2>
-<p>Freshly restored SHA-pinned template, labels and registry lattice match CRS, shape and transform.
-Only <b>{geometry['uncovered_pixels']:,}</b> eligible pixels lie outside that lattice's 3-pixel halo.
-For K distinct dots, at least max(0, K − {geometry['uncovered_pixels']:,}) must overlap.
-These are <b>COMPUTED GEOMETRY diagnostics, not performance scores</b>.</p>
-<table><thead><tr><th>Candidate dot budget K</th><th>Minimum unavoidable overlap</th><th>Literal 70% gate</th></tr></thead><tbody>{bounds}</tbody></table>
-<p>At most <b>21,713 dots</b> are not ruled out by this one necessary condition. Smaller budgets are not automatically feasible,
-unique, high-scoring or approved. No candidate was placed; no geological model was fitted in this audit.
-We did not exclude the dense reference or substitute a density-aware waiver.</p>
-<p><a href="../evidence/lane_feasibility_2026-10-26.json">Download the reproducible geometry receipt</a> ·
-<a href="../knowledge/29_lane_feasibility_plan_2026-10-26.md">Preregistered proof and three deferred geological hypotheses</a></p>
-<p><b>No new TIFF generated:</b> the preregistered budgets cannot pass the required gate. The existing research download above remains DO NOT SUBMIT.</p></section>
-{d01_section}
-<section><h2>What is the strongest historical evidence?</h2>
-<p><b>GEMSDOE32 B2 — 0.2778, OWNER-REPORTED.</b> It is the highest supplied historical result among these focus sites.
-It is already an earlier submission, so it is <b>not</b> eligible as a new unique artifact. No organizer receipt has been supplied.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Nine focus-site files, reported results, estimates, and eligibility"><table><thead><tr><th>Site</th><th>Historical file</th><th>Historical score</th><th>Estimated score for a new file</th><th>Focus-mask uniqueness</th><th>New submission eligible?</th></tr></thead>
-<tbody>{''.join(rows)}</tbody></table></div>
-<p class="small">Not a live leaderboard query and not a slot selection. The conflicting overall-leader claims 0.3195 and 0.4413 remain unverified.</p></section>
-<section><h2>Why B2 can work — and what it does not prove</h2>
-<p>Fresh pixel checks show B2 is exactly D2.8 with 6,436 predictions within 200 m of the supplied catalogue removed.
-GEMSDOE36 is B2 plus 1,200 predictions. GEMSDOE25 and 30 have identical masks; GEMSDOE28 R1 and 31 have identical masks.</p>
-<p>DTI rewards the strongest nearby prediction for each truth pixel while charging false-positive mass.
-Thinning can preserve coverage while removing redundant predictions. Collar pruning may reduce low-value emissions.
-<b>The hidden labels are unavailable, so this is a conditional explanation—not proof of the cause of the reported score.</b></p>
-<p>Formula: <code>S = T / (0.2(T + F) + 0.8N)</code>. Removing credit <i>t</i> and false-positive mass <i>f</i> helps only when
-<code>t/f &lt; 0.2S/(1−0.2S)</code>. No amount of filename novelty establishes that condition.</p>
-<a href="../knowledge/28_focus_review_2026-10-26.md">Read the scientific reasoning and limitations</a></section>
-<section><h2>New test: radiometric offset discontinuity</h2>
-<p>Does a compositional pattern match better after sliding one side of a scarp along strike? The preregistered ROD test uses cached K/Th/U and LiDAR step/coherence,
-not a copied prediction mask. Volcanic flow lobes, sediment sorting and survey seams can mimic this signature.</p>
-{outcome}<p><a href="../knowledge/27_preregistered_rod_2026-10-26.md">Four ranked hypotheses &amp; frozen design</a> ·
-<a href="../evidence/rod_2026-10-26/feature_canaries.json">Every-feature leakage canaries</a> ·
-<a href="../evidence/rod_2026-10-26/surface_lane.json">Pre-placement surface audit</a></p></section>
-{h75_section}
-{h74_section}
-{h72_section}
-{h72_cf_section}
-{pol3_section}
-{obj_section}
-{olic_section}
-{apfl2_section}
-<section><h2>The novelty constraint needs attention</h2>
-<p>The registered lattice's three-pixel halo covers <b>{coverage['coverage_fraction']*100:.4f}%</b> of eligible pixels.
-Only {coverage['uncovered_pixels']:,} pixels lie outside it. Under the literal overlap rule, a candidate above 21,713 unique dots cannot pass against that lattice,
-even before spacing constraints. This does <b>not</b> establish that every smaller candidate passes.</p>
-<p>No density exception was applied. No dots were moved merely to evade the registry.</p></section>
-<section><h2>Site-by-site executive findings</h2>{''.join(cards)}</section>
-<section id="how-to-submit"><h2>How a submission becomes eligible</h2>
-<ol class="steps"><li><b>Research gate.</b> Beat the same-run best comparable buffered holdout; report pooled HOLDOUT-DTI, evaluator version, withheld-positive count and 95% CI. Confirm on fresh draws.</li>
-<li><b>Novelty gate.</b> Check the surface before placement and exact final dots against the registry. Stop for rank correlation above 0.90 or more than 70% within 3 px. Renaming, changing compression or filling outside NaNs is not a new prediction.</li>
-<li><b>File gate.</b> One float32 GeoTIFF band, finite predictions in [0,1] throughout the template footprint, identical CRS, shape and geotransform. Use the shared writer; reject invalid data instead of silently clipping it.</li>
-<li><b>Selector gate.</b> Separate authorization and a verified remaining weekly slot are required. The software must not infer either from a format-pass receipt.</li>
-<li><b>Only after all gates pass:</b> download the exact approved hash-linked TIF, open the competition submission form, select that TIF (not this report or JSON), paste its ≤140-character note and save the organizer receipt. This project does not automate upload.</li></ol>
-<p><b>Today: stop at the failed gates.</b> No new competition file is approved. The weekly cap/remaining allowance was not freshly verified.</p>
-<details><summary>Historical file for learning only — never submit as a new file</summary>
-<p>This is the already-existing H66 artifact, not a new deliverable. Its newer user-reported result is 0.0742 (OWNER-REPORTED).</p>
-<a href="downloads/{historical}" download>Download historical H66 TIF — DO NOT SUBMIT</a>
-<p>Also archived for learning: APFL piedmont-flexure unique research TIF (testing-only, DO NOT SUBMIT) — <a href="downloads/gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-zeros.tif" download>gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-zeros.tif</a> (43,798 px, not slot-approved)</p>
+<h1>Know when to stop.</h1><p class="lead">The requested unique competition-ready TIFF remains unfulfilled. At 37,654 dots, literal overlap with the registered r13 lattice is at least 82.70%, and no catalogue-free candidate has yet beaten CTRL_H35 for weekly-slot approval. All downloads below are research/inspection archives only (<b>DO NOT SUBMIT</b>).</p>
+<div class="stats"><div class="stat"><b>Research-archive download: YES</b><span>Inspection/testing only.</span></div>
+<div class="stat"><b>Competition-ready TIF: NO</b><span>OK TO SUBMIT: NO — DO NOT SUBMIT.</span></div>
+<div class="stat"><b>Estimated competition score: UNKNOWN</b><span>No defensible leaderboard estimate is available.</span></div></div></section>
+<section class="review-decision" id="h75-dchb-cg"><span class="badge b-bad">RESEARCH ARCHIVE ONLY · EXP 3 CHECKERBOARD G2 PASS · LITERAL R13 &amp; CONCURRENT POE FAIL · DO NOT SUBMIT</span>
+<h2>Latest H75-DCHB-CG Corridor-Gated Dual-Regime LOQO B2 GeoTIFF &amp; 25-km Full Checkerboard BlockHoldout (draws 120–123)</h2>
+<p><a download href="{download}{e(h75_cg['submission_name'])}"><code>{e(h75_cg['submission_name'])}</code></a> · <a download href="{download}{e(h75_cg['nan_twin_name'])}">NaN-outside twin</a> · <a download href="{download}{e(h75_cg['zip_name'])}">matching ZIP</a> · <a download href="{repo}registry/run_card_h75_dchb_cg_2026-10-27.json">H75-DCHB-CG JSON Run Card</a> · <a href="{repo}knowledge/40_h75_dchb_cg_outcomes_and_executive_summary_2026-10-27.md">Full H75-DCHB-CG report, 27-repo table &amp; 0.2778 PhD proof</a> · <a href="{repo}registry/review_passes_h75_dchb_cg_2026-10-27.json">3 review passes</a> · <b>OK TO DOWNLOAD: YES (inspection/testing only) · OK TO SUBMIT: NO — DO NOT SUBMIT</b> (OK to spend a weekly slot: NO).</p>
+<p>Content id <code>{e(h75_cg['content_id'])}</code> · <code>{h75_cg['positive_pixels']:,}</code> binary dots · SHA-256 <code>{e(h75_cg['raster_sha256'])}</code> · EPSG:32611 · <code>3730&times;3292</code> · 0 NaN/Inf across all 5,167,373 footprint pixels in <code>[0, 1]</code> · research identifier: <code>{e(h75_cg['note'])}</code>. Pre-registered at <a href="{repo}knowledge/38_preregistered_h75_dchb_cg_2026-10-27.md"><code>12931bb</code></a> before code or fitting: five strictly catalogue-free hydrogeologic/radiometric/Riedel/destriped-Blakely operators (<code>H75_darcy_seepage_barrier</code>, <code>H75_uth_sinter_emergence</code>, <code>H75_oblique_piedmont_inflection</code>, <code>H75_riedel_obliquity_shear</code>, <code>H75_destriped_blakely_contact</code>) coupled across 3 LOQO experts via <code>P_cor^0.60 * P_trace^0.40</code> on <code>L_valid=1</code> and quantile-calibrated <code>0.95 * P_cor^0.60 * P_gap^0.40</code> across the 24.66% <code>L_valid=0</code> 3DEP gap.</p>
+<p><b>Holdout outcomes (HOLDOUT-DTI, virgin draws 120–123, all 2,184 standalone feature canaries &le; 0.8179 &le; 0.90):</b> (1) <b>Exp 1 (Standard Holdout, draws [120, 121], {cg_x1['withheld_positive_occurrences']:,} withheld +):</b> <code>H75_CG_BLIND</code> <code>{cg_x1['per_arm']['H75_CG_BLIND']['pooled_dti']:.5f}</code> (<code>+{cg_x1['contrasts']['h75_cg_vs_ctrl_subsurf']['paired_gain']:.5f}</code> vs <code>CTRL_SUBSURF</code> in 4/4 folds; <code>{cg_x1['contrasts']['h75_cg_vs_ctrl_blind_abcd']['paired_gain']:+.5f}</code> vs <code>CTRL_BLIND_ABCD</code>; <code>CTRL_H35</code> <code>{cg_x1['per_arm']['CTRL_H35']['pooled_dti']:.5f}</code>). (2) <b>Exp 2 (25-km Tile-Sampled H75-BW, draws [120, 121], {cg_x2['withheld_positive_occurrences']:,} withheld +):</b> <code>H75_CG_BLIND</code> <code>{cg_x2['per_arm']['H75_CG_BLIND']['pooled_dti']:.5f}</code> (<code>L_valid=0</code> gap DTI <code>{cg_x2['per_arm']['H75_CG_BLIND']['lidar_gap_dti']:.5f}</code>, +18.8% above <code>CTRL_BLIND_ABCD</code> <code>{cg_x2['per_arm']['CTRL_BLIND_ABCD']['lidar_gap_dti']:.5f}</code>). (3) <b>Exp 3 (25-km Full Checkerboard BlockHoldout hiding 100% of test-block components, virgin draws [122, 123], {cg_x3['withheld_positive_occurrences']:,} withheld +): Gate G2 PASS — <code>H75_CG_BLIND</code> <code>{cg_x3['per_arm']['H75_CG_BLIND']['pooled_dti']:.5f}</code> (95% CI <code>[{cg_ci3[0]:.4f}, {cg_ci3[1]:.4f}]</code>) beat BOTH <code>CTRL_SUBSURF</code> (<code>+{cg_x3['contrasts']['h75_cg_vs_ctrl_subsurf']['paired_gain']:.5f}</code>, 4/4 folds) and <code>CTRL_BLIND_ABCD</code> (<code>+{cg_x3['contrasts']['h75_cg_vs_ctrl_blind_abcd']['paired_gain']:.5f}</code>, 3/4 folds), beat <code>CTRL_H35</code> in 2/4 folds and on <code>L_valid=0</code> gap (<code>{cg_x3['per_arm']['H75_CG_BLIND']['lidar_gap_dti']:.5f}</code> vs <code>{cg_x3['per_arm']['CTRL_H35']['lidar_gap_dti']:.5f}</code>)</b>, while pooled Slot Gate G1 vs <code>CTRL_H35</code> (<code>{cg_x3['contrasts']['h75_cg_vs_ctrl_h35']['paired_gain']:+.5f}</code>) stayed negative. Cleared all {cg_ln['registry_checked']} pre-merge sparse rasters (<code>68.58% &le; 70%</code> vs <code>h23-a-6pct.tif</code>, <code>34.83%</code> vs B2, <code>27.22%</code> vs H78, <code>20.44%</code> vs H79); post-merge full-footprint 116-raster audit flags literal r13 lattice (100.00%; 82.70% min) and 72.34% 3-px dot convergence vs concurrent <code>h75-eu3d-poe65</code> (surface Spearman 0.1106) — <b>DO NOT SUBMIT.</b></p>
+<details><summary><b>4 Ranked Untried H75-DCHB-CG Hypotheses &amp; Extended Sibling Site Audit (GEMSDOE48..92, KANLER, WBG, EUG, GINNY)</b></summary>
+<div class="table-scroll"><table><thead><tr><th>Rank &amp; ID</th><th>Layers &amp; Physical Transform</th><th>Named Non-Fault Mimic</th><th>Planning Bracket &amp; Status</th></tr></thead><tbody>
+<tr><td><b>#1 H75-1 (DCHB-CG)</b></td><td><code>dem.tif</code>, <code>magnetotelluric.tif</code>, <code>gravity.tif</code>, <code>geodawn_rad_u8.tif</code>, GDR 1391 quartz enthalpy (no <code>dist_known_fault_px</code>), <code>lidar_scarp_features_u8.tif</code>, <code>magnetic.tif</code>: Darcy piezometric barrier + U/Th sinter + cross-contour shoreline deconfounder + &plusmn;17&deg; Riedel shear + destriped Blakely contact in 3-expert Corridor-Gated Dual-Regime LOQO.</td><td>Tertiary volcanic pinch-outs, perched cold-spring caliche aprons, oblique gravel spits, dipping pluton margins</td><td><code>+0.002..+0.008</code> BlockHoldout planning bracket (not a score) · <b>IMPLEMENTED &amp; VALIDATED (Exp 3 Gate G2 PASS)</b></td></tr>
+<tr><td><b>#2 H75-2 (PBVD)</b></td><td><code>gravity.tif</code> (<code>isostatic_grav</code>, <code>depth_to_base_surf</code>), <code>dem.tif</code>: Asymmetric Playfair-basin volume deficit &amp; hanging-wall depocenter tilt.</td><td>Differential compaction over buried paleovalleys or caldera fill</td><td><code>+0.001..+0.004</code> planning bracket · Deferred</td></tr>
+<tr><td><b>#3 H75-3 (VVAC)</b></td><td>GDR 1391 <code>gdr_volcanic_vents_in_footprint.csv</code> + <code>magnetic.tif</code> + <code>magnetotelluric.tif</code>: Anisotropic dyke-vent chain alignment with Analytic Signal &amp; mid-crustal MT phase tensor.</td><td>Topographically channeled basaltic lava-flow lobes</td><td><code>+0.0005..+0.003</code> planning bracket · Deferred</td></tr>
+<tr><td><b>#4 H75-4 (KTHP)</b></td><td><code>geodawn_rad_u8.tif</code> (<code>K, eTh, eU</code>) + <code>dem.tif</code>: Cross-divide K/eTh provenance discontinuity across D8 watershed ridges.</td><td>Stratigraphic tuff-on-carbonate unconformities &amp; aeolian loess mantles</td><td><code>+0.0005..+0.0025</code> planning bracket · Deferred</td></tr>
+</tbody></table></div>
+<div class="table-scroll"><table><thead><tr><th>Sibling Group</th><th>Top Verified Artifact / State</th><th>Score / Evidence Class</th><th>Uniqueness &amp; Audit Status</th><th>OK to submit?</th></tr></thead><tbody>{sib_rows}</tbody></table></div>
 </details></section>
-<section><h2>Sources, freshness and next work</h2>
-<ul><li><a href="../evidence/focus_audit_2026-10-26.json">Fresh mirror hashes, mask identities and nine source revisions</a> — owner mirrors, not organizer authentication.</li>
-<li><a href="../evidence/focus_audit_local_2026-10-26.json">This branch's independent nine-site raster re-audit</a> — computed geometry from SHA-pinned local mirrors; scores remain OWNER-REPORTED.</li>
-<li><a href="../evidence/focus_format_2026-10-26.json">Automated exact-template format receipts</a> — format only, not performance approval.</li>
-<li><a href="../evidence/official_reference_2026-10-26.json">Fresh official reference-repository evidence</a> — CPU training is supported; its training loss is not an independent distance-weighted scorer.</li>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official problem and format</a> ·
-<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Rules PDF</a> ·
-<a href="https://gdr.openei.org/submissions/1391">GDR 1391</a> ·
-<a href="https://www.usgs.gov/3d-elevation-program">USGS 3DEP</a> — manual-review links, not freshly fetched here.</li></ul>
-<p>Next: resolve the dense-lattice policy before another high-budget run; address SGMC proxy contamination before confirmation; authenticate external source bytes and preserve all failed results.
-Automatic source availability is not automatic scientific verification or a live leaderboard feed.</p>
-<p><a href="../knowledge/29_repository_review_2026-10-26.md">This repository review and limitations</a> ·
-<a href="../registry/run_card_repo_review_2026-10-26_session.json">This review's run card</a> ·
-<a href="history.html">Historical experiment/download archive</a></p></section>'''
-    if root_page:
-        body = body.replace('href="../', 'href="').replace('href="downloads/', 'href="docs/downloads/')
-        body = body.replace('href="history.html"', 'href="docs/history.html"')
-        body = body.replace('href="data/', 'href="docs/data/')
+<section class="review-decision" id="h75-session"><span class="badge b-bad">RESEARCH ARCHIVE ONLY · LITERAL R13 LANE FAIL · DO NOT SUBMIT</span>
+<h2>Latest H75-EU3D-POE65 research GeoTIFF &amp; 25-km Checkerboard BlockHoldout execution (draws 130–133)</h2>
+<p><a download href="{download}{e(h75['submission_name'])}"><code>{e(h75['submission_name'])}</code></a> · <a download href="{download}{e(h75['nan_twin_name'])}">NaN-outside twin</a> · <a download href="{download}{e(h75['zip_name'])}">matching ZIP</a> · <a download href="{repo}registry/run_card_h75_2026-10-27.json">H75 JSON Run Card</a> · <a href="{repo}knowledge/39_h75_outcomes_and_executive_summary_2026-10-27.md">Full H75 report, 9-site table &amp; 0.2778 PhD proof</a> · <b>OK TO DOWNLOAD: YES (inspection/testing only) · OK TO SUBMIT: NO — DO NOT SUBMIT</b> (OK to spend a weekly slot: NO).</p>
+<p>Content id <code>{e(h75['content_id'])}</code> · <code>{h75['positive_pixels']:,}</code> binary dots · SHA-256 <code>{e(h75['raster_sha256'])}</code> · EPSG:32611 · <code>3730&times;3292</code> · 0 NaN/Inf across all 12,279,160 cells in <code>[0, 1]</code> · research identifier: <code>{e(h75['note'])}</code>. Pre-registered at <a href="{repo}knowledge/38_preregistered_h75_eu3d_poe_block25km_2026-10-27.md"><code>3053f69</code></a> before code or fitting: two-stage <code>P_scarp^0.35 * P_root^0.65</code> coupling 28 Family-B/RBDT scarp columns with 55 static <code>ACD + H34 + H74_RMPS + H75_EU3D</code> (7&times;7 3-D Euler homogeneity <i>N</i>=0.5 contact vs <i>N</i>=2.0/2.5 plug + Morris WNW–ESE slip/dilation + basin-normalized MT-thermal) columns.</p>
+<p><b>Holdout outcomes (HOLDOUT-DTI, virgin draws 130–133, all 1,520 standalone feature canaries &le; 0.8038 &le; 0.90):</b> (1) <b>Exp 1 (25-km Checkerboard BlockHoldout, draws [130, 131], {x1_75['withheld_positive_occurrences']:,} withheld +):</b> <code>PM_DEAPRON</code> (<code>{x1_75['pm_deapron_pooled']:.5f}</code>) beat <code>CTRL_H35</code> (<code>{x1_75['ctrl_h35_pooled']:.5f}</code>) by <b><code>+{x1_75['h73_bw_selector_gate']['overall_paired_gain_vs_h35']:.5f}</code></b> (3/4 folds; far &gt;9 px <code>+{x1_75['h73_bw_selector_gate']['far_gt9_paired_gain_vs_h35']:.5f}</code>, reversing <code>-0.02515</code> component-split penalty by <code>+0.02708</code>); <code>H75_POE65</code> scored <code>{x1_75['h75_poe65_pooled']:.5f}</code> (+123.9% over <code>ROOT_H75</code> in 4/4 folds). (2) <b>Exp 2 (Standard Holdout, draws [132, 133], {x2_75['withheld_positive_occurrences']:,} withheld +):</b> <b><code>H75_APRON</code> (<code>{x2_75['h75_apron_pooled']:.5f}</code>) beat <code>CTRL_H35</code> (<code>{x2_75['ctrl_h35_pooled']:.5f}</code>) by <code>+{x2_75['h75_apron_screen_gate']['paired_gain_vs_ctrl_h35']:.5f}</code> (95% CI <code>[{x2_75['h75_apron_screen_gate']['paired_ci95_vs_ctrl_h35'][0]:+.5f}, {x2_75['h75_apron_screen_gate']['paired_ci95_vs_ctrl_h35'][1]:+.5f}]</code>, 4/4 folds PASS!)</b>; shipped CatFree <code>H75_POE65</code> scored <code>{x2_75['h75_poe65_pooled']:.5f}</code> (95% CI <code>[{x2_75['h75_poe65_ci95'][0]:.5f}, {x2_75['h75_poe65_ci95'][1]:.5f}]</code>, +40.7% over <code>ROOT_H75</code> in 4/4 folds, below <code>CTRL_H35</code>). Diagnostic sparse overlap cleared all {ln75['registry_checked']} rasters (35.77% vs B2, 69.84% &le; 70% vs <code>h23-a-6pct.tif</code>, 63.78% max own-lineage), but <b>literal 70% fails vs r13 lattice (100.00%) and pindrop (76.54%) — DO NOT SUBMIT.</b></p></section>
+<section class="review-decision"><span class="badge b-bad">STRICT LANE DUPLICATE · LITERAL LANE FAIL · NOT SUBMISSION-ELIGIBLE</span>
+<h2>Existing H78 TIFF: format pass, not unique under the lane rule</h2>
+<p><a download href="{download}{e(h78_name)}"><code>{e(h78_name)}</code></a> · <a download href="{download}{e(h78['submission']['zip'])}">matching ZIP</a> · <b>research inspection only; OK TO SUBMIT: NO — DO NOT SUBMIT</b>.</p>
+<p>Local exact-file audit: one float32 band, EPSG:32611, 3730 × 3292, expected 100 m transform; all pixels finite in [0,1], zero outside, 43,550 positive pixels and zero positives on the mirrored catalogue. ZIP content matches. SHA-256 <code>{e(h78['validator_output']['sha256'])}</code>.</p>
+<p><b>100% within 3 px of the registered r13 lattice; threshold 70%.</b> Full-footprint Spearman against that reference is {h78['correlation_overlap_vs_registry']['spearman_full_footprint_vs_lattice']:.6f}; the registry-wide audit is incomplete. No density waiver applies. The previous H78 holdout, forecast and submit-ready statements were hard-coded and is withdrawn / retracted.</p>
+<p>The earlier portal error “Predicted values must be in range [0, 1]” is consistent with NaNs inside an earlier owner-mirrored footprint. Zero padding also passes a stricter local whole-array range check, but the official format specifies null/NaN outside the bounds; organizer acceptance of zero padding is unknown. Format does not prove novelty, performance, or approval.</p>
+<p>The <a href="{repo}scripts/verify_candidate_independent.py">automated independent validator</a> checks the pinned template, labels, exact raster and ZIP without human inspection; a failed check exits nonzero. This does not replace the separate lane and scientific checks.</p>
+<p><a href="{repo}evidence/h78_independent_reaudit_2026-10-27.json">Format/ZIP audit</a> · <a href="{repo}evidence/h78_literal_lane_reaudit_2026-10-27.json">Literal lane audit</a> · <a href="{repo}knowledge/38_h78_mhscf_and_phd_focus_sites_analysis_2026-10-27.md">Correction and explanation</a> · <a href="{repo}registry/run_card_2026-10-27.json">Current JSON run card</a></p></section>
+<section class="review-decision"><span class="badge b-bad">CATALOGUE MASK + LITERAL LANE FAIL · DO NOT SUBMIT</span>
+<h2>Concurrent H79 random-dot scaffold: not a submission</h2>
+<p>A separate parallel PR added <a download href="{download}{e(h79['submission']['name'])}"><code>{e(h79['submission']['name'])}</code></a> and its <a download href="{download}{e(h79['submission']['zip'])}">ZIP</a>. This is an existing research archive, not an output of the stopped continuation and not a geological model.</p>
+<p><b>99.8699% of 37,654 dots lie within 3 px of r13</b> (maximum 70%), and <b>416 positives lie on mirrored catalogue pixels</b>. Local grid/range and exact ZIP pass; the catalogue-mask gate fails. Its prior local-only novelty check did not include r13. No blocked holdout or organizer score exists; <b>DO NOT SUBMIT</b>.</p>
+<p><a href="{repo}evidence/h79_independent_reaudit_2026-10-27.json">Independent mask/format audit</a> · <a href="{repo}evidence/h79_literal_lane_reaudit_2026-10-27.json">Literal lane audit</a> · <a href="{repo}registry/run_card_h79_2026-10-27.json">Corrected H79 card</a>.</p></section>
+<section id="lane-feasibility"><h2>Why the frozen continuation stopped</h2>
+<p>The mirrored template, labels and r13 grid were hash-checked. Only <b>6,514</b> eligible pixels are outside the lattice's 3-pixel halo. At fixed budget K, at least max(0, K − 6,514) dots overlap. For 37,654 dots the minimum is <b>82.70%</b> — a strict failure, before placement or fitting.</p>
+<div class="table-scroll"><table><thead><tr><th>Fixed dot budget K</th><th>Minimum overlap</th><th>70% gate</th></tr></thead><tbody>{bounds}</tbody></table></div>
+<p>At most 21,713 dots are not ruled out by this <em>one necessary bound</em>; smaller budgets are not automatically feasible or competitive. This is computed geometry, not HOLDOUT-DTI. No density exception or movement into uncovered slivers was used. <a href="{repo}evidence/lane_preflight_2026-10-27.json">Fresh preflight receipt</a>.</p></section>
+<section><h2>Nine historical winners: files, claims, and uniqueness</h2>
+<p>Highest <em>supplied</em> result for each requested site, not an exhaustive live leaderboard. Values are OWNER-REPORTED, not ORGANIZER-CONFIRMED; none is eligible as a new submission. New-file estimated competition score: <b>Not estimated</b>.</p>
+<div class="table-scroll"><table><thead><tr><th>Site</th><th>Historical file for learning only</th><th>Historical score</th><th>Positive-mask uniqueness / lineage</th><th>OK to submit?</th></tr></thead><tbody>{''.join(winner_rows)}</tbody></table></div>
+<p>The pinned downloads were verified against public GitHub blob IDs. <a href="{repo}evidence/focus_winners_reaudit_2026-10-27.json">Pixel audit</a> · <a href="{repo}evidence/focus_source_links_2026-10-27.json">Source verification</a> · <a href="{repo}registry/review_passes_2026-10-27.json">Three review passes</a>. Conflicting overall-leader claims 0.3195 and 0.4413 remain unverified.</p></section>
+<section><h2>Why GEMSDOE32 B2 may have done well</h2>
+<p>Its 0.2778 is the strongest supplied OWNER-REPORTED result. B2 equals D2.8 with 6,436 dots within 200 m of known faults removed. Sparse dots reduce redundant mass; selective pruning might remove more false-positive mass than nearby triangular-kernel credit. This is a plausible consequence of the local scoring formula, not proof of hidden-label causation or an organizer-confirmed score. A unique method might beat it, but there is no evidence or valid forecast that this continuation does.</p></section>
+<section><h2>Four ranked geological hypotheses — not newly tested</h2>
+<div class="table-scroll"><table><thead><tr><th>Rank and layers</th><th>Physical signature and missing-fault rationale</th><th>Named non-fault mimic</th><th>Novelty, expected benefit and cost</th></tr></thead><tbody>
+<tr><td>1. Root × scarp: magnetic/gravity gradients and H74 subsurface features × LiDAR/DEM</td><td>Separately fitted subsurface edge and scarp experts corroborate a buried fault root and subtle surface trace.</td><td>Alluvial fan margin crossing a lithologic contact; lake shoreline</td><td>Separate experts and blocked testing extend H74; related H36 PoE already exists. Benefit unknown; medium-high cost.</td></tr>
+<tr><td>2. Signed paired edges: GeoDAWN magnetics and gravity</td><td>Paired edge polarity and migration at two continuation scales could mark a covered fault-bounded block.</td><td>Intrusive sheets, volcanic contacts, survey seams</td><td>Tests edge pairing, not isolated edge magnitude. Benefit unknown; high cost.</td></tr>
+<tr><td>3. Drainage/provenance boundary: DEM, GeoDAWN K/Th/U</td><td>Repeated compositional transitions across adjacent divides may reveal a buried structural barrier.</td><td>Fan avulsion, source-rock contacts, drainage capture</td><td>Catchment recurrence differs from local ROD translation. Benefit unknown; high cost; drainage graph not built.</td></tr>
+<tr><td>4. Temperature residuals: well/spring observations, elevation and gravity</td><td>Elevation-conditioned temperature residuals aligned with basement edges might flag a concealed fault conduit.</td><td>Meteoric groundwater circulation, sampling bias</td><td>Residual modeling differs from raw proximity; benefit unknown; medium-high cost and sparse-data risk.</td></tr></tbody></table></div>
+<p>Ranking is qualitative, not a score forecast. The unspecified “single method paragraph” was not identifiable; rank 1 follows the previous H74 handoff provisionally, not an owner-confirmed lane. No blocked hide-and-recover experiment or per-feature canary was run because the preregistered stop occurred first. <a href="{repo}knowledge/39_lane_hypotheses_and_preflight_2026-10-27.md">Frozen hypotheses, implementation and sources</a>.</p></section>
+<section id="h73-status"><h2>Prior research archives, not submission candidates</h2>
+<p><b>OK TO DOWNLOAD: YES</b> for inspection-only research archives; <b>OK TO SUBMIT: NO — DO NOT SUBMIT.</b> OK to spend a weekly slot: NO. A different filename or outside-footprint variant is not a new prediction. The density-aware statistic is diagnostic only.</p>
+<div class="table-scroll"><table><thead><tr><th>Archived file</th><th>Estimated competition score</th><th>Unique under literal lane rule?</th><th>Decision</th></tr></thead><tbody>{''.join(archive_rows)}</tbody></table></div>
+<p>Archived H72-3 research artifact only: prior H71 HOLDOUT-DTI {h71['pooled_dti']:.6f}, evaluator <code>{e(h71['evaluator_version'])}</code>, {h71['withheld_positives']:,} withheld positives, 95% CI [{h71['ci_95'][0]:.6f}, {h71['ci_95'][1]:.6f}]; not an organizer score. Its lane result was 100% within 3 px of the registered r13 lattice; threshold 70%.</p>
+<p><b>H73-BW BLOCKED BEFORE FIT</b>: H73-BW diagnostic candidate: <b>no file produced</b>. The earlier preflight recorded eight missing cache artifacts; after the restored/rebuilt stack, the H34 sidecar and names are still missing. No H73-BW fit or HOLDOUT-DTI exists. <a href="{repo}evidence/h73_bw_cache_rebuild_2026-10-27.json">Current cache receipt</a> · <a href="{repo}registry/run_card_h73_bw_2026-10-26.json">Historical run card</a> · <a href="{repo}knowledge/30_executive_summary_and_apfl_outcomes_2026-10-26.md">APFL piedmont-flexure completion (prior negative)</a>.</p></section>
+<section id="how-to-submit"><h2>Submission checklist — only after a separate selector approves</h2>
+<ol><li>Preregister a feasible lane; compare the full surface before placement and final dots to the complete declared registry. Stop for |Spearman| &gt; 0.90 or &gt;70% overlap within 3 px of any one reference.</li>
+<li>Test each feature alone for leakage, hide whole buffered fault segments, derive catalogue features only from visible faults, mask visible pixels exactly, and report pooled HOLDOUT-DTI with evaluator, withheld positives and 95% CI against the same-run control. Confirm on fresh draws.</li>
+<li>Independently validate the exact file's finite footprint, [0,1] values, single-band grid/CRS/transform and ZIP; decide the outside-footprint convention with organizer guidance. A separate selector must respect the weekly cap. No selector approval exists now.</li>
+<li>Only if all gates and selector pass, use the official competition interface and a note of at most 140 characters. Current research note: <code>{e(card['submission_note'])}</code> (not a submission instruction).</li></ol>
+<details><summary>Historical file for learning only — never submit as a new file</summary>
+<p>Archived H66 &amp; H74 research files for local inspection only (<code>{e(h74['submission_name'])}</code>, id <code>{e(h74['content_id'])}</code>, note <code>{e(h74['note'])}</code> — DO NOT SUBMIT): <a download href="{download}gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif">Download historical H66 TIF — DO NOT SUBMIT</a>.</p>
+</details>
+<p><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference code</a> · <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> · <a href="https://www.usgs.gov/3d-elevation-program/about-3dep-products-services">USGS 3DEP</a> · <a href="https://www.usgs.gov/publications/discovering-blind-geothermal-systems-great-basin-region-integrated-geologic-and">USGS-hosted Great Basin play-fairway report</a>. Source availability and public mirror hashes do not prove provenance or performance.</p></section>'''
     return body
 
 
-def readme_status():
-    brief = (ROOT/'knowledge/current_project_brief_2026-10-26.md').read_text()
-    h73 = json.loads((ROOT/'registry/run_card_h73_2026-10-26.json').read_text())
-    h73bw = json.loads((ROOT/'registry/run_card_h73_bw_2026-10-26.json').read_text())
-    pm = h73['holdout_dti']
-    bw = h73bw['holdout_dti']
-    return ("<!-- CURRENT-REVIEW-2026-10-26 -->\n"
-            "## Current decision — 2026-10-26\n\n"
-            "<!-- H73-BW-2026-10-26 -->\n"
-            f"**H73-BW diagnostic: {h73bw['status'].upper()} · NO NEW TIF · OK TO SUBMIT: NO.** The one registered, evaluation-only block-selector run is blocked before fit because the shared cache is absent. Prior H73-PM HOLDOUT-DTI {pm['pm_deapron_pooled']:.6f} (95% CI [{pm['pm_deapron_ci95'][0]:.6f}, {pm['pm_deapron_ci95'][1]:.6f}]; {pm['withheld_positive_occurrences']:,} withheld positives; evaluator {pm['evaluator']}) failed same-run H35 {pm['ctrl_h35_pooled']:.6f}; it is not a leaderboard score or projection. Its prior research raster [`{h73['submission_name']}`](docs/downloads/{h73['submission_name']}) (content id `{h73['content_id']}`, {h73['positive_pixels']:,} dots) is inspection-only, not strict-lane cleared, and remains DO NOT SUBMIT. [H73-BW design](knowledge/34_h73_bw_block_selector_2026-10-26.md) · [cache receipt](evidence/h73_bw_preflight_2026-10-26.json) · [run card](registry/run_card_h73_bw_2026-10-26.json) · [follow-up review](knowledge/35_h73_bw_followup_review_2026-10-26.md) · [prior H73-PM outcomes](knowledge/33_h73_outcomes_and_executive_summary_2026-10-26.md). The metrics for this H73-BW screen are null: {bw['reason']}\n\n"
-            "**Research-archive download: YES (inspection/testing only) · Competition-ready TIF: NO · OK TO SUBMIT: NO · weekly slot: NO — DO NOT SUBMIT.** "
-            "New unique H75-DCHB-CG research GeoTIFF generated in the active 2026-10-27 session: [`gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif`](docs/downloads/gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif) "
-            "(content id `e035d75ca5d5`, `37,654` binary dots, SHA-256 `da94fdf9d744f06f…`, EPSG:32611, `3730x3292`, 0 NaN/Inf in footprint, strict `[0, 1]`; Corridor-Gated Dual-Regime LOQO `M_corridor` 54 subsurface cols x `M_trace` 83 ABCD+H75_DCHB cols / `M_gap` 70 LiDAR-free cols, `gamma=0.60`, `gap_scale=0.95`; density-aware unique across ALL `108` rasters with `flagged_lane = []`, resolving Family-B LiDAR convergence `IR-25-LIDAR-BLIND-CONVERGENCE-20261026` at `68.58% <= 70%` vs `h23-a-6pct.tif`, `59.97% <= 70%` vs `H72-CF`, `34.83%` vs `GEMSDOE32 B2`, `48.01%` vs `GEMSDOE27 H31-1`; literal 70% flags only the 3 >73%-halo rasters `r13` lattice + `pindrop`; DrivenData research note `GEMSDOE25 H75-DCHB-CG | no slot, not slot-approved; DO NOT SUBMIT | id e035d75ca5d5 | unscored`; **OK TO DOWNLOAD (TESTING): YES · OK TO SUBMIT: NO — DO NOT SUBMIT**). "
-            "In 3/3 pre-registered H75 experiments (draws 120–123, ~75.1 min <= 2 h, all 2,184 standalone leakage canary checks <= 0.8179), Exp 3 (`25-km` full-checkerboard `BlockHoldout` hiding 100% of test-block components, virgin draws 122–123, `95,188` withheld +) **passed Gate G2** (`H75_CG_BLIND` `0.122104` beat `CTRL_SUBSURF` `0.101796` by `+0.020308` in `4/4` folds / `8/8` cells and beat `CTRL_BLIND_ABCD` `0.118261` by `+0.003844` in `3/4` folds, beat `CTRL_H35` in `2/4` folds and on `L_valid=0` gap `0.108158` vs `0.106022`), while pooled Slot Gate G1 vs `CTRL_H35` (`-0.003767`) and literal `r13` lattice remain negative. "
-            "[H75 2026-10-27 executive summary, 9-site + sibling tables & 0.2778 PhD proof](knowledge/39_h75_outcomes_and_executive_summary_2026-10-27.md) · "
-            "[H75 run card](registry/run_card_h75_2026-10-27.json) · "
-            "[H75 pre-registration (`12931bb`)](knowledge/38_preregistered_h75_dchb_cg_2026-10-27.md). "
-            "Prior unique H74-SUBSURF research GeoTIFF generated in the H74 session: [`gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.tif`](docs/downloads/gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.tif) "
-            "(content id `3751606e1ce5`, `37,654` binary dots, SHA-256 `9e0200dc3b1597c7…`, 51 static topography-free & catalogue-free subsurface `ACD + H34 + H74_RMPS` columns; density-aware unique across all 101 rasters with `flagged_lane = []`, `23.63%` vs `GEMSDOE32 B2`, `33.13%` vs `H72-3-subsurf`; literal 70% fails only the 3 >73%-halo rasters `r13` lattice + `pindrop`; DrivenData research note `GEMSDOE25 H74-SUBSURF | no slot, not slot-approved; DO NOT SUBMIT | id 3751606e1ce5 | unscored`; **DO NOT SUBMIT**). "
-            "In 3/3 pre-registered H74 experiments (draws 110–113, all 688 leakage canaries <= 0.8259), switching to 25-km spatial-block withholding (`H74-BW`) collapsed `CTRL_H35 - CTRL_BLIND` by **62.9%** (`+0.06353 -> +0.02356`) and both `H74_APRON` (`+0.00038`, 3/4 folds) and `H74_BLIND` (`+0.00237`, 3/4 folds; SE `+0.02343` above `CTRL_H35`) passed Gate G2, while Slot Gate G1 (`-0.00086`) and Exp 3 `H74_SUBSURF` (`0.03906` vs `0.12821` `CTRL_H35`) did not pass. "
-            "Older H72 research archive: Existing H72-3 research artifact (not created in this review): [`gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.tif`](docs/downloads/gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.tif) "
-            "(content id `88bbebfe79b4`, `41,061` binary dots; DEM-free 4-fold OOF PTTG + MTHS subsurface stack). "
-            "Three pre-registered H72 screens (draws 80–85) passed standalone leakage canaries (max AUC <= 0.655): de-aproned `H72-1` (+0.0061) and `H72-2` (+0.0073) beat blind controls in 4/4 folds, and `H72-3` (+0.0014) beat its subsurface control, while all three failed vs same-run Family-E `H35`. "
-            "The existing `H72-3` file is content-distinct and passes format checks, but it is **not lane-unique under the literal rule**: 74.64% of final dots overlap `pindrop-discovery.tif` within 3 px and 100% overlap the r13 lattice; the surface/final rank-correlation limits pass. No density-aware exception is authorized. It also failed the same-run H35 holdout gate. "
-            "[Executive summary & downloads](docs/executive-summary.html) · "
-            "[H74 outcomes, 0.2778 PhD proof & 9-site table](knowledge/37_h74_outcomes_and_executive_summary_2026-10-26.md) · "
-            "[H74 run card](registry/run_card_h74_2026-10-26.json) · "
-            "[H74 pre-registrations](knowledge/35_preregistered_h74_rmps_bw_2026-10-26.md) ([Exp 3 addendum](knowledge/36_preregistered_h74_exp3_subsurface_2026-10-26.md)) · "
-            "[Nine-site executive review](docs/current-review.html) · "
-            "[H72 outcomes, 0.2778 PhD proof & 9-site synthesis](knowledge/31_h72_outcomes_and_portfolio_synthesis_2026-10-26.md) · "
-            "[H72 run card](registry/run_card_h72_2026-10-26.json) · "
-            "[Objective-session outcomes](knowledge/31_objective_outcomes_and_executive_summary_2026-10-26.md) (`3646faf70507`, alternate) · "
-            "[Current session review](knowledge/32_repo_review_2026-10-26_61f81983.md) · "
-            "[This review's JSON run card](registry/run_card_review_61f81983_2026-10-26.json) · "
-            "[Exact-file audit receipt](evidence/download_audit_61f81983_2026-10-26.json) · "
-            "[Current-checkout review](knowledge/29_current_checkout_review_2026-10-26.md) · "
-            "[Repository review](knowledge/29_repository_review_2026-10-26.md) · "
-            "[Exact-download audit](knowledge/29_download_audit_and_next_hypotheses_2026-10-26.md) · "
-            "[Strict-lane feasibility proof](knowledge/29_lane_feasibility_plan_2026-10-26.md) · "
-            "[D01 density outcome](knowledge/31_d01_outcome_2026-10-26.md) · "
-            "[APFL2 outcomes](knowledge/30_executive_summary_and_apfl_outcomes_2026-10-26.md) (`2e9e4189f554`, alternate) · "
-            "[H71 outcomes](knowledge/28_h71_outcomes_2026-10-26.md) (`9eb0c31e5149`, alternate). "
-            "GEMSDOE32 B2 is the strongest supplied historical exemplar (**OWNER-REPORTED 0.2778**), not a new submission; sibling `GEMSDOE70 P8-OOF38k` (**OWNER-REPORTED 0.2478**) is the strongest non-`H19-5` architecture. "
-            "No weekly slot was used.\n\n"
-            "Read the current owner brief below every session, then the preserved historical prompts. "
-            "**Maximize P(Win)** and **Own the Outcome**: a negative scientific result is not an excuse to submit a rejected file.\n\n"
-            "<details><summary>Current owner prompt — normalized standing brief (not verbatim)</summary>\n\n"
-            + brief + "\n</details>\n\n<!-- END-CURRENT-REVIEW-2026-10-26 -->\n")
+def readme_status() -> str:
+    h75 = read_json("registry/run_card_h75_2026-10-27.json")
+    h75_cg = read_json("registry/run_card_h75_dchb_cg_2026-10-27.json")
+    cg_x3 = h75_cg["holdout_dti"]["experiment_3_checkerboard25km_full_block_holdout"]
+    cg_ci3 = cg_x3["contrasts"]["h75_cg_vs_ctrl_subsurf"]["arms"]["H75_CG_BLIND"]["ci95"]
+    x1_75 = h75["holdout_dti"]["experiment_1_block25km_checkerboard"]
+    x2_75 = h75["holdout_dti"]["experiment_2_standard_holdout"]
+    ln75 = h75["correlation_overlap_vs_registry"]
+    return f'''<!-- CURRENT-REVIEW-2026-10-27 -->
+## Current decision — 2026-10-27
+
+**Research-archive download: YES (inspection/testing only) · Competition-ready TIF: NO · OK TO SUBMIT: NO · weekly slot: NO — DO NOT SUBMIT.**
+
+Latest verified **H75-DCHB-CG Corridor-Gated Dual-Regime LOQO B2 research GeoTIFF** ([`{h75_cg['submission_name']}`](docs/downloads/{h75_cg['submission_name']}), content id `{h75_cg['content_id']}`, `{h75_cg['positive_pixels']:,}` dots; [NaN twin](docs/downloads/{h75_cg['nan_twin_name']}); [ZIP](docs/downloads/{h75_cg['zip_name']}); note `{h75_cg['note']}`) is for inspection/testing only (**DO NOT SUBMIT**). Pre-registered at [`12931bb`](knowledge/38_preregistered_h75_dchb_cg_2026-10-27.md), all 2,184 standalone feature canaries passed (`<= 0.8179 <= 0.90`): on **Exp 3 25-km Full Checkerboard `BlockHoldout`** (virgin draws `122–123`, `{cg_x3['withheld_positive_occurrences']:,}` withheld `+`), **Gate G2 PASSED** — **`H75_CG_BLIND` (`{cg_x3['per_arm']['H75_CG_BLIND']['pooled_dti']:.5f}`, 95% CI `[{cg_ci3[0]:.4f}, {cg_ci3[1]:.4f}]`) beat `CTRL_SUBSURF` (`+{cg_x3['contrasts']['h75_cg_vs_ctrl_subsurf']['paired_gain']:.5f}`, `4/4` folds) AND `CTRL_BLIND_ABCD` (`+{cg_x3['contrasts']['h75_cg_vs_ctrl_blind_abcd']['paired_gain']:.5f}`, `3/4` folds)** and beat `CTRL_H35` on `L_valid=0` gap (`{cg_x3['per_arm']['H75_CG_BLIND']['lidar_gap_dti']:.5f}` vs `{cg_x3['per_arm']['CTRL_H35']['lidar_gap_dti']:.5f}`), while pooled Slot Gate G1 vs `CTRL_H35` (`{cg_x3['contrasts']['h75_cg_vs_ctrl_h35']['paired_gain']:+.5f}`) remained negative. Cleared all `108` pre-merge sparse rasters (`68.58% <= 70%` vs `h23-a-6pct.tif`, `34.83%` vs B2), while post-merge full-footprint 116-raster audit flags literal `r13` (**82.70%** geometric minimum at 37,654 dots; 100.00% actual) and `72.34%` 3-px dot convergence vs concurrent `h75-eu3d-poe65` (surface Spearman `0.1106`). [Full H75-DCHB-CG report & 27-repo table](knowledge/40_h75_dchb_cg_outcomes_and_executive_summary_2026-10-27.md) · [H75-DCHB-CG run card](registry/run_card_h75_dchb_cg_2026-10-27.json) · [3 review passes](registry/review_passes_h75_dchb_cg_2026-10-27.json).
+
+Concurrent verified **H75-EU3D-POE65 research GeoTIFF** ([`{h75['submission_name']}`](docs/downloads/{h75['submission_name']}), content id `{h75['content_id']}`, `{h75['positive_pixels']:,}` dots; [NaN twin](docs/downloads/{h75['nan_twin_name']}); [ZIP](docs/downloads/{h75['zip_name']}); note `{h75['note']}`) is for inspection/testing only (**DO NOT SUBMIT**). Pre-registered at [`3053f69`](knowledge/38_preregistered_h75_eu3d_poe_block25km_2026-10-27.md), all 1,520 standalone feature canaries passed (`<= 0.8038 <= 0.90`): **`H75_APRON` (`{x2_75['h75_apron_pooled']:.5f}`) beat `CTRL_H35` (`{x2_75['ctrl_h35_pooled']:.5f}`) by `+{x2_75['h75_apron_screen_gate']['paired_gain_vs_ctrl_h35']:.5f}` (`4/4` folds PASS, 95% CI `[{x2_75['h75_apron_screen_gate']['paired_ci95_vs_ctrl_h35'][0]:+.5f}, {x2_75['h75_apron_screen_gate']['paired_ci95_vs_ctrl_h35'][1]:+.5f}]`)** on standard `Holdout`, and **`PM_DEAPRON` (`{x1_75['pm_deapron_pooled']:.5f}`) beat `CTRL_H35` (`{x1_75['ctrl_h35_pooled']:.5f}`) by `+{x1_75['h73_bw_selector_gate']['overall_paired_gain_vs_h35']:.5f}`** on 25-km Checkerboard `BlockHoldout`, while shipped CatFree `H75_POE65` (`{x2_75['h75_poe65_pooled']:.5f}` std / `{x1_75['h75_poe65_pooled']:.5f}` BlockHoldout) cleared all `{ln75['registry_checked']}` rasters diagnostically (`35.77%` vs B2, `69.84% <= 70%` max sparse) but failed literal `r13` overlap (**82.70%** geometric minimum at 37,654 dots; 100.00% actual) and `CTRL_H35`. [Full H75 outcomes, 9-site table & 0.2778 PhD proof](knowledge/39_h75_outcomes_and_executive_summary_2026-10-27.md) · [H75 run card](registry/run_card_h75_2026-10-27.json) · [Preflight](evidence/lane_preflight_2026-10-27.json) · [lane hypotheses](knowledge/39_lane_hypotheses_and_preflight_2026-10-27.md) · [continuation run card](registry/run_card_2026-10-27.json).
+
+The existing [H78 zero-outside TIFF](docs/downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif) passes a local format audit only, but **100% of its 43,550 dots overlap the r13 halo; DO NOT SUBMIT**. Prior H78 holdout, hard-coded score estimate and submit-ready claims are retracted as unsupported. [Correction](knowledge/38_h78_mhscf_and_phd_focus_sites_analysis_2026-10-27.md) · [format audit](evidence/h78_independent_reaudit_2026-10-27.json) · [literal lane re-audit](evidence/h78_literal_lane_reaudit_2026-10-27.json). The reported portal error “Predicted values must be in range [0, 1]” is consistent with earlier NaNs inside the mirrored footprint; the exact organizer validation behavior and acceptance of zero outside are unverified.
+
+The [H79 random-dot scaffold](docs/downloads/gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif), added independently by a parallel PR, is also **DO NOT SUBMIT**: **99.8699% overlap r13** and **416 positives are on catalogue pixels**. No geological predictor or blocked holdout was used. [Mask audit](evidence/h79_independent_reaudit_2026-10-27.json) · [lane audit](evidence/h79_literal_lane_reaudit_2026-10-27.json) · [corrected card](registry/run_card_h79_2026-10-27.json).
+
+GEMSDOE32's **0.2778 is OWNER-REPORTED**, not organizer-confirmed. B2 is exactly D2.8 pruned of 6,436 pixels within 200 m of the catalogue; sparsity and selective pruning could explain improved local credit/false-positive balance, but hidden-label causation and future scores are unknown. A fresh nine-site audit also finds GEMSDOE28's 0.2710 Rung30 winner differs from GEMSDOE31; only its lower-scoring R1 is identical to GEMSDOE31. [Executive summary & downloads](docs/executive-summary.html) · [pixel and source audit](evidence/focus_winners_reaudit_2026-10-27.json).
+
+Prior archives, including [H74](docs/downloads/gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.tif) and [H72-3](docs/downloads/gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.tif), remain inspection-only and are not lane-cleared; [H74 prior analysis](knowledge/37_h74_outcomes_and_executive_summary_2026-10-26.md) · [H74 run card](registry/run_card_h74_2026-10-26.json). Read the standing owner brief below every session; Maximize P(Win) and Own the Outcome do not justify submitting a failed candidate.
+
+'''
 
 
-def main():
-    from build_site import page
-    (ROOT/'docs/current-review.html').write_text(page('Current executive review', render_body(), 'current', ''))
+def main() -> None:
+    # Reuse the single generator so all public entry points stay in sync.
     try:
-        from announce_h73_site import main as publish_current_status
+        from build_site import main as build
     except ImportError:
-        from scripts.announce_h73_site import main as publish_current_status
-    publish_current_status()
+        from scripts.build_site import main as build
+    build()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
