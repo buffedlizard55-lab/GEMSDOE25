@@ -1,24 +1,26 @@
 #!/usr/bin/env python3
-"""Retired H78 experiment builder.
+"""Retired H78 publisher: the archived H78 raster failed the strict lane rule.
 
-The preserved H78 raster is format-valid but fails the repository's literal lane
-rule: its saved lane receipt reports 100% of candidate dots within 3 px of the
-r13 registry raster (the stop threshold is 70%). The former builder also emitted
-a hard-coded leaderboard projection unsupported by an organizer receipt or a
-traceable H78-specific holdout result. It is intentionally disabled; do not
-rebuild, rename, or submit this lane.
-
-See ``knowledge/39_h78_fail_closed_review_2026-10-27.md`` and the exact-file
-receipts under ``docs/downloads/`` for the evidence and correction.
+The original builder wrote a purported leaderboard estimate and holdout result
+as constants and promoted a density-aware result over a literal lane failure.
+The old source is preserved in Git history for study, not for candidate creation.
+A new build must start from a preregistered hypothesis, the shared evaluator and
+writer, and independent, fail-closed surface, final-dot and holdout gates.
 """
+from __future__ import annotations
+
+import sys
 
 
-def main() -> None:
-    raise SystemExit(
-        "H78 builder retired: strict lane duplicate (100% dot overlap with r13 within 3 px); "
-        "no verified H78 HOLDOUT-DTI or calibrated score estimate; do not submit."
+def main() -> int:
+    print(
+        "H78 publisher retired: its literal lane audit failed and its score/holdout "
+        "claims were not supported by an experiment. DO NOT SUBMIT. "
+        "See knowledge/38_h78_mhscf_and_phd_focus_sites_analysis_2026-10-27.md.",
+        file=sys.stderr,
     )
+    return 2
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

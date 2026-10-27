@@ -270,9 +270,9 @@ def surface_lane_check(ctx, surface: np.ndarray, registry: list[dict]) -> list[d
     return results
 
 
-def surface_lane_is_clear(results: list[dict]) -> bool:
-    """A missing or incomplete registry cannot clear a candidate surface."""
-    return bool(results) and all(not row.get("duplicate", True) for row in results)
+def surface_lane_is_clear(results: list[dict], *, registry_complete: bool = False) -> bool:
+    """Legacy diagnostic rows alone cannot prove inventory or grid completeness."""
+    return registry_complete is True and bool(results) and all(not row.get("duplicate", True) for row in results)
 
 
 def lane_check(ctx, emitted: np.ndarray, surface: np.ndarray, registry: list[dict]) -> dict:
@@ -342,14 +342,14 @@ def lane_check(ctx, emitted: np.ndarray, surface: np.ndarray, registry: list[dic
     return results
 
 
-def lane_is_clear(results: list[dict]) -> bool:
-    """A missing/unreadable registry is not evidence of uniqueness."""
-    return bool(results) and all(not row.get("duplicate", True) for row in results)
+def lane_is_clear(results: list[dict], *, registry_complete: bool = False) -> bool:
+    """Legacy rows alone cannot prove inventory or grid completeness."""
+    return registry_complete is True and bool(results) and all(not row.get("duplicate", True) for row in results)
 
 
-def lane_is_clear_density_aware(results: list[dict]) -> bool:
-    """Density-aware lane verdict (knowledge/22 section 4); fails closed like lane_is_clear."""
-    return bool(results) and all(not row.get("duplicate_lane", True) for row in results)
+def lane_is_clear_density_aware(results: list[dict], *, registry_complete: bool = False) -> bool:
+    """Compatibility alias: the density statistic never waives the literal gate."""
+    return lane_is_clear(results, registry_complete=registry_complete)
 
 
 def full_footprint_emission(surface: np.ndarray, foot: np.ndarray, labels: np.ndarray,
@@ -360,6 +360,7 @@ def full_footprint_emission(surface: np.ndarray, foot: np.ndarray, labels: np.nd
 
 
 def main() -> None:
+    raise SystemExit("Historical GEM validator retired: use the shared full-footprint, complete-registry lane tools and a new preregistration.")
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--draws", type=int, nargs="+", default=_DRAWS_DEFAULT,
                     help="hide-and-recover draws (screen=0 1; confirmation=2 3)")

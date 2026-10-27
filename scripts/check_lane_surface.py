@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
-"""Surface-stage lane check (PARALLEL-RUN PROTOCOL item 1: check before placement AND on final dots).
+"""Fail-closed surface-stage rank audit before any full-footprint placement.
 
-Spearman rank correlation between a continuous footprint-vector score surface (``.npy``,
-as saved by the candidate builders) and every registry raster, on the same 400k
-footprint sample (seed 0) as ``scripts/check_lane_duplicates.py``. Dot-overlap is the
-final-TIF checker's job; this script is the pre-placement surface half.
-
-    .venv/bin/python scripts/check_lane_surface.py data/work/h35_full_scores.npy --out evidence/h35_lane_surface.json
+A clear result covers only the declared, locally restored registry and is not
+approval to submit. A later independent final-dot audit is mandatory. Missing
+hash-pinned references, missing/unaligned grids and undefined ranks stop the run.
 """
-
 from __future__ import annotations
 
 import argparse
@@ -21,75 +17,101 @@ import rasterio
 from scipy.stats import spearmanr
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
+sys.path[:0] = [str(ROOT), str(ROOT / "src")]
 from gems25.paths import data_dir, work_dir  # noqa: E402
+from scripts.check_lane_duplicates import (  # noqa: E402
+    RHO_MAX,
+    _read_aligned,
+    declared_hashes,
+    registry_inventory,
+    registry_rasters,
+    sha256,
+    validate_template,
+)
 
-SAMPLE = 400_000
-RHO_MAX = 0.90
+
+def surface_rank(values: np.ndarray, reference_values: np.ndarray) -> dict:
+    a, b = np.asarray(values), np.asarray(reference_values)
+    if a.ndim != 1 or a.shape != b.shape or not a.size:
+        raise ValueError("rank inputs must be nonempty, aligned vectors")
+    if not np.isfinite(a).all() or not np.isfinite(b).all():
+        raise ValueError("nonfinite value in rank input")
+    if np.ptp(a) == 0 or np.ptp(b) == 0:
+        return dict(spearman_surface=None, flag_rank=True, reason="undefined constant input")
+    rho = float(spearmanr(a, b).statistic)
+    if not np.isfinite(rho):
+        return dict(spearman_surface=None, flag_rank=True, reason="undefined rank")
+    return dict(spearman_surface=rho, flag_rank=abs(rho) > RHO_MAX,
+                reason="duplicate" if abs(rho) > RHO_MAX else "clear")
 
 
-def main() -> None:
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("scores", help="footprint-vector .npy of continuous scores")
-    ap.add_argument("--out", default=None)
-    ap.add_argument("--exclude-stem", default=None, help="skip registry TIFs whose stem contains this (the candidate itself)")
-    a = ap.parse_args()
-    work = work_dir()
-    foot = np.load(work / "bands" / "_footprint.npy")
+def audit_surface(scores: np.ndarray, footprint: np.ndarray, profile: tuple, paths: list[Path],
+                  expected: set[str], *, excluded: bool = False) -> dict:
+    foot = np.asarray(footprint, dtype=bool)
     fi = np.flatnonzero(foot.ravel())
-    scores = np.load(a.scores)
-    if scores.size != fi.size:
-        raise SystemExit(f"scores size {scores.size} != footprint {fi.size}")
-    rng = np.random.default_rng(0)
-    samp_vec = np.sort(rng.choice(fi.size, min(SAMPLE, fi.size), replace=False))
-    samp_flat = fi[samp_vec]
-    svals = np.asarray(scores, dtype=np.float64)[samp_vec]
-    import hashlib
-
-    raw_paths = []
-    for d in (
-        data_dir() / "scored",
-        data_dir() / "calibration",
-        data_dir() / "research",
-        data_dir() / "artifacts",
-        data_dir() / "registry_top",
-        ROOT / "docs" / "downloads",
-    ):
-        if d.exists():
-            raw_paths.extend(sorted(d.glob("*.tif")))
-    paths = []
-    seen_sha = set()
-    for p in raw_paths:
-        if a.exclude_stem and a.exclude_stem in p.stem:
-            continue
-        digest = hashlib.sha256(p.read_bytes()).hexdigest()
-        if digest in seen_sha:
-            continue
-        seen_sha.add(digest)
-        paths.append(p)
-    rows = []
+    scores = np.asarray(scores)
+    if foot.ndim != 2 or scores.ndim != 1 or scores.size != fi.size or not fi.size:
+        raise ValueError("surface must be one finite value per footprint pixel")
+    if not np.isfinite(scores).all():
+        raise ValueError("surface contains nonfinite values inside the footprint")
+    # Use every footprint pixel; a sample is not an authorized clearance.
+    inventory = registry_inventory(paths, expected)
+    rows, errors = [], []
     for p in paths:
-        with rasterio.open(p) as r:
-            if r.shape != foot.shape:
-                rows.append(dict(file=p.name, spearman_surface=None, flag_rank=True, skipped="shape differs"))
-                continue
-            rv = np.nan_to_num(r.read(1), nan=0.0).ravel()[samp_flat]
-        finite = np.isfinite(svals) & np.isfinite(rv)
-        if finite.sum() >= 1000 and svals[finite].min() != svals[finite].max() and rv[finite].min() != rv[finite].max():
-            rho = float(spearmanr(svals[finite], rv[finite]).statistic)
-        else:
-            rho = float("nan")
-        flag = bool(not np.isfinite(rho) or abs(rho) > RHO_MAX)
-        rows.append(dict(file=p.name, spearman_surface=round(rho, 6) if np.isfinite(rho) else None, flag_rank=flag))
-        print(f"{p.name[:70]:70s} rho={rho:+.4f}" if np.isfinite(rho) else f"{p.name[:70]:70s} rho=nan (FLAGGED)")
-    worst = max((abs(r["spearman_surface"]) for r in rows if r["spearman_surface"] is not None), default=float("nan"))
-    rec = dict(scores=str(a.scores), sample=int(samp_vec.size), rho_max=RHO_MAX,
-               worst_abs_spearman=worst, flagged=[r["file"] for r in rows if r["flag_rank"]], rows=rows,
-               note="Registry rasters are binary/near-binary, so Spearman has heavy ties; this is the protocol's rank screen, not a Pearson correlation.")
-    print(json.dumps({k: rec[k] for k in ("worst_abs_spearman", "flagged")}, indent=1))
-    if a.out:
-        Path(a.out).write_text(json.dumps(rec, indent=1) + "\n")
+        try:
+            ref = _read_aligned(p, profile, foot)
+            row = surface_rank(scores, ref.ravel()[fi])
+            row["file"] = p.name
+            rows.append(row)
+        except (OSError, ValueError, rasterio.errors.RasterioError) as exc:
+            errors.append(dict(file=p.name, error=str(exc)))
+            break
+        if row["flag_rank"]:
+            break
+    flagged = [r["file"] for r in rows if r["flag_rank"]]
+    complete = bool(paths and inventory["complete"] and not excluded and not errors
+                    and len(rows) == len(paths) and not flagged)
+    return dict(rank_footprint_pixels=int(fi.size), rho_max=RHO_MAX, registry_inventory=inventory,
+                registry_manifest_sha256=inventory["registry_manifest_sha256"],
+                registry_checked=len(rows), registry_complete=complete, errors=errors,
+                flagged=flagged, rows=rows, surface_clear=complete,
+                verdict=("DUPLICATE OR UNDEFINED RANK - stop" if flagged
+                         else "SURFACE CLEAR vs declared registry; final dots and other gates required" if complete
+                         else "UNVERIFIED - incomplete or invalid registry; stop"),
+                note="Full-footprint ranks can have ties; constant ranks cannot prove uniqueness. This does not check final dots.")
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("scores", type=Path, help="one-dimensional footprint-vector .npy")
+    ap.add_argument("--template", type=Path, default=data_dir() / "sample_submission.tif")
+    ap.add_argument("--out", type=Path)
+    ap.add_argument("--exclude-stem", help="diagnostic only: exclusions make clearance impossible")
+    args = ap.parse_args()
+    try:
+        template_sha = validate_template(args.template)
+        foot = np.load(work_dir() / "bands" / "_footprint.npy")
+        with rasterio.open(args.template) as t:
+            if t.count != 1 or t.crs is None or not np.array_equal(foot, np.isfinite(t.read(1))):
+                raise ValueError("cached footprint does not match the single-band template")
+            profile = (t.shape, t.crs, t.transform)
+        paths = registry_rasters()
+        if args.exclude_stem:
+            paths = [p for p in paths if args.exclude_stem not in p.stem]
+        result = audit_surface(np.load(args.scores), foot, profile, paths, declared_hashes(),
+                               excluded=args.exclude_stem is not None)
+        result["scores"] = str(args.scores)
+        result["scores_sha256"] = sha256(args.scores)
+        result["template_sha256"] = template_sha
+    except (OSError, ValueError, KeyError, json.JSONDecodeError, rasterio.errors.RasterioError) as exc:
+        result = dict(scores=str(args.scores), surface_clear=False, verdict="UNVERIFIED - audit error; stop", error=str(exc))
+    text = json.dumps(result, indent=2, allow_nan=False) + "\n"
+    if args.out:
+        args.out.parent.mkdir(parents=True, exist_ok=True)
+        args.out.write_text(text)
+    print(text, end="")
+    return 0 if result["surface_clear"] else 2
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

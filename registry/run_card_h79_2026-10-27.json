@@ -1,15 +1,24 @@
 {
   "schema": "run_card/v1",
   "session": "2026-10-27 H79 (66772eeec27a)",
-  "hypothesis": "H79: unique spatial Poisson-disc dot field (min 2.85 px, target 37,654 dots) confined to the verified competition footprint; a format-valid, content-unique submission scaffold.",
+  "hypothesis": "H79 spatial Poisson-disc random-dot scaffold; no geological predictor or tested fault-detection hypothesis.",
   "mechanism": "Deterministic seeded Poisson-disc thinning separates dots by >= 2.85 px to avoid DTI kernel credit saturation; zeros outside footprint keeps all values in [0,1].",
   "mimicking_non_fault_process": "None claimed - this is a unique-format scaffold, not a fault-detection model; no geological signal is asserted.",
   "holdout_dti": null,
   "estimated_competition_score": null,
   "correlation_overlap_vs_registry": {
-    "verdict": "UNIQUE vs locally available rasters",
-    "scope": "partial - only locally available docs/downloads rasters; r13 lattice and scored registry not accessible (data/ empty, GitHub blocked)",
-    "flagged_locally": []
+    "verdict": "DUPLICATE UNDER STRICT LITERAL RULE; STOP; DO NOT SUBMIT",
+    "reference": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "candidate_dots": 37654,
+    "candidate_dots_within_3px": 0.9986986774313485,
+    "spearman_full_footprint_vs_lattice": 0.0005383076712475076,
+    "registry_complete": false,
+    "evidence": "evidence/h79_literal_lane_reaudit_2026-10-27.json",
+    "historical_partial_check": {
+      "verdict": "UNIQUE vs locally available rasters",
+      "scope": "partial - only locally available docs/downloads rasters; r13 lattice and scored registry not accessible (data/ empty, GitHub blocked)",
+      "flagged_locally": []
+    }
   },
   "validator_output": {
     "file": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif",
@@ -31,17 +40,26 @@
     "footprint_all_finite": true,
     "values_in_0_1": true,
     "outside_is_zero": true,
-    "ok_to_upload": true
+    "ok_to_upload": false,
+    "format_range_grid_locally_valid": true,
+    "catalogue_positive_pixels": 416,
+    "catalogue_mask_ok": false,
+    "zip_exact": true,
+    "independent_audit": "evidence/h79_independent_reaudit_2026-10-27.json",
+    "note": "Basic local range/grid and ZIP checks pass; the required catalogue-mask gate fails. Zero padding acceptance by the organizer is unknown."
   },
   "submission": {
     "name": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif",
     "zip": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.zip",
-    "note": "GEMSDOE25 H79 spatial Poisson-disc B2 | dots=37,654 sapd2.85 | id 66772eeec27a | unscored",
+    "note": "H79 random-dot archive; catalogue mask and strict lane failed; DO NOT SUBMIT.",
     "content_id": "66772eeec27a",
     "ok_to_download": true,
-    "ok_to_submit": null,
-    "verdict": "format-valid downloadable scaffold; submission slot decision requires full lane check + organizer access"
+    "ok_to_submit": false,
+    "verdict": "negative; research inspection only; DO NOT SUBMIT"
   },
   "generated_utc": "2026-10-27T18:48:22.050826+00:00",
-  "constraints": "data/ empty (gitignored); GitHub/DrivenData inaccessible; no training labels or organizer receipt available; score is unknown/uncomputable here."
+  "constraints": "Public owner mirrors restored in this review; organizer provenance, acceptance and scores remain unavailable.",
+  "correction_date": "2026-10-27",
+  "source_context": "Existing file added independently to main by PR #62; not created in this continuation.",
+  "verdict": "negative"
 }

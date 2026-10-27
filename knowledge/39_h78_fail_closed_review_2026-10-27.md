@@ -1,5 +1,7 @@
 # H78 status correction and fail-closed audit — 2026-10-27
 
+> Historical parallel review. A later audit restored the pinned owner mirrors and recomputed full-footprint lane statistics; see [the corrected nine-site review](38_h78_mhscf_and_phd_focus_sites_analysis_2026-10-27.md). The H78 DO NOT SUBMIT decision remains unchanged.
+
 ## Decision
 
 **The preserved H78 GeoTIFF is downloadable for inspection only. It is not eligible for competition submission. No new TIFF was generated in this review, no weekly slot was used, and no score projection is made.**
