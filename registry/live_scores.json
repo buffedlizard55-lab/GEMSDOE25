@@ -1,6 +1,6 @@
 {
  "schema_version": 2,
- "generated_utc": "2026-10-26",
+ "generated_utc": "2026-10-27",
  "warning": "All competition DTI values in this registry are user- or owner-reported claims, not organizer receipts (not ORGANIZER-CONFIRMED). The 2026-10-26 owner-prompt archive is included for completeness; duplicate filenames/value claims are retained and labeled. Twenty-one fabricated microvariant rows discovered in this checkout were purged under IR-25-HALLUCINATED-LEDGER-ROWS-20261026. Local raster analysis verifies deterministic pixel transformations and SHA-256 digests, not competition scores. No DrivenData page was accessed or monitored.",
  "artifacts": [
   {
@@ -905,6 +905,62 @@
    "score": 0.0255,
    "status": "user-provided-unverified",
    "note": "Cross-repository verbatim owner-prompt archive, 2026-10-26; user/owner-reported claim, no organizer receipt. The current prompt also supplied a different filename carrying the same value; both claims are retained, not silently reconciled."
+  },
+  {
+   "project": "57GEMSDOE",
+   "label": "h57r-joint-strata-38000dots-20261010T214547Z-00cf5b2066f1-zeros",
+   "score": 0.0254,
+   "status": "user-provided-unverified",
+   "note": "owner-reported 2026-10-27 brief (exact label variant with '38000dots'); no organizer receipt"
+  },
+  {
+   "project": "GEMSDOE69",
+   "label": "gems69-joint-relayramp-pullapart-38669-20261020T201504Z-f29b6df5",
+   "score": 0.0053,
+   "status": "user-provided-unverified",
+   "note": "owner-reported 2026-10-27 brief; no organizer receipt"
+  },
+  {
+   "project": "GEMSDOE91",
+   "label": "gems91-s22-omtj-e1-20261026-a99b8923f0-zeros",
+   "score": 0.0298,
+   "status": "user-provided-unverified",
+   "note": "owner-reported 2026-10-27 brief; pinned in top_scorer_sources.json; no organizer receipt"
+  },
+  {
+   "project": "GEMSDOE25",
+   "label": "gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros",
+   "score": 0.0742,
+   "status": "owner-reported",
+   "note": "owner-reported 2026-10-27 brief (stem label without .tif suffix); no organizer receipt"
+  },
+  {
+   "project": "GEMSDOE27",
+   "label": "gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite",
+   "score": 0.225,
+   "status": "user-provided-unverified",
+   "note": "owner-reported 2026-10-27 brief (highest recent focus-site non-H19-5 score); pinned in top_scorer_sources.json; no organizer receipt"
+  },
+  {
+   "project": "GEMSDOE28",
+   "label": "gems28-s21-puhgb-20261026-16bbf281ba9b-allfinite",
+   "score": 0.0206,
+   "status": "user-provided-unverified",
+   "note": "owner-reported 2026-10-27 brief; pinned in top_scorer_sources.json; no organizer receipt"
+  },
+  {
+   "project": "GEMSDOE33",
+   "label": "gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros",
+   "score": 0.0963,
+   "status": "user-provided-unverified",
+   "note": "owner-reported 2026-10-27 brief; pinned in top_scorer_sources.json; no organizer receipt"
+  },
+  {
+   "project": "GEMSDOE36",
+   "label": "gemsdoe36-kpl36-exp3-20261026-fc869911e88c-zeros",
+   "score": 0.1647,
+   "status": "user-provided-unverified",
+   "note": "owner-reported 2026-10-27 brief; pinned in top_scorer_sources.json; no organizer receipt"
   }
  ],
  "leaderboard_snapshot": {

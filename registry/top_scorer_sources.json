@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "fetched_utc": "2026-10-25",
+ "fetched_utc": "2026-10-27",
  "evidence_class": "owner mirrors pinned by SHA-256; scores are OWNER-REPORTED claims from the user brief, not organizer receipts",
  "note": "g25_d2-8 and g30_d28-poisson are byte-different files with identical positive pixels; g28_h27-4 and g31 likewise (see evidence/top_scorer_forensics.json)",
  "rasters": [
@@ -273,6 +273,61 @@
    "site": "https://buffedlizard55-lab.github.io/GEMSDOE92/",
    "sha256": "91e26530ad25cfc19e05d3fc38b75c0e295ee1e128f571a3ba4afcf8df10934e",
    "bytes": 141115
+  },
+  {
+   "local": "g27_h31_0.2250.tif",
+   "repo": "buffedlizard55-lab/GEMSDOE27",
+   "ref": "4d39bbf92edd51fdf47004df5873793a035592e5",
+   "path": "docs/downloads/gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif",
+   "submission_name_in_brief": "gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite",
+   "owner_reported_score": 0.225,
+   "site": "https://buffedlizard55-lab.github.io/GEMSDOE27/",
+   "sha256": "2c002b02792419864bd3b29a218e543cb41e3f07b3b57c29ef35c6e39e184bfe",
+   "bytes": 825820
+  },
+  {
+   "local": "g36_kpl36_0.1647.tif",
+   "repo": "buffedlizard55-lab/GEMSDOE36",
+   "ref": "61783525af4aa6dcf8da0bc68b06fa38b89ed27a",
+   "path": "docs/downloads/gemsdoe36-kpl36-exp3-20261026-fc869911e88c-zeros.tif",
+   "submission_name_in_brief": "gemsdoe36-kpl36-exp3-20261026-fc869911e88c-zeros",
+   "owner_reported_score": 0.1647,
+   "site": "https://buffedlizard55-lab.github.io/GEMSDOE36/docs/",
+   "sha256": "86fc8243ad573bcdbfac8b432daf0ec5b6800b991b2c3278706358be7eb9922d",
+   "bytes": 827142
+  },
+  {
+   "local": "g33_seisdil_0.0963.tif",
+   "repo": "buffedlizard55-lab/GEMSDOE33",
+   "ref": "122e2240a835c9c84831943ee3489dbb48fd6e85",
+   "path": "docs/downloads/gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif",
+   "submission_name_in_brief": "gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros",
+   "owner_reported_score": 0.0963,
+   "site": "https://buffedlizard55-lab.github.io/GEMSDOE33/",
+   "sha256": "5eb9572946fa62356ebc0cbfef22bb54aa2ef094cb8b4a84b52e6b80e120db96",
+   "bytes": 825868
+  },
+  {
+   "local": "g91_omtj_0.0298.tif",
+   "repo": "buffedlizard55-lab/GEMSDOE91",
+   "ref": "920845e6da99f5a2a5d8b831e23f54d34e0a3ed6",
+   "path": "docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif",
+   "submission_name_in_brief": "gems91-s22-omtj-e1-20261026-a99b8923f0-zeros",
+   "owner_reported_score": 0.0298,
+   "site": "https://buffedlizard55-lab.github.io/GEMSDOE91/",
+   "sha256": "f12f03a27585b1a9c89108970775d7b44e532c3238a8f387552f1103d7317042",
+   "bytes": 116095
+  },
+  {
+   "local": "g28_s21_0.0206.tif",
+   "repo": "buffedlizard55-lab/GEMSDOE28",
+   "ref": "67dbdf4da84fc92a98dd9644ab816ed18ae36bcc",
+   "path": "docs/downloads/gems28-s21-puhgb-20261026-16bbf281ba9b-allfinite.tif",
+   "submission_name_in_brief": "gems28-s21-puhgb-20261026-16bbf281ba9b-allfinite",
+   "owner_reported_score": 0.0206,
+   "site": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
+   "sha256": "2bf4737ae0a3b844a160d4041d435e5a7daf92c6ec92f128a0c2c596ba23787c",
+   "bytes": 826602
   }
  ]
 }
