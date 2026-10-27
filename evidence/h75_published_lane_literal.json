@@ -8,7 +8,7 @@
   "dist_px": 3.0
  },
  "sha_in_artifact_ledger": false,
- "registry_checked": 105,
+ "registry_checked": 106,
  "registry_complete": true,
  "flagged": [
   "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
@@ -1669,6 +1669,23 @@
    "halo_coverage_3px": 0.19374,
    "excess_overlap_over_coverage": 0.079936,
    "symmetric_min_overlap_3px": 0.240367,
+   "non_discriminative_dense": false,
+   "flag_overlap_lane": false,
+   "density_caveat": ""
+  },
+  {
+   "file": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif",
+   "sha256": "e98b9a35609db124f5838cff415a1b0bdf462d65a746161c0bee706add3983d8",
+   "byte_identical": false,
+   "spearman": 0.003245,
+   "dots_within_3px": 0.198651,
+   "registry_dots_within_3px_of_candidate": 0.169995,
+   "registry_dots": 37654,
+   "flag_rank": false,
+   "flag_overlap": false,
+   "halo_coverage_3px": 0.200504,
+   "excess_overlap_over_coverage": -0.001853,
+   "symmetric_min_overlap_3px": 0.169995,
    "non_discriminative_dense": false,
    "flag_overlap_lane": false,
    "density_caveat": ""

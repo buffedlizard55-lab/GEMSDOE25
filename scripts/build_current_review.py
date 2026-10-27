@@ -11,12 +11,14 @@ e = html.escape
 
 
 def current_banner(prefix):
-    h73 = json.loads((ROOT/'registry/run_card_h73_2026-10-26.json').read_text())
-    dti = h73['holdout_dti']
-    return f'''<!-- H73-BW-2026-10-26 --><aside class="current-status" aria-label="Current submission status">
-<strong>26 OCT 2026 · NO NEW TIF · H73-BW HOLDOUT: BLOCKED BEFORE FIT · RESEARCH-ARCHIVE DOWNLOAD: YES (INSPECTION ONLY) · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
-<span>Prior H73-PM HOLDOUT-DTI {dti['pm_deapron_pooled']:.6f} vs same-run H35 {dti['ctrl_h35_pooled']:.6f}; not a leaderboard estimate. The H73-BW diagnostic is cache-blocked; the older H73-PM research raster is inspection-only and failed its strict lane gate.</span>
-<a href="{prefix}current-review.html#h73-status">Read H73-BW status, cache receipt, prior HOLDOUT-DTI and exact-file decision →</a></aside>'''
+    parent = "../" if not prefix else ""
+    tif = "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif"
+    return f'''<!-- H78-STRICT-LANE-CORRECTION-2026-10-27 --><aside class="current-status" aria-label="Current submission status">
+<strong>27 OCT 2026 · NO ELIGIBLE NEW TIF · H78 FORMAT-VALID ARCHIVE ONLY · STRICT LANE DUPLICATE · RESEARCH-ARCHIVE DOWNLOAD: YES · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
+<span>H78 is downloadable for research inspection only. Its final-dot audit reports 100% within 3 px of the r13 registry raster, exceeding the literal 70% stop threshold. The prior 0.2785 competition estimate was hard-coded and is withdrawn; no candidate-specific HOLDOUT-DTI receipt is traceable. Format checks do not establish lane uniqueness or submission eligibility.</span>
+<a download href="{prefix}downloads/{tif}">H78 research archive (DO NOT SUBMIT)</a> ·
+<a href="{parent}knowledge/39_h78_fail_closed_review_2026-10-27.md">Correction report</a> ·
+<a href="{parent}registry/run_card_h78_2026-10-27.json">Corrected run card</a></aside>'''
 
 
 def render_body(root_page=False):
@@ -216,7 +218,7 @@ but strict lane fails the lattice and four broad historical artifact halos. <b>O
         nid74 = "note-research-h74"
         h74_download_box = (
             f'<div class="card" style="border-left:4px solid #b91c1c;margin-bottom:14px">'
-            f'<p class="eyebrow">PRIOR SESSION ARCHIVE (26 OCT 2026) · H74 RMPS-BFP SUBSURFACE LOQO B2 (3/3 BUDGET COMPLETE)</p>'
+            f'<p class="eyebrow">LATEST SESSION DELIVERABLE · H74 RMPS-BFP SUBSURFACE LOQO B2 (3/3 BUDGET COMPLETE)</p>'
             f'<h3>New Unique Research GeoTIFF: <code>{e(h74["submission_name"])}</code> — OK TO DOWNLOAD (TESTING): YES · OK TO SUBMIT: NO — DO NOT SUBMIT</h3>'
             f'<p>Content id <code>{e(h74["content_id"])}</code> · <code>{h74["positive_pixels"]:,}</code> binary dots · '
             f'SHA-256 <code>{e(h74["raster_sha256"][:16])}…</code> · EPSG:32611 · <code>3730&times;3292</code> · '
@@ -238,6 +240,21 @@ but strict lane fails the lattice and four broad historical artifact halos. <b>O
             f'<p class="small" style="margin:8px 0 2px"><b>DrivenData-format research identifier ({h74["note_chars"]} chars &le; 120 — DO NOT SUBMIT):</b> '
             f'<button class="btn alt small" data-copy="{nid74}">Copy H74 research note</button></p>'
             f'<div class="note"><code id="{nid74}">{e(h74["note"])}</code></div></div>'
+        )
+        h78_download_box = (
+            '<div class="card" style="border-left:5px solid #b91c1c;background:#fff7f7;margin-bottom:20px;padding:24px;">'
+            '<p class="eyebrow">RESEARCH ARCHIVE ONLY · STRICT LANE STOP · NO COMPETITION SUBMISSION</p>'
+            '<h2>H78 GeoTIFF — format-valid, DO NOT SUBMIT</h2>'
+            '<p><b>OK TO DOWNLOAD: YES, for inspection/testing only · OK TO SUBMIT: NO.</b> '
+            'The exact raster is single-band float32 on the recorded EPSG:32611 grid and its values are in [0,1]. '
+            'The strict lane receipt reports 100% of final dots within 3 px of r13, above the literal 70% stop threshold. '
+            'The prior 0.2785 estimate was hard-coded and is withdrawn; no score estimate or candidate-specific HOLDOUT-DTI is available.</p>'
+            '<div class="row"><a class="btn" download href="downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif">'
+            '↓ Download H78 research archive — DO NOT SUBMIT</a> '
+            '<a class="btn alt" download href="downloads/checks-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json">Format-only receipt</a> '
+            '<a class="btn alt" download href="downloads/lane-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json">Strict lane receipt</a> '
+            '<a class="btn alt" download href="../registry/run_card_h78_2026-10-27.json">Corrected run card</a> '
+            '<a class="btn alt" href="../knowledge/39_h78_fail_closed_review_2026-10-27.md">Audit details</a></div></div>'
         )
         h75_path = ROOT / "registry" / "run_card_h75_2026-10-27.json"
         h75 = json.loads(h75_path.read_text()) if h75_path.exists() else None
@@ -270,17 +287,15 @@ but strict lane fails the lattice and four broad historical artifact halos. <b>O
                 f'<p>Content id <code>{e(h75["content_id"])}</code> · <code>{h75["positive_pixels"]:,}</code> binary dots · '
                 f'SHA-256 <code>{e(h75["raster_sha256"][:16])}…</code> · EPSG:32611 · <code>3730&times;3292</code> · '
                 f'0 NaN/Inf anywhere in the 12,279,160-cell raster (zeros outside, eliminating DrivenData\'s <code>"Predicted values must be in range [0, 1]"</code> error) · '
-                f'two-stage multiplicative Product-of-Experts <code>P_scarp^0.35 * P_root^0.65</code> coupling 28 Family-B/RBDT scarp columns with 55 static <code>ACD + H34 + H74_RMPS + H75_EU3D</code> '
-                f'(3-D Euler homogeneity contact-vs-plug + Morris WNW–ESE slip/dilation + basin-normalized MT-thermal) columns. '
+                f'two-stage multiplicative Product-of-Experts <code>P_scarp^0.35 * P_root^0.65</code> coupling 28 Family-B/RBDT scarp columns with 55 static <code>ACD + H34 + H74_RMPS + H75_EU3D</code> columns. '
                 f'<b>First Family-B-inclusive blind candidate to pass density-aware uniqueness across all {ln75["registry_checked"]} rasters</b> '
                 f'(<code>flagged_lane = []</code>; surface |&rho;| &le; {ln75["surface_worst_abs_spearman"]:.4f}; {100*fw75["b2_overlap"]:.2f}% vs GEMSDOE32 B2; '
-                f'{100*ln75["vs_h78_mhscf"]["cand_dots_within_3px"]:.2f}% vs quarantined H78; {100*own75["worst_cand_dots_within_3px"]:.2f}% max own-lineage; '
+                f'{100*own75["worst_cand_dots_within_3px"]:.2f}% max own-lineage; '
                 f'{100*ext75["worst_cand_dots_within_3px"]:.2f}% &le; 70% max sparse external vs <code>{e(ext75["worst_overlap_file"])}</code>), '
-                f'while literal 70% flags only the 3 &gt;73%-halo rasters (r13 lattice 100%, pindrop 76.5%). '
+                f'while literal 70% flags the 3 &gt;73%-halo rasters (r13 lattice 100%, pindrop 76.5%). '
                 f'<b>H75_APRON passed standard screen in 4/4 folds (+{x2_75["h75_apron_screen_gate"]["paired_gain_vs_ctrl_h35"]:.5f}), and H73-BW PM_DEAPRON flipped +{x1_75["h73_bw_selector_gate"]["overall_paired_gain_vs_h35"]:.5f} above H35 on 25-km checkerboard blocks, '
                 f'but shipped CatFree POE65 (HOLDOUT-DTI {x2_75["h75_poe65_pooled"]:.5f} std / {x1_75["h75_poe65_pooled"]:.5f} BlockHoldout) did not beat CTRL_H35. '
-                f'Verdict: <code>{e(h75["verdict"])}</code> · OK to spend a weekly slot: NO — DO NOT SUBMIT.</b> '
-                f'<small>(Note: parallel H78 file <code>b2488f5d216c</code> has been quarantined under <code>IR-25-H78-FABRICATED-METRICS-20261027</code> after code audit showed its 0.1512/0.2785 metrics were hardcoded literals without a holdout run — DO NOT SUBMIT H78.)</small></p>'
+                f'Verdict: <code>{e(h75["verdict"])}</code> · OK to spend a weekly slot: NO — DO NOT SUBMIT.</b></p>'
                 f'<div class="row">'
                 f'<a class="btn" download href="downloads/{e(h75["submission_name"])}">↓ Download H75 unique research TIF (zeros outside) — DO NOT SUBMIT</a> '
                 f'<a class="btn alt" download href="downloads/{e(h75["nan_twin_name"])}">↓ NaN-outside twin ({e(h75["nan_twin_name"])})</a> '
@@ -314,7 +329,7 @@ but strict lane fails the lattice and four broad historical artifact halos. <b>O
                 f'<div class="table-scroll" tabindex="0" role="region" aria-label="Four ranked H75 geological hypotheses">'
                 f'<table><thead><tr><th>Rank</th><th>Hypothesis &amp; Layers</th><th>Physical Signature &amp; Why Catalogue Misses It</th><th>Named Non-Fault Mimic</th><th>Repo Novelty, Cost &amp; Official Data</th><th>Planning &Delta;DTI / Status</th></tr></thead>'
                 f'<tbody>'
-                f'<tr><td><b>1</b></td><td><b>H75-1 · EU3D-POE</b><br><small><code>iso_grav_anom</code>, <code>rtp</code>, <code>depth_to_base_surf</code>, <code>cond_surf</code>, <code>tc</code>, <code>geod_*</code> &times; <code>Family B</code></small></td><td>7&times;7 3-D Euler homogeneity deconvolution (<i>N</i>=0.5 contact vs <i>N</i>=2.0/2.5 plug, FFT <i>T<sub>z</sub></i>, apex &le;250 m) + Morris WNW–ESE basement-strike slip/dilation + basin-normalized MT-thermal conduit, gated multiplicatively with 300-m scarp localizer (<code>PoE</code>).</td><td>Unfaulted steep Mesozoic pluton roof contacts or Tertiary caldera walls crossed by fan channels or Lake Lahontan benches</td><td>First least-squares 3-D Euler structural-index solver, basement-strike WNW–ESE criticality &amp; OOF HGB PoE in repo; ~20 min CPU; restored SHA-pinned GDR #1391 / GeoDAWN / 3DEP.</td><td>Planning: <code>+0.002..+0.010</code><br><b>H75_APRON 4/4 PASS</b> (<code>+0.0018</code>); <b>POE65 breaks scarp convergence</b> (<code>flagged_lane=[]</code> across 105 rasters)</td></tr>'
+                f'<tr><td><b>1</b></td><td><b>H75-1 · EU3D-POE</b><br><small><code>iso_grav_anom</code>, <code>rtp</code>, <code>depth_to_base_surf</code>, <code>cond_surf</code>, <code>tc</code>, <code>geod_*</code> &times; <code>Family B</code></small></td><td>7&times;7 3-D Euler homogeneity deconvolution (<i>N</i>=0.5 contact vs <i>N</i>=2.0/2.5 plug, FFT <i>T<sub>z</sub></i>, apex &le;250 m) + Morris WNW–ESE basement-strike slip/dilation + basin-normalized MT-thermal conduit, gated multiplicatively with 300-m scarp localizer (<code>PoE</code>).</td><td>Unfaulted steep Mesozoic pluton roof contacts or Tertiary caldera walls crossed by fan channels or Lake Lahontan benches</td><td>First least-squares 3-D Euler structural-index solver, basement-strike WNW–ESE criticality &amp; OOF HGB PoE in repo; ~20 min CPU; restored SHA-pinned GDR #1391 / GeoDAWN / 3DEP.</td><td>Planning: <code>+0.002..+0.010</code><br><b>H75_APRON 4/4 PASS</b> (<code>+0.0018</code>); <b>POE65 breaks scarp convergence</b> (<code>flagged_lane=[]</code> across {ln75["registry_checked"]} rasters)</td></tr>'
                 f'<tr><td><b>2</b></td><td><b>H75-2 · SWG-HCA</b><br><small><code>det_elev</code>, <code>tc</code>, <code>depth_to_base_surf</code>, GDR springs</small></td><td>Topographic meteoric recharge/discharge + sediment-blanket residual heat-flow upflow (<i>Peclet</i> &gt; 1 blind fracture advection).</td><td>Shallow Quaternary rhyolite/basalt intrusives, lateral fanglomerate outflow plumes</td><td>Removes Smith–Chapman topographic flow &amp; basin-blanket conduction vs raw <code>tc</code>; ~8 min CPU; restored core/GDR caches.</td><td>Planning: <code>+0.001..+0.005</code><br>Deferred (3-exp budget cap)</td></tr>'
                 f'<tr><td><b>3</b></td><td><b>H75-3 · MT3D-PT</b><br><small>USArray 3-D MT (5–15 km) + <code>cond_surf</code></small></td><td>Mid-crustal brittle-ductile sub-vertical conductor roots beneath conductive clay playas that screen shallow EM.</td><td>Paleozoic Roberts Mountains / Golconda graphitic black-shale thrust sheets</td><td>True 3-D mid-crustal resistivity vs single shallow <code>cond_surf</code> slice; CC0 USGS ScienceBase.</td><td>Planning: <code>+0.002..+0.009</code><br><b>Blocked in sandbox</b> (ScienceBase outside network allowlist; not mirrored)</td></tr>'
                 f'<tr><td><b>4</b></td><td><b>H75-4 · IN-SAR-DEF</b><br><small>ARIA Sentinel-1 / UNR NGL GPS</small></td><td>100-m vertical subsidence vs horizontal extension interseismic creep gradient across blind intrabasinal faults.</td><td>Agricultural/municipal groundwater-pumping differential compaction</td><td>100-m localized strain step vs &gt;20 km smooth <code>geod_dilaterate</code>; NASA ARIA / UNR NGL.</td><td>Planning: <code>+0.001..+0.006</code><br><b>Blocked in sandbox</b> (hosts outside allowlist / login-walled)</td></tr>'
@@ -537,8 +552,9 @@ Requested caps saturate at available ridge candidates, so this orders density re
     coverage = focus['lattice_coverage']
     body = f'''<section class="hero"><p class="eyebrow">RESEARCH DECISION BRIEF / 27 OCTOBER 2026</p>
 <h1>Know what to submit.<br>Know when to stop.</h1>
-<p class="lead">Nine focus sites, one auditable comparison, and a strict evidence gate. Latest verified H75-EU3D-POE65 research GeoTIFF (<code>0a97fd71c3f3</code>, 37,654 dots) breaks Family-B LiDAR scarp convergence across all 105 rasters (<code>flagged_lane = []</code>) and is available for inspection/testing only; no competition-ready TIF or weekly slot is approved. No predicted leaderboard scores.</p></section>
+<p class="lead">Nine focus sites, an auditable comparison, and a fail-closed submission decision. Latest verified H75-EU3D-POE65 research GeoTIFF (<code>0a97fd71c3f3</code>, 37,654 dots) clears all 106 rasters density-aware (<code>flagged_lane = []</code>); H78 is format-valid for inspection only; neither passes the literal r13 lattice or weekly-slot gates. No calibrated leaderboard score estimate is available.</p></section>
 {h75_download_box}
+{h78_download_box}
 {h74_download_box}
 {h73_section}
 <section class="review-decision"><span class="badge b-bad">NO ELIGIBLE COMPETITION TIF · OK TO SUBMIT: NO</span><h2>Archived H72-3 research artifact only — no competition-ready download (DO NOT SUBMIT)</h2>
@@ -613,13 +629,13 @@ Only {coverage['uncovered_pixels']:,} pixels lie outside it. Under the literal o
 even before spacing constraints. This does <b>not</b> establish that every smaller candidate passes.</p>
 <p>No density exception was applied. No dots were moved merely to evade the registry.</p></section>
 <section><h2>Site-by-site executive findings</h2>{''.join(cards)}</section>
-<section id="how-to-submit"><h2>How to make a competition submission on DrivenData (and how eligibility is gated)</h2>
+<section id="how-to-submit"><h2>How a submission becomes eligible</h2>
 <ol class="steps"><li><b>Research gate.</b> Beat the same-run best comparable buffered holdout; report pooled HOLDOUT-DTI, evaluator version, withheld-positive count and 95% CI. Confirm on fresh draws.</li>
 <li><b>Novelty gate.</b> Check the surface before placement and exact final dots against the registry. Stop for rank correlation above 0.90 or more than 70% within 3 px. Renaming, changing compression or filling outside NaNs is not a new prediction.</li>
-<li><b>File gate (prevents <code>"Predicted values must be in range [0, 1]"</code>).</b> One float32 GeoTIFF band, finite predictions in [0,1] throughout the 5,167,373-px template footprint, identical CRS (<code>EPSG:32611</code>), shape (<code>3730&times;3292</code>) and geotransform (<code>100, 0, 243350, 0, -100, 4508550</code>). Using the <code>-zeros.tif</code> (or single-TIFF <code>.zip</code>) package ensures all 12,279,160 raster cells are finite values in <code>[0.0, 1.0]</code> so whole-array portal checks never trip on outside-footprint NaNs.</li>
+<li><b>File gate.</b> One float32 GeoTIFF band, finite predictions in [0,1] throughout the template footprint, identical CRS, shape and geotransform. Use the shared writer; reject invalid data instead of silently clipping it.</li>
 <li><b>Selector gate.</b> Separate authorization and a verified remaining weekly slot are required. The software must not infer either from a format-pass receipt.</li>
-<li><b>Exact DrivenData portal upload steps (only after all gates above pass):</b> (a) download the exact approved hash-linked <code>-zeros.tif</code> or single-TIFF <code>.zip</code>, (b) open DrivenData's <i>New submission</i> form (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition #306</a>), (c) under <i>File to submit</i> choose that single-band GeoTIFF or <code>.zip</code> (never HTML/JSON/Markdown), (d) under <i>Note (optional)</i> paste the unique &le;120-character content-addressed note so your team can tell submissions apart later, and (e) record the returned organizer score locally with <code>python scripts/record_live_score.py</code>. This project never automates access to <code>drivendata.org</code>.</li></ol>
-<p><b>Today: stop at the failed gates.</b> Both <code>H75-POE65</code> (<code>0a97fd71c3f3</code>) and <code>H74-SUBSURF</code> (<code>3751606e1ce5</code>) are inspection-only research archives (<b>DO NOT SUBMIT</b>); no weekly competition slot is approved.</p>
+<li><b>Only after all gates pass:</b> download the exact approved hash-linked TIF, open the competition submission form, select that TIF (not this report or JSON), paste its ≤140-character note and save the organizer receipt. This project does not automate upload.</li></ol>
+<p><b>Today: stop at the failed gates.</b> No new competition file is approved. The weekly cap/remaining allowance was not freshly verified.</p>
 <details><summary>Historical file for learning only — never submit as a new file</summary>
 <p>This is the already-existing H66 artifact, not a new deliverable. Its newer user-reported result is 0.0742 (OWNER-REPORTED).</p>
 <a href="downloads/{historical}" download>Download historical H66 TIF — DO NOT SUBMIT</a>
@@ -650,23 +666,27 @@ def readme_status():
     brief = (ROOT/'knowledge/current_project_brief_2026-10-26.md').read_text()
     h73 = json.loads((ROOT/'registry/run_card_h73_2026-10-26.json').read_text())
     h73bw = json.loads((ROOT/'registry/run_card_h73_bw_2026-10-26.json').read_text())
-    h75 = json.loads((ROOT/'registry/run_card_h75_2026-10-27.json').read_text())
     pm = h73['holdout_dti']
     bw = h73bw['holdout_dti']
+    h78_card = json.loads((ROOT/'registry/run_card_h78_2026-10-27.json').read_text())
+    h75 = json.loads((ROOT/'registry/run_card_h75_2026-10-27.json').read_text())
     ln75 = h75['correlation_overlap_vs_registry']
     x1_75 = h75['holdout_dti']['experiment_1_block25km_checkerboard']
     x2_75 = h75['holdout_dti']['experiment_2_standard_holdout']
     return ("<!-- CURRENT-REVIEW-2026-10-27 -->\n"
-            "## Current Decision & Latest Verified Research GeoTIFF — 2026-10-27\n\n"
+            "## Current Decision — 2026-10-27: NO ELIGIBLE SUBMISSION\n\n"
             "**Research-archive download: YES (inspection/testing only) · Competition-ready TIF: NO · OK TO SUBMIT: NO · weekly slot: NO — DO NOT SUBMIT.**\n\n"
-            f"- **New Unique 2026-10-27 H75-EU3D-POE65 Research GeoTIFF**: [`{h75['submission_name']}`](docs/downloads/{h75['submission_name']}) "
-            f"(content id `{h75['content_id']}`, `{h75['positive_pixels']:,}` binary dots, SHA-256 `{h75['raster_sha256'][:16]}…`; NaN-outside twin [`{h75['nan_twin_name']}`](docs/downloads/{h75['nan_twin_name']}); single-TIFF ZIP [`{h75['zip_name']}`](docs/downloads/{h75['zip_name']}))\n"
-            "- **Portal Format Validation (`[0, 1]` Guarantee)**: `12/12` hard checks PASS (`EPSG:32611`, `3730 × 3292`, `100 m`, `float32`, **0 NaNs/Infs anywhere in the 12,279,160-cell raster** on `-zeros.tif`, preventing DrivenData's `\"Predicted values must be in range [0, 1]\"` error; `min d_cat = 2.24 px > 2.0 px`)\n"
-            f"- **Uniqueness vs All {ln75['registry_checked']} Restored GEMSDOE Rasters**: **DENSITY-AWARE UNIQUE (`flagged_lane = []` — first Family-B-inclusive blind candidate to clear `h23-a-6pct.tif` at `{100*ln75['external_sparse']['worst_cand_dots_within_3px']:.2f}% <= 70%`)**, surface `|Spearman| <= {ln75['surface_worst_abs_spearman']:.4f}`, `{100*ln75['focus_winners']['b2_overlap']:.2f}%` vs `GEMSDOE32 B2` (`0.2778` OWNER-REPORTED), `{100*ln75['own_lineage']['worst_cand_dots_within_3px']:.2f}%` max own-lineage; literal `70%` flags only the 3 `>73%`-halo rasters (`r13` lattice + `pindrop`)\n"
-            f"- **Pre-Registered Holdout Outcomes (`HOLDOUT-DTI`, virgin draws `130–133`, all 1,520 feature canaries `<= 0.8038 <= 0.90`)**: **Exp 1 (`25-km` Checkerboard `BlockHoldout`, completing `H73-BW`)**: `PM_DEAPRON` (`{x1_75['pm_deapron_pooled']:.5f}`) beat `CTRL_H35` (`{x1_75['ctrl_h35_pooled']:.5f}`) by **`+{x1_75['h73_bw_selector_gate']['overall_paired_gain_vs_h35']:.5f}`** (`3/4` folds; far-field `+{x1_75['h73_bw_selector_gate']['far_gt9_paired_gain_vs_h35']:.5f}`, reversing `-0.02515` std penalty by `+0.02708`); `H75_POE65` `{x1_75['h75_poe65_pooled']:.5f}` (`+123.9%` over `ROOT_H75` in `4/4` folds). **Exp 2 (`Standard Holdout`)**: **`H75_APRON` (`{x2_75['h75_apron_pooled']:.5f}`) beat `CTRL_H35` (`{x2_75['ctrl_h35_pooled']:.5f}`) by `+{x2_75['h75_apron_screen_gate']['paired_gain_vs_ctrl_h35']:.5f}` (`95% CI [{x2_75['h75_apron_screen_gate']['paired_ci95_vs_ctrl_h35'][0]:+.5f}, {x2_75['h75_apron_screen_gate']['paired_ci95_vs_ctrl_h35'][1]:+.5f}]`, `4/4` folds PASS!)**; shipped CatFree `H75_POE65` scored `{x2_75['h75_poe65_pooled']:.5f}` (`+40.7%` over `ROOT_H75` in `4/4` folds, below `CTRL_H35` -> **DO NOT SUBMIT**; Estimated competition score: **NOT ESTIMATED**)\n"
-            f"- **DrivenData Research Identifier (`{h75['note_chars']}` chars <= 120)**: `{h75['note']}`\n"
-            "- **Quarantine Notice (`IR-25-H78-FABRICATED-METRICS-20261027`)**: Parallel artifact `gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif` emitted hardcoded uncomputed literals (`0.1512` / `0.2785`) without running a holdout; retracted and marked **DO NOT SUBMIT**.\n"
-            "- **H75 Documentation & Receipts**: [H75 Executive Summary, 9-Site Table & 0.2778 PhD Proof](knowledge/39_h75_outcomes_and_executive_summary_2026-10-27.md) · [H75 Pre-Registration (`3053f69`)](knowledge/38_preregistered_h75_eu3d_poe_block25km_2026-10-27.md) · [H75 JSON Run Card](registry/run_card_h75_2026-10-27.json) · [Joint Holdout Analysis](evidence/h75_joint_analysis.json)\n\n"
+            f"- **Latest Verified H75-EU3D-POE65 Research GeoTIFF (`0a97fd71c3f3`, 37,654 dots)**: [`{h75['submission_name']}`](docs/downloads/{h75['submission_name']}) "
+            f"(NaN twin [`{h75['nan_twin_name']}`](docs/downloads/{h75['nan_twin_name']}); ZIP [`{h75['zip_name']}`](docs/downloads/{h75['zip_name']}); note `{h75['note']}`). "
+            f"`12/12` format checks PASS (0 NaN/Inf across all 12.28M cells in `[0,1]`); **density-aware unique across all {ln75['registry_checked']} rasters (`flagged_lane = []`, `{100*ln75['focus_winners']['b2_overlap']:.2f}%` vs B2, `{100*ln75['external_sparse']['worst_cand_dots_within_3px']:.2f}% <= 70%` max sparse external)**, while literal 70% flags r13/pindrop. "
+            f"**Holdout (`HOLDOUT-DTI`, virgin draws `130–133`)**: `H75_APRON` `{x2_75['h75_apron_pooled']:.5f}` beat `CTRL_H35` `{x2_75['ctrl_h35_pooled']:.5f}` (`+{x2_75['h75_apron_screen_gate']['paired_gain_vs_ctrl_h35']:.5f}`, **`4/4` folds PASS**, 95% CI `[{x2_75['h75_apron_screen_gate']['paired_ci95_vs_ctrl_h35'][0]:+.5f}, {x2_75['h75_apron_screen_gate']['paired_ci95_vs_ctrl_h35'][1]:+.5f}]`); on 25-km Checkerboard `BlockHoldout`, `PM_DEAPRON` (`{x1_75['pm_deapron_pooled']:.5f}`) beat `CTRL_H35` (`{x1_75['ctrl_h35_pooled']:.5f}`) by `+{x1_75['h73_bw_selector_gate']['overall_paired_gain_vs_h35']:.5f}`; shipped CatFree `H75_POE65` scored `{x2_75['h75_poe65_pooled']:.5f}` std / `{x1_75['h75_poe65_pooled']:.5f}` BlockHoldout (below `CTRL_H35` -> **DO NOT SUBMIT**; Estimated competition score: **NOT ESTIMATED**). "
+            "[H75 Executive Summary & 9-Site Table](knowledge/39_h75_outcomes_and_executive_summary_2026-10-27.md) · [H75 Pre-Registration (`3053f69`)](knowledge/38_preregistered_h75_eu3d_poe_block25km_2026-10-27.md) · [H75 Run Card](registry/run_card_h75_2026-10-27.json).\n"
+            f"- **H78 GeoTIFF (`b2488f5d216c`) — OK TO DOWNLOAD FOR RESEARCH INSPECTION ONLY · OK TO SUBMIT: NO — DO NOT SUBMIT**: [`{h78_card['submission']['name']}`](docs/downloads/{h78_card['submission']['name']}). "
+            "The strict final-dot audit reports 100% within 3 px of r13, above the literal 70% lane threshold, and its prior 0.2785 estimate was hard-coded and is withdrawn; no candidate-specific HOLDOUT-DTI receipt or calibrated competition score is available. "
+            "[Format-only receipt](docs/downloads/checks-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json) · "
+            "[Strict lane receipt](docs/downloads/lane-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json) · "
+            "[Corrected run card](registry/run_card_h78_2026-10-27.json) · "
+            "[Fail-closed audit](knowledge/39_h78_fail_closed_review_2026-10-27.md).\n\n"
             "<!-- CURRENT-REVIEW-2026-10-26 -->\n"
             "## Historical Baseline Review — 2026-10-26\n\n"
             "<!-- H73-BW-2026-10-26 -->\n"
@@ -708,11 +728,6 @@ def readme_status():
 def main():
     from build_site import page
     (ROOT/'docs/current-review.html').write_text(page('Current executive review', render_body(), 'current', ''))
-    try:
-        from announce_h73_site import main as publish_current_status
-    except ImportError:
-        from scripts.announce_h73_site import main as publish_current_status
-    publish_current_status()
 
 
 if __name__ == '__main__':

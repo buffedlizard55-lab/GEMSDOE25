@@ -60,7 +60,7 @@
   }
  ],
  "own_lineage": {
-  "n": 27,
+  "n": 28,
   "worst_abs_spearman_surface": 0.106684,
   "worst_surface_file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
   "worst_abs_spearman_final": 0.066979,
@@ -1107,6 +1107,19 @@
    "cand_dots_within_3px": 0.273676103468423,
    "reg_dots_within_3px_of_cand": 0.24036739380022962,
    "halo_coverage_3px": 0.19374,
+   "non_discriminative_dense": false,
+   "dense_lattice": false
+  },
+  {
+   "group": "own_downloads",
+   "file": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif",
+   "sha256": "e98b9a35609db124f5838cff415a1b0bdf462d65a746161c0bee706add3983d8",
+   "registry_dots": 37654,
+   "spearman_surface": 0.002415,
+   "spearman_final": 0.003245,
+   "cand_dots_within_3px": 0.19865087374515325,
+   "reg_dots_within_3px_of_cand": 0.16999521963138045,
+   "halo_coverage_3px": 0.200504,
    "non_discriminative_dense": false,
    "dense_lattice": false
   },

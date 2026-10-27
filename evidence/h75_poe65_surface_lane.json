@@ -491,6 +491,11 @@
    "flag_rank": false
   },
   {
+   "file": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif",
+   "spearman_surface": 0.002415,
+   "flag_rank": false
+  },
+  {
    "file": "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-nan.tif",
    "spearman_surface": 0.056713,
    "flag_rank": false

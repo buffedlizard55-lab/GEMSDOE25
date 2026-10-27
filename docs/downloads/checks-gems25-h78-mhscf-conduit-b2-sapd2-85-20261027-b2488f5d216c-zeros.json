@@ -5,19 +5,21 @@
   "candidate_dots": 43550,
   "estimated_competition_score": null,
   "score_ci_95": null,
-  "score_basis": "Retracted under IR-25-H78-FABRICATED-METRICS-20261027: projections are never scores and no holdout was run",
+  "score_basis": "NOT ESTIMABLE: prior 0.2785 was a hard-coded projection; no ORGANIZER-CONFIRMED receipt or supported calibration exists.",
   "primary_file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
   "primary_zip": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.zip",
   "legacy_file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-nan.tif",
   "sha256": "be78ded8d7073512d9fc71677c37cd3528e1ff80fb3c5cb8c02080417e1217e5",
   "ok_to_download": true,
   "ok_to_submit": false,
-  "validation_status": "FORMAT-VALID RESEARCH ARCHIVE ONLY — DO NOT SUBMIT (unvalidated heuristic surface; IR-25-H78-FABRICATED-METRICS-20261027)",
-  "lane_verdict": "DUPLICATE/LANE OVERLAP - do not package",
-  "lane_verdict_density_aware": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
-  "flagged_duplicates": [],
-  "note": "GEMSDOE25 H78 MHSCF B2 | no slot, not slot-approved; DO NOT SUBMIT | id b2488f5d216c | unscored",
-  "note_chars": 95,
+  "validation_status": "FORMAT VALIDATED ONLY; NOT SUBMISSION-ELIGIBLE (strict lane overlap and no verified performance gate)",
+  "lane_verdict": "DUPLICATE UNDER STRICT LITERAL RULE: 100% of candidate dots within 3 px of r13 raster",
+  "lane_verdict_density_aware": "diagnostic only; does not override literal lane failure",
+  "flagged_duplicates": [
+    "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
+  ],
+  "note": "GEMSDOE25 H78 archive only | strict lane duplicate | DO NOT SUBMIT | id b2488f5d216c",
+  "note_chars": 84,
   "format_checks": {
     "template_matches_expected_grid_and_footprint": {
       "pass_": true,
@@ -99,5 +101,6 @@
       "detail": "compress=lzw (template lzw)",
       "hard": false
     }
-  }
+  },
+  "download_purpose": "research inspection only"
 }

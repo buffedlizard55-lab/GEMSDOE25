@@ -78,8 +78,15 @@ def main() -> None:
           f"[9-site executive review (`GEMSDOE24..36` + `GEMSDOE..92`), PhD proof of why `GEMSDOE32` `H33-2-B2` achieved `0.2778` (`OWNER-REPORTED`) and how to surpass it, 4 ranked untried hypotheses (`H75-1..4`), and pre-registered experiments on virgin draws `130–133` — Exp 1 `25-km` Checkerboard `BlockHoldout` (`draws 130-131`, completing `H73-BW`): `PM_DEAPRON` `{x1_75['pm_deapron_pooled']:.5f}` beat `CTRL_H35` `{x1_75['ctrl_h35_pooled']:.5f}` (`+{x1_75['h73_bw_selector_gate']['overall_paired_gain_vs_h35']:.5f}`, 3/4 folds; far-field `+{x1_75['h73_bw_selector_gate']['far_gt9_paired_gain_vs_h35']:.5f}`), `H75_POE65` `{x1_75['h75_poe65_pooled']:.5f}` (`+123.9%` over `ROOT_H75` in 4/4 folds); Exp 2 standard `Holdout` (`draws 132-133`): `H75_APRON` `{x2_75['h75_apron_pooled']:.5f}` beat `CTRL_H35` `{x2_75['ctrl_h35_pooled']:.5f}` (`+{x2_75['h75_apron_screen_gate']['paired_gain_vs_ctrl_h35']:.5f}`, `4/4` folds PASS, 95% CI `[{x2_75['h75_apron_screen_gate']['paired_ci95_vs_ctrl_h35'][0]:+.5f}, {x2_75['h75_apron_screen_gate']['paired_ci95_vs_ctrl_h35'][1]:+.5f}]`), shipped CatFree `H75_POE65` `{x2_75['h75_poe65_pooled']:.5f}` (`+40.7%` over `ROOT_H75` in 4/4 folds; below `CTRL_H35`) — unique GeoTIFF `{h75_card['content_id']}` (`flagged_lane = []` across all {ln75['registry_checked']} rasters, `{100*ln75['focus_winners']['b2_overlap']:.2f}%` vs B2, `{100*ln75['external_sparse']['worst_cand_dots_within_3px']:.2f}% <= 70%` max sparse external; OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT)](knowledge/39_h75_outcomes_and_executive_summary_2026-10-27.md) · "
           "pre-registration [`knowledge/38`](knowledge/38_preregistered_h75_eu3d_poe_block25km_2026-10-27.md) (`3053f69`) · "
           "GeoTIFF [`docs/downloads/" + h75_card["submission_name"] + "`](docs/downloads/" + h75_card["submission_name"] + ") · "
-          "run card [`registry/run_card_h75_2026-10-27.json`](registry/run_card_h75_2026-10-27.json). "
-          "*(Parallel H78 file `b2488f5d216c` quarantined under `IR-25-H78-FABRICATED-METRICS-20261027` after audit showed hardcoded uncomputed literals — DO NOT SUBMIT.)*\n")
+          "run card [`registry/run_card_h75_2026-10-27.json`](registry/run_card_h75_2026-10-27.json).\n")
+    h78_card = opt("registry/run_card_h78_2026-10-27.json")
+    if h78_card:
+        h78_name = h78_card["submission"]["name"]
+        A("**Current H78 audit (2026-10-27):** The preserved raster is format-valid for research inspection only; **DO NOT SUBMIT**. "
+          "The literal lane receipt reports 100% of final dots within 3 px of r13, above the 70% stop threshold. "
+          "Its earlier 0.2785 estimate was hard-coded and is withdrawn; no candidate-specific HOLDOUT-DTI or calibrated leaderboard estimate is available. "
+          f"See [corrected audit](knowledge/39_h78_fail_closed_review_2026-10-27.md), [run card](registry/run_card_h78_2026-10-27.json), and "
+          f"[research-inspection GeoTIFF](docs/downloads/{h78_name}).\n")
     h74_card = opt("registry/run_card_h74_2026-10-26.json")
     if h74_card:
         hd74 = h74_card["holdout_dti"]
@@ -470,11 +477,6 @@ def main() -> None:
     A("~~~markdown\n" + (ROOT / "knowledge" / "current_session_brief_2026-10-25_66ca_CONDENSED.md").read_text().rstrip() + "\n~~~\n")
     A("</details>\n")
     (ROOT / "README.md").write_text("\n".join(L))
-    try:
-        from announce_h73_site import main as publish_current_status
-    except ImportError:
-        from scripts.announce_h73_site import main as publish_current_status
-    publish_current_status()
     print("README.md written,", len((ROOT / "README.md").read_text()), "chars")
 
 

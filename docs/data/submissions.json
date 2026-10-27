@@ -96,7 +96,7 @@
    },
    "receipt": "checks-gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.json",
    "outside": "zero",
-   "status": "UNIQUE BY CONTENT (density-aware across 105 rasters; breaks LiDAR scarp convergence) \u00b7 FORMAT-VALID \u00b7 H75_APRON SCREEN PASS (+0.00176, 4/4 folds) & H73-BW PM_DEAPRON +0.00193 (3/4 folds), SHIPPED CATFREE POE65 SLOT GATE FAIL vs CTRL_H35 \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "status": "UNIQUE BY CONTENT (density-aware across 106 rasters; breaks LiDAR scarp convergence) \u00b7 FORMAT-VALID \u00b7 H75_APRON SCREEN PASS (+0.00176, 4/4 folds) & H73-BW PM_DEAPRON +0.00193 (3/4 folds), SHIPPED CATFREE POE65 SLOT GATE FAIL vs CTRL_H35 \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
    "zip": "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3.zip",
    "verdict": "negative",
    "slot_approved": false,
@@ -114,7 +114,7 @@
      "pindrop-discovery.tif",
      "pindrop-nodes.tif"
     ],
-    "registry_checked": 105,
+    "registry_checked": 106,
     "surface_worst_abs_spearman": 0.202132,
     "focus_winners": {
      "n": 27,
@@ -162,7 +162,7 @@
      "lane_pass": true
     },
     "own_lineage": {
-     "n": 27,
+     "n": 28,
      "worst_abs_spearman_surface": 0.106684,
      "worst_surface_file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
      "worst_abs_spearman_final": 0.066979,
@@ -228,11 +228,11 @@
     "extended_receipt": "evidence/h75_published_lane_extended.json",
     "surface_receipt": "evidence/h75_poe65_surface_lane.json"
    },
-   "lane_summary": "DENSITY-AWARE UNIQUE (flagged_lane = [] across all 105 rasters; surface |Spearman| 0.2021 <= 0.90; binary |Spearman| 0.0670 <= 0.90). Literal 70% flags only the 3 dense-halo rasters whose 3-px halos cover >73% of the entire footprint (r13-lattice-s5 99.87%, pindrop-nodes 73.50%, pindrop-discovery 73.41%). Final-dot overlap: 35.77% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), worst 51.69% across 27 registry_top rasters, 63.78% vs H74-SUBSURF, 55.59% vs H72-CF, 63.78% max own-lineage, 69.84% max sparse external.",
+   "lane_summary": "DENSITY-AWARE UNIQUE (flagged_lane = [] across all 106 rasters; surface |Spearman| 0.2021 <= 0.90; binary |Spearman| 0.0670 <= 0.90). Literal 70% flags only the 3 dense-halo rasters whose 3-px halos cover >73% of the entire footprint (r13-lattice-s5 99.87%, pindrop-nodes 73.50%, pindrop-discovery 73.41%). Final-dot overlap: 35.77% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), worst 51.69% across 27 registry_top rasters, 63.78% vs H74-SUBSURF, 55.59% vs H72-CF, 63.78% max own-lineage, 69.84% max sparse external.",
    "slot_reason": "2 formal pre-registered experiments (+ 1 disclosed aborted pre-commit draft = 3/3 budget). Exp 1 (25-km Checkerboard BlockHoldout, draws 130-131): PM_DEAPRON 0.13942 beat CTRL_H35 0.13749 (+0.00193, 3/4 folds; far_gt9 +0.00223, 95.5% >20 px, CI_lo -0.00133); H75_POE65 0.03243 (+123.9% over ROOT_H75 0.01448 in 4/4 folds). Exp 2 (standard Holdout, draws 132-133): H75_APRON 0.15118 beat CTRL_H35 0.14942 (+0.00176, 95% CI [+0.00066, +0.00262], 4/4 folds PASS); shipped catalogue-free H75_POE65 scored 0.08641 (+40.7% over ROOT_H75 in 4/4 folds, highest flagged_lane=[] CatFree GeoTIFF, but below CTRL_H35). Not slot-approved.",
    "run_card": "registry/run_card_h75_2026-10-27.json",
    "title": "H75-EU3D-POE65 two-stage crustal-root x scarp LOQO B2 (37,654 dots, zero outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
-   "summary": "Unique 2026-10-27 Two-Stage Crustal-Root Product-of-Experts GeoTIFF (37,654 binary dots, P_scarp^0.35 * P_root^0.65 combining 28 static Family-B/RBDT scarp columns with 55 static ACD + H34 + H74_RMPS + H75_EU3D 3-D Euler homogeneity / Anderson slip-dilation / basin-normalized MT-thermal columns, zero Family E, 4-quadrant LOQO OOF + B2 greedy_dots; d_cat min 2.24 px, median 18.4 px, 74.3% > 9 px, 47.0% > 20 px). First Family-B-inclusive blind candidate to pass density-aware uniqueness across all 105 rasters (flagged_lane = [], 35.8% vs B2, 69.84% vs h23-a-6pct <= 70%, 63.8% max own-lineage); literal 70% flags only the 3 >73%-halo rasters. Standard HOLDOUT-DTI 0.08641 (22,959 withheld +) & 25-km BlockHoldout 0.03243 (116,556 withheld +) \u2014 catalogue-gap proxies, not live scores. Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
+   "summary": "Unique 2026-10-27 Two-Stage Crustal-Root Product-of-Experts GeoTIFF (37,654 binary dots, P_scarp^0.35 * P_root^0.65 combining 28 static Family-B/RBDT scarp columns with 55 static ACD + H34 + H74_RMPS + H75_EU3D 3-D Euler homogeneity / Anderson slip-dilation / basin-normalized MT-thermal columns, zero Family E, 4-quadrant LOQO OOF + B2 greedy_dots; d_cat min 2.24 px, median 18.4 px, 74.3% > 9 px, 47.0% > 20 px). First Family-B-inclusive blind candidate to pass density-aware uniqueness across all 106 rasters (flagged_lane = [], 35.8% vs B2, 69.84% vs h23-a-6pct <= 70%, 63.8% max own-lineage); literal 70% flags only the 3 >73%-halo rasters. Standard HOLDOUT-DTI 0.08641 (22,959 withheld +) & 25-km BlockHoldout 0.03243 (116,556 withheld +) \u2014 catalogue-gap proxies, not live scores. Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
    "note": "GEMSDOE25 H75-POE65 | no slot, not slot-approved; DO NOT SUBMIT | id 0a97fd71c3f3 | unscored"
   },
   {
@@ -329,7 +329,7 @@
    },
    "receipt": "checks-gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-nan.json",
    "outside": "nan",
-   "status": "UNIQUE BY CONTENT (density-aware across 105 rasters; breaks LiDAR scarp convergence) \u00b7 FORMAT-VALID \u00b7 H75_APRON SCREEN PASS (+0.00176, 4/4 folds) & H73-BW PM_DEAPRON +0.00193 (3/4 folds), SHIPPED CATFREE POE65 SLOT GATE FAIL vs CTRL_H35 \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
+   "status": "UNIQUE BY CONTENT (density-aware across 106 rasters; breaks LiDAR scarp convergence) \u00b7 FORMAT-VALID \u00b7 H75_APRON SCREEN PASS (+0.00176, 4/4 folds) & H73-BW PM_DEAPRON +0.00193 (3/4 folds), SHIPPED CATFREE POE65 SLOT GATE FAIL vs CTRL_H35 \u00b7 verdict negative \u00b7 DO NOT SUBMIT",
    "zip": null,
    "verdict": "negative",
    "slot_approved": false,
@@ -347,7 +347,7 @@
      "pindrop-discovery.tif",
      "pindrop-nodes.tif"
     ],
-    "registry_checked": 105,
+    "registry_checked": 106,
     "surface_worst_abs_spearman": 0.202132,
     "focus_winners": {
      "n": 27,
@@ -395,7 +395,7 @@
      "lane_pass": true
     },
     "own_lineage": {
-     "n": 27,
+     "n": 28,
      "worst_abs_spearman_surface": 0.106684,
      "worst_surface_file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
      "worst_abs_spearman_final": 0.066979,
@@ -461,11 +461,11 @@
     "extended_receipt": "evidence/h75_published_lane_extended.json",
     "surface_receipt": "evidence/h75_poe65_surface_lane.json"
    },
-   "lane_summary": "DENSITY-AWARE UNIQUE (flagged_lane = [] across all 105 rasters; surface |Spearman| 0.2021 <= 0.90; binary |Spearman| 0.0670 <= 0.90). Literal 70% flags only the 3 dense-halo rasters whose 3-px halos cover >73% of the entire footprint (r13-lattice-s5 99.87%, pindrop-nodes 73.50%, pindrop-discovery 73.41%). Final-dot overlap: 35.77% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), worst 51.69% across 27 registry_top rasters, 63.78% vs H74-SUBSURF, 55.59% vs H72-CF, 63.78% max own-lineage, 69.84% max sparse external.",
+   "lane_summary": "DENSITY-AWARE UNIQUE (flagged_lane = [] across all 106 rasters; surface |Spearman| 0.2021 <= 0.90; binary |Spearman| 0.0670 <= 0.90). Literal 70% flags only the 3 dense-halo rasters whose 3-px halos cover >73% of the entire footprint (r13-lattice-s5 99.87%, pindrop-nodes 73.50%, pindrop-discovery 73.41%). Final-dot overlap: 35.77% vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED), worst 51.69% across 27 registry_top rasters, 63.78% vs H74-SUBSURF, 55.59% vs H72-CF, 63.78% max own-lineage, 69.84% max sparse external.",
    "slot_reason": "2 formal pre-registered experiments (+ 1 disclosed aborted pre-commit draft = 3/3 budget). Exp 1 (25-km Checkerboard BlockHoldout, draws 130-131): PM_DEAPRON 0.13942 beat CTRL_H35 0.13749 (+0.00193, 3/4 folds; far_gt9 +0.00223, 95.5% >20 px, CI_lo -0.00133); H75_POE65 0.03243 (+123.9% over ROOT_H75 0.01448 in 4/4 folds). Exp 2 (standard Holdout, draws 132-133): H75_APRON 0.15118 beat CTRL_H35 0.14942 (+0.00176, 95% CI [+0.00066, +0.00262], 4/4 folds PASS); shipped catalogue-free H75_POE65 scored 0.08641 (+40.7% over ROOT_H75 in 4/4 folds, highest flagged_lane=[] CatFree GeoTIFF, but below CTRL_H35). Not slot-approved.",
    "run_card": "registry/run_card_h75_2026-10-27.json",
    "title": "H75-EU3D-POE65 two-stage crustal-root x scarp LOQO B2 (37,654 dots, nan outside) \u2014 TESTING ONLY \u00b7 DO NOT SUBMIT",
-   "summary": "Unique 2026-10-27 Two-Stage Crustal-Root Product-of-Experts GeoTIFF (37,654 binary dots, P_scarp^0.35 * P_root^0.65 combining 28 static Family-B/RBDT scarp columns with 55 static ACD + H34 + H74_RMPS + H75_EU3D 3-D Euler homogeneity / Anderson slip-dilation / basin-normalized MT-thermal columns, zero Family E, 4-quadrant LOQO OOF + B2 greedy_dots; d_cat min 2.24 px, median 18.4 px, 74.3% > 9 px, 47.0% > 20 px). First Family-B-inclusive blind candidate to pass density-aware uniqueness across all 105 rasters (flagged_lane = [], 35.8% vs B2, 69.84% vs h23-a-6pct <= 70%, 63.8% max own-lineage); literal 70% flags only the 3 >73%-halo rasters. Standard HOLDOUT-DTI 0.08641 (22,959 withheld +) & 25-km BlockHoldout 0.03243 (116,556 withheld +) \u2014 catalogue-gap proxies, not live scores. Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
+   "summary": "Unique 2026-10-27 Two-Stage Crustal-Root Product-of-Experts GeoTIFF (37,654 binary dots, P_scarp^0.35 * P_root^0.65 combining 28 static Family-B/RBDT scarp columns with 55 static ACD + H34 + H74_RMPS + H75_EU3D 3-D Euler homogeneity / Anderson slip-dilation / basin-normalized MT-thermal columns, zero Family E, 4-quadrant LOQO OOF + B2 greedy_dots; d_cat min 2.24 px, median 18.4 px, 74.3% > 9 px, 47.0% > 20 px). First Family-B-inclusive blind candidate to pass density-aware uniqueness across all 106 rasters (flagged_lane = [], 35.8% vs B2, 69.84% vs h23-a-6pct <= 70%, 63.8% max own-lineage); literal 70% flags only the 3 >73%-halo rasters. Standard HOLDOUT-DTI 0.08641 (22,959 withheld +) & 25-km BlockHoldout 0.03243 (116,556 withheld +) \u2014 catalogue-gap proxies, not live scores. Finite [0,1] in footprint \u2014 DO NOT SUBMIT.",
    "note": "GEMSDOE25 H75-POE65 | no slot, not slot-approved; DO NOT SUBMIT | id 0a97fd71c3f3 | unscored"
   },
   {

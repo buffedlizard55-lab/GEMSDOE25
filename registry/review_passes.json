@@ -1234,6 +1234,68 @@
    ]
   }
  },
+ "current_turn_review_2026_10_27_arena_b498883a": {
+  "session_branch": "arena/b498883a-gemsdoe25",
+  "date_utc": "2026-10-27",
+  "scope": "Review repository and H78 promotion claim; enforce literal lane rule, score-label hygiene, fail-closed build/site status, and full regression verification. No new model fit, TIFF build, upload, or weekly slot.",
+  "pass_1_implement_and_verify": {
+   "done": [
+    "Audited H78 run card, format receipt, final-dot lane receipt, builder, tests, README, generated site, and current review generator.",
+    "Independently read the exact stored H78 GeoTIFF: EPSG:32611, shape 3730x3292, one float32 band, transform [100,0,243350,0,-100,4508550], all array values finite in [0,1], 43,550 positive cells, SHA-256 be78ded8d7073512d9fc71677c37cd3528e1ff80fb3c5cb8c02080417e1217e5.",
+    "Confirmed saved strict lane receipt reports 100% candidate dots within 3 px of the r13 raster; literal threshold is 70%. Surface rank correlation is below 0.90 but cannot waive final-dot overlap.",
+    "Withdrew unsupported hard-coded 0.2785 competition estimate and untraceable H78-specific 0.1512 holdout number; corrected exact-file receipt/run card to format-valid research archive, ok_to_submit=false, score unknown.",
+    "Retired H78 builder before any input load or output; updated generated site/README sources and rendered pages to show DO NOT SUBMIT prominently; added H78-specific regression tests and irregularity record."
+   ],
+   "unfulfilled": [
+    "No new submission-eligible TIFF: strict lane criterion requires stop, not another experiment or submission.",
+    "No H78 holdout rerun: data/ contains only .gitkeep; the pinned 1.32 GB shared static_ABCD cache and companion arrays in evidence/work_cache_hashes.json are absent. No cached stack was rebuilt privately.",
+    "No new geological experiment or feature leakage canary was run; therefore no HOLDOUT-DTI, score estimate, or promotion result is claimed."
+   ]
+  },
+  "pass_2_bugs_assumptions_edge_cases": {
+   "found_and_fixed": [
+    "The H78 builder used a fixed 0.2785 projection and wrote ok_to_submit=true even though its own saved lane audit said duplicate/lane overlap; removed the builder rather than patching its unsupported score logic.",
+    "The old H78 receipt used a density-aware uniqueness label to contradict a literal 100% final-dot overlap; now the strict literal result controls eligibility.",
+    "The old static pages and README had conflicting current banners and regenerated content could restore the false promotion; updated the source generators and removed historical H73 announcement post-processing from current-site generation."
+   ],
+   "remaining_risks": [
+    "Template binary is absent in this checkout; exact metadata was checked against stored receipt values and the documented competition grid, but a fresh direct template comparison could not be run.",
+    "The 0.2778 GEMSDOE32 value remains owner-reported and unverified by an organizer receipt. Current public leaderboard values 0.3195/0.4413 were not accessed or verified.",
+    "A sibling open PR #47 overlaps the broader nine-site/hypothesis review; this session did not merge or alter that other session branch."
+   ]
+  },
+  "pass_3_original_request_reconciliation": {
+   "verified": [
+    "The prominent README, landing page, and executive summary now say H78 research inspection only and DO NOT SUBMIT; the linked archive is not presented as a competition deliverable.",
+    "The prompt-required numeric gate is enforced literally: 100% exceeds the 70% limit, hence negative verdict regardless of density-aware diagnostics.",
+    "No score is labeled as HOLDOUT-DTI without a specific evaluator/receipt or ORGANIZER-CONFIRMED without an organizer receipt; H78 score estimate is null.",
+    "No DrivenData access, automated monitoring, authentication, or upload occurred; no weekly slot was used."
+   ],
+   "not_completed": [
+    "A genuinely new high-performing submission is not produced. The existing H78 raster is an archive; creating another TIF without shared cache, fresh canary/holdout and surface+final lane clearance would violate the user's protocol.",
+    "The four-candidate new hypothesis ranking/source audit is available in open PR #47, not duplicated here; no hypothesis is described as tested or viable in this correction."
+   ]
+  },
+  "verification": {
+   "focused_pytest": "6 passed (H78 exact artifact, run card, builder retirement, site statuses, receipts)",
+   "full_pytest": "364 passed, 12 skipped; skips require absent owner-mirror competition template, scored rasters, or external bands",
+   "ruff": "passed: .venv/bin/ruff check src scripts tests",
+   "compileall": "passed: scripts and tests",
+   "javascript": "passed: node --check docs/assets/app.js",
+   "git_diff_check": "passed",
+   "tif_readback": "passed; metadata/value/hash recorded in this review and run card",
+   "experiments": 0,
+   "new_tifs": 0,
+   "weekly_slots": 0
+  },
+  "pull_request": {
+   "number": 61,
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/pull/61",
+   "head": "arena/b498883a-gemsdoe25",
+   "base": "main",
+   "status": "open; CI passed; merge not yet attempted at receipt update"
+  }
+ },
  "session_2026_10_27_h75_eu3d_poe": {
   "schema_version": 1,
   "date_utc": "2026-10-27",

@@ -391,7 +391,7 @@
    "pindrop-discovery.tif",
    "pindrop-nodes.tif"
   ],
-  "registry_checked": 105,
+  "registry_checked": 106,
   "surface_worst_abs_spearman": 0.202132,
   "focus_winners": {
    "n": 27,
@@ -439,7 +439,7 @@
    "lane_pass": true
   },
   "own_lineage": {
-   "n": 27,
+   "n": 28,
    "worst_abs_spearman_surface": 0.106684,
    "worst_surface_file": "gems25-h72-mbsp-mtg-catfree-b2-37654-20261026-1d7c1e9ea55f-nan.tif",
    "worst_abs_spearman_final": 0.066979,

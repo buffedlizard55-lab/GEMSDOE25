@@ -798,13 +798,8 @@ Response: exact sparse-regime DTI of a fixed emission (ridge NMS → top 2.45 % 
         "run_card_h78_2026-10-27",
     ):
         (DOCS / "data" / f"{name}.json").write_text((ROOT / "registry" / f"{name}.json").read_text())
-    # Reapply the current, gate-negative H73 status after generated pages are written.
-    # Keep research inspection visibly separate from competition eligibility.
-    try:
-        from announce_h73_site import main as publish_current_status
-    except ImportError:
-        from scripts.announce_h73_site import main as publish_current_status
-    publish_current_status()
+    # Current status is rendered from build_current_review.current_banner; do not
+    # let a historical H73 announcement overwrite the newer H78 strict-lane stop.
     print("site built:", [p.name for p in DOCS.glob("*.html")] + ["../index.html"])
 
 
