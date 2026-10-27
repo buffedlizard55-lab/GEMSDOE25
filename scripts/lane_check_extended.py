@@ -26,7 +26,7 @@ from pathlib import Path
 
 import numpy as np
 import rasterio
-from scipy.ndimage import distance_transform_edt
+from scipy.ndimage import binary_dilation
 from scipy.stats import spearmanr
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -72,21 +72,21 @@ def load(p: Path, foot: np.ndarray):
         return np.nan_to_num(s.read(1), nan=0.0)
 
 
-def compare(cv, surf_samp, cand_dots, dist_to_cand, samp, group, p, foot):
+def compare(cv, surf_samp, cand_dots, cand_halo, disk3, samp, group, p, foot):
     rv = load(p, foot)
     if rv is None:
         return dict(group=group, file=p.name, skipped="shape differs")
     rdots = (rv > 0) & foot
     rho_s = float(spearmanr(surf_samp, rv.ravel()[samp]).correlation)
     rho_b = float(spearmanr(cv.ravel()[samp], rv.ravel()[samp]).correlation)
-    d_reg = distance_transform_edt(~rdots) if rdots.any() else np.full(cv.shape, np.inf)
-    cov = float(((d_reg <= 3.0) & foot).sum() / max(int(foot.sum()), 1)) if rdots.any() else 0.0
+    reg_halo = binary_dilation(rdots, structure=disk3) if rdots.any() else np.zeros(cv.shape, dtype=bool)
+    cov = float((reg_halo & foot).sum() / max(int(foot.sum()), 1)) if rdots.any() else 0.0
     return dict(group=group, file=p.name,
                 sha256=hashlib.sha256(p.read_bytes()).hexdigest(),
                 registry_dots=int(rdots.sum()),
                 spearman_surface=round(rho_s, 6), spearman_final=round(rho_b, 6),
-                cand_dots_within_3px=float((d_reg[cand_dots] <= 3.0).mean()) if cand_dots.any() else 0.0,
-                reg_dots_within_3px_of_cand=float((dist_to_cand[rdots] <= 3.0).mean()) if rdots.any() else 0.0,
+                cand_dots_within_3px=float(reg_halo[cand_dots].mean()) if cand_dots.any() else 0.0,
+                reg_dots_within_3px_of_cand=float(cand_halo[rdots].mean()) if rdots.any() else 0.0,
                 halo_coverage_3px=round(cov, 6),
                 non_discriminative_dense=bool(cov >= 0.70),
                 dense_lattice=bool(p.name == LATTICE))
@@ -123,9 +123,11 @@ def main() -> None:
     surf = np.zeros(foot.shape, np.float32)
     surf.ravel()[fi] = np.load(a.scores)
     samp = np.sort(np.random.default_rng(0).choice(fi, 400_000, replace=False))
-    dist_to_cand = distance_transform_edt(~cand_dots)
+    yy, xx = np.ogrid[-3:4, -3:4]
+    disk3 = (yy * yy + xx * xx) <= (9.0 + 1e-12)
+    cand_halo = binary_dilation(cand_dots, structure=disk3) if cand_dots.any() else np.zeros(foot.shape, dtype=bool)
     ext_paths, own_paths = groups(cand)
-    rows = [compare(cv, surf.ravel()[samp], cand_dots, dist_to_cand, samp, g, p, foot) for g, p in ext_paths + own_paths]
+    rows = [compare(cv, surf.ravel()[samp], cand_dots, cand_halo, disk3, samp, g, p, foot) for g, p in ext_paths + own_paths]
     ext_rows = [r for r in rows if r["group"] != "own_downloads" and not r.get("dense_lattice") and not r.get("non_discriminative_dense")]
     lat_rows = [r for r in rows if r.get("dense_lattice")]
     dense_other_rows = [r for r in rows if r.get("non_discriminative_dense") and not r.get("dense_lattice")]

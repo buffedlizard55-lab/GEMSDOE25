@@ -22,7 +22,7 @@ from pathlib import Path
 
 import numpy as np
 import rasterio
-from scipy.ndimage import distance_transform_edt
+from scipy.ndimage import binary_dilation
 from scipy.stats import spearmanr
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -77,6 +77,11 @@ def main() -> None:
     fidx = np.flatnonzero(foot.ravel())
     samp = np.sort(rng.choice(fidx, min(SAMPLE, fidx.size), replace=False))
     cvals = cv.ravel()[samp]
+    foot_n = max(int(foot.sum()), 1)
+    rad_i = int(np.floor(OVERLAP_DIST))
+    yy, xx = np.ogrid[-rad_i : rad_i + 1, -rad_i : rad_i + 1]
+    disk_r = (yy * yy + xx * xx) <= (OVERLAP_DIST * OVERLAP_DIST + 1e-12)
+    cand_halo = binary_dilation(cand_dots, structure=disk_r) if cand_dots.any() else np.zeros(cv.shape, dtype=bool)
     rows = []
     for p in registry_rasters():
         if p.resolve() == cand.resolve():
@@ -90,16 +95,15 @@ def main() -> None:
             rv = np.nan_to_num(r.read(1), nan=0.0)
         rho = float(spearmanr(cvals, rv.ravel()[samp]).correlation)
         rdots = (rv > 0) & foot
-        dist_to_reg = distance_transform_edt(~rdots) if rdots.any() else np.full(cv.shape, np.inf)
-        ov = float((dist_to_reg[cand_dots] <= OVERLAP_DIST).mean()) if cand_dots.any() else 0.0
-        dist_to_cand = distance_transform_edt(~cand_dots) if cand_dots.any() else np.full(cv.shape, np.inf)
-        ov_rev = float((dist_to_cand[rdots] <= OVERLAP_DIST).mean()) if rdots.any() else 0.0
+        reg_halo = binary_dilation(rdots, structure=disk_r) if rdots.any() else np.zeros(cv.shape, dtype=bool)
+        ov = float(reg_halo[cand_dots].mean()) if cand_dots.any() else 0.0
+        ov_rev = float(cand_halo[rdots].mean()) if rdots.any() else 0.0
         # Density-aware companion (pre-registered knowledge/22 section 4): halo
         # coverage = footprint fraction within 3 px of the registry dots = the
         # overlap a uniformly random candidate would score. At coverage >= 0.70 the
         # literal candidate-side test cannot discriminate; the symmetric statistic
         # decides for those rasters. The literal flag is kept and always reported.
-        coverage = float(((dist_to_reg <= OVERLAP_DIST) & foot).sum() / max(int(foot.sum()), 1)) if rdots.any() else 0.0
+        coverage = float((reg_halo & foot).sum() / foot_n) if rdots.any() else 0.0
         dense_nondiscriminative = bool(coverage >= OVERLAP_MAX)
         sym_min = float(min(ov, ov_rev))
         lane_overlap_flag = bool(sym_min > OVERLAP_MAX) if dense_nondiscriminative else bool(ov > OVERLAP_MAX)
