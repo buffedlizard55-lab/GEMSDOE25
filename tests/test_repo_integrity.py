@@ -154,7 +154,7 @@ def test_readme_carries_the_brief_and_core_values():
 LINK = re.compile(r'(?:href|src)="([^"#?]+)"')
 
 
-@pytest.mark.parametrize("page", ["index.html", "docs/index.html", "docs/executive-summary.html", "docs/research.html", "docs/sources.html"])
+@pytest.mark.parametrize("page", ["index.html", "docs/index.html", "docs/executive-summary.html", "docs/research.html", "docs/sources.html", "docs/current-executive-review.html"])
 def test_site_local_links_resolve(page):
     f = ROOT / page
     assert f.exists(), page

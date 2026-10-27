@@ -1,0 +1,346 @@
+[
+ {
+  "fold": 0,
+  "fold_name": "NW",
+  "draw": 116,
+  "n_withheld_positive": 1892,
+  "n_train": 310163,
+  "n_hidden_train": 10163,
+  "features": {
+   "CBEC_cond_base": {
+    "positives": 1892,
+    "negatives": 150000,
+    "finite_positives": 1892,
+    "finite_negatives": 150000,
+    "auc": 0.4905928558844257,
+    "canary_auc": 0.5094071441155743,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   },
+   "CBEC_gravity_edge": {
+    "positives": 1892,
+    "negatives": 150000,
+    "finite_positives": 1892,
+    "finite_negatives": 150000,
+    "auc": 0.4880850810429881,
+    "canary_auc": 0.5119149189570119,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   },
+   "CBEC_joint": {
+    "positives": 1892,
+    "negatives": 150000,
+    "finite_positives": 1892,
+    "finite_negatives": 150000,
+    "auc": 0.49487491895701197,
+    "canary_auc": 0.505125081042988,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   }
+  }
+ },
+ {
+  "fold": 0,
+  "fold_name": "NW",
+  "draw": 117,
+  "n_withheld_positive": 2307,
+  "n_train": 310056,
+  "n_hidden_train": 10056,
+  "features": {
+   "CBEC_cond_base": {
+    "positives": 2307,
+    "negatives": 150000,
+    "finite_positives": 2307,
+    "finite_negatives": 150000,
+    "auc": 0.4784122973558733,
+    "canary_auc": 0.5215877026441267,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   },
+   "CBEC_gravity_edge": {
+    "positives": 2307,
+    "negatives": 150000,
+    "finite_positives": 2307,
+    "finite_negatives": 150000,
+    "auc": 0.47630861725184215,
+    "canary_auc": 0.5236913827481579,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   },
+   "CBEC_joint": {
+    "positives": 2307,
+    "negatives": 150000,
+    "finite_positives": 2307,
+    "finite_negatives": 150000,
+    "auc": 0.4659471189134518,
+    "canary_auc": 0.5340528810865481,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   }
+  }
+ },
+ {
+  "fold": 1,
+  "fold_name": "NE",
+  "draw": 116,
+  "n_withheld_positive": 2411,
+  "n_train": 310007,
+  "n_hidden_train": 10007,
+  "features": {
+   "CBEC_cond_base": {
+    "positives": 2411,
+    "negatives": 150000,
+    "finite_positives": 2411,
+    "finite_negatives": 150000,
+    "auc": 0.491408815152772,
+    "canary_auc": 0.508591184847228,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   },
+   "CBEC_gravity_edge": {
+    "positives": 2411,
+    "negatives": 150000,
+    "finite_positives": 2411,
+    "finite_negatives": 150000,
+    "auc": 0.5581461938338173,
+    "canary_auc": 0.5581461938338173,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   },
+   "CBEC_joint": {
+    "positives": 2411,
+    "negatives": 150000,
+    "finite_positives": 2411,
+    "finite_negatives": 150000,
+    "auc": 0.49652144338448784,
+    "canary_auc": 0.5034785566155122,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   }
+  }
+ },
+ {
+  "fold": 1,
+  "fold_name": "NE",
+  "draw": 117,
+  "n_withheld_positive": 2277,
+  "n_train": 309825,
+  "n_hidden_train": 9825,
+  "features": {
+   "CBEC_cond_base": {
+    "positives": 2277,
+    "negatives": 150000,
+    "finite_positives": 2277,
+    "finite_negatives": 150000,
+    "auc": 0.48284557165861514,
+    "canary_auc": 0.5171544283413849,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   },
+   "CBEC_gravity_edge": {
+    "positives": 2277,
+    "negatives": 150000,
+    "finite_positives": 2277,
+    "finite_negatives": 150000,
+    "auc": 0.5461377104377104,
+    "canary_auc": 0.5461377104377104,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   },
+   "CBEC_joint": {
+    "positives": 2277,
+    "negatives": 150000,
+    "finite_positives": 2277,
+    "finite_negatives": 150000,
+    "auc": 0.49965583369931194,
+    "canary_auc": 0.500344166300688,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   }
+  }
+ },
+ {
+  "fold": 2,
+  "fold_name": "SW",
+  "draw": 116,
+  "n_withheld_positive": 3990,
+  "n_train": 308263,
+  "n_hidden_train": 8263,
+  "features": {
+   "CBEC_cond_base": {
+    "positives": 3990,
+    "negatives": 150000,
+    "finite_positives": 3990,
+    "finite_negatives": 150000,
+    "auc": 0.5379442923976608,
+    "canary_auc": 0.5379442923976608,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   },
+   "CBEC_gravity_edge": {
+    "positives": 3990,
+    "negatives": 150000,
+    "finite_positives": 3990,
+    "finite_negatives": 150000,
+    "auc": 0.5029950810359232,
+    "canary_auc": 0.5029950810359232,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   },
+   "CBEC_joint": {
+    "positives": 3990,
+    "negatives": 150000,
+    "finite_positives": 3990,
+    "finite_negatives": 150000,
+    "auc": 0.5252153517126149,
+    "canary_auc": 0.5252153517126149,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   }
+  }
+ },
+ {
+  "fold": 2,
+  "fold_name": "SW",
+  "draw": 117,
+  "n_withheld_positive": 4250,
+  "n_train": 307891,
+  "n_hidden_train": 7891,
+  "features": {
+   "CBEC_cond_base": {
+    "positives": 4250,
+    "negatives": 150000,
+    "finite_positives": 4250,
+    "finite_negatives": 150000,
+    "auc": 0.5113785419607842,
+    "canary_auc": 0.5113785419607842,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   },
+   "CBEC_gravity_edge": {
+    "positives": 4250,
+    "negatives": 150000,
+    "finite_positives": 4250,
+    "finite_negatives": 150000,
+    "auc": 0.5375711803921569,
+    "canary_auc": 0.5375711803921569,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   },
+   "CBEC_joint": {
+    "positives": 4250,
+    "negatives": 150000,
+    "finite_positives": 4250,
+    "finite_negatives": 150000,
+    "auc": 0.5213885819607843,
+    "canary_auc": 0.5213885819607843,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   }
+  }
+ },
+ {
+  "fold": 3,
+  "fold_name": "SE",
+  "draw": 116,
+  "n_withheld_positive": 3809,
+  "n_train": 308702,
+  "n_hidden_train": 8702,
+  "features": {
+   "CBEC_cond_base": {
+    "positives": 3809,
+    "negatives": 150000,
+    "finite_positives": 3809,
+    "finite_negatives": 150000,
+    "auc": 0.5134276634287215,
+    "canary_auc": 0.5134276634287215,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   },
+   "CBEC_gravity_edge": {
+    "positives": 3809,
+    "negatives": 150000,
+    "finite_positives": 3809,
+    "finite_negatives": 150000,
+    "auc": 0.5002667454274963,
+    "canary_auc": 0.5002667454274963,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   },
+   "CBEC_joint": {
+    "positives": 3809,
+    "negatives": 150000,
+    "finite_positives": 3809,
+    "finite_negatives": 150000,
+    "auc": 0.4990201198914851,
+    "canary_auc": 0.5009798801085149,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   }
+  }
+ },
+ {
+  "fold": 3,
+  "fold_name": "SE",
+  "draw": 117,
+  "n_withheld_positive": 4093,
+  "n_train": 308549,
+  "n_hidden_train": 8549,
+  "features": {
+   "CBEC_cond_base": {
+    "positives": 4093,
+    "negatives": 150000,
+    "finite_positives": 4093,
+    "finite_negatives": 150000,
+    "auc": 0.5304408209137552,
+    "canary_auc": 0.5304408209137552,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   },
+   "CBEC_gravity_edge": {
+    "positives": 4093,
+    "negatives": 150000,
+    "finite_positives": 4093,
+    "finite_negatives": 150000,
+    "auc": 0.4918323739718218,
+    "canary_auc": 0.5081676260281782,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   },
+   "CBEC_joint": {
+    "positives": 4093,
+    "negatives": 150000,
+    "finite_positives": 4093,
+    "finite_negatives": 150000,
+    "auc": 0.5139152259956022,
+    "canary_auc": 0.5139152259956022,
+    "missingness_auc": 0.5,
+    "passed": true,
+    "reason": "pass"
+   }
+  }
+ }
+]

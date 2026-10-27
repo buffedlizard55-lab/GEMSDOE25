@@ -87,6 +87,7 @@ def test_site_and_readme_make_submit_status_obvious() -> None:
         assert "DO NOT SUBMIT" in html
     readme = (ROOT / "README.md").read_text()
     assert PRIMARY["file"] in readme
-    assert "Research-archive download: YES (inspection/testing only) · Competition-ready TIF: NO · OK TO SUBMIT: NO · weekly slot: NO — DO NOT SUBMIT" in readme
+    assert "NO NEW COMPETITION TIFF" in readme
+    assert "OK TO SUBMIT: NO — DO NOT SUBMIT" in readme
     assert "knowledge/31_objective_outcomes_and_executive_summary_2026-10-26.md" in readme
     assert (ROOT / "docs" / "downloads" / PRIMARY["zip"]).exists()

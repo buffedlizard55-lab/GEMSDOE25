@@ -69,6 +69,7 @@ def test_current_pages_separate_research_download_from_competition_eligibility()
         assert "H35 FAIL · UNIQUE LANE" not in page, rel
     readme = (ROOT / "README.md").read_text()
     assert "Research-archive download: YES (inspection/testing only)" in readme
+    assert "NO NEW COMPETITION TIFF" in readme
     assert "Competition-ready TIF: NO" in readme
     report = (ROOT / "knowledge/32_repo_review_2026-10-26_61f81983.md").read_text()
     for site in ("GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30", "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"):

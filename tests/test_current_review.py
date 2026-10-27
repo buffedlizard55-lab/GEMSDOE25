@@ -113,7 +113,7 @@ class Links(HTMLParser):
 
 @pytest.mark.parametrize('rel', ['index.html', 'docs/index.html', 'docs/executive-summary.html',
                                 'docs/current-review.html', 'docs/history.html', 'docs/submission-history.html',
-                                'docs/research.html', 'docs/sources.html'])
+                                    'docs/research.html', 'docs/sources.html', 'docs/current-executive-review.html'])
 def test_all_static_local_paths_resolve(rel):
     path = ROOT/rel
     parser = Links()
@@ -124,3 +124,14 @@ def test_all_static_local_paths_resolve(rel):
             continue
         target = (path.parent/unquote(parts.path)).resolve()
         assert target.is_relative_to(ROOT) and target.exists(), (rel, href)
+
+
+def test_current_nine_site_report_shows_all_requested_sites_and_fail_closed_status():
+    report = (ROOT / "docs/current-executive-review.html").read_text()
+    for site in (24, 25, 27, 28, 30, 31, 32, 33, 36):
+        assert f"GEMSDOE{site}" in report
+    assert "DO NOT SUBMIT" in report
+    assert "NOT ESTIMATED" in report
+    assert "HOLDOUT-DTI" in report
+    assert "0.2785" in report and "hard-coded" in report
+    assert "DO NOT SUBMIT" in report

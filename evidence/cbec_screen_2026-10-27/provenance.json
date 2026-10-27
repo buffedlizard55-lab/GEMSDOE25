@@ -1,0 +1,78 @@
+{
+  "label": "CBEC 2x2 screen execution provenance",
+  "date_utc": "2026-10-27",
+  "branch": "arena/5705fa30-gemsdoe25",
+  "git_head_at_execution": "76edfe46fc8bf385f534b6bbc402e8a8430c0a0d",
+  "source_worktree_state": "CBEC driver and documentation were present in the worktree; source file SHA-256 values below pin exact executed code. Pre-registration commit 76edfe4 preceded this run.",
+  "python": "3.11.2 (main, Apr  8 2026, 01:58:00) [GCC 12.2.0]",
+  "platform": "Linux-6.1.158+-x86_64-with-glibc2.36",
+  "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "scikit_learn": "1.9.1",
+    "rasterio": "1.4.4"
+  },
+  "cached_inputs": {
+    "static_ABCD.npy": {
+      "sha256": "fe584a12ed3e1ed7d26b272c49f6da0bbe16e072d98f6b1694938d858305b084",
+      "bytes": 1322847616,
+      "matches_pinned_hash": true
+    },
+    "static_ABCD.npy.names.json": {
+      "sha256": "60d48fb99c0c032e5c33a774298112104c9e1cdd15482ac58cddefc948fb85de",
+      "bytes": 893,
+      "matches_pinned_hash": true
+    },
+    "addons.npy": {
+      "sha256": "ad31ff14a804b6956efa13b8c3caf6b322d6942b0f57911050ba243ac92e57bc",
+      "bytes": 103347588,
+      "matches_pinned_hash": true
+    },
+    "addons.npy.names.json": {
+      "sha256": "b1562d7d1f5e57de2002f67038d6b1b4668e3ae10354fac648722f6d33db7f27",
+      "bytes": 51,
+      "matches_pinned_hash": true
+    },
+    "bands/_footprint.npy": {
+      "sha256": "c446094771775c00802862e9ec58846fd1b278b4e608303e68811a2404dfd246",
+      "bytes": 12279288,
+      "matches_pinned_hash": true
+    },
+    "bands/_labels.npy": {
+      "sha256": "d77fa88ad58d0a268b736b3c1d6a8939fd237d5955369944bd2b299194b2555d",
+      "bytes": 12279288,
+      "matches_pinned_hash": true
+    },
+    "h34_columns.npy": {
+      "sha256": "3a2db05cff8c90f4e6a5cd8b34d79e29998486f2550ea250b7281bd730a53433",
+      "bytes": 62008604
+    },
+    "h34_columns.npy.names.json": {
+      "sha256": "2f2928c448873c8274f9bf47dbdc8f9ece90adc814c9ebac886f4c818d856a54",
+      "bytes": 74
+    }
+  },
+  "module_sha256": {
+    "scripts/run_cbec_holdout.py": "9b64f66eba9928dfa09d0e9fa88aa3189ccd0daa8f738b224593b5bd3f424b59",
+    "scripts/run_h74_experiments.py": "23d4fd2b9b52dadfde78b368717d4a25bd7cba69a55daa95339ea113caffefb7",
+    "src/gems25/metric.py": "4f6e4732029efd0238388aec74590e56bc2727df7441220ca09af7d02e9da230",
+    "src/gems25/h74_rmps.py": "0e337938c0345ee00f018721b8eae9539a8881dba6ff2e97f252fddd6c2e2fd2",
+    "src/gems25/validation.py": "bb2faea55b6bd827196f56758e5fbbf1e4e620e92779e6b9b53703c3bdf42ac3",
+    "src/gems25/experiment.py": "f47cb776b0136ea33fc61ea244b81e6138e1cc1cfb8fd009af427896e906d548",
+    "src/gems25/features.py": "3bb3079a4b15c5a1c77bfe9e46a0af5129907bbd69818b9ab9c81e00ecc86910",
+    "src/gems25/h34.py": "e169358c766e3ee00f8c1784d3b6243e61eaf2d6e2b1905d0a16454b8b24f5c3",
+    "src/gems25/submission.py": "f559bfd4f80e2cb06c7c97a7f56d51b8e62347b3f88daa68d10f09a0e6e72264"
+  },
+  "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px); version pinned by source SHA above",
+  "holdout": "shared gems25.h74_rmps.draw_block25km; BLOCK_PX_DEFAULT; four spatial quadrants, draws 116/117",
+  "shared_submission_writer": "NOT INVOKED: screen failed before placement; no new TIFF was emitted",
+  "result_files": {
+    "design.json": "1c7118f080eeeea0ebf0f311fa84fb2841cbb522ac626014af484a02c57b125a",
+    "summary.json": "52b0e4063da9634b1fd8b99755915338be060f30080b4b4dd27b21872c37f064",
+    "cells.jsonl": "57c086d99721b363206031ba2ce954a288614b9176d01507b5cab0de36be8d63",
+    "feature_canaries.json": "e218a4ac0813aa59ce6322aa490dab9e3e86d97c656514c6a18f084480d6ca04",
+    "status.json": "b08b0967578ccba56463a256c98231d57936449521ca3f24a8583b712f1f36d3"
+  },
+  "elapsed_seconds": 1211.2,
+  "candidate_surface_or_raster": "none"
+}

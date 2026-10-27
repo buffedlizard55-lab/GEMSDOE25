@@ -1,0 +1,61 @@
+{
+  "date_utc": "2026-10-27",
+  "branch": "arena/5705fa30-gemsdoe25",
+  "passes": [
+    {
+      "pass": 1,
+      "name": "Protocol and preregistration",
+      "status": "PASS",
+      "checks": [
+        "Read AGENTS.md, README.md and relevant current knowledge notes.",
+        "Preregistered CBEC, factorial arms, evaluator, fresh draws 116/117, canaries and stop gate before feature calculation or model fitting.",
+        "Reconciled code imports with shared block holdout, visible-catalogue feature, DTI, leakage canary, SAPD emitter, HGB and pooled bootstrap utilities.",
+        "No private evaluator, alternate writer or competition portal automation introduced."
+      ],
+      "record": "knowledge/39_preregistered_current_review_2026-10-27.md"
+    },
+    {
+      "pass": 2,
+      "name": "Run integrity and scientific result",
+      "status": "PASS_WITH_NEGATIVE_SCREEN",
+      "checks": [
+        "Six pinned core cache hashes matched; generated H34 sidecar and source-module hashes recorded.",
+        "Driver passed compileall and ruff before execution.",
+        "One fixed two-draw, four-quadrant experiment completed in 1211.2 seconds.",
+        "All three feature-alone canaries passed the 0.90 AUC cap.",
+        "CBEC failed the preregistered paired gain / confidence / positive-fold gate; no confirmation or holdout retuning performed.",
+        "Raw cell rows, canaries, summary, design and source/cache provenance saved."
+      ],
+      "record": "evidence/cbec_screen_2026-10-27/"
+    },
+    {
+      "pass": 3,
+      "name": "Exact-file, lane, website, and scope safety",
+      "status": "PASS_WITH_H78_QUARANTINE",
+      "checks": [
+        "Shared exact-file checker rerun for the pre-existing H78 archive; local format/range pass is not organizer approval.",
+        "Strict lane audit rerun against 60 locally available unique rasters; r13 lattice has 100% of H78 candidate dots within 3 px, so do not package.",
+        "H78 surface rank correlation remains unverified because no continuous surface is stored.",
+        "Hard-coded H78 competition estimate withdrawn; legacy builder now exits before generating any raster.",
+        "No new candidate TIFF, submission upload, weekly-slot selection or merge performed.",
+        "README, static site current decision, nine-site report and current JSON run card updated."
+      ],
+      "records": [
+        "evidence/h78_format_recheck_2026-10-27.json",
+        "evidence/h78_lane_recheck_2026-10-27.json",
+        "knowledge/39_current_review_2026-10-27.md",
+        "registry/run_card_current_review_2026-10-27.json"
+      ]
+    }
+  ],
+  "scope": {
+    "experiments_used": 1,
+    "experiments_allowed": 3,
+    "elapsed_seconds": 1211.2,
+    "new_geotiff_created": false,
+    "competition_access_automated": false,
+    "submission_uploaded": false,
+    "slot_selected": false,
+    "pr_merged": false
+  }
+}

@@ -9,17 +9,16 @@ CARD_PATH = ROOT / "registry/run_card_h73_2026-10-26.json"
 RUN_CARD = json.loads(CARD_PATH.read_text())
 
 
-def test_h73_is_prominent_but_explicitly_not_submission_eligible() -> None:
+def test_current_cbect_screen_is_prominent_and_h78_is_quarantined() -> None:
     for rel in ("index.html", "docs/index.html", "docs/current-review.html", "docs/executive-summary.html"):
         page = (ROOT / rel).read_text()
-        assert "H73-BW: BLOCKED BEFORE FIT" in page, rel
-        assert "NO NEW TIF" in page, rel
-        assert "OK TO SUBMIT: NO — DO NOT SUBMIT" in page, rel
+        assert "NO ELIGIBLE COMPETITION TIFF" in page, rel
+        assert "CBEC HOLDOUT SCREEN: NEGATIVE" in page, rel
+        assert "RESEARCH-ARCHIVE DOWNLOAD: YES" in page, rel
         assert "COMPETITION-READY TIF: NO" in page, rel
-        assert "HOLDOUT-DTI 0.11343 vs same-run H35 0.15239" in page, rel
-        assert "literal lane audit flags 100%" in page, rel
-        assert "Estimated competition score: UNKNOWN (not calibrated)" in page, rel
-        assert page.index("H73-BW-2026-10-26") < page.index("Archived H72-3 research artifact only"), rel
+        assert "OK TO SUBMIT: NO — DO NOT SUBMIT" in page, rel
+        assert "H78" in page and "hard-coded" in page, rel
+        assert page.index("NO ELIGIBLE COMPETITION TIFF") < page.index("Archived H72-3 research artifact only"), rel
 
 
 def test_h73_status_matches_saved_run_card_and_strict_lane_receipt() -> None:

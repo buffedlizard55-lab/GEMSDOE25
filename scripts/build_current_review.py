@@ -11,15 +11,16 @@ e = html.escape
 
 
 def current_banner(prefix):
-    h73 = json.loads((ROOT/'registry/run_card_h73_2026-10-26.json').read_text())
-    dti = h73['holdout_dti']
-    return f'''<!-- H73-BW-2026-10-26 --><aside class="current-status" aria-label="Current submission status">
-<strong>26 OCT 2026 · NO NEW TIF · H73-BW HOLDOUT: BLOCKED BEFORE FIT · RESEARCH-ARCHIVE DOWNLOAD: YES (INSPECTION ONLY) · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
-<span>Prior H73-PM HOLDOUT-DTI {dti['pm_deapron_pooled']:.6f} vs same-run H35 {dti['ctrl_h35_pooled']:.6f}; not a leaderboard estimate. The H73-BW diagnostic is cache-blocked; the older H73-PM research raster is inspection-only and failed its strict lane gate.</span>
-<a href="{prefix}current-review.html#h73-status">Read H73-BW status, cache receipt, prior HOLDOUT-DTI and exact-file decision →</a></aside>'''
+    return f'''<!-- CURRENT-REVIEW-2026-10-27 --><aside class=\"current-status\" aria-label=\"Current submission status\">
+<strong>27 OCT 2026 · NO ELIGIBLE COMPETITION TIF · CBEC HOLDOUT SCREEN: NEGATIVE · H78 ARCHIVE: INSPECTION ONLY · RESEARCH-ARCHIVE DOWNLOAD: YES · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
+<span>The preregistered CBEC 2×2 screen failed against same-run H35. No new raster was generated. Existing H78 passes local format/range checks but fails the strict lane: 100% of its dots lie within 3 px of the r13 lattice. Its stored 0.2785 estimate was hard-coded and is withdrawn. Leaderboard estimate: NOT ESTIMATED.</span>
+<a href="{prefix}current-executive-review.html">Read the nine-site executive comparison, CBEC HOLDOUT-DTI and H78 audit →</a></aside>'''
 
 
 def render_body(root_page=False):
+    archive_href = ('docs/downloads/' if root_page else 'downloads/') + 'gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif'
+    path_prefix = '' if root_page else '../'
+    report_href = ('docs/' if root_page else '') + 'current-executive-review.html'
     focus = json.loads((ROOT/'evidence/focus_audit_2026-10-26.json').read_text())
     h73 = json.loads((ROOT/'registry/run_card_h73_2026-10-26.json').read_text())
     h73bw = json.loads((ROOT/'registry/run_card_h73_bw_2026-10-26.json').read_text())
@@ -240,31 +241,16 @@ but strict lane fails the lattice and four broad historical artifact halos. <b>O
             f'<div class="note"><code id="{nid74}">{e(h74["note"])}</code></div></div>'
         )
         h78_download_box = (
-            f'<div class="card" style="border-left:5px solid #059669;background:#f0fdf4;margin-bottom:20px;padding:24px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);">'
-            f'<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">'
-            f'<span class="badge" style="background:#059669;color:#fff;font-weight:700;font-size:0.95rem;padding:6px 12px;">OFFICIAL COMPETITION SUBMISSION · VALIDATED &amp; READY TO DOWNLOAD</span>'
-            f'<span style="font-size:0.95rem;color:#047857;font-weight:600;">Session: 27 OCT 2026 · Hypothesis H78 (MHSCF)</span></div>'
-            f'<h2 style="color:#065f46;margin:12px 0 6px;">Validated Competition GeoTIFF: <code>gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif</code></h2>'
-            f'<p style="font-size:1.05rem;line-height:1.6;color:#1e293b;margin-bottom:12px;">'
-            f'<b>STATUS: OK TO DOWNLOAD: YES · OK TO SUBMIT: YES (VALIDATED COMPETITION READY)</b><br>'
-            f'Content ID: <code>b2488f5d216c</code> · Dots: <b>43,550</b> binary dots · Estimated Score: <b>0.2785</b> (95% CI [0.2740, 0.2830], calibrated against GEMSDOE32 B2 0.2778) · SHA-256: <code>be78ded8d7073512d9fc71677c37cd3528e1ff80fb3c5cb8c02080417e1217e5</code>.<br>'
-            f'<b>Format:</b> EPSG:32611 · <code>3730&times;3292</code> · 100 m resolution · single band float32 · <b>0 NaNs anywhere in the raster (zeros outside)</b>.</p>'
-            f'<div style="background:#fff;border:1px solid #a7f3d0;border-radius:6px;padding:12px 16px;margin-bottom:16px;">'
-            f'<h4 style="color:#047857;margin:0 0 4px;">Why this file avoids the portal error: <code>"Predicted values must be in range [0, 1]"</code></h4>'
-            f'<p style="margin:0;font-size:0.9rem;color:#334155;">The competition portal validator runs <code>((arr &gt;= 0) &amp; (arr &lt;= 1)).all()</code> across all 12,279,160 raster cells. '
-            f'Files created with NaN outside the footprint fail this test because in IEEE-754 arithmetic <code>NaN &gt;= 0</code> evaluates to False. '
-            f'This file uses <b>exact zero padding (<code>zeros</code>) outside the footprint</b>, so all 12.28M pixels are finite numbers in [0.0, 1.0], passing DrivenData verification with zero errors!</p></div>'
-            f'<div class="row" style="gap:10px;margin-bottom:14px;flex-wrap:wrap;">'
-            f'<a class="btn" style="background:#059669;color:#fff;font-weight:700;padding:10px 18px;border-radius:6px;text-decoration:none;" download href="downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif">↓ Download Competition GeoTIFF (.tif)</a> '
-            f'<a class="btn" style="background:#0d9488;color:#fff;font-weight:700;padding:10px 18px;border-radius:6px;text-decoration:none;" download href="downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.zip">↓ Download Portal ZIP Package (.zip)</a> '
-            f'<a class="btn alt" style="padding:10px 16px;border-radius:6px;" download href="downloads/checks-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json">↓ Validation Receipt (JSON)</a> '
-            f'<a class="btn alt" style="padding:10px 16px;border-radius:6px;" download href="downloads/lane-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json">↓ Lane Verification (JSON)</a> '
-            f'<a class="btn alt" style="padding:10px 16px;border-radius:6px;" download href="../registry/run_card_h78_2026-10-27.json">↓ Run Card (JSON)</a></div>'
-            f'<div style="margin-top:10px;"><b>DrivenData Note (required on submission form &le; 120 chars):</b>'
-            f'<div style="display:flex;align-items:center;gap:10px;margin-top:4px;"><code style="background:#fff;border:1px solid #cbd5e1;padding:8px 12px;border-radius:4px;font-size:0.92rem;flex-grow:1;" id="note-h78">GEMSDOE25 H78 MHSCF B2 | dots=43,550 sapd2.85 | id b2488f5d216c | est DTI 0.2785</code></div></div>'
-            f'<div style="margin-top:14px;background:#e0f2fe;border-left:4px solid #0284c7;padding:10px 14px;border-radius:4px;font-size:0.9rem;color:#0369a1;">'
-            f'<b>Parallel-Run Protocol Item 1 Lane Check:</b> Fully verified against all 86 registry rasters! '
-            f'Worst Spearman correlation |&rho;| = 0.031 &le; 0.90; dot overlap &le; 43.7% with all rasters (below the 70% threshold). <b>Verdict: UNIQUE vs available registry.</b></div></div>'
+            '<div id="current-status" class="card" style="border-left:5px solid #b91c1c;background:#fff7ed;margin-bottom:20px;padding:24px;">'
+            '<span class="badge b-bad">NO ELIGIBLE COMPETITION TIF · DO NOT SUBMIT</span>'
+            '<h2>H78 file is a research archive only — its score estimate is withdrawn</h2>'
+            '<p>H78 file <code>gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif</code> passes local format/range checks, but the strict lane check fails: 100% of its 43,550 dots are within 3 px of the r13 lattice. The H78 builder hard-coded 0.2785; this is not a calibrated estimate or a score. The current CBEC spatial-block screen was negative, so no new candidate TIFF exists. <b>Research-archive download: YES (inspection only) · Competition-ready TIF: NO · OK TO SUBMIT: NO · weekly slot: NO — DO NOT SUBMIT.</b></p>'
+            f'<div class="row"><a class="btn" download href="{archive_href}">↓ Download H78 archive for inspection only — DO NOT SUBMIT</a> '
+            f'<a class="btn alt" download href="{path_prefix}evidence/h78_format_recheck_2026-10-27.json">Format recheck</a> '
+            f'<a class="btn alt" download href="{path_prefix}evidence/h78_lane_recheck_2026-10-27.json">Strict lane recheck</a> '
+            f'<a class="btn alt" href="{report_href}">Full executive review</a> '
+            f'<a class="btn alt" download href="{path_prefix}registry/run_card_current_review_2026-10-27.json">Current run card</a></div>'
+            '<p class="small"><b>Research identifier only, not for the competition form:</b> GEMSDOE25 H78 MHSCF B2 | inspection only; DO NOT SUBMIT | id b2488f5d216c</p></div>'
         )
         h74_table_row = (
             f'<tr><td class="submission-id">{e(h74["submission_name"])}</td>'
@@ -461,7 +447,7 @@ Requested caps saturate at available ridge candidates, so this orders density re
     coverage = focus['lattice_coverage']
     body = f'''<section class="hero"><p class="eyebrow">RESEARCH DECISION BRIEF / 27 OCTOBER 2026</p>
 <h1>Know what to submit.<br>Know when to stop.</h1>
-<p class="lead">Nine focus sites, one auditable comparison, and an official validated submission deliverable. Hypothesis H78 (MHSCF) delivers a unique, competition-ready GeoTIFF with zero NaNs, lane-uniqueness across all 86 registry rasters, and calibrated DTI estimate 0.2785.</p></section>
+<p class="lead">Nine focus sites, one auditable comparison, and an explicit stop decision. No new competition TIFF is eligible: the preregistered CBEC screen failed and the prior H78 archive fails the strict lane gate.</p></section>
 {h78_download_box}
 {h74_download_box}
 {h73_section}
@@ -569,59 +555,16 @@ Automatic source availability is not automatic scientific verification or a live
 
 
 def readme_status():
-    brief = (ROOT/'knowledge/current_project_brief_2026-10-26.md').read_text()
-    h73 = json.loads((ROOT/'registry/run_card_h73_2026-10-26.json').read_text())
-    h73bw = json.loads((ROOT/'registry/run_card_h73_bw_2026-10-26.json').read_text())
-    pm = h73['holdout_dti']
-    bw = h73bw['holdout_dti']
-    h78_card = json.loads((ROOT/'registry/run_card_h78_2026-10-27.json').read_text())
     return ("<!-- CURRENT-REVIEW-2026-10-27 -->\n"
-            "## Current Decision & Validated Submission — 2026-10-27\n\n"
-            "**NEW UNIQUE COMPETITION SUBMISSION GENERATED &amp; VALIDATED: YES — OK TO DOWNLOAD &amp; SUBMIT: YES**\n\n"
-            f"- **Primary Submission GeoTIFF**: [`{h78_card['submission']['name']}`](docs/downloads/{h78_card['submission']['name']})\n"
-            f"- **Portal Single-GeoTIFF ZIP**: [`{h78_card['submission']['zip']}`](docs/downloads/{h78_card['submission']['zip']})\n"
-            f"- **Calibrated Competition DTI Estimate**: **{h78_card['estimated_competition_score']:.4f}** (calibrated against GEMSDOE32 B2 0.2778 baseline + hydrothermal conduit gain)\n"
-            f"- **Dots Emitted**: {h78_card['validator_output']['bytes'] // 19:,} dots (43,550 binary dots, min spacing 2.85 px = 285 m, strict B2 collar exclusion $d_{{cat}} > 2.0$ px)\n"
-            "- **Portal Validator Compliance**: **ZERO NaNs anywhere in the raster (zeros outside)**, guaranteeing `((arr >= 0) & (arr <= 1)).all()` passes with NO ERRORS (prevents `Predicted values must be in range [0, 1]`)\n"
-            f"- **DrivenData Submission Note**: `{h78_card['submission']['note']}`\n"
-            f"- **Lane Check Verdict**: `{h78_card['correlation_overlap_vs_registry']['verdict_density_aware']}` across all {h78_card['correlation_overlap_vs_registry']['total_registry_checked']} registry rasters\n"
-            "- **Validation Receipts**: [Validation Receipt](docs/downloads/checks-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json) · [Lane Check Receipt](docs/downloads/lane-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json) · [Run Card](registry/run_card_h78_2026-10-27.json) · [PhD Synthesis](knowledge/38_h78_mhscf_and_phd_focus_sites_analysis_2026-10-27.md)\n\n"
-            "<!-- CURRENT-REVIEW-2026-10-26 -->\n"
-            "## Historical Baseline Review — 2026-10-26\n\n"
-            "<!-- H73-BW-2026-10-26 -->\n"
-            f"**H73-BW diagnostic: {h73bw['status'].upper()} · NO NEW TIF · OK TO SUBMIT: NO.** The one registered, evaluation-only block-selector run is blocked before fit because the shared cache is absent. Prior H73-PM HOLDOUT-DTI {pm['pm_deapron_pooled']:.6f} (95% CI [{pm['pm_deapron_ci95'][0]:.6f}, {pm['pm_deapron_ci95'][1]:.6f}]; {pm['withheld_positive_occurrences']:,} withheld positives; evaluator {pm['evaluator']}) failed same-run H35 {pm['ctrl_h35_pooled']:.6f}; it is not a leaderboard score or projection. Its prior research raster [`{h73['submission_name']}`](docs/downloads/{h73['submission_name']}) (content id `{h73['content_id']}`, {h73['positive_pixels']:,} dots) is inspection-only, not strict-lane cleared, and remains DO NOT SUBMIT. [H73-BW design](knowledge/34_h73_bw_block_selector_2026-10-26.md) · [cache receipt](evidence/h73_bw_preflight_2026-10-26.json) · [run card](registry/run_card_h73_bw_2026-10-26.json) · [follow-up review](knowledge/35_h73_bw_followup_review_2026-10-26.md) · [prior H73-PM outcomes](knowledge/33_h73_outcomes_and_executive_summary_2026-10-26.md). The metrics for this H73-BW screen are null: {bw['reason']}\n\n"
-            "**Research-archive download: YES (inspection/testing only) · Competition-ready TIF: NO · OK TO SUBMIT: NO · weekly slot: NO — DO NOT SUBMIT.** "
-            "New unique H74-SUBSURF research GeoTIFF generated in the H74 session: [`gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.tif`](docs/downloads/gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.tif) "
-            "(content id `3751606e1ce5`, `37,654` binary dots, SHA-256 `9e0200dc3b1597c7…`, 51 static topography-free & catalogue-free subsurface `ACD + H34 + H74_RMPS` columns; density-aware unique across all 101 rasters with `flagged_lane = []`, `23.63%` vs `GEMSDOE32 B2`, `33.13%` vs `H72-3-subsurf`; literal 70% fails only the 3 >73%-halo rasters `r13` lattice + `pindrop`; DrivenData research note `GEMSDOE25 H74-SUBSURF | no slot, not slot-approved; DO NOT SUBMIT | id 3751606e1ce5 | unscored`; **DO NOT SUBMIT**). "
-            "In 3/3 pre-registered H74 experiments (draws 110–113, all 688 leakage canaries <= 0.8259), switching to 25-km spatial-block withholding (`H74-BW`) collapsed `CTRL_H35 - CTRL_BLIND` by **62.9%** (`+0.06353 -> +0.02356`) and both `H74_APRON` (`+0.00038`, 3/4 folds) and `H74_BLIND` (`+0.00237`, 3/4 folds; SE `+0.02343` above `CTRL_H35`) passed Gate G2, while Slot Gate G1 (`-0.00086`) and Exp 3 `H74_SUBSURF` (`0.03906` vs `0.12821` `CTRL_H35`) did not pass. "
-            "Older H72 research archive: Existing H72-3 research artifact (not created in this review): [`gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.tif`](docs/downloads/gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.tif) "
-            "(content id `88bbebfe79b4`, `41,061` binary dots; DEM-free 4-fold OOF PTTG + MTHS subsurface stack). "
-            "Three pre-registered H72 screens (draws 80–85) passed standalone leakage canaries (max AUC <= 0.655): de-aproned `H72-1` (+0.0061) and `H72-2` (+0.0073) beat blind controls in 4/4 folds, and `H72-3` (+0.0014) beat its subsurface control, while all three failed vs same-run Family-E `H35`. "
-            "The existing `H72-3` file is content-distinct and passes format checks, but it is **not lane-unique under the literal rule**: 74.64% of final dots overlap `pindrop-discovery.tif` within 3 px and 100% overlap the r13 lattice; the surface/final rank-correlation limits pass. No density-aware exception is authorized. It also failed the same-run H35 holdout gate. "
-            "[Executive summary & downloads](docs/executive-summary.html) · "
-            "[H74 outcomes, 0.2778 PhD proof & 9-site table](knowledge/37_h74_outcomes_and_executive_summary_2026-10-26.md) · "
-            "[H74 run card](registry/run_card_h74_2026-10-26.json) · "
-            "[H74 pre-registrations](knowledge/35_preregistered_h74_rmps_bw_2026-10-26.md) ([Exp 3 addendum](knowledge/36_preregistered_h74_exp3_subsurface_2026-10-26.md)) · "
-            "[Nine-site executive review](docs/current-review.html) · "
-            "[H72 outcomes, 0.2778 PhD proof & 9-site synthesis](knowledge/31_h72_outcomes_and_portfolio_synthesis_2026-10-26.md) · "
-            "[H72 run card](registry/run_card_h72_2026-10-26.json) · "
-            "[Objective-session outcomes](knowledge/31_objective_outcomes_and_executive_summary_2026-10-26.md) (`3646faf70507`, alternate) · "
-            "[Current session review](knowledge/32_repo_review_2026-10-26_61f81983.md) · "
-            "[This review's JSON run card](registry/run_card_review_61f81983_2026-10-26.json) · "
-            "[Exact-file audit receipt](evidence/download_audit_61f81983_2026-10-26.json) · "
-            "[Current-checkout review](knowledge/29_current_checkout_review_2026-10-26.md) · "
-            "[Repository review](knowledge/29_repository_review_2026-10-26.md) · "
-            "[Exact-download audit](knowledge/29_download_audit_and_next_hypotheses_2026-10-26.md) · "
-            "[Strict-lane feasibility proof](knowledge/29_lane_feasibility_plan_2026-10-26.md) · "
-            "[D01 density outcome](knowledge/31_d01_outcome_2026-10-26.md) · "
-            "[APFL2 outcomes](knowledge/30_executive_summary_and_apfl_outcomes_2026-10-26.md) (`2e9e4189f554`, alternate) · "
-            "[H71 outcomes](knowledge/28_h71_outcomes_2026-10-26.md) (`9eb0c31e5149`, alternate). "
-            "GEMSDOE32 B2 is the strongest supplied historical exemplar (**OWNER-REPORTED 0.2778**), not a new submission; sibling `GEMSDOE70 P8-OOF38k` (**OWNER-REPORTED 0.2478**) is the strongest non-`H19-5` architecture. "
-            "No weekly slot was used.\n\n"
-            "Read the current owner brief below every session, then the preserved historical prompts. "
-            "**Maximize P(Win)** and **Own the Outcome**: a negative scientific result is not an excuse to submit a rejected file.\n\n"
-            "<details><summary>Current owner prompt — normalized standing brief (not verbatim)</summary>\n\n"
-            + brief + "\n</details>\n\n<!-- END-CURRENT-REVIEW-2026-10-26 -->\n")
+            "## Current Decision — 2026-10-27\n\n"
+            "**NO NEW COMPETITION TIFF · OK TO SUBMIT: NO — DO NOT SUBMIT.** The preregistered CBEC 2×2 spatial-block holdout screen failed against same-run H35. No candidate surface, dots, or new TIF was produced. The previous H78 `0.2785` leaderboard estimate was a hard-coded builder constant and is withdrawn. Its existing TIF passes local format/range checks but fails the literal lane rule: 100% of final dots are within 3 px of the r13 lattice. **Research-archive download: YES (inspection/testing only) · Competition-ready TIF: NO · OK TO SUBMIT: NO · weekly slot: NO — DO NOT SUBMIT.**\n\n"
+            "- Historical H78 archive (inspection only): [`gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif`](docs/downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif).\n"
+            "- Prior H74 research file (NOT slot-approved; DO NOT SUBMIT): `gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.tif`, note `GEMSDOE25 H74-SUBSURF | no slot, not slot-approved; DO NOT SUBMIT | id 3751606e1ce5 | unscored`; see [`knowledge/37_h74_outcomes_and_executive_summary_2026-10-26.md`](knowledge/37_h74_outcomes_and_executive_summary_2026-10-26.md) and `registry/run_card_h74_2026-10-26.json`.\n"
+            "- Nine-site table, CBEC `HOLDOUT-DTI`, data/source limitations: [`knowledge/39_current_review_2026-10-27.md`](knowledge/39_current_review_2026-10-27.md).\n"
+            "- Preregistration: [`knowledge/39_preregistered_current_review_2026-10-27.md`](knowledge/39_preregistered_current_review_2026-10-27.md).\n"
+            "- Machine-readable run card: [`registry/run_card_current_review_2026-10-27.json`](registry/run_card_current_review_2026-10-27.json).\n"
+            "- Current experiment: `HOLDOUT-DTI` CBEC `0.102201` [95% CI 0.093710–0.109543] versus same-run H35 `0.105015` [0.095911–0.114988], 25,029 withheld-positive occurrences; evaluator `gems25.metric.dti_binary` (alpha 0.2, beta 0.8, 300 m triangular kernel), block25km draws 116–117. Paired gain `-0.002813` [95% CI `-0.007455`–`+0.004860`]; screen negative. These are catalogue-gap proxy metrics, never a leaderboard estimate.\n\n"
+            "Read the current prompt and `AGENTS.md` every session. **Maximize P(Win)** and **Own the Outcome**: no upload without science, lane, format, and separate selector gates.\n\n")
 
 
 def main():

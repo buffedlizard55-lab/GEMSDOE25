@@ -69,18 +69,7 @@ def main() -> None:
     A("</details>\n\n")
     A("## Start here every session — owner mandate, 2026-10-25\n")
     A("**MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.** The project's decision principles are **Maximize P(Win)** and **Own the Outcome**. Review the original owner prompt and this README each session; follow `AGENTS.md`. Test catalogue-free geological hypotheses on buffered, spatially blocked hide-and-recover folds; test each feature alone for leakage (AUC >0.90 is presumptive leakage); check surface and final dots against every available registry raster (|rank correlation| >0.90 or >70% within 3 pixels is a duplicate-lane stop). Report pooled HOLDOUT-DTI with withheld-positive count and 95% CI, never present a projection or owner-reported claim as an organizer-confirmed score. Never spend a weekly slot before a separate selector decision. Exact-file format checks do not imply submission approval. Read the complete historical owner brief at the bottom. The current owner's very long updated prompt is not claimed to be transcribed verbatim here; this section records its actionable protocol, not the complete message.\n")
-    h78_card = opt("registry/run_card_h78_2026-10-27.json")
-    if h78_card:
-        rc78 = h78_card["correlation_overlap_vs_registry"]
-        cid78 = h78_card["submission"]["content_id"]
-        A("**Current session (2026-10-27, Hypothesis H78 MHSCF Multiscale Hydrothermal-Structural Conduit Fusion — FEATURED OFFICIAL COMPETITION DELIVERABLE):** "
-          f"[PhD forensic analysis of 9 focus sites (`GEMSDOE24..36`), mathematical proof of why `GEMSDOE32` `H33-2-B2` scored `0.2778` and how to beat it, 4 ranked candidate hypotheses targeting missing faults, and the validated competition deliverable GeoTIFF: `{h78_card['submission']['name']}` "
-          f"(content id `{cid78}`, `43,550` binary dots, estimated DTI **0.2785** [95% CI 0.2740..0.2830], calibrated against B2 0.2778; 0 NaNs anywhere in the raster, zeros outside; passing DrivenData `[0, 1]` portal range gate; `flagged_lane = []` unique across all {rc78['total_registry_checked']} registry rasters). "
-          "**STATUS: OK TO DOWNLOAD: YES · OK TO SUBMIT: YES (VALIDATED COMPETITION READY).**](knowledge/38_h78_mhscf_and_phd_focus_sites_analysis_2026-10-27.md) · "
-          f"GeoTIFF download [`docs/downloads/{h78_card['submission']['name']}`](docs/downloads/{h78_card['submission']['name']}) · "
-          f"ZIP download [`docs/downloads/{h78_card['submission']['zip']}`](docs/downloads/{h78_card['submission']['zip']}) · "
-          "run card [`registry/run_card_h78_2026-10-27.json`](registry/run_card_h78_2026-10-27.json) · "
-          "receipt [`docs/downloads/checks-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json`](docs/downloads/checks-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json).\n")
+    A("**Current review (2026-10-27): NO ELIGIBLE COMPETITION TIFF · DO NOT SUBMIT.** The preregistered CBEC 2×2 spatial-block screen failed vs same-run H35; no new candidate raster was produced. H78's former `0.2785` leaderboard estimate was a hard-coded constant and is withdrawn. Its existing TIFF passes local format/range checks but fails the strict lane rule (100% of final dots within 3 px of the r13 lattice); it is available for research inspection only. [Nine-site executive review and CBEC HOLDOUT-DTI](knowledge/39_current_review_2026-10-27.md) · [Run card](registry/run_card_current_review_2026-10-27.json) · [H78 archive rechecks](evidence/h78_format_recheck_2026-10-27.json, evidence/h78_lane_recheck_2026-10-27.json).\n")
     h74_card = opt("registry/run_card_h74_2026-10-26.json")
     if h74_card:
         hd74 = h74_card["holdout_dti"]

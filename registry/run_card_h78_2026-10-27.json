@@ -11,14 +11,25 @@
       0.1285,
       0.174
     ],
-    "withheld_positives": 22813
+    "withheld_positives": 22813,
+    "label": "UNVERIFIED LEGACY HOLDOUT-DTI RECORD (not independently reproduced in this checkout)",
+    "evaluator_version_status": "Function name was recorded, but exact runner/source hashes and matching saved cell evidence are absent; do not treat as validated current HOLDOUT-DTI."
   },
-  "estimated_competition_score": 0.2785,
+  "estimated_competition_score": null,
   "correlation_overlap_vs_registry": {
     "verdict": "DUPLICATE/LANE OVERLAP - do not package",
     "verdict_density_aware": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
-    "flagged_lane": [],
-    "total_registry_checked": 86
+    "flagged_lane": [
+      "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
+    ],
+    "total_registry_checked": 60,
+    "flagged_literal": [
+      "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
+    ],
+    "final_max_candidate_dots_within_3px": 1.0,
+    "final_max_abs_spearman": 0.031427,
+    "preplacement_surface_rank_correlation": "NOT VERIFIED: no H78 continuous candidate surface is stored.",
+    "lane_recheck": "evidence/h78_lane_recheck_2026-10-27.json"
   },
   "validator_output": {
     "file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
@@ -40,16 +51,23 @@
     "footprint_all_finite": true,
     "values_in_0_1": true,
     "outside_is_zero": true,
-    "ok_to_upload": true
+    "ok_to_upload": false,
+    "status": "Local format/range checks pass only; lane gate fails and no organizer portal validation was performed."
   },
   "submission": {
     "name": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
-    "zip": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.zip",
-    "note": "GEMSDOE25 H78 MHSCF B2 | dots=43,550 sapd2.85 | id b2488f5d216c | est DTI 0.2785",
+    "zip": null,
+    "note": "GEMSDOE25 H78 MHSCF B2 | inspection only; DO NOT SUBMIT | id b2488f5d216c",
     "content_id": "b2488f5d216c",
     "ok_to_download": true,
-    "ok_to_submit": true,
-    "verdict": "promote / validated competition ready"
+    "ok_to_submit": false,
+    "verdict": "negative / DO NOT SUBMIT",
+    "note_chars": 73,
+    "download_purpose": "Research inspection only",
+    "zip_status": "Not validated or provided as part of this recheck."
   },
-  "generated_utc": "2026-10-27T17:53:17.598728+00:00"
+  "generated_utc": "2026-10-27T17:53:17.598728+00:00",
+  "score_ci_95": null,
+  "score_basis": "WITHDRAWN: the previous value was a builder hard-coded constant, not a calibrated estimate or organizer score.",
+  "legacy_status": "SUPERSEDED: research archive only; no slot approval."
 }

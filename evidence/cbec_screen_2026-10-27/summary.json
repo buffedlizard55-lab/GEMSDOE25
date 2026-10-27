@@ -1,0 +1,62 @@
+{
+  "label": "HOLDOUT-DTI",
+  "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px)",
+  "draws": [
+    116,
+    117
+  ],
+  "withheld_positive_occurrences": 25029,
+  "arms": {
+    "CTRL_H35": {
+      "pooled_dti": 0.10501471386392112,
+      "ci95": [
+        0.09591130751435563,
+        0.1149878418788286
+      ],
+      "withheld_positive_occurrences": 25029
+    },
+    "COND_BASE": {
+      "pooled_dti": 0.10597298535101399,
+      "ci95": [
+        0.09742743425206292,
+        0.11081876458137084
+      ],
+      "withheld_positive_occurrences": 25029
+    },
+    "GRAV_EDGE": {
+      "pooled_dti": 0.10501471386392112,
+      "ci95": [
+        0.09591130751435563,
+        0.1149878418788286
+      ],
+      "withheld_positive_occurrences": 25029
+    },
+    "CBEC": {
+      "pooled_dti": 0.10220130184179764,
+      "ci95": [
+        0.09370989946554119,
+        0.10954301804016064
+      ],
+      "withheld_positive_occurrences": 25029
+    }
+  },
+  "cbec_vs_h35": {
+    "paired_gain": -0.002813412022123485,
+    "ci95": [
+      -0.007455188807964211,
+      0.004859937025478031
+    ],
+    "fold_gains": [
+      -0.0038437543339744085,
+      0.009601027806566353,
+      -0.0076207495042993345,
+      -0.007266367230987877
+    ],
+    "screen_gate_passed": false
+  },
+  "canary_max": 0.5581461938338173,
+  "canary_all_passed": true,
+  "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 261027; 4 clusters",
+  "elapsed_s": 1211.2,
+  "interpretation": "catalogue-gap holdout proxy; not an organizer score or leaderboard projection"
+}

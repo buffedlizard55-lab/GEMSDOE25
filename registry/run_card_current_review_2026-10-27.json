@@ -1,0 +1,115 @@
+{
+  "schema": "run_card/v1 (PARALLEL-RUN PROTOCOL item 5)",
+  "session": "2026-10-27 current repository review and CBEC 2x2 screen",
+  "hypothesis": "CBEC: conductivity/depth-to-conductive-base edge interaction, tested with gravity-edge addition on cached static features to detect concealed basement steps omitted from the USGS/INGENIOUS fault catalogue.",
+  "mechanism": "Multiscale conductivity-gradient and conductive-base-depth-gradient coincidence, optionally gated by a gravity horizontal-gradient ridge; candidate is catalogue-independent and complements, rather than replaces, visible-catalogue features.",
+  "mimicking_non_fault_process": "Unfaulted lithologic contacts, clay-rich basin margins, evaporite-related conductivity boundaries, or coincident density contacts.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px triangular kernel); shared draw_block25km component-withheld holdout, 25-km blocks (250 px), 4 quadrants",
+    "draws": [
+      116,
+      117
+    ],
+    "withheld_positive_occurrences": 25029,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 261027; 4 clusters",
+    "candidate_arm": "CBEC",
+    "candidate_pooled": 0.10220130184179764,
+    "candidate_ci95": [
+      0.09370989946554119,
+      0.10954301804016064
+    ],
+    "same_run_control": "CTRL_H35",
+    "control_pooled": 0.10501471386392112,
+    "control_ci95": [
+      0.09591130751435563,
+      0.1149878418788286
+    ],
+    "paired_gain": -0.002813412022123485,
+    "paired_ci95": [
+      -0.007455188807964211,
+      0.004859937025478031
+    ],
+    "fold_gains": [
+      -0.0038437543339744085,
+      0.009601027806566353,
+      -0.0076207495042993345,
+      -0.007266367230987877
+    ],
+    "gate_passed": false,
+    "feature_canary_max_effective_auc": 0.5581461938338173,
+    "feature_canaries_passed": true,
+    "experiment_budget": "1 of 3 used; no confirmation after screen gate failure"
+  },
+  "estimated_competition_score": null,
+  "estimated_competition_score_status": "NOT ESTIMATED; HOLDOUT-DTI is a catalogue-gap proxy and this screen failed.",
+  "correlation_overlap_vs_registry": {
+    "new_cbec_surface": "NOT RUN; holdout screen failed before placement; no prediction surface retained.",
+    "new_cbec_final_dots": "NOT RUN; no candidate dots or candidate raster generated.",
+    "h78_archive_recheck": {
+      "registry_rasters_checked": 60,
+      "max_abs_final_rank_correlation": 0.031427,
+      "max_candidate_dot_overlap_within_3px": 1.0,
+      "strict_flagged": [
+        "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
+      ],
+      "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+      "density_aware_verdict_not_authoritative": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
+      "preplacement_surface_check": "NOT AVAILABLE; H78 continuous surface was not saved."
+    }
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_candidate": "NOT RUN; no CBEC candidate TIFF exists.",
+    "archived_h78_file": {
+      "file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
+      "sha256": "be78ded8d7073512d9fc71677c37cd3528e1ff80fb3c5cb8c02080417e1217e5",
+      "local_format_checks": {
+        "template_matches_expected_grid_and_footprint": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "crs_epsg_32611": true,
+        "shape_matches_template": true,
+        "geotransform_matches_template": true,
+        "footprint_all_finite": true,
+        "footprint_values_in_0_1": true,
+        "outside_footprint_is_nan_official": false,
+        "outside_footprint_is_nan_or_zero": true,
+        "nan_mask_identical_to_template": true,
+        "nodata_tag": true,
+        "variant_nan_aware_whole_array": true,
+        "variant_masked_read": true,
+        "variant_strict_whole_array_no_nan": true,
+        "profile_matches_template": true
+      },
+      "local_range_and_template": "PASS locally against the hash-pinned owner-mirror sample_submission.tif; no organizer portal validation.",
+      "status": "RESEARCH INSPECTION ONLY; strict lane fails; DO NOT SUBMIT."
+    }
+  },
+  "submission": {
+    "name": null,
+    "note": "NO NEW CANDIDATE; DO NOT SUBMIT H78 archive.",
+    "note_chars": 44,
+    "ok_to_download_for_research": "H78 archive only",
+    "ok_to_submit": false,
+    "verdict": "negative"
+  },
+  "verdict": "negative",
+  "reason": "CBEC paired screen did not beat its same-run incumbent; 95% CI includes zero, only 1/4 quadrant gains positive. H78 existing artifact fails the literal 3-px lane threshold. No new competition TIFF and no weekly slot are approved.",
+  "sources": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+    "https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7",
+    "https://gdr.openei.org/submissions/1391",
+    "https://www.usgs.gov/3d-elevation-program"
+  ],
+  "artifacts": {
+    "preregistration": "knowledge/39_preregistered_current_review_2026-10-27.md",
+    "report": "knowledge/39_current_review_2026-10-27.md",
+    "experiment_summary": "evidence/cbec_screen_2026-10-27/summary.json",
+    "format_recheck": "evidence/h78_format_recheck_2026-10-27.json",
+    "lane_recheck": "evidence/h78_lane_recheck_2026-10-27.json",
+    "provenance": "evidence/cbec_screen_2026-10-27/provenance.json",
+    "review_passes": "evidence/review_passes_2026-10-27.json"
+  }
+}

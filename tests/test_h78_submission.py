@@ -1,4 +1,4 @@
-"""Verify format validity, 0-NaN safety, and lane uniqueness of the H78 submission."""
+"""Verify H78 archive format separately from strict lane and submission eligibility."""
 
 from __future__ import annotations
 
@@ -35,7 +35,9 @@ def test_h78_format_validation():
 
 def test_h78_run_card():
     card = json.loads((ROOT / "registry" / "run_card_h78_2026-10-27.json").read_text())
-    assert card["estimated_competition_score"] == 0.2785
-    assert card["submission"]["ok_to_submit"] is True
+    assert card["estimated_competition_score"] is None
+    assert card["submission"]["ok_to_submit"] is False
     assert card["submission"]["ok_to_download"] is True
-    assert len(card["submission"]["note"]) <= 120
+    assert "hard-coded" in card["score_basis"]
+    assert "DUPLICATE/LANE OVERLAP" in card["correlation_overlap_vs_registry"]["verdict"]
+    assert len(card["submission"]["note"]) <= 140

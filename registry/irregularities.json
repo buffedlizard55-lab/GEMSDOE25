@@ -1,6 +1,6 @@
 {
  "schema_version": 3,
- "review_date_utc": "2026-10-25",
+ "review_date_utc": "2026-10-27",
  "issues": [
   {
    "id": "IR-25-ALL-NODATA-VALIDATOR",
@@ -841,6 +841,22 @@
    "issue": "Catalogue-free HGBs that include Family B (1-m LiDAR scarps L_step_max/L_ex_max and 100 m DEM scarps) converge onto >70% 3-px final-dot overlap with prior Family-B blind rasters even when pre-placement continuous surfaces have low rank correlation (worst |Spearman| = 0.2136 <= 0.90): in H74_BLIND (ABCD + EXTRAS + H34 + H74_RMPS, 78 cols), staging submodular emission (37,654 dots) hit 76.88% within 3 px of h23-a-6pct.tif and 74.52% within 3 px of H72-CF (1d7c1e9ea55f) because tree splits place >74% of top-probability ridges on exposed Quaternary scarps.",
    "evidence": "evidence/h74_blind_abcd_surface.json; evidence/h74_blind_abcd_stopped_lane.json; evidence/h74_blind_abcd_stopped_extended.json; evidence/h74_subsurf_lane_literal.json.",
    "resolution_or_action": "Pre-publish staging guard in scripts/build_h74_candidate.py halted immediately before writing any ABCD GeoTIFF to docs/downloads/. Pre-registered Experiment 3 (knowledge/36, virgin draws 112-113) isolated H74_RMPS in a 100% topography-free & catalogue-free subsurface stack (H74_SUBSURF, 51 ACD cols), reducing overlap to 53.24% vs h23-a-6pct.tif and 43.22% vs H72-CF (flagged_lane = [] across all 101 rasters)."
+  },
+  {
+   "id": "IR-26-H78-HARDCODED-SCORE-AND-LANE-CONTRADICTION",
+   "severity": "critical",
+   "status": "fixed",
+   "issue": "The H78 builder wrote a hard-coded leaderboard estimate of 0.2785 and described the archive as lane-unique/OK TO SUBMIT although its own literal lane receipt flagged r13 with 100% of dots within 3 px. Current exact-file recheck confirms the lane stop; no calibrated score estimate or reproducible matching H78 HOLDOUT-DTI run is available.",
+   "evidence": "scripts/build_h78_submission.py (now fail-closed); registry/run_card_h78_2026-10-27.json; docs/downloads/checks-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json; evidence/h78_format_recheck_2026-10-27.json; evidence/h78_lane_recheck_2026-10-27.json; knowledge/39_current_review_2026-10-27.md",
+   "resolution_or_action": "Withdraw the estimate and OK-to-submit status; preserve the file for research inspection only; disable the H78 builder; do not submit or spend a weekly slot. Any future file needs its own preregistration, holdout, surface+dot lane checks, exact-file validator, and separate selector approval."
+  },
+  {
+   "id": "IR-26-CBEC-SCREEN-NEGATIVE",
+   "severity": "medium",
+   "status": "verified",
+   "issue": "The fixed, pre-registered CBEC cross-layer screen failed its paired spatial-block gate against same-run H35; no candidate surface, final dots, or raster was generated.",
+   "evidence": "knowledge/39_preregistered_current_review_2026-10-27.md; evidence/cbec_screen_2026-10-27/summary.json; evidence/cbec_screen_2026-10-27/cells.jsonl; evidence/cbec_screen_2026-10-27/feature_canaries.json; registry/run_card_current_review_2026-10-27.json",
+   "resolution_or_action": "Record as a negative HOLDOUT-DTI screen only; do not fit confirmation on the same holdout, place dots, emit a TIFF, or request a slot. New science requires a distinct preregistration and fresh draws within the budget."
   }
  ]
 }

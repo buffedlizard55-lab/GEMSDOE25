@@ -1,0 +1,78 @@
+{
+  "experiment": "CBEC_2x2_BLOCK25KM",
+  "preregistration": "knowledge/39_preregistered_current_review_2026-10-27.md",
+  "draws": [
+    116,
+    117
+  ],
+  "folds": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "fold_names": [
+    "NW",
+    "NE",
+    "SW",
+    "SE"
+  ],
+  "block_px": 250,
+  "arms": [
+    "CTRL_H35",
+    "COND_BASE",
+    "GRAV_EDGE",
+    "CBEC"
+  ],
+  "factors": {
+    "conductive_basement_edge": [
+      0,
+      1
+    ],
+    "gravity_edge": [
+      0,
+      1
+    ]
+  },
+  "emitter": {
+    "type": "shared H35 SAPD",
+    "kfrac": 0.035,
+    "min_dist_px": 2.4
+  },
+  "leakage_canary_cap": 0.9,
+  "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px)",
+  "evaluator_hashes": {
+    "src/gems25/metric.py": "4f6e4732029efd0238388aec74590e56bc2727df7441220ca09af7d02e9da230",
+    "src/gems25/holdout.py": "f0455eb17921e50365342ffb658504a5fcc0ddb3d2bd82f4bf0568d772be2bc1",
+    "src/gems25/block_holdout.py": "baad5b5301d4e623a8100593f7be0ab4fd791b712576eb411a5a740225a9fa6e",
+    "src/gems25/validation.py": "bb2faea55b6bd827196f56758e5fbbf1e4e620e92779e6b9b53703c3bdf42ac3",
+    "src/gems25/h74_rmps.py": "0e337938c0345ee00f018721b8eae9539a8881dba6ff2e97f252fddd6c2e2fd2",
+    "src/gems25/experiment.py": "f47cb776b0136ea33fc61ea244b81e6138e1cc1cfb8fd009af427896e906d548",
+    "src/gems25/h34.py": "e169358c766e3ee00f8c1784d3b6243e61eaf2d6e2b1905d0a16454b8b24f5c3",
+    "scripts/run_h74_experiments.py": "23d4fd2b9b52dadfde78b368717d4a25bd7cba69a55daa95339ea113caffefb7",
+    "scripts/run_cbec_holdout.py": "9b64f66eba9928dfa09d0e9fa88aa3189ccd0daa8f738b224593b5bd3f424b59"
+  },
+  "cache_hashes": {
+    "static_ABCD.npy": "fe584a12ed3e1ed7d26b272c49f6da0bbe16e072d98f6b1694938d858305b084",
+    "static_ABCD.npy.names.json": "60d48fb99c0c032e5c33a774298112104c9e1cdd15482ac58cddefc948fb85de",
+    "addons.npy": "ad31ff14a804b6956efa13b8c3caf6b322d6942b0f57911050ba243ac92e57bc",
+    "addons.npy.names.json": "b1562d7d1f5e57de2002f67038d6b1b4668e3ae10354fac648722f6d33db7f27",
+    "bands/_footprint.npy": "c446094771775c00802862e9ec58846fd1b278b4e608303e68811a2404dfd246",
+    "bands/_labels.npy": "d77fa88ad58d0a268b736b3c1d6a8939fd237d5955369944bd2b299194b2555d",
+    "h34_columns.npy": "3a2db05cff8c90f4e6a5cd8b34d79e29998486f2550ea250b7281bd730a53433",
+    "h34_columns.npy.names.json": "2f2928c448873c8274f9bf47dbdc8f9ece90adc814c9ebac886f4c818d856a54"
+  },
+  "hgb_params": {
+    "max_iter": 100,
+    "learning_rate": 0.12,
+    "max_leaf_nodes": 31,
+    "min_samples_leaf": 50,
+    "l2_regularization": 1.0,
+    "class_weight": {
+      "0": 1,
+      "1": 5
+    },
+    "early_stopping": false
+  },
+  "note": "The fixed primary arm is CBEC (both factors plus their interaction); no TIFF is produced."
+}

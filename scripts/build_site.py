@@ -37,6 +37,7 @@ def fmt_bytes(n: int) -> str:
 def page(title: str, body: str, active: str, prefix: str) -> str:
     """``prefix`` is the path from the page to docs/ ('' inside docs, 'docs/' from the root)."""
     nav = [("index", "Start here", "index.html"), ("current", "Current review", "current-review.html"),
+           ("report", "Nine-site report", "current-executive-review.html"),
            ("exec", "How to submit", "executive-summary.html"),
            ("research", "Research", "research.html"), ("sources", "Sources & audit", "sources.html")]
     links = []
@@ -796,12 +797,14 @@ Response: exact sparse-regime DTI of a fixed emission (ridge NMS → top 2.45 % 
         "run_card_h74_2026-10-26",
     ):
         (DOCS / "data" / f"{name}.json").write_text((ROOT / "registry" / f"{name}.json").read_text())
-    # Reapply the current, gate-negative H73 status after generated pages are written.
-    # Keep research inspection visibly separate from competition eligibility.
+    # Render the dated nine-site report and reapply the current fail-closed decision.
     try:
+        from build_executive_review_page import main as render_current_report
         from announce_h73_site import main as publish_current_status
     except ImportError:
+        from scripts.build_executive_review_page import main as render_current_report
         from scripts.announce_h73_site import main as publish_current_status
+    render_current_report()
     publish_current_status()
     print("site built:", [p.name for p in DOCS.glob("*.html")] + ["../index.html"])
 
