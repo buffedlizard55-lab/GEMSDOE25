@@ -1288,6 +1288,12 @@
    "new_tifs": 0,
    "weekly_slots": 0
   },
-  "pull_request": "pending; fixed session branch only"
+  "pull_request": {
+   "number": 61,
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/pull/61",
+   "head": "arena/b498883a-gemsdoe25",
+   "base": "main",
+   "status": "open; CI passed; merge not yet attempted at receipt update"
+  }
  }
 }
