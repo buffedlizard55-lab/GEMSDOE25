@@ -1,0 +1,146 @@
+[
+ {
+  "fold": 0,
+  "fold_name": "NW",
+  "draw": 114,
+  "n_columns": 93,
+  "worst_column": "E_dist",
+  "worst_canary_auc": 0.759915,
+  "worst_h79_column": "H79_sgmc_coulomb_react",
+  "worst_h79_canary_auc": 0.745495,
+  "h79_canaries": {
+   "H79_aniso_conduit_plume": 0.506343,
+   "H79_demag_argillic_crest": 0.504746,
+   "H79_euler_contact_index": 0.52983,
+   "H79_grav_mt_gouge_juxtapose": 0.573101,
+   "H79_sgmc_coulomb_react": 0.745495
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 0,
+  "fold_name": "NW",
+  "draw": 115,
+  "n_columns": 93,
+  "worst_column": "E_dist",
+  "worst_canary_auc": 0.830979,
+  "worst_h79_column": "H79_sgmc_coulomb_react",
+  "worst_h79_canary_auc": 0.734756,
+  "h79_canaries": {
+   "H79_aniso_conduit_plume": 0.518102,
+   "H79_demag_argillic_crest": 0.523023,
+   "H79_euler_contact_index": 0.528773,
+   "H79_grav_mt_gouge_juxtapose": 0.515336,
+   "H79_sgmc_coulomb_react": 0.734756
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 1,
+  "fold_name": "NE",
+  "draw": 114,
+  "n_columns": 93,
+  "worst_column": "E_dist",
+  "worst_canary_auc": 0.765444,
+  "worst_h79_column": "H79_sgmc_coulomb_react",
+  "worst_h79_canary_auc": 0.745524,
+  "h79_canaries": {
+   "H79_aniso_conduit_plume": 0.539931,
+   "H79_demag_argillic_crest": 0.516561,
+   "H79_euler_contact_index": 0.508872,
+   "H79_grav_mt_gouge_juxtapose": 0.519441,
+   "H79_sgmc_coulomb_react": 0.745524
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 1,
+  "fold_name": "NE",
+  "draw": 115,
+  "n_columns": 93,
+  "worst_column": "H79_sgmc_coulomb_react",
+  "worst_canary_auc": 0.737884,
+  "worst_h79_column": "H79_sgmc_coulomb_react",
+  "worst_h79_canary_auc": 0.737884,
+  "h79_canaries": {
+   "H79_aniso_conduit_plume": 0.531637,
+   "H79_demag_argillic_crest": 0.517014,
+   "H79_euler_contact_index": 0.50235,
+   "H79_grav_mt_gouge_juxtapose": 0.514311,
+   "H79_sgmc_coulomb_react": 0.737884
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 2,
+  "fold_name": "SW",
+  "draw": 114,
+  "n_columns": 93,
+  "worst_column": "E_dens20",
+  "worst_canary_auc": 0.749243,
+  "worst_h79_column": "H79_sgmc_coulomb_react",
+  "worst_h79_canary_auc": 0.572209,
+  "h79_canaries": {
+   "H79_aniso_conduit_plume": 0.502115,
+   "H79_demag_argillic_crest": 0.539653,
+   "H79_euler_contact_index": 0.508293,
+   "H79_grav_mt_gouge_juxtapose": 0.500675,
+   "H79_sgmc_coulomb_react": 0.572209
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 2,
+  "fold_name": "SW",
+  "draw": 115,
+  "n_columns": 93,
+  "worst_column": "E_dist",
+  "worst_canary_auc": 0.77461,
+  "worst_h79_column": "H79_sgmc_coulomb_react",
+  "worst_h79_canary_auc": 0.592653,
+  "h79_canaries": {
+   "H79_aniso_conduit_plume": 0.52923,
+   "H79_demag_argillic_crest": 0.533355,
+   "H79_euler_contact_index": 0.511804,
+   "H79_grav_mt_gouge_juxtapose": 0.51907,
+   "H79_sgmc_coulomb_react": 0.592653
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 3,
+  "fold_name": "SE",
+  "draw": 114,
+  "n_columns": 93,
+  "worst_column": "E_dist",
+  "worst_canary_auc": 0.68049,
+  "worst_h79_column": "H79_sgmc_coulomb_react",
+  "worst_h79_canary_auc": 0.669919,
+  "h79_canaries": {
+   "H79_aniso_conduit_plume": 0.506182,
+   "H79_demag_argillic_crest": 0.521912,
+   "H79_euler_contact_index": 0.519216,
+   "H79_grav_mt_gouge_juxtapose": 0.529494,
+   "H79_sgmc_coulomb_react": 0.669919
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 3,
+  "fold_name": "SE",
+  "draw": 115,
+  "n_columns": 93,
+  "worst_column": "H79_sgmc_coulomb_react",
+  "worst_canary_auc": 0.691216,
+  "worst_h79_column": "H79_sgmc_coulomb_react",
+  "worst_h79_canary_auc": 0.691216,
+  "h79_canaries": {
+   "H79_aniso_conduit_plume": 0.526844,
+   "H79_demag_argillic_crest": 0.539287,
+   "H79_euler_contact_index": 0.522581,
+   "H79_grav_mt_gouge_juxtapose": 0.511414,
+   "H79_sgmc_coulomb_react": 0.691216
+  },
+  "all_passed": true
+ }
+]

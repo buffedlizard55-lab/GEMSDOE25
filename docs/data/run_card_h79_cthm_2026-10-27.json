@@ -1,0 +1,936 @@
+{
+ "schema": "run_card/v1 (PARALLEL-RUN PROTOCOL item 5)",
+ "session": "2026-10-27 H79 CTHM-PoE + SGMC Coulomb Reactivation & Crustal LOQO (arena/5e2cf679-gemsdoe25)",
+ "experiments_used": "3 of 3 budget (Exp 1 standard Holdout draws 114-115; Exp 2 25-km block-withheld draws 114-115; Exp 3 25-km block-withheld confirmation + SGMC reactivation virgin draws 116-117)",
+ "preregistrations": [
+  "knowledge/39_preregistered_h79_cthm_poe_2026-10-27.md (commit b59b129)"
+ ],
+ "hypothesis": "H79-A (CTHM-PoE) + H79-B (SGMC-Coulomb): (1) Four zero-topography crustal-thermomechanical & hydrothermal alteration operators (H79_aniso_conduit_plume, H79_demag_argillic_crest, H79_euler_contact_index, H79_grav_mt_gouge_juxtapose) plus strike-aligned USGS SGMC lithologic-contact Coulomb reactivation (H79_sgmc_coulomb_react) detect Neogene-Quaternary faults concealed beneath Great Basin playas and bajadas; (2) Factoring blind inference into two physically orthogonal HGB experts (56-col zero-topography M_crustal x 26-col morphometric M_morpho) via floor-protected log-odds Product-of-Experts stops Family B scarp features from starving blind crustal splits at shallow tree depths.",
+ "mechanism": "1) Strain-oriented anisotropic spring/vent hydrothermal plume log-density along principal extensional fault azimuth theta_f = 0.5*atan2(-e_xy, 0.5*(e_xx - e_yy)). 2) Magnetite-destruction argillic alteration crest combining thorium-normalized K excess (K - Th regression residual) with RTP magnetic-low trough along regional gravity gradients. 3) 3D potential-field Euler structural-index contact selector isolating steep fault steps (SI in [0, 1]) from deeper spheres/plutons (SI >= 2). 4) Gravity horizontal-gradient x shallow MT electrical conductivity gouge juxtaposition. 5) Strike-aligned SGMC contact proximity weighted by Kreemer strain rate and 2-m temperature excess. Shipped LOQO artifact uses the 56-column zero-topography M_crustal_sgmc expert to satisfy both external_sparse <= 70% and own_lineage <= 70% simultaneously.",
+ "named_non_fault_mimic": "Unfaulted caldera ring-fracture hydrothermal alteration halos, potassic rhyolite dome margins, tabular Mesozoic intrusive sill contacts, and closed-basin evaporitic playa-margin brine/K-feldspar deflation lags.",
+ "holdout_dti": {
+  "label": "HOLDOUT-DTI",
+  "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px)",
+  "canary_summary": {
+   "total_feature_cell_evaluations": 2232,
+   "max_canary_auc": 0.865572,
+   "threshold": 0.9,
+   "all_passed": true
+  },
+  "experiment_1_standard_holdout": {
+   "draws": [
+    114,
+    115
+   ],
+   "cells_per_arm": 8,
+   "withheld_positive_occurrences": 22515,
+   "median_truth_d_vis_px": 9.652875,
+   "frac_truth_gt20_px": 0.2064825,
+   "ctrl_h35_pooled": 0.15168006568131084,
+   "ctrl_subsurf_pooled": 0.06020465574638625,
+   "h79_subsurf_pooled": 0.06080315156933656,
+   "h79_poe_pooled": 0.08415202660179419,
+   "subsurf_vs_ctrl_subsurf": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+     "CTRL_H35": {
+      "pooled_dti": 0.15168006568131084,
+      "ci95": [
+       0.14280266160701308,
+       0.1624062920773019
+      ],
+      "withheld_positive_occurrences": 22515
+     },
+     "CTRL_SUBSURF": {
+      "pooled_dti": 0.06020465574638625,
+      "ci95": [
+       0.04878252380712117,
+       0.07266984541867953
+      ],
+      "withheld_positive_occurrences": 22515
+     },
+     "H79_POE": {
+      "pooled_dti": 0.08415202660179419,
+      "ci95": [
+       0.07235466441702183,
+       0.09727562292143498
+      ],
+      "withheld_positive_occurrences": 22515
+     },
+     "H79_SUBSURF": {
+      "pooled_dti": 0.06080315156933656,
+      "ci95": [
+       0.051259394425065864,
+       0.07171955729816523
+      ],
+      "withheld_positive_occurrences": 22515
+     }
+    },
+    "paired_gain": 0.0005984958229503096,
+    "paired_ci95": [
+     -0.0019437967385711047,
+     0.004423081841747244
+    ],
+    "fold_gains": [
+     -0.002193936191082796,
+     0.006346628983355793,
+     -0.00012432837713943073,
+     -0.001759763053087518
+    ],
+    "screen_passed": false,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+   },
+   "poe_vs_ctrl_subsurf": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+     "CTRL_H35": {
+      "pooled_dti": 0.15168006568131084,
+      "ci95": [
+       0.14280266160701308,
+       0.1624062920773019
+      ],
+      "withheld_positive_occurrences": 22515
+     },
+     "CTRL_SUBSURF": {
+      "pooled_dti": 0.06020465574638625,
+      "ci95": [
+       0.04878252380712117,
+       0.07266984541867953
+      ],
+      "withheld_positive_occurrences": 22515
+     },
+     "H79_POE": {
+      "pooled_dti": 0.08415202660179419,
+      "ci95": [
+       0.07235466441702183,
+       0.09727562292143498
+      ],
+      "withheld_positive_occurrences": 22515
+     },
+     "H79_SUBSURF": {
+      "pooled_dti": 0.06080315156933656,
+      "ci95": [
+       0.051259394425065864,
+       0.07171955729816523
+      ],
+      "withheld_positive_occurrences": 22515
+     }
+    },
+    "paired_gain": 0.02394737085540794,
+    "paired_ci95": [
+     0.016187171613740156,
+     0.034522966497297115
+    ],
+    "fold_gains": [
+     0.02046993125131636,
+     0.03828065488114292,
+     0.01346699541314545,
+     0.025622041762292047
+    ],
+    "screen_passed": true,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+   },
+   "poe_vs_ctrl_h35": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+     "CTRL_H35": {
+      "pooled_dti": 0.15168006568131084,
+      "ci95": [
+       0.14280266160701308,
+       0.1624062920773019
+      ],
+      "withheld_positive_occurrences": 22515
+     },
+     "CTRL_SUBSURF": {
+      "pooled_dti": 0.06020465574638625,
+      "ci95": [
+       0.04878252380712117,
+       0.07266984541867953
+      ],
+      "withheld_positive_occurrences": 22515
+     },
+     "H79_POE": {
+      "pooled_dti": 0.08415202660179419,
+      "ci95": [
+       0.07235466441702183,
+       0.09727562292143498
+      ],
+      "withheld_positive_occurrences": 22515
+     },
+     "H79_SUBSURF": {
+      "pooled_dti": 0.06080315156933656,
+      "ci95": [
+       0.051259394425065864,
+       0.07171955729816523
+      ],
+      "withheld_positive_occurrences": 22515
+     }
+    },
+    "paired_gain": -0.06752803907951666,
+    "paired_ci95": [
+     -0.0827904996788267,
+     -0.0567171964122138
+    ],
+    "fold_gains": [
+     -0.09383019387720594,
+     -0.0560257436159831,
+     -0.06865104031950099,
+     -0.05751088492363757
+    ],
+    "screen_passed": false,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+   },
+   "slot_gate_g1_passed": false
+  },
+  "experiment_2_block25km_holdout": {
+   "draws": [
+    114,
+    115
+   ],
+   "cells_per_arm": 8,
+   "withheld_positive_occurrences": 24556,
+   "median_truth_d_vis_px": 70.295875,
+   "frac_truth_gt20_px": 0.88359375,
+   "ctrl_h35_pooled": 0.12848947547153414,
+   "ctrl_subsurf_pooled": 0.053948688894241814,
+   "h79_subsurf_pooled": 0.05630387032714625,
+   "h79_poe_pooled": 0.0786673674840781,
+   "subsurf_vs_ctrl_subsurf": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+     "CTRL_H35": {
+      "pooled_dti": 0.12848947547153414,
+      "ci95": [
+       0.1091160743822786,
+       0.15664667186480152
+      ],
+      "withheld_positive_occurrences": 24556
+     },
+     "CTRL_SUBSURF": {
+      "pooled_dti": 0.053948688894241814,
+      "ci95": [
+       0.033174726954493895,
+       0.07462781258870724
+      ],
+      "withheld_positive_occurrences": 24556
+     },
+     "H79_POE": {
+      "pooled_dti": 0.0786673674840781,
+      "ci95": [
+       0.05666173797094364,
+       0.10236601998045844
+      ],
+      "withheld_positive_occurrences": 24556
+     },
+     "H79_SUBSURF": {
+      "pooled_dti": 0.05630387032714625,
+      "ci95": [
+       0.03657327879485886,
+       0.07672570833115792
+      ],
+      "withheld_positive_occurrences": 24556
+     }
+    },
+    "paired_gain": 0.0023551814329044393,
+    "paired_ci95": [
+     -0.004943499748515566,
+     0.009640626981305106
+    ],
+    "fold_gains": [
+     0.0038167349536225997,
+     -9.886623909155165e-05,
+     -0.006284896842517811,
+     0.011739769095172894
+    ],
+    "screen_passed": false,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+   },
+   "poe_vs_ctrl_subsurf": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+     "CTRL_H35": {
+      "pooled_dti": 0.12848947547153414,
+      "ci95": [
+       0.1091160743822786,
+       0.15664667186480152
+      ],
+      "withheld_positive_occurrences": 24556
+     },
+     "CTRL_SUBSURF": {
+      "pooled_dti": 0.053948688894241814,
+      "ci95": [
+       0.033174726954493895,
+       0.07462781258870724
+      ],
+      "withheld_positive_occurrences": 24556
+     },
+     "H79_POE": {
+      "pooled_dti": 0.0786673674840781,
+      "ci95": [
+       0.05666173797094364,
+       0.10236601998045844
+      ],
+      "withheld_positive_occurrences": 24556
+     },
+     "H79_SUBSURF": {
+      "pooled_dti": 0.05630387032714625,
+      "ci95": [
+       0.03657327879485886,
+       0.07672570833115792
+      ],
+      "withheld_positive_occurrences": 24556
+     }
+    },
+    "paired_gain": 0.024718678589836285,
+    "paired_ci95": [
+     0.016161525895933566,
+     0.03457468370250099
+    ],
+    "fold_gains": [
+     0.025313336331444156,
+     0.020391458956818802,
+     0.015851739185139574,
+     0.039581068879325054
+    ],
+    "screen_passed": true,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+   },
+   "poe_vs_ctrl_h35": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+     "CTRL_H35": {
+      "pooled_dti": 0.12848947547153414,
+      "ci95": [
+       0.1091160743822786,
+       0.15664667186480152
+      ],
+      "withheld_positive_occurrences": 24556
+     },
+     "CTRL_SUBSURF": {
+      "pooled_dti": 0.053948688894241814,
+      "ci95": [
+       0.033174726954493895,
+       0.07462781258870724
+      ],
+      "withheld_positive_occurrences": 24556
+     },
+     "H79_POE": {
+      "pooled_dti": 0.0786673674840781,
+      "ci95": [
+       0.05666173797094364,
+       0.10236601998045844
+      ],
+      "withheld_positive_occurrences": 24556
+     },
+     "H79_SUBSURF": {
+      "pooled_dti": 0.05630387032714625,
+      "ci95": [
+       0.03657327879485886,
+       0.07672570833115792
+      ],
+      "withheld_positive_occurrences": 24556
+     }
+    },
+    "paired_gain": -0.04982210798745604,
+    "paired_ci95": [
+     -0.06920467867170466,
+     -0.022207252241677772
+    ],
+    "fold_gains": [
+     -0.004129619098825754,
+     -0.06346748520743094,
+     -0.04459113661168175,
+     -0.07570641905622114
+    ],
+    "screen_passed": false,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+   }
+  },
+  "experiment_3_confirm_block25km": {
+   "draws": [
+    116,
+    117
+   ],
+   "cells_per_arm": 8,
+   "withheld_positive_occurrences": 25029,
+   "median_truth_d_vis_px": 68.613,
+   "frac_truth_gt20_px": 0.8543225000000001,
+   "ctrl_h35_pooled": 0.12369010694356637,
+   "h79_single_hgb_pooled": 0.06085498047508709,
+   "h79_poe_pooled": 0.07245808320644687,
+   "h79_poe_sgmc_pooled": 0.08523544175907587,
+   "poe_vs_single_hgb": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+     "CTRL_H35": {
+      "pooled_dti": 0.12369010694356637,
+      "ci95": [
+       0.1100123843654666,
+       0.13647556265908825
+      ],
+      "withheld_positive_occurrences": 25029
+     },
+     "H79_POE": {
+      "pooled_dti": 0.07245808320644687,
+      "ci95": [
+       0.0622256642834606,
+       0.0812851414426247
+      ],
+      "withheld_positive_occurrences": 25029
+     },
+     "H79_POE_SGMC": {
+      "pooled_dti": 0.08523544175907587,
+      "ci95": [
+       0.08131881637945516,
+       0.09068541646043321
+      ],
+      "withheld_positive_occurrences": 25029
+     },
+     "H79_SINGLE_HGB": {
+      "pooled_dti": 0.06085498047508709,
+      "ci95": [
+       0.04339081565783268,
+       0.07893861277926939
+      ],
+      "withheld_positive_occurrences": 25029
+     }
+    },
+    "paired_gain": 0.011603102731359775,
+    "paired_ci95": [
+     0.00011102325799298984,
+     0.02873462986921748
+    ],
+    "fold_gains": [
+     0.034641022455419085,
+     0.02487600229805189,
+     -0.004336599895282109,
+     0.004265752236995622
+    ],
+    "screen_passed": true,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+   },
+   "poe_sgmc_vs_poe": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+     "CTRL_H35": {
+      "pooled_dti": 0.12369010694356637,
+      "ci95": [
+       0.1100123843654666,
+       0.13647556265908825
+      ],
+      "withheld_positive_occurrences": 25029
+     },
+     "H79_POE": {
+      "pooled_dti": 0.07245808320644687,
+      "ci95": [
+       0.0622256642834606,
+       0.0812851414426247
+      ],
+      "withheld_positive_occurrences": 25029
+     },
+     "H79_POE_SGMC": {
+      "pooled_dti": 0.08523544175907587,
+      "ci95": [
+       0.08131881637945516,
+       0.09068541646043321
+      ],
+      "withheld_positive_occurrences": 25029
+     },
+     "H79_SINGLE_HGB": {
+      "pooled_dti": 0.06085498047508709,
+      "ci95": [
+       0.04339081565783268,
+       0.07893861277926939
+      ],
+      "withheld_positive_occurrences": 25029
+     }
+    },
+    "paired_gain": 0.012777358552629,
+    "paired_ci95": [
+     0.0017165548144344872,
+     0.024843854947341766
+    ],
+    "fold_gains": [
+     0.023513928095006992,
+     0.0033965293405336383,
+     0.0013026753689059506,
+     0.025773016198742033
+    ],
+    "screen_passed": true,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+   },
+   "poe_sgmc_vs_ctrl_h35": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+     "CTRL_H35": {
+      "pooled_dti": 0.12369010694356637,
+      "ci95": [
+       0.1100123843654666,
+       0.13647556265908825
+      ],
+      "withheld_positive_occurrences": 25029
+     },
+     "H79_POE": {
+      "pooled_dti": 0.07245808320644687,
+      "ci95": [
+       0.0622256642834606,
+       0.0812851414426247
+      ],
+      "withheld_positive_occurrences": 25029
+     },
+     "H79_POE_SGMC": {
+      "pooled_dti": 0.08523544175907587,
+      "ci95": [
+       0.08131881637945516,
+       0.09068541646043321
+      ],
+      "withheld_positive_occurrences": 25029
+     },
+     "H79_SINGLE_HGB": {
+      "pooled_dti": 0.06085498047508709,
+      "ci95": [
+       0.04339081565783268,
+       0.07893861277926939
+      ],
+      "withheld_positive_occurrences": 25029
+     }
+    },
+    "paired_gain": -0.038454665184490505,
+    "paired_ci95": [
+     -0.05426900527505052,
+     -0.01753450664703464
+    ],
+    "fold_gains": [
+     -0.008086059562765924,
+     -0.04101032116281218,
+     -0.035416654467069944,
+     -0.0614196214192841
+    ],
+    "screen_passed": false,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+   },
+   "slot_gate_passed": false
+  },
+  "shipped_crustal_sgmc_56col_readout": {
+   "label": "HOLDOUT-DTI",
+   "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px)",
+   "draws": [
+    116,
+    117
+   ],
+   "mode": "block25km",
+   "pooled_dti": 0.053186958911268796,
+   "ci95": [
+    0.034213419437482594,
+    0.0643240064046967
+   ],
+   "withheld_positive_occurrences": 25029,
+   "mean_auc": 0.536450875,
+   "vs_single_hgb_gain": -0.007668021563818295,
+   "vs_single_hgb_ci95": [
+    -0.022367610617854722,
+    0.015002623546881748
+   ],
+   "vs_single_hgb_fold_gains": [
+    0.027904547259697682,
+    0.005214917279590815,
+    -0.019565189880006925,
+    -0.024965140551254504
+   ],
+   "vs_ctrl_h35_gain": -0.07050314803229757,
+   "vs_ctrl_h35_ci95": [
+    -0.10222354796144828,
+    -0.045643440595361226
+   ]
+  }
+ },
+ "organizer_confirmed_score": null,
+ "estimated_leaderboard_score": null,
+ "correlation_overlap_vs_registry": {
+  "lane_clear": false,
+  "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+  "density_aware_verdict": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
+  "flagged_lane": [],
+  "flagged_literal": [
+   "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "pindrop-discovery.tif",
+   "pindrop-nodes.tif"
+  ],
+  "registry_checked": 105,
+  "surface_worst_abs_spearman": 0.173673,
+  "post_merge_109_audit": {
+   "candidate": "gems25-h79-cthm-crustal-sgmc-b2-37654-20261027-e7ad8a4bf3ed-zeros.tif",
+   "candidate_sha256": "df13471fe77d6eb6dcf24ac4f2d453a36bd0c78e9c51caa34ac032104897a5ef",
+   "rank_footprint_pixels": 5167373,
+   "total_unique_sha_aligned_rasters_checked": 109,
+   "dense_halo_ge_0p70_count": 3,
+   "sparse_halo_lt_0p70_count": 106,
+   "sparse_all_le_0p70": true,
+   "vs_concurrent_20261027_rasters": {
+    "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif": {
+     "spearman": 0.022675993404816734,
+     "dots_within_3px": 0.4420247516864078,
+     "registry_dots_within_3px_of_candidate": 0.43971424018696553,
+     "registry_dots": 37654,
+     "halo_coverage_3px": 0.16692311547860006,
+     "flag_rank": false,
+     "rank_undefined": false,
+     "flag_overlap": false,
+     "duplicate": false,
+     "symmetric_min_overlap_3px": 0.43971424018696553,
+     "file": "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif",
+     "sha256": "da94fdf9d744f06f3f18d325b7f57fe4e3b2739cd2e9e14d71dafcc87edc2a1e"
+    },
+    "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif": {
+     "spearman": 0.018957389525567386,
+     "dots_within_3px": 0.4416795028416636,
+     "registry_dots_within_3px_of_candidate": 0.42619642003505603,
+     "registry_dots": 37654,
+     "halo_coverage_3px": 0.17100816991535156,
+     "flag_rank": false,
+     "rank_undefined": false,
+     "flag_overlap": false,
+     "duplicate": false,
+     "symmetric_min_overlap_3px": 0.42619642003505603,
+     "file": "gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif",
+     "sha256": "7b5ce15848362077572bd091353eda82e8092b544a4d2ff24f81711cc8fbc71c"
+    },
+    "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif": {
+     "spearman": 0.004820128715517967,
+     "dots_within_3px": 0.29139002496414723,
+     "registry_dots_within_3px_of_candidate": 0.2508610792192882,
+     "registry_dots": 43550,
+     "halo_coverage_3px": 0.19374041703589037,
+     "flag_rank": false,
+     "rank_undefined": false,
+     "flag_overlap": false,
+     "duplicate": false,
+     "symmetric_min_overlap_3px": 0.2508610792192882,
+     "file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
+     "sha256": "be78ded8d7073512d9fc71677c37cd3528e1ff80fb3c5cb8c02080417e1217e5"
+    },
+    "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif": {
+     "spearman": 0.0003643701293225149,
+     "dots_within_3px": 0.20608700270887556,
+     "registry_dots_within_3px_of_candidate": 0.16760503532161258,
+     "registry_dots": 37654,
+     "halo_coverage_3px": 0.20050362147265158,
+     "flag_rank": false,
+     "rank_undefined": false,
+     "flag_overlap": false,
+     "duplicate": false,
+     "symmetric_min_overlap_3px": 0.16760503532161258,
+     "file": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif",
+     "sha256": "e98b9a35609db124f5838cff415a1b0bdf462d65a746161c0bee706add3983d8"
+    }
+   }
+  },
+  "focus_winners": {
+   "n": 27,
+   "worst_cand_dots_within_3px": 0.36569819939448667,
+   "worst_overlap_file": "g63_cvarlw_0.2303.tif",
+   "b2_overlap": 0.23540659690869495,
+   "b2_reverse_overlap": 0.26260158283316515,
+   "b2_spearman_surface": 0.025349,
+   "b2_spearman_final": 0.008017
+  },
+  "vs_prior_subsurface_h74": {
+   "file": "gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-nan.tif",
+   "spearman_surface": 0.083099,
+   "spearman_final": 0.025648,
+   "cand_dots_within_3px": 0.4969193180007436,
+   "reg_dots_within_3px_of_cand": 0.4987783502416742
+  },
+  "vs_h78_mhscf": {
+   "file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-nan.tif",
+   "spearman_surface": 0.020109,
+   "spearman_final": 0.003411,
+   "cand_dots_within_3px": 0.29139002496414723,
+   "reg_dots_within_3px_of_cand": 0.2508610792192882
+  },
+  "vs_h23_a_6pct": {
+   "file": "h23-a-6pct.tif",
+   "cand_dots_within_3px": 0.5549211239177777,
+   "reg_dots_within_3px_of_cand": 0.2311665808222604
+  },
+  "external_sparse": {
+   "n": 54,
+   "worst_abs_spearman_surface": 0.173673,
+   "worst_surface_file": "structural-area06.tif",
+   "worst_abs_spearman_final": 0.107227,
+   "worst_final_file": "h18-4-geologic-map-faults-gap.tif",
+   "worst_cand_dots_within_3px": 0.5802305199978753,
+   "worst_overlap_file": "h19-c.tif",
+   "lane_pass": true
+  },
+  "own_lineage": {
+   "n": 27,
+   "worst_abs_spearman_surface": 0.083099,
+   "worst_surface_file": "gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-nan.tif",
+   "worst_abs_spearman_final": 0.025648,
+   "worst_final_file": "gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-nan.tif",
+   "worst_cand_dots_within_3px": 0.4969193180007436,
+   "worst_overlap_file": "gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-nan.tif",
+   "lane_pass": true
+  },
+  "lattice": [
+   {
+    "group": "scored",
+    "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "registry_dots": 206895,
+    "spearman_surface": 0.000108,
+    "spearman_final": 0.001957,
+    "cand_dots_within_3px": 1.0,
+    "reg_dots_within_3px_of_cand": 0.16435389932091157,
+    "halo_coverage_3px": 0.998713,
+    "non_discriminative_dense": true,
+    "dense_lattice": true
+   }
+  ],
+  "non_discriminative_dense_other": [
+   {
+    "group": "artifacts",
+    "file": "pindrop-discovery.tif",
+    "sha256": "37f9d5b855ee1b6c302cb81cdae1414db94db427f5dc9da3538474df37cf1cad",
+    "registry_dots": 155021,
+    "spearman_surface": 0.002257,
+    "spearman_final": 0.001175,
+    "cand_dots_within_3px": 0.7519519838529771,
+    "reg_dots_within_3px_of_cand": 0.16766760632430444,
+    "halo_coverage_3px": 0.734134,
+    "non_discriminative_dense": true,
+    "dense_lattice": false
+   },
+   {
+    "group": "artifacts",
+    "file": "pindrop-nodes.tif",
+    "sha256": "f347b70daa95170bfc967b1c0b6bbf951496c2b74764a7102848ad6178829aca",
+    "registry_dots": 155021,
+    "spearman_surface": 0.002475,
+    "spearman_final": 0.002451,
+    "cand_dots_within_3px": 0.7514739469910235,
+    "reg_dots_within_3px_of_cand": 0.16829332800072247,
+    "halo_coverage_3px": 0.735046,
+    "non_discriminative_dense": true,
+    "dense_lattice": false
+   }
+  ],
+  "staging_uniqueness_triangle": {
+   "arm_1_poe_sgmc": {
+    "columns": 82,
+    "surface_worst_abs_spearman": 0.2112,
+    "own_lineage_worst_3px": 0.47208795878259946,
+    "own_lineage_pass": true,
+    "external_sparse_worst_3px": 0.7554841451107452,
+    "external_sparse_worst_file": "h23-a-6pct.tif",
+    "flagged_lane": [
+     "h23-a-6pct.tif"
+    ],
+    "published": false,
+    "reason": "Stopped at staging: 75.55% > 70% overlap with 309,814-px h23-a-6pct.tif DEM/LiDAR ribbon (own_lineage cleared at <=47.21%)."
+   },
+   "arm_2_subsurf_55col": {
+    "columns": 55,
+    "surface_worst_abs_spearman": 0.133163,
+    "own_lineage_worst_3px": 0.7678599883146545,
+    "own_lineage_worst_file": "gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-nan.tif",
+    "own_lineage_pass": false,
+    "external_sparse_worst_3px": 0.531762893716471,
+    "flagged_lane": [
+     "gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-nan.tif",
+     "gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.tif"
+    ],
+    "published": false,
+    "reason": "Stopped at staging: 76.79% > 70% overlap with own-lineage H74_SUBSURF (51/55 shared static cols), though external_sparse cleared at <=53.18%."
+   },
+   "arm_3_crustal_sgmc_56col_published": {
+    "columns": 56,
+    "content_id": "e7ad8a4bf3ed",
+    "surface_worst_abs_spearman": 0.173673,
+    "own_lineage_worst_3px": 0.4969193180007436,
+    "own_lineage_worst_file": "gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-nan.tif",
+    "own_lineage_pass": true,
+    "external_sparse_worst_3px": 0.5802305199978753,
+    "external_sparse_worst_file": "h19-c.tif",
+    "external_sparse_pass": true,
+    "flagged_lane": [],
+    "flagged_literal": [
+     "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+     "pindrop-discovery.tif",
+     "pindrop-nodes.tif"
+    ],
+    "published": true,
+    "submission_name": "gems25-h79-cthm-crustal-sgmc-b2-37654-20261027-e7ad8a4bf3ed-zeros.tif"
+   }
+  },
+  "receipt": "docs/downloads/lane-gems25-h79-cthm-crustal-sgmc-b2-37654-20261027-e7ad8a4bf3ed-zeros.json",
+  "extended_receipt": "evidence/h79_crustal_sgmc_lane_extended.json",
+  "surface_receipt": "evidence/h79_crustal_sgmc_surface_lane.json"
+ },
+ "raster_sha256": "df13471fe77d6eb6dcf24ac4f2d453a36bd0c78e9c51caa34ac032104897a5ef",
+ "nan_twin_sha256": "f9167cc515cce6131cdc4033c10ba00051a17db22d6c4bd2d2d5884188222d8a",
+ "zip_sha256": "ed6e60ce9c8cacb8cdf38b14cbbc0e9cc0152b38b4eaaa69d56a126a7b08979b",
+ "content_id": "e7ad8a4bf3ed",
+ "positive_pixels": 37654,
+ "d_cat_strata_full_build": {
+  "min_d_cat_px": 2.2361,
+  "median_d_cat_px": 19.4165,
+  "frac_2_9": 0.26186,
+  "frac_gt9": 0.73814,
+  "frac_gt20": 0.48863
+ },
+ "validator_output": {
+  "format_valid": true,
+  "ok_to_upload_format_only": true,
+  "hard_failures_zeros": [],
+  "hard_failures_nan": [],
+  "independent_exact_file_audit": {
+   "file": "gems25-h79-cthm-crustal-sgmc-b2-37654-20261027-e7ad8a4bf3ed-zeros.tif",
+   "bytes": 826248,
+   "sha256": "df13471fe77d6eb6dcf24ac4f2d453a36bd0c78e9c51caa34ac032104897a5ef",
+   "meta": {
+    "count": 1,
+    "dtypes": [
+     "float32"
+    ],
+    "crs": "EPSG:32611",
+    "epsg": 32611,
+    "shape": [
+     3730,
+     3292
+    ],
+    "transform": [
+     100.0,
+     0.0,
+     243350.0,
+     0.0,
+     -100.0,
+     4508550.0
+    ],
+    "nodata": null
+   },
+   "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+   "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+   "footprint_px": 5167373,
+   "positive_pixels": 37654,
+   "catalogue_positive_pixels": 0,
+   "distinct_values": [
+    0.0,
+    1.0
+   ],
+   "outside_convention": "zeros",
+   "checks": {
+    "template_sha256_matches_pin": true,
+    "labels_sha256_matches_pin": true,
+    "template_crs_shape_transform_matches_expected": true,
+    "template_footprint_px_is_expected": true,
+    "labels_grid_matches_template": true,
+    "single_band": true,
+    "dtype_float32": true,
+    "crs_epsg_matches_template": true,
+    "shape_equals_template": true,
+    "transform_equals_template": true,
+    "footprint_all_finite": true,
+    "footprint_values_in_0_1": true,
+    "outside_all_zero": true,
+    "outside_all_nan": false,
+    "strict_whole_array_0_le_x_le_1": true,
+    "no_emission_on_catalogue": true
+   },
+   "all_hard_checks_pass": true,
+   "zip": {
+    "file": "gems25-h79-cthm-crustal-sgmc-b2-37654-20261027-e7ad8a4bf3ed-zeros.zip",
+    "sha256": "ed6e60ce9c8cacb8cdf38b14cbbc0e9cc0152b38b4eaaa69d56a126a7b08979b",
+    "members": [
+     "gems25-h79-cthm-crustal-sgmc-b2-37654-20261027-e7ad8a4bf3ed-zeros.tif"
+    ],
+    "contains_exactly_candidate_bytes": true
+   },
+   "scope": "local exact-file format and catalogue-mask checks only; no organizer or slot approval"
+  },
+  "independent_rasterio_zeros": {
+   "path": "docs/downloads/gems25-h79-cthm-crustal-sgmc-b2-37654-20261027-e7ad8a4bf3ed-zeros.tif",
+   "size_bytes": 826248,
+   "sha256": "df13471fe77d6eb6dcf24ac4f2d453a36bd0c78e9c51caa34ac032104897a5ef",
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "count": 1,
+   "dtype": "float32",
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "crs_matches": true,
+   "shape_matches": true,
+   "transform_matches": true,
+   "inside_nan_count": 0,
+   "inside_inf_count": 0,
+   "inside_min": 0.0,
+   "inside_max": 1.0,
+   "inside_in_0_1": true,
+   "inside_positive_dots": 37654,
+   "inside_unique_values": [
+    0.0,
+    1.0
+   ],
+   "outside_all_zero": true
+  },
+  "independent_rasterio_nan": {
+   "path": "docs/downloads/gems25-h79-cthm-crustal-sgmc-b2-37654-20261027-e7ad8a4bf3ed-nan.tif",
+   "size_bytes": 1591024,
+   "sha256": "f9167cc515cce6131cdc4033c10ba00051a17db22d6c4bd2d2d5884188222d8a",
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "count": 1,
+   "dtype": "float32",
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "crs_matches": true,
+   "shape_matches": true,
+   "transform_matches": true,
+   "inside_nan_count": 0,
+   "inside_inf_count": 0,
+   "inside_min": 0.0,
+   "inside_max": 1.0,
+   "inside_in_0_1": true,
+   "inside_positive_dots": 37654,
+   "inside_unique_values": [
+    0.0,
+    1.0
+   ],
+   "outside_all_nan": true
+  },
+  "footprint_pixels": 5167373,
+  "checks_receipts": [
+   "docs/downloads/checks-gems25-h79-cthm-crustal-sgmc-b2-37654-20261027-e7ad8a4bf3ed-zeros.json",
+   "docs/downloads/checks-gems25-h79-cthm-crustal-sgmc-b2-37654-20261027-e7ad8a4bf3ed-nan.json"
+  ]
+ },
+ "submission_name": "gems25-h79-cthm-crustal-sgmc-b2-37654-20261027-e7ad8a4bf3ed-zeros.tif",
+ "nan_twin_name": "gems25-h79-cthm-crustal-sgmc-b2-37654-20261027-e7ad8a4bf3ed-nan.tif",
+ "zip_name": "gems25-h79-cthm-crustal-sgmc-b2-37654-20261027-e7ad8a4bf3ed.zip",
+ "zip_zeros_name": "gems25-h79-cthm-crustal-sgmc-b2-37654-20261027-e7ad8a4bf3ed-zeros.zip",
+ "note": "GEMSDOE25 H79-CTHM | no slot, not slot-approved; DO NOT SUBMIT | id e7ad8a4bf3ed | unscored",
+ "note_chars": 91,
+ "verdict": "negative",
+ "slot_approved": false,
+ "ok_to_download_inspection": true,
+ "ok_to_submit_slot": false
+}

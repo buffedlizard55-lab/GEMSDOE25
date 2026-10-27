@@ -945,6 +945,22 @@
    "issue": "Follow-up to IR-25-LIDAR-BLIND-CONVERGENCE-20261026 and IR-25-LATTICE-CAP-20261026: tested whether Corridor-Gated Dual-Regime coupling (P_cor^0.60 * P_trace^0.40 on L_valid=1; quantile-calibrated P_cor^0.60 * P_gap^0.40 on the 24.66% L_valid=0 3DEP gap) breaks Family-B LiDAR scarp convergence (>74% 3-px dot overlap in H74_BLIND) without discarding 1-m LiDAR scarps, and audited post-merge convergence against concurrent 2026-10-27 H75-EU3D-POE65.",
    "evidence": "evidence/h75_cg_surface_lane.json; evidence/h75_cg_lane_literal.json; evidence/h75_cg_lane_extended.json; evidence/h75_cg_full_footprint_116_audit.json; evidence/h75_exp3_checkerboard25km/analysis.json.",
    "resolution_or_action": "Verified on pre-merge 108-raster registry: H75_CG_BLIND (e035d75ca5d5, 37,654 dots) achieved flagged_lane = [] across all 108 rasters, reducing overlap to 68.58% <= 70% vs h23-a-6pct.tif and 59.97% <= 70% vs H72-CF while passing Exp 3 25-km full-checkerboard Gate G2 (+0.02031 vs CTRL_SUBSURF, +0.00384 vs CTRL_BLIND_ABCD). Post-merge full-footprint 116-raster audit also found 72.34% 3-px dot convergence against concurrent sibling branch h75-eu3d-poe65 (0a97fd71c3f3, surface Spearman 0.1106) plus the 3 >73%-halo rasters (r13 lattice, pindrop); fail-closed: verdict remains negative / DO NOT SUBMIT."
+  },
+  {
+   "id": "IR-25-H78-FABRICATED-HOLDOUT-AND-CI-FAILURE-20261027",
+   "severity": "high",
+   "status": "resolved",
+   "issue": "Merged PR #60 (commit 77be1ae, scripts/build_h78_submission.py) hardcoded its holdout_dti, CI, and competition projection without running HoldoutEvaluator, checked only 86 rasters, set ok_to_submit = True without selector authorization, and introduced 36 ruff lint errors on main.",
+   "evidence": "evidence/h78_measured_holdout_audit_2026-10-27.json; evidence/h78_independent_reaudit_2026-10-27.json; evidence/h78_literal_lane_reaudit_2026-10-27.json; registry/run_card_h78_2026-10-27.json.",
+   "resolution_or_action": "Evaluated H78 on draws [60, 61] (22,813 withheld positives -> measured HOLDOUT-DTI = 0.058389, 95% CI [0.046604, 0.067958]), retracted uncomputed metrics, set ok_to_submit = False and slot_approved = False, and restored ruff check across scripts/ to 0 errors."
+  },
+  {
+   "id": "IR-25-POE-RIBBON-VS-SUBSURF-LINEAGE-20261027",
+   "severity": "medium",
+   "status": "resolved",
+   "issue": "Two symmetric pre-publish staging duplicate stops bracketed blind model design: (1) Two-expert H79_POE_SGMC (82 cols: 56 crustal x 26 morpho, gamma_c=0.55) eliminated own-lineage convergence (47.21% <= 70% vs H72-CF and <=53.00% across all 27 sibling winners) but still overlapped GEMSDOE22's 309,814-px h23-a-6pct.tif DEM/LiDAR ribbon at 75.55% > 70%; (2) 55-column H79_SUBSURF (without H79_SGMC) cleared all 54 external sparse rasters (53.18% on h23-a-6pct.tif) but overlapped own-lineage H74_SUBSURF at 76.79% > 70% due to 51/55 shared static columns.",
+   "evidence": "evidence/h79_poe_sgmc_stopped_lane.json; evidence/h79_poe_sgmc_stopped_extended.json; evidence/h79_subsurf_stopped_lane.json; evidence/h79_subsurf_stopped_extended.json; evidence/h79_crustal_sgmc_lane_literal.json; evidence/h79_crustal_sgmc_lane_extended.json; evidence/h79_cthm_post_merge_109_audit.json.",
+   "resolution_or_action": "Pre-publish staging guards halted both runs before touching docs/downloads/. Evaluating the exact 56-column zero-topography M_crustal expert from Exp 3 (H79_SUBSURF + H79_sgmc_coulomb_react = H79_CRUSTAL_SGMC, e7ad8a4bf3ed) broke own-lineage tie-breaking (49.69% <= 70% vs H74_SUBSURF, 44.20% vs H75-DCHB-CG, 44.17% vs H75-EU3D-POE65) while keeping all 106 sparse rasters <= 58.02% (55.49% on h23-a-6pct.tif, 23.54% on GEMSDOE32 B2)."
   }
  ]
 }

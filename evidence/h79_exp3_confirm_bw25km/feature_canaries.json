@@ -1,0 +1,146 @@
+[
+ {
+  "fold": 0,
+  "fold_name": "NW",
+  "draw": 116,
+  "n_columns": 93,
+  "worst_column": "B_slope_grad",
+  "worst_canary_auc": 0.72003,
+  "worst_h79_column": "H79_sgmc_coulomb_react",
+  "worst_h79_canary_auc": 0.705036,
+  "h79_canaries": {
+   "H79_aniso_conduit_plume": 0.572601,
+   "H79_demag_argillic_crest": 0.608582,
+   "H79_euler_contact_index": 0.51269,
+   "H79_grav_mt_gouge_juxtapose": 0.513428,
+   "H79_sgmc_coulomb_react": 0.705036
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 0,
+  "fold_name": "NW",
+  "draw": 117,
+  "n_columns": 93,
+  "worst_column": "deq_n100a15",
+  "worst_canary_auc": 0.729111,
+  "worst_h79_column": "H79_sgmc_coulomb_react",
+  "worst_h79_canary_auc": 0.601035,
+  "h79_canaries": {
+   "H79_aniso_conduit_plume": 0.600753,
+   "H79_demag_argillic_crest": 0.544861,
+   "H79_euler_contact_index": 0.506893,
+   "H79_grav_mt_gouge_juxtapose": 0.527915,
+   "H79_sgmc_coulomb_react": 0.601035
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 1,
+  "fold_name": "NE",
+  "draw": 116,
+  "n_columns": 93,
+  "worst_column": "E_dens50",
+  "worst_canary_auc": 0.780202,
+  "worst_h79_column": "H79_sgmc_coulomb_react",
+  "worst_h79_canary_auc": 0.770976,
+  "h79_canaries": {
+   "H79_aniso_conduit_plume": 0.502903,
+   "H79_demag_argillic_crest": 0.521638,
+   "H79_euler_contact_index": 0.52325,
+   "H79_grav_mt_gouge_juxtapose": 0.508334,
+   "H79_sgmc_coulomb_react": 0.770976
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 1,
+  "fold_name": "NE",
+  "draw": 117,
+  "n_columns": 93,
+  "worst_column": "H79_sgmc_coulomb_react",
+  "worst_canary_auc": 0.737218,
+  "worst_h79_column": "H79_sgmc_coulomb_react",
+  "worst_h79_canary_auc": 0.737218,
+  "h79_canaries": {
+   "H79_aniso_conduit_plume": 0.533595,
+   "H79_demag_argillic_crest": 0.583662,
+   "H79_euler_contact_index": 0.512813,
+   "H79_grav_mt_gouge_juxtapose": 0.50633,
+   "H79_sgmc_coulomb_react": 0.737218
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 2,
+  "fold_name": "SW",
+  "draw": 116,
+  "n_columns": 93,
+  "worst_column": "E_dens50",
+  "worst_canary_auc": 0.736514,
+  "worst_h79_column": "H79_sgmc_coulomb_react",
+  "worst_h79_canary_auc": 0.679322,
+  "h79_canaries": {
+   "H79_aniso_conduit_plume": 0.567212,
+   "H79_demag_argillic_crest": 0.598503,
+   "H79_euler_contact_index": 0.53847,
+   "H79_grav_mt_gouge_juxtapose": 0.517201,
+   "H79_sgmc_coulomb_react": 0.679322
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 2,
+  "fold_name": "SW",
+  "draw": 117,
+  "n_columns": 93,
+  "worst_column": "geod_shearrate",
+  "worst_canary_auc": 0.681395,
+  "worst_h79_column": "H79_sgmc_coulomb_react",
+  "worst_h79_canary_auc": 0.649636,
+  "h79_canaries": {
+   "H79_aniso_conduit_plume": 0.571119,
+   "H79_demag_argillic_crest": 0.511013,
+   "H79_euler_contact_index": 0.521365,
+   "H79_grav_mt_gouge_juxtapose": 0.510125,
+   "H79_sgmc_coulomb_react": 0.649636
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 3,
+  "fold_name": "SE",
+  "draw": 116,
+  "n_columns": 93,
+  "worst_column": "deq_n100a15",
+  "worst_canary_auc": 0.726587,
+  "worst_h79_column": "H79_sgmc_coulomb_react",
+  "worst_h79_canary_auc": 0.658722,
+  "h79_canaries": {
+   "H79_aniso_conduit_plume": 0.531316,
+   "H79_demag_argillic_crest": 0.534448,
+   "H79_euler_contact_index": 0.503453,
+   "H79_grav_mt_gouge_juxtapose": 0.507855,
+   "H79_sgmc_coulomb_react": 0.658722
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 3,
+  "fold_name": "SE",
+  "draw": 117,
+  "n_columns": 93,
+  "worst_column": "E_dens20",
+  "worst_canary_auc": 0.767327,
+  "worst_h79_column": "H79_demag_argillic_crest",
+  "worst_h79_canary_auc": 0.639983,
+  "h79_canaries": {
+   "H79_aniso_conduit_plume": 0.519068,
+   "H79_demag_argillic_crest": 0.639983,
+   "H79_euler_contact_index": 0.503165,
+   "H79_grav_mt_gouge_juxtapose": 0.523399,
+   "H79_sgmc_coulomb_react": 0.584263
+  },
+  "all_passed": true
+ }
+]
