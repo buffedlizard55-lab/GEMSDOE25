@@ -1,0 +1,426 @@
+[
+ {
+  "fold": 0,
+  "draw": 122,
+  "feature": "H75_darcy_seepage_barrier",
+  "auc": 0.5282804642504931,
+  "canary_auc": 0.5282804642504931,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 122,
+  "feature": "H75_uth_sinter_emergence",
+  "auc": 0.5317624457593688,
+  "canary_auc": 0.5317624457593688,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 122,
+  "feature": "H75_oblique_piedmont_inflection",
+  "auc": 0.5114186969921105,
+  "canary_auc": 0.5114186969921105,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 122,
+  "feature": "H75_riedel_obliquity_shear",
+  "auc": 0.5391873947238659,
+  "canary_auc": 0.5391873947238659,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 122,
+  "feature": "H75_destriped_blakely_contact",
+  "auc": 0.5272305093688363,
+  "canary_auc": 0.5272305093688363,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 122,
+  "feature": "__CELL_WORST__",
+  "canary_auc": 0.597437,
+  "worst_feature": "B_slope_grad",
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 123,
+  "feature": "H75_darcy_seepage_barrier",
+  "auc": 0.5282804642504931,
+  "canary_auc": 0.5282804642504931,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 123,
+  "feature": "H75_uth_sinter_emergence",
+  "auc": 0.5317624457593688,
+  "canary_auc": 0.5317624457593688,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 123,
+  "feature": "H75_oblique_piedmont_inflection",
+  "auc": 0.5114186969921105,
+  "canary_auc": 0.5114186969921105,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 123,
+  "feature": "H75_riedel_obliquity_shear",
+  "auc": 0.5391873947238659,
+  "canary_auc": 0.5391873947238659,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 123,
+  "feature": "H75_destriped_blakely_contact",
+  "auc": 0.5272305093688363,
+  "canary_auc": 0.5272305093688363,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 123,
+  "feature": "__CELL_WORST__",
+  "canary_auc": 0.597437,
+  "worst_feature": "B_slope_grad",
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 122,
+  "feature": "H75_darcy_seepage_barrier",
+  "auc": 0.5101565660239061,
+  "canary_auc": 0.5101565660239061,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 122,
+  "feature": "H75_uth_sinter_emergence",
+  "auc": 0.5460397679860172,
+  "canary_auc": 0.5460397679860172,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 122,
+  "feature": "H75_oblique_piedmont_inflection",
+  "auc": 0.520390222992783,
+  "canary_auc": 0.520390222992783,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 122,
+  "feature": "H75_riedel_obliquity_shear",
+  "auc": 0.522294793640054,
+  "canary_auc": 0.522294793640054,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 122,
+  "feature": "H75_destriped_blakely_contact",
+  "auc": 0.5304477466734325,
+  "canary_auc": 0.5304477466734325,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 122,
+  "feature": "__CELL_WORST__",
+  "canary_auc": 0.606233,
+  "worst_feature": "B_slope_grad",
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 123,
+  "feature": "H75_darcy_seepage_barrier",
+  "auc": 0.5101565660239061,
+  "canary_auc": 0.5101565660239061,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 123,
+  "feature": "H75_uth_sinter_emergence",
+  "auc": 0.5460397679860172,
+  "canary_auc": 0.5460397679860172,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 123,
+  "feature": "H75_oblique_piedmont_inflection",
+  "auc": 0.520390222992783,
+  "canary_auc": 0.520390222992783,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 123,
+  "feature": "H75_riedel_obliquity_shear",
+  "auc": 0.522294793640054,
+  "canary_auc": 0.522294793640054,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 123,
+  "feature": "H75_destriped_blakely_contact",
+  "auc": 0.5304477466734325,
+  "canary_auc": 0.5304477466734325,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 123,
+  "feature": "__CELL_WORST__",
+  "canary_auc": 0.606233,
+  "worst_feature": "B_slope_grad",
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 122,
+  "feature": "H75_darcy_seepage_barrier",
+  "auc": 0.5123420659278204,
+  "canary_auc": 0.5123420659278204,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 122,
+  "feature": "H75_uth_sinter_emergence",
+  "auc": 0.5108329627261532,
+  "canary_auc": 0.5108329627261532,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 122,
+  "feature": "H75_oblique_piedmont_inflection",
+  "auc": 0.5504515802311263,
+  "canary_auc": 0.5504515802311263,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 122,
+  "feature": "H75_riedel_obliquity_shear",
+  "auc": 0.5825847108553567,
+  "canary_auc": 0.5825847108553567,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 122,
+  "feature": "H75_destriped_blakely_contact",
+  "auc": 0.526520618310126,
+  "canary_auc": 0.526520618310126,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 122,
+  "feature": "__CELL_WORST__",
+  "canary_auc": 0.641888,
+  "worst_feature": "B_slope_grad",
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 123,
+  "feature": "H75_darcy_seepage_barrier",
+  "auc": 0.5123420659278204,
+  "canary_auc": 0.5123420659278204,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 123,
+  "feature": "H75_uth_sinter_emergence",
+  "auc": 0.5108329627261532,
+  "canary_auc": 0.5108329627261532,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 123,
+  "feature": "H75_oblique_piedmont_inflection",
+  "auc": 0.5504515802311263,
+  "canary_auc": 0.5504515802311263,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 123,
+  "feature": "H75_riedel_obliquity_shear",
+  "auc": 0.5825847108553567,
+  "canary_auc": 0.5825847108553567,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 123,
+  "feature": "H75_destriped_blakely_contact",
+  "auc": 0.526520618310126,
+  "canary_auc": 0.526520618310126,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 123,
+  "feature": "__CELL_WORST__",
+  "canary_auc": 0.641888,
+  "worst_feature": "B_slope_grad",
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 122,
+  "feature": "H75_darcy_seepage_barrier",
+  "auc": 0.506622492047957,
+  "canary_auc": 0.506622492047957,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 122,
+  "feature": "H75_uth_sinter_emergence",
+  "auc": 0.5078102263273795,
+  "canary_auc": 0.5078102263273795,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 122,
+  "feature": "H75_oblique_piedmont_inflection",
+  "auc": 0.5128530694886224,
+  "canary_auc": 0.5128530694886224,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 122,
+  "feature": "H75_riedel_obliquity_shear",
+  "auc": 0.5481680694886225,
+  "canary_auc": 0.5481680694886225,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 122,
+  "feature": "H75_destriped_blakely_contact",
+  "auc": 0.49272361634450695,
+  "canary_auc": 0.507276383655493,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 122,
+  "feature": "__CELL_WORST__",
+  "canary_auc": 0.617757,
+  "worst_feature": "E_dens20",
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 123,
+  "feature": "H75_darcy_seepage_barrier",
+  "auc": 0.506622492047957,
+  "canary_auc": 0.506622492047957,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 123,
+  "feature": "H75_uth_sinter_emergence",
+  "auc": 0.5078102263273795,
+  "canary_auc": 0.5078102263273795,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 123,
+  "feature": "H75_oblique_piedmont_inflection",
+  "auc": 0.5128530694886224,
+  "canary_auc": 0.5128530694886224,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 123,
+  "feature": "H75_riedel_obliquity_shear",
+  "auc": 0.5481680694886225,
+  "canary_auc": 0.5481680694886225,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 123,
+  "feature": "H75_destriped_blakely_contact",
+  "auc": 0.49272361634450695,
+  "canary_auc": 0.507276383655493,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 123,
+  "feature": "__CELL_WORST__",
+  "canary_auc": 0.614796,
+  "worst_feature": "E_dens20",
+  "passed": true
+ }
+]

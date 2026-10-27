@@ -937,6 +937,14 @@
    "issue": "During an interrupted initial turn before formal H75 pre-registration, an uncommitted ad-hoc heuristic script ran on prior H74 draws 110-111 with full-catalogue B2 pruning (leaking hidden test labels into the 2-px collar mask) and without restoring external/top-scorer rasters.",
    "evidence": "Caught during Pass-1 code & leakage audit on arena/2a7235ac-gemsdoe25 prior to any git commit.",
    "resolution_or_action": "Purged all uncommitted draft files, restored all SHA-256-pinned core/external/artifact/top-scorer caches (6/6 byte-identical to evidence/work_cache_hashes.json), committed frozen pre-registration knowledge/38 (3053f69) first, and ran only 2 formal experiments on virgin draws 130-133 so total session runs stay <= 3/3."
+  },
+  {
+   "id": "IR-25-CORRIDOR-GATED-DECONFOUNDING-20261027",
+   "severity": "low",
+   "status": "verified",
+   "issue": "Follow-up to IR-25-LIDAR-BLIND-CONVERGENCE-20261026 and IR-25-LATTICE-CAP-20261026: tested whether Corridor-Gated Dual-Regime coupling (P_cor^0.60 * P_trace^0.40 on L_valid=1; quantile-calibrated P_cor^0.60 * P_gap^0.40 on the 24.66% L_valid=0 3DEP gap) breaks Family-B LiDAR scarp convergence (>74% 3-px dot overlap in H74_BLIND) without discarding 1-m LiDAR scarps, and audited post-merge convergence against concurrent 2026-10-27 H75-EU3D-POE65.",
+   "evidence": "evidence/h75_cg_surface_lane.json; evidence/h75_cg_lane_literal.json; evidence/h75_cg_lane_extended.json; evidence/h75_cg_full_footprint_116_audit.json; evidence/h75_exp3_checkerboard25km/analysis.json.",
+   "resolution_or_action": "Verified on pre-merge 108-raster registry: H75_CG_BLIND (e035d75ca5d5, 37,654 dots) achieved flagged_lane = [] across all 108 rasters, reducing overlap to 68.58% <= 70% vs h23-a-6pct.tif and 59.97% <= 70% vs H72-CF while passing Exp 3 25-km full-checkerboard Gate G2 (+0.02031 vs CTRL_SUBSURF, +0.00384 vs CTRL_BLIND_ABCD). Post-merge full-footprint 116-raster audit also found 72.34% 3-px dot convergence against concurrent sibling branch h75-eu3d-poe65 (0a97fd71c3f3, surface Spearman 0.1106) plus the 3 >73%-halo rasters (r13 lattice, pindrop); fail-closed: verdict remains negative / DO NOT SUBMIT."
   }
  ]
 }

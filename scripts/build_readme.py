@@ -12,6 +12,7 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parents[1]
 BRIEFS = (
+    ("Owner brief 2026-10-27 (H75-DCHB-CG session) — saved as verbatim", "owner_brief_2026-10-27_verbatim.txt"),
     ("Current 2026-10-27 session scope — condensed, not verbatim", "owner_prompt_2026-10-27.txt"),
     ("Current standing protocol — normalized, not verbatim", "current_project_brief_2026-10-26.md"),
     ("Owner brief 2026-10-26 — saved as verbatim", "owner_brief_2026-10-26_verbatim.txt"),

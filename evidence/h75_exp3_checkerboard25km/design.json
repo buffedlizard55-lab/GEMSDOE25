@@ -1,0 +1,69 @@
+{
+ "experiment": "H75_CHECKERBOARD25KM",
+ "mode": "checkerboard25km",
+ "preregistration": "knowledge/38_preregistered_h75_dchb_cg_2026-10-27.md",
+ "preregistration_commit": "12931bb52bda9195495797590bd66ac073ee5589",
+ "draws": [
+  122,
+  123
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "fold_names": [
+  "block_parity_00",
+  "block_parity_01",
+  "block_parity_10",
+  "block_parity_11"
+ ],
+ "arms": [
+  "CTRL_H35",
+  "H75_APRON",
+  "CTRL_SUBSURF",
+  "CTRL_BLIND_ABCD",
+  "H75_CG_BLIND"
+ ],
+ "feature_counts": {
+  "CTRL_H35": 59,
+  "H75_APRON": 64,
+  "CTRL_SUBSURF": 51,
+  "CTRL_BLIND_ABCD": 78,
+  "M_corridor": 54,
+  "M_trace": 83,
+  "M_gap": 70
+ },
+ "corridor_gamma": 0.6,
+ "lidar_gap_scale": 0.95,
+ "n_neg": 300000,
+ "hgb_params": {
+  "max_iter": 100,
+  "learning_rate": 0.12,
+  "max_leaf_nodes": 31,
+  "min_samples_leaf": 50,
+  "l2_regularization": 1.0,
+  "class_weight": {
+   "0": 1,
+   "1": 5
+  },
+  "early_stopping": false
+ },
+ "kfrac_h35": 0.035,
+ "min_dist_h35": 2.4,
+ "kfrac_blind": 0.035,
+ "cat_buf_blind": 2.0,
+ "full_b2_budget": 37654,
+ "block_px": 250,
+ "leakage_auc_cap": 0.9,
+ "evaluator": "gems25.metric.dti_binary(alpha=0.2,beta=0.8,R=3px)",
+ "evaluator_hashes": {
+  "src/gems25/metric.py": "4f6e4732029efd0238388aec74590e56bc2727df7441220ca09af7d02e9da230",
+  "src/gems25/holdout.py": "f0455eb17921e50365342ffb658504a5fcc0ddb3d2bd82f4bf0568d772be2bc1",
+  "src/gems25/block_holdout.py": "baad5b5301d4e623a8100593f7be0ab4fd791b712576eb411a5a740225a9fa6e",
+  "src/gems25/validation.py": "bb2faea55b6bd827196f56758e5fbbf1e4e620e92779e6b9b53703c3bdf42ac3",
+  "src/gems25/h74_rmps.py": "0e337938c0345ee00f018721b8eae9539a8881dba6ff2e97f252fddd6c2e2fd2",
+  "src/gems25/h75_dchb.py": "b3c36703188c1ac2dc506d88af5f0256be4a83d5a5beb81e1ec6b50f587f9d12"
+ }
+}

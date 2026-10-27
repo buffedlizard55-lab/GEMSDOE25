@@ -1,0 +1,37 @@
+{
+ "schema_version": 1,
+ "date_utc": "2026-10-27",
+ "session_branch": "arena/7c80c351-gemsdoe25",
+ "method": "Three cumulative passes per owner instructions: Pass 1 implements and verifies end-to-end; Pass 2 hunts and fixes bugs, missing requirements, assumptions, and edge cases; Pass 3 performs full line-by-line reconciliation against the original 2026-10-27 user request across full-data pytest, clean CI pytest, ruff, compileall, Markdown/HTML link audits, and git hygiene.",
+ "pass_1_implement_and_verify": {
+  "scope": "Audit GEMSDOE25 + all 9 focus sites (GEMSDOE24..36) + 18 sibling site groups (GEMSDOE48..92, KANLERGEMSDOE1..3, WBGGEMSDOE1..3, EUGGEMSDOE1..3, GINNYGEMSDOE1..3); pin 5 newly scored 2026-10-26/27 rasters into registry/top_scorer_sources.json (32 total) and 8 new OWNER-REPORTED scores into registry/live_scores.json; commit pre-registration knowledge/38_preregistered_h75_dchb_cg_2026-10-27.md (12931bb) before running any H75 code; execute 3/3 paired experiments within <= 2 hours including the first real-data run of BlockHoldout (25-km full checkerboard hiding 100% of test-block components); build, stage-audit, and dual-validate a genuinely unique LOQO B2 GeoTIFF; emit canonical JSON Run Card and update Pages + README.",
+  "done": [
+   "Pinned 5 newly scored rasters (g27_h31_0.2250, g36_kpl36_0.1647, g33_seisdil_0.0963, g91_omtj_0.0298, g28_s21_0.0206) in registry/top_scorer_sources.json (32 rasters) and recorded all 8 new 2026-10-27 OWNER-REPORTED claims in registry/live_scores.json.",
+   "Committed knowledge/38_preregistered_h75_dchb_cg_2026-10-27.md + knowledge/owner_brief_2026-10-27_verbatim.txt at 12931bb before implementing src/gems25/h75_dchb.py.",
+   "Implemented src/gems25/h75_dchb.py (5 strictly catalogue-free operators + combine_corridor_gated_scores gamma=0.60, gap_scale=0.95 + leakage-free BlockHoldout estimate_blind_n_hat) and tests/test_h75_dchb.py.",
+   "Executed all 3/3 pre-registered experiments in 75.1 min total wall-clock (<= 2 h; 2,184 standalone canary checks <= 0.8179): Exp 1 standard Holdout (draws 120-121), Exp 2 25-km tile-sampled H75-BW (draws 120-121; L_gap +18.8% above CTRL_BLIND_ABCD), and Exp 3 25-km full-checkerboard BlockHoldout (virgin draws 122-123, 95,188 withheld +) where H75_CG_BLIND (0.122104) PASSED Gate G2 against BOTH blind controls (+0.020308 vs CTRL_SUBSURF 4/4 folds; +0.003844 vs CTRL_BLIND_ABCD 3/4 folds) and beat CTRL_H35 on L_valid=0 gap (0.108158 vs 0.106022).",
+   "Built and validated unique GeoTIFF gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif (37,654 dots, SHA-256 da94fdf9d744f06f..., EPSG:32611, 3730x3292, 0 NaN/Inf in footprint, strict [0,1]), clearing ALL 108 registry rasters density-aware (flagged_lane = [], resolving IR-25-LIDAR-BLIND-CONVERGENCE-20261026 at 68.58% <= 70% vs h23-a-6pct.tif and 59.97% <= 70% vs H72-CF; verdict = negative, DO NOT SUBMIT)."
+  ]
+ },
+ "pass_2_bugs_assumptions_edge_cases": {
+  "found_and_fixed": [
+   "Prevented BlockHoldout zero-visible-in-test-block failure before Exp 3: because BlockHoldout hides 100% of catalogue components touching test blocks, (known_c & dom_c).sum() == 0 inside dom_c; implemented leakage-free estimate_blind_n_hat estimating catalogue prevalence strictly from d.visible & d.train_region.",
+   "Refreshed docs/data/download_audit.json via scripts/audit_downloads.py (52/52 format_valid, okay_to_submit = false) after registering the 2 new H75 GeoTIFFs, resolving test_shipped_inventory_never_authorizes_slots.",
+   "Verified KANLERGEMSDOE2/AUDIT_REVIEW_2026-10-27.md line-by-line rather than trusting its stale 2026-10-26 run_card.json: recorded its 2026-10-27 audit reversal from promote -> NEGATIVE / DO NOT SUBMIT.",
+   "Kept src/gems25/h75_dchb.py byte-identical to its Experiment 1-3 execution state and locked SHA-256 parity of all 6 evaluator_hashes in evidence/h75_exp{1,2,3}_*/design.json inside tests/test_h75_submission.py.",
+   "Removed unused pytest import in tests/test_h75_submission.py, added all-valid / all-gap / out-of-bounds gamma edge-case tests in tests/test_h75_dchb.py, and updated AI_DISCLOSURE.md for 96647.pdf section 3.2 compliance."
+  ],
+  "known_residual_risks": [
+   "Three restored registry rasters cover >73% of the 5,167,373-px footprint with their 3-px halos (r13-lattice-s5 99.87%, pindrop-nodes 73.50%, pindrop-discovery 73.41%), making literal <=70% candidate-side overlap geometrically impossible at 37,654 dots (IR-25-LATTICE-CAP-20261026).",
+   "Uniform gamma = 0.60 corridor exponent over-penalizes thin-alluvium / bedrock range-interior fault splays on component splits (Exp 1 -0.0135 vs CTRL_BLIND_ABCD); sediment-depth-adaptive gamma(H_sed) is recommended for H76.",
+   "All live DTI numbers (0.2778, 0.2478, 0.2250, 0.3195, 0.4413) remain OWNER-REPORTED claims without cryptographic organizer receipts."
+  ]
+ },
+ "pass_3_recheck_against_original_brief": {
+  "gaps_found_and_closed": [
+   "Added the 4 Ranked Untried Geological Hypotheses (H75-1..4) HTML table directly onto index.html, docs/index.html, docs/executive-summary.html, and docs/current-review.html alongside the 9-Focus-Site and Extended-Sibling 2026-10-27 tables.",
+   "Embedded the active 2026-10-27 owner prompt (knowledge/owner_brief_2026-10-27_verbatim.txt) and Arena Core Values (Maximize P(Win), Own the Outcome) directly in README.md.",
+   "Verified full pytest suite passes in BOTH full-data mode (381 passed, 0 skipped) AND clean GitHub Actions CI simulation mode (368 passed, 13 skipped), ruff check src scripts tests passes with 0 warnings, python -m compileall passes, all HTML and Markdown local links resolve, and zero large caches or temporary files are tracked in Git."
+  ]
+ }
+}
