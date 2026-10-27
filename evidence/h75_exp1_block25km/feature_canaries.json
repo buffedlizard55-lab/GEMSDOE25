@@ -1,0 +1,146 @@
+[
+ {
+  "fold": 0,
+  "fold_name": "block_parity_00",
+  "draw": 130,
+  "n_columns_checked": 95,
+  "all_passed": true,
+  "worst_column": "B_slope_grad",
+  "worst_canary_auc": 0.600792,
+  "worst_h75_column": "H75_anderson_slip_dilation",
+  "worst_h75_canary_auc": 0.558882,
+  "h75_canaries": {
+   "H75_euler_grav_contact": 0.513378,
+   "H75_euler_mag_contact": 0.525985,
+   "H75_anderson_slip_dilation": 0.558882,
+   "H75_mt_thermal_conduit": 0.516235
+  },
+  "neg_d_vis_canary_auc": 0.582583
+ },
+ {
+  "fold": 0,
+  "fold_name": "block_parity_00",
+  "draw": 131,
+  "n_columns_checked": 95,
+  "all_passed": true,
+  "worst_column": "B_slope_grad",
+  "worst_canary_auc": 0.602097,
+  "worst_h75_column": "H75_anderson_slip_dilation",
+  "worst_h75_canary_auc": 0.558057,
+  "h75_canaries": {
+   "H75_euler_grav_contact": 0.513723,
+   "H75_euler_mag_contact": 0.525946,
+   "H75_anderson_slip_dilation": 0.558057,
+   "H75_mt_thermal_conduit": 0.514919
+  },
+  "neg_d_vis_canary_auc": 0.582065
+ },
+ {
+  "fold": 1,
+  "fold_name": "block_parity_01",
+  "draw": 130,
+  "n_columns_checked": 95,
+  "all_passed": true,
+  "worst_column": "B_slope_grad",
+  "worst_canary_auc": 0.606668,
+  "worst_h75_column": "H75_anderson_slip_dilation",
+  "worst_h75_canary_auc": 0.564604,
+  "h75_canaries": {
+   "H75_euler_grav_contact": 0.515733,
+   "H75_euler_mag_contact": 0.522177,
+   "H75_anderson_slip_dilation": 0.564604,
+   "H75_mt_thermal_conduit": 0.514467
+  },
+  "neg_d_vis_canary_auc": 0.604394
+ },
+ {
+  "fold": 1,
+  "fold_name": "block_parity_01",
+  "draw": 131,
+  "n_columns_checked": 95,
+  "all_passed": true,
+  "worst_column": "B_slope_grad",
+  "worst_canary_auc": 0.605164,
+  "worst_h75_column": "H75_anderson_slip_dilation",
+  "worst_h75_canary_auc": 0.562954,
+  "h75_canaries": {
+   "H75_euler_grav_contact": 0.514617,
+   "H75_euler_mag_contact": 0.51948,
+   "H75_anderson_slip_dilation": 0.562954,
+   "H75_mt_thermal_conduit": 0.513863
+  },
+  "neg_d_vis_canary_auc": 0.60408
+ },
+ {
+  "fold": 2,
+  "fold_name": "block_parity_10",
+  "draw": 130,
+  "n_columns_checked": 95,
+  "all_passed": true,
+  "worst_column": "B_slope_grad",
+  "worst_canary_auc": 0.639707,
+  "worst_h75_column": "H75_anderson_slip_dilation",
+  "worst_h75_canary_auc": 0.544153,
+  "h75_canaries": {
+   "H75_euler_grav_contact": 0.526087,
+   "H75_euler_mag_contact": 0.523622,
+   "H75_anderson_slip_dilation": 0.544153,
+   "H75_mt_thermal_conduit": 0.512089
+  },
+  "neg_d_vis_canary_auc": 0.552583
+ },
+ {
+  "fold": 2,
+  "fold_name": "block_parity_10",
+  "draw": 131,
+  "n_columns_checked": 95,
+  "all_passed": true,
+  "worst_column": "B_slope_grad",
+  "worst_canary_auc": 0.638946,
+  "worst_h75_column": "H75_anderson_slip_dilation",
+  "worst_h75_canary_auc": 0.542958,
+  "h75_canaries": {
+   "H75_euler_grav_contact": 0.525084,
+   "H75_euler_mag_contact": 0.523143,
+   "H75_anderson_slip_dilation": 0.542958,
+   "H75_mt_thermal_conduit": 0.512123
+  },
+  "neg_d_vis_canary_auc": 0.551388
+ },
+ {
+  "fold": 3,
+  "fold_name": "block_parity_11",
+  "draw": 130,
+  "n_columns_checked": 95,
+  "all_passed": true,
+  "worst_column": "NEG_D_VIS",
+  "worst_canary_auc": 0.641495,
+  "worst_h75_column": "H75_anderson_slip_dilation",
+  "worst_h75_canary_auc": 0.558743,
+  "h75_canaries": {
+   "H75_euler_grav_contact": 0.506362,
+   "H75_euler_mag_contact": 0.503474,
+   "H75_anderson_slip_dilation": 0.558743,
+   "H75_mt_thermal_conduit": 0.510228
+  },
+  "neg_d_vis_canary_auc": 0.641495
+ },
+ {
+  "fold": 3,
+  "fold_name": "block_parity_11",
+  "draw": 131,
+  "n_columns_checked": 95,
+  "all_passed": true,
+  "worst_column": "NEG_D_VIS",
+  "worst_canary_auc": 0.639948,
+  "worst_h75_column": "H75_anderson_slip_dilation",
+  "worst_h75_canary_auc": 0.558614,
+  "h75_canaries": {
+   "H75_euler_grav_contact": 0.507722,
+   "H75_euler_mag_contact": 0.504724,
+   "H75_anderson_slip_dilation": 0.558614,
+   "H75_mt_thermal_conduit": 0.509886
+  },
+  "neg_d_vis_canary_auc": 0.639948
+ }
+]

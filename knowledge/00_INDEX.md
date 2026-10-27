@@ -63,3 +63,10 @@
 | `27_preregistered_h71_hgpc_2026-10-26.md` | this session (`arena/71b61fac-gemsdoe25`): 5 ranked untried hypotheses (`H71-1..H71-5`) and frozen `H71-1` HGPC-BLIND DIRECT-emission screen (draws 70, 71) — committed **before any fit** |
 | `28_h71_outcomes_2026-10-26.md` | H71 3-experiment outcomes (all FAIL vs H35, all PASS vs crest), unique GeoTIFF `9eb0c31e5149` (15.4% vs B2; own-lineage 23.4%; DO NOT SUBMIT) |
 | `current_session_brief_2026-10-26_h71_CONDENSED.md` | condensed 2026-10-26 working brief (not verbatim) |
+| `35_preregistered_h74_rmps_bw_2026-10-26.md` | H74 pre-registration: 4 ranked hypotheses (`H74-1..4`) & 25-km block-withheld `H74-BW` (`af10a19`) |
+| `36_preregistered_h74_exp3_subsurface_2026-10-26.md` | H74 Exp 3 topography-free subsurface addendum (`32897de`; restored from 1-byte truncation under `IR-25-H74-EXP3-PREREG-TRUNCATED-20261027`) |
+| `37_h74_outcomes_and_executive_summary_2026-10-26.md` | H74 outcomes, PhD proof of `0.2778`, and 9-site table (`3751606e1ce5`, DO NOT SUBMIT) |
+| `38_h78_mhscf_and_phd_focus_sites_analysis_2026-10-27.md` | parallel H78 heuristic note — **retracted & quarantined** (`IR-25-H78-FABRICATED-METRICS-20261027`; uncomputed literals nullified; DO NOT SUBMIT) |
+| `38_preregistered_h75_eu3d_poe_block25km_2026-10-27.md` | **2026-10-27 H75 pre-registration (`3053f69`):** 4 ranked untried hypotheses (`H75-1..4`), frozen 3-D Euler homogeneity + Anderson slip/dilation + basin-normalized MT-thermal `H75_EU3D` equations, Two-Stage `PoE`, and 25-km Checkerboard `BlockHoldout` (`H73-BW` completion) on virgin draws `130–133` |
+| `39_h75_outcomes_and_executive_summary_2026-10-27.md` | **2026-10-27 H75 outcomes & executive summary:** `H75_APRON` `4/4`-fold screen pass (`+0.00176`), `H73-BW` `PM_DEAPRON` `+0.00193` reversal on 25-km blocks, `H75_POE65` unique GeoTIFF `0a97fd71c3f3` (`flagged_lane=[]` across all `105` rasters, `35.77%` vs B2, `69.84% <= 70%` max sparse; DO NOT SUBMIT), 9-site table, and PhD `0.2778` synthesis |
+| `owner_prompt_2026-10-27.txt` | standing 2026-10-27 owner prompt & Parallel-Run Protocol |

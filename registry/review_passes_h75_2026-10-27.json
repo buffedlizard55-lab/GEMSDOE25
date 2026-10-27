@@ -1,0 +1,38 @@
+{
+ "schema_version": 1,
+ "date_utc": "2026-10-27",
+ "session_branch": "arena/2a7235ac-gemsdoe25",
+ "method": "Three cumulative passes per owner instructions and AGENTS.md Rule 9: Pass 1 implements and verifies end-to-end; Pass 2 audits bugs, assumptions, edge cases, and parallel-session merges and fixes everything found; Pass 3 reconciles line-by-line against the full user prompt and verifies full-data + clean-CI pytest, ruff, compileall, JS syntax, link resolution, and git hygiene.",
+ "pass_1_implement_and_verify": {
+  "scope": "Autonomous data & shared-cache restoration (core, external, 30 artifact mirrors, 27 top-scorer rasters; 6/6 work-cache SHA-256 matches); restore truncated knowledge/36; pre-register 4 ranked untried geological hypotheses (H75-1..4) and frozen H75_EU3D + Two-Stage PoE + 25-km Checkerboard BlockHoldout design (commit 3053f69) prior to writing code or fitting; execute Experiment 1 (BlockHoldout draws 130-131, completing H73-BW) and Experiment 2 (Standard Holdout draws 132-133); build and stage-verify unique LOQO GeoTIFF.",
+  "done": [
+   "Restored all SHA-256-pinned core/external/artifact/top-scorer rasters and built static_ABCD.npy + addons.npy matching evidence/work_cache_hashes.json 6/6 byte-for-byte.",
+   "Committed knowledge/38_preregistered_h75_eu3d_poe_block25km_2026-10-27.md (3053f69) and restored truncated knowledge/36_preregistered_h74_exp3_subsurface_2026-10-26.md from commit 32897de before implementing src/gems25/h75_eu3d.py.",
+   "Implemented src/gems25/h75_eu3d.py (vectorized strip-streaming 7x7 3-D Euler homogeneity contact-vs-plug solver verified to <1e-5 against brute-force lstsq, Morris 1996 WNW-ESE basement-strike slip/dilation criticality, basin-normalized MT-thermal conduit, and poe_combine) + tests/test_h75_eu3d_poe.py (4/4 pass).",
+   "Executed Experiment 1 (25-km Checkerboard BlockHoldout, virgin draws 130-131, 760 canaries <= 0.6397): PM_DEAPRON (0.13942) beat CTRL_H35 (0.13749) by +0.00193 (3/4 folds; far_gt9 +0.00223, reversing -0.02515 std penalty by +0.02708); H75_POE65 +123.9% over ROOT_H75 in 4/4 folds.",
+   "Executed Experiment 2 (Standard Holdout, virgin draws 132-133, 760 canaries <= 0.8038): H75_APRON (0.15118) beat CTRL_H35 (0.14942) by +0.00176 (95% CI [+0.00066, +0.00262], 4/4 folds PASS!); H75_POE65 scored 0.08641 (+40.7% over ROOT_H75 in 4/4 folds).",
+   "Evaluated frozen staging cascade (poe50 -> poe65 -> root): poe50 halted cleanly at 73.91% vs h23-a-6pct.tif without publishing; poe65 cleared all 105 rasters density-aware (flagged_lane = [], 69.84% <= 70% vs h23-a-6pct.tif, 35.77% vs GEMSDOE32 B2, 63.78% max own-lineage) and published gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif (-nan.tif, .zip; verdict=negative, DO NOT SUBMIT)."
+  ]
+ },
+ "pass_2_bugs_assumptions_edge_cases": {
+  "found_and_fixed": [
+   "Caught 500x vertical-derivative unit mismatch risk on raw band 11 iso_grav_anom_vg (mGal/km vs mGal/m) before coding Euler deconvolution; enforced harmonic_vertical_derivative_fft(cell_m=100.0) so horizontal and vertical derivatives match 1:1 in [field]/m.",
+   "Caught correlate1d vs convolve1d kernel-flip sign reversal and 3.8 GiB RAM strip-allocation bound in euler_3d_window_solve; refactored to 256-row reflect-padded strips and locked brute-force lstsq parity + analytical depth/index recovery in tests/test_h75_eu3d_poe.py.",
+   "Caught and purged uncommitted initial-turn ad-hoc heuristic script that had used non-virgin draws 110-111 and full-label B2 pruning; logged transparently as IR-25-H75-DRAFT-ABORTED-20261027 and restricted formal runs to 2 experiments on virgin draws 130-133.",
+   "Merged concurrent PR #60 (cf7d2d9) from origin/main and discovered critical irregularity IR-25-H78-FABRICATED-METRICS-20261027: scripts/build_h78_submission.py emitted hardcoded uncomputed holdout/live-score literals (0.1512, 22813, 0.2785) and ok_to_submit = True without running any Holdout fit. Retracted those literals to null, quarantined H78 as DO NOT SUBMIT, updated tests/test_h78_submission.py, and re-ran H75 lane checks across all 105 rasters (27.37% overlap vs H78).",
+   "Fixed predict_s timing telemetry in scripts/run_h75_experiments.py, note character count label (92 chars) in knowledge/39, and chronological eyebrow on H74's archive card."
+  ],
+  "known_residual_risks": [
+   "Literal 70% 3-px overlap remains geometrically impossible at 37,654 dots against r13-lattice-s5 (99.87% footprint halo) and pindrop (>73.4% footprint halo) without an explicit owner selector rule (IR-25-LATTICE-CAP-20261026).",
+   "External 3-D MT (USGS ScienceBase) and InSAR/dense GPS (ARIA/UNR NGL) hosts lie outside the sandbox network allowlist and require external mirroring before testing H75-3 and H75-4.",
+   "All live DTI numbers (0.2778, 0.2478, 0.3195, 0.4413) remain OWNER-REPORTED claims without organizer receipts."
+  ]
+ },
+ "pass_3_recheck_against_original_brief": {
+  "gaps_found_and_closed": [
+   "Added the 4 Ranked Untried Geological Hypotheses (H75-1..4) HTML table and the Updated 2026-10-27 9-Focus-Site Executive Audit HTML table directly to index.html, docs/index.html, docs/executive-summary.html, and docs/current-review.html, and expanded the DrivenData portal upload checklist on executive-summary.html.",
+   "Updated knowledge/owner_prompt_2026-10-27.txt and README.md with the complete standing 2026-10-27 prompt, Parallel-Run Protocol, Core Values (Maximize P(Win) & Own the Outcome), and verified official manual-review links.",
+   "Added tests/test_h75_submission.py and verified full pytest suite in BOTH full-data mode and clean CI mode (empty GEMS_DATA_DIR/GEMS_WORK_DIR), ruff check, python -m compileall, node --check docs/assets/app.js, HTML/Markdown link resolution, and git diff --check."
+  ]
+ }
+}

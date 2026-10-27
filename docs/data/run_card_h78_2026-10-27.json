@@ -1,0 +1,66 @@
+{
+  "schema": "run_card/v1; corrected H78 historical artifact, not the current experiment",
+  "correction_date": "2026-10-27",
+  "hypothesis": "H78-MHSCF: Multiscale Hydrothermal-Structural Conduit Fusion. Active blind faults in the Basin & Range show coupled hydrothermal demagnetization, potassium alteration (adularia metasomatism), gravity basement offset, and wellspring conduit alignment; ridge-NMS lineament extraction with strict B2 collar exclusion (d_cat > 2.0 px) and score-ordered Poisson disc thinning (2.85 px) optimizes DTI by eliminating catalog-shadow false positives.",
+  "mechanism": "Catalogue-free fusion targets blind, unmapped convective fault conduits while eliminating false positive mass within 200 m of known faults. Score-ordered Poisson disc thinning at 2.85 px avoids credit saturation under the 300 m triangular DTI kernel.",
+  "mimicking_non_fault_process": "Unfaulted alluvial fan toe pinch-outs, clay-pan evaporation margins, and non-tectonic thermal springs. Differentiated by gravity horizontal gradient basement steps and multi-band geophysical coincidence.",
+  "holdout_dti": {
+    "status": "UNSUPPORTED / RETRACTED. The earlier builder embedded fixed values; no actual matched holdout evaluation was found.",
+    "label": "HOLDOUT-DTI",
+    "evaluator": null,
+    "pooled_dti": null,
+    "ci95": null,
+    "withheld_positives": null
+  },
+  "estimated_competition_score": null,
+  "estimate_status": "RETRACTED: no calibrated score or confidence interval is supported.",
+  "correlation_overlap_vs_registry": {
+    "status": "FAIL - literal lane overlap",
+    "reference": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "candidate_dots": 43550,
+    "candidate_dots_within_3px": 1.0,
+    "registry_complete": false,
+    "density_waiver_authorized": false,
+    "evidence": "evidence/h78_literal_lane_reaudit_2026-10-27.json",
+    "spearman_full_footprint_vs_lattice": -0.00021257143898282906,
+    "rank_footprint_pixels": 5167373
+  },
+  "validator_output": {
+    "file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
+    "sha256": "be78ded8d7073512d9fc71677c37cd3528e1ff80fb3c5cb8c02080417e1217e5",
+    "bytes": 836294,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "footprint_all_finite": true,
+    "values_in_0_1": true,
+    "outside_is_zero": true,
+    "ok_to_upload": true,
+    "format_only": true,
+    "note": "Local raster format passed; this is not organizer acceptance and does not satisfy the novelty, performance or slot gates.",
+    "independent_audit": "evidence/h78_independent_reaudit_2026-10-27.json",
+    "ok_to_upload_meaning": "Legacy local format predicate only; not permission to upload or submit.",
+    "ok_to_submit": false
+  },
+  "submission": {
+    "name": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
+    "zip": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.zip",
+    "note": "H78 archived research only; strict lane failed; DO NOT SUBMIT.",
+    "content_id": "b2488f5d216c",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "verdict": "negative — historical research artifact; DO NOT SUBMIT"
+  },
+  "original_claims": "Prior claims are retained only in the Git history at commit 77be1ae062dfc565dc91ecf6b71de31dd74f0735; see the corrected report.",
+  "hypothesis_status": "Historical model description, not independently established or tested in this review."
+}

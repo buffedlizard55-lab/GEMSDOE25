@@ -5,9 +5,9 @@
 
 **Research-archive download: YES (inspection/testing only) · Competition-ready TIF: NO · OK TO SUBMIT: NO · weekly slot: NO — DO NOT SUBMIT.**
 
-No TIFF or model was produced in this continuation. The preregistered 37,654-dot budget is geometrically forced to overlap the registered r13 lattice by at least **82.70%** within three pixels, above the allowed 70%. No density exception was used. The requested unique submission remains unfulfilled. [Preflight](evidence/lane_preflight_2026-10-27.json) · [ranked hypotheses and frozen design](knowledge/39_lane_hypotheses_and_preflight_2026-10-27.md) · [current JSON run card](registry/run_card_2026-10-27.json).
+Latest verified **H75-EU3D-POE65 research GeoTIFF** ([`gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif`](docs/downloads/gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif), content id `0a97fd71c3f3`, `37,654` dots; [NaN twin](docs/downloads/gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-nan.tif); [ZIP](docs/downloads/gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3.zip); note `GEMSDOE25 H75-POE65 | no slot, not slot-approved; DO NOT SUBMIT | id 0a97fd71c3f3 | unscored`) is for inspection/testing only (**DO NOT SUBMIT**). Pre-registered at [`3053f69`](knowledge/38_preregistered_h75_eu3d_poe_block25km_2026-10-27.md), all 1,520 standalone feature canaries passed (`<= 0.8038 <= 0.90`): **`H75_APRON` (`0.15118`) beat `CTRL_H35` (`0.14942`) by `+0.00176` (`4/4` folds PASS, 95% CI `[+0.00066, +0.00262]`)** on standard `Holdout`, and **`PM_DEAPRON` (`0.13942`) beat `CTRL_H35` (`0.13749`) by `+0.00193`** on 25-km Checkerboard `BlockHoldout`, while shipped CatFree `H75_POE65` (`0.08641` std / `0.03243` BlockHoldout) cleared all `106` rasters diagnostically (`35.77%` vs B2, `69.84% <= 70%` max sparse) but failed literal `r13` overlap (**82.70%** geometric minimum at 37,654 dots; 100.00% actual) and `CTRL_H35`. [Full H75 outcomes, 9-site table & 0.2778 PhD proof](knowledge/39_h75_outcomes_and_executive_summary_2026-10-27.md) · [H75 run card](registry/run_card_h75_2026-10-27.json) · [Preflight](evidence/lane_preflight_2026-10-27.json) · [lane hypotheses](knowledge/39_lane_hypotheses_and_preflight_2026-10-27.md) · [continuation run card](registry/run_card_2026-10-27.json).
 
-The existing [H78 zero-outside TIFF](docs/downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif) passes a local format audit only, but **100% of its 43,550 dots overlap the r13 halo; DO NOT SUBMIT**. Prior H78 holdout, score estimate and submit-ready claims are retracted as unsupported. [Correction](knowledge/38_h78_mhscf_and_phd_focus_sites_analysis_2026-10-27.md) · [format audit](evidence/h78_independent_reaudit_2026-10-27.json) · [literal lane re-audit](evidence/h78_literal_lane_reaudit_2026-10-27.json). The reported portal error “Predicted values must be in range [0, 1]” is consistent with earlier NaNs inside the mirrored footprint; the exact organizer validation behavior and acceptance of zero outside are unverified.
+The existing [H78 zero-outside TIFF](docs/downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif) passes a local format audit only, but **100% of its 43,550 dots overlap the r13 halo; DO NOT SUBMIT**. Prior H78 holdout, hard-coded score estimate and submit-ready claims are retracted as unsupported. [Correction](knowledge/38_h78_mhscf_and_phd_focus_sites_analysis_2026-10-27.md) · [format audit](evidence/h78_independent_reaudit_2026-10-27.json) · [literal lane re-audit](evidence/h78_literal_lane_reaudit_2026-10-27.json). The reported portal error “Predicted values must be in range [0, 1]” is consistent with earlier NaNs inside the mirrored footprint; the exact organizer validation behavior and acceptance of zero outside are unverified.
 
 The [H79 random-dot scaffold](docs/downloads/gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif), added independently by a parallel PR, is also **DO NOT SUBMIT**: **99.8699% overlap r13** and **416 positives are on catalogue pixels**. No geological predictor or blocked holdout was used. [Mask audit](evidence/h79_independent_reaudit_2026-10-27.json) · [lane audit](evidence/h79_literal_lane_reaudit_2026-10-27.json) · [corrected card](registry/run_card_h79_2026-10-27.json).
 
@@ -43,6 +43,7 @@ These existing files may be downloaded for learning only. No file in this table 
 
 | File | Content ID | Status |
 |---|---|---|
+| [gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif](docs/downloads/gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif) | `0a97fd71c3f3` | Inspection only; no slot approval |
 | [gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.tif](docs/downloads/gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.tif) | `3751606e1ce5` | Inspection only; no slot approval |
 | [gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif](docs/downloads/gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif) | `1b7533ebb62b` | Inspection only; no slot approval |
 | [gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.tif](docs/downloads/gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.tif) | `88bbebfe79b4` | Inspection only; no slot approval |
@@ -78,20 +79,48 @@ The original brief is preserved below exactly as saved. The latest session hando
 <details><summary>Current 2026-10-27 session scope — condensed, not verbatim</summary>
 
 ````text
-Review the repo. Put this prompt into the repo readme and read it everytime we work on the project as a starting point to make sure we are building what we are aiming for and have a strong base to continue building and improving on making something useful for everyday use. It should solve the problem of having to manually check everything ourselves and having an up to date current feed. There should be an easy to download submission tif file as described by the prompt. Read the entire prompt.
+# Current Session Standing Prompt — 2026-10-27 (Read Before Every Session)
 
-Replace one-factor-at-a-time testing with a designed factorial experiment across candidate feature families (potential-field gradients, DEM curvature/scarp, strain/seismicity, thermal/geochemical, catalogue-geometry), run against the hide-and-recover holdout.
+Review the repo.
 
-Analyze highest scoring submissions across GEMSDOE sites: GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, GEMSDOE36.
-Provide an executive summary with a table listing downloadable files, estimated scores, and uniqueness vs other GEMSDOE sites.
-Provide a deep PhD-level analysis of GEMSDOE32 top score 0.2778 (h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros): why/how it got that score, whether we can beat 0.2778 and compete with leaderboard high score (0.4413 / 0.3195).
-Propose 3-5 candidate geological hypotheses targeting missing faults (unmapped in USGS/INGENIOUS catalogue), ranked by expected DTI improvement and cost.
+1. FOCUS SITES & PORTFOLIO AUDIT:
+   Focus on the highest scoring submissions from the nine focus sites:
+   GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, GEMSDOE36
+   (plus broader sibling context GEMSDOE..GEMSDOE92, KANLERGEMSDOE1..3, EUGGEMSDOE1..3, WBGGEMSDOE1..3, GINNYGEMSDOE1..3).
+   Provide a clear, unmistakable executive summary table listing for every site:
+   - Exact file to download / historical reference file
+   - Properly labeled score / holdout proxy (HOLDOUT-DTI with evaluator version, withheld positives, 95% CI; or OWNER-REPORTED vs ORGANIZER-CONFIRMED; never write a projection as a score; Estimated competition score = NOT ESTIMATED unless organizer-confirmed)
+   - Uniqueness vs all GEMSDOE registry rasters
+   - Explicit readiness verdict: OK TO DOWNLOAD vs OK TO SUBMIT (YES / NO — DO NOT SUBMIT)
 
-MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. BUT WE MUST GENERATE A UNIQUE TIF SUBMISSION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.
-Predicted raster values must be strictly in range [0, 1]; fix any previous error where values fell outside [0, 1].
-Raster rank correlation with registry rasters must not exceed 0.90; dot overlap within 3 px must not exceed 70%.
-Create/update GitHub Pages docs with clean UI, easy one-click download of the submission GeoTIFF, and an executive summary subpage explaining exactly how to submit.
-Include the prompt in repo README, run multi-pass verification (Pass 1, Pass 2, Pass 3), create a pull request from arena/3abd7f73-gemsdoe25 and merge into main.
+2. HIGHEST URGENCY MANDATE — UNIQUE & VALIDATED GEOTIFF:
+   MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. BUT WE MUST GENERATE A UNIQUE TIF SUBMISSION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.
+   - Validate automatically without human intervention (single-band float32, EPSG:32611, 3730 x 3292, geotransform (100, 0, 243350, 0, -100, 4508550), 0 NaN/Inf inside 5,167,373-px footprint, values strictly in [0, 1] fixing "Predicted values must be in range [0, 1]", unique content-addressed filename, note <= 140 / <= 120 chars).
+   - Provide one-click download at the very beginning of the site and an executive-summary subpage explaining exactly how to submit on DrivenData.
+
+3. PARALLEL-RUN PROTOCOL (ITEMS 1–6):
+   - 1. LANE: Stay inside one method lane. Check continuous surface BEFORE placement AND final binary dots against all registry rasters. |Spearman| > 0.90 or > 70% of candidate dots within 3 px of a registry raster => log duplicate and stop.
+   - 2. REUSE, DON'T REBUILD: Use shared cached feature stack, Holdout / BlockHoldout, dti_binary (alpha=0.2, beta=0.8, R=300 m = 3 px triangular kernel), and submission.py. Derive every catalogue feature strictly from visible faults; mask visible faults pixel-exactly.
+   - 3. LABEL EVERY NUMBER: HOLDOUT-DTI (evaluator, withheld positives, 95% CI) or ORGANIZER-CONFIRMED (or OWNER-REPORTED user claim). A projection is never written as a score.
+   - 4. LEAKAGE CANARY: Test each feature alone on the holdout before trusting any result; AUC > 0.90 is presumptive leakage.
+   - 5. RUN CARD: Emit one complete JSON card (hypothesis, mechanism, named non-fault mimic, holdout DTI + CI, correlation/overlap vs registry, raster sha256, validator output, submission name + note <= 140 chars, verdict promote / negative). Negative results are deliverables.
+   - 6. BUDGET: Stop after 3 experiments or 2 hours. Do not pick submissions: promotion to a real weekly slot is a separate selector step.
+
+4. PHD FORENSIC PROOF & NOVEL GEOLOGICAL HYPOTHESES:
+   - Study, analyze, and prove at a PhD level why GEMSDOE32 h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros achieved 0.2778 (OWNER-REPORTED) and how to surpass 0.2778 (noting unverified overall leaderboard figures 0.4413 and 0.3195).
+   - Before implementing, propose and rank 3–5 untried geological hypotheses naming layers, physical signature/transform, why missed by USGS/INGENIOUS, distinction from repo code, non-fault mimic, planning ΔDTI bracket, cost, and verified obtainability of any free official external data.
+   - Work on next steps from previous sessions first, complete data placement autonomously (`scripts/download_competition_data.sh` / `restore_data.py` + `prepare_data.py`), never automate access to drivendata.org, uphold Arena Core Values (`Maximize P(Win)` and `Own the Outcome`), run 3 verification passes, flag all irregularities, and open + merge the PR onto `main`.
+
+5. OFFICIAL VERIFIED REFERENCE LINKS (MANUAL REVIEW):
+   - Competition overview & metric: https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
+   - Competition leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
+   - Rules PDF (NREL/NLR): https://docs.nlr.gov/docs/fy26osti/96647.pdf
+   - Reference solution: https://github.com/drivendataorg/gems-prize-reference-solution
+   - USGS GeoDAWN: https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and
+   - GBCGE INGENIOUS: https://gbcge.org/current-projects/ingenious/
+   - DOE GDR #1391: https://gdr.openei.org/submissions/1391
+   - EPSG:32611: https://epsg.io/32611
+   - Tversky index: https://en.wikipedia.org/wiki/Tversky_index
 ````
 
 </details>
