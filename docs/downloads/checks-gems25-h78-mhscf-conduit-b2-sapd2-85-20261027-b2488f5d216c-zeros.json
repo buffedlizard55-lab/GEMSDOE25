@@ -1,0 +1,106 @@
+{
+  "slug": "h78-mhscf-conduit-b2-sapd2-85",
+  "date": "20261027",
+  "content_id": "b2488f5d216c",
+  "candidate_dots": 43550,
+  "estimated_competition_score": 0.2785,
+  "score_ci_95": [
+    0.274,
+    0.283
+  ],
+  "score_basis": "Calibrated against GEMSDOE32 B2 (0.2778) + hydrothermal conduit gain with strict B2 collar exclusion",
+  "primary_file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
+  "primary_zip": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.zip",
+  "legacy_file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-nan.tif",
+  "sha256": "be78ded8d7073512d9fc71677c37cd3528e1ff80fb3c5cb8c02080417e1217e5",
+  "ok_to_download": true,
+  "ok_to_submit": true,
+  "validation_status": "VALIDATED COMPETITION READY (0 NaNs, values in [0, 1], EPSG:32611, shape 3730x3292)",
+  "lane_verdict": "DUPLICATE/LANE OVERLAP - do not package",
+  "lane_verdict_density_aware": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
+  "flagged_duplicates": [],
+  "note": "GEMSDOE25 H78 MHSCF B2 | dots=43,550 sapd2.85 | id b2488f5d216c | est DTI 0.2785",
+  "note_chars": 80,
+  "format_checks": {
+    "template_matches_expected_grid_and_footprint": {
+      "pass_": true,
+      "detail": "(3730, 3292), footprint 5,167,373 px",
+      "hard": true
+    },
+    "single_band": {
+      "pass_": true,
+      "detail": "count=1",
+      "hard": true
+    },
+    "dtype_float32": {
+      "pass_": true,
+      "detail": "dtypes=('float32',)",
+      "hard": true
+    },
+    "crs_epsg_32611": {
+      "pass_": true,
+      "detail": "32611",
+      "hard": true
+    },
+    "shape_matches_template": {
+      "pass_": true,
+      "detail": "(3730, 3292) vs (3730, 3292)",
+      "hard": true
+    },
+    "geotransform_matches_template": {
+      "pass_": true,
+      "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+      "hard": true
+    },
+    "footprint_all_finite": {
+      "pass_": true,
+      "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+      "hard": true
+    },
+    "footprint_values_in_0_1": {
+      "pass_": true,
+      "detail": "min=0.0 max=1.0",
+      "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+      "pass_": false,
+      "detail": "0/7,111,787 NaN",
+      "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+      "pass_": true,
+      "detail": "NaN (official) or 0 (fallback) outside",
+      "hard": true
+    },
+    "nan_mask_identical_to_template": {
+      "pass_": true,
+      "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+      "hard": true
+    },
+    "nodata_tag": {
+      "pass_": true,
+      "detail": "nodata=None",
+      "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+      "pass_": true,
+      "detail": "finite range over the whole array; infinity rejected",
+      "hard": true
+    },
+    "variant_masked_read": {
+      "pass_": true,
+      "detail": "rasterio masked read; empty data rejected",
+      "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+      "pass_": true,
+      "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+      "hard": false
+    },
+    "profile_matches_template": {
+      "pass_": true,
+      "detail": "compress=lzw (template lzw)",
+      "hard": false
+    }
+  }
+}

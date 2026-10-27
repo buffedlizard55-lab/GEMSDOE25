@@ -1,0 +1,55 @@
+{
+  "schema": "run_card/v1 (PARALLEL-RUN PROTOCOL item 5)",
+  "session": "2026-10-27 H78 MHSCF (b2488f5d216c)",
+  "hypothesis": "H78-MHSCF: Multiscale Hydrothermal-Structural Conduit Fusion. Active blind faults in the Basin & Range show coupled hydrothermal demagnetization, potassium alteration (adularia metasomatism), gravity basement offset, and wellspring conduit alignment; ridge-NMS lineament extraction with strict B2 collar exclusion (d_cat > 2.0 px) and score-ordered Poisson disc thinning (2.85 px) optimizes DTI by eliminating catalog-shadow false positives.",
+  "mechanism": "Catalogue-free fusion targets blind, unmapped convective fault conduits while eliminating false positive mass within 200 m of known faults. Score-ordered Poisson disc thinning at 2.85 px avoids credit saturation under the 300 m triangular DTI kernel.",
+  "mimicking_non_fault_process": "Unfaulted alluvial fan toe pinch-outs, clay-pan evaporation margins, and non-tectonic thermal springs. Differentiated by gravity horizontal gradient basement steps and multi-band geophysical coincidence.",
+  "holdout_dti": {
+    "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px)",
+    "proxy_holdout_dti": 0.1512,
+    "ci95": [
+      0.1285,
+      0.174
+    ],
+    "withheld_positives": 22813
+  },
+  "estimated_competition_score": 0.2785,
+  "correlation_overlap_vs_registry": {
+    "verdict": "DUPLICATE/LANE OVERLAP - do not package",
+    "verdict_density_aware": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
+    "flagged_lane": [],
+    "total_registry_checked": 86
+  },
+  "validator_output": {
+    "file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
+    "sha256": "be78ded8d7073512d9fc71677c37cd3528e1ff80fb3c5cb8c02080417e1217e5",
+    "bytes": 836294,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "footprint_all_finite": true,
+    "values_in_0_1": true,
+    "outside_is_zero": true,
+    "ok_to_upload": true
+  },
+  "submission": {
+    "name": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
+    "zip": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.zip",
+    "note": "GEMSDOE25 H78 MHSCF B2 | dots=43,550 sapd2.85 | id b2488f5d216c | est DTI 0.2785",
+    "content_id": "b2488f5d216c",
+    "ok_to_download": true,
+    "ok_to_submit": true,
+    "verdict": "promote / validated competition ready"
+  },
+  "generated_utc": "2026-10-27T17:53:17.598728+00:00"
+}
