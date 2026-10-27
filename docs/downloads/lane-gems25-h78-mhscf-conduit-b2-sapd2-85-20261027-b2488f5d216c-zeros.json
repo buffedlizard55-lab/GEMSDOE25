@@ -1,4 +1,7 @@
 {
+ "historical_receipt_warning": "Historical diagnostic: literal verdict FAILED. flagged_lane and verdict_density_aware use an unauthorized density exception and confer no clearance. Historical registry_complete is not an inventory proof. Use the independent re-audit.",
+ "current_verdict": "DUPLICATE - DO NOT SUBMIT",
+ "independent_reaudit": "evidence/h78_literal_lane_reaudit_2026-10-27.json",
  "candidate": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
  "sha256": "be78ded8d7073512d9fc71677c37cd3528e1ff80fb3c5cb8c02080417e1217e5",
  "candidate_dots": 43550,
@@ -1483,7 +1486,7 @@
    "density_caveat": ""
   }
  ],
- "note": "The protocol trigger applies literally: all candidate dots are within 3 px of r13. Density-aware diagnostics do not waive this stop.",
+ "note": "Historical receipt: Spearman was estimated on a 400,000-pixel footprint sample. The protocol trigger applies literally: all H78 dots are within 3 px of r13. Density-aware diagnostics cannot waive the stop. The full-footprint re-audit is evidence/h78_literal_lane_reaudit_2026-10-27.json.",
  "strict_literal_verdict": "DUPLICATE / STOP / DO NOT SUBMIT",
  "strict_literal_flags": [
   "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"

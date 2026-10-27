@@ -843,12 +843,76 @@
    "resolution_or_action": "Pre-publish staging guard in scripts/build_h74_candidate.py halted immediately before writing any ABCD GeoTIFF to docs/downloads/. Pre-registered Experiment 3 (knowledge/36, virgin draws 112-113) isolated H74_RMPS in a 100% topography-free & catalogue-free subsurface stack (H74_SUBSURF, 51 ACD cols), reducing overlap to 53.24% vs h23-a-6pct.tif and 43.22% vs H72-CF (flagged_lane = [] across all 101 rasters)."
   },
   {
+   "id": "IR-27-H78-UNSUPPORTED-PROMOTION",
+   "severity": "critical",
+   "status": "corrected",
+   "issue": "H78 claimed a calibrated competition estimate, measured holdout and submission readiness despite hard-coded metrics and a literal 100% r13 overlap. A density-aware exemption was treated as clearance.",
+   "evidence": "Historical source and receipt at commit 77be1ae; evidence/h78_independent_reaudit_2026-10-27.json; evidence/h78_literal_lane_reaudit_2026-10-27.json.",
+   "resolution_or_action": "Retracted unmeasured metrics and approval; corrected receipts, public pages and report; retired publisher. Local format pass is not organizer acceptance."
+  },
+  {
+   "id": "IR-27-LANE-FAIL-OPEN",
+   "severity": "high",
+   "status": "fixed",
+   "issue": "Shared lane checks did not prove declared inventory completeness, full grid alignment or defined rank; a density-adjusted result could suppress literal failure. Sampled rank could miss a full-footprint threshold.",
+   "evidence": "Prior checker at commit 77be1ae; scripts/check_lane_duplicates.py; scripts/check_lane_surface.py.",
+   "resolution_or_action": "Both screens now fail closed on missing pinned hashes, invalid/unaligned rasters, undefined full-footprint rank and literal violations. No density exemption, stem exclusion or selected-reference run can confer clearance. Tests cover edge cases."
+  },
+  {
+   "id": "IR-27-GEMSDOE28-WINNER-MISIDENTIFIED",
+   "severity": "high",
+   "status": "corrected",
+   "issue": "Previous nine-site table paired GEMSDOE28 R1 with the higher Rung30 score and incorrectly described its winning mask as identical to GEMSDOE31.",
+   "evidence": "registry/top_scorer_sources.json; evidence/focus_winners_reaudit_2026-10-27.json; evidence/focus_source_links_2026-10-27.json.",
+   "resolution_or_action": "Use the 0.2710 owner-reported Rung30 file; it differs from GEMSDOE31. The lower-scoring R1 mask matches GEMSDOE31. Organizer receipts remain unavailable."
+  },
+  {
+   "id": "IR-27-H73-CACHE-PARTIAL",
+   "severity": "medium",
+   "status": "open",
+   "issue": "After restoring/rebuilding the pinned base stack, H73-BW remains blocked because the cached H34 columns and names are missing.",
+   "evidence": "evidence/h73_bw_cache_rebuild_2026-10-27.json.",
+   "resolution_or_action": "Do not call the sidecar loader or fit a model until the exact pinned cache is supplied and the preregistered lane permits testing."
+  },
+  {
+   "id": "IR-27-PORTAL-VALIDATION-UNVERIFIED",
+   "severity": "high",
+   "status": "open",
+   "issue": "The previous H78 page claimed a specific organizer validation implementation and guaranteed acceptance of the zero-outside fallback without an organizer receipt. Official instructions describe null/NaN outside bounds.",
+   "evidence": "src/gems25/submission.py; evidence/h78_independent_reaudit_2026-10-27.json; historical source at commit 77be1ae.",
+   "resolution_or_action": "Describe the range check as local only; preserve zero-outside as an unapproved diagnostic variant and do not claim organizer acceptance."
+  },
+  {
+   "id": "IR-27-PROMOTION-RECEIPT-INCOMPLETE",
+   "severity": "high",
+   "status": "fixed",
+   "issue": "The shared receipt predicate did not require strict surface/final lane clearance, complete per-feature canaries or a positive paired confidence interval.",
+   "evidence": "scripts/package_submissions.py; tests/test_packaging_gate.py.",
+   "resolution_or_action": "Require exact-file SHA and format checks, bound full-footprint surface/final receipts for the same declared registry, per-feature fold/draw canaries, withheld positives, evaluator hash and positive paired CI. This structural predicate is not an organizer receipt or weekly-slot selector."
+  },
+  {
+   "id": "IR-27-INDEPENDENT-ZIP-AND-GRID",
+   "severity": "high",
+   "status": "fixed",
+   "issue": "The independent format checker recorded an incorrect ZIP without failing its exit status and did not verify labels grid or pinned input bytes; wrong raster shapes could raise before a structured receipt.",
+   "evidence": "Previous scripts/verify_candidate_independent.py at commit 77be1ae; tests/test_independent_validator_2026_10_27.py.",
+   "resolution_or_action": "Require exact candidate bytes in any present/required ZIP; verify template and label pins and grids; produce a negative JSON result and nonzero exit on errors. A format pass is not slot approval."
+  },
+  {
    "id": "IR-26-H78-UNSUPPORTED-PROMOTION-AND-STRICT-LANE-20261027",
    "severity": "high",
    "status": "resolved",
    "issue": "The H78 artifacts claimed a 0.2785 estimated competition score and OK TO SUBMIT although the score was hard-coded, the H78-specific HOLDOUT-DTI receipt could not be traced in the evidence tree, and the strict lane receipt reports 100% of final dots within 3 px of the r13 raster. This violates the literal >70% stop rule. The separate density-aware diagnostic had been incorrectly used to claim uniqueness.",
    "evidence": "scripts/build_h78_submission.py; registry/run_card_h78_2026-10-27.json; docs/downloads/checks-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json; docs/downloads/lane-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json; knowledge/39_h78_fail_closed_review_2026-10-27.md; tests/test_h78_submission.py.",
    "resolution_or_action": "Retired the H78 builder before input loading/output; removed unsupported holdout and score estimates from the current run card and validation receipt; retained the GeoTIFF as format-valid research inspection only; set ok_to_submit=false and recorded the literal r13 lane violation. No weekly slot was used."
+  },
+  {
+   "id": "IR-27-H79-PARTIAL-CHECK-AND-CATALOGUE",
+   "severity": "high",
+   "status": "resolved",
+   "issue": "H79 was generated concurrently as a random-dot scaffold while r13 and labels were unavailable to its builder. Its partial local-lane receipt claimed locally unique and its format check did not check the visible catalogue. After restoring pinned owner mirrors, 99.8699% of its 37,654 dots lie within 3 pixels of r13 and 416 are positive on known-fault pixels. It has no blocked holdout or pre-placement lane clearance.",
+   "evidence": "evidence/h79_independent_reaudit_2026-10-27.json; evidence/h79_literal_lane_reaudit_2026-10-27.json; registry/run_card_h79_2026-10-27.json.",
+   "resolution_or_action": "Set ok_to_submit=false; retire the builder before writing; retain TIFF/ZIP only as historical research artifacts; pin it as a lane reference; do not infer organizer acceptance from local range checks."
   }
  ]
 }

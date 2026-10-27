@@ -1,0 +1,94 @@
+{
+  "schema": "h73_bw_cache_preflight/v1",
+  "status": "blocked_before_fit",
+  "preregistration": "knowledge/34_h73_bw_block_selector_2026-10-26.md",
+  "work_dir": "/home/user/GEMSDOE25/data/work",
+  "cache_manifest": "/home/user/GEMSDOE25/evidence/work_cache_hashes.json",
+  "cache_manifest_sha256": "95ece61d1cc12a446eaa9ff3ca32775fd2842901a7d33d094836341d95994d6f",
+  "environment": {
+    "python": "3.11.2",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.9.1",
+    "rasterio": "1.4.4",
+    "pandas": "3.0.6"
+  },
+  "evaluator_source_hashes": {
+    "src/gems25/block_holdout.py": "baad5b5301d4e623a8100593f7be0ab4fd791b712576eb411a5a740225a9fa6e",
+    "src/gems25/holdout.py": "f0455eb17921e50365342ffb658504a5fcc0ddb3d2bd82f4bf0568d772be2bc1",
+    "src/gems25/experiment.py": "f47cb776b0136ea33fc61ea244b81e6138e1cc1cfb8fd009af427896e906d548",
+    "src/gems25/features.py": "3bb3079a4b15c5a1c77bfe9e46a0af5129907bbd69818b9ab9c81e00ecc86910",
+    "src/gems25/h73_pm.py": "448fa2b1d49fec8b57cd394674af727af125058bf0d2814e9a5d4dbec519ec13",
+    "src/gems25/metric.py": "4f6e4732029efd0238388aec74590e56bc2727df7441220ca09af7d02e9da230",
+    "src/gems25/validation.py": "bb2faea55b6bd827196f56758e5fbbf1e4e620e92779e6b9b53703c3bdf42ac3"
+  },
+  "required_artifacts": [
+    {
+      "path": "bands/_footprint.npy",
+      "exists": true,
+      "bytes": 12279288,
+      "sha256": "c446094771775c00802862e9ec58846fd1b278b4e608303e68811a2404dfd246",
+      "expected_sha256": "c446094771775c00802862e9ec58846fd1b278b4e608303e68811a2404dfd246",
+      "matches_pin": true
+    },
+    {
+      "path": "bands/_labels.npy",
+      "exists": true,
+      "bytes": 12279288,
+      "sha256": "d77fa88ad58d0a268b736b3c1d6a8939fd237d5955369944bd2b299194b2555d",
+      "expected_sha256": "d77fa88ad58d0a268b736b3c1d6a8939fd237d5955369944bd2b299194b2555d",
+      "matches_pin": true
+    },
+    {
+      "path": "static_ABCD.npy",
+      "exists": true,
+      "bytes": 1322847616,
+      "sha256": "fe584a12ed3e1ed7d26b272c49f6da0bbe16e072d98f6b1694938d858305b084",
+      "expected_sha256": "fe584a12ed3e1ed7d26b272c49f6da0bbe16e072d98f6b1694938d858305b084",
+      "matches_pin": true
+    },
+    {
+      "path": "static_ABCD.npy.names.json",
+      "exists": true,
+      "bytes": 893,
+      "sha256": "60d48fb99c0c032e5c33a774298112104c9e1cdd15482ac58cddefc948fb85de",
+      "expected_sha256": "60d48fb99c0c032e5c33a774298112104c9e1cdd15482ac58cddefc948fb85de",
+      "matches_pin": true
+    },
+    {
+      "path": "addons.npy",
+      "exists": true,
+      "bytes": 103347588,
+      "sha256": "ad31ff14a804b6956efa13b8c3caf6b322d6942b0f57911050ba243ac92e57bc",
+      "expected_sha256": "ad31ff14a804b6956efa13b8c3caf6b322d6942b0f57911050ba243ac92e57bc",
+      "matches_pin": true
+    },
+    {
+      "path": "addons.npy.names.json",
+      "exists": true,
+      "bytes": 51,
+      "sha256": "b1562d7d1f5e57de2002f67038d6b1b4668e3ae10354fac648722f6d33db7f27",
+      "expected_sha256": "b1562d7d1f5e57de2002f67038d6b1b4668e3ae10354fac648722f6d33db7f27",
+      "matches_pin": true
+    },
+    {
+      "path": "h34_columns.npy",
+      "exists": false,
+      "expected_sha256": null
+    },
+    {
+      "path": "h34_columns.npy.names.json",
+      "exists": false,
+      "expected_sha256": null
+    }
+  ],
+  "errors": [
+    "missing:h34_columns.npy",
+    "missing:h34_columns.npy.names.json"
+  ],
+  "warnings": [],
+  "auto_restore_performed": false,
+  "feature_build_performed": false,
+  "h34_loader_called": false,
+  "model_fit_performed": false
+}

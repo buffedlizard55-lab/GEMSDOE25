@@ -796,8 +796,6 @@ Response: exact sparse-regime DTI of a fixed emission (ridge NMS → top 2.45 % 
         "run_card_h74_2026-10-26",
     ):
         (DOCS / "data" / f"{name}.json").write_text((ROOT / "registry" / f"{name}.json").read_text())
-    # Current status is rendered from build_current_review.current_banner; do not
-    # let a historical H73 announcement overwrite the newer H78 strict-lane stop.
     print("site built:", [p.name for p in DOCS.glob("*.html")] + ["../index.html"])
 
 
