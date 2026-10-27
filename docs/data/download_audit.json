@@ -4665,6 +4665,110 @@
       ]
     },
     {
+      "file": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif",
+      "sha256": "e98b9a35609db124f5838cff415a1b0bdf462d65a746161c0bee706add3983d8",
+      "footprint_sha256": "66772eeec27a53cf35bddeaa9a1e22f9a6d384c64109b99498e1910b76bd6dfe",
+      "format_valid": true,
+      "okay_to_submit": false,
+      "estimated_leaderboard_score": null,
+      "novelty": "UNPROVEN: full registry surface and final-dot checks required",
+      "validator": {
+        "file": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif",
+        "bytes": 824568,
+        "sha256": "e98b9a35609db124f5838cff415a1b0bdf462d65a746161c0bee706add3983d8",
+        "ok_to_upload": true,
+        "format_valid": true,
+        "authorization_note": "ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval",
+        "hard_failures": [],
+        "official_nan_outside": false,
+        "positive_pixels": 37654,
+        "footprint_pixels": 5167373,
+        "checks": {
+          "template_matches_expected_grid_and_footprint": {
+            "pass_": true,
+            "detail": "(3730, 3292), footprint 5,167,373 px",
+            "hard": true
+          },
+          "single_band": {
+            "pass_": true,
+            "detail": "count=1",
+            "hard": true
+          },
+          "dtype_float32": {
+            "pass_": true,
+            "detail": "dtypes=('float32',)",
+            "hard": true
+          },
+          "crs_epsg_32611": {
+            "pass_": true,
+            "detail": "32611",
+            "hard": true
+          },
+          "shape_matches_template": {
+            "pass_": true,
+            "detail": "(3730, 3292) vs (3730, 3292)",
+            "hard": true
+          },
+          "geotransform_matches_template": {
+            "pass_": true,
+            "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+            "hard": true
+          },
+          "footprint_all_finite": {
+            "pass_": true,
+            "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+            "hard": true
+          },
+          "footprint_values_in_0_1": {
+            "pass_": true,
+            "detail": "min=0.0 max=1.0",
+            "hard": true
+          },
+          "outside_footprint_is_nan_official": {
+            "pass_": false,
+            "detail": "0/7,111,787 NaN",
+            "hard": false
+          },
+          "outside_footprint_is_nan_or_zero": {
+            "pass_": true,
+            "detail": "NaN (official) or 0 (fallback) outside",
+            "hard": true
+          },
+          "nan_mask_identical_to_template": {
+            "pass_": true,
+            "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+            "hard": true
+          },
+          "nodata_tag": {
+            "pass_": true,
+            "detail": "nodata=None",
+            "hard": false
+          },
+          "variant_nan_aware_whole_array": {
+            "pass_": true,
+            "detail": "finite range over the whole array; infinity rejected",
+            "hard": true
+          },
+          "variant_masked_read": {
+            "pass_": true,
+            "detail": "rasterio masked read; empty data rejected",
+            "hard": true
+          },
+          "variant_strict_whole_array_no_nan": {
+            "pass_": true,
+            "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+            "hard": false
+          },
+          "profile_matches_template": {
+            "pass_": true,
+            "detail": "compress=lzw (template lzw)",
+            "hard": false
+          }
+        }
+      },
+      "identical_footprint_files": []
+    },
+    {
       "file": "gems25-kdc-b2-plus-hgb-complement-55374-20261025T211001Z-f74e9238cc1c-nan.tif",
       "sha256": "77990b107784119d68feb63f61314cf5c5403d6c35cfa9226f3840bf30387399",
       "footprint_sha256": "26c1a71f6266049a8639f03e2feb36b15e87c778c8d779c4c0ba79318b8ea417",
