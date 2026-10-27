@@ -1,0 +1,426 @@
+[
+ {
+  "fold": 0,
+  "draw": 120,
+  "feature": "H75_darcy_seepage_barrier",
+  "auc": 0.5192917143296433,
+  "canary_auc": 0.5192917143296433,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 120,
+  "feature": "H75_uth_sinter_emergence",
+  "auc": 0.5587725076875769,
+  "canary_auc": 0.5587725076875769,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 120,
+  "feature": "H75_oblique_piedmont_inflection",
+  "auc": 0.4900769864698647,
+  "canary_auc": 0.5099230135301354,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 120,
+  "feature": "H75_riedel_obliquity_shear",
+  "auc": 0.5025622047970479,
+  "canary_auc": 0.5025622047970479,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 120,
+  "feature": "H75_destriped_blakely_contact",
+  "auc": 0.538514360393604,
+  "canary_auc": 0.538514360393604,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 120,
+  "feature": "__CELL_WORST__",
+  "canary_auc": 0.774158,
+  "worst_feature": "geod_dilaterate",
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 121,
+  "feature": "H75_darcy_seepage_barrier",
+  "auc": 0.5087961166666667,
+  "canary_auc": 0.5087961166666667,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 121,
+  "feature": "H75_uth_sinter_emergence",
+  "auc": 0.5514589878787879,
+  "canary_auc": 0.5514589878787879,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 121,
+  "feature": "H75_oblique_piedmont_inflection",
+  "auc": 0.5532075772727272,
+  "canary_auc": 0.5532075772727272,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 121,
+  "feature": "H75_riedel_obliquity_shear",
+  "auc": 0.5403183015151515,
+  "canary_auc": 0.5403183015151515,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 121,
+  "feature": "H75_destriped_blakely_contact",
+  "auc": 0.5746255848484848,
+  "canary_auc": 0.5746255848484848,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 0,
+  "draw": 121,
+  "feature": "__CELL_WORST__",
+  "canary_auc": 0.776854,
+  "worst_feature": "E_dens50",
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 120,
+  "feature": "H75_darcy_seepage_barrier",
+  "auc": 0.4983695104283752,
+  "canary_auc": 0.5016304895716248,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 120,
+  "feature": "H75_uth_sinter_emergence",
+  "auc": 0.5515538953415762,
+  "canary_auc": 0.5515538953415762,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 120,
+  "feature": "H75_oblique_piedmont_inflection",
+  "auc": 0.5004316448107906,
+  "canary_auc": 0.5004316448107906,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 120,
+  "feature": "H75_riedel_obliquity_shear",
+  "auc": 0.5182149756463095,
+  "canary_auc": 0.5182149756463095,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 120,
+  "feature": "H75_destriped_blakely_contact",
+  "auc": 0.49276925315349074,
+  "canary_auc": 0.5072307468465093,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 120,
+  "feature": "__CELL_WORST__",
+  "canary_auc": 0.709869,
+  "worst_feature": "deq_n100a15",
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 121,
+  "feature": "H75_darcy_seepage_barrier",
+  "auc": 0.5474316372053872,
+  "canary_auc": 0.5474316372053872,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 121,
+  "feature": "H75_uth_sinter_emergence",
+  "auc": 0.5389548021885521,
+  "canary_auc": 0.5389548021885521,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 121,
+  "feature": "H75_oblique_piedmont_inflection",
+  "auc": 0.5637289109848486,
+  "canary_auc": 0.5637289109848486,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 121,
+  "feature": "H75_riedel_obliquity_shear",
+  "auc": 0.5812938394360269,
+  "canary_auc": 0.5812938394360269,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 121,
+  "feature": "H75_destriped_blakely_contact",
+  "auc": 0.4906694202441077,
+  "canary_auc": 0.5093305797558922,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 1,
+  "draw": 121,
+  "feature": "__CELL_WORST__",
+  "canary_auc": 0.731515,
+  "worst_feature": "E_dens50",
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 120,
+  "feature": "H75_darcy_seepage_barrier",
+  "auc": 0.5324618532712838,
+  "canary_auc": 0.5324618532712838,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 120,
+  "feature": "H75_uth_sinter_emergence",
+  "auc": 0.4673304808832922,
+  "canary_auc": 0.5326695191167078,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 120,
+  "feature": "H75_oblique_piedmont_inflection",
+  "auc": 0.591163196459531,
+  "canary_auc": 0.591163196459531,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 120,
+  "feature": "H75_riedel_obliquity_shear",
+  "auc": 0.6554667606533443,
+  "canary_auc": 0.6554667606533443,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 120,
+  "feature": "H75_destriped_blakely_contact",
+  "auc": 0.4998267414910119,
+  "canary_auc": 0.5001732585089881,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 120,
+  "feature": "__CELL_WORST__",
+  "canary_auc": 0.790611,
+  "worst_feature": "geod_2ndinv",
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 121,
+  "feature": "H75_darcy_seepage_barrier",
+  "auc": 0.49451160110943015,
+  "canary_auc": 0.5054883988905698,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 121,
+  "feature": "H75_uth_sinter_emergence",
+  "auc": 0.49484623045890064,
+  "canary_auc": 0.5051537695410994,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 121,
+  "feature": "H75_oblique_piedmont_inflection",
+  "auc": 0.49957465624474706,
+  "canary_auc": 0.5004253437552529,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 121,
+  "feature": "H75_riedel_obliquity_shear",
+  "auc": 0.540343562783661,
+  "canary_auc": 0.540343562783661,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 121,
+  "feature": "H75_destriped_blakely_contact",
+  "auc": 0.4802439746175827,
+  "canary_auc": 0.5197560253824173,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 2,
+  "draw": 121,
+  "feature": "__CELL_WORST__",
+  "canary_auc": 0.690476,
+  "worst_feature": "E_dens50",
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 120,
+  "feature": "H75_darcy_seepage_barrier",
+  "auc": 0.5673842205450733,
+  "canary_auc": 0.5673842205450733,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 120,
+  "feature": "H75_uth_sinter_emergence",
+  "auc": 0.5876968578616352,
+  "canary_auc": 0.5876968578616352,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 120,
+  "feature": "H75_oblique_piedmont_inflection",
+  "auc": 0.4724757241090146,
+  "canary_auc": 0.5275242758909854,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 120,
+  "feature": "H75_riedel_obliquity_shear",
+  "auc": 0.5318772167714885,
+  "canary_auc": 0.5318772167714885,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 120,
+  "feature": "H75_destriped_blakely_contact",
+  "auc": 0.5018795278825996,
+  "canary_auc": 0.5018795278825996,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 120,
+  "feature": "__CELL_WORST__",
+  "canary_auc": 0.738796,
+  "worst_feature": "D_K",
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 121,
+  "feature": "H75_darcy_seepage_barrier",
+  "auc": 0.5323679707977208,
+  "canary_auc": 0.5323679707977208,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 121,
+  "feature": "H75_uth_sinter_emergence",
+  "auc": 0.5689857307692308,
+  "canary_auc": 0.5689857307692308,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 121,
+  "feature": "H75_oblique_piedmont_inflection",
+  "auc": 0.48974867592592597,
+  "canary_auc": 0.510251324074074,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 121,
+  "feature": "H75_riedel_obliquity_shear",
+  "auc": 0.5060239914529915,
+  "canary_auc": 0.5060239914529915,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 121,
+  "feature": "H75_destriped_blakely_contact",
+  "auc": 0.4987562186609686,
+  "canary_auc": 0.5012437813390314,
+  "missingness_auc": 0.5,
+  "passed": true
+ },
+ {
+  "fold": 3,
+  "draw": 121,
+  "feature": "__CELL_WORST__",
+  "canary_auc": 0.722608,
+  "worst_feature": "E_dens20",
+  "passed": true
+ }
+]

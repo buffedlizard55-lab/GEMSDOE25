@@ -291,6 +291,120 @@ but strict lane fails the lattice and four broad historical artifact halos. <b>O
 <table><thead><tr><th>Focus Site</th><th>Latest 2026-10-26 File (and Historical Reference)</th><th>Score / Holdout Proxy (Properly Labeled)</th><th>Estimated Leaderboard Score</th><th>Uniqueness vs GEMSDOE Portfolio</th><th>OK to Submit?</th></tr></thead>
 <tbody>{foc_latest_rows}</tbody></table></div></section>'''
 
+    h75_path = ROOT / "registry" / "run_card_h75_2026-10-27.json"
+    h75 = json.loads(h75_path.read_text()) if h75_path.exists() else None
+    h75_download_box = ""
+    h75_table_row = ""
+    h75_section = ""
+    if h75:
+        hd75 = h75["holdout_dti"]
+        x1_75 = hd75["experiment_1_standard_holdout"]
+        x2_75 = hd75["experiment_2_block25km_holdout"]
+        x3_75 = hd75["experiment_3_checkerboard25km_full_block_holdout"]
+        ln75 = h75["correlation_overlap_vs_registry"]
+        fw75 = ln75["focus_winners"]
+        ext75 = ln75["external_sparse"]
+        own75 = ln75["own_lineage"]
+        c3_sub = x3_75["contrasts"]["h75_cg_vs_ctrl_subsurf"]
+        c3_abcd = x3_75["contrasts"]["h75_cg_vs_ctrl_blind_abcd"]
+        c3_h35 = x3_75["contrasts"]["h75_cg_vs_ctrl_h35"]
+        cg3_ci = c3_sub["arms"]["H75_CG_BLIND"]["ci95"]
+        h35_3_ci = c3_h35["arms"]["CTRL_H35"]["ci95"]
+        nid75 = "note-research-h75"
+        h75_download_box = (
+            f'<div class="card" style="border-left:5px solid #1d4ed8;margin-bottom:14px">'
+            f'<p class="eyebrow">ACTIVE SESSION DELIVERABLE (27 OCT 2026) · H75 DCHB-CG CORRIDOR-GATED DUAL-REGIME LOQO B2 (3/3 BUDGET COMPLETE)</p>'
+            f'<h3>New Unique Research GeoTIFF: <code>{e(h75["submission_name"])}</code> — OK TO DOWNLOAD (TESTING / ARCHIVE): YES (AUTO-VALIDATED) · OK TO SUBMIT: NO — DO NOT SUBMIT</h3>'
+            f'<p>Content id <code>{e(h75["content_id"])}</code> · <code>{h75["positive_pixels"]:,}</code> binary dots · '
+            f'SHA-256 <code>{e(h75["raster_sha256"][:16])}…</code> · EPSG:32611 · <code>3730&times;3292</code> · '
+            f'0 NaN/Inf inside 5,167,373-px footprint · all values strictly in <code>[0, 1]</code> (prevents <code>Predicted values must be in range [0, 1]</code>) · '
+            f'3-expert Corridor-Gated LOQO (<code>M_corridor</code> 54 subsurface cols &times; <code>M_trace</code> 83 ABCD+H75_DCHB cols / <code>M_gap</code> 70 LiDAR-free cols, &gamma;=0.60, gap_scale=0.95; zero Family E). '
+            f'<b>Density-aware unique across ALL {ln75["registry_checked"]} registry rasters</b> (<code>flagged_lane = []</code>; '
+            f'resolved Family-B LiDAR scarp convergence <code>IR-25-LIDAR-BLIND-CONVERGENCE-20261026</code>: '
+            f'{100*ln75["vs_h23_a_6pct"]["cand_dots_within_3px"]:.2f}% vs <code>h23-a-6pct.tif</code> &le; 70%, '
+            f'{100*ln75["vs_h72_catfree"]["cand_dots_within_3px"]:.2f}% vs <code>H72-CF</code> &le; 70%, '
+            f'{100*fw75["b2_overlap"]:.2f}% vs <code>GEMSDOE32 B2</code>, {100*fw75["g27_h31_overlap"]:.2f}% vs <code>GEMSDOE27 H31-1</code>, '
+            f'{100*own75["worst_cand_dots_within_3px"]:.2f}% max own-lineage, {100*ext75["worst_cand_dots_within_3px"]:.2f}% max sparse external; '
+            f'surface |&rho;| &le; {ln75["surface_worst_abs_spearman"]:.4f}), while literal 70% flags the 3 &gt;73%-halo rasters (r13 lattice, pindrop). '
+            f'<b>Exp 3 25-km full-checkerboard BlockHoldout Gate G2 PASS</b> (<code>{x3_75["per_arm"]["H75_CG_BLIND"]["pooled_dti"]:.6f}</code> on '
+            f'<code>{x3_75["withheld_positive_occurrences"]:,}</code> withheld +; <code>{c3_sub["paired_gain"]:+.6f}</code> vs <code>CTRL_SUBSURF</code> in 4/4 folds; '
+            f'<code>{c3_abcd["paired_gain"]:+.6f}</code> vs <code>CTRL_BLIND_ABCD</code> in 3/4 folds; <code>L_gap</code> DTI <code>{x3_75["per_arm"]["H75_CG_BLIND"]["lidar_gap_dti"]:.6f}</code> '
+            f'beats <code>CTRL_H35</code> <code>{x3_75["per_arm"]["CTRL_H35"]["lidar_gap_dti"]:.6f}</code>), but pooled Slot Gate G1 vs <code>CTRL_H35</code> '
+            f'(<code>{c3_h35["paired_gain"]:+.6f}</code>) and literal r13 lattice remain negative. '
+            f'<b>Verdict: <code>{e(h75["verdict"])}</code> · OK to spend a weekly slot: NO — DO NOT SUBMIT.</b></p>'
+            f'<div class="row">'
+            f'<a class="btn" download href="downloads/{e(h75["submission_name"])}">↓ Download H75 unique research TIF (zeros outside) — DO NOT SUBMIT</a> '
+            f'<a class="btn alt" download href="downloads/{e(h75["nan_twin_name"])}">↓ NaN-outside twin ({e(h75["nan_twin_name"])})</a> '
+            f'<a class="btn alt" download href="downloads/{e(h75["zip_name"])}">↓ Single-TIFF ZIP ({e(h75["zip_name"])})</a> '
+            f'<a class="btn alt" download href="../registry/run_card_h75_2026-10-27.json">↓ H75 JSON Run Card</a> '
+            f'<a class="btn alt" href="../knowledge/39_h75_outcomes_and_executive_summary_2026-10-27.md">Full H75 2026-10-27 executive summary &amp; 0.2778 PhD proof</a>'
+            f'</div>'
+            f'<p class="small" style="margin:8px 0 2px"><b>DrivenData-format research identifier ({h75["note_chars"]} chars &le; 140 — DO NOT SUBMIT):</b> '
+            f'<button class="btn alt small" data-copy="{nid75}">Copy H75 research note</button></p>'
+            f'<div class="note"><code id="{nid75}">{e(h75["note"])}</code></div></div>'
+        )
+        h75_table_row = (
+            f'<tr><td class="submission-id">{e(h75["submission_name"])}</td>'
+            f'<td>NOT ESTIMATED — no calibrated leaderboard projection</td>'
+            f'<td>HOLDOUT-DTI {x3_75["per_arm"]["H75_CG_BLIND"]["pooled_dti"]:.6f} (Exp 3 25-km full BlockHoldout; evaluator {e(hd75["evaluator"])}; '
+            f'{x3_75["withheld_positive_occurrences"]:,} withheld positives; 95% CI [{cg3_ci[0]:.6f}, {cg3_ci[1]:.6f}]; '
+            f'G2 PASS: {c3_sub["paired_gain"]:+.5f} vs CTRL_SUBSURF 4/4 folds, {c3_abcd["paired_gain"]:+.5f} vs CTRL_BLIND_ABCD 3/4 folds; '
+            f'L_gap {x3_75["per_arm"]["H75_CG_BLIND"]["lidar_gap_dti"]:.5f} &gt; CTRL_H35 {x3_75["per_arm"]["CTRL_H35"]["lidar_gap_dti"]:.5f})</td>'
+            f'<td><b>LITERAL: NO / DENSITY-AWARE: YES.</b> <code>flagged_lane = []</code> across ALL {ln75["registry_checked"]} rasters '
+            f'({100*fw75["b2_overlap"]:.2f}% vs B2, {100*fw75["g27_h31_overlap"]:.2f}% vs G27 H31-1, '
+            f'{100*ext75["worst_cand_dots_within_3px"]:.2f}% max sparse vs <code>{e(ext75["worst_overlap_file"])}</code>, '
+            f'{100*own75["worst_cand_dots_within_3px"]:.2f}% max own-lineage); literal 70% flags only r13 lattice &amp; pindrop (&gt;73% halos).</td>'
+            f'<td><b>DO NOT SUBMIT.</b> Exp 3 G2 passed vs both blind controls, but pooled Slot Gate G1 ({c3_h35["paired_gain"]:+.5f} vs H35) &amp; literal r13 lattice remain negative.</td></tr>'
+        )
+        foc27_doc = json.loads((ROOT / "evidence" / "focus_sites_h75_latest_2026-10-27.json").read_text())
+        foc27_rows = "".join(
+            f'<tr><th scope="row"><a href="{e(s["repo_url"])}">{e(s["site"])}</a></th>'
+            f'<td class="submission-id">{e(s["latest_file"])}<br><small>Hist: <code>{e(s["historical_file"])}</code> ({s["historical_score_owner_reported"]:.4f} OWNER-REPORTED)</small></td>'
+            f'<td>{e(s["latest_metric_label"])}<br><small>Recent ML live: {e(s["latest_scored_ml"])}</small></td>'
+            f'<td>{e(s["estimated_leaderboard_score"])}</td>'
+            f'<td>{e(s["uniqueness_audit"])}</td>'
+            f'<td><b>{e(s["ok_to_submit"])}</b></td></tr>'
+            for s in foc27_doc["sites"]
+        )
+        sib27_rows = "".join(
+            f'<tr><th scope="row">{e(s["site"])}</th><td class="submission-id">{e(s["file"])}</td>'
+            f'<td>{e(s["status"])}</td><td>{e(s["uniqueness"])}</td><td><b>{e(s["ok_to_submit"])}</b></td></tr>'
+            for s in foc27_doc["extended_sibling_sites"]
+        )
+        h75_section = f'''<section class="card" id="h75-session"><p class="eyebrow">ACTIVE SESSION (27 OCT 2026) · 3/3 PRE-REGISTERED EXPERIMENTS (DRAWS 120–123) · FIRST REAL-DATA 25-KM FULL CHECKERBOARD BLOCKHOLDOUT</p>
+<h2>H75 Darcy Piezometric Seepage Barrier, U/Th Sinter Emergence, Oblique Riedel Shear &amp; Corridor-Gated Dual-Regime LOQO (DCHB-CG)</h2>
+<p><b>Pre-registered before feature build or fitting:</b>
+<a href="../knowledge/38_preregistered_h75_dchb_cg_2026-10-27.md">4 ranked hypotheses &amp; frozen DCHB-CG design (<code>12931bb</code>)</a> ·
+<a href="../knowledge/39_h75_outcomes_and_executive_summary_2026-10-27.md">2026-10-27 Multi-site executive summary, 17-raster live forensics &amp; 0.2778 PhD proof</a> ·
+<a href="../registry/run_card_h75_2026-10-27.json">H75 JSON Run Card</a> ·
+<a href="../registry/review_passes_h75_2026-10-27.json">3-pass review receipt</a> ·
+<a href="../evidence/h75_exp1_standard/analysis.json">Exp 1 standard analysis</a> ·
+<a href="../evidence/h75_exp2_block25km/analysis.json">Exp 2 block25km analysis</a> ·
+<a href="../evidence/h75_exp3_checkerboard25km/analysis.json">Exp 3 full-checkerboard BlockHoldout analysis</a>.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Four ranked H75 geological hypotheses">
+<table><thead><tr><th>Rank</th><th>Hypothesis &amp; Official Layers</th><th>Physical Signature &amp; Why INGENIOUS Catalogue Misses It</th><th>Named Non-Fault Mimic</th><th>Repo Novelty, Cost &amp; Official Data</th><th>Planning Bracket &amp; Outcome</th></tr></thead>
+<tbody>
+<tr><td><b>1</b></td><td><b>H75-1 · DCHB-CG</b><br><small>GDR #1391 <code>det_elev</code>, <code>cond_surf</code>, <code>depth_to_base_surf</code>, <code>rtp</code>, <code>iso_grav_anom</code>, <code>geod_shearrate</code>, <code>gdr_wellspring</code> (<code>temp_c</code>, <code>geothermquartz_c</code>; <code>dist_known_fault_px</code> banned); GeoDAWN <code>Th</code>, <code>UTh</code>, <code>TMI_up150</code>; 3DEP <code>L_step_max</code>, <code>L_coh100</code>, <code>L_strike</code>, <code>L_valid</code></small></td><td>Directed 3-km Darcy seepage impinging on smectite gouge / basement steps + Th-normalized U/Th sinter/travertine emergence + sin<sup>2</sup>(&theta;<sub>mic</sub>&minus;&theta;<sub>mac</sub>) shoreline deconfounder + &plusmn;17&deg; Byerlee Riedel R-shear resonance + E&ndash;W flight-line-destriped Blakely contact spine, coupled via &gamma;=0.60 Corridor-Gated Dual-Regime LOQO across the 24.66% <code>L_valid=0</code> gap.</td><td>Unfaulted volcanic-front permeability pinch-outs, perched cold-spring caliche aprons, oblique Lake Lahontan spit cusps, dipping Mesozoic pluton contacts</td><td>First Darcy hydraulic-head &times; MT gouge barrier, first U/Th &times; quartz-enthalpy emergence, first &plusmn;17&deg; Riedel shear operator, first E&ndash;W aeromagnetic destriper, and first real-data <code>BlockHoldout</code> + <code>L_valid=0</code> dual-regime gate (~75.1 min CPU across 3 exps; SHA-pinned GDR #1391 + GeoDAWN + 3DEP).</td><td>Planning: <code>+0.002..+0.008</code><br><b>Exp 3 BlockHoldout G2 PASS</b> (<code>+0.0203</code> vs Subsurf, <code>+0.0038</code> vs ABCD; <code>L_gap</code> &gt; H35); Slot G1 FAIL</td></tr>
+<tr><td><b>2</b></td><td><b>H75-2 · VVEA</b><br><small>GDR #1391 <code>gdr_volcanic_vents_in_footprint.csv</code> (428 vents, <code>dist_known_fault_px</code> excluded), <code>rtp</code>, <code>TMI_up150</code>, <code>iso_grav_anom_hg</code></small></td><td>Two-point anisotropic volcanic-vent feeder-dike alignment azimuths corroborated by upward-continued magnetic/gravity gradients beneath intact Cenozoic basalt tables.</td><td>Constructional lava-flow inflation ridges &amp; radial caldera ring fractures</td><td><code>gdr_volcanic_vents_in_footprint.csv</code> has never been read by any <code>src/gems25/*.py</code> module (~20 min CPU; already SHA-pinned locally from GDR #1391).</td><td>Planning: <code>+0.002..+0.006</code><br>Deferred (3/3 budget cap)</td></tr>
+<tr><td><b>3</b></td><td><b>H75-3 · BTHP</b><br><small>GDR #1391 <code>tc</code>, <code>depth_to_base_surf</code>, <code>cond_surf</code>, <code>det_elev</code>, <code>D_gdr_quartz5km</code></small></td><td>1-D conductive sediment-blanket thermal resistance R<sub>blanket</sub> = H<sub>sed</sub>/k<sub>sed</sub> residual isolating deep convective upflow plumes beneath thick (&gt;500 m, 36.2% footprint) grabens.</td><td>Radiogenic Mesozoic granites &amp; dark low-albedo basaltic talus</td><td>First conductive-blanket heat-flow de-masking of <code>tc</code> (~15 min CPU; cached GDR #1391).</td><td>Planning: <code>+0.001..+0.005</code><br>Deferred (3/3 budget cap)</td></tr>
+<tr><td><b>4</b></td><td><b>H75-4 · WSM-SHMAX</b><br><small>GFZ World Stress Map 2025 <code>wsm2025.csv</code> + <code>geod_shearrate</code>, <code>iso_grav_anom_hg</code>, <code>L_strike</code></small></td><td>Spatially interpolated borehole-breakout / focal-mechanism S<sub>Hmax</sub>(x) Barton&ndash;Zoback slip-dilation criticality &tau;/&sigma;&prime;<sub>n</sub> across Walker Lane &rarr; Basin-and-Range rotation.</td><td>Regional ductile shear zones &amp; gravitational sackung scarps</td><td>First observational borehole/focal stress-azimuth field vs scalar strain invariants (~35 min CPU + pin; GFZ CC-BY 4.0).</td><td>Planning: <code>+0.002..+0.007</code><br>Deferred (external fetch + 3/3 cap)</td></tr>
+</tbody></table></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="H75 3-experiment paired holdout results">
+<table><thead><tr><th>Experiment &amp; Virgin Draws</th><th>Withheld +</th><th>Canary Max</th><th>Controls HOLDOUT-DTI</th><th>H75_CG_BLIND HOLDOUT-DTI [95% CI]</th><th>Paired Contrasts (Folds +)</th><th>Gate Outcome</th></tr></thead>
+<tbody>
+<tr><td><b>Exp 1 · Standard 20%-Component Holdout</b><br><code>draws [120, 121]</code></td><td>{x1_75['withheld_positive_occurrences']:,}</td><td>{x1_75['leakage_canary']['max_canary_auc']:.4f}</td><td>H35: <code>{x1_75['per_arm']['CTRL_H35']['pooled_dti']:.5f}</code><br>Subsurf: <code>{x1_75['per_arm']['CTRL_SUBSURF']['pooled_dti']:.5f}</code><br>Blind ABCD: <code>{x1_75['per_arm']['CTRL_BLIND_ABCD']['pooled_dti']:.5f}</code></td><td><b><code>{x1_75['per_arm']['H75_CG_BLIND']['pooled_dti']:.5f}</code></b><br><small>L_gap: <code>{x1_75['per_arm']['H75_CG_BLIND']['lidar_gap_dti']:.5f}</code></small></td><td><b>vs Subsurf: <code>{x1_75['contrasts']['h75_cg_vs_ctrl_subsurf']['paired_gain']:+.5f}</code> (4/4)</b><br>vs Blind ABCD: <code>{x1_75['contrasts']['h75_cg_vs_ctrl_blind_abcd']['paired_gain']:+.5f}</code><br>vs H35: <code>{x1_75['contrasts']['h75_cg_vs_ctrl_h35']['paired_gain']:+.5f}</code></td><td><span class="badge b-bad">Slot Gate G1 FAIL</span></td></tr>
+<tr><td><b>Exp 2 · 25-km Tile-Sampled H75-BW</b><br><code>draws [120, 121]</code></td><td>{x2_75['withheld_positive_occurrences']:,}</td><td>{x2_75['leakage_canary']['max_canary_auc']:.4f}</td><td>H35: <code>{x2_75['per_arm']['CTRL_H35']['pooled_dti']:.5f}</code><br>Subsurf: <code>{x2_75['per_arm']['CTRL_SUBSURF']['pooled_dti']:.5f}</code><br>Blind ABCD: <code>{x2_75['per_arm']['CTRL_BLIND_ABCD']['pooled_dti']:.5f}</code></td><td><b><code>{x2_75['per_arm']['H75_CG_BLIND']['pooled_dti']:.5f}</code></b><br><small><b>L_gap: <code>{x2_75['per_arm']['H75_CG_BLIND']['lidar_gap_dti']:.5f}</code></b> (+18.8% vs ABCD)</small></td><td><b>vs Subsurf: <code>{x2_75['contrasts']['h75_cg_vs_ctrl_subsurf']['paired_gain']:+.5f}</code> (3/4)</b><br>vs Blind ABCD: <code>{x2_75['contrasts']['h75_cg_vs_ctrl_blind_abcd']['paired_gain']:+.5f}</code> (SE <code>+0.0266</code>)</td><td><span class="badge b-warn">L_gap PASS · G1 FAIL</span></td></tr>
+<tr><td><b>Exp 3 · 25-km Full Checkerboard BlockHoldout</b><br><code>virgin draws [122, 123]</code> (100% test-block hiding)</td><td><b>{x3_75['withheld_positive_occurrences']:,}</b></td><td><b>{x3_75['leakage_canary']['max_canary_auc']:.4f}</b></td><td>H35: <code>{x3_75['per_arm']['CTRL_H35']['pooled_dti']:.5f}</code> [{h35_3_ci[0]:.4f}, {h35_3_ci[1]:.4f}]<br>Subsurf: <code>{x3_75['per_arm']['CTRL_SUBSURF']['pooled_dti']:.5f}</code><br>Blind ABCD: <code>{x3_75['per_arm']['CTRL_BLIND_ABCD']['pooled_dti']:.5f}</code></td><td><b><code>{x3_75['per_arm']['H75_CG_BLIND']['pooled_dti']:.5f}</code></b> [{cg3_ci[0]:.4f}, {cg3_ci[1]:.4f}]<br><small><b>L_gap: <code>{x3_75['per_arm']['H75_CG_BLIND']['lidar_gap_dti']:.5f}</code> (&gt; CTRL_H35!)</b></small></td><td><b>vs Subsurf: <code>{c3_sub['paired_gain']:+.5f}</code> (4/4, 8/8 cells)</b><br><b>vs Blind ABCD: <code>{c3_abcd['paired_gain']:+.5f}</code> (3/4)</b><br>vs H35: <code>{c3_h35['paired_gain']:+.5f}</code> (<b>beats H35 in 2/4 folds!</b>)</td><td><span class="badge b-ok">Gate G2 PASS</span><br><span class="badge b-bad">Slot G1 FAIL</span></td></tr>
+</tbody></table></div>
+<h3>Nine Focus Sites (GEMSDOE24–36): Updated 2026-10-27 Executive Summary, Live Scores, Uniqueness &amp; Eligibility</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Nine focus sites 2026-10-27 executive summary">
+<table><thead><tr><th>Focus Site</th><th>Latest File to Download (and Historical Scored Anchor)</th><th>Score / Holdout Status (Strictly Labeled)</th><th>Estimated Leaderboard Score</th><th>Uniqueness Across GEMSDOE Portfolio</th><th>Eligible to Submit?</th></tr></thead>
+<tbody>{foc27_rows}</tbody></table></div>
+<h3>Extended Sibling Sites (GEMSDOE48–92, KANLERGEMSDOE1–3, WBGGEMSDOE1–3, EUGGEMSDOE1–3, GINNYGEMSDOE1–3)</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Extended sibling sites 2026-10-27 audit">
+<table><thead><tr><th>Sibling Site / Group</th><th>Audited File(s)</th><th>Score / Holdout Status (Strictly Labeled)</th><th>Uniqueness &amp; Audit Note</th><th>Eligible to Submit?</th></tr></thead>
+<tbody>{sib27_rows}</tbody></table></div></section>'''
+
     nid = "note-primary-h72"
     download = (
         f'<p><b>Research-archive download: YES (local inspection/testing only). Competition-ready download: NO.</b> '
@@ -432,9 +546,10 @@ Requested caps saturate at available ridge candidates, so this orders density re
     bounds = ''.join(f"<tr><td>{r['dots']:,}</td><td>{r['minimum_overlap']:.2%}</td><td>Impossible at this density</td></tr>"
                      for r in feasibility['cases'])
     coverage = focus['lattice_coverage']
-    body = f'''<section class="hero"><p class="eyebrow">RESEARCH DECISION BRIEF / 26 OCTOBER 2026</p>
+    body = f'''<section class="hero"><p class="eyebrow">RESEARCH DECISION BRIEF / 27 OCTOBER 2026</p>
 <h1>Know what to submit.<br>Know when to stop.</h1>
-<p class="lead">Nine focus sites, one auditable comparison, and a clear stop. The H73-BW diagnostic is blocked before fit; latest H74-SUBSURF research GeoTIFF is inspection-only; no competition-ready TIF or slot is approved. No predicted leaderboard scores.</p></section>
+<p class="lead">Nine focus sites + 18 sibling site groups, one auditable comparison, and an unmistakable top-of-page verdict: <b>NEW UNIQUE H75-DCHB-CG RESEARCH TIF (<code>gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif</code>) — OK TO DOWNLOAD (TESTING / INSPECTION): YES (AUTO-VALIDATED) · OK TO SUBMIT TO DRIVENDATA: NO — DO NOT SUBMIT.</b> No predicted leaderboard scores.</p></section>
+{h75_download_box}
 {h74_download_box}
 {h73_section}
 <section class="review-decision"><span class="badge b-bad">NO ELIGIBLE COMPETITION TIF · OK TO SUBMIT: NO</span><h2>Archived H72-3 research artifact only — no competition-ready download (DO NOT SUBMIT)</h2>
@@ -442,6 +557,8 @@ Requested caps saturate at available ridge candidates, so this orders density re
 <p>Prior-session ROD stop: {status}</p>{download}
 <div class="row"><a class="btn" href="../evidence/rod_2026-10-26/run_card.json" download>Download ROD decision receipt</a>
 <a class="btn alt" href="#how-to-submit">Submission checklist</a>
+<a class="btn alt" href="../knowledge/39_h75_outcomes_and_executive_summary_2026-10-27.md">H75 2026-10-27 outcomes, 9-site + sibling tables &amp; 0.2778 PhD proof</a>
+<a class="btn alt" href="../registry/run_card_h75_2026-10-27.json">H75 run card</a>
 <a class="btn alt" href="../knowledge/37_h74_outcomes_and_executive_summary_2026-10-26.md">H74 outcomes, 0.2778 PhD proof &amp; 9-site table</a>
 <a class="btn alt" href="../registry/run_card_h74_2026-10-26.json">H74 run card</a>
 <a class="btn alt" href="../knowledge/31_h72_outcomes_and_portfolio_synthesis_2026-10-26.md">H72 outcomes, 0.2778 PhD proof &amp; 9-site synthesis</a>
@@ -450,8 +567,9 @@ Requested caps saturate at available ridge candidates, so this orders density re
 <a class="btn alt" href="../evidence/download_audit_61f81983_2026-10-26.json">Exact-file audit</a>
 <a class="btn alt" href="../knowledge/29_current_checkout_review_2026-10-26.md">Current-checkout review</a></div></section>
 {inventory_section}
-<section><h2>Current H74-SUBSURF &amp; existing H72-3 research archives: validation and eligibility decision</h2>
+<section><h2>Current H75-DCHB-CG, H74-SUBSURF &amp; existing H72-3 research archives: validation and eligibility decision</h2>
 <div class="table-scroll"><table><thead><tr><th>File</th><th>Estimated competition score</th><th>Saved HOLDOUT-DTI (proxy)</th><th>Unique under literal lane rule?</th><th>Decision</th></tr></thead><tbody>
+{h75_table_row}
 {h74_table_row}
 {h72_table_row}
 <tr><td class="submission-id">gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif</td>
@@ -494,6 +612,7 @@ not a copied prediction mask. Volcanic flow lobes, sediment sorting and survey s
 {outcome}<p><a href="../knowledge/27_preregistered_rod_2026-10-26.md">Four ranked hypotheses &amp; frozen design</a> ·
 <a href="../evidence/rod_2026-10-26/feature_canaries.json">Every-feature leakage canaries</a> ·
 <a href="../evidence/rod_2026-10-26/surface_lane.json">Pre-placement surface audit</a></p></section>
+{h75_section}
 {h74_section}
 {h72_section}
 {h72_cf_section}
@@ -551,7 +670,13 @@ def readme_status():
             "<!-- H73-BW-2026-10-26 -->\n"
             f"**H73-BW diagnostic: {h73bw['status'].upper()} · NO NEW TIF · OK TO SUBMIT: NO.** The one registered, evaluation-only block-selector run is blocked before fit because the shared cache is absent. Prior H73-PM HOLDOUT-DTI {pm['pm_deapron_pooled']:.6f} (95% CI [{pm['pm_deapron_ci95'][0]:.6f}, {pm['pm_deapron_ci95'][1]:.6f}]; {pm['withheld_positive_occurrences']:,} withheld positives; evaluator {pm['evaluator']}) failed same-run H35 {pm['ctrl_h35_pooled']:.6f}; it is not a leaderboard score or projection. Its prior research raster [`{h73['submission_name']}`](docs/downloads/{h73['submission_name']}) (content id `{h73['content_id']}`, {h73['positive_pixels']:,} dots) is inspection-only, not strict-lane cleared, and remains DO NOT SUBMIT. [H73-BW design](knowledge/34_h73_bw_block_selector_2026-10-26.md) · [cache receipt](evidence/h73_bw_preflight_2026-10-26.json) · [run card](registry/run_card_h73_bw_2026-10-26.json) · [follow-up review](knowledge/35_h73_bw_followup_review_2026-10-26.md) · [prior H73-PM outcomes](knowledge/33_h73_outcomes_and_executive_summary_2026-10-26.md). The metrics for this H73-BW screen are null: {bw['reason']}\n\n"
             "**Research-archive download: YES (inspection/testing only) · Competition-ready TIF: NO · OK TO SUBMIT: NO · weekly slot: NO — DO NOT SUBMIT.** "
-            "New unique H74-SUBSURF research GeoTIFF generated in the H74 session: [`gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.tif`](docs/downloads/gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.tif) "
+            "New unique H75-DCHB-CG research GeoTIFF generated in the active 2026-10-27 session: [`gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif`](docs/downloads/gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif) "
+            "(content id `e035d75ca5d5`, `37,654` binary dots, SHA-256 `da94fdf9d744f06f…`, EPSG:32611, `3730x3292`, 0 NaN/Inf in footprint, strict `[0, 1]`; Corridor-Gated Dual-Regime LOQO `M_corridor` 54 subsurface cols x `M_trace` 83 ABCD+H75_DCHB cols / `M_gap` 70 LiDAR-free cols, `gamma=0.60`, `gap_scale=0.95`; density-aware unique across ALL `108` rasters with `flagged_lane = []`, resolving Family-B LiDAR convergence `IR-25-LIDAR-BLIND-CONVERGENCE-20261026` at `68.58% <= 70%` vs `h23-a-6pct.tif`, `59.97% <= 70%` vs `H72-CF`, `34.83%` vs `GEMSDOE32 B2`, `48.01%` vs `GEMSDOE27 H31-1`; literal 70% flags only the 3 >73%-halo rasters `r13` lattice + `pindrop`; DrivenData research note `GEMSDOE25 H75-DCHB-CG | no slot, not slot-approved; DO NOT SUBMIT | id e035d75ca5d5 | unscored`; **OK TO DOWNLOAD (TESTING): YES · OK TO SUBMIT: NO — DO NOT SUBMIT**). "
+            "In 3/3 pre-registered H75 experiments (draws 120–123, ~75.1 min <= 2 h, all 2,184 standalone leakage canary checks <= 0.8179), Exp 3 (`25-km` full-checkerboard `BlockHoldout` hiding 100% of test-block components, virgin draws 122–123, `95,188` withheld +) **passed Gate G2** (`H75_CG_BLIND` `0.122104` beat `CTRL_SUBSURF` `0.101796` by `+0.020308` in `4/4` folds / `8/8` cells and beat `CTRL_BLIND_ABCD` `0.118261` by `+0.003844` in `3/4` folds, beat `CTRL_H35` in `2/4` folds and on `L_valid=0` gap `0.108158` vs `0.106022`), while pooled Slot Gate G1 vs `CTRL_H35` (`-0.003767`) and literal `r13` lattice remain negative. "
+            "[H75 2026-10-27 executive summary, 9-site + sibling tables & 0.2778 PhD proof](knowledge/39_h75_outcomes_and_executive_summary_2026-10-27.md) · "
+            "[H75 run card](registry/run_card_h75_2026-10-27.json) · "
+            "[H75 pre-registration (`12931bb`)](knowledge/38_preregistered_h75_dchb_cg_2026-10-27.md). "
+            "Prior unique H74-SUBSURF research GeoTIFF generated in the H74 session: [`gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.tif`](docs/downloads/gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.tif) "
             "(content id `3751606e1ce5`, `37,654` binary dots, SHA-256 `9e0200dc3b1597c7…`, 51 static topography-free & catalogue-free subsurface `ACD + H34 + H74_RMPS` columns; density-aware unique across all 101 rasters with `flagged_lane = []`, `23.63%` vs `GEMSDOE32 B2`, `33.13%` vs `H72-3-subsurf`; literal 70% fails only the 3 >73%-halo rasters `r13` lattice + `pindrop`; DrivenData research note `GEMSDOE25 H74-SUBSURF | no slot, not slot-approved; DO NOT SUBMIT | id 3751606e1ce5 | unscored`; **DO NOT SUBMIT**). "
             "In 3/3 pre-registered H74 experiments (draws 110–113, all 688 leakage canaries <= 0.8259), switching to 25-km spatial-block withholding (`H74-BW`) collapsed `CTRL_H35 - CTRL_BLIND` by **62.9%** (`+0.06353 -> +0.02356`) and both `H74_APRON` (`+0.00038`, 3/4 folds) and `H74_BLIND` (`+0.00237`, 3/4 folds; SE `+0.02343` above `CTRL_H35`) passed Gate G2, while Slot Gate G1 (`-0.00086`) and Exp 3 `H74_SUBSURF` (`0.03906` vs `0.12821` `CTRL_H35`) did not pass. "
             "Older H72 research archive: Existing H72-3 research artifact (not created in this review): [`gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.tif`](docs/downloads/gems25-h72-3-subsurf-pttg-mths-sapd3-0-k3p0-20261026-88bbebfe79b4-zeros.tif) "

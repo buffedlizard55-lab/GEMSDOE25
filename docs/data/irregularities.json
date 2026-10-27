@@ -841,6 +841,14 @@
    "issue": "Catalogue-free HGBs that include Family B (1-m LiDAR scarps L_step_max/L_ex_max and 100 m DEM scarps) converge onto >70% 3-px final-dot overlap with prior Family-B blind rasters even when pre-placement continuous surfaces have low rank correlation (worst |Spearman| = 0.2136 <= 0.90): in H74_BLIND (ABCD + EXTRAS + H34 + H74_RMPS, 78 cols), staging submodular emission (37,654 dots) hit 76.88% within 3 px of h23-a-6pct.tif and 74.52% within 3 px of H72-CF (1d7c1e9ea55f) because tree splits place >74% of top-probability ridges on exposed Quaternary scarps.",
    "evidence": "evidence/h74_blind_abcd_surface.json; evidence/h74_blind_abcd_stopped_lane.json; evidence/h74_blind_abcd_stopped_extended.json; evidence/h74_subsurf_lane_literal.json.",
    "resolution_or_action": "Pre-publish staging guard in scripts/build_h74_candidate.py halted immediately before writing any ABCD GeoTIFF to docs/downloads/. Pre-registered Experiment 3 (knowledge/36, virgin draws 112-113) isolated H74_RMPS in a 100% topography-free & catalogue-free subsurface stack (H74_SUBSURF, 51 ACD cols), reducing overlap to 53.24% vs h23-a-6pct.tif and 43.22% vs H72-CF (flagged_lane = [] across all 101 rasters)."
+  },
+  {
+   "id": "IR-25-CORRIDOR-GATED-DECONFOUNDING-20261027",
+   "severity": "low",
+   "status": "verified",
+   "issue": "Follow-up to IR-25-LIDAR-BLIND-CONVERGENCE-20261026 and IR-25-LATTICE-CAP-20261026: tested whether Corridor-Gated Dual-Regime coupling (P_cor^0.60 * P_trace^0.40 on L_valid=1; quantile-calibrated P_cor^0.60 * P_gap^0.40 on the 24.66% L_valid=0 3DEP gap) breaks Family-B LiDAR scarp convergence (>74% 3-px dot overlap in H74_BLIND) without discarding 1-m LiDAR scarps.",
+   "evidence": "evidence/h75_cg_surface_lane.json; evidence/h75_cg_lane_literal.json; evidence/h75_cg_lane_extended.json; evidence/h75_exp3_checkerboard25km/analysis.json.",
+   "resolution_or_action": "Verified on full 108-raster registry: H75_CG_BLIND (e035d75ca5d5, 37,654 dots) achieved flagged_lane = [] across all 108 rasters, reducing overlap to 68.58% <= 70% vs h23-a-6pct.tif and 59.97% <= 70% vs H72-CF while passing Exp 3 25-km full-checkerboard Gate G2 (+0.02031 vs CTRL_SUBSURF, +0.00384 vs CTRL_BLIND_ABCD). Strict literal 70% still flags the 3 >73%-halo rasters (r13 lattice, pindrop), so verdict remains negative / DO NOT SUBMIT."
   }
  ]
 }

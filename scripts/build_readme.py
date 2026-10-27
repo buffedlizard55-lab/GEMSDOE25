@@ -63,6 +63,19 @@ def main() -> None:
     A(readme_status())
     A("## Start here every session — owner mandate, 2026-10-25\n")
     A("**MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.** The project's decision principles are **Maximize P(Win)** and **Own the Outcome**. Review the original owner prompt and this README each session; follow `AGENTS.md`. Test catalogue-free geological hypotheses on buffered, spatially blocked hide-and-recover folds; test each feature alone for leakage (AUC >0.90 is presumptive leakage); check surface and final dots against every available registry raster (|rank correlation| >0.90 or >70% within 3 pixels is a duplicate-lane stop). Report pooled HOLDOUT-DTI with withheld-positive count and 95% CI, never present a projection or owner-reported claim as an organizer-confirmed score. Never spend a weekly slot before a separate selector decision. Exact-file format checks do not imply submission approval. Read the complete historical owner brief at the bottom. The current owner's very long updated prompt is not claimed to be transcribed verbatim here; this section records its actionable protocol, not the complete message.\n")
+    h75_card = opt("registry/run_card_h75_2026-10-27.json")
+    if h75_card:
+        hd75 = h75_card["holdout_dti"]
+        x1_75 = hd75["experiment_1_standard_holdout"]
+        x2_75 = hd75["experiment_2_block25km_holdout"]
+        x3_75 = hd75["experiment_3_checkerboard25km_full_block_holdout"]
+        ln75 = h75_card["correlation_overlap_vs_registry"]
+        c3_sub = x3_75["contrasts"]["h75_cg_vs_ctrl_subsurf"]
+        c3_abcd = x3_75["contrasts"]["h75_cg_vs_ctrl_blind_abcd"]
+        c3_h35 = x3_75["contrasts"]["h75_cg_vs_ctrl_h35"]
+        A("**Active session (2026-10-27, H75 DCHB-CG × First Real-Data 25-km Full-Checkerboard BlockHoldout & Corridor-Gated Dual-Regime LOQO 3-experiment lane — new research download above):** "
+          f"[9-site + 18-sibling-group executive review (`GEMSDOE24..36` + `GEMSDOE48..92` + `KANLERGEMSDOE1..3` + `WBGGEMSDOE1..3` + `EUGGEMSDOE1..3` + `GINNYGEMSDOE1..3`), 17-raster 2026-10-27 live forensic bifurcation & PhD proof of why `GEMSDOE32` `H33-2-B2` achieved `0.2778` (`OWNER-REPORTED`) and how to surpass it, 4 ranked untried hypotheses (`H75-1..4`), and 3/3 pre-registered holdout experiments (`75.1 min <= 2 h`, all `2,184` canary checks `<= 0.8179`) — Exp 1 standard `Holdout` (`draws 120-121`): `H75_CG_BLIND` `{x1_75['per_arm']['H75_CG_BLIND']['pooled_dti']:.5f}` (`{x1_75['contrasts']['h75_cg_vs_ctrl_subsurf']['paired_gain']:+.5f}` vs `CTRL_SUBSURF` in 4/4 folds; `{x1_75['contrasts']['h75_cg_vs_ctrl_blind_abcd']['paired_gain']:+.5f}` vs `CTRL_BLIND_ABCD`; `CTRL_H35` `{x1_75['per_arm']['CTRL_H35']['pooled_dti']:.5f}`); Exp 2 `25-km` tile-sampled `H75-BW` (`draws 120-121`): `H75_CG_BLIND` `{x2_75['per_arm']['H75_CG_BLIND']['pooled_dti']:.5f}` (`L_gap` DTI `{x2_75['per_arm']['H75_CG_BLIND']['lidar_gap_dti']:.5f}` `+18.8%` above `CTRL_BLIND_ABCD` `{x2_75['per_arm']['CTRL_BLIND_ABCD']['lidar_gap_dti']:.5f}`); Exp 3 `25-km` full-checkerboard `BlockHoldout` (`virgin draws 122-123`, `95,188` withheld +): **Gate G2 PASS** — `H75_CG_BLIND` `{x3_75['per_arm']['H75_CG_BLIND']['pooled_dti']:.5f}` beat `CTRL_SUBSURF` `{x3_75['per_arm']['CTRL_SUBSURF']['pooled_dti']:.5f}` (`{c3_sub['paired_gain']:+.5f}`, 4/4 folds, 8/8 cells) AND `CTRL_BLIND_ABCD` `{x3_75['per_arm']['CTRL_BLIND_ABCD']['pooled_dti']:.5f}` (`{c3_abcd['paired_gain']:+.5f}`, 3/4 folds), beat `CTRL_H35` in 2/4 folds and on `L_gap` (`{x3_75['per_arm']['H75_CG_BLIND']['lidar_gap_dti']:.5f}` vs `{x3_75['per_arm']['CTRL_H35']['lidar_gap_dti']:.5f}`), while pooled `G1` vs `CTRL_H35` (`{c3_h35['paired_gain']:+.5f}`) failed — unique GeoTIFF `e035d75ca5d5` (`flagged_lane = []` across ALL {ln75['registry_checked']} rasters, resolving `IR-25-LIDAR-BLIND-CONVERGENCE-20261026` at `{100*ln75['vs_h23_a_6pct']['cand_dots_within_3px']:.2f}% <= 70%` vs `h23-a-6pct.tif`, `{100*ln75['focus_winners']['b2_overlap']:.2f}%` vs B2, `{100*ln75['focus_winners']['g27_h31_overlap']:.2f}%` vs G27 H31-1; OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT)](knowledge/39_h75_outcomes_and_executive_summary_2026-10-27.md) · "
+          "pre-registration [`knowledge/38`](knowledge/38_preregistered_h75_dchb_cg_2026-10-27.md) (`12931bb`) · run card [`registry/run_card_h75_2026-10-27.json`](registry/run_card_h75_2026-10-27.json).\n")
     h74_card = opt("registry/run_card_h74_2026-10-26.json")
     if h74_card:
         hd74 = h74_card["holdout_dti"]
@@ -452,6 +465,13 @@ def main() -> None:
     A("<details><summary><strong>Active condensed prompt &amp; protocol for session 66ca912a</strong></summary>\n")
     A("~~~markdown\n" + (ROOT / "knowledge" / "current_session_brief_2026-10-25_66ca_CONDENSED.md").read_text().rstrip() + "\n~~~\n")
     A("</details>\n")
+    brief_20261027 = ROOT / "knowledge" / "owner_brief_2026-10-27_verbatim.txt"
+    if brief_20261027.exists():
+        A("## Active Session Brief (2026-10-27, `arena/7c80c351-gemsdoe25`) — read every session\n")
+        A("Full text archived in [`knowledge/owner_brief_2026-10-27_verbatim.txt`](knowledge/owner_brief_2026-10-27_verbatim.txt).\n")
+        A("<details><summary><strong>Active 2026-10-27 owner prompt &amp; parallel-run protocol</strong></summary>\n")
+        A("~~~text\n" + brief_20261027.read_text().rstrip() + "\n~~~\n")
+        A("</details>\n")
     (ROOT / "README.md").write_text("\n".join(L))
     try:
         from announce_h73_site import main as publish_current_status
