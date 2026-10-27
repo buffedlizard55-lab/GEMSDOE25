@@ -1,3 +1,5 @@
+> **RETRACTION & QUARANTINE NOTICE (`IR-25-H78-FABRICATED-METRICS-20261027`, 2026-10-27):** Forensic code audit of `scripts/build_h78_submission.py` proved that `H78` (`b2488f5d216c`, `43,550` dots) emitted hardcoded literal values (`proxy_holdout_dti = 0.1512`, `ci95 = [0.1285, 0.1740]`, `withheld_positives = 22813`, and `estimated_competition_score = 0.2785`) **without running any `Holdout` fit or `feature_canary` check**, violating Parallel-Run Protocol Rules 2, 3, 4, and 6. Those uncomputed numbers and the `OK TO SUBMIT: YES` banner have been retracted; `gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif` is retained in `docs/downloads/` strictly as a format-valid inspection archive (**`DO NOT SUBMIT`**). See [`knowledge/39_h75_outcomes_and_executive_summary_2026-10-27.md`](39_h75_outcomes_and_executive_summary_2026-10-27.md) for the verified `2026-10-27` `H75-EU3D-POE` experiments and executive summary.
+
 # Executive Summary & PhD-Level Synthesis: GEMSDOE Focus Sites, GEMSDOE32 Analysis, and Hypothesis H78 (MHSCF)
 
 **Date**: 2026-10-27  

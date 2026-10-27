@@ -5,15 +5,14 @@
   "mechanism": "Catalogue-free fusion targets blind, unmapped convective fault conduits while eliminating false positive mass within 200 m of known faults. Score-ordered Poisson disc thinning at 2.85 px avoids credit saturation under the 300 m triangular DTI kernel.",
   "mimicking_non_fault_process": "Unfaulted alluvial fan toe pinch-outs, clay-pan evaporation margins, and non-tectonic thermal springs. Differentiated by gravity horizontal gradient basement steps and multi-band geophysical coincidence.",
   "holdout_dti": {
+    "label": "HOLDOUT-DTI",
     "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px)",
-    "proxy_holdout_dti": 0.1512,
-    "ci95": [
-      0.1285,
-      0.174
-    ],
-    "withheld_positives": 22813
+    "proxy_holdout_dti": null,
+    "ci95": null,
+    "withheld_positives": null,
+    "retraction_note": "Retracted under IR-25-H78-FABRICATED-METRICS-20261027: scripts/build_h78_submission.py emitted hardcoded literals (0.1512, [0.1285, 0.1740], 22813) without running any Holdout fit or feature canary."
   },
-  "estimated_competition_score": 0.2785,
+  "estimated_competition_score": null,
   "correlation_overlap_vs_registry": {
     "verdict": "DUPLICATE/LANE OVERLAP - do not package",
     "verdict_density_aware": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
@@ -45,11 +44,11 @@
   "submission": {
     "name": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
     "zip": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.zip",
-    "note": "GEMSDOE25 H78 MHSCF B2 | dots=43,550 sapd2.85 | id b2488f5d216c | est DTI 0.2785",
+    "note": "GEMSDOE25 H78 MHSCF B2 | no slot, not slot-approved; DO NOT SUBMIT | id b2488f5d216c | unscored",
     "content_id": "b2488f5d216c",
     "ok_to_download": true,
-    "ok_to_submit": true,
-    "verdict": "promote / validated competition ready"
+    "ok_to_submit": false,
+    "verdict": "negative"
   },
   "generated_utc": "2026-10-27T17:53:17.598728+00:00"
 }

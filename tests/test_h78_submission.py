@@ -35,7 +35,9 @@ def test_h78_format_validation():
 
 def test_h78_run_card():
     card = json.loads((ROOT / "registry" / "run_card_h78_2026-10-27.json").read_text())
-    assert card["estimated_competition_score"] == 0.2785
-    assert card["submission"]["ok_to_submit"] is True
+    assert card["estimated_competition_score"] is None
+    assert card["holdout_dti"]["proxy_holdout_dti"] is None
+    assert card["submission"]["ok_to_submit"] is False
     assert card["submission"]["ok_to_download"] is True
+    assert "DO NOT SUBMIT" in card["submission"]["note"]
     assert len(card["submission"]["note"]) <= 120

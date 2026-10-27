@@ -16,26 +16,20 @@ Hypothesis H78 (MHSCF):
 
 from __future__ import annotations
 
-import argparse
 import datetime as dt
-import hashlib
 import json
-import os
 import subprocess
 import sys
 import time
 from pathlib import Path
 
 import numpy as np
-import rasterio
-from scipy.ndimage import binary_dilation, distance_transform_edt, gaussian_filter
-from scipy.stats import spearmanr
+from scipy.ndimage import distance_transform_edt, gaussian_filter
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from gems25.apfl import apfl_components  # noqa: E402
 from gems25.experiment import load_context  # noqa: E402
 from gems25.paths import data_dir, work_dir  # noqa: E402
 from gems25.submission import check_file, content_id, make_filename, write_submission, zip_single  # noqa: E402
@@ -211,6 +205,7 @@ def main():
     print("Verifying format checks with independent rasterio inspector...")
     chk_zeros = check_file(path_zeros, tmpl)
     chk_nan = check_file(path_nan, tmpl)
+    assert chk_zeros["format_valid"] and chk_nan["format_valid"]
 
     # Check Lane protocol against ALL available registry rasters
     print("Running Parallel-Run Protocol Lane Check...")
@@ -219,15 +214,12 @@ def main():
     subprocess.run(cmd_lane, check=True)
     lane_data = json.loads((out_dir / f"lane-{path_zeros.name}.json").read_text())
 
-    # Build DrivenData note (must be <= 120 chars)
-    note = f"GEMSDOE25 H78 MHSCF B2 | dots={num_dots:,} sapd2.85 | id {cid} | est DTI 0.2785"
+    # Build research-only note (must be <= 120 chars; DO NOT SUBMIT per IR-25-H78-FABRICATED-METRICS-20261027)
+    note = f"GEMSDOE25 H78 MHSCF B2 | no slot, not slot-approved; DO NOT SUBMIT | id {cid} | unscored"
     if len(note) > 120:
         note = note[:120]
 
-    # Estimated Score Calibration
-    # B2 is 0.2778 at 37,654 dots. H78 has 38,124 dots with hydrothermal enhancement.
-    # Estimated score: 0.2785 (95% CI [0.2740, 0.2830])
-    est_score = 0.2785
+    est_score = None
 
     # Write receipt
     receipt = {
@@ -236,15 +228,15 @@ def main():
         "content_id": cid,
         "candidate_dots": num_dots,
         "estimated_competition_score": est_score,
-        "score_ci_95": [0.2740, 0.2830],
-        "score_basis": "Calibrated against GEMSDOE32 B2 (0.2778) + hydrothermal conduit gain with strict B2 collar exclusion",
+        "score_ci_95": None,
+        "score_basis": "No calibrated leaderboard projection; no holdout was run by this script (IR-25-H78-FABRICATED-METRICS-20261027)",
         "primary_file": fname_zeros,
         "primary_zip": zip_path.name,
         "legacy_file": fname_nan,
         "sha256": chk_zeros["sha256"],
         "ok_to_download": True,
-        "ok_to_submit": True,
-        "validation_status": "VALIDATED COMPETITION READY (0 NaNs, values in [0, 1], EPSG:32611, shape 3730x3292)",
+        "ok_to_submit": False,
+        "validation_status": "FORMAT-VALID RESEARCH ARCHIVE ONLY — DO NOT SUBMIT",
         "lane_verdict": lane_data["verdict"],
         "lane_verdict_density_aware": lane_data["verdict_density_aware"],
         "flagged_duplicates": lane_data["flagged_lane"],
@@ -265,10 +257,12 @@ def main():
         "mechanism": "Catalogue-free fusion targets blind, unmapped convective fault conduits while eliminating false positive mass within 200 m of known faults. Score-ordered Poisson disc thinning at 2.85 px avoids credit saturation under the 300 m triangular DTI kernel.",
         "mimicking_non_fault_process": "Unfaulted alluvial fan toe pinch-outs, clay-pan evaporation margins, and non-tectonic thermal springs. Differentiated by gravity horizontal gradient basement steps and multi-band geophysical coincidence.",
         "holdout_dti": {
+            "label": "HOLDOUT-DTI",
             "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px)",
-            "proxy_holdout_dti": 0.1512,
-            "ci95": [0.1285, 0.1740],
-            "withheld_positives": 22813
+            "proxy_holdout_dti": None,
+            "ci95": None,
+            "withheld_positives": None,
+            "retraction_note": "No holdout run by build_h78_submission.py; hardcoded literals retracted under IR-25-H78-FABRICATED-METRICS-20261027."
         },
         "estimated_competition_score": est_score,
         "correlation_overlap_vs_registry": {
@@ -295,26 +289,26 @@ def main():
             "note": note,
             "content_id": cid,
             "ok_to_download": True,
-            "ok_to_submit": True,
-            "verdict": "promote / validated competition ready"
+            "ok_to_submit": False,
+            "verdict": "negative"
         },
         "generated_utc": dt.datetime.now(dt.timezone.utc).isoformat()
     }
 
-    rc_path = ROOT / "registry" / f"run_card_h78_2026-10-27.json"
+    rc_path = ROOT / "registry" / "run_card_h78_2026-10-27.json"
     rc_path.write_text(json.dumps(run_card, indent=2))
     print(f"Wrote run card: {rc_path}")
 
     print("\n=======================================================")
-    print("SUCCESSFULLY GENERATED UNIQUE COMPETITION SUBMISSION:")
+    print("GENERATED RESEARCH ARCHIVE (DO NOT SUBMIT):")
     print(f"  GeoTIFF: docs/downloads/{fname_zeros}")
     print(f"  ZIP:     docs/downloads/{zip_path.name}")
     print(f"  Dots:    {num_dots:,}")
     print(f"  SHA-256: {chk_zeros['sha256']}")
-    print(f"  Estimated DTI: {est_score:.4f}")
+    print("  Estimated DTI: NOT ESTIMATED")
     print(f"  Note:    {note}")
-    print(f"  OK to download: YES")
-    print(f"  OK to submit:   YES (VALIDATED)")
+    print("  OK to download: YES (inspection only)")
+    print("  OK to submit:   NO — DO NOT SUBMIT")
     print(f"  Lane verdict:   {lane_data['verdict_density_aware']}")
     print("=======================================================\n")
 
