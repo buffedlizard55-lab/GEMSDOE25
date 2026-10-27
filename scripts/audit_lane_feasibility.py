@@ -11,6 +11,7 @@ import rasterio
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT/'src'), str(ROOT/'scripts')]
 from gems25.lane_feasibility import capacity_bound, halo_capacity  # noqa: E402
+from gems25.paths import data_dir  # noqa: E402
 from gems25.submission import sha256_file  # noqa: E402
 from restore_data import restore  # noqa: E402
 
@@ -19,6 +20,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--restore', action='store_true', help='Use existing hash-pinned mirror restorer')
     parser.add_argument('--output', type=Path, default=ROOT/'evidence/lane_feasibility_2026-10-26.json')
+    parser.add_argument('--preregistration-commit', default='06612d8',
+                        help='Commit freezing this audit; default is the original 2026-10-26 design')
     args = parser.parse_args()
     manifest = json.loads((ROOT/'registry/data_manifest.json').read_text())['files']
     suffix = '13gems_20261001_r13-lattice-s5_v2_nan-outside.tif'
@@ -27,8 +30,8 @@ def main():
     arrays, profiles, pins = [], [], []
     for entry in entries:
         if args.restore:
-            restore(entry, ROOT/'data')
-        path = ROOT/'data'/entry['dest']
+            restore(entry, data_dir())
+        path = data_dir()/entry['dest']
         digest = sha256_file(path)
         if digest != entry['sha256']:
             raise ValueError(f'Hash mismatch: {path}')
@@ -45,7 +48,7 @@ def main():
     cases = [capacity_bound(geometry['eligible_pixels'], geometry['uncovered_pixels'], k)
              for k in (37654, 38854, 40199, 44090, 70524)]
     output = dict(evidence_class='COMPUTED GEOMETRY; not HOLDOUT-DTI or an organizer score',
-                  preregistration_commit='06612d8', inputs=pins, grid_match=True, geometry=geometry,
+                  preregistration_commit=args.preregistration_commit, inputs=pins, grid_match=True, geometry=geometry,
                   cases=cases, proof='At most U distinct candidate pixels can avoid the halo; at least max(0,K-U) must overlap.',
                   scope='Necessary condition against one registry raster. Not a full registry uniqueness check.',
                   decision='STOP: all preregistered target densities impossible' if all(c['impossible'] for c in cases)

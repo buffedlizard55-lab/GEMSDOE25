@@ -72,10 +72,8 @@ def test_negative_rank_correlation_is_checked_by_absolute_magnitude():
     assert result[0]["duplicate"] is True
 
 
-def test_density_aware_lane_separates_dense_lattice_from_true_duplicates():
-    """knowledge/22 section 4: halo coverage >= 0.70 makes the literal candidate-side
-    statistic non-discriminative (a random set scores the coverage); the symmetric
-    statistic decides there, while the literal flag stays reported."""
+def test_density_diagnostics_never_override_the_literal_gate():
+    """A symmetric density diagnostic is informational; the literal rule decides."""
     from scripts.validate_gem_candidate import lane_is_clear_density_aware
 
     shape = (60, 60)
@@ -97,7 +95,8 @@ def test_density_aware_lane_separates_dense_lattice_from_true_duplicates():
     assert row["reverse_overlap_within_3px"] < 0.70
     assert row["duplicate_lane"] is False         # density-aware verdict differs
     assert lane_is_clear([row]) is False
-    assert lane_is_clear_density_aware([row]) is True
+    assert lane_is_clear_density_aware([row]) is False
+    assert lane_is_clear_density_aware([row], registry_complete=True) is False
     assert lane_is_clear_density_aware([]) is False  # fails closed
 
     # A candidate that really does sit on the lattice stays a duplicate either way.

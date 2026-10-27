@@ -7,10 +7,7 @@ fit because shared caches are absent. This synchronization helper never creates 
 from __future__ import annotations
 
 import html
-import json
-from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
 MARK = "H73-BW-2026-10-26"
 
 
@@ -62,56 +59,8 @@ def publish_banner(page: str, banner: str) -> str:
 
 
 def main() -> None:
-    pm_card = json.loads((ROOT / "registry" / "run_card_h73_2026-10-26.json").read_text())
-    bw_card = json.loads((ROOT / "registry" / "run_card_h73_bw_2026-10-26.json").read_text())
-    preflight = json.loads((ROOT / "evidence" / "h73_bw_preflight_2026-10-26.json").read_text())
-    lane_audit = json.loads((ROOT / "evidence" / "h73_lane_extended.json").read_text())
-
-    for rel in ("docs/index.html", "index.html", "docs/current-review.html", "docs/executive-summary.html"):
-        path = ROOT / rel
-        page = path.read_text()
-        banner = h73bw_banner(pm_card, bw_card, preflight, lane_audit, docs_page=(rel != "index.html"))
-        updated = publish_banner(page, banner)
-        updated = updated.replace(
-            "26 OCT 2026 · RESEARCH-ARCHIVE DOWNLOAD: YES (INSPECTION ONLY) · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT",
-            "PRIOR H72-3 ARCHIVE · RESEARCH INSPECTION ONLY · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT",
-        )
-        path.write_text(updated)
-        print(f"{rel}: H73-BW status synchronized")
-
-    readme_path = ROOT / "README.md"
-    readme = readme_path.read_text()
-    marker = f"<!-- {MARK} -->"
-    h = pm_card["holdout_dti"]
-    file_name = pm_card["submission_name"]
-    block = (
-        f"{marker}\n"
-        f"**H73-BW diagnostic: {bw_card['status'].upper()} · NO NEW TIF · OK TO SUBMIT: NO.** "
-        f"The evaluation-only block selector is blocked before fit because {len(preflight['errors'])} cache-gate errors were recorded. "
-        f"Prior H73-PM research GeoTIFF [{file_name}](docs/downloads/{file_name}) "
-        f"(content id `{pm_card['content_id']}`, {pm_card['positive_pixels']:,} dots) is for inspection only; "
-        f"the literal lane audit flags the r13 lattice, so DO NOT SUBMIT. Its HOLDOUT-DTI is {h['pm_deapron_pooled']:.5f} "
-        f"vs same-run H35 {h['ctrl_h35_pooled']:.5f}, paired gain {h['paired_gain_vs_h35']:+.5f}, "
-        f"95% CI [{h['paired_ci95_vs_h35'][0]:+.5f}, {h['paired_ci95_vs_h35'][1]:+.5f}], "
-        f"{h['withheld_positive_occurrences']:,} withheld positives; this is not a leaderboard estimate. "
-        f"No H73-BW metric or raster was produced. [H73-BW design](knowledge/34_h73_bw_block_selector_2026-10-26.md) · "
-        f"[preflight](evidence/h73_bw_preflight_2026-10-26.json) · "
-        f"[run card](registry/run_card_h73_bw_2026-10-26.json) · "
-        f"[follow-up review](knowledge/35_h73_bw_followup_review_2026-10-26.md).\n\n"
-    )
-    if marker in readme:
-        start = readme.index(marker)
-        end = readme.find("\n\n", start)
-        if end < 0:
-            raise ValueError("README H73-BW marker has no paragraph terminator")
-        readme = readme[:start] + block.rstrip() + readme[end:]
-    else:
-        heading = "## Current decision — 2026-10-26\n"
-        if heading not in readme:
-            raise ValueError("README current-decision heading not found")
-        readme = readme.replace(heading, heading + "\n" + block, 1)
-    readme_path.write_text(readme)
-    print("README: H73-BW status synchronized")
+    """Retired: the old 2026-10-26 banner must not overwrite current status."""
+    print("Historical H73 banner publisher retired; use scripts/build_site.py for current status.")
 
 
 if __name__ == "__main__":

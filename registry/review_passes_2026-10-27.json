@@ -1,0 +1,42 @@
+{
+  "date_utc": "2026-10-27",
+  "branch": "arena/e4d14c1d-gemsdoe25",
+  "scope": "Three implementation and review passes on the preregistered continuation, public claims and automated gates; no model fitting or new TIFF.",
+  "pass_1_implement_and_verify": {
+    "preregistration_commit": "95149bc7373fc939313c1bb09cbc8940ed3fad78",
+    "actions": [
+      "Restored SHA-pinned public owner mirrors, rebuilt the existing static feature stack and reran the literal 3-pixel lattice geometry preflight.",
+      "Stopped before any model fit or placement: the 37,654-dot frozen budget forces at least 82.7004% overlap with r13, above 70%.",
+      "Independently re-audited the archived H78 TIFF/ZIP and recomputed its literal 100% r13 overlap; retracted its unmeasured score, holdout and submission-ready claims.",
+      "Re-audited the highest supplied raster per requested site and verified all nine pinned public source blobs; corrected the GEMSDOE28 winner mismatch."
+    ]
+  },
+  "pass_2_bugs_assumptions_and_edge_cases": {
+    "actions": [
+      "Replaced the shared surface/final gates with full-footprint rank checks, a pinned template and declared hash inventory, grid alignment and nonzero duplicate/unverified exits; retired the misleading density-aware extended summary and unsafe historical publishers.",
+      "Strengthened the structural promotion receipt to require same-run confirmation and positive paired CI, all-feature fold/draw canaries, exact-file and full-registry surface/final receipts, and whole-array range validation.",
+      "Fixed the independent format audit to verify pinned template/labels and grids, handle wrong shapes and reject invalid or missing-required ZIPs; added regression tests.",
+      "The first full suite exposed a historical ROD runner source-hash mismatch from an unnecessary retirement guard. The guard was removed, restoring the saved evaluator hash; the existing output directory and hardened legacy gates prevent silent overwrite/clearance."
+    ]
+  },
+  "pass_3_prompt_site_and_clean_environment": {
+    "actions": [
+      "Rebuilt README and all public entry points from corrected sources; preserved the original brief and labeled the current handoff condensed rather than verbatim.",
+      "Confirmed all nine score claims are OWNER-REPORTED, source-mirror hashes are not organizer provenance, new-run metrics are null, the prior artifact is DO NOT SUBMIT, and a separate selector is required.",
+      "Checked static links, exact-file evidence, source-code formatting, Python compilation and Git patch hygiene."
+    ],
+    "tests": {
+      "full_data": "395 passed",
+      "clean_environment": "383 passed, 12 skipped because mirrored data were not restored",
+      "ruff_check_all": "passed",
+      "compileall": "passed",
+      "git_diff_check": "passed"
+    }
+  },
+  "limitations": [
+    "The prompt's single method paragraph was not uniquely identifiable; the previous H74 next step was a provisional continuation, not owner confirmation.",
+    "The strict lane makes the frozen budget impossible; a lower budget is not proven feasible or competitive.",
+    "No fresh blocked holdout, per-feature canaries, full-registry candidate clearance, organizer score, approved TIFF or slot decision exists.",
+    "Public source hashes do not authenticate organizer data, score receipts, validator behavior or zero-padding acceptance."
+  ]
+}

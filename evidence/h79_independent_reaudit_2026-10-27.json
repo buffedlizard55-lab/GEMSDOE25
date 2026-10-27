@@ -1,0 +1,65 @@
+{
+ "file": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif",
+ "bytes": 824568,
+ "sha256": "e98b9a35609db124f5838cff415a1b0bdf462d65a746161c0bee706add3983d8",
+ "meta": {
+  "count": 1,
+  "dtypes": [
+   "float32"
+  ],
+  "crs": "EPSG:32611",
+  "epsg": 32611,
+  "shape": [
+   3730,
+   3292
+  ],
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "nodata": null
+ },
+ "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+ "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+ "footprint_px": 5167373,
+ "positive_pixels": 37654,
+ "distinct_values": [
+  0.0,
+  1.0
+ ],
+ "outside_convention": "zeros",
+ "checks": {
+  "template_sha256_matches_pin": true,
+  "labels_sha256_matches_pin": true,
+  "template_crs_shape_transform_matches_expected": true,
+  "template_footprint_px_is_expected": true,
+  "labels_grid_matches_template": true,
+  "single_band": true,
+  "dtype_float32": true,
+  "crs_epsg_matches_template": true,
+  "shape_equals_template": true,
+  "transform_equals_template": true,
+  "footprint_all_finite": true,
+  "footprint_values_in_0_1": true,
+  "outside_all_zero": true,
+  "outside_all_nan": false,
+  "strict_whole_array_0_le_x_le_1": true,
+  "no_emission_on_catalogue": false
+ },
+ "all_hard_checks_pass": false,
+ "zip": {
+  "file": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.zip",
+  "sha256": "f0fa190a5aed30577f949fcac118e28fcac86320cc765e371957536eb1eac1d7",
+  "members": [
+   "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif"
+  ],
+  "contains_exactly_candidate_bytes": true
+ },
+ "scope": "local exact-file format and catalogue-mask checks only; no organizer or slot approval",
+ "catalogue_positive_pixels": 416,
+ "source": "Existing H79 TIFF from origin/main at 34d36b4463fe6c7f87366ecf8472f31f819e5d53"
+}

@@ -21,6 +21,7 @@ def J(rel: str):
 
 
 def main() -> None:
+    raise SystemExit("Historical registration retired: density-aware wording cannot override literal lane failure. Do not re-register these files.")
     ana = J("evidence/h73_pm_screen/analysis.json")
     build = J("evidence/h73_build/build_receipt.json")
     chk_z = J(f"docs/downloads/checks-{STEM_Z}.json")

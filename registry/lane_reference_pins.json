@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "note": "Additional historical local references absent from registry/submissions.json. SHA pins prove file integrity, not a valid score or eligibility. A failure against either remains a stop.",
+  "rasters": [
+    {
+      "path": "docs/downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-nan.tif",
+      "sha256": "21c325e54cf255b830e45fb7eaff4cbf31219704cc973fb6f5fce0a823b3d603"
+    },
+    {
+      "path": "docs/downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
+      "sha256": "be78ded8d7073512d9fc71677c37cd3528e1ff80fb3c5cb8c02080417e1217e5"
+    }
+  ]
+}
