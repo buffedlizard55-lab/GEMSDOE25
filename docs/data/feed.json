@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-27T20:09:06Z",
+ "generated_utc": "2026-10-27T21:16:48Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"9ef545121215d66ba50352fef433fd23\""
+   "detail": "HTTP 200; ETag: W/\"6f22efdffab844899b4141fb54c56959\""
   },
   {
    "kind": "source",
@@ -105,7 +105,7 @@
    "url": "https://www.usgs.gov/3d-elevation-program",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Tue, 27 Oct 2026 20:08:36 GMT; ETag: W/\"1793131716\""
+   "detail": "HTTP 200; Last-Modified: Tue, 27 Oct 2026 21:16:19 GMT; ETag: W/\"1793135779\""
   },
   {
    "kind": "source",
@@ -145,7 +145,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"ec5f8fb60df15b2524b2bb8660b574dd\""
+   "detail": "HTTP 200; ETag: W/\"d57e06cee214b45efda6debee4a3c23f\""
   },
   {
    "kind": "source",
@@ -153,7 +153,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"166e46cb4794181a911edbc45a4220d7\""
+   "detail": "HTTP 200; ETag: W/\"3b23092986de0787b36353a75f9cdea6\""
   },
   {
    "kind": "source",
@@ -177,7 +177,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"4bd38846e50e9dbe920c6efe0bb73848\""
+   "detail": "HTTP 200; ETag: W/\"146b82564fae594cd0c8271479f164fb\""
   },
   {
    "kind": "source",
@@ -185,7 +185,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"b01ca5d90a114a0c97dd12278d93ff73\""
+   "detail": "HTTP 200; ETag: W/\"21283b869214c9a3d024912022de4796\""
   },
   {
    "kind": "source",
@@ -193,7 +193,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"9ef545121215d66ba50352fef433fd23\""
+   "detail": "HTTP 200; ETag: W/\"6f22efdffab844899b4141fb54c56959\""
   },
   {
    "kind": "source",
@@ -209,7 +209,7 @@
    "url": "https://www.usgs.gov/data/quaternary-fault-mapping-zapata-and-blanca-sections-sangre-de-cristo-fault-zone-high",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Tue, 27 Oct 2026 20:08:45 GMT; ETag: W/\"1793131725\""
+   "detail": "HTTP 200; Last-Modified: Tue, 27 Oct 2026 21:16:27 GMT; ETag: W/\"1793135787\""
   },
   {
    "kind": "source",
@@ -221,19 +221,11 @@
   },
   {
    "kind": "source",
-   "title": "State Geologic Map Compilation (SGMC) Geodatabase of the Conterminous United States (USGS DS 1052)",
-   "url": "https://www.usgs.gov/data/state-geologic-map-compilation-sgmc-geodatabase-conterminous-united-states",
-   "verified_in_repo": true,
-   "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Tue, 27 Oct 2026 20:08:47 GMT; ETag: W/\"1793131727\""
-  },
-  {
-   "kind": "source",
    "title": "GEMSDOE32 repository & shipped B=2 GeoTIFF (h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif)",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"74ccd82ad1883748e00365669d124a55\""
+   "detail": "HTTP 200; ETag: W/\"d1febba19b955adbf681e2845bce86cf\""
   },
   {
    "kind": "source",
@@ -241,7 +233,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE36",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"e843682097f2f7ad06cc8e512a3d0f62\""
+   "detail": "HTTP 200; ETag: W/\"a4ed0fd9827670245974df2de9650126\""
   },
   {
    "kind": "source",
@@ -265,7 +257,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"6ae287fde281272b3d55d3f40e5d4465\""
+   "detail": "HTTP 200; ETag: W/\"0d2e79923249ba45fbb8b3ed9b3a3d0f\""
   },
   {
    "kind": "source",
@@ -289,7 +281,7 @@
    "url": "https://doi.org/10.1007/BFb0006528",
    "verified_in_repo": false,
    "status": "ok",
-   "detail": "HTTP 200; ETag: \"3b99d5b075ae51f609e8c1190f7dc43b\""
+   "detail": "HTTP 200; ETag: \"69cab6d805878ca551838c39bf812a9b\""
   },
   {
    "kind": "source",
@@ -297,7 +289,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"6ae287fde281272b3d55d3f40e5d4465\""
+   "detail": "HTTP 200; ETag: W/\"0d2e79923249ba45fbb8b3ed9b3a3d0f\""
   },
   {
    "kind": "source",
@@ -306,6 +298,22 @@
    "verified_in_repo": false,
    "status": "unreachable",
    "detail": "ConnectionError"
+  },
+  {
+   "kind": "source",
+   "title": "USGS State Geologic Map Compilation (SGMC) Geodatabase of the Conterminous United States (DS-1052)",
+   "url": "https://doi.org/10.3133/ds1052",
+   "verified_in_repo": true,
+   "status": "ok",
+   "detail": "HTTP 200"
+  },
+  {
+   "kind": "source",
+   "title": "Live 2026-10-27 GitHub Repository Audit of Focus Sites GEMSDOE24..36 & Sibling Portfolio GEMSDOE19..92",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
+   "verified_in_repo": true,
+   "status": "ok",
+   "detail": "HTTP 200; ETag: W/\"d1febba19b955adbf681e2845bce86cf\""
   },
   {
    "kind": "sciencebase",
@@ -501,7 +509,7 @@
    "title": "GEMSDOE25",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25",
    "status": "ok",
-   "detail": "pushed_at 2026-10-27T20:08:17Z"
+   "detail": "pushed_at 2026-10-27T21:16:02Z"
   },
   {
    "kind": "sibling-repo",
