@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "generated_utc": "2026-10-03",
+ "generated_utc": "2026-10-27",
  "legend": {
   "verified": "true = I read the cited page/file this session; false = carried over or unreachable"
  },
@@ -384,20 +384,6 @@
    "reachable_from_sandbox_bash": false
   },
   {
-   "id": "usgs-sgmc-ds1052",
-   "title": "State Geologic Map Compilation (SGMC) Geodatabase of the Conterminous United States (USGS DS 1052)",
-   "publisher": "U.S. Geological Survey",
-   "kind": "official dataset",
-   "url": "https://www.usgs.gov/data/state-geologic-map-compilation-sgmc-geodatabase-conterminous-united-states",
-   "verified": true,
-   "verified_utc": "2026-10-25",
-   "used_for": "H37-3 candidate (knowledge/22): SGMC geologic-map fault distance/strike columns from the pinned derived raster data/external/derived_sgmc_faults_100m_u8.tif; earlier session used related SGMC rasters",
-   "how_verified": "USGS data page read in full this session (session 7): SGMC = seamless spatial database of 48 state geologic maps ranging 1:50,000 to 1:1,000,000 scale; Horton, San Juan & Stoeser 2017, USGS Data Series 1052; DOI 10.5066/F7WH2N65; rights CC0 1.0; page recommends the 2026 GeMS update (DOI 10.5066/P1A3DQZK). The earlier entry's 'how_verified' cited only local SHA-256 pins, which verify the owner-mirror bytes, not this page -- corrected.",
-   "caveats": "Source state maps vary 1:50,000-1:1,000,000, so positional accuracy at 100 m is the limiting caveat; units are not reconciled across state boundaries. The derived raster in the mirror is not byte-traced to vector feature classes here.",
-   "license": "CC0 1.0 (page 'Rights')",
-   "reachable_from_sandbox_bash": false
-  },
-  {
    "id": "owner-mirror-gemsdoe32",
    "title": "GEMSDOE32 repository & shipped B=2 GeoTIFF (h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif)",
    "publisher": "Owner public GitHub repository (buffedlizard55-lab/GEMSDOE32)",
@@ -532,6 +518,34 @@
    "caveats": "Not fetched or verified live in this sandbox; any future external ingest requires pre-production epoch filtering to avoid geothermal-plant pumping subsidence leakage.",
    "license": "NASA Open Data policy (unverified in sandbox)",
    "reachable_from_sandbox_bash": false
+  },
+  {
+   "id": "usgs-sgmc-ds1052",
+   "title": "USGS State Geologic Map Compilation (SGMC) Geodatabase of the Conterminous United States (DS-1052)",
+   "url": "https://doi.org/10.3133/ds1052",
+   "publisher": "U.S. Geological Survey (Horton, San Juan & Stoeser, 2017)",
+   "kind": "official",
+   "used_for": "H79_sgmc_coulomb_react strike-aligned SGMC contact reactivation & basin-margin structural corridors (cached in data/external/sgmc_contacts_100m.tif)",
+   "verified": true,
+   "verified_utc": "2026-10-27",
+   "how_verified": "SHA-256 verified against registry/data_manifest.json and inspected raster geometry/values in data/external/sgmc_contacts_100m.tif",
+   "caveats": "Public-domain federal compilation; standalone leakage canary AUC = 0.7455 (standard) / 0.7393 (25-km block) <= 0.90.",
+   "license": "Public Domain (17 U.S.C. 105)",
+   "reachable_from_sandbox_bash": false
+  },
+  {
+   "id": "focus-9-github-20261027",
+   "title": "Live 2026-10-27 GitHub Repository Audit of Focus Sites GEMSDOE24..36 & Sibling Portfolio GEMSDOE19..92",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
+   "publisher": "buffedlizard55-lab GitHub organization",
+   "kind": "internal-mirror",
+   "used_for": "Up-to-the-minute 2026-10-27 commit SHAs, run cards, candidate GeoTIFF hashes, and duplicate/eligibility audit across GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36, and 70",
+   "verified": true,
+   "verified_utc": "2026-10-27",
+   "how_verified": "Direct gh api commit/tree/run_card inspection on 2026-10-27 plus pixel-exact raster verification in evidence/focus_sites_2026_10_27_audit.json",
+   "caveats": "Historical leaderboard scores reported in sibling READMEs remain OWNER-REPORTED claims, not ORGANIZER-CONFIRMED receipts.",
+   "license": "Repository internal",
+   "reachable_from_sandbox_bash": true
   }
  ]
 }

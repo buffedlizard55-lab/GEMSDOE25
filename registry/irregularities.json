@@ -841,6 +841,22 @@
    "issue": "Catalogue-free HGBs that include Family B (1-m LiDAR scarps L_step_max/L_ex_max and 100 m DEM scarps) converge onto >70% 3-px final-dot overlap with prior Family-B blind rasters even when pre-placement continuous surfaces have low rank correlation (worst |Spearman| = 0.2136 <= 0.90): in H74_BLIND (ABCD + EXTRAS + H34 + H74_RMPS, 78 cols), staging submodular emission (37,654 dots) hit 76.88% within 3 px of h23-a-6pct.tif and 74.52% within 3 px of H72-CF (1d7c1e9ea55f) because tree splits place >74% of top-probability ridges on exposed Quaternary scarps.",
    "evidence": "evidence/h74_blind_abcd_surface.json; evidence/h74_blind_abcd_stopped_lane.json; evidence/h74_blind_abcd_stopped_extended.json; evidence/h74_subsurf_lane_literal.json.",
    "resolution_or_action": "Pre-publish staging guard in scripts/build_h74_candidate.py halted immediately before writing any ABCD GeoTIFF to docs/downloads/. Pre-registered Experiment 3 (knowledge/36, virgin draws 112-113) isolated H74_RMPS in a 100% topography-free & catalogue-free subsurface stack (H74_SUBSURF, 51 ACD cols), reducing overlap to 53.24% vs h23-a-6pct.tif and 43.22% vs H72-CF (flagged_lane = [] across all 101 rasters)."
+  },
+  {
+   "id": "IR-25-H78-FABRICATED-HOLDOUT-AND-CI-FAILURE-20261027",
+   "severity": "high",
+   "status": "resolved",
+   "issue": "Merged PR #60 (commit 77be1ae, scripts/build_h78_submission.py & registry/run_card_h78_2026-10-27.json) hardcoded holdout_dti = 0.1512 (copied from H74 ctrl_h35_pooled), ci_95 = [0.1285, 0.1740] (copied from apfl2), and estimated_competition_score = 0.2785 without running HoldoutEvaluator, reported lane checks over 86 rasters instead of the full 103-raster registry (true max sparse overlap 58.59% on h19-c.tif + 3 literal dense-halo flags), set ok_to_submit = True without selector authorization, and introduced 36 ruff lint errors that broke main CI.",
+   "evidence": "evidence/h78_measured_holdout_audit_2026-10-27.json; docs/downloads/lane-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json; registry/run_card_h78_2026-10-27.json.",
+   "resolution_or_action": "Evaluated H78 on draws [60, 61] (22,813 withheld positives -> measured HOLDOUT-DTI = 0.058389, 95% CI [0.046604, 0.067958]), ran full 103-raster lane verification, retracted the uncalibrated 0.2785 score estimate, set ok_to_submit = False / slot_approved = False / verdict = 'negative' in registry/run_card_h78_2026-10-27.json and registry/submissions.json, and fixed all 36 ruff lint errors across scripts/."
+  },
+  {
+   "id": "IR-25-POE-RIBBON-VS-SUBSURF-LINEAGE-20261027",
+   "severity": "medium",
+   "status": "resolved",
+   "issue": "Two symmetric pre-publish staging duplicate stops bracketed blind model design: (1) Two-expert H79_POE_SGMC (82 cols: 56 crustal x 26 morpho, gamma_c=0.55) eliminated own-lineage convergence (47.21% <= 70% vs H72-CF and <=53.00% across all 27 sibling winners) but still overlapped GEMSDOE22's 309,814-px h23-a-6pct.tif DEM/LiDAR ribbon at 75.55% > 70%; (2) 55-column H79_SUBSURF (without H79_SGMC) cleared all 54 external sparse rasters (53.18% on h23-a-6pct.tif) but overlapped own-lineage H74_SUBSURF at 76.79% > 70% due to 51/55 shared static columns.",
+   "evidence": "evidence/h79_poe_sgmc_stopped_lane.json; evidence/h79_poe_sgmc_stopped_extended.json; evidence/h79_subsurf_stopped_lane.json; evidence/h79_subsurf_stopped_extended.json; evidence/h79_crustal_sgmc_lane_literal.json; evidence/h79_crustal_sgmc_lane_extended.json.",
+   "resolution_or_action": "Pre-publish staging guards halted both runs before touching docs/downloads/. Evaluating the exact 56-column zero-topography M_crustal expert from Exp 3 (H79_SUBSURF + H79_sgmc_coulomb_react = H79_CRUSTAL_SGMC, e7ad8a4bf3ed) broke own-lineage tie-breaking (49.69% <= 70% vs H74_SUBSURF) while keeping external sparse overlap <= 58.02% (55.49% on h23-a-6pct.tif, 23.54% on GEMSDOE32 B2), achieving flagged_lane = [] across all 103 registry rasters."
   }
  ]
 }

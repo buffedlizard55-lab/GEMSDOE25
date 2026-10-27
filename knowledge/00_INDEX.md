@@ -63,3 +63,6 @@
 | `27_preregistered_h71_hgpc_2026-10-26.md` | this session (`arena/71b61fac-gemsdoe25`): 5 ranked untried hypotheses (`H71-1..H71-5`) and frozen `H71-1` HGPC-BLIND DIRECT-emission screen (draws 70, 71) — committed **before any fit** |
 | `28_h71_outcomes_2026-10-26.md` | H71 3-experiment outcomes (all FAIL vs H35, all PASS vs crest), unique GeoTIFF `9eb0c31e5149` (15.4% vs B2; own-lineage 23.4%; DO NOT SUBMIT) |
 | `current_session_brief_2026-10-26_h71_CONDENSED.md` | condensed 2026-10-26 working brief (not verbatim) |
+| `39_preregistered_h79_cthm_poe_2026-10-27.md` | 2026-10-27 session (`arena/5e2cf679-gemsdoe25`): 4 ranked untried hypotheses (`H79-A..D`) and frozen 3-experiment `CTHM-PoE + SGMC-Coulomb` design on virgin draws `[114, 115]` & `[116, 117]` (committed at `b59b129` pre-fit) |
+| `40_h79_cthm_poe_outcome_2026-10-27.md` | 2026-10-27 H79 outcomes: 9-focus-site live audit (`GEMSDOE24..36`), PhD proof of `0.2778`, `Exp 1–3` results (`PoE +0.0116` vs single-HGB, `SGMC +0.0128` `4/4` folds), `PR #60` H78 remediation, and unique `H79_CRUSTAL_SGMC` GeoTIFF `e7ad8a4bf3ed` (`flagged_lane = []` across `103` rasters; OK TO DOWNLOAD: YES · OK TO SUBMIT: NO) |
+

@@ -1,0 +1,72 @@
+{
+ "schema": "run_card/v1 (PARALLEL-RUN PROTOCOL item 5 \u2014 remediated 2026-10-27)",
+ "session": "2026-10-27 H78 MHSCF (b2488f5d216c) \u2014 remediated post-PR#60 audit",
+ "remediation_irregularity": "IR-25-H78-FABRICATED-HOLDOUT-AND-CI-FAILURE-20261027",
+ "hypothesis": "H78-MHSCF: Heuristic static linear combination of gravity analytic signal/horizontal gradient, basement depth gradient, magnetic horizontal gradient, DEM crest/slope, spring/vent proximity, and X1_ThK alteration with ridge-NMS, B2 collar (d_cat > 2.0 px), and 2.85-px Poisson disc thinning.",
+ "mechanism": "Static heuristic weighted fusion without supervised LOQO training; post-hoc audited on draws [60, 61].",
+ "named_non_fault_mimic": "Intrusive pluton boundaries, unfaulted volcanic flow fronts, hydrothermally altered calderas, erosional terrace scarps.",
+ "holdout_dti": {
+  "label": "HOLDOUT-DTI",
+  "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px)",
+  "draws": [
+   60,
+   61
+  ],
+  "pooled_dti": 0.058389137266765256,
+  "ci95": [
+   0.04660384962352129,
+   0.06795814136423617
+  ],
+  "withheld_positive_occurrences": 22813,
+  "fold_pooled_dtis": [
+   0.06562928099783824,
+   0.040262039165415646,
+   0.0580936014689389,
+   0.07028700173063408
+  ],
+  "remediation_note": "PR #60 hardcoded 0.1512 (copied from H74 ctrl_h35_pooled) and [0.1285, 0.1740] (copied from apfl2) without calling HoldoutEvaluator; measured HOLDOUT-DTI on draws [60, 61] is 0.058389."
+ },
+ "organizer_confirmed_score": null,
+ "estimated_competition_score": null,
+ "correlation_overlap_vs_registry": {
+  "lane_clear": false,
+  "total_registry_checked": 103,
+  "worst_abs_spearman": 0.046624,
+  "worst_sparse_overlap": 0.585878,
+  "worst_sparse_file": "h19-c.tif",
+  "flagged_literal": [
+   "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "pindrop-discovery.tif",
+   "pindrop-nodes.tif"
+  ],
+  "flagged_lane": [],
+  "verdict": "DUPLICATE/LANE OVERLAP - do not package",
+  "verdict_density_aware": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
+  "receipt": "docs/downloads/lane-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json"
+ },
+ "raster_sha256": "be78ded8d7073512d9fc71677c37cd3528e1ff80fb3c5cb8c02080417e1217e5",
+ "nan_twin_sha256": "21c325e54cf255b830e45fb7eaff4cbf31219704cc973fb6f5fce0a823b3d603",
+ "validator_output": {
+  "format_valid": true,
+  "ok_to_upload_format_only": true,
+  "bytes": 836294,
+  "positive_pixels": 43550,
+  "hard_failures": []
+ },
+ "submission": {
+  "name": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
+  "nan_twin": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-nan.tif",
+  "zip": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.zip",
+  "content_id": "b2488f5d216c",
+  "note": "GEMSDOE25 H78-MHSCF | no slot, not slot-approved; DO NOT SUBMIT | id b2488f5d216c | unscored",
+  "note_chars": 92,
+  "verdict": "negative",
+  "slot_approved": false,
+  "ok_to_download": true,
+  "ok_to_submit": false
+ },
+ "verdict": "negative",
+ "slot_approved": false,
+ "ok_to_download_inspection": true,
+ "ok_to_submit_slot": false
+}

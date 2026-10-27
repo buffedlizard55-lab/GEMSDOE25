@@ -215,56 +215,29 @@ but strict lane fails the lattice and four broad historical artifact halos. <b>O
         sh74 = x2_74["apron_advantage_collapse"]
         nid74 = "note-research-h74"
         h74_download_box = (
-            f'<div class="card" style="border-left:4px solid #b91c1c;margin-bottom:14px">'
-            f'<p class="eyebrow">LATEST SESSION DELIVERABLE · H74 RMPS-BFP SUBSURFACE LOQO B2 (3/3 BUDGET COMPLETE)</p>'
-            f'<h3>New Unique Research GeoTIFF: <code>{e(h74["submission_name"])}</code> — OK TO DOWNLOAD (TESTING): YES · OK TO SUBMIT: NO — DO NOT SUBMIT</h3>'
+            '<div class="card" style="border-left:4px solid #b91c1c;margin-bottom:14px">'
+            '<p class="eyebrow">PRIOR SESSION ARCHIVE (26 OCT 2026) · H74 RMPS-BFP SUBSURFACE LOQO B2 (3/3 BUDGET COMPLETE)</p>'
+            f'<h3>Archived Unique Research GeoTIFF: <code>{e(h74["submission_name"])}</code> — OK TO DOWNLOAD (TESTING): YES · OK TO SUBMIT: NO — DO NOT SUBMIT</h3>'
             f'<p>Content id <code>{e(h74["content_id"])}</code> · <code>{h74["positive_pixels"]:,}</code> binary dots · '
             f'SHA-256 <code>{e(h74["raster_sha256"][:16])}…</code> · EPSG:32611 · <code>3730&times;3292</code> · '
-            f'0 NaN/Inf inside 5,167,373-px footprint · all values in <code>[0, 1]</code> · '
-            f'51 static topography-free &amp; catalogue-free subsurface columns (zero Family B DEM/LiDAR, zero Family E catalogue). '
+            '0 NaN/Inf inside 5,167,373-px footprint · all values in <code>[0, 1]</code> · '
+            '51 static topography-free &amp; catalogue-free subsurface columns (zero Family B DEM/LiDAR, zero Family E catalogue). '
             f'<b>Density-aware unique across all {ln74["registry_checked"]} rasters</b> (<code>flagged_lane = []</code>; '
             f'surface |&rho;| &le; {ln74["surface_worst_abs_spearman"]:.4f}; {100*fw74["b2_overlap"]:.2f}% vs GEMSDOE32 B2; '
             f'{100*ln74["vs_prior_subsurface_h72_3"]["cand_dots_within_3px"]:.2f}% vs H72-3-subsurf; '
             f'{100*own74["worst_cand_dots_within_3px"]:.2f}% max own-lineage; {100*ext74["worst_cand_dots_within_3px"]:.2f}% max sparse external), '
-            f'while literal 70% flags the 3 &gt;73%-halo rasters (r13 lattice 100%, pindrop 76.2%). '
+            'while literal 70% flags the 3 &gt;73%-halo rasters (r13 lattice 100%, pindrop 76.2%). '
             f'<b>Verdict: <code>{e(h74["verdict"])}</code> · OK to spend a weekly slot: NO — DO NOT SUBMIT.</b></p>'
-            f'<div class="row">'
-            f'<a class="btn" download href="downloads/{e(h74["submission_name"])}">↓ Download H74 unique research TIF (zeros outside) — DO NOT SUBMIT</a> '
+            '<div class="row">'
+            f'<a class="btn alt" download href="downloads/{e(h74["submission_name"])}">↓ Download H74 research TIF (zeros outside) — DO NOT SUBMIT</a> '
             f'<a class="btn alt" download href="downloads/{e(h74["nan_twin_name"])}">↓ NaN-outside twin ({e(h74["nan_twin_name"])})</a> '
             f'<a class="btn alt" download href="downloads/{e(h74["zip_name"])}">↓ Single-TIFF ZIP ({e(h74["zip_name"])})</a> '
-            f'<a class="btn alt" download href="../registry/run_card_h74_2026-10-26.json">↓ H74 JSON Run Card</a> '
-            f'<a class="btn alt" href="../knowledge/37_h74_outcomes_and_executive_summary_2026-10-26.md">Full H74 report &amp; 0.2778 PhD proof</a>'
-            f'</div>'
+            '<a class="btn alt" download href="../registry/run_card_h74_2026-10-26.json">↓ H74 JSON Run Card</a> '
+            '<a class="btn alt" href="../knowledge/37_h74_outcomes_and_executive_summary_2026-10-26.md">Full H74 report &amp; 0.2778 PhD proof</a>'
+            '</div>'
             f'<p class="small" style="margin:8px 0 2px"><b>DrivenData-format research identifier ({h74["note_chars"]} chars &le; 120 — DO NOT SUBMIT):</b> '
             f'<button class="btn alt small" data-copy="{nid74}">Copy H74 research note</button></p>'
             f'<div class="note"><code id="{nid74}">{e(h74["note"])}</code></div></div>'
-        )
-        h78_download_box = (
-            f'<div class="card" style="border-left:5px solid #059669;background:#f0fdf4;margin-bottom:20px;padding:24px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);">'
-            f'<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">'
-            f'<span class="badge" style="background:#059669;color:#fff;font-weight:700;font-size:0.95rem;padding:6px 12px;">OFFICIAL COMPETITION SUBMISSION · VALIDATED &amp; READY TO DOWNLOAD</span>'
-            f'<span style="font-size:0.95rem;color:#047857;font-weight:600;">Session: 27 OCT 2026 · Hypothesis H78 (MHSCF)</span></div>'
-            f'<h2 style="color:#065f46;margin:12px 0 6px;">Validated Competition GeoTIFF: <code>gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif</code></h2>'
-            f'<p style="font-size:1.05rem;line-height:1.6;color:#1e293b;margin-bottom:12px;">'
-            f'<b>STATUS: OK TO DOWNLOAD: YES · OK TO SUBMIT: YES (VALIDATED COMPETITION READY)</b><br>'
-            f'Content ID: <code>b2488f5d216c</code> · Dots: <b>43,550</b> binary dots · Estimated Score: <b>0.2785</b> (95% CI [0.2740, 0.2830], calibrated against GEMSDOE32 B2 0.2778) · SHA-256: <code>be78ded8d7073512d9fc71677c37cd3528e1ff80fb3c5cb8c02080417e1217e5</code>.<br>'
-            f'<b>Format:</b> EPSG:32611 · <code>3730&times;3292</code> · 100 m resolution · single band float32 · <b>0 NaNs anywhere in the raster (zeros outside)</b>.</p>'
-            f'<div style="background:#fff;border:1px solid #a7f3d0;border-radius:6px;padding:12px 16px;margin-bottom:16px;">'
-            f'<h4 style="color:#047857;margin:0 0 4px;">Why this file avoids the portal error: <code>"Predicted values must be in range [0, 1]"</code></h4>'
-            f'<p style="margin:0;font-size:0.9rem;color:#334155;">The competition portal validator runs <code>((arr &gt;= 0) &amp; (arr &lt;= 1)).all()</code> across all 12,279,160 raster cells. '
-            f'Files created with NaN outside the footprint fail this test because in IEEE-754 arithmetic <code>NaN &gt;= 0</code> evaluates to False. '
-            f'This file uses <b>exact zero padding (<code>zeros</code>) outside the footprint</b>, so all 12.28M pixels are finite numbers in [0.0, 1.0], passing DrivenData verification with zero errors!</p></div>'
-            f'<div class="row" style="gap:10px;margin-bottom:14px;flex-wrap:wrap;">'
-            f'<a class="btn" style="background:#059669;color:#fff;font-weight:700;padding:10px 18px;border-radius:6px;text-decoration:none;" download href="downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif">↓ Download Competition GeoTIFF (.tif)</a> '
-            f'<a class="btn" style="background:#0d9488;color:#fff;font-weight:700;padding:10px 18px;border-radius:6px;text-decoration:none;" download href="downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.zip">↓ Download Portal ZIP Package (.zip)</a> '
-            f'<a class="btn alt" style="padding:10px 16px;border-radius:6px;" download href="downloads/checks-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json">↓ Validation Receipt (JSON)</a> '
-            f'<a class="btn alt" style="padding:10px 16px;border-radius:6px;" download href="downloads/lane-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json">↓ Lane Verification (JSON)</a> '
-            f'<a class="btn alt" style="padding:10px 16px;border-radius:6px;" download href="../registry/run_card_h78_2026-10-27.json">↓ Run Card (JSON)</a></div>'
-            f'<div style="margin-top:10px;"><b>DrivenData Note (required on submission form &le; 120 chars):</b>'
-            f'<div style="display:flex;align-items:center;gap:10px;margin-top:4px;"><code style="background:#fff;border:1px solid #cbd5e1;padding:8px 12px;border-radius:4px;font-size:0.92rem;flex-grow:1;" id="note-h78">GEMSDOE25 H78 MHSCF B2 | dots=43,550 sapd2.85 | id b2488f5d216c | est DTI 0.2785</code></div></div>'
-            f'<div style="margin-top:14px;background:#e0f2fe;border-left:4px solid #0284c7;padding:10px 14px;border-radius:4px;font-size:0.9rem;color:#0369a1;">'
-            f'<b>Parallel-Run Protocol Item 1 Lane Check:</b> Fully verified against all 86 registry rasters! '
-            f'Worst Spearman correlation |&rho;| = 0.031 &le; 0.90; dot overlap &le; 43.7% with all rasters (below the 70% threshold). <b>Verdict: UNIQUE vs available registry.</b></div></div>'
         )
         h74_table_row = (
             f'<tr><td class="submission-id">{e(h74["submission_name"])}</td>'
@@ -459,10 +432,131 @@ Requested caps saturate at available ridge candidates, so this orders density re
     bounds = ''.join(f"<tr><td>{r['dots']:,}</td><td>{r['minimum_overlap']:.2%}</td><td>Impossible at this density</td></tr>"
                      for r in feasibility['cases'])
     coverage = focus['lattice_coverage']
+
+    h79_path = ROOT / "registry" / "run_card_h79_2026-10-27.json"
+    h79 = json.loads(h79_path.read_text()) if h79_path.exists() else None
+    h78_path = ROOT / "registry" / "run_card_h78_2026-10-27.json"
+    h78_rc = json.loads(h78_path.read_text()) if h78_path.exists() else None
+    h79_download_box = ""
+    h79_table_row = ""
+    h78_table_row = ""
+    h79_section = ""
+    if h79:
+        hd79 = h79["holdout_dti"]
+        x1_79 = hd79["experiment_1_standard_holdout"]
+        x2_79 = hd79["experiment_2_block25km_holdout"]
+        x3_79 = hd79["experiment_3_confirm_block25km"]
+        c56_79 = hd79["shipped_crustal_sgmc_56col_readout"]
+        ln79 = h79["correlation_overlap_vs_registry"]
+        fw79 = ln79["focus_winners"]
+        ext79 = ln79["external_sparse"]
+        own79 = ln79["own_lineage"]
+        nid79 = "note-research-h79"
+        h79_download_box = (
+            '<div class="card" style="border-left:5px solid #b91c1c;background:#fff7ed;margin-bottom:20px;padding:22px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.08);">'
+            '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">'
+            '<span class="badge b-bad">LATEST SESSION (27 OCT 2026) · RESEARCH-ARCHIVE DOWNLOAD: YES · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</span>'
+            '<span style="font-size:0.9rem;color:#7c2d12;font-weight:600;">3/3 Pre-Registered H79 Experiments Complete · Draws 114–117</span></div>'
+            f'<h2 style="margin:12px 0 6px;">New Unique Research GeoTIFF: <code>{e(h79["submission_name"])}</code></h2>'
+            '<p style="font-size:1.0rem;line-height:1.55;margin-bottom:12px;">'
+            '<b>OK TO DOWNLOAD (RESEARCH / PORTAL FORMAT-VERIFIED): YES · OK TO SUBMIT /OK to spend a weekly slot: NO — DO NOT SUBMIT</b><br>'
+            f'Content ID: <code>{e(h79["content_id"])}</code> · Emitted dots: <b>{h79["positive_pixels"]:,}</b> binary dots · '
+            f'SHA-256: <code>{e(h79["raster_sha256"][:20])}…</code> · EPSG:32611 · <code>3730&times;3292</code> (100 m) · single-band <code>float32</code>.<br>'
+            '<b>Portal <code>[0, 1]</code> Safety:</b> Exact zero padding outside the 5,167,373-px footprint guarantees <b>0 NaNs and 0 Infs across all 12,279,160 raster cells</b>, '
+            'preventing DrivenData error <code>"Predicted values must be in range [0, 1]"</code>.<br>'
+            f'<b>Density-Aware Uniqueness (<code>flagged_lane = []</code> across all {ln79["registry_checked"]} rasters):</b> '
+            f'Surface |&rho;| &le; {ln79["surface_worst_abs_spearman"]:.4f} &le; 0.90 · '
+            f'<b>{100 * fw79["b2_overlap"]:.2f}%</b> 3-px overlap vs GEMSDOE32 B2 (0.2778 OWNER-REPORTED) · '
+            f'<b>{100 * own79["worst_cand_dots_within_3px"]:.2f}%</b> max own-lineage (vs H74-SUBSURF) · '
+            f'<b>{100 * ext79["worst_cand_dots_within_3px"]:.2f}%</b> max sparse external (vs <code>{e(ext79["worst_overlap_file"])}</code>), '
+            'while literal 70% flags the 3 &gt;70%-halo rasters (r13 lattice 100%, pindrop 75.5–75.7%).<br>'
+            f'<b>Measured Holdout Proxy (<code>HOLDOUT-DTI</code>, NOT a competition score):</b> '
+            f'Shipped 56-col crustal+SGMC expert = <code>{c56_79["pooled_dti"]:.5f}</code> '
+            f'(95% CI [{c56_79["ci95"][0]:.4f}, {c56_79["ci95"][1]:.4f}], {c56_79["withheld_positive_occurrences"]:,} withheld + on 25-km block draws [116, 117]); '
+            f'full two-expert <code>H79_POE_SGMC</code> = <code>{x3_79["h79_poe_sgmc_pooled"]:.5f}</code> '
+            f'(<code>+{x3_79["poe_vs_single_hgb"]["paired_gain"]:.5f}</code> PoE vs single-HGB + <code>+{x3_79["poe_sgmc_vs_poe"]["paired_gain"]:.5f}</code> SGMC across 4/4 folds), '
+            f'below same-run <code>CTRL_H35 = {x3_79["ctrl_h35_pooled"]:.5f}</code>. Estimated leaderboard score: <b>NOT ESTIMATED</b>.</p>'
+            '<div class="row" style="gap:8px;margin-bottom:10px;flex-wrap:wrap;">'
+            f'<a class="btn" download href="downloads/{e(h79["submission_name"])}">↓ One-Click Download H79 TIF (zeros outside, 0 NaN) — DO NOT SUBMIT</a> '
+            f'<a class="btn alt" download href="downloads/{e(h79["zip_name"])}">↓ Portal-Format Single-TIFF ZIP ({e(h79["zip_name"])})</a> '
+            f'<a class="btn alt" download href="downloads/{e(h79["nan_twin_name"])}">↓ NaN-Outside Twin (.tif)</a> '
+            '<a class="btn alt" download href="../registry/run_card_h79_2026-10-27.json">↓ H79 JSON Run Card</a> '
+            f'<a class="btn alt" download href="downloads/checks-{e(h79["submission_name"][:-4])}.json">↓ Format Receipt</a> '
+            f'<a class="btn alt" download href="downloads/lane-{e(h79["submission_name"][:-4])}.json">↓ 103-Raster Lane Receipt</a> '
+            '<a class="btn alt" href="../knowledge/40_h79_cthm_poe_outcome_2026-10-27.md">Full H79 Report &amp; 0.2778 PhD Proof</a></div>'
+            f'<p class="small" style="margin:8px 0 2px"><b>Research identifier note ({h79["note_chars"]} chars &le; 120 — NOT for competition upload; DO NOT SUBMIT):</b> '
+            f'<button class="btn alt small" data-copy="{nid79}">Copy H79 research note</button></p>'
+            f'<div class="note"><code id="{nid79}">{e(h79["note"])}</code></div></div>'
+        )
+        h79_table_row = (
+            f'<tr><td class="submission-id">{e(h79["submission_name"])}</td>'
+            '<td>NOT ESTIMATED — no calibrated leaderboard projection</td>'
+            f'<td>HOLDOUT-DTI {c56_79["pooled_dti"]:.6f} (56-col crustal+SGMC, 25-km block draws [116, 117], '
+            f'{c56_79["withheld_positive_occurrences"]:,} withheld +, 95% CI [{c56_79["ci95"][0]:.6f}, {c56_79["ci95"][1]:.6f}]); '
+            f'Exp 3 82-col H79_POE_SGMC {x3_79["h79_poe_sgmc_pooled"]:.6f} (+0.02438 vs single-HGB)</td>'
+            f'<td><b>LITERAL: NO / DENSITY-AWARE: YES.</b> <code>flagged_lane = []</code> across all {ln79["registry_checked"]} rasters '
+            f'({100 * fw79["b2_overlap"]:.2f}% vs B2, {100 * own79["worst_cand_dots_within_3px"]:.2f}% max own-lineage, '
+            f'{100 * ext79["worst_cand_dots_within_3px"]:.2f}% max sparse vs <code>{e(ext79["worst_overlap_file"])}</code>); '
+            'literal 70% fails vs r13 lattice (100%) &amp; pindrop (75.5–75.7%).</td>'
+            '<td><b>DO NOT SUBMIT.</b> Blind PoE &amp; SGMC gates passed, but Slot Gate failed vs CTRL_H35; research/inspection only.</td></tr>'
+        )
+        foc27 = json.loads((ROOT / "evidence" / "focus_sites_2026_10_27_audit.json").read_text())["sites"]
+        foc27_rows = "".join(
+            f'<tr><th scope="row"><a href="{e(s["repo_url"])}">{e(s["site"])}</a><br><small><code>{e(s["head_commit_20261027"])}</code></small></th>'
+            f'<td class="submission-id">{e(s["latest_20261027_file"])}<br><small>Historical best: <code>{e(s["historical_file"])}</code> ({s["historical_score_owner_reported"]:.4f} OWNER-REPORTED)</small></td>'
+            f'<td>{e(s["latest_metric_label"])}</td>'
+            f'<td>{e(s["estimated_leaderboard_score"])}</td>'
+            f'<td><b>H79 overlap: {e(s["h79_overlap_vs_historical_best"])}</b><br><small>{e(s["uniqueness_audit"])}</small></td>'
+            f'<td><b>{e(s["ok_to_submit"])}</b></td></tr>'
+            for s in foc27
+        )
+        h79_section = f'''<section class="card" id="h79-session"><p class="eyebrow">CURRENT SESSION (27 OCT 2026) · 3/3 PRE-REGISTERED EXPERIMENTS (DRAWS 114–117) · 2,232 CANARIES PASS · UNIQUE CRUSTAL+SGMC GEOTIFF</p>
+<h2>H79 Crustal-Thermomechanical Hydrothermal Plume &amp; Two-Expert PoE (CTHM-PoE) + Strike-Aligned SGMC Reactivation</h2>
+<p><b>Pre-registered before fitting:</b>
+<a href="../knowledge/39_preregistered_h79_cthm_poe_2026-10-27.md">4 ranked hypotheses &amp; frozen 3-experiment design (<code>b59b129</code>)</a> ·
+<a href="../knowledge/40_h79_cthm_poe_outcome_2026-10-27.md">9-site executive summary, 0.2778 PhD proof &amp; H79 outcomes</a> ·
+<a href="../registry/run_card_h79_2026-10-27.json">H79 JSON Run Card</a> ·
+<a href="../evidence/h79_joint_analysis.json">H79 joint analysis</a> ·
+<a href="../evidence/focus_sites_2026_10_27_audit.json">2026-10-27 9-site audit JSON</a>.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="H79 3-experiment paired holdout results">
+<table><thead><tr><th>Experiment &amp; Virgin Draws</th><th>Withheld + (median d_vis)</th><th>Canary Max</th><th>Controls HOLDOUT-DTI</th><th>H79 Arms HOLDOUT-DTI</th><th>Paired Contrasts [95% CI] (Folds +)</th><th>Gate Outcome</th></tr></thead>
+<tbody>
+<tr><td><b>Exp 1 · Standard Holdout</b><br><code>draws [114, 115]</code></td><td>{x1_79["withheld_positive_occurrences"]:,}<br><small>({x1_79["median_truth_d_vis_px"]:.2f} px; {100*x1_79["frac_truth_gt20_px"]:.1f}% &gt;20 px)</small></td><td>0.8656</td><td>H35: <code>{x1_79["ctrl_h35_pooled"]:.5f}</code><br>Subsurf: <code>{x1_79["ctrl_subsurf_pooled"]:.5f}</code></td><td>Subsurf: <code>{x1_79["h79_subsurf_pooled"]:.5f}</code><br><b>PoE: <code>{x1_79["h79_poe_pooled"]:.5f}</code></b></td><td><b>PoE vs Subsurf: <code>{x1_79["poe_vs_ctrl_subsurf"]["paired_gain"]:+.5f}</code> (4/4)</b><br>PoE vs H35: <code>{x1_79["poe_vs_ctrl_h35"]["paired_gain"]:+.5f}</code></td><td><span class="badge b-warn">Blind PoE PASS / G1 FAIL</span></td></tr>
+<tr><td><b>Exp 2 · 25-km Block Holdout</b><br><code>draws [114, 115]</code></td><td>{x2_79["withheld_positive_occurrences"]:,}<br><small>(<b>{x2_79["median_truth_d_vis_px"]:.2f} px</b>; <b>{100*x2_79["frac_truth_gt20_px"]:.1f}% &gt;20 px</b>)</small></td><td>0.8638</td><td>H35: <code>{x2_79["ctrl_h35_pooled"]:.5f}</code><br>Subsurf: <code>{x2_79["ctrl_subsurf_pooled"]:.5f}</code></td><td>Subsurf: <code>{x2_79["h79_subsurf_pooled"]:.5f}</code><br><b>PoE: <code>{x2_79["h79_poe_pooled"]:.5f}</code></b></td><td>Subsurf vs Subsurf: <code>{x2_79["subsurf_vs_ctrl_subsurf"]["paired_gain"]:+.5f}</code> (SW/SE +)<br><b>PoE vs Subsurf: <code>{x2_79["poe_vs_ctrl_subsurf"]["paired_gain"]:+.5f}</code> (4/4)</b></td><td><span class="badge b-ok">Blind PoE 4/4 PASS</span></td></tr>
+<tr><td><b>Exp 3 · 25-km Confirm + SGMC</b><br><code>draws [116, 117]</code></td><td>{x3_79["withheld_positive_occurrences"]:,}<br><small>(<b>{x3_79["median_truth_d_vis_px"]:.2f} px</b>; <b>{100*x3_79["frac_truth_gt20_px"]:.1f}% &gt;20 px</b>)</small></td><td>0.8588</td><td>H35: <code>{x3_79["ctrl_h35_pooled"]:.5f}</code><br>Single-HGB: <code>{x3_79["h79_single_hgb_pooled"]:.5f}</code></td><td>PoE: <code>{x3_79["h79_poe_pooled"]:.5f}</code><br><b>PoE+SGMC: <code>{x3_79["h79_poe_sgmc_pooled"]:.5f}</code></b><br><small>56-col Crustal+SGMC: <code>{c56_79["pooled_dti"]:.5f}</code></small></td><td><b>PoE vs Single: <code>{x3_79["poe_vs_single_hgb"]["paired_gain"]:+.5f}</code> [{x3_79["poe_vs_single_hgb"]["paired_ci95"][0]:+.4f}, {x3_79["poe_vs_single_hgb"]["paired_ci95"][1]:+.4f}]</b><br><b>+SGMC: <code>{x3_79["poe_sgmc_vs_poe"]["paired_gain"]:+.5f}</code> (4/4)</b></td><td><span class="badge b-warn">Both Blind Gates PASS · Slot FAIL</span></td></tr>
+</tbody></table></div>
+<h3>Nine Focus Sites (GEMSDOE24–36): Live 2026-10-27 Audit, Properly Labeled Scores/Proxies, H79 Overlap &amp; Submission Status</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Nine focus sites live 2026-10-27 audit">
+<table><thead><tr><th>Focus Site (2026-10-27 HEAD)</th><th>Latest 2026-10-27 Deliverable &amp; Historical Best</th><th>Score / Holdout Proxy (Properly Labeled)</th><th>Estimated Leaderboard Score</th><th>H79 Overlap &amp; Portfolio Uniqueness</th><th>OK to Submit?</th></tr></thead>
+<tbody>{foc27_rows}</tbody></table></div>
+<h3>Four Ranked Untried Geological Hypotheses (Pre-Registered at <code>b59b129</code> in <code>knowledge/39</code>)</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Four ranked untried H79 geological hypotheses">
+<table><thead><tr><th>Rank &amp; ID</th><th>Layers Used (Official Source)</th><th>Physical Signature / Transform</th><th>Why USGS/INGENIOUS Miss It</th><th>Named Non-Fault Mimic</th><th>Repo Novelty, Cost &amp; Expected &Delta;DTI</th></tr></thead>
+<tbody>
+<tr><td><b>1 · H79-A</b><br><i>Anisotropic Conduit Plume + Domain-Decoupled PoE</i></td><td>GDR 1391 thermal springs/wells &amp; vents (<code>temp_c</code>, <code>geotherm*</code>, <code>row/col</code> only; never <code>dist_known_fault_px</code>) + GeoDAWN gravity/basin/elev strike + 27-col Family B expert</td><td>4-basis strike-steered elliptical diffusion (<code>1.2 km &times; 0.2 km</code>) + floor-protected rank Product-of-Experts <code>S_PoE</code> preventing root-split DEM capture</td><td>Upflowing geothermal brines breach blind basin-interior step-overs whose scarps were buried by Holocene playa/alluvial fans</td><td>Isotropic outflow aprons &amp; caldera ring-ash ponds</td><td>New two-expert PoE + strike-steered plume (vs isotropic EDT in <code>addons.py</code> &amp; single-tree in <code>H74</code>); ~25 min CPU; 0 external bytes; expected <code>+0.008..+0.025</code> (<b>measured <code>+0.0116</code> vs single-HGB, <code>+0.0247</code> vs blind subsurf</b>)</td></tr>
+<tr><td><b>2 · H79-B</b><br><i>Shallow Magnetite-Oxidation &times; Argillic K-Th Crest</i></td><td>GeoDAWN <code>rtp</code> + <code>geodawn_extensions_u8</code> upward-150 m + MT <code>cond_surf</code> + <code>geodawn_rad_u8</code> K/Th</td><td><code>max(z(up150) - z(RTP), 0) &times; sqrt(HP(log(1+MT)) &times; max(z(K) - 0.7 z(Th), 0))</code></td><td>150–280 &deg;C hydrothermal fluids oxidize magnetite to hematite/pyrite and convert plagioclase to illite/smectite + adularia under thin veneer with zero topographic scarp</td><td>Silicic ash-flow cooling units &amp; saline playa claypans</td><td>First joint 3-modality redox + clay + K-metasomatism crest in <code>GEMSDOE25</code>; ~4 min CPU; 0 external bytes; expected <code>+0.002..+0.006</code></td></tr>
+<tr><td><b>3 · H79-C</b><br><i>Unit-Consistent N=0 Euler Subcrop + Gravity-MT Gouge Juxtaposition</i></td><td>Cached <code>iso_grav_anom</code>, <code>iso_grav_anom_vg</code>, <code>rtp</code>, <code>tmi_vg</code>, <code>cond_surf</code> (GDR 1391 / GeoDAWN)</td><td>Thompson/Reid <code>SI=0</code> fault-contact Euler depth <code>|f_hp| / sqrt(|&nabla;_h f|^2 + f_z^2)</code> + antiparallel <code>-&nabla;g &middot; &nabla;log(1+&sigma;_MT)</code></td><td>Concealed range-front &amp; intrabasin step faults juxtapose dense resistive footwall against porous conductive gouge/hangingwall without breaking modern desert pavement</td><td>Paleochannels &amp; pluton-margin skarns</td><td>First unit-consistent 3D Euler <code>SI=0</code> depth + antiparallel gravity-MT operator; ~4 min CPU; 0 external bytes; expected <code>+0.001..+0.004</code></td></tr>
+<tr><td><b>4 · H79-D</b><br><i>Strike-Aligned SGMC Reactivation (Tested in Exp 3)</i></td><td>USGS SGMC <code>derived_sgmc_faults_100m_u8.tif</code> + Kreemer <code>geod_2ndinv</code> + seismicity <code>ieq_n100a15</code></td><td><code>exp(-d_SGMC / 400 m) &times; cos^2(&Delta;&theta;_opt) &times; (0.30 + 0.45 e_2nd + 0.25 log(1+I_eq))</code> around N15&deg;E normal &amp; N35&deg;W Walker Lane optima</td><td>Pre-Quaternary bedrock faults lacked mapped Holocene scarps and were omitted from Quaternary compilations despite active critical-stress reactivation</td><td>Healed Mesozoic thrust ramps orthogonal to modern extension</td><td>Replaces isotropic SGMC distance with Coulomb-oriented strain/microseismicity gate; ~3 min CPU; 0 external bytes; expected <code>+0.005..+0.015</code> (<b>measured <code>+0.0128</code> across 4/4 folds!</b>)</td></tr>
+</tbody></table></div></section>'''
+
+    if h78_rc:
+        hd78 = h78_rc["holdout_dti"]
+        ln78 = h78_rc["correlation_overlap_vs_registry"]
+        h78_table_row = (
+            f'<tr><td class="submission-id">{e(h78_rc["submission"]["name"])}</td>'
+            '<td>NOT ESTIMATED (PR #60 0.2785 retracted; IR-25-H78-FABRICATED-HOLDOUT-AND-CI-FAILURE-20261027)</td>'
+            f'<td>HOLDOUT-DTI {hd78["pooled_dti"]:.6f} (post-hoc audit draws [60, 61], {hd78["withheld_positive_occurrences"]:,} withheld +, '
+            f'95% CI [{hd78["ci95"][0]:.6f}, {hd78["ci95"][1]:.6f}])</td>'
+            f'<td><b>LITERAL: NO / DENSITY-AWARE: YES.</b> <code>flagged_lane = []</code> across {ln78["total_registry_checked"]} rasters '
+            f'(max sparse {100 * ln78["worst_sparse_overlap"]:.2f}% vs <code>{e(ln78["worst_sparse_file"])}</code>); literal 70% fails vs r13 lattice &amp; pindrop.</td>'
+            '<td><b>DO NOT SUBMIT.</b> Remediated static heuristic archive; research/inspection only.</td></tr>'
+        )
+
     body = f'''<section class="hero"><p class="eyebrow">RESEARCH DECISION BRIEF / 27 OCTOBER 2026</p>
 <h1>Know what to submit.<br>Know when to stop.</h1>
-<p class="lead">Nine focus sites, one auditable comparison, and an official validated submission deliverable. Hypothesis H78 (MHSCF) delivers a unique, competition-ready GeoTIFF with zero NaNs, lane-uniqueness across all 86 registry rasters, and calibrated DTI estimate 0.2785.</p></section>
-{h78_download_box}
+<p class="lead">Nine focus sites audited on 2026-10-27, PhD proof of why GEMSDOE32 B2 achieved 0.2778 (OWNER-REPORTED), 3/3 pre-registered H79 experiments (2,232 leakage canaries PASS), and a new density-aware unique 0-NaN research GeoTIFF (<code>e7ad8a4bf3ed</code>) — <b>OK TO DOWNLOAD (TESTING): YES · OK TO SUBMIT: NO — DO NOT SUBMIT</b>.</p></section>
+{h79_download_box}
+{h79_section}
 {h74_download_box}
 {h73_section}
 <section class="review-decision"><span class="badge b-bad">NO ELIGIBLE COMPETITION TIF · OK TO SUBMIT: NO</span><h2>Archived H72-3 research artifact only — no competition-ready download (DO NOT SUBMIT)</h2>
@@ -470,6 +564,8 @@ Requested caps saturate at available ridge candidates, so this orders density re
 <p>Prior-session ROD stop: {status}</p>{download}
 <div class="row"><a class="btn" href="../evidence/rod_2026-10-26/run_card.json" download>Download ROD decision receipt</a>
 <a class="btn alt" href="#how-to-submit">Submission checklist</a>
+<a class="btn alt" href="../knowledge/40_h79_cthm_poe_outcome_2026-10-27.md">H79 outcomes, 0.2778 PhD proof &amp; 9-site table</a>
+<a class="btn alt" href="../registry/run_card_h79_2026-10-27.json">H79 run card</a>
 <a class="btn alt" href="../knowledge/37_h74_outcomes_and_executive_summary_2026-10-26.md">H74 outcomes, 0.2778 PhD proof &amp; 9-site table</a>
 <a class="btn alt" href="../registry/run_card_h74_2026-10-26.json">H74 run card</a>
 <a class="btn alt" href="../knowledge/31_h72_outcomes_and_portfolio_synthesis_2026-10-26.md">H72 outcomes, 0.2778 PhD proof &amp; 9-site synthesis</a>
@@ -478,8 +574,10 @@ Requested caps saturate at available ridge candidates, so this orders density re
 <a class="btn alt" href="../evidence/download_audit_61f81983_2026-10-26.json">Exact-file audit</a>
 <a class="btn alt" href="../knowledge/29_current_checkout_review_2026-10-26.md">Current-checkout review</a></div></section>
 {inventory_section}
-<section><h2>Current H74-SUBSURF &amp; existing H72-3 research archives: validation and eligibility decision</h2>
+<section><h2>Current H79-CTHM, H78 (remediated), H74-SUBSURF &amp; existing H72-3 research archives: validation and eligibility decision</h2>
 <div class="table-scroll"><table><thead><tr><th>File</th><th>Estimated competition score</th><th>Saved HOLDOUT-DTI (proxy)</th><th>Unique under literal lane rule?</th><th>Decision</th></tr></thead><tbody>
+{h79_table_row}
+{h78_table_row}
 {h74_table_row}
 {h72_table_row}
 <tr><td class="submission-id">gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif</td>
@@ -574,18 +672,23 @@ def readme_status():
     h73bw = json.loads((ROOT/'registry/run_card_h73_bw_2026-10-26.json').read_text())
     pm = h73['holdout_dti']
     bw = h73bw['holdout_dti']
+    h79_card = json.loads((ROOT/'registry/run_card_h79_2026-10-27.json').read_text())
     h78_card = json.loads((ROOT/'registry/run_card_h78_2026-10-27.json').read_text())
+    hd79 = h79_card['holdout_dti']
+    x3_79 = hd79['experiment_3_confirm_block25km']
+    c56 = hd79['shipped_crustal_sgmc_56col_readout']
+    ln79 = h79_card['correlation_overlap_vs_registry']
     return ("<!-- CURRENT-REVIEW-2026-10-27 -->\n"
-            "## Current Decision & Validated Submission — 2026-10-27\n\n"
-            "**NEW UNIQUE COMPETITION SUBMISSION GENERATED &amp; VALIDATED: YES — OK TO DOWNLOAD &amp; SUBMIT: YES**\n\n"
-            f"- **Primary Submission GeoTIFF**: [`{h78_card['submission']['name']}`](docs/downloads/{h78_card['submission']['name']})\n"
-            f"- **Portal Single-GeoTIFF ZIP**: [`{h78_card['submission']['zip']}`](docs/downloads/{h78_card['submission']['zip']})\n"
-            f"- **Calibrated Competition DTI Estimate**: **{h78_card['estimated_competition_score']:.4f}** (calibrated against GEMSDOE32 B2 0.2778 baseline + hydrothermal conduit gain)\n"
-            f"- **Dots Emitted**: {h78_card['validator_output']['bytes'] // 19:,} dots (43,550 binary dots, min spacing 2.85 px = 285 m, strict B2 collar exclusion $d_{{cat}} > 2.0$ px)\n"
-            "- **Portal Validator Compliance**: **ZERO NaNs anywhere in the raster (zeros outside)**, guaranteeing `((arr >= 0) & (arr <= 1)).all()` passes with NO ERRORS (prevents `Predicted values must be in range [0, 1]`)\n"
-            f"- **DrivenData Submission Note**: `{h78_card['submission']['note']}`\n"
-            f"- **Lane Check Verdict**: `{h78_card['correlation_overlap_vs_registry']['verdict_density_aware']}` across all {h78_card['correlation_overlap_vs_registry']['total_registry_checked']} registry rasters\n"
-            "- **Validation Receipts**: [Validation Receipt](docs/downloads/checks-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json) · [Lane Check Receipt](docs/downloads/lane-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json) · [Run Card](registry/run_card_h78_2026-10-27.json) · [PhD Synthesis](knowledge/38_h78_mhscf_and_phd_focus_sites_analysis_2026-10-27.md)\n\n"
+            "## Current Decision & New Unique Research Deliverable — 2026-10-27 (`H79 CTHM-PoE + SGMC`)\n\n"
+            "**OK TO DOWNLOAD (RESEARCH / TESTING / PORTAL FORMAT-VERIFIED): YES · OK TO SUBMIT / SPEND WEEKLY SLOT: NO — DO NOT SUBMIT (`verdict = negative`, `slot_approved = false`)**\n\n"
+            f"- **New Unique GeoTIFF (`zeros` outside, `0` NaNs across all `12,279,160` cells)**: [`{h79_card['submission_name']}`](docs/downloads/{h79_card['submission_name']}) (`SHA-256: {h79_card['raster_sha256'][:16]}…`, `{h79_card['positive_pixels']:,}` binary dots, content id `{h79_card['content_id']}`)\n"
+            f"- **Portal-Format Single-TIFF ZIP & NaN-Outside Twin**: [`{h79_card['zip_name']}`](docs/downloads/{h79_card['zip_name']}) · [`{h79_card['nan_twin_name']}`](docs/downloads/{h79_card['nan_twin_name']})\n"
+            "- **Portal `[0, 1]` Range Gate**: Automated dual validator (`gems25.submission.check_file` + independent `rasterio` inspector) confirms `EPSG:32611`, `3730×3292`, `float32`, **0 NaNs/Infs**, and strict `[0.0, 1.0]` bounds (`((arr >= 0) & (arr <= 1)).all() == True`, preventing portal error `Predicted values must be in range [0, 1]`).\n"
+            f"- **Uniqueness vs `{ln79['registry_checked']}` Registry Rasters**: **Density-aware UNIQUE (`flagged_lane = []`)** — surface `|Spearman| <= {ln79['surface_worst_abs_spearman']:.4f} <= 0.90`; **`{100 * ln79['focus_winners']['b2_overlap']:.2f}%`** 3-px dot overlap vs `GEMSDOE32 B2` (`0.2778` `OWNER-REPORTED`); **`{100 * ln79['own_lineage']['worst_cand_dots_within_3px']:.2f}% <= 70%`** max own-lineage (vs `H74_SUBSURF`); **`{100 * ln79['external_sparse']['worst_cand_dots_within_3px']:.2f}% <= 70%`** max external sparse (vs `{ln79['external_sparse']['worst_overlap_file']}`). Literal `70%` rule flags only the `3` `>70%`-halo rasters (`r13-lattice-s5` `100%`, `pindrop` `75.5–75.7%`).\n"
+            f"- **Pre-Registered `3/3` Holdout Suite (`HOLDOUT-DTI`, `2,232/2,232` canaries `<= 0.8656 <= 0.90`)**: Shipped `56`-col crustal+SGMC expert = **`{c56['pooled_dti']:.5f}`** (`95% CI [{c56['ci95'][0]:.4f}, {c56['ci95'][1]:.4f}]`, `{c56['withheld_positive_occurrences']:,}` withheld `+` on virgin `25-km` block draws `[116, 117]`, `+36.2%` vs `H74_SUBSURF`); full two-expert `H79_POE_SGMC` (`82` cols) = **`{x3_79['h79_poe_sgmc_pooled']:.5f}`** (`+{x3_79['poe_vs_single_hgb']['paired_gain']:.5f}` PoE gain over single-HGB + `+{x3_79['poe_sgmc_vs_poe']['paired_gain']:.5f}` SGMC gain across `4/4` folds), below same-run `CTRL_H35 = {x3_79['ctrl_h35_pooled']:.5f}`. Estimated competition score: **`NOT ESTIMATED`**.\n"
+            f"- **DrivenData-Format Identifier (`{h79_card['note_chars']}` chars `<= 120` — DO NOT SUBMIT)**: `{h79_card['note']}`\n"
+            f"- **PR #60 (`H78`) Remediation (`IR-25-H78-FABRICATED-HOLDOUT-AND-CI-FAILURE-20261027`)**: Prior `{h78_card['submission']['name']}` (`b2488f5d216c`) hardcoded `0.1512` / `0.2785` without running `HoldoutEvaluator`; measured `HOLDOUT-DTI = {h78_card['holdout_dti']['pooled_dti']:.5f}` (`draws [60, 61]`, `{h78_card['holdout_dti']['withheld_positive_occurrences']:,}` withheld `+`); retracted `0.2785` and reset to `DO NOT SUBMIT`.\n"
+            "- **Receipts & Reports**: [H79 PhD Synthesis & 9-Site Table](knowledge/40_h79_cthm_poe_outcome_2026-10-27.md) · [H79 Pre-Registration](knowledge/39_preregistered_h79_cthm_poe_2026-10-27.md) · [H79 Run Card](registry/run_card_h79_2026-10-27.json) · [Format Receipt](docs/downloads/checks-gems25-h79-cthm-crustal-sgmc-b2-37654-20261027-e7ad8a4bf3ed-zeros.json) · [103-Raster Lane Receipt](docs/downloads/lane-gems25-h79-cthm-crustal-sgmc-b2-37654-20261027-e7ad8a4bf3ed-zeros.json)\n\n"
             "<!-- CURRENT-REVIEW-2026-10-26 -->\n"
             "## Historical Baseline Review — 2026-10-26\n\n"
             "<!-- H73-BW-2026-10-26 -->\n"

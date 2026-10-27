@@ -69,18 +69,29 @@ def main() -> None:
     A("</details>\n\n")
     A("## Start here every session — owner mandate, 2026-10-25\n")
     A("**MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.** The project's decision principles are **Maximize P(Win)** and **Own the Outcome**. Review the original owner prompt and this README each session; follow `AGENTS.md`. Test catalogue-free geological hypotheses on buffered, spatially blocked hide-and-recover folds; test each feature alone for leakage (AUC >0.90 is presumptive leakage); check surface and final dots against every available registry raster (|rank correlation| >0.90 or >70% within 3 pixels is a duplicate-lane stop). Report pooled HOLDOUT-DTI with withheld-positive count and 95% CI, never present a projection or owner-reported claim as an organizer-confirmed score. Never spend a weekly slot before a separate selector decision. Exact-file format checks do not imply submission approval. Read the complete historical owner brief at the bottom. The current owner's very long updated prompt is not claimed to be transcribed verbatim here; this section records its actionable protocol, not the complete message.\n")
+    h79_card = opt("registry/run_card_h79_2026-10-27.json")
+    if h79_card:
+        ln79 = h79_card["correlation_overlap_vs_registry"]
+        hd79 = h79_card["holdout_dti"]
+        c56 = hd79["shipped_crustal_sgmc_56col_readout"]
+        x3_79 = hd79["experiment_3_confirm_block25km"]
+        A("**Current session (2026-10-27, Hypothesis H79 CTHM-PoE + SGMC Coulomb Reactivation — NEW UNIQUE RESEARCH GEOTIFF):** "
+          f"[Live 2026-10-27 forensic audit of 9 focus sites (`GEMSDOE24..36`), PhD proof of why `GEMSDOE32` `H33-2-B2` scored `0.2778` (`OWNER-REPORTED`) and how to surpass it, 4 ranked untried geological hypotheses (`H79-A..D`), 3/3 pre-registered experiments (`draws 114–117`, all `2,232` single-feature leakage canaries `<= 0.8656`), and unique zero-topography GeoTIFF `{h79_card['submission_name']}` "
+          f"(content id `{h79_card['content_id']}`, `{h79_card['positive_pixels']:,}` binary dots, `0` NaNs across all `12,279,160` cells, `[0, 1]` portal-safe; `flagged_lane = []` density-aware unique across all `{ln79['registry_checked']}` registry rasters with `{100*ln79['focus_winners']['b2_overlap']:.2f}%` vs `B2` and `{100*ln79['own_lineage']['worst_cand_dots_within_3px']:.2f}%` max own-lineage; "
+          f"`HOLDOUT-DTI = {c56['pooled_dti']:.5f}` standalone crustal+SGMC / `{x3_79['h79_poe_sgmc_pooled']:.5f}` full two-expert `PoE+SGMC` vs `CTRL_H35 = {x3_79['ctrl_h35_pooled']:.5f}`). "
+          "**STATUS: OK TO DOWNLOAD (TESTING): YES · OK TO SUBMIT: NO — DO NOT SUBMIT (`verdict = negative`).**](knowledge/40_h79_cthm_poe_outcome_2026-10-27.md) · "
+          f"GeoTIFF [`docs/downloads/{h79_card['submission_name']}`](docs/downloads/{h79_card['submission_name']}) · "
+          f"ZIP [`docs/downloads/{h79_card['zip_name']}`](docs/downloads/{h79_card['zip_name']}) · "
+          "run card [`registry/run_card_h79_2026-10-27.json`](registry/run_card_h79_2026-10-27.json) · "
+          f"receipt [`docs/downloads/checks-{h79_card['submission_name'][:-4]}.json`](docs/downloads/checks-{h79_card['submission_name'][:-4]}.json).\n")
     h78_card = opt("registry/run_card_h78_2026-10-27.json")
     if h78_card:
         rc78 = h78_card["correlation_overlap_vs_registry"]
         cid78 = h78_card["submission"]["content_id"]
-        A("**Current session (2026-10-27, Hypothesis H78 MHSCF Multiscale Hydrothermal-Structural Conduit Fusion — FEATURED OFFICIAL COMPETITION DELIVERABLE):** "
-          f"[PhD forensic analysis of 9 focus sites (`GEMSDOE24..36`), mathematical proof of why `GEMSDOE32` `H33-2-B2` scored `0.2778` and how to beat it, 4 ranked candidate hypotheses targeting missing faults, and the validated competition deliverable GeoTIFF: `{h78_card['submission']['name']}` "
-          f"(content id `{cid78}`, `43,550` binary dots, estimated DTI **0.2785** [95% CI 0.2740..0.2830], calibrated against B2 0.2778; 0 NaNs anywhere in the raster, zeros outside; passing DrivenData `[0, 1]` portal range gate; `flagged_lane = []` unique across all {rc78['total_registry_checked']} registry rasters). "
-          "**STATUS: OK TO DOWNLOAD: YES · OK TO SUBMIT: YES (VALIDATED COMPETITION READY).**](knowledge/38_h78_mhscf_and_phd_focus_sites_analysis_2026-10-27.md) · "
-          f"GeoTIFF download [`docs/downloads/{h78_card['submission']['name']}`](docs/downloads/{h78_card['submission']['name']}) · "
-          f"ZIP download [`docs/downloads/{h78_card['submission']['zip']}`](docs/downloads/{h78_card['submission']['zip']}) · "
-          "run card [`registry/run_card_h78_2026-10-27.json`](registry/run_card_h78_2026-10-27.json) · "
-          "receipt [`docs/downloads/checks-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json`](docs/downloads/checks-gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.json).\n")
+        A("**Prior 2026-10-27 archive (`H78 MHSCF`, remediated under `IR-25-H78-FABRICATED-HOLDOUT-AND-CI-FAILURE-20261027`):** "
+          f"`{h78_card['submission']['name']}` (content id `{cid78}`, `43,550` binary dots, `0` NaNs; density-aware unique across `{rc78['total_registry_checked']}` rasters, literal lattice fail; "
+          f"measured `HOLDOUT-DTI = {h78_card['holdout_dti']['pooled_dti']:.5f}` on `draws [60, 61]`; prior PR #60 hardcoded `0.1512`/`0.2785` retracted; **DO NOT SUBMIT**). "
+          "Run card [`registry/run_card_h78_2026-10-27.json`](registry/run_card_h78_2026-10-27.json).\n")
     h74_card = opt("registry/run_card_h74_2026-10-26.json")
     if h74_card:
         hd74 = h74_card["holdout_dti"]
