@@ -1,0 +1,14 @@
+Review the repo. Put this prompt into the repo readme and read it everytime we work on the project as a starting point to make sure we are building what we are aiming for and have a strong base to continue building and improving on making something useful for everyday use. It should solve the problem of having to manually check everything ourselves and having an up to date current feed. There should be an easy to download submission tif file as described by the prompt. Read the entire prompt.
+
+Replace one-factor-at-a-time testing with a designed factorial experiment across candidate feature families (potential-field gradients, DEM curvature/scarp, strain/seismicity, thermal/geochemical, catalogue-geometry), run against the hide-and-recover holdout.
+
+Analyze highest scoring submissions across GEMSDOE sites: GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, GEMSDOE36.
+Provide an executive summary with a table listing downloadable files, estimated scores, and uniqueness vs other GEMSDOE sites.
+Provide a deep PhD-level analysis of GEMSDOE32 top score 0.2778 (h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros): why/how it got that score, whether we can beat 0.2778 and compete with leaderboard high score (0.4413 / 0.3195).
+Propose 3-5 candidate geological hypotheses targeting missing faults (unmapped in USGS/INGENIOUS catalogue), ranked by expected DTI improvement and cost.
+
+MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. BUT WE MUST GENERATE A UNIQUE TIF SUBMISSION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.
+Predicted raster values must be strictly in range [0, 1]; fix any previous error where values fell outside [0, 1].
+Raster rank correlation with registry rasters must not exceed 0.90; dot overlap within 3 px must not exceed 70%.
+Create/update GitHub Pages docs with clean UI, easy one-click download of the submission GeoTIFF, and an executive summary subpage explaining exactly how to submit.
+Include the prompt in repo README, run multi-pass verification (Pass 1, Pass 2, Pass 3), create a pull request from arena/3abd7f73-gemsdoe25 and merge into main.
