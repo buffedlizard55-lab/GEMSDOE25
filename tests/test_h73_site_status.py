@@ -7,27 +7,21 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CARD_PATH = ROOT / "registry/run_card_h73_2026-10-26.json"
 RUN_CARD = json.loads(CARD_PATH.read_text())
-
-
-def test_h73_is_prominent_but_explicitly_not_submission_eligible() -> None:
+def test_current_submission_status_is_h78_no_go_and_h73_is_historical() -> None:
     for rel in ("index.html", "docs/index.html", "docs/current-review.html", "docs/executive-summary.html"):
         page = (ROOT / rel).read_text()
-        assert "H73-BW: BLOCKED BEFORE FIT" in page, rel
-        assert "NO NEW TIF" in page, rel
+        assert "H78 FORMAT-VALID ARCHIVE ONLY" in page, rel
+        assert "STRICT LANE DUPLICATE" in page, rel
         assert "OK TO SUBMIT: NO — DO NOT SUBMIT" in page, rel
-        assert "COMPETITION-READY TIF: NO" in page, rel
-        assert "HOLDOUT-DTI 0.11343 vs same-run H35 0.15239" in page, rel
-        assert "literal lane audit flags 100%" in page, rel
-        assert "Estimated competition score: UNKNOWN (not calibrated)" in page, rel
-        assert page.index("H73-BW-2026-10-26") < page.index("Archived H72-3 research artifact only"), rel
-
-
-def test_h73_status_matches_saved_run_card_and_strict_lane_receipt() -> None:
-    holdout = RUN_CARD["holdout_dti"]
+        assert "100% within 3 px" in page, rel
+        assert "hard-coded and is withdrawn" in page, rel
     assert RUN_CARD["verdict"] == "negative"
     assert RUN_CARD["ok_to_submit_slot"] is False
     assert RUN_CARD["organizer_confirmed_score"] is None
-    assert holdout["slot_gate_passed"] is False
+    assert RUN_CARD["holdout_dti"]["slot_gate_passed"] is False
+
+
+def test_h73_historical_receipt_remains_reproducible_and_not_eligible() -> None:
     lane = json.loads((ROOT / "evidence/h73_lane_extended.json").read_text())
     lattice = lane["lattice"][0]
     assert lattice["cand_dots_within_3px"] == 1.0
