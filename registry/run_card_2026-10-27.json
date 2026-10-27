@@ -37,7 +37,7 @@
   },
   "raster_sha256": null,
   "validator_output": {
-    "status": "NOT RUN for a new candidate — no TIFF was generated",
+    "status": "NOT RUN for a new candidate — this continuation generated no TIFF",
     "finite_footprint": null,
     "values_in_0_1": null,
     "crs_shape_transform": null,
@@ -51,10 +51,13 @@
     "literal_lane_result": "FAIL: 100% of 43,550 dots within three pixels of r13; full-footprint rank correlation -0.00021257143898282906",
     "organizer_acceptance": "unknown",
     "okay_to_submit": false,
-    "evidence": ["evidence/h78_independent_reaudit_2026-10-27.json", "evidence/h78_literal_lane_reaudit_2026-10-27.json"]
+    "evidence": [
+      "evidence/h78_independent_reaudit_2026-10-27.json",
+      "evidence/h78_literal_lane_reaudit_2026-10-27.json"
+    ]
   },
   "submission_name": null,
-  "submission_note": "No submission: preregistered lane stop; no model fitted or TIFF generated.",
+  "submission_note": "No submission: preregistered lane stop; this run fitted no model and generated no TIFF.",
   "submission_note_character_limit": 140,
   "estimated_organizer_score": null,
   "organizer_confirmed_score": null,
@@ -62,5 +65,18 @@
   "new_raster_created": false,
   "slot_selected_or_used": false,
   "verdict": "negative",
-  "reason": "The preregistered 37,654-dot budget cannot satisfy the literal 70% / 3-pixel overlap limit against r13; stop before fitting or placement."
+  "reason": "The preregistered 37,654-dot budget cannot satisfy the literal 70% / 3-pixel overlap limit against r13; stop before fitting or placement.",
+  "concurrent_h79_reaudit": {
+    "artifact_sha256": "e98b9a35609db124f5838cff415a1b0bdf462d65a746161c0bee706add3983d8",
+    "artifact_created_this_run": false,
+    "source": "Existing random-dot scaffold independently added to main by PR #62.",
+    "format_result": "Local range/grid and exact ZIP pass; catalogue mask fails: 416 positive cells on mirrored known faults.",
+    "literal_lane_result": "FAIL: 99.86986774313485% of 37,654 dots within 3 pixels of r13; full-footprint Spearman 0.0005383076712475076.",
+    "holdout_dti": null,
+    "okay_to_submit": false,
+    "evidence": [
+      "evidence/h79_independent_reaudit_2026-10-27.json",
+      "evidence/h79_literal_lane_reaudit_2026-10-27.json"
+    ]
+  }
 }

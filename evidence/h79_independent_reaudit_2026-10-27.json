@@ -27,6 +27,7 @@
  "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
  "footprint_px": 5167373,
  "positive_pixels": 37654,
+ "catalogue_positive_pixels": 416,
  "distinct_values": [
   0.0,
   1.0
@@ -59,7 +60,5 @@
   ],
   "contains_exactly_candidate_bytes": true
  },
- "scope": "local exact-file format and catalogue-mask checks only; no organizer or slot approval",
- "catalogue_positive_pixels": 416,
- "source": "Existing H79 TIFF from origin/main at 34d36b4463fe6c7f87366ecf8472f31f819e5d53"
+ "scope": "local exact-file format and catalogue-mask checks only; no organizer or slot approval"
 }

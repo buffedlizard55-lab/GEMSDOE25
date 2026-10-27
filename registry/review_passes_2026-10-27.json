@@ -1,7 +1,7 @@
 {
   "date_utc": "2026-10-27",
   "branch": "arena/e4d14c1d-gemsdoe25",
-  "scope": "Three implementation and review passes on the preregistered continuation, public claims and automated gates; no model fitting or new TIFF.",
+  "scope": "Three implementation and review passes on the preregistered continuation, public claims and automated gates; this continuation fitted no model and created no TIFF.",
   "pass_1_implement_and_verify": {
     "preregistration_commit": "95149bc7373fc939313c1bb09cbc8940ed3fad78",
     "actions": [
@@ -23,11 +23,13 @@
     "actions": [
       "Rebuilt README and all public entry points from corrected sources; preserved the original brief and labeled the current handoff condensed rather than verbatim.",
       "Confirmed all nine score claims are OWNER-REPORTED, source-mirror hashes are not organizer provenance, new-run metrics are null, the prior artifact is DO NOT SUBMIT, and a separate selector is required.",
-      "Checked static links, exact-file evidence, source-code formatting, Python compilation and Git patch hygiene."
+      "Checked static links, exact-file evidence, source-code formatting, Python compilation and Git patch hygiene.",
+      "Fetched the newer main after PR #62 introduced a concurrent random-dot H79 scaffold; resolved overlapping corrections without dropping its historical TIFF, ZIP or evidence.",
+      "Re-audited H79 against restored labels and the selected r13 lattice: 416 positive catalogue cells and 99.8699% dot overlap. Retired its publisher, corrected its run card/partial receipt, and pinned its exact SHA as a future registry reference."
     ],
     "tests": {
-      "full_data": "395 passed",
-      "clean_environment": "383 passed, 12 skipped because mirrored data were not restored",
+      "full_data": "397 passed",
+      "clean_environment": "385 passed, 12 skipped because mirrored data were not restored",
       "ruff_check_all": "passed",
       "compileall": "passed",
       "git_diff_check": "passed"

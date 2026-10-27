@@ -76,7 +76,9 @@ def test_bad_shape_nonfinite_and_label_overlap_return_negative_receipts(tmp_path
     assert not run(paths)["checks"]["footprint_all_finite"]
     bad[4, 4], bad[3, 3] = 0, 1
     raster(cand, bad)
-    assert not run(paths)["checks"]["no_emission_on_catalogue"]
+    rec = run(paths)
+    assert not rec["checks"]["no_emission_on_catalogue"]
+    assert rec["catalogue_positive_pixels"] == 1
     bad[3, 3], bad[4, 4] = 0, 1.1
     raster(cand, bad)
     assert not run(paths)["checks"]["footprint_values_in_0_1"]

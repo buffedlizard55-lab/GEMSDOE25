@@ -5,9 +5,11 @@
 
 **Research-archive download: YES (inspection/testing only) · Competition-ready TIF: NO · OK TO SUBMIT: NO · weekly slot: NO — DO NOT SUBMIT.**
 
-No new TIFF or model was produced. The preregistered 37,654-dot budget is geometrically forced to overlap the registered r13 lattice by at least **82.70%** within three pixels, above the allowed 70%. No density exception was used. The requested unique submission remains unfulfilled. [Preflight](evidence/lane_preflight_2026-10-27.json) · [ranked hypotheses and frozen design](knowledge/39_lane_hypotheses_and_preflight_2026-10-27.md) · [current JSON run card](registry/run_card_2026-10-27.json).
+No TIFF or model was produced in this continuation. The preregistered 37,654-dot budget is geometrically forced to overlap the registered r13 lattice by at least **82.70%** within three pixels, above the allowed 70%. No density exception was used. The requested unique submission remains unfulfilled. [Preflight](evidence/lane_preflight_2026-10-27.json) · [ranked hypotheses and frozen design](knowledge/39_lane_hypotheses_and_preflight_2026-10-27.md) · [current JSON run card](registry/run_card_2026-10-27.json).
 
 The existing [H78 zero-outside TIFF](docs/downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif) passes a local format audit only, but **100% of its 43,550 dots overlap the r13 halo; DO NOT SUBMIT**. Prior H78 holdout, score estimate and submit-ready claims are retracted as unsupported. [Correction](knowledge/38_h78_mhscf_and_phd_focus_sites_analysis_2026-10-27.md) · [format audit](evidence/h78_independent_reaudit_2026-10-27.json) · [literal lane re-audit](evidence/h78_literal_lane_reaudit_2026-10-27.json). The reported portal error “Predicted values must be in range [0, 1]” is consistent with earlier NaNs inside the mirrored footprint; the exact organizer validation behavior and acceptance of zero outside are unverified.
+
+The [H79 random-dot scaffold](docs/downloads/gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif), added independently by a parallel PR, is also **DO NOT SUBMIT**: **99.8699% overlap r13** and **416 positives are on catalogue pixels**. No geological predictor or blocked holdout was used. [Mask audit](evidence/h79_independent_reaudit_2026-10-27.json) · [lane audit](evidence/h79_literal_lane_reaudit_2026-10-27.json) · [corrected card](registry/run_card_h79_2026-10-27.json).
 
 GEMSDOE32's **0.2778 is OWNER-REPORTED**, not organizer-confirmed. B2 is exactly D2.8 pruned of 6,436 pixels within 200 m of the catalogue; sparsity and selective pruning could explain improved local credit/false-positive balance, but hidden-label causation and future scores are unknown. A fresh nine-site audit also finds GEMSDOE28's 0.2710 Rung30 winner differs from GEMSDOE31; only its lower-scoring R1 is identical to GEMSDOE31. [Executive summary & downloads](docs/executive-summary.html) · [pixel and source audit](evidence/focus_winners_reaudit_2026-10-27.json).
 
@@ -28,6 +30,8 @@ python scripts/audit_lane_feasibility.py --preregistration-commit 95149bc7373fc9
 python scripts/audit_focus_winners.py
 python scripts/verify_candidate_independent.py docs/downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif --require-zip
 python scripts/check_lane_duplicates.py docs/downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif --reference data/scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif  # exits 2: literal failure
+python scripts/verify_candidate_independent.py docs/downloads/gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif --require-zip  # exits 2: catalogue mask
+python scripts/check_lane_duplicates.py docs/downloads/gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif --reference data/scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif  # exits 2: literal failure
 python scripts/build_readme.py && python scripts/build_site.py
 ```
 

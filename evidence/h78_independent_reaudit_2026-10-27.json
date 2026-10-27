@@ -27,6 +27,7 @@
  "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
  "footprint_px": 5167373,
  "positive_pixels": 43550,
+ "catalogue_positive_pixels": 0,
  "distinct_values": [
   0.0,
   1.0

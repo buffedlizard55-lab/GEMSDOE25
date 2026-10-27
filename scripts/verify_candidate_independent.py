@@ -71,6 +71,7 @@ def audit(cand: Path, tmpl: Path, labels: Path, *, expected: dict, template_pin:
     inside_finite = bool(inside.size and np.isfinite(inside).all())
     outside_zero = bool(shape_match and np.all(outside == 0))
     outside_nan = bool(shape_match and outside.size and np.isnan(outside).all())
+    catalogue_positive_pixels = int(((arr > 0) & lab & foot).sum()) if shape_match and labels_match else None
     checks = {
         "template_sha256_matches_pin": sha(tmpl) == template_pin,
         "labels_sha256_matches_pin": sha(labels) == labels_pin,
@@ -87,7 +88,7 @@ def audit(cand: Path, tmpl: Path, labels: Path, *, expected: dict, template_pin:
         "outside_all_zero": outside_zero,
         "outside_all_nan": outside_nan,
         "strict_whole_array_0_le_x_le_1": bool(((arr >= 0) & (arr <= 1)).all()),
-        "no_emission_on_catalogue": bool(shape_match and labels_match and not ((arr > 0) & lab & foot).any()),
+        "no_emission_on_catalogue": catalogue_positive_pixels == 0,
     }
     outside_conv = "zeros" if outside_zero else ("nan" if outside_nan else "MIXED/INVALID")
     hard_keys = ("template_sha256_matches_pin", "labels_sha256_matches_pin",
@@ -115,7 +116,7 @@ def audit(cand: Path, tmpl: Path, labels: Path, *, expected: dict, template_pin:
         hard_ok = False
     return dict(file=cand.name, bytes=cand.stat().st_size, sha256=sha(cand), meta=meta,
                 template_sha256=sha(tmpl), labels_sha256=sha(labels), footprint_px=int(foot.sum()),
-                positive_pixels=int((inside > 0).sum()),
+                positive_pixels=int((inside > 0).sum()), catalogue_positive_pixels=catalogue_positive_pixels,
                 distinct_values=[float(v) for v in np.unique(inside[np.isfinite(inside)])[:10]],
                 outside_convention=outside_conv, checks=checks, all_hard_checks_pass=bool(hard_ok),
                 zip=zrec, scope="local exact-file format and catalogue-mask checks only; no organizer or slot approval")

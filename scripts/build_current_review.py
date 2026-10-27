@@ -17,7 +17,7 @@ def read_json(path: str):
 def current_banner(prefix: str) -> str:
     old = read_json("registry/run_card_h73_2026-10-26.json")["holdout_dti"]
     return f'''<!-- H73-BW-2026-10-26 --><aside class="current-status" aria-label="Current decision">
-<strong>27 OCT 2026 · NO NEW TIF · H73-BW: BLOCKED BEFORE FIT · RESEARCH-ARCHIVE DOWNLOAD: YES (INSPECTION ONLY) · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
+<strong>27 OCT 2026 · NO NEW TIF IN THIS RUN · H73-BW: BLOCKED BEFORE FIT · RESEARCH-ARCHIVE DOWNLOAD: YES (INSPECTION ONLY) · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
 <span>Current preregistered lane stopped before model fitting: at least 82.70% overlap is unavoidable at its fixed budget.
 The earlier H73-PM HOLDOUT-DTI {old['pm_deapron_pooled']:.5f} vs same-run H35 {old['ctrl_h35_pooled']:.5f}
 (evaluator {e(old['evaluator'])}; {old['withheld_positive_occurrences']:,} withheld positive occurrences;
@@ -31,6 +31,7 @@ def render_body(root_page: bool = False) -> str:
     focus = read_json("evidence/focus_winners_reaudit_2026-10-27.json")
     geometry = read_json("evidence/lane_preflight_2026-10-27.json")
     h78 = read_json("registry/run_card_h78_2026-10-27.json")
+    h79 = read_json("registry/run_card_h79_2026-10-27.json")
     h71 = read_json("registry/run_card_h71_2026-10-26.json")["holdout_dti"]
     subs = read_json("registry/submissions.json")["files"]
     archive = {s["content_id"]: s for s in subs if s["file"].endswith("-zeros.tif")}
@@ -74,7 +75,7 @@ def render_body(root_page: bool = False) -> str:
     bounds = "".join(f"<tr><td>{x['dots']:,}</td><td>{x['minimum_overlap']:.2%}</td><td>Impossible</td></tr>"
                      for x in geometry["cases"])
     body = f'''<section class="hero"><p class="eyebrow">RESEARCH DECISION BRIEF / 27 OCTOBER 2026</p>
-<h1>Know when to stop.</h1><p class="lead">The requested unique competition-ready TIFF remains unfulfilled. A preregistered geometric stop prevents an honest candidate at the frozen density. No model or new TIFF was produced, and no weekly slot was selected.</p>
+<h1>Know when to stop.</h1><p class="lead">The requested unique competition-ready TIFF remains unfulfilled. A preregistered geometric stop prevents an honest candidate at the frozen density. This continuation produced no model or TIFF and selected no weekly slot; an independently added H79 scaffold also fails required gates.</p>
 <div class="stats"><div class="stat"><b>Research-archive download: YES</b><span>Inspection/testing only.</span></div>
 <div class="stat"><b>Competition-ready TIF: NO</b><span>OK TO SUBMIT: NO — DO NOT SUBMIT.</span></div>
 <div class="stat"><b>Estimated competition score: UNKNOWN</b><span>No defensible leaderboard estimate is available.</span></div></div></section>
@@ -86,6 +87,11 @@ def render_body(root_page: bool = False) -> str:
 <p>The earlier portal error “Predicted values must be in range [0, 1]” is consistent with NaNs inside an earlier owner-mirrored footprint. Zero padding also passes a stricter local whole-array range check, but the official format specifies null/NaN outside the bounds; organizer acceptance of zero padding is unknown. Format does not prove novelty, performance, or approval.</p>
 <p>The <a href="{repo}scripts/verify_candidate_independent.py">automated independent validator</a> checks the pinned template, labels, exact raster and ZIP without human inspection; a failed check exits nonzero. This does not replace the separate lane and scientific checks.</p>
 <p><a href="{repo}evidence/h78_independent_reaudit_2026-10-27.json">Format/ZIP audit</a> · <a href="{repo}evidence/h78_literal_lane_reaudit_2026-10-27.json">Literal lane audit</a> · <a href="{repo}knowledge/38_h78_mhscf_and_phd_focus_sites_analysis_2026-10-27.md">Correction and explanation</a> · <a href="{repo}registry/run_card_2026-10-27.json">Current JSON run card</a></p></section>
+<section class="review-decision"><span class="badge b-bad">CATALOGUE MASK + LITERAL LANE FAIL · DO NOT SUBMIT</span>
+<h2>Concurrent H79 random-dot scaffold: not a submission</h2>
+<p>A separate parallel PR added <a download href="{download}{e(h79['submission']['name'])}"><code>{e(h79['submission']['name'])}</code></a> and its <a download href="{download}{e(h79['submission']['zip'])}">ZIP</a>. This is an existing research archive, not an output of the stopped continuation and not a geological model.</p>
+<p><b>99.8699% of 37,654 dots lie within 3 px of r13</b> (maximum 70%), and <b>416 positives lie on mirrored catalogue pixels</b>. Local grid/range and exact ZIP pass; the catalogue-mask gate fails. Its prior local-only novelty check did not include r13. No blocked holdout or organizer score exists; <b>DO NOT SUBMIT</b>.</p>
+<p><a href="{repo}evidence/h79_independent_reaudit_2026-10-27.json">Independent mask/format audit</a> · <a href="{repo}evidence/h79_literal_lane_reaudit_2026-10-27.json">Literal lane audit</a> · <a href="{repo}registry/run_card_h79_2026-10-27.json">Corrected H79 card</a>.</p></section>
 <section id="lane-feasibility"><h2>Why the frozen continuation stopped</h2>
 <p>The mirrored template, labels and r13 grid were hash-checked. Only <b>6,514</b> eligible pixels are outside the lattice's 3-pixel halo. At fixed budget K, at least max(0, K − 6,514) dots overlap. For 37,654 dots the minimum is <b>82.70%</b> — a strict failure, before placement or fitting.</p>
 <div class="table-scroll"><table><thead><tr><th>Fixed dot budget K</th><th>Minimum overlap</th><th>70% gate</th></tr></thead><tbody>{bounds}</tbody></table></div>
@@ -123,9 +129,11 @@ def readme_status() -> str:
 
 **Research-archive download: YES (inspection/testing only) · Competition-ready TIF: NO · OK TO SUBMIT: NO · weekly slot: NO — DO NOT SUBMIT.**
 
-No new TIFF or model was produced. The preregistered 37,654-dot budget is geometrically forced to overlap the registered r13 lattice by at least **82.70%** within three pixels, above the allowed 70%. No density exception was used. The requested unique submission remains unfulfilled. [Preflight](evidence/lane_preflight_2026-10-27.json) · [ranked hypotheses and frozen design](knowledge/39_lane_hypotheses_and_preflight_2026-10-27.md) · [current JSON run card](registry/run_card_2026-10-27.json).
+No TIFF or model was produced in this continuation. The preregistered 37,654-dot budget is geometrically forced to overlap the registered r13 lattice by at least **82.70%** within three pixels, above the allowed 70%. No density exception was used. The requested unique submission remains unfulfilled. [Preflight](evidence/lane_preflight_2026-10-27.json) · [ranked hypotheses and frozen design](knowledge/39_lane_hypotheses_and_preflight_2026-10-27.md) · [current JSON run card](registry/run_card_2026-10-27.json).
 
 The existing [H78 zero-outside TIFF](docs/downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif) passes a local format audit only, but **100% of its 43,550 dots overlap the r13 halo; DO NOT SUBMIT**. Prior H78 holdout, score estimate and submit-ready claims are retracted as unsupported. [Correction](knowledge/38_h78_mhscf_and_phd_focus_sites_analysis_2026-10-27.md) · [format audit](evidence/h78_independent_reaudit_2026-10-27.json) · [literal lane re-audit](evidence/h78_literal_lane_reaudit_2026-10-27.json). The reported portal error “Predicted values must be in range [0, 1]” is consistent with earlier NaNs inside the mirrored footprint; the exact organizer validation behavior and acceptance of zero outside are unverified.
+
+The [H79 random-dot scaffold](docs/downloads/gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif), added independently by a parallel PR, is also **DO NOT SUBMIT**: **99.8699% overlap r13** and **416 positives are on catalogue pixels**. No geological predictor or blocked holdout was used. [Mask audit](evidence/h79_independent_reaudit_2026-10-27.json) · [lane audit](evidence/h79_literal_lane_reaudit_2026-10-27.json) · [corrected card](registry/run_card_h79_2026-10-27.json).
 
 GEMSDOE32's **0.2778 is OWNER-REPORTED**, not organizer-confirmed. B2 is exactly D2.8 pruned of 6,436 pixels within 200 m of the catalogue; sparsity and selective pruning could explain improved local credit/false-positive balance, but hidden-label causation and future scores are unknown. A fresh nine-site audit also finds GEMSDOE28's 0.2710 Rung30 winner differs from GEMSDOE31; only its lower-scoring R1 is identical to GEMSDOE31. [Executive summary & downloads](docs/executive-summary.html) · [pixel and source audit](evidence/focus_winners_reaudit_2026-10-27.json).
 

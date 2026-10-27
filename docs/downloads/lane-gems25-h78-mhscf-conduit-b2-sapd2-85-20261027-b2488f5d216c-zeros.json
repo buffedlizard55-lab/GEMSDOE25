@@ -1486,5 +1486,9 @@
    "density_caveat": ""
   }
  ],
- "note": "Spearman is computed on a 400k random footprint sample of raw values; binary rasters have heavy ties, so rho is a conservative rank summary, not a continuous rank correlation."
+ "note": "Historical receipt: Spearman was estimated on a 400,000-pixel footprint sample. The protocol trigger applies literally: all H78 dots are within 3 px of r13. Density-aware diagnostics cannot waive the stop. The full-footprint re-audit is evidence/h78_literal_lane_reaudit_2026-10-27.json.",
+ "strict_literal_verdict": "DUPLICATE / STOP / DO NOT SUBMIT",
+ "strict_literal_flags": [
+  "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
+ ]
 }

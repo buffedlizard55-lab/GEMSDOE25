@@ -50,6 +50,8 @@ def main() -> None:
                 "python scripts/audit_focus_winners.py\n"
                 "python scripts/verify_candidate_independent.py docs/downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif --require-zip\n"
                 "python scripts/check_lane_duplicates.py docs/downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif --reference data/scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif  # exits 2: literal failure\n"
+                "python scripts/verify_candidate_independent.py docs/downloads/gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif --require-zip  # exits 2: catalogue mask\n"
+                "python scripts/check_lane_duplicates.py docs/downloads/gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif --reference data/scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif  # exits 2: literal failure\n"
                 "python scripts/build_readme.py && python scripts/build_site.py\n```\n\n"
                 "The restored inputs are public owner mirrors. Their pinned hashes establish integrity, not organizer authenticity. "
                 "No automatic organizer interaction or upload is authorized.\n")
