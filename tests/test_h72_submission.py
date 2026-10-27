@@ -105,6 +105,8 @@ def test_h72_3_site_and_readme_make_submit_status_obvious() -> None:
         assert "88bbebfe79b4" in html
     readme = (ROOT / "README.md").read_text()
     assert PRIMARY["file"] in readme
-    assert "NO NEW COMPETITION TIFF" in readme
-    assert "OK TO SUBMIT: NO — DO NOT SUBMIT" in readme
+    assert "CBEC 2×2 experiment did fit models" in readme
+    assert "H79 random-dot scaffold" in readme
+    assert "OK TO SUBMIT: NO" in readme
+    assert "DO NOT SUBMIT" in readme
     assert (ROOT / "docs" / "downloads" / PRIMARY["zip"]).exists()

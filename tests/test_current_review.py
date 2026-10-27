@@ -134,4 +134,9 @@ def test_current_nine_site_report_shows_all_requested_sites_and_fail_closed_stat
     assert "NOT ESTIMATED" in report
     assert "HOLDOUT-DTI" in report
     assert "0.2785" in report and "hard-coded" in report
+    assert "99.8699%" in report and "416 positive cells" in report
     assert "DO NOT SUBMIT" in report
+    card = json.loads((ROOT / "registry/run_card_cbec_screen_2026-10-27.json").read_text())
+    assert card["raster_sha256"] is None
+    assert card["verdict"] == "negative"
+    assert card["submission"]["ok_to_submit"] is False

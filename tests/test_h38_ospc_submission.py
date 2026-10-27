@@ -116,5 +116,7 @@ def test_site_and_readme_surface_h38_verdict_at_top():
         assert "New TIF download: unavailable" not in html
     readme = (ROOT / "README.md").read_text()
     assert primary["file"] in readme
-    assert "NO NEW COMPETITION TIFF" in readme
-    assert "OK TO SUBMIT: NO — DO NOT SUBMIT" in readme
+    assert "CBEC 2×2 experiment did fit models" in readme
+    assert "H79 random-dot scaffold" in readme
+    assert "OK TO SUBMIT: NO" in readme
+    assert "DO NOT SUBMIT" in readme

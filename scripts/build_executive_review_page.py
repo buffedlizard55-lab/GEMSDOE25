@@ -145,7 +145,7 @@ def main() -> None:
 <style>.report{{max-width:1050px;margin:2rem auto;padding:2rem;background:#fff;border-radius:14px;line-height:1.65}}.report table{{display:block;overflow-x:auto;border-collapse:collapse;width:100%;font-size:.92rem}}.report td{{border:1px solid #d9e1ea;padding:.55rem;vertical-align:top}}.report h1{{font-size:2.1rem}}.report blockquote{{border-left:4px solid #2563eb;padding:.2rem 1rem;color:#334155}}.report ul{{padding-left:1.4rem}}.report a{{overflow-wrap:anywhere}}</style></head>
 <body><header class="top"><div class="wrap"><div class="brand">GEMSDOE25<small>DOE GEMS Prize · current evidence review</small></div><nav>
 <a href="index.html">Start here</a><a href="current-review.html">Current review</a><a class="on" href="current-executive-review.html">Nine-site report</a><a href="executive-summary.html">How to submit</a><a href="research.html">Research</a><a href="sources.html">Sources &amp; audit</a></nav></div></header>
-<main class="report">{body}<p><a href="../knowledge/39_current_review_2026-10-27.md">Open source Markdown</a> · <a href="../registry/run_card_current_review_2026-10-27.json">Machine-readable run card</a></p></main>
+<main class="report">{body}<p><a href="../knowledge/39_current_review_2026-10-27.md">Open source Markdown</a> · <a href="../registry/run_card_cbec_screen_2026-10-27.json">Machine-readable run card</a></p></main>
 <footer><div class="wrap">No leaderboard score is promised. No competition upload is automated. Current eligibility is <b>NO — DO NOT SUBMIT</b>.</div></footer></body></html>'''
     (ROOT / "docs/current-executive-review.html").write_text(page)
     print("docs/current-executive-review.html: rendered nine-site report")

@@ -56,6 +56,27 @@
       "strict_verdict": "DUPLICATE/LANE OVERLAP - do not package",
       "density_aware_verdict_not_authoritative": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
       "preplacement_surface_check": "NOT AVAILABLE; H78 continuous surface was not saved."
+    },
+    "mainline_h79_audit": {
+      "artifact_created_by_this_screen": false,
+      "file": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif",
+      "sha256": "e98b9a35609db124f5838cff415a1b0bdf462d65a746161c0bee706add3983d8",
+      "holdout_dti": null,
+      "strict_lane_overlap_vs_r13": 0.9986986774313485,
+      "spearman_vs_r13": 0.0005383076712475076,
+      "catalogue_positive_cells": 416,
+      "verdict": "negative; inspection only; DO NOT SUBMIT",
+      "source": "separate mainline PR; independent audit evidence only"
+    },
+    "h78_latest_mainline_inventory": {
+      "declared_pinned_references": 106,
+      "available_files": 64,
+      "missing_pinned_hashes": 42,
+      "registry_complete": false,
+      "compared_reference": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "h78_dots_within_3px": 1.0,
+      "h78_spearman_vs_r13": -0.00021257143898282906,
+      "verdict": "duplicate; lane clearance remains incomplete"
     }
   },
   "raster_sha256": null,
@@ -83,7 +104,23 @@
         "profile_matches_template": true
       },
       "local_range_and_template": "PASS locally against the hash-pinned owner-mirror sample_submission.tif; no organizer portal validation.",
-      "status": "RESEARCH INSPECTION ONLY; strict lane fails; DO NOT SUBMIT."
+      "status": "RESEARCH INSPECTION ONLY; strict lane fails; DO NOT SUBMIT.",
+      "shape": {
+        "height": 3730,
+        "width": 3292
+      },
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "footprint_nan_check": "PASS: 5,167,373 template-footprint pixels finite; no NaNs.",
+      "range_check": "PASS: footprint values in [0,1]; values are binary {0,1}.",
+      "crs_check": "PASS: EPSG:32611.",
+      "shape_transform_check": "PASS: 3730\u00d73292; affine transform matches hash-pinned sample template."
     }
   },
   "submission": {
@@ -110,6 +147,14 @@
     "format_recheck": "evidence/h78_format_recheck_2026-10-27.json",
     "lane_recheck": "evidence/h78_lane_recheck_2026-10-27.json",
     "provenance": "evidence/cbec_screen_2026-10-27/provenance.json",
-    "review_passes": "evidence/review_passes_2026-10-27.json"
+    "review_passes": "evidence/review_passes_2026-10-27.json",
+    "latest_h78_lane_recheck": "evidence/h78_lane_recheck_after_main_2026-10-27.json",
+    "mainline_h79_audit": "evidence/h79_literal_lane_reaudit_2026-10-27.json"
+  },
+  "preregistration_commit": "76edfe46fc8bf385f534b6bbc402e8a8430c0a0d",
+  "integration_context": {
+    "mainline_head_integrated": "eb70599",
+    "separate_h79_artifact_added_by": "independent mainline PR #62; not created by CBEC run",
+    "current_eligibility": "NO; H78 and H79 archives fail required literal lane/mask gates; CBEC emitted no TIFF"
   }
 }

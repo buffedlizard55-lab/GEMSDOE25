@@ -5,21 +5,21 @@
   "candidate_dots": 43550,
   "estimated_competition_score": null,
   "score_ci_95": null,
-  "score_basis": "WITHDRAWN: hard-coded builder constant; not a calibrated estimate, HOLDOUT-DTI, or organizer-confirmed score.",
+  "score_basis": "RETRACTED: old values were constants without measured calibration or an organizer receipt.",
   "primary_file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
   "primary_zip": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.zip",
   "legacy_file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-nan.tif",
   "sha256": "be78ded8d7073512d9fc71677c37cd3528e1ff80fb3c5cb8c02080417e1217e5",
   "ok_to_download": true,
   "ok_to_submit": false,
-  "validation_status": "Local exact-file format/range checks pass; strict lane fails; no organizer validation; DO NOT SUBMIT.",
+  "validation_status": "LOCAL FORMAT PASS ONLY; literal lane failed; DO NOT SUBMIT.",
   "lane_verdict": "DUPLICATE/LANE OVERLAP - do not package",
-  "lane_verdict_density_aware": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
+  "lane_verdict_density_aware": "RETRACTED AS ELIGIBILITY: density-aware diagnostic cannot override the literal rule.",
   "flagged_duplicates": [
     "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
   ],
-  "note": "GEMSDOE25 H78 MHSCF B2 | inspection only; DO NOT SUBMIT | id b2488f5d216c",
-  "note_chars": 73,
+  "note": "H78 archived research only; strict lane failed; DO NOT SUBMIT.",
+  "note_chars": 62,
   "format_checks": {
     "template_matches_expected_grid_and_footprint": {
       "pass_": true,
@@ -102,11 +102,5 @@
       "hard": false
     }
   },
-  "download_purpose": "Research inspection only",
-  "verdict": "negative / DO NOT SUBMIT",
-  "lane_recheck": "../../evidence/h78_lane_recheck_2026-10-27.json",
-  "format_recheck": "../../evidence/h78_format_recheck_2026-10-27.json",
-  "ok_to_upload": false,
-  "authorization_note": "No organizer upload authorization. Local format_valid is true, but strict lane gate fails. Research-download only; DO NOT SUBMIT.",
-  "legacy_field_warning": "The old ok_to_upload key once meant format-only; it is now forced false to prevent confusion. Use format_valid for schema checks and ok_to_submit for authorization."
+  "correction": "Re-audited in evidence/h78_independent_reaudit_2026-10-27.json and evidence/h78_literal_lane_reaudit_2026-10-27.json. The old receipt is preserved in Git history."
 }

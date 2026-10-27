@@ -1,35 +1,29 @@
 {
-  "schema": "run_card/v1 (PARALLEL-RUN PROTOCOL item 5)",
-  "session": "2026-10-27 H78 MHSCF (b2488f5d216c)",
+  "schema": "run_card/v1; corrected H78 historical artifact, not the current experiment",
+  "correction_date": "2026-10-27",
   "hypothesis": "H78-MHSCF: Multiscale Hydrothermal-Structural Conduit Fusion. Active blind faults in the Basin & Range show coupled hydrothermal demagnetization, potassium alteration (adularia metasomatism), gravity basement offset, and wellspring conduit alignment; ridge-NMS lineament extraction with strict B2 collar exclusion (d_cat > 2.0 px) and score-ordered Poisson disc thinning (2.85 px) optimizes DTI by eliminating catalog-shadow false positives.",
   "mechanism": "Catalogue-free fusion targets blind, unmapped convective fault conduits while eliminating false positive mass within 200 m of known faults. Score-ordered Poisson disc thinning at 2.85 px avoids credit saturation under the 300 m triangular DTI kernel.",
   "mimicking_non_fault_process": "Unfaulted alluvial fan toe pinch-outs, clay-pan evaporation margins, and non-tectonic thermal springs. Differentiated by gravity horizontal gradient basement steps and multi-band geophysical coincidence.",
   "holdout_dti": {
-    "evaluator": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, R=3.0px)",
-    "proxy_holdout_dti": 0.1512,
-    "ci95": [
-      0.1285,
-      0.174
-    ],
-    "withheld_positives": 22813,
-    "label": "UNVERIFIED LEGACY HOLDOUT-DTI RECORD (not independently reproduced in this checkout)",
-    "evaluator_version_status": "Function name was recorded, but exact runner/source hashes and matching saved cell evidence are absent; do not treat as validated current HOLDOUT-DTI."
+    "status": "UNSUPPORTED / RETRACTED. The earlier builder embedded fixed values; no actual matched holdout evaluation was found.",
+    "label": "HOLDOUT-DTI",
+    "evaluator": null,
+    "pooled_dti": null,
+    "ci95": null,
+    "withheld_positives": null
   },
   "estimated_competition_score": null,
+  "estimate_status": "RETRACTED: no calibrated score or confidence interval is supported.",
   "correlation_overlap_vs_registry": {
-    "verdict": "DUPLICATE/LANE OVERLAP - do not package",
-    "verdict_density_aware": "UNIQUE vs available registry (density-aware; literal flags, if any, listed in flagged_literal)",
-    "flagged_lane": [
-      "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
-    ],
-    "total_registry_checked": 60,
-    "flagged_literal": [
-      "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
-    ],
-    "final_max_candidate_dots_within_3px": 1.0,
-    "final_max_abs_spearman": 0.031427,
-    "preplacement_surface_rank_correlation": "NOT VERIFIED: no H78 continuous candidate surface is stored.",
-    "lane_recheck": "evidence/h78_lane_recheck_2026-10-27.json"
+    "status": "FAIL - literal lane overlap",
+    "reference": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "candidate_dots": 43550,
+    "candidate_dots_within_3px": 1.0,
+    "registry_complete": false,
+    "density_waiver_authorized": false,
+    "evidence": "evidence/h78_literal_lane_reaudit_2026-10-27.json",
+    "spearman_full_footprint_vs_lattice": -0.00021257143898282906,
+    "rank_footprint_pixels": 5167373
   },
   "validator_output": {
     "file": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
@@ -51,23 +45,22 @@
     "footprint_all_finite": true,
     "values_in_0_1": true,
     "outside_is_zero": true,
-    "ok_to_upload": false,
-    "status": "Local format/range checks pass only; lane gate fails and no organizer portal validation was performed."
+    "ok_to_upload": true,
+    "format_only": true,
+    "note": "Local raster format passed; this is not organizer acceptance and does not satisfy the novelty, performance or slot gates.",
+    "independent_audit": "evidence/h78_independent_reaudit_2026-10-27.json",
+    "ok_to_upload_meaning": "Legacy local format predicate only; not permission to upload or submit.",
+    "ok_to_submit": false
   },
   "submission": {
     "name": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.tif",
-    "zip": null,
-    "note": "GEMSDOE25 H78 MHSCF B2 | inspection only; DO NOT SUBMIT | id b2488f5d216c",
+    "zip": "gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-zeros.zip",
+    "note": "H78 archived research only; strict lane failed; DO NOT SUBMIT.",
     "content_id": "b2488f5d216c",
     "ok_to_download": true,
     "ok_to_submit": false,
-    "verdict": "negative / DO NOT SUBMIT",
-    "note_chars": 73,
-    "download_purpose": "Research inspection only",
-    "zip_status": "Not validated or provided as part of this recheck."
+    "verdict": "negative — historical research artifact; DO NOT SUBMIT"
   },
-  "generated_utc": "2026-10-27T17:53:17.598728+00:00",
-  "score_ci_95": null,
-  "score_basis": "WITHDRAWN: the previous value was a builder hard-coded constant, not a calibrated estimate or organizer score.",
-  "legacy_status": "SUPERSEDED: research archive only; no slot approval."
+  "original_claims": "Prior claims are retained only in the Git history at commit 77be1ae062dfc565dc91ecf6b71de31dd74f0735; see the corrected report.",
+  "hypothesis_status": "Historical model description, not independently established or tested in this review."
 }

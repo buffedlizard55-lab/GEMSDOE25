@@ -1,22 +1,26 @@
 #!/usr/bin/env python3
-"""Retired H78 artifact builder; intentionally fails closed.
+"""Retired H78 publisher: the archived H78 raster failed the strict lane rule.
 
-H78's displayed leaderboard estimate was hard-coded, its exact raster fails the strict literal
-registry lane rule, and its stored HOLDOUT-DTI record cannot be reproduced from saved cells in this
-checkout. The historical implementation is retained in repository history; this entry point must
-never recreate, relabel, or authorize the H78 TIFF.
+The original builder wrote a purported leaderboard estimate and holdout result
+as constants and promoted a density-aware result over a literal lane failure.
+The old source is preserved in Git history for study, not for candidate creation.
+A new build must start from a preregistered hypothesis, the shared evaluator and
+writer, and independent, fail-closed surface, final-dot and holdout gates.
 """
 from __future__ import annotations
 
+import sys
 
-def main() -> None:
-    raise SystemExit(
-        "H78 is quarantined: its leaderboard estimate was hard-coded, its HOLDOUT-DTI evidence "
-        "is not reproducible here, and its exact raster fails the strict registry lane gate. "
-        "No H78 TIFF may be generated or submitted. See "
-        "knowledge/39_current_review_2026-10-27.md."
+
+def main() -> int:
+    print(
+        "H78 publisher retired: its literal lane audit failed and its score/holdout "
+        "claims were not supported by an experiment. DO NOT SUBMIT. "
+        "See knowledge/38_h78_mhscf_and_phd_focus_sites_analysis_2026-10-27.md.",
+        file=sys.stderr,
     )
+    return 2
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

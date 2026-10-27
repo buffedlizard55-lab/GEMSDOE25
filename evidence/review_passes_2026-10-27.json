@@ -38,13 +38,18 @@
         "H78 surface rank correlation remains unverified because no continuous surface is stored.",
         "Hard-coded H78 competition estimate withdrawn; legacy builder now exits before generating any raster.",
         "No new candidate TIFF, submission upload, weekly-slot selection or merge performed.",
-        "README, static site current decision, nine-site report and current JSON run card updated."
+        "README, static site current decision, nine-site report and current JSON run card updated.",
+        "After main advanced, reconciled its separate H79 scaffold: it is not a geological model and fails strict r13 overlap and catalogue masking; no slot or submission is approved.",
+        "Latest pinned H78 registry inventory declares 106 references; 64 bytes are present and 42 are missing. The explicit r13 comparison fails; full registry clearance is not claimed."
       ],
       "records": [
         "evidence/h78_format_recheck_2026-10-27.json",
         "evidence/h78_lane_recheck_2026-10-27.json",
         "knowledge/39_current_review_2026-10-27.md",
-        "registry/run_card_current_review_2026-10-27.json"
+        "registry/run_card_cbec_screen_2026-10-27.json",
+        "evidence/h78_lane_recheck_after_main_2026-10-27.json",
+        "evidence/h79_independent_reaudit_2026-10-27.json",
+        "evidence/h79_literal_lane_reaudit_2026-10-27.json"
       ]
     }
   ],
@@ -56,6 +61,7 @@
     "competition_access_automated": false,
     "submission_uploaded": false,
     "slot_selected": false,
-    "pr_merged": false
+    "pr_merged": false,
+    "mainline_h79_scaffold_created_by_cbec_run": false
   }
 }

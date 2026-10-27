@@ -9,24 +9,21 @@ CARD_PATH = ROOT / "registry/run_card_h73_2026-10-26.json"
 RUN_CARD = json.loads(CARD_PATH.read_text())
 
 
-def test_current_cbect_screen_is_prominent_and_h78_is_quarantined() -> None:
+def test_current_submission_status_is_no_go_and_h73_is_historical() -> None:
     for rel in ("index.html", "docs/index.html", "docs/current-review.html", "docs/executive-summary.html"):
         page = (ROOT / rel).read_text()
-        assert "NO ELIGIBLE COMPETITION TIFF" in page, rel
-        assert "CBEC HOLDOUT SCREEN: NEGATIVE" in page, rel
-        assert "RESEARCH-ARCHIVE DOWNLOAD: YES" in page, rel
-        assert "COMPETITION-READY TIF: NO" in page, rel
+        assert "H78 TIFF: format pass" in page, rel
+        assert "H79 random-dot scaffold" in page, rel
         assert "OK TO SUBMIT: NO — DO NOT SUBMIT" in page, rel
-        assert "H78" in page and "hard-coded" in page, rel
-        assert page.index("NO ELIGIBLE COMPETITION TIFF") < page.index("Archived H72-3 research artifact only"), rel
-
-
-def test_h73_status_matches_saved_run_card_and_strict_lane_receipt() -> None:
-    holdout = RUN_CARD["holdout_dti"]
+        assert "99.8699%" in page and "416 positives" in page, rel
+        assert "H73-BW: BLOCKED BEFORE FIT" in page, rel
     assert RUN_CARD["verdict"] == "negative"
     assert RUN_CARD["ok_to_submit_slot"] is False
     assert RUN_CARD["organizer_confirmed_score"] is None
-    assert holdout["slot_gate_passed"] is False
+    assert RUN_CARD["holdout_dti"]["slot_gate_passed"] is False
+
+
+def test_h73_historical_receipt_remains_reproducible_and_not_eligible() -> None:
     lane = json.loads((ROOT / "evidence/h73_lane_extended.json").read_text())
     lattice = lane["lattice"][0]
     assert lattice["cand_dots_within_3px"] == 1.0

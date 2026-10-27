@@ -119,13 +119,16 @@ def test_sgmc_reactivation_suppresses_orthogonal_or_unstrained_traces():
     assert vecs[2, idx_active] > 0.3 and vecs[2, idx_inactive] == pytest.approx(0.0, abs=1e-5)
 
 
-def test_lane_check_extended_excludes_only_candidate_own_stem():
+def test_retired_extended_checker_keeps_same_stem_twins_and_never_approves(capsys):
     import lane_check_extended as lce
 
     mscr_z = ROOT / "docs/downloads/gems25-mscr-multiscale-crest-sapd2-4-k3p5-20261025-dd2bb4b09cd2-zeros.tif"
     xg1_z = ROOT / "docs/downloads/gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.tif"
     _, own_for_mscr = lce.groups(mscr_z)
     _, own_for_xg1 = lce.groups(xg1_z)
-    assert not any("mscr-multiscale-crest" in p.name for _, p in own_for_mscr)
+    assert mscr_z not in [p for _, p in own_for_mscr]
+    assert any("mscr-multiscale-crest" in p.name and p.name.endswith("-nan.tif") for _, p in own_for_mscr)
     assert any("mscr-multiscale-crest" in p.name for _, p in own_for_xg1)
-    assert not any("xg1-crossgrad" in p.name for _, p in own_for_xg1)
+    assert any("xg1-crossgrad" in p.name and p.name.endswith("-nan.tif") for _, p in own_for_xg1)
+    assert lce.main() == 2
+    assert "cannot authorize" in capsys.readouterr().err
