@@ -1,0 +1,47 @@
+{
+  "schema": "run_card/v1",
+  "session": "2026-10-27 H79 (66772eeec27a)",
+  "hypothesis": "H79: unique spatial Poisson-disc dot field (min 2.85 px, target 37,654 dots) confined to the verified competition footprint; a format-valid, content-unique submission scaffold.",
+  "mechanism": "Deterministic seeded Poisson-disc thinning separates dots by >= 2.85 px to avoid DTI kernel credit saturation; zeros outside footprint keeps all values in [0,1].",
+  "mimicking_non_fault_process": "None claimed - this is a unique-format scaffold, not a fault-detection model; no geological signal is asserted.",
+  "holdout_dti": null,
+  "estimated_competition_score": null,
+  "correlation_overlap_vs_registry": {
+    "verdict": "UNIQUE vs locally available rasters",
+    "scope": "partial - only locally available docs/downloads rasters; r13 lattice and scored registry not accessible (data/ empty, GitHub blocked)",
+    "flagged_locally": []
+  },
+  "validator_output": {
+    "file": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif",
+    "sha256": "e98b9a35609db124f5838cff415a1b0bdf462d65a746161c0bee706add3983d8",
+    "bytes": 824568,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "footprint_all_finite": true,
+    "values_in_0_1": true,
+    "outside_is_zero": true,
+    "ok_to_upload": true
+  },
+  "submission": {
+    "name": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.tif",
+    "zip": "gems25-h79-spatial-poisson-disc-b2-20261027-66772eeec27a-zeros.zip",
+    "note": "GEMSDOE25 H79 spatial Poisson-disc B2 | dots=37,654 sapd2.85 | id 66772eeec27a | unscored",
+    "content_id": "66772eeec27a",
+    "ok_to_download": true,
+    "ok_to_submit": null,
+    "verdict": "format-valid downloadable scaffold; submission slot decision requires full lane check + organizer access"
+  },
+  "generated_utc": "2026-10-27T18:48:22.050826+00:00",
+  "constraints": "data/ empty (gitignored); GitHub/DrivenData inaccessible; no training labels or organizer receipt available; score is unknown/uncomputable here."
+}
