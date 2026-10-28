@@ -1,3 +1,15 @@
+<!-- SESSION-962e5a5b-REVIEW -->
+## Latest verification — 28 October 2026
+
+**DO NOT SUBMIT.** No new lane-cleared TIFF or calibrated competition score estimate was produced.
+[Three-pass review and remaining blockers](knowledge/43_session_962e5a5b_review.md).
+The executive summary was regenerated to restore no-go warnings and remove a broken ZIP link.
+Readiness now requires an absolute HOLDOUT-DTI 95% CI and a whole-array finite/[0,1] receipt.
+Current owner requirements: unique scientific output, exact-file validation, nine-site comparison, feature-alone canaries,
+paired buffered-segment holdout, full-registry surface/dot checks, three experiments/two hours maximum,
+and separate selector approval. No specific method lane is identifiable in the supplied prompt.
+The full standing owner brief remains below; this paragraph is an operational digest, not a verbatim transcript.
+
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
 ## Latest audit — 2026-10-28 (read first)
