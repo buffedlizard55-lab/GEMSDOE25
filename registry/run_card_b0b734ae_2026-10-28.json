@@ -1,0 +1,54 @@
+{
+  "schema": "run_card/v2",
+  "session": "arena/b0b734ae-gemsdoe25",
+  "date_utc": "2026-10-28",
+  "hypothesis": "UNASSIGNED: four planning hypotheses only; no lane selected or geological experiment run.",
+  "mechanism": "Planning leader: test whether persistent magnetic-contact interruption crosses sediment cover; not preregistered for execution.",
+  "named_non_fault_mimic": "Lithological contacts and airborne flight-line seams.",
+  "holdout_dti": null,
+  "holdout_95pct_ci": null,
+  "evaluator_version": null,
+  "withheld_positive_count": null,
+  "correlation_overlap_vs_registry": {
+    "new_candidate": "NOT RUN: no candidate surface or dots",
+    "archived_lattice_gap": "15 references compared, no flags; stopped on misaligned pinned reference; surface unavailable",
+    "archived_r13_rho": -0.0072086522715729745,
+    "archived_r13_overlap": 0.0,
+    "geometry_at_37654_dots_min_overlap": 0.8270037711796887,
+    "evidence": [
+      "evidence/latticegap_final_lane_b0b734ae.json",
+      "evidence/lane_feasibility_b0b734ae_2026-10-28.json"
+    ]
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_candidate": "NOT RUN: no TIFF generated",
+    "archived_diagnostic_sha256": "79597e464fcf1d5f884f01c017597bd7facf13ca7def2b98dd5a72241bc69a82",
+    "archived_footprint_finite": true,
+    "archived_footprint_in_range": true,
+    "archived_crs": "EPSG:32611",
+    "archived_shape": [
+      3730,
+      3292
+    ],
+    "archived_transform": [
+      100,
+      0,
+      243350,
+      0,
+      -100,
+      4508550
+    ],
+    "archived_strict_whole_array": false,
+    "archived_required_zip_present": false
+  },
+  "submission_name": null,
+  "note": "No candidate: lane unassigned, audit incomplete; DO NOT SUBMIT.",
+  "verdict": "negative",
+  "okay_to_submit": false,
+  "experiments": 0,
+  "new_tiffs": 0,
+  "weekly_slots_used": 0,
+  "cache": "six shared cache files rebuilt; hashes match evidence/work_cache_hashes.json",
+  "next_step": "Assign exactly one method lane; resolve registry grid, preregister and run gates before candidate creation."
+}

@@ -73,8 +73,14 @@ def test_h75_three_experiments_virgin_draws_canaries_and_blockholdout_g2() -> No
         assert all(r["passed"] and r["canary_auc"] <= 0.90 for r in raw_canaries)
         design = J(f"{exp_dir}/design.json")
         assert design["preregistration_commit"] == "12931bb52bda9195495797590bd66ac073ee5589"
+        corrections = J("evidence/evaluator_corrections_b0b734ae.json")["files"]
         for src_rel, sha in design["evaluator_hashes"].items():
-            assert hashlib.sha256((ROOT / src_rel).read_bytes()).hexdigest() == sha, (exp_dir, src_rel)
+            current = hashlib.sha256((ROOT / src_rel).read_bytes()).hexdigest()
+            if src_rel in corrections:
+                assert corrections[src_rel]["previous_sha256"] == sha
+                assert corrections[src_rel]["current_sha256"] == current != sha
+            else:
+                assert current == sha, (exp_dir, src_rel)
 
     # Exp 3 (25-km full-checkerboard BlockHoldout, 95,188 withheld +) passed Gate G2 vs BOTH blind controls
     assert x3["withheld_positive_occurrences"] == 95_188

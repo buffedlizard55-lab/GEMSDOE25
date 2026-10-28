@@ -1,0 +1,23 @@
+{
+  "review_date_utc": "2026-10-28",
+  "historical_reference": "evidence/rod_2026-10-26/run_card.json",
+  "reason": "Guard zero-target component sampling and reject invalid footprint/label masks and non-binary scored-domain truth or predictions; no historical receipts or scores were rewritten.",
+  "limitations": "Valid binary predictions and positive hide targets retain the same formulas; no complete historical experiment was rerun. Old and new source hashes are distinct evaluator versions.",
+  "files": {
+    "src/gems25/holdout.py": {
+      "previous_sha256": "f0455eb17921e50365342ffb658504a5fcc0ddb3d2bd82f4bf0568d772be2bc1",
+      "current_sha256": "124b02a4f63007d95f573771e13ba2cbe8d04cc9efa90a17a20f6b92a8a19b4a",
+      "original_source_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/13c1f021655027e963fb74a5cbba50b1c4aaac78/src/gems25/holdout.py"
+    },
+    "src/gems25/metric.py": {
+      "previous_sha256": "4f6e4732029efd0238388aec74590e56bc2727df7441220ca09af7d02e9da230",
+      "current_sha256": "a486f96441926cf4daa28750360b4999cfbaecb9f2be8eb9868b079333465ca7",
+      "original_source_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/13c1f021655027e963fb74a5cbba50b1c4aaac78/src/gems25/metric.py"
+    },
+    "src/gems25/block_holdout.py": {
+      "previous_sha256": "baad5b5301d4e623a8100593f7be0ab4fd791b712576eb411a5a740225a9fa6e",
+      "current_sha256": "92f3c9b0df2e1f9b6f2959d81014fccd269b89b9a79894b7990610e559b8c2a9",
+      "original_source_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/13c1f021655027e963fb74a5cbba50b1c4aaac78/src/gems25/block_holdout.py"
+    }
+  }
+}

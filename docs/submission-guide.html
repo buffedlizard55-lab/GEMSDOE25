@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Submission guide · GEMSDOE25</title><link rel="stylesheet" href="assets/style.css"></head><body>
+<header class="top"><div class="wrap"><div class="brand">GEMSDOE25<small>DOE GEMS Prize · DrivenData #306 · designed factorial experiments</small></div><nav><a class="" href="index.html">Start here</a><a class="" href="current-review.html">Current review</a><a class="" href="executive-summary.html">Executive summary</a><a class="on" href="submission-guide.html">Submission guide</a><a class="" href="research.html">Research</a><a class="" href="sources.html">Sources & audit</a></nav></div></header>
+<main class="wrap"><!-- CURRENT-REVIEW-2026-10-28 --><aside class="current-status" aria-label="Current decision">
+<strong>28 OCT 2026 · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
+<span>Independent hash-pinned geometry audit rerun: at 37,654 dots, at least 82.70% must overlap the registered
+r13 halo, exceeding the strict 70% cap. No assigned single-method lane was supplied; no new fitting experiment,
+TIFF or weekly slot was used. Historical downloads below are for research only. Competition score estimate: UNKNOWN.</span>
+<a href="current-review.html#review-2026-10-28">Current audit and next steps →</a></aside><section class="hero"><h1>Submission guide</h1>
+<p class="lead"><b>NO competition-ready TIFF exists. DO NOT SUBMIT any current download.</b>
+Existing TIFFs are available only for local research; this page is a checklist for a possible future candidate.</p>
+<p><a href="executive-summary.html">Nine-site executive table</a> · <a href="current-review.html">Current review</a> ·
+<a href="data/download_audit.json">Research download inventory</a></p></section>
+<section class="review-decision"><h2>Before a selector considers a future file</h2><ol>
+<li>Obtain an explicit single-method assignment and preregister the hypothesis before fitting. Reuse shared components;
+perform per-feature canaries, buffered whole-segment hide-and-recover holdout, and a paired same-run comparison.</li>
+<li>Check absolute full-footprint rank correlation against every declared reference before dot placement and on the final file;
+stop for |&rho;| &gt; 0.90 or &gt;70% of candidate dots within 3 pixels of any reference. Missing, misaligned or unavailable
+references are unverified, not a pass. Do not waive dense references.</li>
+<li>Independently re-read the exact TIFF and verify SHA-256, one float32 band, the pinned template's CRS/shape/transform,
+finite [0,1] values inside the footprint, and the exact known-fault mask. The local promotion policy also requires all array
+values to pass strict [0,1]; this conservative check does not establish the organizer's padding requirements.</li>
+<li>Run <code>python scripts/verify_candidate_independent.py path/to/candidate.tif</code>. If proposing a ZIP, add
+<code>--require-zip</code> and verify that it contains exactly the audited TIFF bytes. Run
+<code>python scripts/check_readiness.py evidence.json --output decision.json</code> for receipt consistency; see the
+<a href="../knowledge/44_readiness_receipt_contract.md">receipt schema and evidence requirements</a>. A pass permits
+selector review only and does not authenticate the evidence or authorize a slot.</li>
+<li>A separate owner selector must choose a candidate and authorize any weekly slot. Only then follow the current
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">organizer instructions</a> manually,
+checking the file hash and retaining any receipt. This repository does not automatically access the organizer or upload.</li>
+</ol><p><b>Portal warning:</b> the reported “Predicted values must be in range [0, 1]” is consistent with NaNs inside
+an earlier owner-mirrored footprint, but the actual cause is not proven. Outside-footprint NaN and zero conventions have
+not been organizer-confirmed here; neither an all-finite file nor a ZIP proves portal acceptance.</p>
+<p><b>Note:</b> A future candidate needs a short, exact-file-specific note (at most 140 characters). Research identifiers
+on archive files are not submission notes. No note or candidate has been approved in this session.</p></section></main>
+<footer><div class="wrap">Core values: <b>Maximize P(Win)</b> · <b>Own the Outcome</b>. Source: <a href="https://github.com/buffedlizard55-lab/GEMSDOE25">github.com/buffedlizard55-lab/GEMSDOE25</a> ·
+built 2026-10-28 16:33 UTC from <code>registry/</code> and <code>evidence/</code> by <code>scripts/build_site.py</code>.
+No score here is promised; reported scores are unverified unless an organizer receipt is supplied. This site/feed never contacts drivendata.org.</div></footer>
+<script src="assets/app.js"></script></body></html>

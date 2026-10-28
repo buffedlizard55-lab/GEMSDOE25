@@ -1,8 +1,8 @@
 {
  "schema_version": 1,
- "generated_utc": "2026-10-27",
+ "generated_utc": "2026-10-28",
  "legend": {
-  "verified": "true = I read the cited page/file this session; false = carried over or unreachable"
+  "verified": "true = cited content was read on its recorded verified_utc date; not a live status or organizer-authenticated score"
  },
  "sources": [
   {
@@ -546,6 +546,76 @@
    "caveats": "Historical leaderboard scores reported in sibling READMEs remain OWNER-REPORTED claims, not ORGANIZER-CONFIRMED receipts.",
    "license": "Repository internal",
    "reachable_from_sandbox_bash": true
+  },
+  {
+   "id": "official-notebook-20261028",
+   "title": "Organizer reference notebook, pinned revision",
+   "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/unet-mc-cv-reference-solution.ipynb",
+   "publisher": "DrivenData",
+   "kind": "official source",
+   "used_for": "Official GitHub notebook cells 16 and 19",
+   "verified": true,
+   "verified_utc": "2026-10-28",
+   "how_verified": "GitHub API fetch; SHA256 1a7622732ba00f67237058bc0efe79b45ba4e87c449fc9c1e5d6ea659de92ca0",
+   "caveats": "Ordinary Tversky training and single-band output; not DTI scorer, portal-padding acceptance or a score receipt.",
+   "license": "",
+   "reachable_from_sandbox_bash": true
+  },
+  {
+   "id": "usgs-geodawn-catalog-20261028",
+   "title": "USGS GeoDAWN catalog (DOI 10.5066/P93LGLVQ)",
+   "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
+   "publisher": "USGS",
+   "kind": "official source",
+   "used_for": "Airborne magnetic/radiometric survey metadata",
+   "verified": true,
+   "verified_utc": "2026-10-28",
+   "how_verified": "Catalog page content read through source retrieval",
+   "caveats": "Catalog metadata only; raw binary, schema, coverage and predictive value not independently checked.",
+   "license": "",
+   "reachable_from_sandbox_bash": false
+  },
+  {
+   "id": "usgs-play-fairway-20261028",
+   "title": "Great Basin blind-geothermal play fairway (DOI 10.2172/1724080)",
+   "url": "https://www.usgs.gov/publications/discovering-blind-geothermal-systems-great-basin-region-integrated-geologic-and",
+   "publisher": "USGS",
+   "kind": "official source",
+   "used_for": "Integrated structural, geophysical and thermal geothermal context",
+   "verified": true,
+   "verified_utc": "2026-10-28",
+   "how_verified": "Publication listing and summary read",
+   "caveats": "Scientific background, not evidence for any candidate performance.",
+   "license": "",
+   "reachable_from_sandbox_bash": false
+  },
+  {
+   "id": "usgs-gabbs-valley-20261028",
+   "title": "Southern Gabbs Valley blind geothermal study",
+   "url": "https://pubs.usgs.gov/publication/70201803",
+   "publisher": "USGS",
+   "kind": "official source",
+   "used_for": "Fault intersections/transfer zones and geothermal field observations",
+   "verified": true,
+   "verified_utc": "2026-10-28",
+   "how_verified": "Publication page read",
+   "caveats": "Site-specific observations, not a cross-validated competition result.",
+   "license": "",
+   "reachable_from_sandbox_bash": false
+  },
+  {
+   "id": "usgs-siler-discontinuities-20261028",
+   "title": "Great Basin structural-discontinuity modeling (DOI 10.1144/geoenergy2023-009)",
+   "url": "https://pubs.usgs.gov/publication/70246663",
+   "publisher": "USGS",
+   "kind": "official source",
+   "used_for": "Stress/strain concentration at structural discontinuities",
+   "verified": true,
+   "verified_utc": "2026-10-28",
+   "how_verified": "Publication page read",
+   "caveats": "Does not validate the proposed methods or predict a DTI score.",
+   "license": "",
+   "reachable_from_sandbox_bash": false
   }
  ]
 }

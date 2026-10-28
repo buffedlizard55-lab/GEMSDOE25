@@ -1,0 +1,424 @@
+{
+  "generated_utc": "2026-10-28T16:19:31.595848+00:00",
+  "purpose": "Restore missing declared pinned references; no candidate or geological experiment",
+  "before": {
+    "declared_hashes": 117,
+    "available_files": 81,
+    "registry_manifest_sha256": "2680df0e2d8100e25428fd3ee2b258e136287c492930808cd7232b5846125917",
+    "missing_sha256": [
+      "0210da4395b209450e52e9efc780ab3ca6aceffd60c26d6f623da2b8fe76b691",
+      "04d31922f5c1ea4016984fc470ab2b0ff8e266c615792f0e86020da3b940d3ff",
+      "0c9199f14e625d7b2539a0a045803b74d6494ce568d185abecc193fe7e93c6f2",
+      "120810feffb4688c364f2bb49a3d2624dcbb53fdc294892c68957f65fbaba131",
+      "22850984a68c393f60c6cc9aeafd8d74fd8a3479654bdfcfd3626a4b99ff0381",
+      "237f0063a440b2c6c4b822bcb0f74e5203586313b3b5ed6c5cabe70fa046f63f",
+      "2bf4737ae0a3b844a160d4041d435e5a7daf92c6ec92f128a0c2c596ba23787c",
+      "2c002b02792419864bd3b29a218e543cb41e3f07b3b57c29ef35c6e39e184bfe",
+      "33cec71ff00b3f32d0d59c81c156f3f1488ffef46baa4b6499094e24ea1875ab",
+      "36c3a3f341c8306dfb5610f61acfec635a7cb8a3ef6ef00380ca083d2f9745fe",
+      "3722e26fbf9129874be1fb8c687825803952c57ef1154ed0a21029596bc412f1",
+      "37f9d5b855ee1b6c302cb81cdae1414db94db427f5dc9da3538474df37cf1cad",
+      "46a0f0fa2f63e6e6b4a5fe4520e999b925cf3ff954a01b10b36b735c1b0649c8",
+      "4e03fc97052e9bd673e48f1923ad17f15926f8db26d2befc033e1722381dc9b7",
+      "54c978399d0a875ba89aacc465e7efd8644420e6ba1dfa7c0a1390328be2c514",
+      "5eb9572946fa62356ebc0cbfef22bb54aa2ef094cb8b4a84b52e6b80e120db96",
+      "6292a7916c83d371fc650b0f0c6a090702b9890eaa6e6546d50f104eea2fadc3",
+      "64d589ac8d5365693d8845a5673a42ec593794ac46be2aa14a1f950e948fe2b3",
+      "736f62c2da585677ef472cab0f9bc63bd15c50c340beb4a0f4627fafd3d1c853",
+      "792af6255a7e1048e5c2053c178feee5f807f5de83b5d07e51617a7164115ec5",
+      "81d5b87bc8424f162a8f56aa9aac8fbe630c61646b9cac24d5ebbdc1b1951783",
+      "8585c5e870f197f84fda5bac7f22047d646fb73d455eb8b1129486c79bb976cf",
+      "86fc8243ad573bcdbfac8b432daf0ec5b6800b991b2c3278706358be7eb9922d",
+      "91e26530ad25cfc19e05d3fc38b75c0e295ee1e128f571a3ba4afcf8df10934e",
+      "92904a5bfd84c8bd1141683fc5d29817aa4de71574d8caff5b40f7ed0072a5b8",
+      "a26e5e46acc00ddd867f0b2910e638b25e4e81108ebe05c0abcc7c9b04372247",
+      "b33684ae033512a1a1c7d2cfccd128955fedfdff2a8fed6c7585a755b1b58b3c",
+      "b437efcec17fb4582a3ff2f5f6ce6a179545c1e21fcd51e0c4b828cfd185d631",
+      "b5ca6f1755af059e17f5edf0940fd7e945d43a1359e103a4789eae33c536ad41",
+      "c11e495e5817730ad5f0fdc368b810f79050cbb6bd65e98c98123b7921ed336b",
+      "ccbe1de0cfd70cbe7257c04669195f390ca652fa3a76c51505f461f01a1424c6",
+      "ce043566a96a1bf0abae366ba706ed6be5907297248b1d14deace8596500b186",
+      "d0e41ce921afcf3af33b7d86d75f6a258653dfbb4d050e864babe643245f0ea8",
+      "defe590b944651552d7260237f79f309e3c089d03361e130db0e2dd7c87eb326",
+      "e5f3684e9b49e8f11019f87e047017c5ab8a46294935bc0c7c80859ca7d2b1ce",
+      "f12f03a27585b1a9c89108970775d7b44e532c3238a8f387552f1103d7317042",
+      "f1584187b459baf47f75e5daf64de6f7696f9feb14910d3cf2762f7a1119597a",
+      "f347b70daa95170bfc967b1c0b6bbf951496c2b74764a7102848ad6178829aca",
+      "f68e590f8534d036872f18170819b52366c728e68619f17c648dce9629b0aaf2",
+      "fab28aa25f7f803907c91d0e64cbfe2755f9bc1702163f458bbb1017174a0249"
+    ],
+    "complete": false,
+    "scope": "declared pinned registry only; not every submission on every site"
+  },
+  "attempts": [
+    {
+      "id": "dual-family-union",
+      "dest": "artifacts/dual-family-union.tif",
+      "repo": "buffedlizard55-lab/5GEMSDOE",
+      "ref": "main",
+      "path": "data/evidence/leaderboard_anchor/gemsdoe2-dual-family-union-f68e590f.tif",
+      "sha256": "f68e590f8534d036872f18170819b52366c728e68619f17c648dce9629b0aaf2",
+      "status": "restored"
+    },
+    {
+      "id": "pindrop-nodes",
+      "dest": "artifacts/pindrop-nodes.tif",
+      "repo": "buffedlizard55-lab/5GEMSDOE",
+      "ref": "main",
+      "path": "data/evidence/leaderboard_anchor/pindrop-v4-nodes-f347b70daa.tif",
+      "sha256": "f347b70daa95170bfc967b1c0b6bbf951496c2b74764a7102848ad6178829aca",
+      "status": "restored"
+    },
+    {
+      "id": "pindrop-ridge",
+      "dest": "artifacts/pindrop-ridge.tif",
+      "repo": "buffedlizard55-lab/5GEMSDOE",
+      "ref": "main",
+      "path": "data/evidence/leaderboard_anchor/pindrop-v4-ridge-4e03fc9705.tif",
+      "sha256": "4e03fc97052e9bd673e48f1923ad17f15926f8db26d2befc033e1722381dc9b7",
+      "status": "restored"
+    },
+    {
+      "id": "pindrop-discovery",
+      "dest": "artifacts/pindrop-discovery.tif",
+      "repo": "buffedlizard55-lab/5GEMSDOE",
+      "ref": "main",
+      "path": "data/evidence/leaderboard_anchor/pindrop-v4-discovery-37f9d5b855.tif",
+      "sha256": "37f9d5b855ee1b6c302cb81cdae1414db94db427f5dc9da3538474df37cf1cad",
+      "status": "restored"
+    },
+    {
+      "id": "lidarscarp-top2pct",
+      "dest": "artifacts/lidarscarp-top2pct.tif",
+      "repo": "buffedlizard55-lab/7GEMSDOE",
+      "ref": "main",
+      "path": "downloads/gems7-lidarscarp-ridge-top2pct-36c3a3f341c8.tif",
+      "sha256": "36c3a3f341c8306dfb5610f61acfec635a7cb8a3ef6ef00380ca083d2f9745fe",
+      "status": "restored"
+    },
+    {
+      "id": "hgb88-topk03",
+      "dest": "artifacts/hgb88-topk03.tif",
+      "repo": "buffedlizard55-lab/6GEMSDOE",
+      "ref": "main",
+      "path": "downloads/gems6_hgb88-topk03_33cec71ff0.tif",
+      "sha256": "33cec71ff00b3f32d0d59c81c156f3f1488ffef46baa4b6499094e24ea1875ab",
+      "status": "restored"
+    },
+    {
+      "id": "structural-area06",
+      "dest": "artifacts/structural-area06.tif",
+      "repo": "buffedlizard55-lab/11GEMSDOE",
+      "ref": "main",
+      "path": "docs/downloads/gems-structural-area06-v1.tif",
+      "sha256": "6292a7916c83d371fc650b0f0c6a090702b9890eaa6e6546d50f104eea2fadc3",
+      "status": "restored"
+    },
+    {
+      "id": "r7-nms3-dem10-scarp",
+      "dest": "artifacts/r7-nms3-dem10-scarp.tif",
+      "repo": "buffedlizard55-lab/12GEMSDOE",
+      "ref": "main",
+      "path": "docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif",
+      "sha256": "0c9199f14e625d7b2539a0a045803b74d6494ce568d185abecc193fe7e93c6f2",
+      "status": "restored"
+    },
+    {
+      "id": "geom-horse-ensemble",
+      "dest": "artifacts/geom-horse-ensemble.tif",
+      "repo": "buffedlizard55-lab/14GEMSDOE",
+      "ref": "main",
+      "path": "docs/downloads/GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f.tif",
+      "sha256": "ccbe1de0cfd70cbe7257c04669195f390ca652fa3a76c51505f461f01a1424c6",
+      "status": "restored"
+    },
+    {
+      "id": "conj-alteration-mag",
+      "dest": "artifacts/conj-alteration-mag.tif",
+      "repo": "buffedlizard55-lab/15GEMSDOE",
+      "ref": "main",
+      "path": "docs/downloads/gems-tso1-20260929T005627Z-conj_alteration_mag.tif",
+      "sha256": "b437efcec17fb4582a3ff2f5f6ce6a179545c1e21fcd51e0c4b828cfd185d631",
+      "status": "restored"
+    },
+    {
+      "id": "h18-3a-complexity-prior",
+      "dest": "artifacts/h18-3a-complexity-prior.tif",
+      "repo": "buffedlizard55-lab/16GEMSDOE",
+      "ref": "main",
+      "path": "docs/downloads/gems16-h18-3a-topo-geophys-x-complexity-prior-20260930-c502dfab-nan.tif",
+      "sha256": "92904a5bfd84c8bd1141683fc5d29817aa4de71574d8caff5b40f7ed0072a5b8",
+      "status": "restored"
+    },
+    {
+      "id": "h18-4-geologic-map-faults-gap",
+      "dest": "artifacts/h18-4-geologic-map-faults-gap.tif",
+      "repo": "buffedlizard55-lab/16GEMSDOE",
+      "ref": "main",
+      "path": "docs/downloads/gems16-h18-4-usgs-geologic-map-faults-gap-20260930-aef8f42c-nan.tif",
+      "sha256": "736f62c2da585677ef472cab0f9bc63bd15c50c340beb4a0f4627fafd3d1c853",
+      "status": "restored"
+    },
+    {
+      "id": "f-ensemble-2pct",
+      "dest": "artifacts/f-ensemble-2pct.tif",
+      "repo": "buffedlizard55-lab/17GEMSDOE",
+      "ref": "main",
+      "path": "docs/downloads/17GEMSDOE_F-ensemble-2pct_20260930T050626Z.tif",
+      "sha256": "0210da4395b209450e52e9efc780ab3ca6aceffd60c26d6f623da2b8fe76b691",
+      "status": "restored"
+    },
+    {
+      "id": "h19-c",
+      "dest": "artifacts/h19-c.tif",
+      "repo": "buffedlizard55-lab/18GEMSDOE",
+      "ref": "main",
+      "path": "docs/downloads/18GEMSDOE_H19-C_20260930T212401Z_c11e495e.tif",
+      "sha256": "c11e495e5817730ad5f0fdc368b810f79050cbb6bd65e98c98123b7921ed336b",
+      "status": "restored"
+    },
+    {
+      "id": "h20-1",
+      "dest": "artifacts/h20-1.tif",
+      "repo": "buffedlizard55-lab/20GEMSDOE",
+      "ref": "main",
+      "path": "docs/downloads/gems20-h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-20260930-be0e8f6b-nan.tif",
+      "sha256": "defe590b944651552d7260237f79f309e3c089d03361e130db0e2dd7c87eb326",
+      "status": "restored"
+    },
+    {
+      "id": "h16-continuation",
+      "dest": "artifacts/h16-continuation.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE10",
+      "ref": "main",
+      "path": "docs/downloads/gems10-h16-continuation-20260927T065521077735Z-3431b83c7c.tif",
+      "sha256": "b33684ae033512a1a1c7d2cfccd128955fedfdff2a8fed6c7585a755b1b58b3c",
+      "status": "restored"
+    },
+    {
+      "id": "h20-dem10-scarp-thin",
+      "dest": "artifacts/h20-dem10-scarp-thin.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE10",
+      "ref": "main",
+      "path": "docs/downloads/gems10-h20-dem10-scarp-thin-20260927T155223039488Z-ffc91a1686.tif",
+      "sha256": "a26e5e46acc00ddd867f0b2910e638b25e4e81108ebe05c0abcc7c9b04372247",
+      "status": "restored"
+    },
+    {
+      "id": "h23-a-6pct",
+      "dest": "artifacts/h23-a-6pct.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE22",
+      "ref": "main",
+      "path": "docs/downloads/gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.tif",
+      "sha256": "e5f3684e9b49e8f11019f87e047017c5ab8a46294935bc0c7c80859ca7d2b1ce",
+      "status": "restored"
+    },
+    {
+      "id": "gems4-combined",
+      "dest": "artifacts/gems4-combined.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE4",
+      "ref": "main",
+      "path": "data/evidence/combined/submission.tif",
+      "sha256": "237f0063a440b2c6c4b822bcb0f74e5203586313b3b5ed6c5cabe70fa046f63f",
+      "status": "restored"
+    },
+    {
+      "id": "g28_h32-1-prethin_0.2649.tif",
+      "dest": "registry_top/g28_h32-1-prethin_0.2649.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "ref": "main",
+      "path": "docs/downloads/gems28-h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan.tif",
+      "sha256": "04d31922f5c1ea4016984fc470ab2b0ff8e266c615792f0e86020da3b940d3ff",
+      "status": "restored"
+    },
+    {
+      "id": "g28_h38-1-hf-euler_0.2707.tif",
+      "dest": "registry_top/g28_h38-1-hf-euler_0.2707.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "ref": "main",
+      "path": "docs/downloads/gems28-h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan.tif",
+      "sha256": "81d5b87bc8424f162a8f56aa9aac8fbe630c61646b9cac24d5ebbdc1b1951783",
+      "status": "restored"
+    },
+    {
+      "id": "g48_cover-ds-belief_0.2296.tif",
+      "dest": "registry_top/g48_cover-ds-belief_0.2296.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE48",
+      "ref": "main",
+      "path": "docs/downloads/gemsdoe48-h59-cover-ds-belief-b2xh33d-20261008T184547Z-b79c4c61d8d8.tif",
+      "sha256": "f1584187b459baf47f75e5daf64de6f7696f9feb14910d3cf2762f7a1119597a",
+      "status": "restored"
+    },
+    {
+      "id": "g49_gate-ortho_0.2376.tif",
+      "dest": "registry_top/g49_gate-ortho_0.2376.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE49",
+      "ref": "main",
+      "path": "docs/downloads/gems49-gate_ortho_w0.25-40k-20261006T213721Z-zeros.tif",
+      "sha256": "3722e26fbf9129874be1fb8c687825803952c57ef1154ed0a21029596bc412f1",
+      "status": "restored"
+    },
+    {
+      "id": "g63_cvarlw_0.2303.tif",
+      "dest": "registry_top/g63_cvarlw_0.2303.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE63",
+      "ref": "main",
+      "path": "docs/downloads/gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros.tif",
+      "sha256": "46a0f0fa2f63e6e6b4a5fe4520e999b925cf3ff954a01b10b36b735c1b0649c8",
+      "status": "restored"
+    },
+    {
+      "id": "g70_dual-submod_0.2478.tif",
+      "dest": "registry_top/g70_dual-submod_0.2478.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE70",
+      "ref": "main",
+      "path": "docs/downloads/gems70-p5-dual-submod300-oof38k-20261020.tif",
+      "sha256": "d0e41ce921afcf3af33b7d86d75f6a258653dfbb4d050e864babe643245f0ea8",
+      "status": "restored"
+    },
+    {
+      "id": "g73_mcsc_0.1917.tif",
+      "dest": "registry_top/g73_mcsc_0.1917.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE73",
+      "ref": "main",
+      "path": "docs/downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif",
+      "sha256": "fab28aa25f7f803907c91d0e64cbfe2755f9bc1702163f458bbb1017174a0249",
+      "status": "restored"
+    },
+    {
+      "id": "g76_tiltworm_0.2343.tif",
+      "dest": "registry_top/g76_tiltworm_0.2343.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE76",
+      "ref": "main",
+      "path": "docs/downloads/gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros.tif",
+      "sha256": "54c978399d0a875ba89aacc465e7efd8644420e6ba1dfa7c0a1390328be2c514",
+      "status": "restored"
+    },
+    {
+      "id": "g82_punoisyor_0.1886.tif",
+      "dest": "registry_top/g82_punoisyor_0.1886.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE82",
+      "ref": "main",
+      "path": "docs/downloads/gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros.tif",
+      "sha256": "120810feffb4688c364f2bb49a3d2624dcbb53fdc294892c68957f65fbaba131",
+      "status": "restored"
+    },
+    {
+      "id": "g91_lftg_0.1823.tif",
+      "dest": "registry_top/g91_lftg_0.1823.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE91",
+      "ref": "main",
+      "path": "docs/downloads/gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros.tif",
+      "sha256": "64d589ac8d5365693d8845a5673a42ec593794ac46be2aa14a1f950e948fe2b3",
+      "status": "restored"
+    },
+    {
+      "id": "g24_gvc1_0.0859.tif",
+      "dest": "registry_top/g24_gvc1_0.0859.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "main",
+      "path": "docs/downloads/gems24-gvc1-negative-geothermal-lineament-submod-20261025-abe8e51c719d-zeros.tif",
+      "sha256": "b5ca6f1755af059e17f5edf0940fd7e945d43a1359e103a4789eae33c536ad41",
+      "status": "restored"
+    },
+    {
+      "id": "g27_h29_0.2190.tif",
+      "dest": "registry_top/g27_h29_0.2190.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE27",
+      "ref": "main",
+      "path": "docs/downloads/gems27-h29-hydrothermal-piedmont-celf-20261025-511898747886-allfinite.tif",
+      "sha256": "8585c5e870f197f84fda5bac7f22047d646fb73d455eb8b1129486c79bb976cf",
+      "status": "restored"
+    },
+    {
+      "id": "g28_mxtp_0.0217.tif",
+      "dest": "registry_top/g28_mxtp_0.0217.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "ref": "main",
+      "path": "docs/downloads/gems28-s18-mxtp-20261025-3e95505c011a-allfinite.tif",
+      "sha256": "ce043566a96a1bf0abae366ba706ed6be5907297248b1d14deace8596500b186",
+      "status": "restored"
+    },
+    {
+      "id": "g30_msdb1_0.1462.tif",
+      "dest": "registry_top/g30_msdb1_0.1462.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE30",
+      "ref": "main",
+      "path": "docs/downloads/gems30-MSDB1-edge44090-20261025-e7856ec3f14a.tif",
+      "sha256": "22850984a68c393f60c6cc9aeafd8d74fd8a3479654bdfcfd3626a4b99ff0381",
+      "status": "restored"
+    },
+    {
+      "id": "g91_cwpc_0.1367.tif",
+      "dest": "registry_top/g91_cwpc_0.1367.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE91",
+      "ref": "main",
+      "path": "docs/downloads/gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.tif",
+      "sha256": "792af6255a7e1048e5c2053c178feee5f807f5de83b5d07e51617a7164115ec5",
+      "status": "restored"
+    },
+    {
+      "id": "g92_listricdip_0.0255.tif",
+      "dest": "registry_top/g92_listricdip_0.0255.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE92",
+      "ref": "main",
+      "path": "docs/downloads/gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros.tif",
+      "sha256": "91e26530ad25cfc19e05d3fc38b75c0e295ee1e128f571a3ba4afcf8df10934e",
+      "status": "restored"
+    },
+    {
+      "id": "g27_h31_0.2250.tif",
+      "dest": "registry_top/g27_h31_0.2250.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE27",
+      "ref": "4d39bbf92edd51fdf47004df5873793a035592e5",
+      "path": "docs/downloads/gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif",
+      "sha256": "2c002b02792419864bd3b29a218e543cb41e3f07b3b57c29ef35c6e39e184bfe",
+      "status": "restored"
+    },
+    {
+      "id": "g36_kpl36_0.1647.tif",
+      "dest": "registry_top/g36_kpl36_0.1647.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE36",
+      "ref": "61783525af4aa6dcf8da0bc68b06fa38b89ed27a",
+      "path": "docs/downloads/gemsdoe36-kpl36-exp3-20261026-fc869911e88c-zeros.tif",
+      "sha256": "86fc8243ad573bcdbfac8b432daf0ec5b6800b991b2c3278706358be7eb9922d",
+      "status": "restored"
+    },
+    {
+      "id": "g33_seisdil_0.0963.tif",
+      "dest": "registry_top/g33_seisdil_0.0963.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE33",
+      "ref": "122e2240a835c9c84831943ee3489dbb48fd6e85",
+      "path": "docs/downloads/gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif",
+      "sha256": "5eb9572946fa62356ebc0cbfef22bb54aa2ef094cb8b4a84b52e6b80e120db96",
+      "status": "restored"
+    },
+    {
+      "id": "g91_omtj_0.0298.tif",
+      "dest": "registry_top/g91_omtj_0.0298.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE91",
+      "ref": "920845e6da99f5a2a5d8b831e23f54d34e0a3ed6",
+      "path": "docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif",
+      "sha256": "f12f03a27585b1a9c89108970775d7b44e532c3238a8f387552f1103d7317042",
+      "status": "restored"
+    },
+    {
+      "id": "g28_s21_0.0206.tif",
+      "dest": "registry_top/g28_s21_0.0206.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "ref": "67dbdf4da84fc92a98dd9644ab816ed18ae36bcc",
+      "path": "docs/downloads/gems28-s21-puhgb-20261026-16bbf281ba9b-allfinite.tif",
+      "sha256": "2bf4737ae0a3b844a160d4041d435e5a7daf92c6ec92f128a0c2c596ba23787c",
+      "status": "restored"
+    }
+  ],
+  "after": {
+    "declared_hashes": 117,
+    "available_files": 121,
+    "registry_manifest_sha256": "2680df0e2d8100e25428fd3ee2b258e136287c492930808cd7232b5846125917",
+    "missing_sha256": [],
+    "complete": true,
+    "scope": "declared pinned registry only; not every submission on every site"
+  },
+  "scope": "hash-pinned owner mirrors, not organizer-authenticated or all sibling artifacts"
+}

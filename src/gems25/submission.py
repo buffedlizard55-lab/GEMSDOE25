@@ -1,8 +1,9 @@
 """Strict, template-driven writer and independent verifier for DrivenData GEMS submissions.
 
-Official format (https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#submission-format):
-same CRS (EPSG:32611), resolution (100 m) and bounds as the training data, "data outside the bounds is null
-or nan", one ``float32`` layer with values between 0 and 1.
+Historically recorded format guidance (not re-verified in this session): same CRS
+(EPSG:32611), resolution (100 m) and bounds as the training data, one ``float32``
+layer with values between 0 and 1. Outside-footprint NaN or zero values are local
+variants; neither portal acceptance nor an organizer-approved padding rule is proven.
 
 The reported portal error "Predicted values must be in range [0, 1]" on the first GEMSDOE25 file is
 consistent with NaNs inside the owner-mirrored template footprint: 2,344,929 of its 5,167,373 template
@@ -72,7 +73,7 @@ def write_submission(pred, template_path, out_path, *, outside: str = "nan") -> 
 
 
 def zip_single(tif_path: Path | str, zip_path: Path | str | None = None) -> Path:
-    """Single-GeoTIFF ZIP (the portal accepts '.tif or a .zip containing a single GeoTIFF')."""
+    """Build a local single-GeoTIFF ZIP; portal acceptance is not established here."""
     tif_path = Path(tif_path)
     zip_path = Path(zip_path) if zip_path else tif_path.with_suffix(".zip")
     info = zipfile.ZipInfo(tif_path.name, date_time=(2026, 10, 2, 0, 0, 0))
@@ -87,7 +88,11 @@ def zip_single(tif_path: Path | str, zip_path: Path | str | None = None) -> Path
 
 
 def check_file(path: Path | str, template_path: Path | str) -> dict:
-    """Independent verification with plain rasterio against the template. Hard failures block upload."""
+    """Local format-only verification against the template; never authorizes upload.
+
+    ``ok_to_upload`` and ``official_nan_outside`` are deprecated legacy aliases.
+    A conservative whole-array check is returned separately for promotion review.
+    """
     path = Path(path)
     with rasterio.open(template_path) as t:
         tarr = t.read(1)
@@ -118,8 +123,10 @@ def check_file(path: Path | str, template_path: Path | str) -> dict:
         add("footprint_all_finite", fin.all(), f"{int((~fin).sum()):,} NaN/Inf inside the {int(foot.sum()):,}-px footprint")
         rng = bool(fin.any() and np.nanmin(inside) >= 0.0 and np.nanmax(inside) <= 1.0)
         add("footprint_values_in_0_1", rng, f"min={np.nanmin(inside) if fin.any() else None} max={np.nanmax(inside) if fin.any() else None}")
-        add("outside_footprint_is_nan_official", bool(np.isnan(outside).all()), f"{int(np.isnan(outside).sum()):,}/{outside.size:,} NaN", hard=False)
-        add("outside_footprint_is_nan_or_zero", bool((np.isnan(outside) | (outside == 0)).all()), "NaN (official) or 0 (fallback) outside", hard=True)
+        add("outside_footprint_is_nan_official", bool(np.isnan(outside).all()),
+            f"{int(np.isnan(outside).sum()):,}/{outside.size:,} NaN; legacy name, NOT organizer acceptance", hard=False)
+        add("outside_footprint_is_nan_or_zero", bool((np.isnan(outside) | (outside == 0)).all()),
+            "NaN or 0 outside: local variants only; portal acceptance unknown", hard=True)
         add("nan_mask_identical_to_template", bool((np.isnan(arr) == ~foot).all()) or bool(np.isfinite(arr).all()),
             "NaN pixels exactly equal the template's NaN pixels (or none at all)", hard=True)
     else:
@@ -143,7 +150,10 @@ def check_file(path: Path | str, template_path: Path | str) -> dict:
     out = dict(
         file=path.name, bytes=path.stat().st_size, sha256=sha256_file(path), ok_to_upload=not hard_fail,
         format_valid=not hard_fail,
-        authorization_note="ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval",
+        strict_whole_array_valid=checks["variant_strict_whole_array_no_nan"]["pass_"],
+        okay_to_submit=False,
+        authorization_note="ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval; "
+                           "official_nan_outside is a legacy name, not confirmed portal acceptance",
         hard_failures=hard_fail, official_nan_outside=checks["outside_footprint_is_nan_official"]["pass_"] if shape == tshape else False,
         positive_pixels=int((inside > 0).sum()) if inside.size else 0,
         footprint_pixels=int(foot.sum()),

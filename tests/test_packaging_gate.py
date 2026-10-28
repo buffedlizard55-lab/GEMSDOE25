@@ -23,7 +23,28 @@ def receipt(**gate_overrides):
             "evaluator_sha256": "d" * 64, "withheld_positives": 123,
             "paired_ci95": [0.001, 0.003], "cells": [[f, d] for f in range(4) for d in (2, 3)]}
     gate.update(gate_overrides)
-    return {"format_ok": True, "slot_eligible": True, "sha256": "a" * 64, "checks": checks,
+    sha, template, labels, surface_sha, manifest = ('a' * 64, 'f' * 64, 'e' * 64, 'c' * 64, 'b' * 64)
+    common = dict(raster_sha256=sha, registry_complete=True, max_abs_rank_correlation=.1,
+                  registry_manifest_sha256=manifest, template_sha256=template,
+                  rank_footprint_pixels=5_167_373, registry_checked=117)
+    ready = dict(raster_sha256=sha, lane='assigned-test-lane',
+                 format=dict(raster_sha256=sha, template_sha256=template, labels_sha256=labels,
+                             **dict.fromkeys(('no_nan_inside', 'values_in_range', 'whole_array_finite_in_range',
+                                              'crs_match', 'shape_match', 'transform_match', 'single_band',
+                                              'dtype_float32', 'catalogue_mask_exact'), True)),
+                 surface=dict(**common, scores_sha256=surface_sha),
+                 dots=dict(**common, surface_sha256=surface_sha, max_overlap_3px=.1, exact_duplicate=False),
+                 canary=dict(raster_sha256=sha, run_id=gate['run_id'], all_features_tested=True,
+                             feature_names=features, cells=cells, max_auc=.7),
+                 holdout=dict(raster_sha256=sha, labels_sha256=labels, run_id=gate['run_id'], stage=gate['stage'],
+                              evidence_class=gate['metric_label'], evaluator_version=gate['evaluator'],
+                              evaluator_sha256=gate['evaluator_sha256'], withheld_positives=gate['withheld_positives'],
+                              dti=gate['candidate_mean_dti'], dti_ci95=[.14, .17],
+                              comparator_dti=gate['same_run_best_dti'], paired_delta_ci95=gate['paired_ci95'],
+                              cells=[dict(fold=f, draw=d) for f in range(4) for d in (2, 3)],
+                              same_run_comparator=True, whole_segment_buffered=True, visible_only_features=True,
+                              visible_mask_exact=True, pooled=True, alpha=.2, beta=.8, kernel_m=300, kernel='triangular'))
+    return {"format_ok": True, "slot_eligible": True, "sha256": sha, "checks": checks, "readiness": ready,
             "promotion_gate": gate,
             "feature_canaries": {"run_id": gate["run_id"], "features": features, "cells": cells},
             "lane_check": {
@@ -108,4 +129,19 @@ def test_every_feature_canary_covers_every_evaluated_fold_and_draw():
     assert not promotion_receipt_valid(bad)
     bad = deepcopy(receipt())
     bad["feature_canaries"]["run_id"] = "another-run"
+    assert not promotion_receipt_valid(bad)
+
+
+def test_legacy_gate_cannot_bypass_or_disagree_with_shared_readiness():
+    bad = receipt()
+    del bad['readiness']
+    assert not promotion_receipt_valid(bad)
+    bad = receipt()
+    bad['readiness']['holdout']['dti_ci95'] = None
+    assert not promotion_receipt_valid(bad)
+    bad = receipt()
+    bad['readiness']['surface']['registry_manifest_sha256'] = 'a' * 64
+    assert not promotion_receipt_valid(bad)
+    bad = receipt()
+    bad['readiness']['holdout']['run_id'] = bad['readiness']['canary']['run_id'] = 'different-run'
     assert not promotion_receipt_valid(bad)
