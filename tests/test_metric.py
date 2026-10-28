@@ -110,3 +110,44 @@ def test_marginal_inclusion_ratio_is_the_break_even_of_adding_a_pixel():
     for dc, sign in [(r * f * 1.05, 1), (r * f * 0.95, -1)]:
         d2 = (tp + dc) / (0.2 * (tp + dc + fp + f) + 0.8 * n)
         assert np.sign(d2 - d) == sign
+
+
+@pytest.mark.parametrize('value', [np.nan, np.inf, -1.0, 0.5, 2.0])
+def test_binary_rejects_nonbinary_or_nonfinite_predictions_in_scored_domain(value):
+    pred = np.zeros((5, 5))
+    pred[2, 2] = value
+    with pytest.raises(ValueError, match='binary predictions'):
+        dti_binary(pred, np.zeros_like(pred))
+
+
+def test_binary_ignores_nans_outside_scored_domain_and_checks_mask_shapes():
+    truth = np.zeros((5, 5), bool)
+    truth[2, 2] = True
+    pred = np.zeros((5, 5))
+    pred[2, 2] = 1
+    pred[0, 0] = np.nan
+    valid = np.ones((5, 5), bool)
+    valid[0, 0] = False
+    assert dti_binary(pred, truth, valid=valid)['dti'] == dti_exact(pred, truth, valid=valid)['dti']
+    with pytest.raises(ValueError, match='mask grid mismatch'):
+        dti_binary(pred, truth, valid=np.ones((5, 1), bool))
+    with pytest.raises(ValueError, match='equal-shaped'):
+        dti_binary(pred, np.zeros((5, 1)))
+
+
+@pytest.mark.parametrize('value', [np.nan, np.inf, -1.0, 0.5, 2.0])
+def test_binary_rejects_nonbinary_or_nonfinite_truth_in_scored_domain(value):
+    truth = np.zeros((5, 5))
+    truth[2, 2] = value
+    with pytest.raises(ValueError, match='binary truth'):
+        dti_binary(np.zeros_like(truth), truth)
+
+
+def test_soft_evaluator_also_rejects_nonbinary_truth_on_scored_cells():
+    truth = np.zeros((5, 5))
+    truth[2, 2] = np.nan
+    with pytest.raises(ValueError, match='binary truth'):
+        dti_exact(np.zeros((5, 5)), truth)
+    valid = np.ones((5, 5), bool)
+    valid[2, 2] = False
+    assert dti_exact(np.zeros((5, 5)), truth, valid=valid)['n_truth'] == 0

@@ -60,10 +60,13 @@ def _prepare(pred, truth, valid, known):
         raise ValueError("mask grid mismatch")
     active = valid & ~known
     vals = pred[active]
-    if not np.isfinite(vals).all() or (vals < 0).any() or (vals > 1).any():
+    if pred.dtype.kind not in "biuf" or not np.isfinite(vals).all() or (vals < 0).any() or (vals > 1).any():
         raise ValueError("predictions inside the scored domain must be finite and in [0, 1]")
+    truth_vals = truth[active]
+    if truth.dtype.kind not in "biuf" or not np.isfinite(truth_vals).all() or not np.isin(truth_vals, (0, 1)).all():
+        raise ValueError("binary truth inside the scored domain must be finite and 0 or 1")
     p = np.where(active & np.isfinite(pred), pred, 0.0).astype(np.float64)
-    g = active & (np.asarray(truth) > 0)
+    g = active & np.asarray(truth, bool)
     return p, g, active
 
 
@@ -89,14 +92,28 @@ def dti_exact(pred, truth, valid=None, known=None, alpha=ALPHA, beta=BETA) -> di
 
 
 def dti_binary(pred_bool, truth, valid=None, known=None, alpha=ALPHA, beta=BETA) -> dict:
-    """Fast *exact* DTI when predictions are 0/1 (distance transforms)."""
-    pred_bool = np.asarray(pred_bool, bool)
-    truth = np.asarray(truth, bool)
-    valid_ = np.ones(pred_bool.shape, bool) if valid is None else np.asarray(valid, bool)
-    known_ = np.zeros(pred_bool.shape, bool) if known is None else np.asarray(known, bool)
+    """Fast exact DTI for binary predictions; use ``dti_exact`` for soft probabilities.
+
+    NaNs or arbitrary nonzero values must not silently become positive detections.
+    Values outside the scored domain are ignored, as in ``dti_exact``.
+    """
+    pred = np.asarray(pred_bool)
+    truth = np.asarray(truth)
+    if pred.ndim != 2 or pred.shape != truth.shape:
+        raise ValueError("prediction and truth must be equal-shaped 2-D grids")
+    valid_ = np.ones(pred.shape, bool) if valid is None else np.asarray(valid, bool)
+    known_ = np.zeros(pred.shape, bool) if known is None else np.asarray(known, bool)
+    if valid_.shape != pred.shape or known_.shape != pred.shape:
+        raise ValueError("mask grid mismatch")
     active = valid_ & ~known_
-    p = pred_bool & active
-    g = truth & active
+    vals = pred[active]
+    if pred.dtype.kind not in "biuf" or not np.isfinite(vals).all() or not np.isin(vals, (0, 1)).all():
+        raise ValueError("binary predictions inside the scored domain must be finite and 0 or 1")
+    truth_vals = truth[active]
+    if truth.dtype.kind not in "biuf" or not np.isfinite(truth_vals).all() or not np.isin(truth_vals, (0, 1)).all():
+        raise ValueError("binary truth inside the scored domain must be finite and 0 or 1")
+    p = np.asarray(pred, bool) & active
+    g = np.asarray(truth, bool) & active
     n = int(g.sum())
     if n == 0:
         return dict(tp=0.0, fp=float(p.sum()), fn=0.0, n_truth=0, dti=0.0, coverage=0.0)

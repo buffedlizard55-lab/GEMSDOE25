@@ -1,5 +1,7 @@
 # Executive audit outcome — 28 October 2026
 
+> **Later re-audit:** The shared feature cache was subsequently rebuilt and matched 6/6 recorded hashes; all declared registry hashes were restored, but the final-dot audit stopped on a misaligned reference. An archived lattice-gap TIFF and its unsupported publication claims were also reviewed. For current status see [knowledge/43](43_latticegap_review_2026-10-28.md). The earlier absence and link-status statements below describe only this prior checkpoint.
+
 ## Decision
 
 **OK TO SUBMIT: NO. No new TIFF generated; no training experiment, portal access or weekly slot used.** The requested unique, higher-performing submission is not delivered. Producing a renamed or perturbed historical raster would not satisfy the protocol.

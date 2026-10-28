@@ -93,3 +93,18 @@ def test_misaligned_labels_and_wrong_template_pin_are_rejected(tmp_path):
     rec = verifier.audit(cand, template, labels, expected=expected, template_pin="0" * 64,
                          labels_pin=verifier.sha(labels))
     assert not rec["checks"]["template_sha256_matches_pin"] and not rec["all_hard_checks_pass"]
+
+
+def test_outside_nan_fails_strict_policy_without_claiming_portal_behavior(tmp_path):
+    paths = inputs(tmp_path)
+    cand = paths[0]
+    arr = np.zeros((8, 8), np.float32)
+    arr[0, 0] = np.nan  # outside the template footprint, but not in [0, 1]
+    arr[4, 4] = 1
+    raster(cand, arr)
+    rec = run(paths)
+    assert rec['checks']['footprint_all_finite'] and rec['checks']['footprint_values_in_0_1']
+    assert rec['checks']['outside_all_nan']
+    assert not rec['checks']['strict_whole_array_0_le_x_le_1']
+    assert not rec['all_hard_checks_pass'] and not rec['okay_to_submit']
+    assert 'unverified' in rec['whole_array_policy']

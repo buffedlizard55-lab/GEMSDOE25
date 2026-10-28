@@ -61,7 +61,21 @@ class Draw:
 
 class Holdout:
     def __init__(self, footprint: np.ndarray, labels: np.ndarray, hide_frac: float = 0.20):
+        footprint, labels = np.asarray(footprint), np.asarray(labels)
+        if footprint.ndim != 2 or labels.shape != footprint.shape:
+            raise ValueError("footprint and labels must be aligned 2-D grids with a nonempty footprint")
+        if (footprint.dtype.kind not in "biuf" or not np.isfinite(footprint).all()
+                or not np.isin(footprint, (0, 1)).all() or not footprint.any()):
+            raise ValueError("footprint must be a nonempty finite binary mask")
         self.footprint = np.asarray(footprint, bool)
+        active_labels = labels[self.footprint]
+        if (labels.dtype.kind not in "biuf" or not np.isfinite(active_labels).all()
+                or not np.isin(active_labels, (0, 1)).all()):
+            raise ValueError("labels inside the footprint must be finite and binary")
+        if isinstance(hide_frac, (bool, np.bool_)) or not isinstance(hide_frac, (int, float, np.integer, np.floating)):
+            raise ValueError("hide_frac must be finite and in [0, 1]")
+        if not 0 <= hide_frac <= 1 or not np.isfinite(hide_frac):
+            raise ValueError("hide_frac must be finite and in [0, 1]")
         self.labels = np.asarray(labels, bool) & self.footprint
         self.hide_frac = float(hide_frac)
         self.quad = quadrant_ids(self.footprint)
@@ -79,16 +93,22 @@ class Holdout:
 
     def _pick(self, rng, ids: np.ndarray, target_px: float) -> np.ndarray:
         """Random components (in random order) until their pixel count reaches ``target_px``."""
-        if ids.size == 0:
-            return ids
+        if not np.isfinite(target_px) or target_px < 0:
+            raise ValueError("target_px must be finite and non-negative")
+        if ids.size == 0 or target_px == 0:
+            return np.empty(0, dtype=ids.dtype)
         perm = rng.permutation(ids)
         cum = np.cumsum(self.comp_size[perm])
         k = int(np.searchsorted(cum, target_px)) + 1
         return perm[: min(k, perm.size)]
 
     def draw(self, fold: int, seed: int) -> Draw:
-        rng = np.random.default_rng(10_000 * (seed + 1) + fold)
+        if isinstance(fold, (bool, np.bool_)) or not isinstance(fold, (int, np.integer)) or fold not in range(4):
+            raise ValueError("fold must be one of 0, 1, 2, 3")
         q = self.quad == fold
+        if not q.any():
+            raise ValueError("footprint has no pixels in the requested fold")
+        rng = np.random.default_rng(10_000 * (seed + 1) + fold)
         collar = self.collar(fold)
         ids = np.arange(1, self.n_comp + 1)
         touch_collar = np.isin(ids, np.unique(self.comp[collar & self.labels]))

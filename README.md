@@ -1,7 +1,24 @@
-<!-- SESSION-962e5a5b-REVIEW -->
-## Latest verification — 28 October 2026
+# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
-**DO NOT SUBMIT.** No new lane-cleared TIFF or calibrated competition score estimate was produced.
+## Latest audit — 2026-10-28 (read first)
+
+**OK TO SUBMIT: NO. No new TIF or training experiment this session.** The requested unique high-performing submission remains unfulfilled. All existing downloads are for research/inspection only; no weekly slot has been selected.
+
+The [archived lattice-gap TIFF](docs/downloads/gems25-gems25-unique-latticegap-geothermal-20261028-20261028-aa0104874adb-nan.tif) is **not** a ready candidate: its 7,111,787 outside-footprint NaNs fail a strict whole-array range check, the previously claimed ZIP and zero twin are absent, and its pre-placement surface and holdout are unavailable. All 117 declared reference hashes were restored, but the [final-dot audit](evidence/latticegap_final_lane_b0b734ae.json) stopped after 15 comparisons on a mismatched reference transform; full novelty is unverified. The prior 70-reference receipt was not retained. The old builder and misleading receipt claims are superseded, not silently erased; [full review](knowledge/43_latticegap_review_2026-10-28.md).
+
+Shared core and external caches were rebuilt through the existing scripts and matched 6/6 recorded hashes; these owner-mirror pins do not establish organizer authenticity. The assigned method lane is still missing. The [conditional submission guide](docs/submission-guide.html), [research download inventory](docs/data/download_audit.json), and [current negative run card](registry/run_card_b0b734ae_2026-10-28.json) distinguish inspection from authorization. The H34 sidecar required for an older H73-BW plan remains absent.
+The [independently rerun pinned geometry audit](evidence/lane_feasibility_2026-10-28.json) finds only 6,514 eligible pixels outside r13's 3-pixel halo: at 37,654 dots, at least 82.70% overlap is unavoidable. The one-reference maximum not ruled out is 21,713 dots, **not** a performance recommendation. No explicit single-method lane is identifiable in the current prompt.
+
+[Executive summary and nine-site historical download table](docs/executive-summary.html) · [four planning hypotheses](knowledge/41_session_plan_2026-10-28.md) · [outcome, official links, limitations and next steps](knowledge/43_latticegap_review_2026-10-28.md).
+Historical results remain OWNER-REPORTED; estimated new-file competition scores are UNKNOWN. No organizer receipt or current leaderboard was verified.
+
+New `gems25.readiness.assess_readiness` / `scripts/check_readiness.py` checks exact-file receipt consistency and fails closed; it never authorizes an upload. Reuse the existing shared holdout and writer. Only this repo is updated, not all nine sites. Latest operational digest: enforce assigned lane, buffered whole-segment visible-only holdout, per-feature leakage canaries, strict full-registry novelty before placement and on dots, range/grid checks, positive paired CI, three-experiment/two-hour budget, no weekly slot selection, and honest negative run cards. Earlier owner prompts remain preserved below; this digest is not a verbatim transcript. Maximize P(Win); Own the Outcome.
+
+
+<!-- SESSION-962e5a5b-REVIEW -->
+## Parallel verification — 28 October 2026
+
+**DO NOT SUBMIT.** No new lane-cleared TIFF or calibrated competition score estimate was produced in that session.
 [Three-pass review and remaining blockers](knowledge/43_session_962e5a5b_review.md).
 The executive summary was regenerated to restore no-go warnings and remove a broken ZIP link.
 Readiness now requires an absolute HOLDOUT-DTI 95% CI and a whole-array finite/[0,1] receipt.
@@ -10,21 +27,10 @@ paired buffered-segment holdout, full-registry surface/dot checks, three experim
 and separate selector approval. No specific method lane is identifiable in the supplied prompt.
 The full standing owner brief remains below; this paragraph is an operational digest, not a verbatim transcript.
 
-# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
-
-## Latest audit — 2026-10-28 (read first)
-
-**OK TO SUBMIT: NO. No new TIF or training experiment this session.** The requested unique high-performing submission remains unfulfilled.
-The [independently rerun pinned geometry audit](evidence/lane_feasibility_2026-10-28.json) finds only 6,514 eligible pixels outside r13's 3-pixel halo: at 37,654 dots, at least 82.70% overlap is unavoidable. The one-reference maximum not ruled out is 21,713 dots, **not** a performance recommendation. No explicit single-method lane is identifiable in the current prompt.
-
-[Executive summary and nine-site historical download table](docs/executive-summary.html) · [four planning hypotheses](knowledge/41_session_plan_2026-10-28.md) · [outcome, official links, limitations and next steps](knowledge/42_review_outcome_2026-10-28.md).
-Historical results remain OWNER-REPORTED; estimated new-file competition scores are UNKNOWN. No organizer receipt or current leaderboard was verified.
-
-New `gems25.readiness.assess_readiness` / `scripts/check_readiness.py` checks exact-file receipt consistency and fails closed; it never authorizes an upload. Reuse the existing shared holdout and writer. Only this repo is updated, not all nine sites. Latest operational digest: enforce assigned lane, buffered whole-segment visible-only holdout, per-feature leakage canaries, strict full-registry novelty before placement and on dots, range/grid checks, positive paired CI, three-experiment/two-hour budget, no weekly slot selection, and honest negative run cards. Earlier owner prompts remain preserved below; this digest is not a verbatim transcript. Maximize P(Win); Own the Outcome.
-
-
 <!-- CURRENT-REVIEW-2026-10-27 -->
 ## Current decision — 2026-10-27
+
+> Historical summary, not the current run: follow its linked original receipts for evaluator version, withheld counts and confidence intervals. The shared evaluator has since been corrected; no historical score was re-computed here. “Proof” in older titles is analysis, not proof of hidden-label causation.
 
 **Research-archive download: YES (inspection/testing only) · Competition-ready TIF: NO · OK TO SUBMIT: NO · weekly slot: NO — DO NOT SUBMIT.**
 

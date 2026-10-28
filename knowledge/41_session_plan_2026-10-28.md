@@ -1,5 +1,7 @@
 # Preregistered review — 2026-10-28
 
+> **Later checkpoint:** shared caches were rebuilt and their six recorded hashes match; see the [current review](43_latticegap_review_2026-10-28.md). The lane remains unassigned and none of the ideas below was fitted or evaluated.
+
 No geological experiments are authorized in this run: the owner brief references a single method paragraph but supplies no identifiable lane assignment. Do not silently pick a competing lane. Budget: zero fitting experiments; no upload or slot selection.
 
 First independently rerun the existing pinned three-raster capacity audit. If impossible at the historical dot budgets, record the stop without generating a cosmetic TIFF. Reuse the shared writer and holdout implementations; do not introduce private replacements. Implement a fail-closed readiness evidence gate, test missing/nonfinite/conflicting evidence and exact threshold boundaries, and publish the audit outcome before historical downloads.

@@ -1333,5 +1333,52 @@
     "Added tests/test_h75_submission.py and verified full pytest suite in BOTH full-data mode and clean CI mode (empty GEMS_DATA_DIR/GEMS_WORK_DIR), ruff check, python -m compileall, node --check docs/assets/app.js, HTML/Markdown link resolution, and git diff --check."
    ]
   }
+ },
+ "session_2026_10_28_b0b734ae": {
+  "schema_version": 1,
+  "date_utc": "2026-10-28",
+  "session_branch": "arena/b0b734ae-gemsdoe25",
+  "method": "Three successive passes: reproduce and implement; challenge bugs, assumptions and edge cases; reconcile original brief and run both restored-data and clean-CI verification.",
+  "pass_1_implement_and_verify": {
+   "done": [
+    "Restored core, external, scored and 40 missing pinned reference files through public owner GitHub mirrors; rebuilt six shared cache artifacts, all matching recorded SHA-256 hashes.",
+    "Independently reran r13 feasibility, exact lattice-gap format/catalogue and attempted declared-registry final-dot checks; re-audited all nine focus winners and 36 pairwise positive masks.",
+    "Read the pinned organizer reference notebook through GitHub and USGS public catalog/studies; recorded claims and limits without contacting DrivenData.",
+    "Published research-only executive table, conditional submission-guide subpage, corrected receipts, download inventory and current negative run card."
+   ]
+  },
+  "pass_2_bugs_assumptions_edge_cases": {
+   "found_and_fixed": [
+    "Retired the ungated lattice-gap builder and transparently superseded unsupported 70-reference/ZIP/zero-twin and universal-overlap claims; preserved original Git links and SHA-256 hashes.",
+    "Found the hash-pinned geom-horse-ensemble transform differs from the template; complete hash inventory does not imply complete comparisons, so the audit stopped after 15 references.",
+    "Made strict whole-array range a conservative local independent-validator gate, separated footprint-format from upload readiness and removed misleading legacy upload keys from the public inventory.",
+    "Fixed zero-target component sampling, invalid holdout masks and binary scored-domain coercion in the shared evaluator; preserved old evaluator hashes and required future paired reruns.",
+    "Bound readiness to the exact file, surface, manifest, template, labels, every feature/cell canary, confirmation and CIs; made the retired legacy packaging helper reuse that gate.",
+    "Hardened local source-feed DOM rendering against HTML injection; confirmed timestamped source status is not a live leaderboard."
+   ]
+  },
+  "pass_3_recheck_against_original_brief": {
+   "checked": [
+    "Nine requested sites and owner-reported best files/scores are in the executive table; exact positive-mask duplicates and the B2 6,436-pixel pruning are distinguished from causal explanation.",
+    "Four ranked hypotheses are planning-only; the single method lane was not identified, so no model, canary, blocked holdout, new TIFF, score forecast, submission selector or weekly slot was executed.",
+    "The historic lattice-gap archive is downloadable only for research; no current file is competition-ready, and portal outside-footprint behavior remains unverified.",
+    "Conflicting 0.3195/0.4413 leader claims remain unverified; preserved four verbatim owner briefs and core values in README.",
+    "Negative JSON run card contains null new-candidate metrics, audit provenance, short note and verdict. Eight sibling sites were not changed.",
+    "Reconciled concurrent main PR #71, preserved its parallel review/evidence and canonical whole-array key, and regenerated the static site."
+   ]
+  },
+  "verification": {
+   "pytest_restored_data": "508 passed (after incorporating concurrent main changes)",
+   "pytest_clean_ci": "495 passed, 13 skipped (data-dependent; after incorporating concurrent main changes)",
+   "ruff": "passed: .venv/bin/python -m ruff check src scripts tests",
+   "compileall": "passed: src scripts tests",
+   "javascript": "passed: node --check docs/assets/app.js",
+   "local_links": "9 HTML pages; all local links and fragments pass after merge",
+   "http_preview": "site-only static preview: / and /docs/submission-guide.html HTTP 200; /.git/config and /data/ HTTP 404",
+   "git_diff_check": "passed",
+   "experiments": 0,
+   "new_tiffs": 0,
+   "weekly_slots": 0
+  }
  }
 }
