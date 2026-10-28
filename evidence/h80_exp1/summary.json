@@ -1,0 +1,525 @@
+{
+  "CTRL_CRUSTAL56": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+      "CTRL_CRUSTAL56": {
+        "pooled_dti": 0.05558655688862314,
+        "ci95": [
+          0.036289317383631704,
+          0.07369931585021025
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "CTRL_H35": {
+        "pooled_dti": 0.12164827808582572,
+        "ci95": [
+          0.11235459380868566,
+          0.13057119313486204
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F0_G0": {
+        "pooled_dti": 0.09771027431570417,
+        "ci95": [
+          0.06612160512539195,
+          0.12196104143453187
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F0_G1": {
+        "pooled_dti": 0.09122378094224419,
+        "ci95": [
+          0.06493600392830443,
+          0.11167052596981096
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F1_G0": {
+        "pooled_dti": 0.0944895574199147,
+        "ci95": [
+          0.0667350927454144,
+          0.11557743652411498
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F1_G1": {
+        "pooled_dti": 0.08743552628700454,
+        "ci95": [
+          0.06204008284468035,
+          0.10614911054864744
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "H80_CRUSTAL60": {
+        "pooled_dti": 0.05448583504382037,
+        "ci95": [
+          0.03231774114923075,
+          0.08155272421091717
+        ],
+        "withheld_positive_occurrences": 26367
+      }
+    },
+    "paired_gain": -0.06606172119720258,
+    "paired_ci95": [
+      -0.0772640990232723,
+      -0.05207178576216892
+    ],
+    "fold_gains": [
+      -0.0447397715503071,
+      -0.05740669359413049,
+      -0.08083574262420325,
+      -0.06826307064543874
+    ],
+    "screen_passed": false,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+  },
+  "F0_G0": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+      "CTRL_CRUSTAL56": {
+        "pooled_dti": 0.05558655688862314,
+        "ci95": [
+          0.036289317383631704,
+          0.07369931585021025
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "CTRL_H35": {
+        "pooled_dti": 0.12164827808582572,
+        "ci95": [
+          0.11235459380868566,
+          0.13057119313486204
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F0_G0": {
+        "pooled_dti": 0.09771027431570417,
+        "ci95": [
+          0.06612160512539195,
+          0.12196104143453187
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F0_G1": {
+        "pooled_dti": 0.09122378094224419,
+        "ci95": [
+          0.06493600392830443,
+          0.11167052596981096
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F1_G0": {
+        "pooled_dti": 0.0944895574199147,
+        "ci95": [
+          0.0667350927454144,
+          0.11557743652411498
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F1_G1": {
+        "pooled_dti": 0.08743552628700454,
+        "ci95": [
+          0.06204008284468035,
+          0.10614911054864744
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "H80_CRUSTAL60": {
+        "pooled_dti": 0.05448583504382037,
+        "ci95": [
+          0.03231774114923075,
+          0.08155272421091717
+        ],
+        "withheld_positive_occurrences": 26367
+      }
+    },
+    "paired_gain": -0.02393800377012155,
+    "paired_ci95": [
+      -0.04800896206010655,
+      -0.0024829990497326343
+    ],
+    "fold_gains": [
+      0.004618589569284529,
+      -0.025567466991817875,
+      -0.05364672519716542,
+      -0.007280970623456159
+    ],
+    "screen_passed": false,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+  },
+  "F1_G0": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+      "CTRL_CRUSTAL56": {
+        "pooled_dti": 0.05558655688862314,
+        "ci95": [
+          0.036289317383631704,
+          0.07369931585021025
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "CTRL_H35": {
+        "pooled_dti": 0.12164827808582572,
+        "ci95": [
+          0.11235459380868566,
+          0.13057119313486204
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F0_G0": {
+        "pooled_dti": 0.09771027431570417,
+        "ci95": [
+          0.06612160512539195,
+          0.12196104143453187
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F0_G1": {
+        "pooled_dti": 0.09122378094224419,
+        "ci95": [
+          0.06493600392830443,
+          0.11167052596981096
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F1_G0": {
+        "pooled_dti": 0.0944895574199147,
+        "ci95": [
+          0.0667350927454144,
+          0.11557743652411498
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F1_G1": {
+        "pooled_dti": 0.08743552628700454,
+        "ci95": [
+          0.06204008284468035,
+          0.10614911054864744
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "H80_CRUSTAL60": {
+        "pooled_dti": 0.05448583504382037,
+        "ci95": [
+          0.03231774114923075,
+          0.08155272421091717
+        ],
+        "withheld_positive_occurrences": 26367
+      }
+    },
+    "paired_gain": -0.027158720665911018,
+    "paired_ci95": [
+      -0.04739547444008409,
+      -0.009344797800499266
+    ],
+    "fold_gains": [
+      -0.008122242452294037,
+      -0.027815635996869023,
+      -0.05229590193779062,
+      -0.010374937376060614
+    ],
+    "screen_passed": false,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+  },
+  "F0_G1": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+      "CTRL_CRUSTAL56": {
+        "pooled_dti": 0.05558655688862314,
+        "ci95": [
+          0.036289317383631704,
+          0.07369931585021025
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "CTRL_H35": {
+        "pooled_dti": 0.12164827808582572,
+        "ci95": [
+          0.11235459380868566,
+          0.13057119313486204
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F0_G0": {
+        "pooled_dti": 0.09771027431570417,
+        "ci95": [
+          0.06612160512539195,
+          0.12196104143453187
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F0_G1": {
+        "pooled_dti": 0.09122378094224419,
+        "ci95": [
+          0.06493600392830443,
+          0.11167052596981096
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F1_G0": {
+        "pooled_dti": 0.0944895574199147,
+        "ci95": [
+          0.0667350927454144,
+          0.11557743652411498
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F1_G1": {
+        "pooled_dti": 0.08743552628700454,
+        "ci95": [
+          0.06204008284468035,
+          0.10614911054864744
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "H80_CRUSTAL60": {
+        "pooled_dti": 0.05448583504382037,
+        "ci95": [
+          0.03231774114923075,
+          0.08155272421091717
+        ],
+        "withheld_positive_occurrences": 26367
+      }
+    },
+    "paired_gain": -0.03042449714358153,
+    "paired_ci95": [
+      -0.04919456325719407,
+      -0.012773514514453549
+    ],
+    "fold_gains": [
+      -0.007592933152540476,
+      -0.03420017493070705,
+      -0.052916452830924735,
+      -0.016339113921696416
+    ],
+    "screen_passed": false,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+  },
+  "F1_G1": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+      "CTRL_CRUSTAL56": {
+        "pooled_dti": 0.05558655688862314,
+        "ci95": [
+          0.036289317383631704,
+          0.07369931585021025
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "CTRL_H35": {
+        "pooled_dti": 0.12164827808582572,
+        "ci95": [
+          0.11235459380868566,
+          0.13057119313486204
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F0_G0": {
+        "pooled_dti": 0.09771027431570417,
+        "ci95": [
+          0.06612160512539195,
+          0.12196104143453187
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F0_G1": {
+        "pooled_dti": 0.09122378094224419,
+        "ci95": [
+          0.06493600392830443,
+          0.11167052596981096
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F1_G0": {
+        "pooled_dti": 0.0944895574199147,
+        "ci95": [
+          0.0667350927454144,
+          0.11557743652411498
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F1_G1": {
+        "pooled_dti": 0.08743552628700454,
+        "ci95": [
+          0.06204008284468035,
+          0.10614911054864744
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "H80_CRUSTAL60": {
+        "pooled_dti": 0.05448583504382037,
+        "ci95": [
+          0.03231774114923075,
+          0.08155272421091717
+        ],
+        "withheld_positive_occurrences": 26367
+      }
+    },
+    "paired_gain": -0.034212751798821175,
+    "paired_ci95": [
+      -0.052090484340818144,
+      -0.01935896468494956
+    ],
+    "fold_gains": [
+      -0.016790144234803253,
+      -0.03224104294911427,
+      -0.057059527397364966,
+      -0.021250393746121476
+    ],
+    "screen_passed": false,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+  },
+  "H80_CRUSTAL60": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+      "CTRL_CRUSTAL56": {
+        "pooled_dti": 0.05558655688862314,
+        "ci95": [
+          0.036289317383631704,
+          0.07369931585021025
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "CTRL_H35": {
+        "pooled_dti": 0.12164827808582572,
+        "ci95": [
+          0.11235459380868566,
+          0.13057119313486204
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F0_G0": {
+        "pooled_dti": 0.09771027431570417,
+        "ci95": [
+          0.06612160512539195,
+          0.12196104143453187
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F0_G1": {
+        "pooled_dti": 0.09122378094224419,
+        "ci95": [
+          0.06493600392830443,
+          0.11167052596981096
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F1_G0": {
+        "pooled_dti": 0.0944895574199147,
+        "ci95": [
+          0.0667350927454144,
+          0.11557743652411498
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F1_G1": {
+        "pooled_dti": 0.08743552628700454,
+        "ci95": [
+          0.06204008284468035,
+          0.10614911054864744
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "H80_CRUSTAL60": {
+        "pooled_dti": 0.05448583504382037,
+        "ci95": [
+          0.03231774114923075,
+          0.08155272421091717
+        ],
+        "withheld_positive_occurrences": 26367
+      }
+    },
+    "paired_gain": -0.06716244304200536,
+    "paired_ci95": [
+      -0.08111446292415393,
+      -0.04902795774297708
+    ],
+    "fold_gains": [
+      -0.06010999189481718,
+      -0.0394937546045786,
+      -0.08485318227540516,
+      -0.07178491360104342
+    ],
+    "screen_passed": false,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+  },
+  "vs_crustal56": {
+    "label": "HOLDOUT-DTI",
+    "arms": {
+      "CTRL_CRUSTAL56": {
+        "pooled_dti": 0.05558655688862314,
+        "ci95": [
+          0.036289317383631704,
+          0.07369931585021025
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "CTRL_H35": {
+        "pooled_dti": 0.12164827808582572,
+        "ci95": [
+          0.11235459380868566,
+          0.13057119313486204
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F0_G0": {
+        "pooled_dti": 0.09771027431570417,
+        "ci95": [
+          0.06612160512539195,
+          0.12196104143453187
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F0_G1": {
+        "pooled_dti": 0.09122378094224419,
+        "ci95": [
+          0.06493600392830443,
+          0.11167052596981096
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F1_G0": {
+        "pooled_dti": 0.0944895574199147,
+        "ci95": [
+          0.0667350927454144,
+          0.11557743652411498
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "F1_G1": {
+        "pooled_dti": 0.08743552628700454,
+        "ci95": [
+          0.06204008284468035,
+          0.10614911054864744
+        ],
+        "withheld_positive_occurrences": 26367
+      },
+      "H80_CRUSTAL60": {
+        "pooled_dti": 0.05448583504382037,
+        "ci95": [
+          0.03231774114923075,
+          0.08155272421091717
+        ],
+        "withheld_positive_occurrences": 26367
+      }
+    },
+    "paired_gain": 0.0318489693983814,
+    "paired_ci95": [
+      0.025165650645075727,
+      0.042579683823151124
+    ],
+    "fold_gains": [
+      0.02794962731550385,
+      0.02516565064501622,
+      0.023776215226838277,
+      0.04701267689931727
+    ],
+    "screen_passed": true,
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters"
+  },
+  "factorial": {
+    "feature_main_effect": -0.003504485775514557,
+    "regime_main_effect": -0.006770262253185069,
+    "interaction": -0.0005675377594501763
+  }
+}

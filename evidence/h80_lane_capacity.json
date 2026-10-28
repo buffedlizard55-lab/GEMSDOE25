@@ -1,0 +1,82 @@
+{
+  "evidence_class": "COMPUTED GEOMETRY; not HOLDOUT-DTI or an organizer score",
+  "preregistration_commit": "59eec13",
+  "inputs": [
+    {
+      "path": "sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "source": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/07345ea0604953d7efb858d9cfbc21e20c7aca0b/data/bridge/sample_submission.tif"
+    },
+    {
+      "path": "labels.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "source": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/07345ea0604953d7efb858d9cfbc21e20c7aca0b/data/bridge/labels.tif"
+    },
+    {
+      "path": "scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "source": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/07345ea0604953d7efb858d9cfbc21e20c7aca0b/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
+    }
+  ],
+  "grid_match": true,
+  "geometry": {
+    "eligible_pixels": 5106385,
+    "covered_pixels": 5099871,
+    "uncovered_pixels": 6514,
+    "reference_dots": 206895,
+    "radius_px": 3.0
+  },
+  "cases": [
+    {
+      "dots": 37654,
+      "forced_overlapping_pixels": 31140,
+      "minimum_overlap": 0.8270037711796887,
+      "overlap_cap": 0.7,
+      "impossible": true,
+      "max_dots_not_ruled_out": 21713,
+      "status": "IMPOSSIBLE"
+    },
+    {
+      "dots": 38854,
+      "forced_overlapping_pixels": 32340,
+      "minimum_overlap": 0.8323467339270088,
+      "overlap_cap": 0.7,
+      "impossible": true,
+      "max_dots_not_ruled_out": 21713,
+      "status": "IMPOSSIBLE"
+    },
+    {
+      "dots": 40199,
+      "forced_overlapping_pixels": 33685,
+      "minimum_overlap": 0.8379561680638822,
+      "overlap_cap": 0.7,
+      "impossible": true,
+      "max_dots_not_ruled_out": 21713,
+      "status": "IMPOSSIBLE"
+    },
+    {
+      "dots": 44090,
+      "forced_overlapping_pixels": 37576,
+      "minimum_overlap": 0.8522567475618054,
+      "overlap_cap": 0.7,
+      "impossible": true,
+      "max_dots_not_ruled_out": 21713,
+      "status": "IMPOSSIBLE"
+    },
+    {
+      "dots": 70524,
+      "forced_overlapping_pixels": 64010,
+      "minimum_overlap": 0.9076342805286144,
+      "overlap_cap": 0.7,
+      "impossible": true,
+      "max_dots_not_ruled_out": 21713,
+      "status": "IMPOSSIBLE"
+    }
+  ],
+  "proof": "At most U distinct candidate pixels can avoid the halo; at least max(0,K-U) must overlap.",
+  "scope": "Necessary condition against one registry raster. Not a full registry uniqueness check.",
+  "decision": "STOP: all preregistered target densities impossible",
+  "experiments": 0,
+  "new_tiff_generated": false,
+  "okay_to_submit": false
+}

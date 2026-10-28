@@ -993,6 +993,30 @@
    "issue": "The previous receipt gate accepted aggregate canary assertions without individual feature/cell evidence, did not bind final dots to the audited surface and registry, and omitted a DTI CI or strict whole-array policy.",
    "evidence": "src/gems25/readiness.py; tests/test_readiness.py; knowledge/43_latticegap_review_2026-10-28.md.",
    "resolution_or_action": "Require linked identities, per-feature and per-cell canary checks, confirmation cells and CIs; success only permits selector review, never upload."
+  },
+  {
+   "id": "IR-25-H80-LAYER-SEMANTICS-20261028",
+   "severity": "high",
+   "status": "open",
+   "issue": "H80 motivation treated tc as heatflow and deq_n100a15 as event rate, contradicted by mirrored band descriptions; code-space radiometric ratios and geothermcat attribution are also not authenticated physical measurements.",
+   "evidence": "evidence/h80_official_reference_and_band_metadata.json; knowledge/45_h80_outcome_2026-10-28.md; evidence/h80_exp1/design.json",
+   "resolution_or_action": "Withdraw geothermal mechanism claims and confirmation experiments; retain negative raw screen and frozen source commit. Require exact authoritative metadata/units before further physical-model work."
+  },
+  {
+   "id": "IR-25-H80-REGISTRY-TRANSFORM-20261028",
+   "severity": "high",
+   "status": "open",
+   "issue": "All declared SHA pins are available but geom-horse-ensemble.tif has a transform inconsistent with the template; inventory completeness alone cannot establish full registry validity.",
+   "evidence": "evidence/h80_registry_inventory.json",
+   "resolution_or_action": "Fail closed. Do not silently reproject or drop the reference. No new full-footprint placement or TIFF."
+  },
+  {
+   "id": "IR-25-PR70-LATTICEGAP-PUBLISHER-20261028",
+   "severity": "high",
+   "status": "resolved",
+   "issue": "PR70 builder asserted exclusion of every registry halo from r13 exclusion alone, packaged before valid holdout/full registry checks and used unverified geothermal semantics.",
+   "evidence": "scripts/build_unique_submission.py before this change; registry/run_card_unique_latticegap_2026-10-28.json; evidence/h80_latticegap_archive_reaudit.json",
+   "resolution_or_action": "Retire publisher with exit2 before data loading; keep existing TIFF historical only. PR71 already repaired misleading executive copy; no new score or slot approval."
   }
  ]
 }

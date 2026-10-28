@@ -15,18 +15,19 @@ def read_json(path: str):
 
 
 def current_banner(prefix: str) -> str:
+    repo = '' if prefix == 'docs/' else '../'
     return f'''<!-- CURRENT-REVIEW-2026-10-28 --><aside class="current-status" aria-label="Current decision">
 <strong>28 OCT 2026 · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
 <span>Independent hash-pinned geometry audit rerun: at 37,654 dots, at least 82.70% must overlap the registered
-r13 halo, exceeding the strict 70% cap. No assigned single-method lane was supplied; no new fitting experiment,
-TIFF or weekly slot was used. Historical downloads below are for research only. Competition score estimate: UNKNOWN.</span>
-<a href="{prefix}current-review.html#review-2026-10-28">Current audit and next steps →</a>
-<a href="{prefix}../knowledge/43_session_962e5a5b_review.md">Parallel review: executive warnings and readiness receipts →</a></aside>'''
+r13 halo, exceeding the strict 70% cap. H80 diagnostic screen completed and failed the same-run H35 gate.
+No new TIFF or weekly slot. Historical downloads below are for research only. Competition score estimate: UNKNOWN.</span>
+<a href="{prefix}current-review.html#h80-review">Current H80 audit and next steps →</a>
+<a href="{repo}knowledge/43_session_962e5a5b_review.md">Parallel review: executive warnings and readiness receipts →</a></aside>'''
 
 
 def render_body(root_page: bool = False) -> str:
     card = read_json("registry/run_card_2026-10-27.json")
-    focus = read_json("evidence/focus_winners_b0b734ae_2026-10-28.json")
+    focus = read_json("evidence/h80_focus_winners_reaudit_2026-10-28.json")
     geometry = read_json("evidence/lane_feasibility_b0b734ae_2026-10-28.json")
     h78 = read_json("registry/run_card_h78_2026-10-27.json")
     h79 = read_json("registry/run_card_h79_2026-10-27.json")
@@ -88,10 +89,10 @@ def render_body(root_page: bool = False) -> str:
     )
     bounds = "".join(f"<tr><td>{x['dots']:,}</td><td>{x['minimum_overlap']:.2%}</td><td>Impossible</td></tr>"
                      for x in geometry["cases"])
-    body = f'''<section id="review-2026-10-28" class="review-decision"><h2>28 October: independent preflight, not a new submission</h2>
+    body = f'''<section id="review-2026-10-28" class="review-decision"><h2>Earlier 28 October: independent preflight, not a new submission</h2>
 <p><b>No eligible download exists. Do not spend a slot.</b> The rerun found only 6,514 eligible pixels outside the r13 three-pixel halo.
 At most 21,713 distinct dots are not ruled out by this one-reference bound; fewer dots are not automatically unique or high-scoring.
-Historical H73-BW: BLOCKED BEFORE FIT. This is computed geometry, not HOLDOUT-DTI. No holdout result or organizer-confirmed score was produced this session.</p>
+Historical H73-BW: BLOCKED BEFORE FIT. This is computed geometry, not HOLDOUT-DTI. No holdout result or organizer-confirmed score was produced in that earlier preflight session.</p>
 <p><a href="{repo}evidence/lane_feasibility_b0b734ae_2026-10-28.json">Pinned geometry audit</a> ·
 <a href="{repo}knowledge/41_session_plan_2026-10-28.md">Four planning-only geological hypotheses</a> ·
 <a href="{repo}knowledge/43_latticegap_review_2026-10-28.md">Full re-audit, scientific rationale and sources</a> ·
@@ -178,7 +179,11 @@ no hypothesis was selected, fitted, canary-tested or evaluated on a blocked hold
 <p>Archived H66 &amp; H74 research files for local inspection only (<code>{e(h74['submission_name'])}</code>, id <code>{e(h74['content_id'])}</code>, note <code>{e(h74['note'])}</code> — DO NOT SUBMIT): <a download href="{download}gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif">Download historical H66 TIF — DO NOT SUBMIT</a>.</p>
 </details>
 <p><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference code</a> · <a href="https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7">USGS GeoDAWN</a> · <a href="https://www.usgs.gov/3d-elevation-program/about-3dep-products-services">USGS 3DEP</a> · <a href="https://www.usgs.gov/publications/discovering-blind-geothermal-systems-great-basin-region-integrated-geologic-and">USGS-hosted Great Basin play-fairway report</a>. Source availability and public mirror hashes do not prove provenance or performance.</p></section>'''
-    return body
+    try:
+        from render_h80_review import render_h80
+    except ImportError:
+        from scripts.render_h80_review import render_h80
+    return render_h80(root_page) + '<h2>Historical decisions and research archives — superseded by H80 review above</h2>' + body
 
 
 def readme_status() -> str:
