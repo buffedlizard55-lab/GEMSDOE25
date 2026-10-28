@@ -61,8 +61,13 @@ def test_wrong_transform_wrong_crs_and_nonfinite_reference_never_clear(pair, tmp
     b[17, 17] = 1
     for path in (write_raster(tmp_path / "shift.tif", b, transform=Affine(100, 0, 10, 0, -100, 2000)),
                  write_raster(tmp_path / "wrong_crs.tif", b, crs="EPSG:4326")):
+        # A reference on a different grid/CRS is not comparable on the template
+        # grid: it is skipped and recorded, never treated as evidence, and it
+        # can never produce clearance.
         result = final.audit(candidate, template, [path], {final.sha256(path)})
-        assert not result["lane_clear"] and result["errors"]
+        assert not result["lane_clear"]
+        assert result["skipped"]
+        assert not result["errors"]
     b[5, 5] = np.nan
     nonfinite = write_raster(tmp_path / "nonfinite.tif", b)
     result = final.audit(candidate, template, [nonfinite], {final.sha256(nonfinite)})

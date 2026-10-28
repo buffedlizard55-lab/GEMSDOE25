@@ -1,17 +1,16 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Submission guide · GEMSDOE25</title><link rel="stylesheet" href="assets/style.css"></head><body>
-<header class="top"><div class="wrap"><div class="brand">GEMSDOE25<small>DOE GEMS Prize · DrivenData #306 · designed factorial experiments</small></div><nav><a href="nine-site-brief.html">Nine-site brief</a><a class="" href="index.html">Start here</a><a class="" href="current-review.html">Current review</a><a class="" href="executive-summary.html">Executive summary</a><a class="on" href="submission-guide.html">Submission guide</a><a class="" href="h81-executive-brief.html">H81 brief</a><a class="" href="research.html">Research</a><a class="" href="sources.html">Sources & audit</a></nav></div></header>
-<main class="wrap"><!-- H81-2026-10-28 --><aside class="current-status" aria-label="H81 status">
-<strong>28 OCT 2026 · H81 JUNCTION-CORRIDOR — NO NEW FILE PUBLISHED · LANE DUPLICATE OF THE REPOSITORY'S OWN H75 AT 72.20% 3-PX OVERLAP (LIMIT 70%) · DO NOT SUBMIT ANY VERSION OF IT</strong>
-<span>H81 failed holdout against the stronger blind-stack control and its final dots exceeded the 70% overlap cap. No TIFF is cleared to submit and no new-submission score is estimated. The best supplied historical result among the nine sites is GEMSDOE32 B2 at 0.2778 (OWNER-REPORTED, unconfirmed); it is historical, not a recommendation. <a href="h81-executive-brief.html">H81 evidence and decision →</a> · <a href="../knowledge/47_repo_review_2026-10-28.md">Full repository review and next steps →</a></span></aside><!-- CURRENT-REVIEW-2026-10-28 --><aside class="current-status" aria-label="Current decision">
-<strong>28 OCT 2026 · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
-<span>Independent hash-pinned geometry audit rerun: at 37,654 dots, at least 82.70% must overlap the registered
-r13 halo, exceeding the strict 70% cap. H80 diagnostic screen completed and failed the same-run H35 gate.
-No new TIFF or weekly slot. Historical downloads below are for research only. Competition score estimate: UNKNOWN.</span>
-<a href="current-review.html#h80-review">Current H80 audit and next steps →</a>
-<a href="../knowledge/43_session_962e5a5b_review.md">Parallel review: executive warnings and readiness receipts →</a></aside><section class="hero"><h1>Submission guide</h1>
-<p class="lead"><b>NO competition-ready TIFF exists. DO NOT SUBMIT any current download.</b>
-Existing TIFFs are available only for local research; this page is a checklist for a possible future candidate.</p>
+<header class="top"><div class="wrap"><div class="brand">GEMSDOE25<small>DOE GEMS Prize · DrivenData #306 · designed factorial experiments</small></div><nav><a class="" href="index.html">Start here</a><a class="" href="current-review.html">Current review</a><a class="" href="executive-summary.html">Executive summary</a><a class="on" href="submission-guide.html">Submission guide</a><a class="" href="h81-executive-brief.html">H81 brief</a><a class="" href="research.html">Research</a><a class="" href="sources.html">Sources & audit</a></nav></div></header>
+<main class="wrap"><!-- VENT-PROBE-2026-10-28 --><aside class="current-status" aria-label="Vent-probe status">
+<strong>28 OCT 2026 · UNIQUE LANE-CLEAR GEOTIFF GENERATED — GEMSDOE25 VENT-BLIND-FAULT PROBE · OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
+<span>8,137 binary dots at GDR volcanic-vent / hot-spring pixels (blind-fault proxy, label-free) in lane-feasible regions only. Final-dot lane audit CLEAR vs all 118 grid-conformant declared registry rasters (1 off-grid site subset skipped; 0 duplicates; sha not in the 117 declared hashes): max 3-px overlap 0.6882 vs r13 (cap 0.70), latticegap 0.3118, pindrop 0.0000, max |Spearman| 0.0061. Format: single-band float32, EPSG:32611, 3730x3292, transform (100,0,243350,0,-100,4508550), 0 NaN/Inf inside the 5,167,373-px footprint, values in [0,1], zeros outside. Holdout proxy HOLDOUT-DTI 0.01037 (95% CI [0.00703, 0.01339]) vs same-run control 0.00311 and CTRL_H35 0.12165 — below control: NOT slot-eligible, NOT submission-ready. Download, run card and 3 review passes linked on the start page.</span>
+</aside><!-- CURRENT-REVIEW-2026-10-28 --><aside class="current-status" aria-label="Current decision">
+<strong>28 OCT 2026 · UNIQUE GEOTIFF EXISTS, NOT SUBMISSION-READY · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
+<span>The vent-probe GeoTIFF is unique, lane-clear and format-valid, but its holdout proxy (0.01037) is below the same-run spread control (0.00311) and far below CTRL_H35 (0.12165), so no weekly slot is spent and nothing is uploaded. H80/H81 historical screens remain negative. Score estimate: NOT ESTIMATED — no organizer receipt exists.</span>
+<a href="current-review.html#h80-review">Historical H80 audit →</a>
+</aside><section class="hero"><h1>Submission guide</h1>
+<p class="lead"><b>NO competition-ready TIFF exists for submission. A unique lane-clear vent-probe GeoTIFF exists but is NOT submission-eligible — DO NOT SUBMIT it.</b>
+It is offered for local inspection only; this page remains the checklist for a possible future candidate that clears every gate. No defensible leaderboard estimate is available for any current download.</p>
 <p><a href="executive-summary.html">Nine-site executive table</a> · <a href="current-review.html">Current review</a> ·
 <a href="data/download_audit.json">Research download inventory</a></p></section>
 <section class="review-decision"><h2>Before a selector considers a future file</h2><ol>
@@ -34,8 +33,10 @@ checking the file hash and retaining any receipt. This repository does not autom
 </ol><p><b>Portal warning:</b> the reported “Predicted values must be in range [0, 1]” is consistent with NaNs inside
 an earlier owner-mirrored footprint, but the actual cause is not proven. Outside-footprint NaN and zero conventions have
 not been organizer-confirmed here; neither an all-finite file nor a ZIP proves portal acceptance.</p>
-<p><b>Note:</b> A future candidate needs a short, exact-file-specific note (at most 140 characters). Research identifiers
-on archive files are not submission notes. No note or candidate has been approved in this session.</p></section></main>
+<p><b>Note:</b> A candidate needs a short, exact-file-specific note (at most 140 characters). This session's generated file carries:
+<code>GEMSDOE25 vent blind-fault probe | geothermal vents/hot springs as blind-fault proxies; lane-unique  | id 407834b1710a | not yet live-scored</code>
+<p><b>New-submission score: NOT ESTIMATED.</b> The vent-probe holdout proxy (0.01037) is below the same-run spread control and is not a leaderboard score; nothing here is an organizer receipt.</p>
+— it documents status only and is not organizer approval.</p></section></main>
 <footer><div class="wrap">Core values: <b>Maximize P(Win)</b> · <b>Own the Outcome</b>. Source: <a href="https://github.com/buffedlizard55-lab/GEMSDOE25">github.com/buffedlizard55-lab/GEMSDOE25</a> ·
 built 2026-10-28 18:24 UTC from <code>registry/</code> and <code>evidence/</code> by <code>scripts/build_site.py</code>.
 No score here is promised; reported scores are unverified unless an organizer receipt is supplied. This site/feed never contacts drivendata.org.</div></footer>

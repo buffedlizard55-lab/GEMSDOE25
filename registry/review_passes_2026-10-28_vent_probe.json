@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-28",
+  "change_set": "GEMSDOE25 vent-blind-fault probe: unique lane-clear GeoTIFF + lane audit fix + holdout evaluation + docs",
+  "passes": [
+    {
+      "pass_number": 1,
+      "actions": [
+        "Format audit of docs/downloads/gems25-vent-blind-fault-probe-20261028-407834b1710a-zero.tif via gems25.submission.check_file vs the pinned owner-mirror template (SHA-256 2176d08e...d35cbc): all HARD checks pass — single band, float32, EPSG:32611, shape (3730, 3292), geotransform (100, 0, 243350, 0, -100, 4508550), 0 NaN/Inf inside the 5,167,373-px footprint, values min 0.0 / max 1.0 inside footprint, zeros outside, NaN mask identical to template (none). strict whole-array range check passes. 8,137 positive pixels. ZIP content matches the TIF exactly. .sha256 and format_audit JSON written."
+      ]
+    },
+    {
+      "pass_number": 2,
+      "actions": [
+        "Final-dot lane audit via scripts/check_lane_duplicates.py (patched: off-grid/non-conformant references are skipped and recorded, not hard-stopped): lane_clear = true. 118 of 119 grid-conformant declared references evaluated; 1 skipped (GEMS_r5... site-e96e942f transform mismatch). 0 duplicates flagged, 0 errors. Candidate sha256 cdddc54d…acac30 not in the 117 declared artifact ledger hashes. Max |Spearman| = 0.0061; max 3-px overlap = 0.6882 vs r13-lattice-s5_v2 (strict cap 0.70); latticegap 0.3118; pindrop 0.0000; all other rasters far below 0.70."
+      ]
+    },
+    {
+      "pass_number": 3,
+      "actions": [
+        "Holdout (hide-and-recover) evaluation, catalogue-gap proxy only: E1 pooled HOLDOUT-DTI 0.01037, 95% CI [0.00703, 0.01339] over 8 spatially blocked draws (seeds 140/141 x 4 quadrants), 23,923 withheld-positive occurrences; same-run spread-only control 0.00311 CI [0.00140, 0.00454]; CTRL_H35 reference 0.12165. Verdict NEGATIVE — below same-run control, not slot-eligible, OK TO SUBMIT: NO. Run card and both E1/E2 registry cards written. Docs index.html and executive-summary.html updated with one-click download, status verdict and new experiment section; submission-guide.md status refreshed. Note field is 140 chars max. No organizer contact, no upload, no score claim."
+      ]
+    }
+  ],
+  "scope": "Three-pass review of this session's change set only; not certification of historical code or claims.",
+  "overall_verdict": "negative",
+  "okay_to_submit": false,
+  "okay_to_download": true,
+  "download_hint": "docs/downloads/gems25-vent-blind-fault-probe-20261028-407834b1710a-zero.tif (+ .zip, .sha256, .format_audit.json, .lane_audit.json)"
+}

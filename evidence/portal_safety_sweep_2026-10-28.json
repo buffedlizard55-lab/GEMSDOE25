@@ -2,9 +2,9 @@
   "generated_utc": "2026-10-28T18:45:36+00:00",
   "script": "scripts/audit_portal_safety.py",
   "evidence_class": "COMPUTED local format sweep; no portal, organizer or score claim",
-  "total": 60,
-  "portal_safe": 30,
-  "portal_rejected_convention": 30,
+"total": 61,
+ "portal_safe": 30,
+ "portal_rejected_convention": 31,
   "portal_safe_files": [
     "gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-zeros.tif",
     "gems25-apfl2-h35plus-apfl-b2-sapd2-4-k3p5-20261026-2e9e4189f554-zeros.tif",

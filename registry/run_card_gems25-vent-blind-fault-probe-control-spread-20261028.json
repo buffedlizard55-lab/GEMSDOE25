@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "experiment": "E2 vent-blind-fault probe — same-run spread-only control (internal comparator, not published)",
+  "date": "20261028",
+  "hypothesis": "Control for E1: identical lane geometry (2,537 R2 dots + 5,600 R5 dots) with no geothermal targeting; any E1 advantage over this control would be a vent/spring signal, not a lane artifact.",
+  "mechanism": "Deterministic stratified-random dots from catalogue-clear R5 pixels (seed 999) plus all R2 pixels; same overlap self-checks as E1.",
+  "non_fault_mimic": "Random sparse dots have no geological signal at all.",
+  "expected_dti": "near zero; same order as E1 would show geothermal targeting adds nothing.",
+  "cost": "low.",
+  "lane_geometry_self": {
+    "n_dots": 8137,
+    "r13_overlap_self": 0.6882,
+    "latticegap_overlap_self": 0.3118,
+    "pindrop_overlap_self": 0.0,
+    "note": "identical lane geometry to E1; full lane audit not re-run for an unpublished control"
+  },
+  "file": "/tmp/control_spread-zero.tif (not published)",
+  "sha256": "c9bb3c5c0e76297a9f709c5ec4bf2bd9369bf862395cf9b4d18be85370d5a230",
+  "content_id": "cde1b8850608",
+  "positive_pixels": 8137,
+  "holdout_dti": 0.0031053381130147246,
+  "holdout_ci95": [0.0014017294027603052, 0.004538904810410744],
+  "holdout_n_truth_total": 23923,
+  "ctrl_h35_holdout_dti": 0.12165,
+  "verdict": "negative — control holdout proxy 0.00311 (CI [0.00140, 0.00454]) << CTRL_H35 0.12165; E1 (0.01037) exceeds control only ~3x and remains far below control. Neither dots-only nor vent-targeted dots are slot-eligible.",
+  "experiments_used": 2,
+  "new_tiff_generated": false,
+  "okay_to_submit": false,
+  "limitations": [
+    "Internal comparator only; its TIF was not published to docs/downloads.",
+    "Same catalogue-gap proxy caveats as E1."
+  ]
+}
