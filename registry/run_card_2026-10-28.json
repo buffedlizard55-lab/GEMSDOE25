@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-28",
+  "hypothesis": "A new assigned geological lane must pass literal novelty and paired hide-and-recover gates before selector review.",
+  "mechanism": "Exact Euclidean halo capacity preflight; no geological model fitted.",
+  "non_fault_mimic": "Dense regular sampling lattice can mimic geometric convergence without shared geological evidence.",
+  "holdout_dti": null,
+  "holdout_ci95": null,
+  "evaluator_version": null,
+  "withheld_positives": null,
+  "organizer_confirmed_score": null,
+  "estimated_leaderboard_score": null,
+  "correlation_overlap_vs_registry": {
+    "rank_correlation": null,
+    "measured_final_overlap": null,
+    "reference": "r13-lattice-s5",
+    "minimum_overlap_at_37654_dots": 0.8270037711796887,
+    "strict_overlap_cap": 0.7,
+    "full_registry_checked": false,
+    "receipt": "evidence/lane_feasibility_2026-10-28.json"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside": null,
+    "values_in_range": null,
+    "crs_match": null,
+    "shape_match": null,
+    "transform_match": null
+  },
+  "submission_name": null,
+  "note": "No new raster: method lane absent; historical dot budgets fail strict novelty preflight. DO NOT SUBMIT.",
+  "verdict": "negative",
+  "experiments_used": 0,
+  "new_tiff_generated": false,
+  "okay_to_submit": false,
+  "limitations": [
+    "No identifiable single method lane in supplied prompt",
+    "Shared feature stack absent",
+    "No current organizer receipt, leaderboard or slot-cap verification",
+    "Only this repository changed"
+  ]
+}
