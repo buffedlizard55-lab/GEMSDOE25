@@ -64,7 +64,7 @@ Earlier dated decisions below are historical, not claims that this session ran n
 
 '''
     from nine_site_status import readme_block as _nine_readme
-    text = ["# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize\n", _nine_readme(), latest, readme_status()]
+    text = ["# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize\n",     _nine_readme(), latest, readme_status()]
     text.append("## Current review and reproducibility\n")
     text.append("[Executive summary and nine-site downloads](docs/executive-summary.html) · "
                 "[current review](docs/current-review.html) · [historical archive](docs/history.html) · "

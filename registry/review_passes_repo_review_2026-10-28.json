@@ -1,0 +1,50 @@
+{
+  "schema": "review_passes/v1",
+  "review_date": "2026-10-28",
+  "branch": "arena/4767546b-gemsdoe25",
+  "passes": [
+    {
+      "pass": 1,
+      "name": "Implement and verify",
+      "outcome": "Added an auditable review, corrected H81 public score/slot messaging, and preserved the negative outcome. No new raster or experiment.",
+      "evidence": [
+        "evidence/h80_focus_winners_reaudit_2026-10-28.json",
+        "evidence/h81_exp3/summary.json",
+        "evidence/h81_gates.json",
+        "evidence/h81_final_dot_lane.json"
+      ]
+    },
+    {
+      "pass": 2,
+      "name": "Bug and assumption review",
+      "outcome": "Retracted the public H81 empirical score bands after confirming the gated audit matched zero historical rasters; removed the unsafe H75 submission recommendation; clarified nine-site mask novelty scope and external-source availability.",
+      "evidence": [
+        "evidence/h81_score_estimate_gated.json",
+        "docs/h81-executive-brief.html",
+        "docs/executive-summary.html"
+      ]
+    },
+    {
+      "pass": 3,
+      "name": "Original request re-check",
+      "outcome": "Confirmed all nine requested sites are represented with historical file, owner-reported historical score, unknown new-score estimate, pairwise mask lineage, and DO NOT SUBMIT status. A new unique high-scoring TIF remains unfulfilled because no candidate passed holdout and literal lane gates.",
+      "evidence": [
+        "docs/executive-summary.html",
+        "knowledge/47_repo_review_2026-10-28.md",
+        "registry/run_card_repo_review_2026-10-28.json"
+      ]
+    }
+  ],
+  "verification": {
+    "pytest": "531 passed, 14 skipped",
+    "skip_reason": "competition bands/shared data cache not restored in this checkout",
+    "ruff": "passed on changed test modules",
+    "local_html_links": "0 missing among six reviewed start/submission pages",
+    "data_directory": "data/.gitkeep only; no competition inputs restored",
+    "experiments_this_review": 0,
+    "new_tiff_generated": false,
+    "slot_used": false,
+    "automated_drivendata_access": false
+  },
+  "verdict": "negative; no candidate cleared for submission"
+}

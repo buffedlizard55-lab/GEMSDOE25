@@ -92,8 +92,8 @@ def test_executive_summary_separates_holdout_from_score_and_strict_novelty():
     assert '100% within 3 px of the registered r13 lattice; threshold 70%' in page
     assert 'DO NOT SUBMIT' in page
     assert 'dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif' in page
-    assert 'Exact-mask duplicate of GEMSDOE30 (D2.8)' in page
-    assert 'Exact-mask duplicate of GEMSDOE31 (R1)' in page
+    assert 'exact positive-mask duplicate of GEMSDOE30 (D2.8)' in page
+    assert "exact-mask duplicate of GEMSDOE31&#x27;s selected R1" in page
 
 
 def test_current_review_run_card_is_complete_and_honest():

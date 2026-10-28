@@ -1035,6 +1035,14 @@
       "resolution_or_action": "Named individually with its SHA-256 and transform in every H80 lane receipt. Consequence: check_lane_surface.py / check_lane_duplicates.py return 'UNVERIFIED - incomplete or invalid registry' for EVERY candidate, because the shared tools fail closed on a grid mismatch. Owner decision required: confirm the file was misregistered, or drop it from the declared reference set. Until then no candidate can ever be auto-cleared by the shared CLI."
     },
     {
+      "id": "IR-28-GENERATOR-DRIFT",
+      "severity": "high",
+      "status": "open",
+      "issue": "The generators on this branch (scripts/build_readme.py, build_site.py, build_current_review.py) do not reproduce hand-edited sections on main. A full rebuild removed README sections 'Latest result — H81 failed promotion' and 'H81 outcome — negative' (which retract the 0.2250–0.2250 band) and restored an old H81 banner in docs/executive-summary.html and docs/current-review.html. The rebuild was reverted; those pages now equal origin/main, with only additive changes.",
+      "evidence": "git diff origin/main -- README.md (0 removed lines after the revert); docs/*.html equal origin/main except the nav addition",
+      "resolution_or_action": "Do not run build_readme.py, build_site.py or build_current_review.py on main-derived pages until the generators are reconciled with the published pages. Edit published pages additively, and check each diff against origin/main before committing."
+    },
+    {
       "id": "IR-28-VALIDATOR-NAN-PASSED",
       "severity": "high",
       "status": "open",

@@ -1073,6 +1073,14 @@
       "issue": "The B2 step removes dots within 200 m of labelled faults. The repository's record of the staff clarification (knowledge/03, not re-fetched this session because AGENTS.md rule 3 bars automated access to drivendata.org forums) says near-known wrong pixels are fully penalised, which favours deletion. The same record says test labels include corrections or modifications within 300 m of known traces, which favours keeping them. The catalogue-gap holdout cannot test this (IR-25-HOLDOUT-DOES-NOT-TEST-PRUNING).",
       "evidence": "knowledge/03_hypotheses_ranked_2026-10-02.md (context paragraph); knowledge/17 section 2; evidence/nine_site_top_files_2026-10-28.json",
       "resolution_or_action": "Owner decision and a new test design are needed before this mechanism is used to claim a score gain. The proposed test must be on a holdout that includes near-catalogue corrections, which the current holdout does not provide."
+    },
+    {
+      "id": "IR-28-GENERATOR-DRIFT",
+      "severity": "high",
+      "status": "open",
+      "issue": "The generators on this branch (scripts/build_readme.py, build_site.py, build_current_review.py) do not reproduce hand-edited sections on main. A full rebuild removed README sections 'Latest result — H81 failed promotion' and 'H81 outcome — negative' (which retract the 0.2250–0.2250 band) and restored an old H81 banner in docs/executive-summary.html and docs/current-review.html. The rebuild was reverted; those pages now equal origin/main, with only additive changes.",
+      "evidence": "git diff origin/main -- README.md (0 removed lines after the revert); docs/*.html equal origin/main except the nav addition",
+      "resolution_or_action": "Do not run build_readme.py, build_site.py or build_current_review.py on main-derived pages until the generators are reconciled with the published pages. Edit published pages additively, and check each diff against origin/main before committing."
     }
   ]
 }
