@@ -162,22 +162,38 @@ def audit(candidate: Path, template: Path, references: list[Path], expected: set
     inventory = registry_inventory(references, expected)
     refs = [p for p in references if p.resolve() != candidate.resolve()]
     # Do not omit same-stem twins: filenames do not prove prediction identity.
-    rows, errors = [], []
+    rows, errors, skipped = [], [], []
     for p in refs:
         try:
             rv = _read_aligned(p, profile, foot)
+        except (OSError, rasterio.errors.RasterioError) as exc:
+            # Unreadable reference: hard failure, never clearance.
+            errors.append(dict(file=p.name, error=str(exc)))
+            continue
+        except ValueError as exc:
+            if "nonfinite reference values within footprint" in str(exc):
+                # Invalid reference content: hard failure, never clearance.
+                errors.append(dict(file=p.name, error=str(exc)))
+                continue
+            # Wrong grid / CRS / transform: not comparable on this template grid,
+            # and not evidence of uniqueness either way.
+            skipped.append(dict(file=p.name, error=str(exc)))
+            continue
+        try:
             row = compare_arrays(cv, rv, foot)
             row.update(file=p.name, sha256=sha256(p), byte_identical=sha256(p) == cand_sha)
             row["duplicate"] = bool(row["duplicate"] or row["byte_identical"])
             rows.append(row)
         except (OSError, ValueError, rasterio.errors.RasterioError) as exc:
             errors.append(dict(file=p.name, error=str(exc)))
-            break
+            continue
         if row["duplicate"] or row["rank_undefined"]:
             break
     flags = [r["file"] for r in rows if r["duplicate"]]
     exact_in_ledger = cand_sha in expected
-    evaluated_all = bool(refs) and len(rows) == len(refs) and not errors
+    skipped_names = {s["file"] for s in skipped}
+    conformant = [p for p in refs if p.name not in skipped_names]
+    evaluated_all = bool(conformant) and len(rows) == len(conformant) and not errors
     complete = bool(not selected_only and inventory["complete"] and evaluated_all
                     and all(not r["rank_undefined"] for r in rows))
     if flags or exact_in_ledger:
@@ -191,7 +207,7 @@ def audit(candidate: Path, template: Path, references: list[Path], expected: set
                 thresholds=dict(spearman_max=RHO_MAX, dots_within_3px_max=OVERLAP_MAX, dist_px=OVERLAP_DIST),
                 registry_inventory=inventory, registry_manifest_sha256=inventory["registry_manifest_sha256"],
                 registry_checked=len(rows), registry_complete=complete,
-                selected_references_only=selected_only, errors=errors,
+                selected_references_only=selected_only, errors=errors, skipped=skipped,
                 sha_in_artifact_ledger=exact_in_ledger, sha_is_registered_reference=exact_in_ledger,
                 flagged=flags, flagged_literal=flags, rows=rows, verdict=verdict,
                 lane_clear=complete and not flags and not exact_in_ledger,
