@@ -1,0 +1,44 @@
+{
+  "session": "4c95a2e9 unique-TIF gate audit 2026-10-28",
+  "generated_utc": "2026-10-28",
+  "pass_1_implement_and_verify": {
+    "scope": "Patch the portal gate, restore data, build the shared cache, record the sweep and lineage audits.",
+    "checks": [
+      "check_file hard check portal_all_cells_finite_in_0_1 added; six test files updated for NaN-fails-portal.",
+      "Data restored: 22 of 22 manifest files SHA-verified; 18 owner-mirror top-scorer TIFs 18 of 18 SHA match.",
+      "Shared cache rebuilt (prepare_data 39 s, build_features static_ABCD 64 columns, build_addons 5 columns); hashes match evidence/work_cache_hashes.json.",
+      "pytest tests -q: 548 passed, 0 skipped (was 537 passed, 3 data-gated skips before the cache existed).",
+      "After the merge: ruff clean; pytest 553 passed (548 from this branch + 5 from main), 0 failed."
+    ],
+    "result": "pass"
+  },
+  "pass_2_bugs_and_edge_cases": {
+    "scope": "Attack the claims in the brief and receipts.",
+    "findings": [
+      "Brief first said the holdout did not reproduce a gain from proximity pruning. Wrong: knowledge/17 says the holdout cannot test it. Corrected; no claim remains.",
+      "Brief first described the catalogue-flank mechanism as an inference with one direction. The staff record cuts both ways (near-known wrong penalised; corrections within 300 m credit). Corrected and recorded as IR-28-CATALOGUE-FLANK-MECHANISM.",
+      "Lane sentence assumed B2 was a registry reference; verified in the H75 lane receipt (entry g32_h33-2-b2_0.2778.tif). Citation added.",
+      "Lane tool reports registry_complete=false (71 of 117). Verdict is DUPLICATE, but no lane clearance is possible in this sandbox. Recorded as IR-28-LANE-REGISTRY-INCOMPLETE.",
+      "Ruff F841 unused variables in nine_site_status.py fixed; ruff check clean.",
+      "The validator's ok_to_upload is format-only (its own authorization note). Shown as format_valid=True and okay_to_submit=False, not as clearance.",
+      "Merge with origin/main (PR #76): a full rebuild reverted main's hand-edited H81 sections in README.md and docs/*.html, and three tests on main failed. Reverted: README and docs equal origin/main plus only the nine-site block and nav link. Recorded as IR-28-GENERATOR-DRIFT; generators must not be run on main-derived pages until reconciled."
+    ],
+    "result": "fixed; open items recorded in registry/irregularities.json"
+  },
+  "pass_3_reread_brief": {
+    "scope": "Reread docs/nine-site-brief.html and README block against receipts and rules.",
+    "checks": [
+      "Every file reads DO NOT SUBMIT; estimated score UNKNOWN; scores labelled owner-reported.",
+      "No DrivenData access (the forum quote is from the repo record, not re-fetched; AGENTS.md rule 3).",
+      "Test test_brief_page_and_readme_say_no_submission_and_unknown_estimate checks the head of README and the brief."
+    ],
+    "result": "pass"
+  },
+  "residual_limitations": [
+    "No candidate produced. A unique, gate-clean file is blocked by the lane rule (r13 bound 82.70% at 37,654 dots) and by the incomplete registry in this sandbox.",
+    "The owner must decide: a dot-count cap ≤21,713, or a rule change. No slot selection in this run.",
+    "The 30 NaN-outside files in docs/downloads are portal-rejected under the observed error; the site defaults still list them.",
+    "The catalogue-flank question is open. It needs a holdout with near-catalogue corrections, which the current one lacks.",
+    "All competitor scores are owner-reported; no organizer receipt was obtained. Leaderboard figures conflict (0.3195 vs 0.4413; IR-25-LEADERBOARD-CONFLICT)."
+  ]
+}

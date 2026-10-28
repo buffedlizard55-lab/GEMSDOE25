@@ -1,0 +1,14 @@
+{
+  "generated_utc": "2026-10-28T18:46:33+00:00",
+  "script": "scripts/audit_r13_lane_bound.py",
+  "evidence_class": "COMPUTED arithmetic bound on pinned rasters (not a candidate, not a score)",
+  "r13_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+  "r13_dots_in_footprint": 206895,
+  "footprint_pixels": 5167373,
+  "catalogue_pixels_in_footprint": 60988,
+  "halo_pixels": 5160724,
+  "eligible_pixels_outside_halo_and_catalogue": 6514,
+  "min_overlap_at_37654_dots": 0.827004,
+  "max_dots_with_min_overlap_at_most_0_70": 21713,
+  "note": "Any catalogue-free candidate above this dot count has at least 70% of its dots within 3 px of r13 (the literal lane rule). The cap is a fact about the registry, not an owner-approved policy."
+}

@@ -21,7 +21,12 @@ def current_banner(prefix: str) -> str:
         h81 = _h81_banner(prefix)
     except Exception:  # pragma: no cover - the banner must never break the build
         h81 = ''
-    return h81 + f'''<!-- CURRENT-REVIEW-2026-10-28 --><aside class="current-status" aria-label="Current decision">
+    try:
+        from nine_site_status import banner as _nine_banner
+        nine = _nine_banner(prefix)
+    except Exception:  # pragma: no cover - the banner must never break the build
+        nine = ''
+    return nine + h81 + f'''<!-- CURRENT-REVIEW-2026-10-28 --><aside class="current-status" aria-label="Current decision">
 <strong>28 OCT 2026 · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
 <span>Independent hash-pinned geometry audit rerun: at 37,654 dots, at least 82.70% must overlap the registered
 r13 halo, exceeding the strict 70% cap. H80 diagnostic screen completed and failed the same-run H35 gate.
