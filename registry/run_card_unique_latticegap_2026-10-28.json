@@ -1,61 +1,68 @@
 {
-  "schema": "run_card/v1",
-  "session": "2026-10-28 unique-latticegap-geothermal (aa0104874adb)",
+  "schema": "run_card/v2",
+  "status": "SUPERSEDED historical artifact: research inspection only; DO NOT SUBMIT",
+  "original_receipt": {
+    "sha256": "43b17a865b5a4ada463c5038f9c05baae71b61581019ddcfc0fd8a7f8df8f4ee",
+    "commit": "13c1f021655027e963fb74a5cbba50b1c4aaac78",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/13c1f021655027e963fb74a5cbba50b1c4aaac78/registry/run_card_unique_latticegap_2026-10-28.json"
+  },
+  "superseded_utc": "2026-10-28T16:21:39.251468+00:00",
   "hypothesis": "Concealed-conduit geothermal dots in r13-lattice gaps: radiometric+scarp coincidence outside the r13 3-px halo and outside known catalogue faults marks faults missing from both the USGS/INGENIOUS catalogue and the regular grid.",
-  "mechanism": "Dot pixels at the ~6,514 footprint pixels outside r13's 3-px halo and outside known faults, weighted by a normalized 0.6*radiometric + 0.4*LiDAR-scarp promise score (mapped SGMC faults downweighted 0.5x). Values in [0,1], NaN outside footprint.",
+  "mechanism_reported_not_validated": "Dot pixels at the ~6,514 footprint pixels outside r13's 3-px halo and outside known faults, weighted by a normalized 0.6*radiometric + 0.4*LiDAR-scarp promise score (mapped SGMC faults downweighted 0.5x). Values in [0,1], NaN outside footprint.",
   "mimicking_non_fault_process": "Alluvial-fan aprons, playa-mud cracks, drainage-channel margins, and volcanic-contact radiometric highs can produce radiometric-scarp coincidence without a fault.",
   "holdout_dti": null,
-  "holdout_dti_note": "No blocked hide-and-recover holdout was run for this candidate (Parallel-Run Protocol budget: 3 experiments / 2 hours spent on lane audit and site build). Not a HOLDOUT-DTI score.",
+  "holdout_dti_note": "No blocked holdout or feature canaries documented for this file.",
   "estimated_competition_score": null,
-  "estimated_competition_score_note": "Not estimated; not a projection; not an organizer-confirmed score. Unknown until organizer scoring.",
   "correlation_overlap_vs_registry": {
-    "registry_rasters_checked": 70,
-    "duplicate_flags": 0,
-    "max_dots_within_3px_vs_one_raster": 0.5073,
-    "overlap_threshold": 0.7,
-    "max_abs_spearman": 0.0169,
-    "spearman_threshold": 0.9,
-    "overlap_vs_r13_lattice": 0.0,
-    "byte_identical_to_any_reference": false,
-    "verdict": "UNIQUE vs all locally available registry rasters; full declared registry incomplete (sibling-site rasters not mirrored locally)",
-    "evidence": "/tmp/lane_check2.json",
-    "registry_complete": false
+    "r13_spearman": -0.0072086522715729745,
+    "r13_dots_within_3px": 0.0,
+    "reference_files_compared_before_stop": 15,
+    "registry_inventory_complete": true,
+    "registry_comparison_complete": false,
+    "invalid_reference": "geom-horse-ensemble.tif has a mismatched transform",
+    "preplacement_surface_audit": "NOT AVAILABLE",
+    "lane_clear": false,
+    "evidence": "evidence/latticegap_final_lane_b0b734ae.json"
   },
   "validator_output": {
-    "template_crs_epsg": 32611,
-    "template_shape": [
+    "footprint_all_finite": true,
+    "footprint_values_in_0_1": true,
+    "strict_whole_array_0_le_x_le_1": false,
+    "outside_nan_pixels": 7111787,
+    "crs": "EPSG:32611",
+    "shape": [
       3730,
       3292
     ],
-    "geotransform_match": true,
-    "single_band_float32": true,
-    "footprint_all_finite": true,
-    "footprint_nan_inf_count": 0,
-    "footprint_values_in_0_1": true,
-    "outside_footprint_nan": true,
-    "zip_contains_single_geotiff": true,
-    "hard_failures": [],
-    "ok_to_upload_format": true,
-    "evidence": "docs/downloads/checks-gems25-gems25-unique-latticegap-geothermal-20261028-20261028-aa0104874adb-nan.json"
+    "transform": [
+      100,
+      0,
+      243350,
+      0,
+      -100,
+      4508550
+    ],
+    "zip_exists": false,
+    "all_hard_checks_pass": false,
+    "evidence": "evidence/latticegap_format_b0b734ae.json"
   },
   "submission": {
     "file": "docs/downloads/gems25-gems25-unique-latticegap-geothermal-20261028-20261028-aa0104874adb-nan.tif",
-    "zip": "docs/downloads/gems25-gems25-unique-latticegap-geothermal-20261028-20261028-aa0104874adb-nan.zip",
+    "zip": null,
     "sha256": "79597e464fcf1d5f884f01c017597bd7facf13ca7def2b98dd5a72241bc69a82",
     "content_id": "aa0104874adb",
     "positive_pixels": 6430,
-    "note": "GEMSDOE25 unique-latticegap-geothermal | concealed-conduit dots in r13-lattice gaps; unique vs registry | id aa0104874adb | not yet live-scored",
-    "note_length": 140,
-    "ok_to_download": true,
-    "ok_to_submit_format": true,
-    "slot_approved": false,
-    "verdict": "Format-valid + unique vs available registry; NOT organizer-confirmed; NOT slot-approved; score unknown"
+    "note": "Historical lattice-gap diagnostic; uniqueness and holdout unverified. DO NOT SUBMIT.",
+    "note_length": 84,
+    "ok_to_download_research_only": true,
+    "ok_to_submit": false,
+    "slot_approved": false
   },
-  "generated_utc": "2026-10-28T11:52:59.740664+00:00",
-  "constraints": {
-    "lane_protocol": "max |rho| <= 0.90; max dots-within-3px <= 70% vs any one registry raster; checked pre-placement and on final dots",
-    "budget": "3 experiments / 2 hours; lane audit + site build completed within budget",
-    "no_automated_drivendata_access": true
-  },
+  "retracted_claims": [
+    "The former 70-reference aggregate cannot be checked: its /tmp receipt is missing.",
+    "Avoiding r13 does not imply zero overlap with every other registry raster.",
+    "No pre-placement surface clearance, complete registry clearance, successful ZIP, or zero-outside twin is documented.",
+    "The footprint-only format pass and legacy official-NaN label do not establish portal acceptance."
+  ],
   "verdict": "negative"
 }

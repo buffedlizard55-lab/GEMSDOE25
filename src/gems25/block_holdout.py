@@ -1,7 +1,8 @@
 """Checkerboard block-withheld extension of the shared hide-and-recover evaluator.
 
-This module keeps the historical ``gems25.holdout`` evaluator byte-identical for reproducibility while
-providing the 25-km diagnostic split described in the H73-BW pre-registration.
+This module reuses the shared ``gems25.holdout`` evaluator while providing the 25-km
+diagnostic split described in the H73-BW pre-registration. Historical source hashes
+remain in the original run receipts; later evaluator corrections do not rewrite them.
 """
 
 from __future__ import annotations
@@ -47,17 +48,9 @@ class BlockHoldout(Holdout):
         if any(not np.any(self.quad == fold) for fold in range(4)):
             raise ValueError("footprint must intersect blocks from all four checkerboard folds")
 
-    def _pick(self, rng, ids: np.ndarray, target_px: float) -> np.ndarray:
-        """Use the shared component sampler, including its required zero-target edge case."""
-        if target_px < 0:
-            raise ValueError("target_px must be non-negative")
-        if ids.size == 0 or target_px == 0:
-            return np.empty(0, dtype=ids.dtype)
-        return super()._pick(rng, ids, target_px)
-
     def draw(self, fold: int, seed: int) -> Draw:
         """Hide all test-fold components; sample pseudo-new training components as in ``Holdout``."""
-        if fold not in range(4):
+        if isinstance(fold, (bool, np.bool_)) or not isinstance(fold, (int, np.integer)) or fold not in range(4):
             raise ValueError("fold must be one of 0, 1, 2, 3")
         rng = np.random.default_rng(10_000 * (seed + 1) + fold)
         q = self.quad == fold

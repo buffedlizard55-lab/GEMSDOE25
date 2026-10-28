@@ -1,0 +1,9 @@
+{
+  "frozen_commit": "a31d12888f8388ea7588c745e69c85bc80cd93cf",
+  "frozen_metric_sha256": "4f6e4732029efd0238388aec74590e56bc2727df7441220ca09af7d02e9da230",
+  "current_metric_sha256": "a486f96441926cf4daa28750360b4999cfbaecb9f2be8eb9868b079333465ca7",
+  "binary_synthetic_cases": 100,
+  "all_identical": true,
+  "scope": "Post-merge input-guard compatibility on valid binary grids only; not a rerun of fitted H80 arms. Raw H80 results remain bound to frozen execution source.",
+  "main_merge_reconciled": "origin/main a9964d4 (includes PR72); retained stronger evaluator/readiness and latticegap retraction"
+}

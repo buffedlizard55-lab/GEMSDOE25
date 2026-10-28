@@ -3,9 +3,10 @@
 
 The pinned owner-mirror template and labels are checked by SHA-256 and grid.
 The TIFF must match their CRS/shape/transform, be single-band float32, contain
-finite [0,1] values in the footprint and no positive catalogue pixels. A ZIP,
-if present or required, must contain exactly the audited TIFF bytes. Organizer
-acceptance, novelty and performance are separate questions.
+finite [0,1] values over the whole array and no positive catalogue pixels. A ZIP,
+if present or required, must contain exactly the audited TIFF bytes. Requiring a
+strict whole-array check is a conservative local policy, not proof of the portal's
+padding rule. Organizer acceptance, novelty and performance are separate questions.
 """
 from __future__ import annotations
 
@@ -95,10 +96,8 @@ def audit(cand: Path, tmpl: Path, labels: Path, *, expected: dict, template_pin:
                  "template_crs_shape_transform_matches_expected", "template_footprint_px_is_expected",
                  "labels_grid_matches_template", "single_band", "dtype_float32", "crs_epsg_matches_template",
                  "shape_equals_template", "transform_equals_template", "footprint_all_finite",
-                 "footprint_values_in_0_1", "no_emission_on_catalogue")
+                 "footprint_values_in_0_1", "strict_whole_array_0_le_x_le_1", "no_emission_on_catalogue")
     hard_ok = all(checks[k] for k in hard_keys) and outside_conv in ("zeros", "nan")
-    if outside_conv == "zeros":
-        hard_ok = hard_ok and checks["strict_whole_array_0_le_x_le_1"]
     zip_path = cand.with_suffix(".zip")
     zrec = None
     if zip_path.exists():
@@ -119,6 +118,8 @@ def audit(cand: Path, tmpl: Path, labels: Path, *, expected: dict, template_pin:
                 positive_pixels=int((inside > 0).sum()), catalogue_positive_pixels=catalogue_positive_pixels,
                 distinct_values=[float(v) for v in np.unique(inside[np.isfinite(inside)])[:10]],
                 outside_convention=outside_conv, checks=checks, all_hard_checks_pass=bool(hard_ok),
+                okay_to_submit=False,
+                whole_array_policy="strict range required locally; portal outside-footprint behavior unverified",
                 zip=zrec, scope="local exact-file format and catalogue-mask checks only; no organizer or slot approval")
 
 
