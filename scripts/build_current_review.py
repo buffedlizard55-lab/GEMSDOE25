@@ -15,15 +15,12 @@ def read_json(path: str):
 
 
 def current_banner(prefix: str) -> str:
-    old = read_json("registry/run_card_h73_2026-10-26.json")["holdout_dti"]
-    return f'''<!-- H73-BW-2026-10-26 --><aside class="current-status" aria-label="Current decision">
-<strong>27 OCT 2026 · NO NEW TIF IN THIS RUN · H73-BW: BLOCKED BEFORE FIT · RESEARCH-ARCHIVE DOWNLOAD: YES (INSPECTION ONLY) · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
-<span>Current preregistered lane stopped before model fitting: at least 82.70% overlap is unavoidable at its fixed budget.
-The earlier H73-PM HOLDOUT-DTI {old['pm_deapron_pooled']:.5f} vs same-run H35 {old['ctrl_h35_pooled']:.5f}
-(evaluator {e(old['evaluator'])}; {old['withheld_positive_occurrences']:,} withheld positive occurrences;
-95% CI [{old['pm_deapron_ci95'][0]:.5f}, {old['pm_deapron_ci95'][1]:.5f}]) was a negative proxy, not an organizer score.
-Its literal lane audit flags 100% of dots within 3 px of the r13 lattice. Estimated competition score: UNKNOWN (not calibrated).</span>
-<a href="{prefix}current-review.html">Review decision and evidence →</a></aside>'''
+    return f'''<!-- CURRENT-REVIEW-2026-10-28 --><aside class="current-status" aria-label="Current decision">
+<strong>28 OCT 2026 · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
+<span>Independent hash-pinned geometry audit rerun: at 37,654 dots, at least 82.70% must overlap the registered
+r13 halo, exceeding the strict 70% cap. No assigned single-method lane was supplied; no new fitting experiment,
+TIFF or weekly slot was used. Historical downloads below are for research only. Competition score estimate: UNKNOWN.</span>
+<a href="{prefix}current-review.html#review-2026-10-28">Current audit and next steps →</a></aside>'''
 
 
 def render_body(root_page: bool = False) -> str:
@@ -60,7 +57,7 @@ def render_body(root_page: bool = False) -> str:
             f'<tr><th><a href="{e(row["site_url"])}">{e(row["site"])}</a></th>'
             f'<td><a download href="{e(row["download_url"])}"><code>{e(row["file"])}</code></a>'
             f'<small>{row["footprint_positive_pixels"]:,} positive pixels; pinned public mirror</small></td>'
-            f'<td>{row["owner_reported_score"]:.4f}<small>OWNER-REPORTED · no organizer receipt</small></td>'
+            f'<td>UNKNOWN — no calibrated estimate</td><td>{row["owner_reported_score"]:.4f}<small>OWNER-REPORTED · no organizer receipt</small></td>'
             f'<td>{e(descriptions[row["site"]])}</td><td><b>NO — historical file</b></td></tr>'
         )
     archive_rows = []
@@ -101,7 +98,16 @@ def render_body(root_page: bool = False) -> str:
     ct_pm = ct_ln["post_merge_109_audit"]
     bounds = "".join(f"<tr><td>{x['dots']:,}</td><td>{x['minimum_overlap']:.2%}</td><td>Impossible</td></tr>"
                      for x in geometry["cases"])
-    body = f'''<section class="hero"><p class="eyebrow">RESEARCH DECISION BRIEF / 27 OCTOBER 2026</p>
+    body = f'''<section id="review-2026-10-28" class="review-decision"><h2>28 October: independent preflight, not a new submission</h2>
+<p><b>No eligible download exists. Do not spend a slot.</b> The rerun found only 6,514 eligible pixels outside the r13 three-pixel halo.
+At most 21,713 distinct dots are not ruled out by this one-reference bound; fewer dots are not automatically unique or high-scoring.
+Historical H73-BW: BLOCKED BEFORE FIT. This is computed geometry, not HOLDOUT-DTI. No holdout result or organizer-confirmed score was produced this session.</p>
+<p><a href="{repo}evidence/lane_feasibility_2026-10-28.json">Pinned audit and source links</a> ·
+<a href="{repo}knowledge/41_session_plan_2026-10-28.md">Four planning-only geological hypotheses</a> ·
+<a href="{repo}knowledge/42_review_outcome_2026-10-28.md">Limitations, readiness gate and next steps</a>.</p>
+<p>The new receipt-consistency gate requires exact-file identity, format, complete surface/final-dot registry checks,
+feature-alone canaries and a positive paired holdout confidence interval. It permits selector review only, never an upload.
+Only this repository is changed; the eight sibling sites remain untouched. Tables below use historical pinned snapshots, not a current feed.</p></section><section class="hero"><p class="eyebrow">RESEARCH DECISION BRIEF / 27 OCTOBER 2026</p>
 <h1>Know when to stop.</h1><p class="lead">The requested unique competition-ready TIFF remains unfulfilled. At 37,654 dots, literal overlap with the registered r13 lattice is at least 82.70%, and no catalogue-free candidate has yet beaten CTRL_H35 for weekly-slot approval. All downloads below are research/inspection archives only (<b>DO NOT SUBMIT</b>).</p>
 <div class="stats"><div class="stat"><b>Research-archive download: YES</b><span>Inspection/testing only.</span></div>
 <div class="stat"><b>Competition-ready TIF: NO</b><span>OK TO SUBMIT: NO — DO NOT SUBMIT.</span></div>
@@ -146,10 +152,10 @@ def render_body(root_page: bool = False) -> str:
 <section id="lane-feasibility"><h2>Why the frozen continuation stopped</h2>
 <p>The mirrored template, labels and r13 grid were hash-checked. Only <b>6,514</b> eligible pixels are outside the lattice's 3-pixel halo. At fixed budget K, at least max(0, K − 6,514) dots overlap. For 37,654 dots the minimum is <b>82.70%</b> — a strict failure, before placement or fitting.</p>
 <div class="table-scroll"><table><thead><tr><th>Fixed dot budget K</th><th>Minimum overlap</th><th>70% gate</th></tr></thead><tbody>{bounds}</tbody></table></div>
-<p>At most 21,713 dots are not ruled out by this <em>one necessary bound</em>; smaller budgets are not automatically feasible or competitive. This is computed geometry, not HOLDOUT-DTI. No density exception or movement into uncovered slivers was used. <a href="{repo}evidence/lane_preflight_2026-10-27.json">Fresh preflight receipt</a>.</p></section>
+<p>At most 21,713 dots are not ruled out by this <em>one necessary bound</em>; smaller budgets are not automatically feasible or competitive. Historical H73-BW: BLOCKED BEFORE FIT. This is computed geometry, not HOLDOUT-DTI. No density exception or movement into uncovered slivers was used. <a href="{repo}evidence/lane_preflight_2026-10-27.json">Fresh preflight receipt</a>.</p></section>
 <section><h2>Nine historical winners: files, claims, and uniqueness</h2>
 <p>Highest <em>supplied</em> result for each requested site, not an exhaustive live leaderboard. Values are OWNER-REPORTED, not ORGANIZER-CONFIRMED; none is eligible as a new submission. New-file estimated competition score: <b>Not estimated</b>.</p>
-<div class="table-scroll"><table><thead><tr><th>Site</th><th>Historical file for learning only</th><th>Historical score</th><th>Positive-mask uniqueness / lineage</th><th>OK to submit?</th></tr></thead><tbody>{''.join(winner_rows)}</tbody></table></div>
+<div class="table-scroll"><table><thead><tr><th>Site</th><th>Historical file for learning only</th><th>Estimated new-submission score</th><th>Historical score</th><th>Positive-mask uniqueness / lineage</th><th>OK to submit?</th></tr></thead><tbody>{''.join(winner_rows)}</tbody></table></div>
 <p>The pinned downloads were verified against public GitHub blob IDs. <a href="{repo}evidence/focus_winners_reaudit_2026-10-27.json">Pixel audit</a> · <a href="{repo}evidence/focus_source_links_2026-10-27.json">Source verification</a> · <a href="{repo}registry/review_passes_2026-10-27.json">Three review passes</a>. Conflicting overall-leader claims 0.3195 and 0.4413 remain unverified.</p></section>
 <section><h2>Why GEMSDOE32 B2 may have done well</h2>
 <p>Its 0.2778 is the strongest supplied OWNER-REPORTED result. B2 equals D2.8 with 6,436 dots within 200 m of known faults removed. Sparse dots reduce redundant mass; selective pruning might remove more false-positive mass than nearby triangular-kernel credit. This is a plausible consequence of the local scoring formula, not proof of hidden-label causation or an organizer-confirmed score. A unique method might beat it, but there is no evidence or valid forecast that this continuation does.</p></section>

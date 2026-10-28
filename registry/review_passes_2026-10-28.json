@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-28",
+  "passes": [
+    {
+      "pass_number": 1,
+      "actions": [
+        "Read standing brief and previous run cards; inspected both open sibling PRs without modifying them",
+        "Preregistered review at 987247f before executing capacity audit",
+        "Restored three pinned inputs and reran shared geometric audit",
+        "Implemented conservative readiness receipt contract and CLI"
+      ]
+    },
+    {
+      "pass_number": 2,
+      "actions": [
+        "Fixed new test collection syntax errors",
+        "Preserved H73 historical stop marker after regression test failure",
+        "Added comparator DTI consistency check; tested thresholds, missing receipts, mismatched hashes, NaN and CI boundaries"
+      ]
+    },
+    {
+      "pass_number": 3,
+      "actions": [
+        "Full test suite: 442 passed, 5 skipped for unavailable scored/external/work-cache inputs",
+        "Ruff src/scripts/tests passed; compileall passed; node syntax passed; git diff --check passed",
+        "CLI run against negative card returned exit 1 and DO_NOT_SUBMIT",
+        "Checked all four executive entry pages contain nine focus sites, unknown estimates and no-go state",
+        "No new TIFF or claimed organizer score; requested scientific deliverable explicitly incomplete"
+      ]
+    }
+  ],
+  "scope": "Three-pass review of changed implementation, not certification of all historical code or claims"
+}
