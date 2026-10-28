@@ -29,7 +29,7 @@ def receipt(**gate_overrides):
                   rank_footprint_pixels=5_167_373, registry_checked=117)
     ready = dict(raster_sha256=sha, lane='assigned-test-lane',
                  format=dict(raster_sha256=sha, template_sha256=template, labels_sha256=labels,
-                             **dict.fromkeys(('no_nan_inside', 'values_in_range', 'whole_array_finite_in_range',
+                             **dict.fromkeys(('no_nan_inside', 'values_in_range', 'whole_array_finite_in_0_1',
                                               'crs_match', 'shape_match', 'transform_match', 'single_band',
                                               'dtype_float32', 'catalogue_mask_exact'), True)),
                  surface=dict(**common, scores_sha256=surface_sha),

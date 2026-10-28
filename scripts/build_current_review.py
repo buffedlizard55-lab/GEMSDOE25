@@ -20,7 +20,8 @@ def current_banner(prefix: str) -> str:
 <span>Independent hash-pinned geometry audit rerun: at 37,654 dots, at least 82.70% must overlap the registered
 r13 halo, exceeding the strict 70% cap. No assigned single-method lane was supplied; no new fitting experiment,
 TIFF or weekly slot was used. Historical downloads below are for research only. Competition score estimate: UNKNOWN.</span>
-<a href="{prefix}current-review.html#review-2026-10-28">Current audit and next steps →</a></aside>'''
+<a href="{prefix}current-review.html#review-2026-10-28">Current audit and next steps →</a>
+<a href="{prefix}../knowledge/43_session_962e5a5b_review.md">Parallel review: executive warnings and readiness receipts →</a></aside>'''
 
 
 def render_body(root_page: bool = False) -> str:

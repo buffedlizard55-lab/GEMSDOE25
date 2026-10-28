@@ -15,6 +15,18 @@ Historical results remain OWNER-REPORTED; estimated new-file competition scores 
 New `gems25.readiness.assess_readiness` / `scripts/check_readiness.py` checks exact-file receipt consistency and fails closed; it never authorizes an upload. Reuse the existing shared holdout and writer. Only this repo is updated, not all nine sites. Latest operational digest: enforce assigned lane, buffered whole-segment visible-only holdout, per-feature leakage canaries, strict full-registry novelty before placement and on dots, range/grid checks, positive paired CI, three-experiment/two-hour budget, no weekly slot selection, and honest negative run cards. Earlier owner prompts remain preserved below; this digest is not a verbatim transcript. Maximize P(Win); Own the Outcome.
 
 
+<!-- SESSION-962e5a5b-REVIEW -->
+## Parallel verification — 28 October 2026
+
+**DO NOT SUBMIT.** No new lane-cleared TIFF or calibrated competition score estimate was produced in that session.
+[Three-pass review and remaining blockers](knowledge/43_session_962e5a5b_review.md).
+The executive summary was regenerated to restore no-go warnings and remove a broken ZIP link.
+Readiness now requires an absolute HOLDOUT-DTI 95% CI and a whole-array finite/[0,1] receipt.
+Current owner requirements: unique scientific output, exact-file validation, nine-site comparison, feature-alone canaries,
+paired buffered-segment holdout, full-registry surface/dot checks, three experiments/two hours maximum,
+and separate selector approval. No specific method lane is identifiable in the supplied prompt.
+The full standing owner brief remains below; this paragraph is an operational digest, not a verbatim transcript.
+
 <!-- CURRENT-REVIEW-2026-10-27 -->
 ## Current decision — 2026-10-27
 

@@ -77,7 +77,7 @@ def assess_readiness(evidence: dict) -> dict:
         require(_sha(digest) and section.get('raster_sha256') == digest, f'{name}: raster identity mismatch')
 
     fmt, surface, dots, holdout, canary = (sections[k] for k in ('format', 'surface', 'dots', 'holdout', 'canary'))
-    for key in ('no_nan_inside', 'values_in_range', 'whole_array_finite_in_range', 'crs_match', 'shape_match',
+    for key in ('no_nan_inside', 'values_in_range', 'whole_array_finite_in_0_1', 'crs_match', 'shape_match',
                 'transform_match', 'single_band', 'dtype_float32', 'catalogue_mask_exact'):
         require(fmt.get(key) is True, f'format: {key}')
     require(_sha(fmt.get('template_sha256')), 'format: missing template identity')

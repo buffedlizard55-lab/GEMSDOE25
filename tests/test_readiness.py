@@ -17,7 +17,7 @@ def complete():
                        rank_footprint_pixels=FOOTPRINT_PIXELS, registry_checked=117)
     return dict(raster_sha256=sha, lane='assigned-test-lane',
                 format=dict(raster_sha256=sha, template_sha256=template, labels_sha256='f'*64, **dict.fromkeys(
-                    ('no_nan_inside', 'values_in_range', 'whole_array_finite_in_range', 'crs_match', 'shape_match',
+                    ('no_nan_inside', 'values_in_range', 'whole_array_finite_in_0_1', 'crs_match', 'shape_match',
                      'transform_match', 'single_band', 'dtype_float32', 'catalogue_mask_exact'), True)),
                 surface=dict(**lane_shared, scores_sha256=surface_sha),
                 dots=dict(**lane_shared, surface_sha256=surface_sha, max_overlap_3px=.70, exact_duplicate=False),
@@ -51,7 +51,7 @@ def test_empty_fails_closed():
     ('holdout', 'same_run_comparator', False), ('holdout', 'visible_only_features', False),
     ('holdout', 'comparator_dti', .21), ('holdout', 'comparator_dti', None),
     ('holdout', 'kernel', 'gaussian'), ('holdout', 'stage', 'screen'),
-    ('format', 'values_in_range', False), ('format', 'whole_array_finite_in_range', False),
+    ('format', 'values_in_range', False), ('format', 'whole_array_finite_in_0_1', False),
     ('format', 'dtype_float32', False), ('format', 'template_sha256', 'f'*64),
     ('holdout', 'labels_sha256', 'a'*64), ('format', 'raster_sha256', 'b'*64), ('dots', 'registry_complete', False),
     ('dots', 'surface_sha256', 'f'*64), ('dots', 'registry_manifest_sha256', 'f'*64),
@@ -107,3 +107,22 @@ def test_integer_fields_reject_bool_and_integer_valued_floats():
         evidence = complete()
         evidence['holdout']['withheld_positives'] = value
         assert not assess_readiness(evidence)['selector_eligible']
+
+
+@pytest.mark.parametrize('value', [None, [], True, [0.2], [0.3, 0.1],
+                                  [float('nan'), .3], [-.1, .3], [.1, 1.1], [False, .3]])
+def test_absolute_ci_required(value):
+    evidence = complete()
+    evidence['holdout']['dti_ci95'] = value
+    assert not assess_readiness(evidence)['selector_eligible']
+
+
+def test_legacy_receipts_do_not_silently_grandfather_nan_archives():
+    evidence = complete()
+    del evidence['format']['whole_array_finite_in_0_1']
+    assert not assess_readiness(evidence)['selector_eligible']
+
+
+@pytest.mark.parametrize('value', [None, [], 1, 'receipt'])
+def test_malformed_top_level_fails_closed(value):
+    assert assess_readiness(value)['decision'] == 'DO_NOT_SUBMIT'

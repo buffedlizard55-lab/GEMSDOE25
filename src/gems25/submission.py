@@ -49,7 +49,7 @@ def write_submission(pred, template_path, out_path, *, outside: str = "nan") -> 
 
     Inside the template footprint the prediction must be finite and within [0, 1] (nothing is silently
     clipped or filled). Outside it the pixels are NaN or 0.0 (``outside='zero'``, a separately-labelled
-    fallback). Both conventions can be checked locally; no organizer acceptance of either file is asserted.
+    alternative). Both conventions can be checked locally; no organizer acceptance of either file is asserted.
     """
     if outside not in ("nan", "zero"):
         raise ValueError("outside must be 'nan' or 'zero'")

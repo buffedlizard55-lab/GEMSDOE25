@@ -16,7 +16,7 @@
     "canary: raster identity mismatch",
     "format: no_nan_inside",
     "format: values_in_range",
-    "format: whole_array_finite_in_range",
+    "format: whole_array_finite_in_0_1",
     "format: crs_match",
     "format: shape_match",
     "format: transform_match",

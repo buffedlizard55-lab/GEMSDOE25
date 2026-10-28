@@ -1,0 +1,20 @@
+{
+  "session": "962e5a5b",
+  "passes": [
+    {
+      "pass_number": 1,
+      "result": "Audited instructions, sibling PRs, pinned geometry and 60 local archives; implemented strict CI/range gates."
+    },
+    {
+      "pass_number": 2,
+      "result": "Initial suite exposed 17 failures; regenerated executive page and download inventory, removed broken ZIP link and restored no-go warnings."
+    },
+    {
+      "pass_number": 3,
+      "result": "456 passed, 5 data/cache-dependent skips; full Ruff, JS syntax and diff whitespace checks; scientific deliverable explicitly incomplete."
+    }
+  ],
+  "limitations": [
+    "No model experiment, no new TIFF, no live score estimate, no organizer interaction."
+  ]
+}
