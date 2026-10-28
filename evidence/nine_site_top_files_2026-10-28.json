@@ -1,0 +1,320 @@
+{
+  "generated_utc": "2026-10-28T18:48:07+00:00",
+  "script": "scripts/audit_nine_site_top_files.py",
+  "evidence_class": "COMPUTED on owner-mirror bytes; scores are OWNER-REPORTED claims, not organizer receipts",
+  "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "footprint_pixels": 5167373,
+  "rows": [
+    {
+      "site": "GEMSDOE24",
+      "file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "slug": "gems24-h25-1-dotted-h19-5-d1-5",
+      "owner_reported_score": 0.2477,
+      "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "sha256_matches_pin": true,
+      "format_valid": false,
+      "strict_whole_array_valid": false,
+      "hard_failures": [
+        "portal_all_cells_finite_in_0_1"
+      ],
+      "outside_convention": "nan",
+      "dot_set_sha256_16": "073a71e1cc452c63",
+      "positives": 60069,
+      "on_catalogue": 0,
+      "nan_inside": 0,
+      "value_set": [
+        0.0,
+        1.0
+      ],
+      "nan_outside": 7111787,
+      "nonzero_outside": 0
+    },
+    {
+      "site": "GEMSDOE25",
+      "file": "gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "slug": "dotted-h19-5-d2-8",
+      "owner_reported_score": 0.26,
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "sha256_matches_pin": true,
+      "format_valid": false,
+      "strict_whole_array_valid": false,
+      "hard_failures": [
+        "portal_all_cells_finite_in_0_1"
+      ],
+      "outside_convention": "nan",
+      "dot_set_sha256_16": "141a24cbd356c412",
+      "positives": 44090,
+      "on_catalogue": 0,
+      "nan_inside": 0,
+      "value_set": [
+        0.0,
+        1.0
+      ],
+      "nan_outside": 7111787,
+      "nonzero_outside": 0
+    },
+    {
+      "site": "GEMSDOE27",
+      "file": "GEMSDOE27__gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "slug": "topo-gap-closure-t-v2-on-d1-5",
+      "owner_reported_score": 0.2449,
+      "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+      "sha256_matches_pin": true,
+      "format_valid": false,
+      "strict_whole_array_valid": false,
+      "hard_failures": [
+        "portal_all_cells_finite_in_0_1"
+      ],
+      "outside_convention": "nan",
+      "dot_set_sha256_16": "8aa7d286a34c7e1f",
+      "positives": 61328,
+      "on_catalogue": 0,
+      "nan_inside": 0,
+      "value_set": [
+        0.0,
+        1.0
+      ],
+      "nan_outside": 7111787,
+      "nonzero_outside": 0
+    },
+    {
+      "site": "GEMSDOE28",
+      "file": "GEMSDOE28__gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "slug": "h36-1-rung30-blind-r1",
+      "owner_reported_score": 0.271,
+      "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+      "sha256_matches_pin": true,
+      "format_valid": false,
+      "strict_whole_array_valid": false,
+      "hard_failures": [
+        "portal_all_cells_finite_in_0_1"
+      ],
+      "outside_convention": "nan",
+      "dot_set_sha256_16": "18392f236c2cc3bb",
+      "positives": 37660,
+      "on_catalogue": 0,
+      "nan_inside": 0,
+      "value_set": [
+        0.0,
+        1.0
+      ],
+      "nan_outside": 7111787,
+      "nonzero_outside": 0
+    },
+    {
+      "site": "GEMSDOE30",
+      "file": "GEMSDOE30__gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif",
+      "slug": "d28-poisson300m-offcat-44090",
+      "owner_reported_score": 0.26,
+      "sha256": "5f963b8bca5ec226ddc7caaadec239c6be6d28aa567f890033be04d04bfd5e32",
+      "sha256_matches_pin": true,
+      "format_valid": false,
+      "strict_whole_array_valid": false,
+      "hard_failures": [
+        "portal_all_cells_finite_in_0_1"
+      ],
+      "outside_convention": "nan",
+      "dot_set_sha256_16": "141a24cbd356c412",
+      "positives": 44090,
+      "on_catalogue": 0,
+      "nan_inside": 0,
+      "value_set": [
+        0.0,
+        1.0
+      ],
+      "nan_outside": 7111787,
+      "nonzero_outside": 0
+    },
+    {
+      "site": "GEMSDOE31",
+      "file": "GEMSDOE31__gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "slug": "h27-4-solo-d28",
+      "owner_reported_score": 0.2708,
+      "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+      "sha256_matches_pin": true,
+      "format_valid": false,
+      "strict_whole_array_valid": false,
+      "hard_failures": [
+        "portal_all_cells_finite_in_0_1"
+      ],
+      "outside_convention": "nan",
+      "dot_set_sha256_16": "4e3179e69e055e8a",
+      "positives": 40199,
+      "on_catalogue": 0,
+      "nan_inside": 0,
+      "value_set": [
+        0.0,
+        1.0
+      ],
+      "nan_outside": 7111787,
+      "nonzero_outside": 0
+    },
+    {
+      "site": "GEMSDOE32",
+      "file": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "slug": "h33-2-b2",
+      "owner_reported_score": 0.2778,
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "sha256_matches_pin": true,
+      "format_valid": true,
+      "strict_whole_array_valid": true,
+      "hard_failures": [],
+      "outside_convention": "zeros",
+      "dot_set_sha256_16": "9e95c093057b8c7a",
+      "positives": 37654,
+      "on_catalogue": 0,
+      "nan_inside": 0,
+      "value_set": [
+        0.0,
+        1.0
+      ],
+      "nan_outside": 0,
+      "nonzero_outside": 0
+    },
+    {
+      "site": "GEMSDOE33",
+      "file": "GEMSDOE33__GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
+      "slug": "h33d-analog-tip-stepover-r30",
+      "owner_reported_score": 0.2632,
+      "sha256": "bc3af2a5fcb4b49bc5845a2d7dc3da23daf41ce75e4c64da3337c0c8c93cc12c",
+      "sha256_matches_pin": true,
+      "format_valid": false,
+      "strict_whole_array_valid": false,
+      "hard_failures": [
+        "portal_all_cells_finite_in_0_1"
+      ],
+      "outside_convention": "nan",
+      "dot_set_sha256_16": "aeaca06d80a094d1",
+      "positives": 41865,
+      "on_catalogue": 0,
+      "nan_inside": 0,
+      "value_set": [
+        0.0,
+        1.0
+      ],
+      "nan_outside": 7111787,
+      "nonzero_outside": 0
+    },
+    {
+      "site": "GEMSDOE36",
+      "file": "GEMSDOE36__gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "slug": "anderson-geothermal-pinn-38854",
+      "owner_reported_score": 0.275,
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "sha256_matches_pin": true,
+      "format_valid": true,
+      "strict_whole_array_valid": true,
+      "hard_failures": [],
+      "outside_convention": "zeros",
+      "dot_set_sha256_16": "98bc54a28b655422",
+      "positives": 38854,
+      "on_catalogue": 0,
+      "nan_inside": 0,
+      "value_set": [
+        0.0,
+        1.0
+      ],
+      "nan_outside": 0,
+      "nonzero_outside": 0
+    },
+    {
+      "site": "GEMSDOE28-h27-4-r1-solo",
+      "file": "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+      "slug": "h27-4-r1-solo",
+      "owner_reported_score": 0.2708,
+      "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+      "sha256_matches_pin": true,
+      "format_valid": false,
+      "strict_whole_array_valid": false,
+      "hard_failures": [
+        "portal_all_cells_finite_in_0_1"
+      ],
+      "outside_convention": "nan",
+      "dot_set_sha256_16": "4e3179e69e055e8a",
+      "positives": 40199,
+      "on_catalogue": 0,
+      "nan_inside": 0,
+      "value_set": [
+        0.0,
+        1.0
+      ],
+      "nan_outside": 7111787,
+      "nonzero_outside": 0
+    }
+  ],
+  "exact_dot_set_duplicates_among_nine_sites": [
+    [
+      "GEMSDOE25",
+      "GEMSDOE30"
+    ]
+  ],
+  "max_jaccard_vs_other_focus_top": {
+    "GEMSDOE24": 0.979471,
+    "GEMSDOE25": 1.0,
+    "GEMSDOE27": 0.979471,
+    "GEMSDOE28": 0.556993,
+    "GEMSDOE30": 1.0,
+    "GEMSDOE31": 0.93669,
+    "GEMSDOE32": 0.969115,
+    "GEMSDOE33": 0.695747,
+    "GEMSDOE36": 0.969115
+  },
+  "lineage_steps": {
+    "d2_8_dots": 44090,
+    "h27_4_dots": 40199,
+    "b2_dots": 37654,
+    "d2_8_subset_chain_ok": true,
+    "d2_8_to_h27_4_removed": 3891,
+    "h27_4_to_b2_removed": 2545,
+    "removed_step1_max_catalogue_distance_px": 1.0,
+    "removed_step2_max_catalogue_distance_px": 2.0,
+    "d2_8_dots_within_2px_catalogue": 6436,
+    "b2_dots_within_2px_catalogue": 0
+  },
+  "jaccard_pairs_focus_top": {
+    "GEMSDOE24|GEMSDOE25": 0.401682,
+    "GEMSDOE24|GEMSDOE27": 0.979471,
+    "GEMSDOE24|GEMSDOE28": 0.351827,
+    "GEMSDOE24|GEMSDOE30": 0.401682,
+    "GEMSDOE24|GEMSDOE31": 0.369613,
+    "GEMSDOE24|GEMSDOE32": 0.353392,
+    "GEMSDOE24|GEMSDOE33": 0.389258,
+    "GEMSDOE24|GEMSDOE36": 0.347633,
+    "GEMSDOE25|GEMSDOE27": 0.39499,
+    "GEMSDOE25|GEMSDOE28": 0.516782,
+    "GEMSDOE25|GEMSDOE30": 1.0,
+    "GEMSDOE25|GEMSDOE31": 0.911749,
+    "GEMSDOE25|GEMSDOE32": 0.854026,
+    "GEMSDOE25|GEMSDOE33": 0.681962,
+    "GEMSDOE25|GEMSDOE36": 0.831398,
+    "GEMSDOE27|GEMSDOE28": 0.345805,
+    "GEMSDOE27|GEMSDOE30": 0.39499,
+    "GEMSDOE27|GEMSDOE31": 0.363364,
+    "GEMSDOE27|GEMSDOE32": 0.347335,
+    "GEMSDOE27|GEMSDOE33": 0.382691,
+    "GEMSDOE27|GEMSDOE36": 0.341789,
+    "GEMSDOE28|GEMSDOE30": 0.516782,
+    "GEMSDOE28|GEMSDOE31": 0.556993,
+    "GEMSDOE28|GEMSDOE32": 0.534953,
+    "GEMSDOE28|GEMSDOE33": 0.531742,
+    "GEMSDOE28|GEMSDOE36": 0.522182,
+    "GEMSDOE30|GEMSDOE31": 0.911749,
+    "GEMSDOE30|GEMSDOE32": 0.854026,
+    "GEMSDOE30|GEMSDOE33": 0.681962,
+    "GEMSDOE30|GEMSDOE36": 0.831398,
+    "GEMSDOE31|GEMSDOE32": 0.93669,
+    "GEMSDOE31|GEMSDOE33": 0.695747,
+    "GEMSDOE31|GEMSDOE36": 0.909539,
+    "GEMSDOE32|GEMSDOE33": 0.659931,
+    "GEMSDOE32|GEMSDOE36": 0.969115,
+    "GEMSDOE33|GEMSDOE36": 0.643804
+  },
+  "b2_lineage": {
+    "b2_dots": 37654,
+    "h27_4_dots": 40199,
+    "b2_subset_of_h27_4": true,
+    "dots_in_h27_4_not_in_b2": 2545,
+    "jaccard": 0.93669
+  },
+  "estimated_competition_score": "UNKNOWN / NOT ESTIMATED (no calibrated projection)"
+}

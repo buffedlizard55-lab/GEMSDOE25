@@ -134,6 +134,13 @@ def check_file(path: Path | str, template_path: Path | str) -> dict:
             add(n, False, "not evaluated: wrong shape")
         inside = outside = np.array([], np.float32)
     add("nodata_tag", True, f"nodata={nodata}", hard=False)
+    # Portal-safe gate (added 2026-10-28): the organizer portal rejected an uploaded NaN-outside file with
+    # "Predicted values must be in range [0, 1]" (owner report). NaN fails every 0 <= x <= 1 test, so every
+    # cell must be finite and inside [0, 1]. Zeros outside the footprint pass; NaN outside does not.
+    whole = arr.astype("float64")
+    add("portal_all_cells_finite_in_0_1", bool(np.isfinite(whole).all() and whole.min() >= 0.0 and whole.max() <= 1.0),
+        f"{int(np.isnan(whole).sum()):,} NaN and {int(np.isinf(whole).sum()):,} Inf over the whole {whole.size:,}-cell array; "
+        "portal rejects NaN (owner-reported error)", hard=True)
     # the variants a portal validator might use (information only, except the first two)
     finite_all = arr[np.isfinite(arr)]
     compressed = masked.compressed()

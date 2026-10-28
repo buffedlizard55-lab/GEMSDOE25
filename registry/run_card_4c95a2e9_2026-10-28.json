@@ -1,0 +1,68 @@
+{
+  "schema": "run_card/v1",
+  "session": "2026-10-28 unique-TIF gate audit (arena/4c95a2e9-gemsdoe25)",
+  "verdict": "DO NOT SUBMIT. No candidate was produced. The lane cannot be cleared: the r13 bound forces at least 82.70% overlap at 37,654 dots, and the declared registry is incomplete here (71 of 117 hashes).",
+  "hypothesis": "No new hypothesis was tested this session. Hypothesis under audit: B2 (GEMSDOE32, owner-reported 0.2778) gains from a 200 m catalogue-flank deletion step applied to the D2.8 lineage.",
+  "mechanism": "Read-only lineage audit: D2.8 (44,090 dots) contains h27-4 (40,199) contains B2 (37,654). Every removed dot is within 2 px of a labelled catalogue pixel. The mechanism is contested: near-known wrong pixels are penalised (favours deletion), but corrections within 300 m can earn credit (favours keeping). Not tested; the catalogue-gap holdout cannot test it.",
+  "mimicking_non_fault_process": "Not applicable; no candidate. For the catalogue-flank step, the mimic is any dot near a catalogued trace that the hidden set treats as a correction, not a new fault.",
+  "experiments_run": 0,
+  "budget": "0 of 3 experiments; no slot selection; no upload",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "not run this session",
+    "prior_reference_not_for_this_candidate": {
+      "source": "knowledge/47_h81_outcomes_and_executive_summary_2026-10-28.md",
+      "H81_JUNC_CG_minus_CTRL_SUBSURF": "+0.023628 (95% CI [+0.01952, +0.02752], 4/4 folds)",
+      "H81_candidate_status": "not published: 72.20% overlap with registry H75 (limit 70%)"
+    },
+    "estimated_competition_score": "NOT ESTIMATED"
+  },
+  "overlap": {
+    "lane_bound_r13_min_overlap_at_37654_dots": 0.827004,
+    "lane_bound_max_dots_at_70pct_overlap": 21713,
+    "source": "evidence/lane_bound_r13_2026-10-28.json",
+    "h75_b2_zeros_check": {
+      "verdict": "DUPLICATE/LANE OVERLAP - stop; do not package",
+      "lane_clear": false,
+      "registry_complete": false,
+      "registry_available": 71,
+      "registry_declared": 117,
+      "receipt": "evidence/lane_check_h75_b2_zeros_2026-10-28.json"
+    }
+  },
+  "sha256": {
+    "docs_downloads_h75_b2_zeros": "da94fdf9d744f06f3f18d325b7f57fe4e3b2739cd2e9e14d71dafcc87edc2a1e",
+    "owner_mirror_gemsdoe32_b2_pinned": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "work_cache_static_ABCD": "fe584a12ed3e1ed7d26b272c49f6da0bbe16e072d98f6b1694938d858305b084",
+    "work_cache_addons": "ad31ff14a804b6956efa13b8c3caf6b322d6942b0f57911050ba243ac92e57bc"
+  },
+  "validator_output": {
+    "tool": "gems25.submission.check_file against data/sample_submission.tif",
+    "h75_b2_zeros": {
+      "format_valid": true,
+      "ok_to_upload": true,
+      "okay_to_submit": false,
+      "hard_failures": [],
+      "positive_pixels": 37654,
+      "footprint_pixels": 5167373,
+      "nan_in_footprint": 0,
+      "outside_convention": "zeros (7,111,787 px)",
+      "note": "ok_to_upload is a legacy FORMAT-ONLY field, not organizer approval"
+    },
+    "nan_outside_example": {
+      "file": "docs/downloads/gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-nan.tif",
+      "format_valid": false,
+      "hard_failures": [
+        "portal_all_cells_finite_in_0_1"
+      ]
+    }
+  },
+  "submission": {
+    "candidate_produced": false,
+    "uploaded": false,
+    "drivendata_accessed": false
+  },
+  "name": "GEMSDOE25 unique-TIF gate audit: no candidate, DO NOT SUBMIT",
+  "note": "Gates fixed (NaN-outside fails portal check); r13 bound 82.70% at 37,654 dots; registry 71/117; nothing uploaded.",
+  "generated_utc": "2026-10-28"
+}

@@ -1,5 +1,24 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
+## Nine-site brief (28 October 2026) — what to download, and why nothing is OK to submit
+
+**OK TO DOWNLOAD AND SUBMIT: NO — no file in this repository or on the nine focus sites is cleared.**
+Estimated competition score: **UNKNOWN / NOT ESTIMATED** for every file (no calibrated projection exists).
+
+* **Portal error explained (verified):** a NaN-outside GeoTIFF fails the portal's whole-array range check
+  (`NaN` fails every `0 <= x <= 1` test). The reference solution writes finite values only
+  (`unet-mc-cv-reference-solution.ipynb` at pinned commit `aebe92f`; `evidence/official_reference_2026-10-26.json`). The validator now enforces this (`portal_all_cells_finite_in_0_1`).
+  Of 60 GeoTIFFs in `docs/downloads/`, 30 are portal-safe (zeros outside) and 30 are NaN-outside.
+* **The 0.2778 file (GEMSDOE32 B2) is a pruned copy of the 0.2708 h27-4 raster:** its 37,654 dots are a strict subset of
+  the 40,199 dots in `gemsdoe28-h27-4-r1-solo` (2,545 removed; Jaccard 0.9367).
+  It is portal-safe, has zero dots on the labelled catalogue, and is a previous submission, so it may not be copied.
+* **Lane bound (r13, verified):** at 37,654 dots at least **82.70%** of dots must sit within 3 px of r13.
+  The literal 70% cap is reachable only at or below **21,713** dots. This is an owner decision.
+* Full table, per-file links and receipts: [docs/nine-site-brief.html](docs/nine-site-brief.html) ·
+  [nine-site receipt](evidence/nine_site_top_files_2026-10-28.json) · [portal sweep](evidence/portal_safety_sweep_2026-10-28.json) ·
+  [r13 bound](evidence/lane_bound_r13_2026-10-28.json).
+
+
 ## Latest result — H80 blocked factorial screen, 28 October 2026
 
 **OK TO SUBMIT: NO — DO NOT SUBMIT.** No new TIFF, calibrated competition estimate or weekly slot.
