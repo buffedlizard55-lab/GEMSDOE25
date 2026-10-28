@@ -72,6 +72,12 @@ def test_h71_tifs_revalidate_when_template_present() -> None:
         pytest.skip("competition template not restored")
     for entry in (PRIMARY, NAN_TWIN):
         res = check_file(ROOT / entry["path"], tmpl)
+        if entry is NAN_TWIN:
+            # 2026-10-28 portal-safe gate: a NaN-outside twin must fail ONLY the portal [0, 1] range check
+            assert res["hard_failures"] == ["portal_all_cells_finite_in_0_1"], res["hard_failures"]
+            assert res["ok_to_upload"] is False
+            assert res["checks"]["footprint_all_finite"]["pass_"] is True
+            continue
         assert res["ok_to_upload"] is True, res["hard_failures"]
         assert res["positive_pixels"] == 59472
         assert res["sha256"] == entry["sha256"]

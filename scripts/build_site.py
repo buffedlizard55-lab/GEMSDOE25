@@ -39,7 +39,7 @@ def page(title: str, body: str, active: str, prefix: str) -> str:
     """``prefix`` is the path from the page to docs/ ('' inside docs, 'docs/' from the root)."""
     nav = [("index", "Start here", "index.html"), ("current", "Current review", "current-review.html"),
            ("exec", "Executive summary", "executive-summary.html"), ("guide", "Submission guide", "submission-guide.html"),
-           ("h81", "H81 brief", "h81-executive-brief.html"),
+           ("nine", "Nine-site brief", "nine-site-brief.html"), ("h81", "H81 brief", "h81-executive-brief.html"),
            ("research", "Research", "research.html"), ("sources", "Sources & audit", "sources.html")]
     links = []
     for key, label, href in nav:
@@ -796,6 +796,8 @@ Response: exact sparse-regime DTI of a fixed emission (ridge NMS → top 2.45 % 
     (DOCS / "executive-summary.html").write_text(page("Executive summary", render_body(), "exec", ""))
     (DOCS / "submission-guide.html").write_text(page("Submission guide", guide_body, "guide", ""))
     (DOCS / "research.html").write_text(page("Research", research, "research", ""))
+    from nine_site_status import page_body as _nine_body
+    (DOCS / "nine-site-brief.html").write_text(page("Nine-site brief", _nine_body(), "nine", ""))
     (DOCS / "sources.html").write_text(page("Sources & audit", sources, "sources", ""))
     (DOCS / "current-review.html").write_text(page("Current executive review", render_body(), "current", ""))
     for name in (

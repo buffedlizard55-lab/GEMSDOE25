@@ -75,8 +75,13 @@ def test_checker_passes_good_files_both_conventions(template, tmp_path):
     for outside in ("nan", "zero"):
         out = write_submission(pred, t, tmp_path / f"{outside}.tif", outside=outside)
         r = check_file(out, t)
-        # the synthetic template is not the expected competition grid, only that one check may fail
-        assert set(r["hard_failures"]) <= {"template_matches_expected_grid_and_footprint"}, r["hard_failures"]
+        # the synthetic template is not the expected competition grid; the portal-safe gate (2026-10-28)
+        # additionally rejects NaN outside the footprint, which the portal reported as "must be in range [0, 1]"
+        expected = {"template_matches_expected_grid_and_footprint"}
+        if outside == "nan":
+            expected.add("portal_all_cells_finite_in_0_1")
+        assert set(r["hard_failures"]) <= expected, r["hard_failures"]
+        assert (outside == "zero") == ("portal_all_cells_finite_in_0_1" not in r["hard_failures"])
         assert r["positive_pixels"] == 10
 
 

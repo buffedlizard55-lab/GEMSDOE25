@@ -68,9 +68,14 @@ def test_apfl2_tifs_revalidate_when_template_present() -> None:
         pytest.skip("competition template not restored")
     for entry in (PRIMARY, NAN_TWIN):
         res = check_file(ROOT / entry["path"], tmpl)
-        assert res["ok_to_upload"] is True, res["hard_failures"]
         assert res["positive_pixels"] == 48658
         assert res["sha256"] == entry["sha256"]
+        if entry is NAN_TWIN:
+            # 2026-10-28 portal-safe gate: NaN-outside fails ONLY the portal [0, 1] range check
+            assert res["hard_failures"] == ["portal_all_cells_finite_in_0_1"], res["hard_failures"]
+            assert res["ok_to_upload"] is False
+        else:
+            assert res["ok_to_upload"] is True, res["hard_failures"]
     res0 = check_file(ROOT / PRIMARY["path"], tmpl)
     assert res0["checks"]["variant_strict_whole_array_no_nan"]["pass_"] is True
 

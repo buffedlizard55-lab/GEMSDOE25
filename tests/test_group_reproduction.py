@@ -53,4 +53,9 @@ def test_writer_reproduces_the_owner_mirror_profile_and_pixels(tmp_path):
     for k in ("driver", "dtype", "width", "height", "count", "crs", "transform", "compress", "blockxsize", "blockysize", "tiled", "interleave"):
         assert prof[k] == prof_ref[k], (k, prof[k], prof_ref[k])
     assert np.isnan(prof["nodata"]) and np.isnan(prof_ref["nodata"])
-    assert check_file(out, tmpl)["ok_to_upload"] and check_file(D15, tmpl)["ok_to_upload"]
+    # 2026-10-28: the writer reproduces the NaN-outside pixels exactly, but NaN-outside is NOT portal-safe.
+    # Only the portal [0, 1] gate may fail; the zeros-outside rendering of the same dots must pass every check.
+    assert check_file(out, tmpl)["hard_failures"] == ["portal_all_cells_finite_in_0_1"]
+    assert check_file(D15, tmpl)["hard_failures"] == ["portal_all_cells_finite_in_0_1"]
+    zero_out = write_submission(pred, tmpl, tmp_path / "re_zero.tif", outside="zero")
+    assert check_file(zero_out, tmpl)["hard_failures"] == []
