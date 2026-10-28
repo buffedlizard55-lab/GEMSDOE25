@@ -1,5 +1,16 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
+## Latest audit — 2026-10-28 (read first)
+
+**OK TO SUBMIT: NO. No new TIF or training experiment this session.** The requested unique high-performing submission remains unfulfilled.
+The [independently rerun pinned geometry audit](evidence/lane_feasibility_2026-10-28.json) finds only 6,514 eligible pixels outside r13's 3-pixel halo: at 37,654 dots, at least 82.70% overlap is unavoidable. The one-reference maximum not ruled out is 21,713 dots, **not** a performance recommendation. No explicit single-method lane is identifiable in the current prompt.
+
+[Executive summary and nine-site historical download table](docs/executive-summary.html) · [four planning hypotheses](knowledge/41_session_plan_2026-10-28.md) · [outcome, official links, limitations and next steps](knowledge/42_review_outcome_2026-10-28.md).
+Historical results remain OWNER-REPORTED; estimated new-file competition scores are UNKNOWN. No organizer receipt or current leaderboard was verified.
+
+New `gems25.readiness.assess_readiness` / `scripts/check_readiness.py` checks exact-file receipt consistency and fails closed; it never authorizes an upload. Reuse the existing shared holdout and writer. Only this repo is updated, not all nine sites. Latest operational digest: enforce assigned lane, buffered whole-segment visible-only holdout, per-feature leakage canaries, strict full-registry novelty before placement and on dots, range/grid checks, positive paired CI, three-experiment/two-hour budget, no weekly slot selection, and honest negative run cards. Earlier owner prompts remain preserved below; this digest is not a verbatim transcript. Maximize P(Win); Own the Outcome.
+
+
 <!-- CURRENT-REVIEW-2026-10-27 -->
 ## Current decision — 2026-10-27
 
