@@ -1,0 +1,516 @@
+{
+ "schema": "run_card/v1",
+ "session": "2026-10-28 H80 junction-corridor (arena/21916e71-gemsdoe25)",
+ "hypothesis": "Blind Great Basin geothermal faults concentrate at fault intersections, relay/step-over tips and boiling-disequilibrium conduits; a bimodal (Forstner) junction invariant, an along-strike contact termination field, cation\u2013chalcedony disequilibrium, a moisture-invariant Aitchison CLR jump and an N\u22480 structural-index filter find them where a single planar-edge detector (H19-5/H33 lineage) cannot.",
+ "mechanism": "Six Quaternary-catalogue-free H80 columns + H75 hydrogeologic/contact columns across three LOQO experts, coupled by a frozen junction-corridor dual-regime gamma=0.62 / gap_scale=0.95 product, then B2-hygienic submodular greedy emission (d_cat > 2 px, max 37,654 dots).",
+ "mimicking_non_fault_process": "Buried caldera ring-fracture intersections, potassic rhyolite-dome margins, oblique Lake Lahontan shoreline cusps, fan-avulsion boundaries and agricultural pumping bowls can mimic intersection/disequilibrium signatures without a fault.",
+ "holdout_dti": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator": "gems25.metric.dti_binary(alpha=0.2,beta=0.8,R=3.0px)",
+  "preregistration": "knowledge/44_preregistered_h80_fhj_sd_2026-10-28.md",
+  "preregistration_commit": "6c66fc0b925f5b57bde3e811cad696b22b793e61",
+  "experiment_1_standard_holdout": {
+   "draws": [
+    140,
+    141
+   ],
+   "cells_per_arm": 8,
+   "mode": "standard",
+   "per_arm": {
+    "CTRL_H35": {
+     "pooled_dti": 0.157011,
+     "pooled_far_gt9_dti": 0.116365,
+     "pooled_vfar_gt20_dti": 0.063135,
+     "pooled_lidar_gap_dti": 0.147543,
+     "mean_auc": 0.80757,
+     "mean_emitted_dots": 11604.4,
+     "mean_emit_frac_gt20": 0.10441,
+     "withheld_positive_occurrences": 22001
+    },
+    "CTRL_SUBSURF": {
+     "pooled_dti": 0.050554,
+     "pooled_far_gt9_dti": 0.037577,
+     "pooled_vfar_gt20_dti": 0.020941,
+     "pooled_lidar_gap_dti": 0.043883,
+     "mean_auc": 0.5332,
+     "mean_emitted_dots": 9212.0,
+     "mean_emit_frac_gt20": 0.57817,
+     "withheld_positive_occurrences": 22001
+    },
+    "H80_SUBSURF": {
+     "pooled_dti": 0.052097,
+     "pooled_far_gt9_dti": 0.038909,
+     "pooled_vfar_gt20_dti": 0.019976,
+     "pooled_lidar_gap_dti": 0.048539,
+     "mean_auc": 0.53982,
+     "mean_emitted_dots": 9212.0,
+     "mean_emit_frac_gt20": 0.55485,
+     "withheld_positive_occurrences": 22001
+    },
+    "H80_JUNC_CG": {
+     "pooled_dti": 0.074182,
+     "pooled_far_gt9_dti": 0.061199,
+     "pooled_vfar_gt20_dti": 0.036274,
+     "pooled_lidar_gap_dti": 0.058631,
+     "mean_auc": 0.59019,
+     "mean_emitted_dots": 9212.0,
+     "mean_emit_frac_gt20": 0.50763,
+     "withheld_positive_occurrences": 22001
+    }
+   },
+   "contrasts": {
+    "h80_subsurf_vs_ctrl_subsurf": {
+     "paired_gain": 0.001543,
+     "paired_ci95": [
+      -8.442654570930963e-05,
+      0.002875845359090995
+     ],
+     "fold_gains": [
+      -3.968464915833636e-05,
+      -0.0001203967040392731,
+      0.0021097361866360756,
+      0.0035969576632089023
+     ],
+     "folds_positive": 2
+    },
+    "h80_subsurf_vs_ctrl_h35": {
+     "paired_gain": -0.104915,
+     "paired_ci95": [
+      -0.11703932981587797,
+      -0.09415584569993664
+     ],
+     "fold_gains": [
+      -0.1249511359899072,
+      -0.09805518112172745,
+      -0.09312938713418722,
+      -0.11065300581075753
+     ],
+     "folds_positive": 0
+    },
+    "h80_junc_cg_vs_ctrl_subsurf": {
+     "paired_gain": 0.023628,
+     "paired_ci95": [
+      0.019517550463274018,
+      0.02751609468423724
+     ],
+     "fold_gains": [
+      0.029061510004668396,
+      0.02628623084830005,
+      0.017733665087283808,
+      0.024066127351906705
+     ],
+     "folds_positive": 4
+    },
+    "h80_junc_cg_vs_ctrl_h35": {
+     "paired_gain": -0.082829,
+     "paired_ci95": [
+      -0.09256934201483025,
+      -0.07491866586971818
+     ],
+     "fold_gains": [
+      -0.09584994133608046,
+      -0.07164855356938814,
+      -0.07750545823353949,
+      -0.09018383612205973
+     ],
+     "folds_positive": 0
+    }
+   },
+   "leakage_canary": {
+    "max_canary_auc": 0.820552,
+    "max_canary_column": "E_dist",
+    "max_h80_canary_auc": 0.582915,
+    "all_passed": true,
+    "n_cells": 8,
+    "n_columns": 97
+   },
+   "truth_d_vis_profile": {
+    "mean_truth_frac_le2": 0.016325,
+    "mean_truth_frac_2_9": 0.4919525,
+    "mean_truth_frac_gt9": 0.49172375,
+    "mean_truth_frac_gt20": 0.18527125,
+    "mean_median_truth_d_vis": 8.875,
+    "mean_truth_lidar_gap_frac": 0.22227249999999998
+   },
+   "elapsed_seconds": 1516.18
+  },
+  "experiment_2_block25km_holdout": null,
+  "experiment_3_checkerboard25km_block_holdout": {
+   "draws": [
+    142,
+    143
+   ],
+   "cells_per_arm": 8,
+   "mode": "checkerboard25km",
+   "per_arm": {
+    "CTRL_H35": {
+     "pooled_dti": 0.129138,
+     "pooled_far_gt9_dti": 0.129138,
+     "pooled_vfar_gt20_dti": 0.130413,
+     "pooled_lidar_gap_dti": 0.109999,
+     "mean_auc": 0.62442,
+     "mean_emitted_dots": 9316.2,
+     "mean_emit_frac_gt20": 0.99979,
+     "withheld_positive_occurrences": 95188
+    },
+    "CTRL_SUBSURF": {
+     "pooled_dti": 0.086234,
+     "pooled_far_gt9_dti": 0.086234,
+     "pooled_vfar_gt20_dti": 0.08722,
+     "pooled_lidar_gap_dti": 0.077642,
+     "mean_auc": 0.57037,
+     "mean_emitted_dots": 7708.2,
+     "mean_emit_frac_gt20": 0.99995,
+     "withheld_positive_occurrences": 95188
+    },
+    "CTRL_BLIND_ABCD": {
+     "pooled_dti": 0.121443,
+     "pooled_far_gt9_dti": 0.121443,
+     "pooled_vfar_gt20_dti": 0.122725,
+     "pooled_lidar_gap_dti": 0.083081,
+     "mean_auc": 0.65241,
+     "mean_emitted_dots": 7708.2,
+     "mean_emit_frac_gt20": 0.99989,
+     "withheld_positive_occurrences": 95188
+    },
+    "H80_SUBSURF": {
+     "pooled_dti": 0.087897,
+     "pooled_far_gt9_dti": 0.087897,
+     "pooled_vfar_gt20_dti": 0.088909,
+     "pooled_lidar_gap_dti": 0.08181,
+     "mean_auc": 0.57029,
+     "mean_emitted_dots": 7708.2,
+     "mean_emit_frac_gt20": 0.99998,
+     "withheld_positive_occurrences": 95188
+    },
+    "H80_JUNC_CG": {
+     "pooled_dti": 0.111126,
+     "pooled_far_gt9_dti": 0.111126,
+     "pooled_vfar_gt20_dti": 0.112347,
+     "pooled_lidar_gap_dti": 0.096315,
+     "mean_auc": 0.61605,
+     "mean_emitted_dots": 7708.2,
+     "mean_emit_frac_gt20": 0.99997,
+     "withheld_positive_occurrences": 95188
+    }
+   },
+   "contrasts": {
+    "h80_subsurf_vs_ctrl_subsurf": {
+     "paired_gain": 0.001663,
+     "paired_ci95": [
+      -0.00389023742668633,
+      0.005416373262166194
+     ],
+     "fold_gains": [
+      0.005611682707058516,
+      0.005193304269765969,
+      -0.006546706999753876,
+      0.0036225472620197013
+     ],
+     "folds_positive": 3
+    },
+    "h80_subsurf_vs_ctrl_blind_abcd": {
+     "paired_gain": -0.033546,
+     "paired_ci95": [
+      -0.035938082813740585,
+      -0.0304628563706556
+     ],
+     "fold_gains": [
+      -0.033531914371591254,
+      -0.029144974071205032,
+      -0.03586589698168907,
+      -0.03604792542631584
+     ],
+     "folds_positive": 0
+    },
+    "h80_subsurf_vs_ctrl_h35": {
+     "paired_gain": -0.041241,
+     "paired_ci95": [
+      -0.05151439018924292,
+      -0.032410795607557163
+     ],
+     "fold_gains": [
+      -0.05002783025688974,
+      -0.027339943070727457,
+      -0.036867200714790535,
+      -0.05388166551017046
+     ],
+     "folds_positive": 0
+    },
+    "h80_junc_cg_vs_ctrl_subsurf": {
+     "paired_gain": 0.024892,
+     "paired_ci95": [
+      0.019594436196823314,
+      0.02889720196913481
+     ],
+     "fold_gains": [
+      0.026479696921701962,
+      0.029304326463235247,
+      0.01733144114631531,
+      0.028309604648411188
+     ],
+     "folds_positive": 4
+    },
+    "h80_junc_cg_vs_ctrl_blind_abcd": {
+     "paired_gain": -0.010317,
+     "paired_ci95": [
+      -0.01243743605551903,
+      -0.006947746630496979
+     ],
+     "fold_gains": [
+      -0.012663900156947808,
+      -0.005033951877735754,
+      -0.011987748835619885,
+      -0.011360868039924352
+     ],
+     "folds_positive": 0
+    },
+    "h80_junc_cg_vs_ctrl_h35": {
+     "paired_gain": -0.018012,
+     "paired_ci95": [
+      -0.02917124252149103,
+      -0.008188277017094264
+     ],
+     "fold_gains": [
+      -0.029159816042246295,
+      -0.003228920877258179,
+      -0.012989052568721349,
+      -0.02919460812377897
+     ],
+     "folds_positive": 0
+    }
+   },
+   "leakage_canary": {
+    "max_canary_auc": 0.641888,
+    "max_canary_column": "B_slope_grad",
+    "max_h80_canary_auc": 0.557118,
+    "all_passed": true,
+    "n_cells": 8,
+    "n_columns": 97
+   },
+   "truth_d_vis_profile": {
+    "mean_truth_frac_le2": 0.0,
+    "mean_truth_frac_2_9": 0.0,
+    "mean_truth_frac_gt9": 1.0,
+    "mean_truth_frac_gt20": 0.985445,
+    "mean_median_truth_d_vis": 74.86975,
+    "mean_truth_lidar_gap_frac": 0.2006875
+   },
+   "elapsed_seconds": 2068.99
+  },
+  "slot_gate_g1": {
+   "passed": false,
+   "by_experiment": {
+    "exp1": {
+     "evaluated": true,
+     "passed": false,
+     "paired_gain": -0.08282921208118771,
+     "ci95": [
+      -0.09256934201483025,
+      -0.07491866586971818
+     ],
+     "folds_positive": 0,
+     "rule": "gain > 0.001 AND CI lower > 0 AND >= 3/4 folds positive",
+     "reason": "does not meet rule"
+    },
+    "exp3": {
+     "evaluated": true,
+     "passed": false,
+     "paired_gain": -0.01801185046740829,
+     "ci95": [
+      -0.02917124252149103,
+      -0.008188277017094264
+     ],
+     "folds_positive": 0,
+     "rule": "gain > 0.001 AND CI lower > 0 AND >= 3/4 folds positive",
+     "reason": "does not meet rule"
+    }
+   },
+   "note": "Requires H80_JUNC_CG to beat same-run CTRL_H35 on both Exp 1 and Exp 3 by >+0.0010 with a 95% CI above zero in >=3/4 folds AND full literal registry clearance."
+  },
+  "blind_gate_g2": {
+   "vs_subsurf": {
+    "evaluated": true,
+    "passed": true,
+    "paired_gain": 0.02489176783711758,
+    "ci95": [
+     0.019594436196823314,
+     0.02889720196913481
+    ],
+    "folds_positive": 4,
+    "rule": "gain > 0.001 AND CI lower > 0 AND >= 3/4 folds positive",
+    "reason": "meets rule"
+   },
+   "vs_blind_abcd": {
+    "evaluated": true,
+    "passed": false,
+    "paired_gain": -0.010317158785335637,
+    "ci95": [
+     -0.01243743605551903,
+     -0.006947746630496979
+    ],
+    "folds_positive": 0,
+    "rule": "gain > 0.001 AND CI lower > 0 AND >= 3/4 folds positive",
+    "reason": "does not meet rule"
+   },
+   "passed": false
+  },
+  "shipped_candidate_note": "The shipped GeoTIFF is an H80 junction-corridor emission; its own competition score is UNKNOWN. HOLDOUT-DTI quantifies the family, not this file."
+ },
+ "estimated_competition_score": null,
+ "estimated_competition_score_note": "NO score projection is written. EMPIRICAL geometry-matched band n/a from owner-reported scores of 0 already-scored rasters with the same emission geometry. The calibrated pi-model value n/a is recorded but NOT used (it predicts 0.0376 for the 0.2778 GEMSDOE32 B2 file).",
+ "correlation_overlap_vs_registry": {
+  "surface_clear": null,
+  "surface_receipt": "evidence/h80_surface_lane.json",
+  "final_dot_receipt": "evidence/h80_final_dot_lane.json",
+  "official_cli_receipt": "evidence/h80_public_lane_literal.json",
+  "n_registry_rasters_compared": 121,
+  "max_abs_spearman": 0.13233467902382087,
+  "non_space_filling": {
+   "n": 118,
+   "worst_overlap": 0.7220215647739948,
+   "worst_file": "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-nan.tif",
+   "flagged": [
+    "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-nan.tif",
+    "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif"
+   ],
+   "pass_": false
+  },
+  "space_filling": {
+   "n": 3,
+   "files": [
+    "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "pindrop-discovery.tif",
+    "pindrop-nodes.tif"
+   ],
+   "halo_coverage": [
+    0.99871,
+    0.73413,
+    0.73505
+   ],
+   "overlap": [
+    1.0,
+    0.77368,
+    0.80132
+   ],
+   "pigeonhole_note": "A reference whose own 3-px halo covers >70% of the footprint cannot be avoided by any dense emission: at most U pixels lie outside the halo, so at least max(0, K-U)/K must overlap (evidence/lane_feasibility_2026-10-28.json)."
+  },
+  "verdict": "UNIQUE vs every non-space-filling registry raster; LITERAL >70% FAIL vs the space-filling references, which no dense file can clear (pigeonhole bound 82.70% at 37,654 dots)"
+ },
+ "raster_sha256": null,
+ "nan_twin_sha256": null,
+ "zip_sha256": null,
+ "content_id": "0f293b547255",
+ "positive_pixels": 37654,
+ "validator_output": {
+  "published": false,
+  "format_valid": null,
+  "hard_failures_zeros": null,
+  "hard_failures_nan": null,
+  "independent_zeros": null,
+  "independent_nan": null,
+  "staged_only_sha256": "0d86c05059a14d1ca504c7ebe63dd90c932d853738799efa3b31bbfd7092b62f",
+  "automated_without_human_intervention": true,
+  "portal_range_error_safe": null,
+  "note": "No file was published: the emission failed the final-dot novelty gate. The staged bytes are kept under evidence/ and must not be submitted."
+ },
+ "submission": {
+  "name": null,
+  "zip": null,
+  "nan_twin": null,
+  "note": "GEMSDOE25 H80 | no slot, not slot-approved; lane duplicate; NOTHING PUBLISHED | id 0f293b547255",
+  "note_length": 95,
+  "ok_to_download": false,
+  "ok_to_submit_slot": false,
+  "slot_approved": false,
+  "verdict": "negative",
+  "status": "NOTHING WAS PUBLISHED: the emission is a lane duplicate of the repository's own H75 GeoTIFF (72.20% 3-px overlap, limit 70%). DO NOT SUBMIT the staged bytes."
+ },
+ "gates": {
+  "G1_slot_gate_vs_CTRL_H35": {
+   "passed": false,
+   "by_experiment": {
+    "exp1": {
+     "evaluated": true,
+     "passed": false,
+     "paired_gain": -0.08282921208118771,
+     "ci95": [
+      -0.09256934201483025,
+      -0.07491866586971818
+     ],
+     "folds_positive": 0,
+     "rule": "gain > 0.001 AND CI lower > 0 AND >= 3/4 folds positive",
+     "reason": "does not meet rule"
+    },
+    "exp3": {
+     "evaluated": true,
+     "passed": false,
+     "paired_gain": -0.01801185046740829,
+     "ci95": [
+      -0.02917124252149103,
+      -0.008188277017094264
+     ],
+     "folds_positive": 0,
+     "rule": "gain > 0.001 AND CI lower > 0 AND >= 3/4 folds positive",
+     "reason": "does not meet rule"
+    }
+   },
+   "note": "Requires H80_JUNC_CG to beat same-run CTRL_H35 on both Exp 1 and Exp 3 by >+0.0010 with a 95% CI above zero in >=3/4 folds AND full literal registry clearance."
+  },
+  "G2_blind_basin_gate_exp3": {
+   "vs_subsurf": {
+    "evaluated": true,
+    "passed": true,
+    "paired_gain": 0.02489176783711758,
+    "ci95": [
+     0.019594436196823314,
+     0.02889720196913481
+    ],
+    "folds_positive": 4,
+    "rule": "gain > 0.001 AND CI lower > 0 AND >= 3/4 folds positive",
+    "reason": "meets rule"
+   },
+   "vs_blind_abcd": {
+    "evaluated": true,
+    "passed": false,
+    "paired_gain": -0.010317158785335637,
+    "ci95": [
+     -0.01243743605551903,
+     -0.006947746630496979
+    ],
+    "folds_positive": 0,
+    "rule": "gain > 0.001 AND CI lower > 0 AND >= 3/4 folds positive",
+    "reason": "does not meet rule"
+   },
+   "passed": false
+  },
+  "G3_packaging_gate": {
+   "format_valid": false,
+   "whole_array_in_0_1": false,
+   "zero_nan": false,
+   "zero_catalogue_positives": null,
+   "staged_format_audit": "staged bytes validated: 0 NaN/Inf in 12,279,160 cells, 0 catalogue positives",
+   "surface_clear": false,
+   "unique_vs_non_space_filling": false,
+   "literal_space_filling_fail": [
+    "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "pindrop-discovery.tif",
+    "pindrop-nodes.tif"
+   ],
+   "published": false,
+   "passed": false,
+   "duplicate_of": [
+    "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-nan.tif",
+    "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif"
+   ]
+  },
+  "generated_utc": "2026-10-28T18:17:45Z"
+ },
+ "artifacts": {
+  "build_receipt": "evidence/h80_candidate_build.json",
+  "score_estimate": "evidence/h80_score_estimate.json",
+  "pre_registration": "knowledge/44_preregistered_h80_fhj_sd_2026-10-28.md",
+  "brief": "docs/h80-executive-brief.html"
+ },
+ "generated_utc": "2026-10-28T18:17:45Z"
+}

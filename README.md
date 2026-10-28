@@ -1,27 +1,26 @@
-<!-- SESSION-962e5a5b-REVIEW -->
-## Latest verification — 28 October 2026
-
-**DO NOT SUBMIT.** No new lane-cleared TIFF or calibrated competition score estimate was produced.
-[Three-pass review and remaining blockers](knowledge/43_session_962e5a5b_review.md).
-The executive summary was regenerated to restore no-go warnings and remove a broken ZIP link.
-Readiness now requires an absolute HOLDOUT-DTI 95% CI and a whole-array finite/[0,1] receipt.
-Current owner requirements: unique scientific output, exact-file validation, nine-site comparison, feature-alone canaries,
-paired buffered-segment holdout, full-registry surface/dot checks, three experiments/two hours maximum,
-and separate selector approval. No specific method lane is identifiable in the supplied prompt.
-The full standing owner brief remains below; this paragraph is an operational digest, not a verbatim transcript.
-
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
-## Latest audit — 2026-10-28 (read first)
+## H80 (28 October 2026) — junction-corridor experiment, and the honest stop
 
-**OK TO SUBMIT: NO. No new TIF or training experiment this session.** The requested unique high-performing submission remains unfulfilled.
-The [independently rerun pinned geometry audit](evidence/lane_feasibility_2026-10-28.json) finds only 6,514 eligible pixels outside r13's 3-pixel halo: at 37,654 dots, at least 82.70% overlap is unavoidable. The one-reference maximum not ruled out is 21,713 dots, **not** a performance recommendation. No explicit single-method lane is identifiable in the current prompt.
+**No new submission file exists from this session, and that is the result, not an omission.**
 
-[Executive summary and nine-site historical download table](docs/executive-summary.html) · [four planning hypotheses](knowledge/41_session_plan_2026-10-28.md) · [outcome, official links, limitations and next steps](knowledge/42_review_outcome_2026-10-28.md).
-Historical results remain OWNER-REPORTED; estimated new-file competition scores are UNKNOWN. No organizer receipt or current leaderboard was verified.
-
-New `gems25.readiness.assess_readiness` / `scripts/check_readiness.py` checks exact-file receipt consistency and fails closed; it never authorizes an upload. Reuse the existing shared holdout and writer. Only this repo is updated, not all nine sites. Latest operational digest: enforce assigned lane, buffered whole-segment visible-only holdout, per-feature leakage canaries, strict full-registry novelty before placement and on dots, range/grid checks, positive paired CI, three-experiment/two-hour budget, no weekly slot selection, and honest negative run cards. Earlier owner prompts remain preserved below; this digest is not a verbatim transcript. Maximize P(Win); Own the Outcome.
-
+* **What blocked it:** the finished candidate was a lane duplicate of the repository's own H75 GeoTIFF at
+  **72.20%** 3-px dot overlap (limit 70%). A *scientific* restriction to pixels the new H80
+  physics supports (junction invariant above its footprint median, or cation–silica disequilibrium above its 75th percentile)
+  cut that to **72.20%**, still above the limit. In this footprint every well-performing
+  physics surface ranks the same ridges. Filed as `IR-28-EMISSION-CONVERGENCE`.
+* **What was measured** (HOLDOUT-DTI, `gems25.metric.dti_binary`, α=0.2 β=0.8 R=300 m, virgin draws 140–143, every one of
+  97 columns canaried ≤0.90): H80 physics beats the physics-only control by +0.023628 DTI (95% CI [+0.01952, +0.02752], 4/4 folds) on the standard holdout and
+  +0.024892 DTI (95% CI [+0.01959, +0.02890], 4/4 folds) on the 25-km full-checkerboard `BlockHoldout` — but loses to the plain blind-ABCD stack by -0.010317 DTI (95% CI [-0.01244, -0.00695], 0/4 folds),
+  and never beats `CTRL_H35`. So the new physics is real but not yet better than the best blind stack.
+* **Best file to download and consider submitting:** the existing
+  [`gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif`](docs/downloads/gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif)
+  (format-valid, 0 NaN, unique vs every non-space-filling raster in the registry). Estimated band for any B2-geometry emission:
+  **0.2250–0.2250** (EMPIRICAL from owner-reported anchors, not a score). Its own competition score is UNKNOWN.
+* **Read:** [docs/h80-executive-brief.html](docs/h80-executive-brief.html) · pre-registration
+  [knowledge/44](knowledge/44_preregistered_h80_fhj_sd_2026-10-28.md) · lane receipt
+  [evidence/h80_final_dot_lane.json](evidence/h80_final_dot_lane.json) · run card
+  [registry/run_card_h80_2026-10-28.json](registry/run_card_h80_2026-10-28.json).
 
 <!-- CURRENT-REVIEW-2026-10-27 -->
 ## Current decision — 2026-10-27

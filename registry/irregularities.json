@@ -961,6 +961,22 @@
    "issue": "Two symmetric pre-publish staging duplicate stops bracketed blind model design: (1) Two-expert H79_POE_SGMC (82 cols: 56 crustal x 26 morpho, gamma_c=0.55) eliminated own-lineage convergence (47.21% <= 70% vs H72-CF and <=53.00% across all 27 sibling winners) but still overlapped GEMSDOE22's 309,814-px h23-a-6pct.tif DEM/LiDAR ribbon at 75.55% > 70%; (2) 55-column H79_SUBSURF (without H79_SGMC) cleared all 54 external sparse rasters (53.18% on h23-a-6pct.tif) but overlapped own-lineage H74_SUBSURF at 76.79% > 70% due to 51/55 shared static columns.",
    "evidence": "evidence/h79_poe_sgmc_stopped_lane.json; evidence/h79_poe_sgmc_stopped_extended.json; evidence/h79_subsurf_stopped_lane.json; evidence/h79_subsurf_stopped_extended.json; evidence/h79_crustal_sgmc_lane_literal.json; evidence/h79_crustal_sgmc_lane_extended.json; evidence/h79_cthm_post_merge_109_audit.json.",
    "resolution_or_action": "Pre-publish staging guards halted both runs before touching docs/downloads/. Evaluating the exact 56-column zero-topography M_crustal expert from Exp 3 (H79_SUBSURF + H79_sgmc_coulomb_react = H79_CRUSTAL_SGMC, e7ad8a4bf3ed) broke own-lineage tie-breaking (49.69% <= 70% vs H74_SUBSURF, 44.20% vs H75-DCHB-CG, 44.17% vs H75-EU3D-POE65) while keeping all 106 sparse rasters <= 58.02% (55.49% on h23-a-6pct.tif, 23.54% on GEMSDOE32 B2)."
+  },
+  {
+   "id": "IR-28-EMISSION-CONVERGENCE",
+   "severity": "high",
+   "status": "open",
+   "issue": "Every well-performing emission in this footprint converges on the same high-value ridges. The H80 Junction-Corridor candidate reached 37,654 dots with all format checks green but sat at 81.17% 3-px dot overlap with the repository's own H75 GeoTIFF (limit 70%). A scientific restriction to pixels where the new H80 physics is above its own median (junction) or 75th percentile (disequilibrium) raised the plug-in DTI from 0.101 to 0.144 and cut the overlap only to 72.20%. Nothing was published.",
+   "evidence": "evidence/h80_candidate_build.json, evidence/h80_candidate_build_ungated_stop.json, evidence/h80_final_dot_lane.json",
+   "resolution_or_action": "Reported, not waived. Breaking this wall needs a different emission geometry (e.g. the validated 2.8-3.0 px spacing instead of the greedy emitter's 4.0 px) or genuinely new physics, not a re-ranking of the same ridges. Any future candidate must clear the same audit before packaging."
+  },
+  {
+   "id": "IR-28-FOREIGN-GRID-REFERENCE",
+   "severity": "medium",
+   "status": "open",
+   "issue": "One declared registry reference, 14GEMSDOE 'GEMS_r5-geom-horse-ensemble' (owner-reported 0.0020, pinned sha256 ccbe1de0...), is not on the submission grid: its transform origin is (500000, 4500000) with the same 3730x3292 shape, versus the submission grid's (243350, 4508550). Pixel-wise comparison with it is impossible without resampling it, which would fabricate a comparison.",
+   "evidence": "evidence/h80_surface_lane.json (incomparable[]), evidence/h80_surface_cli_literal.json",
+   "resolution_or_action": "Named individually with its SHA-256 and transform in every H80 lane receipt. Consequence: check_lane_surface.py / check_lane_duplicates.py return 'UNVERIFIED - incomplete or invalid registry' for EVERY candidate, because the shared tools fail closed on a grid mismatch. Owner decision required: confirm the file was misregistered, or drop it from the declared reference set. Until then no candidate can ever be auto-cleared by the shared CLI."
   }
  ]
 }

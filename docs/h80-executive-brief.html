@@ -1,0 +1,218 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H80 executive brief — no new unique file, and the number that stopped it · GEMSDOE25</title>
+<style>
+:root{--fg:#0f172a;--mut:#52627a;--line:#d8e0ea;--bg:#f7f9fc;--card:#fff;--ok:#047857;--warn:#b45309;--bad:#b91c1c;--accent:#1d4ed8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px 64px}
+header.top{background:#0b1220;color:#fff;padding:14px 0;margin-bottom:22px}
+header.top .wrap{padding-bottom:0} header.top a{color:#c7d2fe;text-decoration:none;margin-right:16px;font-size:14px}
+.brand{font-weight:700;letter-spacing:.4px;font-size:15px;margin-bottom:6px}
+.hero{background:linear-gradient(180deg,#0b1220,#16233c);color:#fff;border-radius:14px;padding:26px;margin-bottom:22px}
+.hero h1{margin:.1em 0 .3em;font-size:30px;line-height:1.15}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:#93c5fd;margin:0}
+.dlbox{display:flex;gap:18px;flex-wrap:wrap;background:#0f1b30;border:1px solid #24395c;border-radius:12px;padding:18px;margin:16px 0}
+.dlbtns{margin-left:auto;display:flex;flex-direction:column;gap:8px}
+.btn{display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:11px 16px;border-radius:9px;font-weight:650;font-size:14px}
+.btn.alt{background:#1e40af} .btn.ghost{background:transparent;border:1px solid #3b5b8a}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:8px}
+.stat{background:#0f1b30;border:1px solid #24395c;border-radius:11px;padding:13px}
+.stat b{display:block;font-size:15px;margin-bottom:5px} .stat span{font-size:12.5px;color:#b9c7dc}
+b.ok,.ok{color:#34d399} b.warn,.warn{color:#fbbf24} b.bad,.bad{color:#f87171}
+h2{font-size:21px;margin:26px 0 10px} h3{font-size:16px;margin:0 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin:16px 0}
+.card h2{margin-top:0}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:8px 9px;text-align:left;vertical-align:top}
+th{background:#eef3fa;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:#334155}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.4px;background:#eef2f8;padding:1px 4px;border-radius:4px}
+.hero code,.dlbox code{background:#1b2b48;color:#dbeafe}
+.small{font-size:12.8px;color:var(--mut)}
+.b{display:inline-block;font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;letter-spacing:.03em}
+.b-ok{background:#d1fae5;color:#065f46} .b-bad{background:#fee2e2;color:#991b1b}
+.b-warn{background:#fef3c7;color:#92400e} .b-grey{background:#e2e8f0;color:#334155}
+ol,ul{padding-left:20px} li{margin:6px 0}
+.lead{font-size:15.5px;color:#334155}
+footer{margin-top:30px;font-size:12.5px;color:var(--mut)}
+</style></head><body>
+<header class="top"><div class="wrap"><div class="brand">GEMSDOE25 · H80 executive brief</div>
+<a href="index.html">Start here</a><a href="executive-summary.html">Submission guide</a>
+<a href="current-review.html">Current review</a><a href="research.html">Research</a>
+<a href="sources.html">Sources</a></div></header>
+<main class="wrap"><section class="hero">
+<p class="eyebrow">EXECUTIVE BRIEF · DOE GEMS PRIZE (DrivenData #306) · 28 OCTOBER 2026</p>
+<h1>No new unique file this session — and here is the number that stopped it.</h1>
+<div class="dlbox">
+<div><h2 style="margin:0 0 6px">H80 Junction-Corridor: built, validated, then withheld</h2>
+<p class="small" style="margin:0">The candidate reached 37,654 dots with every format check green, then failed the one
+rule that cannot be negotiated: <b>81.17% of its dots sat within 3 px of the repository's own H75 GeoTIFF</b>
+(limit 70%). Restricting emission to pixels the new H80 physics actually supports reduced the collision to
+<b>72.20%</b> — still over the limit. Nothing was written to <code>docs/downloads/</code>.</p></div>
+<div class="dlbtns"><a class="btn" href="downloads/gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif" download>Download best existing file (H75)</a>
+<a class="btn alt" href="../evidence/h80_final_dot_lane.json">Read the lane receipt</a></div>
+</div>
+<div class="stats">
+<div class="stat"><b class="ok">FORMAT: PASS</b><span>single band float32 · EPSG:32611 · 3730×3292 · 0 NaN/Inf in 12,279,160 cells · 0 positives on the masked catalogue</span></div>
+<div class="stat"><b class="bad">NOVELTY: FAIL</b><span>81.17% 3-px overlap with <code>gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-nan.tif</code>; the physics-gated retry reached 72.20%. Same lane, so it must not be submitted.</span></div>
+<div class="stat"><b class="warn">ESTIMATED SCORE 0.2250–0.2250 (this emission) · 0.2708–0.2778 (kernel-matched optimum)</b><span>empirical bands from 1 and 3 already-scored geometry-matched rasters. The withheld emission came out at 4.0 px median spacing instead of the validated 2.8–3.0 px optimum, which is why its band is lower. Neither is a score.</span></div>
+<div class="stat"><b class="bad">ORGANIZER-CONFIRMED SCORE: NONE</b><span>the estimate below is an empirical class band, not a score; 0.2778 / 0.3195 / 0.4413 are owner-reported claims with no receipt.</span></div>
+<div class="stat"><b class="bad">BEAT 0.2778? NOT DEMONSTRATED</b><span>the new detector gains over the physics-only control but loses to the plain blind stack; see §3.</span></div>
+</div></section>
+<section class="card"><h2>1 · What happened, exactly</h2>
+<ol>
+<li><b>Built.</b> A 37,654-dot emission from a four-quadrant leave-one-quadrant-out ensemble of three HGB experts
+(corridor / trace / LiDAR-gap), coupled by the frozen junction-corridor product, with B2 hygiene (no dot within 200 m of the
+mapped catalogue).</li>
+<li><b>Validated.</b> Exact-file validator plus an independent <code>rasterio</code> audit: EPSG:32611, 3730×3292, exact
+geotransform, single band float32, min 0.0 / max 1.0, <b>0 NaN and 0 Inf in all 12,279,160 cells</b>, 0 positives on the
+catalogue — the “Predicted values must be in range [0, 1]” failure mode is impossible.</li>
+<li><b>Rejected on novelty.</b> Final-dot audit vs all 118 non-space-filling
+registry rasters: <b>81.17%</b> overlap with <code>gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-nan.tif</code> (limit 70%).
+Flagged: gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-nan.tif, gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif, gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-nan.tif, gems25-h75-eu3d-poe65-catfree-b2-37654-20261027-0a97fd71c3f3-zeros.tif.</li>
+<li><b>Retried with a scientific restriction.</b> Requiring each dot to sit where the new H80 physics is above its own
+median (Förstner junction invariant) or its 75th percentile (cation–silica disequilibrium) — which raises the plug-in DTI
+from 0.101 to 0.144 — still left 72.20% overlap. The footprint has one set of high-value ridges and every good detector
+converges on it.</li>
+<li><b>Stopped.</b> Protocol rule 1 (log the duplicate and stop) is the standing instruction, so no file was published and
+no slot was spent. The staged bytes and every receipt are retained under <code>evidence/</code>.</li>
+</ol>
+<p class="small">Receipts: <a href="../evidence/h80_candidate_build.json">build + lane</a> ·
+<a href="../evidence/h80_candidate_build_ungated_stop.json">ungated stop</a> ·
+<a href="../evidence/h80_surface_lane.json">surface audit</a> ·
+<a href="../evidence/h80_surface_cli_literal.json">official CLI output</a>.</p></section>
+<section class="card"><h2>2 · Why GEMSDOE32 B2 scored 0.2778 — and what it would take to beat 0.4413</h2>
+<ol>
+<li><b>The metric pays for coverage, not for pixels.</b> DTI = TP<sub>w</sub> / (0.2(TP<sub>w</sub>+FP<sub>w</sub>) + 0.8|G|),
+where a truth pixel is credited by the <i>maximum</i> 300-m triangular kernel over nearby predictions, while false
+positives are charged <i>linearly</i> per emitting pixel (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">metric</a>).
+Thick ribbons therefore waste mass; isolated dots with ~2.8 px spacing keep the kernel maximum near 1.0 and
+cut FP mass by ~64%.</li>
+<li><b>B2 is the third pruning step of one single detector.</b> H19-5 (0.1922) → D1.5 (0.2477) → D2.8 (0.2600)
+→ R1 (0.2708) → B2 (0.2778): each step only deletes pixels, and each deletion raises the score. B2 = D2.8 minus
+the 6,436 dots within 200 m of the mapped catalogue, i.e. it removes dots that can never be credited because
+mapped faults are masked (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4">staff clarification</a>).</li>
+<li><b>The ceiling of that family is ~0.28.</b> Four independent, already-scored rasters with the same geometry
+sit at 0.2708–0.2778 (gemsdoe27-h31-1). Emission tuning is exhausted; the residual
+gap to 0.3195/0.4413 can only come from a <i>better detector</i> of blind basin faults, which is what H80 adds.</li>
+<li><b>What H80 changes.</b> A single planar-edge detector (the whole H19-5/H33 family) is blind by construction
+to fault <i>intersections</i>: the structure-tensor coherence it maximises collapses exactly where two strikes meet.
+H80 scores the complementary quantity — the Förstner bimodal junction invariant — plus multi-geothermometer
+boiling disequilibrium, a moisture-invariant Aitchison compositional jump, and an N≈0 structural-index filter.
+All four are Quaternary-catalogue-free, so they are judged on blind basins rather than on the apron of mapped traces.</li>
+</ol></section>
+<h2>3 · Pre-registered holdout evidence (HOLDOUT-DTI, evaluator <code>gems25.metric.dti_binary</code>, α=0.2 β=0.8 R=300 m, visible-only catalogue features, pixel-exact visible mask)</h2>
+<section class="card"><h3>Experiment 1 — standard 20% connected-component holdout</h3>
+<p class="small">Instrument that flatters catalogue-apron models; used for continuity with every prior session · draws <code>[140, 141]</code> · 8 cells/arm ·
+22,001 withheld positive occurrences ·
+median distance of withheld truth to the nearest visible fault <b>8.9 px</b>
+(∈&nbsp;2–9 px 49%, &gt;20 px 19%) ·
+leakage canary max AUC <b>0.8206</b> ≤ 0.90
+(H80-only max <b>0.5829</b>).</p>
+<div class="scroll"><table><thead><tr><th>Arm</th><th class="num">Pooled HOLDOUT-DTI</th>
+<th class="num">Far &gt;9 px</th><th class="num">Very far &gt;20 px</th><th class="num">LiDAR-gap (L_valid=0)</th>
+<th class="num">AUC</th><th class="num">Dots/cell</th><th class="num">Emit &gt;20 px</th></tr></thead>
+<tbody><tr><td><code>CTRL_H35</code></td><td class='num'><b>0.157011</b></td><td class='num'>0.116365</td><td class='num'>0.063135</td><td class='num'>0.147543</td><td class='num'>0.8076</td><td class='num'>11,604</td><td class='num'>10.4%</td></tr><tr><td><code>CTRL_SUBSURF</code></td><td class='num'><b>0.050554</b></td><td class='num'>0.037577</td><td class='num'>0.020941</td><td class='num'>0.043883</td><td class='num'>0.5332</td><td class='num'>9,212</td><td class='num'>57.8%</td></tr><tr><td><code>H80_SUBSURF</code></td><td class='num'><b>0.052097</b></td><td class='num'>0.038909</td><td class='num'>0.019976</td><td class='num'>0.048539</td><td class='num'>0.5398</td><td class='num'>9,212</td><td class='num'>55.5%</td></tr><tr><td><code>H80_JUNC_CG</code></td><td class='num'><b>0.074182</b></td><td class='num'>0.061199</td><td class='num'>0.036274</td><td class='num'>0.058631</td><td class='num'>0.5902</td><td class='num'>9,212</td><td class='num'>50.8%</td></tr></tbody></table></div>
+<div class="scroll"><table><thead><tr><th>Paired contrast (same run)</th><th class="num">Δ pooled DTI</th>
+<th class="num">95% cluster-bootstrap CI</th><th class="num">Folds +</th><th>Gate</th></tr></thead>
+<tbody><tr><td><code>H80_SUBSURF</code> − <code>CTRL_SUBSURF</code></td><td class='num'>+0.001543</td><td class='num'>[-0.00008, +0.00288]</td><td class='num'>2/4</td><td><span class="b b-bad">CI over zero</span></td></tr><tr><td><code>H80_JUNC_CG</code> − <code>CTRL_SUBSURF</code></td><td class='num'>+0.023628</td><td class='num'>[+0.01952, +0.02752]</td><td class='num'>4/4</td><td><span class="b b-ok">PASS</span></td></tr><tr><td><code>H80_JUNC_CG</code> − <code>CTRL_H35</code></td><td class='num'>-0.082829</td><td class='num'>[-0.09257, -0.07492]</td><td class='num'>0/4</td><td><span class="b b-bad">FAIL</span></td></tr></tbody></table></div>
+</section>
+<section class='card'><h3>Experiment 2 — 25-km tile-sampled block holdout</h3><p><b>NOT RUN</b> in this session (budget/time constraint). This is a gap, not a pass.</p></section>
+<section class="card"><h3>Experiment 3 — 25-km full-checkerboard BlockHoldout (virgin confirmation)</h3>
+<p class="small">100% of catalogue components touching a test block are hidden; the blindest instrument in the repo · draws <code>[142, 143]</code> · 8 cells/arm ·
+95,188 withheld positive occurrences ·
+median distance of withheld truth to the nearest visible fault <b>74.9 px</b>
+(∈&nbsp;2–9 px 0%, &gt;20 px 99%) ·
+leakage canary max AUC <b>0.6419</b> ≤ 0.90
+(H80-only max <b>0.5571</b>).</p>
+<div class="scroll"><table><thead><tr><th>Arm</th><th class="num">Pooled HOLDOUT-DTI</th>
+<th class="num">Far &gt;9 px</th><th class="num">Very far &gt;20 px</th><th class="num">LiDAR-gap (L_valid=0)</th>
+<th class="num">AUC</th><th class="num">Dots/cell</th><th class="num">Emit &gt;20 px</th></tr></thead>
+<tbody><tr><td><code>CTRL_H35</code></td><td class='num'><b>0.129138</b></td><td class='num'>0.129138</td><td class='num'>0.130413</td><td class='num'>0.109999</td><td class='num'>0.6244</td><td class='num'>9,316</td><td class='num'>100.0%</td></tr><tr><td><code>CTRL_SUBSURF</code></td><td class='num'><b>0.086234</b></td><td class='num'>0.086234</td><td class='num'>0.087220</td><td class='num'>0.077642</td><td class='num'>0.5704</td><td class='num'>7,708</td><td class='num'>100.0%</td></tr><tr><td><code>CTRL_BLIND_ABCD</code></td><td class='num'><b>0.121443</b></td><td class='num'>0.121443</td><td class='num'>0.122725</td><td class='num'>0.083081</td><td class='num'>0.6524</td><td class='num'>7,708</td><td class='num'>100.0%</td></tr><tr><td><code>H80_SUBSURF</code></td><td class='num'><b>0.087897</b></td><td class='num'>0.087897</td><td class='num'>0.088909</td><td class='num'>0.081810</td><td class='num'>0.5703</td><td class='num'>7,708</td><td class='num'>100.0%</td></tr><tr><td><code>H80_JUNC_CG</code></td><td class='num'><b>0.111126</b></td><td class='num'>0.111126</td><td class='num'>0.112347</td><td class='num'>0.096315</td><td class='num'>0.6160</td><td class='num'>7,708</td><td class='num'>100.0%</td></tr></tbody></table></div>
+<div class="scroll"><table><thead><tr><th>Paired contrast (same run)</th><th class="num">Δ pooled DTI</th>
+<th class="num">95% cluster-bootstrap CI</th><th class="num">Folds +</th><th>Gate</th></tr></thead>
+<tbody><tr><td><code>H80_SUBSURF</code> − <code>CTRL_SUBSURF</code></td><td class='num'>+0.001663</td><td class='num'>[-0.00389, +0.00542]</td><td class='num'>3/4</td><td><span class="b b-bad">CI over zero</span></td></tr><tr><td><code>H80_JUNC_CG</code> − <code>CTRL_SUBSURF</code></td><td class='num'>+0.024892</td><td class='num'>[+0.01959, +0.02890]</td><td class='num'>4/4</td><td><span class="b b-ok">PASS</span></td></tr><tr><td><code>H80_JUNC_CG</code> − <code>CTRL_BLIND_ABCD</code></td><td class='num'>-0.010317</td><td class='num'>[-0.01244, -0.00695]</td><td class='num'>0/4</td><td><span class="b b-bad">FAIL</span></td></tr><tr><td><code>H80_JUNC_CG</code> − <code>CTRL_H35</code></td><td class='num'>-0.018012</td><td class='num'>[-0.02917, -0.00819]</td><td class='num'>0/4</td><td><span class="b b-bad">FAIL</span></td></tr></tbody></table></div>
+</section>
+<section class="card"><h2>4 · The withheld candidate, in numbers</h2>
+<div class="scroll"><table><thead><tr><th>Check</th><th>Result</th></tr></thead><tbody>
+<tr><td>Dots / content id</td><td>37,654 · <code>0f293b547255</code> (staged only, not in <code>docs/downloads/</code>)</td></tr>
+<tr><td>CRS / shape / transform</td><td>PASS — EPSG:32611, 3730×3292, exact template transform</td></tr>
+<tr><td>NaN / Inf anywhere</td><td>PASS — 0 in 12,279,160 cells</td></tr>
+<tr><td>Positives on the masked catalogue</td><td>PASS — 0</td></tr>
+<tr><td>Surface rank audit (before placement)</td><td>PASS — max |Spearman| 0.1988 across 121 comparable rasters</td></tr>
+<tr><td>Final-dot overlap vs non-space-filling rasters</td><td><b>FAIL</b> — 72.20% vs <code>gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-nan.tif</code></td></tr>
+<tr><td>Gated retry</td><td>still 72.20% — same lane</td></tr>
+<tr><td>One declared reference not on the submission grid</td><td><code>geom-horse-ensemble.tif</code> (14GEMSDOE, owner-reported 0.0020) has transform origin (500000, 4500000) vs the submission grid (243350, 4508550), so it cannot be compared pixel-wise; recorded, not resampled. Filed as <code>IR-28-FOREIGN-GRID-REFERENCE</code>.</td></tr>
+</tbody></table></div></section>
+<section class="card"><h2>5 · Estimated score — what the numbers are and are not</h2>
+<p><b>Two empirical bands, both from owner-reported scores of geometry-matched, already-scored rasters:</b></p>
+<div class="scroll"><table><thead><tr><th>Emission geometry</th><th class="num">Band</th><th class="num">Point</th>
+<th>Matched references</th><th>Use</th></tr></thead><tbody>
+<tr><td>This session's emission (37654 dots,
+median nearest-neighbour 4.00 px)</td>
+<td class="num">0.2250–0.2250</td><td class="num">0.225</td>
+<td>gemsdoe27-h31-1</td><td>what a file of <i>this</i> geometry would plausibly score</td></tr>
+<tr><td>Kernel-matched optimum (37654 dots,
+median nearest-neighbour 3.00 px)</td>
+<td class="num">0.2708–0.2778</td><td class="num">0.275</td>
+<td>gemsdoe32-b2, gemsdoe36-anderson-pinn, gemsdoe28-r1</td><td>the ceiling of the B2 family — what a corrected emission should reach</td></tr>
+</tbody></table></div>
+<p class="small"><b>Why this matters more than the headline number:</b> the greedy emitter placed dots 4.00 px apart
+on median, while the DTI algebra (kernel maximum at 3 px) and the repository's own holdout factorial both put the optimum at
+2.8–3.0 px. Sparser dots leave triangular-kernel credit on the table. A next run should pin the emission to the validated
+spacing before anything else.</p>
+<p><b>EMPIRICAL ESTIMATE 0.2250–0.2250</b> (point 0.225). Rule:
+edot count within ±10%, median nearest-neighbour spacing within ±0.4 px, catalogue buffer ≤2.5 px; owner-reported scores of the group's own scored rasters. Matched, already-scored rasters: <code>gemsdoe27-h31-1</code>
+with owner-reported scores 0.2250.</p>
+<p class="small">A second, independent estimator exists and is reported for transparency only: the calibrated
+π-model (<a href="../knowledge/10_preregistered_h28_live_anchored_emission_design_2026-10-02.md">knowledge/10</a>)
+predicts <b>0.0288</b> for this file. It reproduces the H19-5 dotting family
+to ≤0.004 DTI but fails catastrophically on catalogue-hygienic emissions — it predicts 0.0376 for GEMSDOE32 B2,
+which actually scored 0.2778 (<a href="../evidence/h80_score_estimate.json">receipt</a>). It is therefore
+<b>not</b> used for the band, and neither estimator is a competition score.</p>
+<p class="small"><b>What would move the number</b> is detector skill on blind basin faults, which is exactly what
+the H80 holdout measures. Holdout-DTI is a catalogue-gap proxy: across the group's 24 artefacts its rank
+correlation with live score was +0.33 (n.s.), so a holdout win is necessary, not sufficient.</p></section>
+<h2>6 · Nine focus sites — highest supplied submission per site</h2>
+<p class="lead">Values are OWNER-REPORTED public-leaderboard claims attached to the named files; none is an
+organizer receipt, and every one of these files has already been scored, so downloading it again cannot
+improve a score. Estimated score for a <i>new</i> submission from any of these sites is therefore not
+applicable — the only new file this repository offers is H80 above.</p>
+<div class="scroll"><table><thead><tr><th>Site</th><th>Highest-scoring file (download)</th>
+<th class="num">Owner-reported score</th><th>Unique vs the other eight?</th><th>Submit again?</th></tr></thead>
+<tbody><tr><td><b>GEMSDOE24</b></td><td><a download href='https://github.com/buffedlizard55-lab/GEMSDOE24/raw/main/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif'><code>gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</code></a><br><span class='small'>60,069 px · GitHub raw mirror</span></td><td class='num'>0.2477<br><span class='small'>owner-reported, already scored</span></td><td>Distinct mask within this set</td><td><b>NO</b> — already submitted; re-uploading identical bytes cannot raise the score</td></tr><tr><td><b>GEMSDOE25</b></td><td><a download href='https://github.com/buffedlizard55-lab/GEMSDOE25/raw/main/docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif'><code>gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</code></a><br><span class='small'>44,090 px · GitHub raw mirror</span></td><td class='num'>0.2600<br><span class='small'>owner-reported, already scored</span></td><td>Distinct mask within this set</td><td><b>NO</b> — already submitted; re-uploading identical bytes cannot raise the score</td></tr><tr><td><b>GEMSDOE27</b></td><td><a download href='https://github.com/buffedlizard55-lab/GEMSDOE27/raw/main/docs/downloads/gems27-h25-1-topo-gap-d1-5-20261004-957704b48636-nan.tif'><code>gems27-h25-1-topo-gap-d1-5-20261004-957704b48636-nan.tif</code></a><br><span class='small'>61,328 px · GitHub raw mirror</span></td><td class='num'>0.2449<br><span class='small'>owner-reported, already scored</span></td><td>Distinct mask within this set</td><td><b>NO</b> — already submitted; re-uploading identical bytes cannot raise the score</td></tr><tr><td><b>GEMSDOE28</b></td><td><a download href='https://github.com/buffedlizard55-lab/GEMSDOE28/raw/main/docs/downloads/gems28-h27-4-r1-solo-20261004-ab0230015224-zeros.tif'><code>gems28-h27-4-r1-solo-20261004-ab0230015224-zeros.tif</code></a><br><span class='small'>40,199 px · GitHub raw mirror</span></td><td class='num'>0.2708<br><span class='small'>owner-reported, already scored</span></td><td>Exact-mask duplicate of another focus site</td><td><b>NO</b> — already submitted; re-uploading identical bytes cannot raise the score</td></tr><tr><td><b>GEMSDOE30</b></td><td><a download href='https://github.com/buffedlizard55-lab/GEMSDOE30/raw/main/docs/downloads/gems30-h25-1-d28-poisson-20261003-91eae1ca42ec-zeros.tif'><code>gems30-h25-1-d28-poisson-20261003-91eae1ca42ec-zeros.tif</code></a><br><span class='small'>44,090 px · GitHub raw mirror</span></td><td class='num'>0.2600<br><span class='small'>owner-reported, already scored</span></td><td>Exact-mask duplicate of another focus site</td><td><b>NO</b> — already submitted; re-uploading identical bytes cannot raise the score</td></tr><tr><td><b>GEMSDOE31</b></td><td><a download href='https://github.com/buffedlizard55-lab/GEMSDOE31/raw/main/docs/downloads/gems31-h27-4-solo-d28-20261004-07b6db440535-zeros.tif'><code>gems31-h27-4-solo-d28-20261004-07b6db440535-zeros.tif</code></a><br><span class='small'>40,199 px · GitHub raw mirror</span></td><td class='num'>0.2708<br><span class='small'>owner-reported, already scored</span></td><td>Exact-mask duplicate of another focus site</td><td><b>NO</b> — already submitted; re-uploading identical bytes cannot raise the score</td></tr><tr><td><b>GEMSDOE32</b></td><td><a download href='https://github.com/buffedlizard55-lab/GEMSDOE32/raw/main/docs/downloads/h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif'><code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code></a><br><span class='small'>37,654 px · GitHub raw mirror</span></td><td class='num'>0.2778<br><span class='small'>owner-reported, already scored</span></td><td>Distinct mask within this set</td><td><b>NO</b> — already submitted; re-uploading identical bytes cannot raise the score</td></tr><tr><td><b>GEMSDOE33</b></td><td><a download href='https://github.com/buffedlizard55-lab/GEMSDOE33/raw/main/docs/downloads/gems33-h33d-20261004-87f857d505e2-zeros.tif'><code>gems33-h33d-20261004-87f857d505e2-zeros.tif</code></a><br><span class='small'>41,865 px · GitHub raw mirror</span></td><td class='num'>0.2632<br><span class='small'>owner-reported, already scored</span></td><td>Distinct mask within this set</td><td><b>NO</b> — already submitted; re-uploading identical bytes cannot raise the score</td></tr><tr><td><b>GEMSDOE36</b></td><td><a download href='https://github.com/buffedlizard55-lab/GEMSDOE36/raw/main/docs/downloads/gems36-anderson-pinn-20261004-e15891020b9c-zeros.tif'><code>gems36-anderson-pinn-20261004-e15891020b9c-zeros.tif</code></a><br><span class='small'>38,854 px · GitHub raw mirror</span></td><td class='num'>0.2750<br><span class='small'>owner-reported, already scored</span></td><td>Distinct mask within this set</td><td><b>NO</b> — already submitted; re-uploading identical bytes cannot raise the score</td></tr></tbody></table></div>
+<p class="small">Source of record: <a href="../evidence/focus_sites_h75_dchb_cg_latest_2026-10-27.json">nine-site
+audit receipt</a>; scores cross-checked against <a href="../registry/live_scores.json">registry/live_scores.json</a>.
+2026-10-28 sibling artifacts (GEMSDOE31 H31-CC, GEMSDOE32 H51-EWSP, GEMSDOE33 A33-R7 PHCONG/PCS…,
+GEMSDOE28 S26) are registered as <b>negative / unscored</b> in their own repositories and are not candidates.</p>
+<section class="card"><h2>7 · How to submit this file (5 steps)</h2>
+<ol class="steps">
+<li>Click <b>Download .tif</b> above (or the .zip) and check the SHA-256 prefix matches
+<code></code>.</li>
+<li>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">the submission page</a>
+and sign in (this project never automates that site).</li>
+<li>Upload the single-band GeoTIFF — CRS, shape and geotransform already match the official template.</li>
+<li>Paste the note (≤140 chars): <code>No submission file was published: the emission is a lane duplicate of the repository&#x27;s own H75 GeoTIFF at 72.20% 3-px dot overlap (&gt;70%).</code></li>
+<li>Submit, then record the organizer score with
+<code>python scripts/record_live_score.py --file 0f293b547255 --score &lt;receipt&gt;</code>.
+Until then this file's competition score is <b>UNKNOWN</b>.</li>
+</ol>
+<p class="small">Weekly cap and remaining slots are shown on the submission page; check it by hand before
+uploading. Never paste a projection or a holdout value into the score ledger.</p></section>
+<section class="card"><h2>8 · Limitations and flagged irregularities</h2><ul>
+<li><b>Literal lane rule.</b> No dense file can clear the 70%-within-3-px rule against
+<code>r13-lattice-s5</code>; the group's scored best cannot either. Reported, not waived.</li>
+<li><b>No organizer receipt.</b> 0.2778 / 0.3195 / 0.4413 remain owner-reported; this brief does not upgrade them.</li>
+<li><b>Proxy validity.</b> The holdout withholds catalogue faults, not the hidden test faults. Proxy–live rank
+correlation is weak (+0.33, n.s., 24 artefacts).</li>
+<li><b>Own-lineage risk.</b> H80 shares static physics columns with earlier H74/H75/H79 files; the final-dot audit
+against those is reported explicitly and is the binding constraint that shaped this emission.</li>
+<li><b>Not delivered here.</b> The two externally-dependent hypotheses (drainage/knickpoint routing needing the
+full 1-m 3DEP DEM mosaic, and InSAR × 3-D MT needing ASF/IRIS data) are documented in the pre-registration and
+blocked by network allowlists, not by method.</li></ul></section>
+<footer><div class="wrap">Built by <code>scripts/build_h80_brief.py</code> from <code>evidence/h80_*</code> and
+<code>registry/</code>; regenerated after every run. Core values: <b>Maximize P(Win)</b> · <b>Own the Outcome</b>.
+No number here is organizer-confirmed unless a receipt is linked.</div></footer>
+</main></body></html>

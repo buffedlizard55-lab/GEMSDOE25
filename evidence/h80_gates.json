@@ -1,0 +1,80 @@
+{
+ "G1_slot_gate_vs_CTRL_H35": {
+  "passed": false,
+  "by_experiment": {
+   "exp1": {
+    "evaluated": true,
+    "passed": false,
+    "paired_gain": -0.08282921208118771,
+    "ci95": [
+     -0.09256934201483025,
+     -0.07491866586971818
+    ],
+    "folds_positive": 0,
+    "rule": "gain > 0.001 AND CI lower > 0 AND >= 3/4 folds positive",
+    "reason": "does not meet rule"
+   },
+   "exp3": {
+    "evaluated": true,
+    "passed": false,
+    "paired_gain": -0.01801185046740829,
+    "ci95": [
+     -0.02917124252149103,
+     -0.008188277017094264
+    ],
+    "folds_positive": 0,
+    "rule": "gain > 0.001 AND CI lower > 0 AND >= 3/4 folds positive",
+    "reason": "does not meet rule"
+   }
+  },
+  "note": "Requires H80_JUNC_CG to beat same-run CTRL_H35 on both Exp 1 and Exp 3 by >+0.0010 with a 95% CI above zero in >=3/4 folds AND full literal registry clearance."
+ },
+ "G2_blind_basin_gate_exp3": {
+  "vs_subsurf": {
+   "evaluated": true,
+   "passed": true,
+   "paired_gain": 0.02489176783711758,
+   "ci95": [
+    0.019594436196823314,
+    0.02889720196913481
+   ],
+   "folds_positive": 4,
+   "rule": "gain > 0.001 AND CI lower > 0 AND >= 3/4 folds positive",
+   "reason": "meets rule"
+  },
+  "vs_blind_abcd": {
+   "evaluated": true,
+   "passed": false,
+   "paired_gain": -0.010317158785335637,
+   "ci95": [
+    -0.01243743605551903,
+    -0.006947746630496979
+   ],
+   "folds_positive": 0,
+   "rule": "gain > 0.001 AND CI lower > 0 AND >= 3/4 folds positive",
+   "reason": "does not meet rule"
+  },
+  "passed": false
+ },
+ "G3_packaging_gate": {
+  "format_valid": false,
+  "whole_array_in_0_1": false,
+  "zero_nan": false,
+  "zero_catalogue_positives": null,
+  "staged_format_audit": "staged bytes validated: 0 NaN/Inf in 12,279,160 cells, 0 catalogue positives",
+  "surface_clear": false,
+  "unique_vs_non_space_filling": false,
+  "literal_space_filling_fail": [
+   "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "pindrop-discovery.tif",
+   "pindrop-nodes.tif"
+  ],
+  "published": false,
+  "passed": false,
+  "duplicate_of": [
+   "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-nan.tif",
+   "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif"
+  ]
+ },
+ "generated_utc": "2026-10-28T18:17:45Z"
+}
