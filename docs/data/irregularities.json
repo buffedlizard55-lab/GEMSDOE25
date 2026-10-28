@@ -1017,6 +1017,22 @@
    "issue": "PR70 builder asserted exclusion of every registry halo from r13 exclusion alone, packaged before valid holdout/full registry checks and used unverified geothermal semantics.",
    "evidence": "scripts/build_unique_submission.py before this change; registry/run_card_unique_latticegap_2026-10-28.json; evidence/h80_latticegap_archive_reaudit.json",
    "resolution_or_action": "Retire publisher with exit2 before data loading; keep existing TIFF historical only. PR71 already repaired misleading executive copy; no new score or slot approval."
+  },
+  {
+   "id": "IR-28-EMISSION-CONVERGENCE",
+   "severity": "high",
+   "status": "open",
+   "issue": "Every well-performing emission in this footprint converges on the same high-value ridges. The H80 Junction-Corridor candidate reached 37,654 dots with all format checks green but sat at 81.17% 3-px dot overlap with the repository's own H75 GeoTIFF (limit 70%). A scientific restriction to pixels where the new H80 physics is above its own median (junction) or 75th percentile (disequilibrium) raised the plug-in DTI from 0.101 to 0.144 and cut the overlap only to 72.20%. Nothing was published.",
+   "evidence": "evidence/h80_candidate_build.json, evidence/h80_candidate_build_ungated_stop.json, evidence/h80_final_dot_lane.json",
+   "resolution_or_action": "Reported, not waived. Breaking this wall needs a different emission geometry (e.g. the validated 2.8-3.0 px spacing instead of the greedy emitter's 4.0 px) or genuinely new physics, not a re-ranking of the same ridges. Any future candidate must clear the same audit before packaging."
+  },
+  {
+   "id": "IR-28-FOREIGN-GRID-REFERENCE",
+   "severity": "medium",
+   "status": "open",
+   "issue": "One declared registry reference, 14GEMSDOE 'GEMS_r5-geom-horse-ensemble' (owner-reported 0.0020, pinned sha256 ccbe1de0...), is not on the submission grid: its transform origin is (500000, 4500000) with the same 3730x3292 shape, versus the submission grid's (243350, 4508550). Pixel-wise comparison with it is impossible without resampling it, which would fabricate a comparison.",
+   "evidence": "evidence/h80_surface_lane.json (incomparable[]), evidence/h80_surface_cli_literal.json",
+   "resolution_or_action": "Named individually with its SHA-256 and transform in every H80 lane receipt. Consequence: check_lane_surface.py / check_lane_duplicates.py return 'UNVERIFIED - incomplete or invalid registry' for EVERY candidate, because the shared tools fail closed on a grid mismatch. Owner decision required: confirm the file was misregistered, or drop it from the declared reference set. Until then no candidate can ever be auto-cleared by the shared CLI."
   }
  ]
 }

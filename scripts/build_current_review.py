@@ -16,7 +16,12 @@ def read_json(path: str):
 
 def current_banner(prefix: str) -> str:
     repo = '' if prefix == 'docs/' else '../'
-    return f'''<!-- CURRENT-REVIEW-2026-10-28 --><aside class="current-status" aria-label="Current decision">
+    try:
+        from h81_status import banner as _h81_banner
+        h81 = _h81_banner(prefix)
+    except Exception:  # pragma: no cover - the banner must never break the build
+        h81 = ''
+    return h81 + f'''<!-- CURRENT-REVIEW-2026-10-28 --><aside class="current-status" aria-label="Current decision">
 <strong>28 OCT 2026 · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
 <span>Independent hash-pinned geometry audit rerun: at 37,654 dots, at least 82.70% must overlap the registered
 r13 halo, exceeding the strict 70% cap. H80 diagnostic screen completed and failed the same-run H35 gate.
@@ -197,7 +202,12 @@ def readme_status() -> str:
     x1_75 = h75["holdout_dti"]["experiment_1_block25km_checkerboard"]
     x2_75 = h75["holdout_dti"]["experiment_2_standard_holdout"]
     ln75 = h75["correlation_overlap_vs_registry"]
-    return f'''<!-- CURRENT-REVIEW-2026-10-27 -->
+    try:
+        from h81_status import readme_block as _h81_readme
+        h81_head = _h81_readme() + "\n"
+    except Exception:  # pragma: no cover
+        h81_head = ""
+    return h81_head + f'''<!-- CURRENT-REVIEW-2026-10-27 -->
 ## Current decision — 2026-10-27
 
 > Historical summary, not the current run: follow its linked original receipts for evaluator version, withheld counts and confidence intervals. The shared evaluator has since been corrected; no historical score was re-computed here. “Proof” in older titles is analysis, not proof of hidden-label causation.

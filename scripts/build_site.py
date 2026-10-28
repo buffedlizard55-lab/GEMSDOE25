@@ -39,6 +39,7 @@ def page(title: str, body: str, active: str, prefix: str) -> str:
     """``prefix`` is the path from the page to docs/ ('' inside docs, 'docs/' from the root)."""
     nav = [("index", "Start here", "index.html"), ("current", "Current review", "current-review.html"),
            ("exec", "Executive summary", "executive-summary.html"), ("guide", "Submission guide", "submission-guide.html"),
+           ("h81", "H81 brief", "h81-executive-brief.html"),
            ("research", "Research", "research.html"), ("sources", "Sources & audit", "sources.html")]
     links = []
     for key, label, href in nav:
