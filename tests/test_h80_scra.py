@@ -108,3 +108,34 @@ def test_fusion_nonfinite_inputs_never_silently_repair(bad):
 def test_fusion_rejects_invalid_parameters(bad):
     with pytest.raises(ValueError, match='parameters'):
         fuse_scra_poe_scores(np.ones(2), np.ones(2), np.ones(2), np.ones(2), gamma_range=bad)
+
+
+def test_h80_replay_requires_all_inputs_instead_of_silent_fallback(tmp_path):
+    from gems25.h80_scra import build_h80_sidecar
+    with pytest.raises(ValueError, match='every frozen input'):
+        build_h80_sidecar(tmp_path, tmp_path/'external')
+
+
+def test_h80_cache_invalidates_on_changed_input_bytes(tmp_path, monkeypatch):
+    import gems25.h80_scra as module
+    bands = tmp_path/'bands'
+    bands.mkdir()
+    np.save(bands/'_footprint.npy', np.ones((8, 8), bool))
+    ext = tmp_path/'external'
+    ext.mkdir()
+    for name in ('geodawn_extensions_u8.tif', 'geodawn_rad_u8.tif', 'lidar_scarp_features_u8.tif',
+                 'gdr_wellspring_in_footprint.csv'):
+        (ext/name).write_bytes(b'fake bytes for fingerprint test only')
+    calls = []
+    monkeypatch.setattr(module, 'load_base', lambda path: {})
+    def compute(base, footprint, external):
+        calls.append(True)
+        grids = {name: np.full(footprint.shape, .2, np.float32) for name in H80_NAMES}
+        return grids, np.ones(footprint.shape, np.float32), np.ones(footprint.shape, np.float32)
+    monkeypatch.setattr(module, 'compute_h80_grids', compute)
+    module.build_h80_sidecar(tmp_path, ext)
+    module.build_h80_sidecar(tmp_path, ext)
+    assert len(calls) == 1
+    (ext/'geodawn_rad_u8.tif').write_bytes(b'changed input bytes')
+    module.build_h80_sidecar(tmp_path, ext)
+    assert len(calls) == 2

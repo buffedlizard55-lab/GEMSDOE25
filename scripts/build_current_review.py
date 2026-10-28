@@ -21,7 +21,7 @@ def current_banner(prefix: str) -> str:
 <span>Independent hash-pinned geometry audit rerun: at 37,654 dots, at least 82.70% must overlap the registered
 r13 halo, exceeding the strict 70% cap. H80 diagnostic screen completed and failed the same-run H35 gate.
 No new TIFF or weekly slot. Historical downloads below are for research only. Competition score estimate: UNKNOWN.</span>
-<a href="{prefix}current-review.html#review-2026-10-28">Current audit and next steps →</a>
+<a href="{prefix}current-review.html#h80-review">Current H80 audit and next steps →</a>
 <a href="{repo}knowledge/43_session_962e5a5b_review.md">Parallel review: executive warnings and readiness receipts →</a></aside>'''
 
 

@@ -2,8 +2,38 @@
   "session": "aa5d1b5b",
   "scope": "One negative H80 research screen; no new TIFF or weekly slot; requested competition artifact not delivered",
   "passes": [
-    {"pass": 1, "status": "completed", "work": "Restored pinned inputs/cache; preregistered and corrected literal protocol before fit; executed blocked factorial screen with shared metric/split/emission/canaries and same-run comparators."},
-    {"pass": 2, "status": "completed", "work": "Found incorrect layer semantics and quantized-proxy interpretation; withdrew scientific claims/confirmations. Retired unsafe PR70 publisher, checked full inventory and wrong transform, added finite-fusion guards and regression tests."},
-    {"pass": 3, "status": "in progress", "work": "Reconcile executive pages, README, exact raw metrics/source hashes, no-go run card and unmet artifact requirement; test complete tree and merge only after checks."}
+    {
+      "pass": 1,
+      "status": "completed",
+      "work": "Restored pinned inputs/cache; preregistered and corrected literal protocol before fit; executed blocked factorial screen with shared metric/split/emission/canaries and same-run comparators."
+    },
+    {
+      "pass": 2,
+      "status": "completed",
+      "work": "Found incorrect layer semantics and quantized-proxy interpretation; withdrew scientific claims/confirmations. Retired unsafe PR70 publisher, checked full inventory and wrong transform, added finite-fusion guards and regression tests."
+    },
+    {
+      "pass": 3,
+      "status": "completed",
+      "work": "Reconciled concurrent PR72; recomputed all raw summaries and source hashes; 526 restored-data tests pass; 513 pass and 13 expected skips under empty-data CI; Ruff/compile/JS/diff checks pass; 421 local HTML links/fragments and preview HTTP200 pass. No new TIFF or slot, unknown leaderboard estimate explicitly retained."
+    }
+  ],
+  "verification": {
+    "restored_data_tests_passed": 526,
+    "empty_data_tests_passed": 513,
+    "empty_data_tests_skipped": 13,
+    "ruff": "passed",
+    "python_compile": "passed",
+    "javascript_syntax": "passed",
+    "git_diff_check": "passed",
+    "static_pages": 9,
+    "local_links_and_fragments": 421,
+    "preview_http": 200
+  },
+  "all_original_requirements_satisfied": false,
+  "unfulfilled_requirements": [
+    "No gate-cleared unique competition TIFF or defensible leaderboard score estimate.",
+    "No organizer-authenticated template, current competition status, score receipt or weekly cap.",
+    "Eight sibling sites not edited/deployed; full named-portfolio novelty remains unverified."
   ]
 }

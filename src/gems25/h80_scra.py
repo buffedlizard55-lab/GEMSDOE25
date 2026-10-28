@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import csv
 import gc
+import hashlib
 import json
 from pathlib import Path
 
@@ -365,13 +366,29 @@ def build_h80_sidecar(
     cov_npy = work / "h80_scra_cover.npy"
     meta_json = work / "h80_scra_sidecar.json"
 
+    required = [external_dir / n for n in (
+        "geodawn_extensions_u8.tif", "geodawn_rad_u8.tif", "lidar_scarp_features_u8.tif",
+        "gdr_wellspring_in_footprint.csv")]
+    required += sorted((work / "bands").glob("*.npy"))
+    required += [Path(__file__), Path(__file__).with_name("features.py"),
+                 Path(__file__).with_name("h74_rmps.py"), Path(__file__).with_name("h79_cthm.py")]
+    fingerprint = {}
+    for path in required:
+        if not path.is_file():
+            raise ValueError(f"H80 replay requires every frozen input: {path}")
+        digest = hashlib.sha256()
+        with path.open("rb") as stream:
+            for chunk in iter(lambda: stream.read(1 << 20), b""):
+                digest.update(chunk)
+        fingerprint[str(path.resolve())] = digest.hexdigest()
+
     foot = np.load(work / "bands" / "_footprint.npy")
     fi = np.flatnonzero(foot.ravel())
     n_foot = int(fi.size)
 
     if not force and feat_npy.is_file() and cov_npy.is_file() and meta_json.is_file():
         meta = json.loads(meta_json.read_text())
-        if meta.get("names") == H80_NAMES and meta.get("n_foot") == n_foot:
+        if meta.get("names") == H80_NAMES and meta.get("n_foot") == n_foot and meta.get("input_code_sha256") == fingerprint:
             feat_mm = np.load(feat_npy, mmap_mode="r")
             cov_mm = np.load(cov_npy, mmap_mode="r")
             if feat_mm.shape == (len(H80_NAMES), n_foot) and cov_mm.shape == (2, n_foot):
@@ -399,6 +416,7 @@ def build_h80_sidecar(
                 names=H80_NAMES,
                 cover_names=["c_cover", "w_regime"],
                 n_foot=n_foot,
+                input_code_sha256=fingerprint,
                 scra_primary_params=SCRA_PRIMARY_PARAMS,
                 scra_deep_params=SCRA_DEEP_PARAMS,
             ),
