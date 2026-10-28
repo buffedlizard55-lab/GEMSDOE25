@@ -66,15 +66,16 @@ def test_no_unpublished_candidate_is_registered_or_shipped():
     assert not list((ROOT / "docs" / "downloads").glob("*h81*")), "no H81 bytes may appear in docs/downloads"
 
 
-def test_brief_states_the_negative_outcome_and_estimates_without_claiming_a_score():
+def test_brief_retracts_unsupported_score_bands_and_does_not_promote_a_download():
     page = (ROOT / "docs" / "h81-executive-brief.html").read_text()
-    assert "No new unique file this session" in page
-    assert "NOVELTY: FAIL" in page
-    assert "ESTIMATED SCORE" in page
-    assert "not a score" in page.lower()
+    assert "H81 NEGATIVE" in page
+    assert "NEW-SUBMISSION SCORE: NOT ESTIMATED" in page
+    assert "0.2250–0.2250" not in page
+    assert "0.2708–0.2778" not in page
+    assert "There is no approved TIFF to download" in page
     assert "OK TO SUBMIT: YES" not in page
-    assert "ORGANIZER-CONFIRMED" in page
-    assert "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif" in page
+    assert "OWNER-REPORTED" in page
+    assert "h81_exp3/summary.json" in page
     for href in re.findall(r'(?:href|src)="([^"#?]+)"', page):
         parts = urlsplit(href)
         if parts.scheme or parts.netloc:
