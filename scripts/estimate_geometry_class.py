@@ -17,7 +17,7 @@ Two *different* estimates are produced and never conflated:
 Everything is computed from restored, SHA-256-pinned bytes in this run.
 
     python scripts/estimate_geometry_class.py docs/downloads/<file>.tif \
-        --json evidence/h80_score_estimate.json
+        --json evidence/h81_score_estimate.json
 """
 from __future__ import annotations
 

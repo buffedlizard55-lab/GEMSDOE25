@@ -16,11 +16,11 @@ def read_json(path: str):
 
 def current_banner(prefix: str) -> str:
     try:
-        from h80_status import banner as _h80_banner
-        h80 = _h80_banner(prefix)
+        from h81_status import banner as _h81_banner
+        h81 = _h81_banner(prefix)
     except Exception:  # pragma: no cover - banner must never break the build
-        h80 = ''
-    return h80 + f'''<!-- CURRENT-REVIEW-2026-10-28 --><aside class="current-status" aria-label="Current decision">
+        h81 = ''
+    return h81 + f'''<!-- CURRENT-REVIEW-2026-10-28 --><aside class="current-status" aria-label="Current decision">
 <strong>28 OCT 2026 · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
 <span>Independent hash-pinned geometry audit rerun: at 37,654 dots, at least 82.70% must overlap the registered
 r13 halo, exceeding the strict 70% cap. No assigned single-method lane was supplied; no new fitting experiment,
@@ -201,11 +201,11 @@ def readme_status() -> str:
     x2_75 = h75["holdout_dti"]["experiment_2_standard_holdout"]
     ln75 = h75["correlation_overlap_vs_registry"]
     try:
-        from h80_status import readme_block as _h80_readme
-        h80_head = _h80_readme() + "\n"
+        from h81_status import readme_block as _h81_readme
+        h81_head = _h81_readme() + "\n"
     except Exception:  # pragma: no cover
-        h80_head = ""
-    return h80_head + f'''<!-- CURRENT-REVIEW-2026-10-27 -->
+        h81_head = ""
+    return h81_head + f'''<!-- CURRENT-REVIEW-2026-10-27 -->
 ## Current decision — 2026-10-27
 
 **Research-archive download: YES (inspection/testing only) · Competition-ready TIF: NO · OK TO SUBMIT: NO · weekly slot: NO — DO NOT SUBMIT.**

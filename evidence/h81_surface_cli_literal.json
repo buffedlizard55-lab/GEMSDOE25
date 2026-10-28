@@ -1,0 +1,120 @@
+{
+  "rank_footprint_pixels": 5167373,
+  "rho_max": 0.9,
+  "registry_inventory": {
+    "declared_hashes": 117,
+    "available_files": 122,
+    "registry_manifest_sha256": "2680df0e2d8100e25428fd3ee2b258e136287c492930808cd7232b5846125917",
+    "missing_sha256": [],
+    "complete": true,
+    "scope": "declared pinned registry only; not every submission on every site"
+  },
+  "registry_manifest_sha256": "2680df0e2d8100e25428fd3ee2b258e136287c492930808cd7232b5846125917",
+  "registry_checked": 15,
+  "registry_complete": false,
+  "errors": [
+    {
+      "file": "geom-horse-ensemble.tif",
+      "error": "single-band grid/CRS/transform mismatch: /home/user/.cache/gems_data/artifacts/geom-horse-ensemble.tif"
+    }
+  ],
+  "flagged": [],
+  "rows": [
+    {
+      "spearman_surface": -0.0001011860946217715,
+      "flag_rank": false,
+      "reason": "clear",
+      "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
+    },
+    {
+      "spearman_surface": 0.1249132182476841,
+      "flag_rank": false,
+      "reason": "clear",
+      "file": "8GEMSDOE_Hedge-v2_submission.tif"
+    },
+    {
+      "spearman_surface": 0.11143508937464536,
+      "flag_rank": false,
+      "reason": "clear",
+      "file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif"
+    },
+    {
+      "spearman_surface": 0.06433192781126258,
+      "flag_rank": false,
+      "reason": "clear",
+      "file": "gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif"
+    },
+    {
+      "spearman_surface": 0.12101586609957843,
+      "flag_rank": false,
+      "reason": "clear",
+      "file": "gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif"
+    },
+    {
+      "spearman_surface": 0.12023548677619153,
+      "flag_rank": false,
+      "reason": "clear",
+      "file": "gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif"
+    },
+    {
+      "spearman_surface": 0.11969059410017904,
+      "flag_rank": false,
+      "reason": "clear",
+      "file": "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif"
+    },
+    {
+      "spearman_surface": 0.08044819135628113,
+      "flag_rank": false,
+      "reason": "clear",
+      "file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif"
+    },
+    {
+      "spearman_surface": 0.06768678646434834,
+      "flag_rank": false,
+      "reason": "clear",
+      "file": "gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif"
+    },
+    {
+      "spearman_surface": 0.11590827564419699,
+      "flag_rank": false,
+      "reason": "clear",
+      "file": "gemsdoe-ens12-adopted-7f00890a.tif"
+    },
+    {
+      "spearman_surface": 0.006325548560488427,
+      "flag_rank": false,
+      "reason": "clear",
+      "file": "gemsdoe9-PLACEHOLDER-2314b599.tif"
+    },
+    {
+      "spearman_surface": 0.012991937417639834,
+      "flag_rank": false,
+      "reason": "clear",
+      "file": "conj-alteration-mag.tif"
+    },
+    {
+      "spearman_surface": 0.12431228591109761,
+      "flag_rank": false,
+      "reason": "clear",
+      "file": "dual-family-union.tif"
+    },
+    {
+      "spearman_surface": 0.09764659393684216,
+      "flag_rank": false,
+      "reason": "clear",
+      "file": "f-ensemble-2pct.tif"
+    },
+    {
+      "spearman_surface": 0.08253911951700381,
+      "flag_rank": false,
+      "reason": "clear",
+      "file": "gems4-combined.tif"
+    }
+  ],
+  "surface_clear": false,
+  "verdict": "UNVERIFIED - incomplete or invalid registry; stop",
+  "note": "Full-footprint ranks can have ties; constant ranks cannot prove uniqueness. This does not check final dots.",
+  "scores": "/home/user/.cache/gems_data/work/h81_junction_oof_scores.npy",
+  "scores_sha256": "729e66b3e01c8a43b54fe46904bc16ef90d53020098f07b2e88eed974ef2a3fe",
+  "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+}

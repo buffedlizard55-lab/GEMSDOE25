@@ -1,0 +1,40 @@
+{
+ "session": "H81 2026-10-28",
+ "generated_utc": "2026-10-28T18:22:40Z",
+ "pass_1_implement_and_verify": {
+  "scope": "Pre-register, implement six operators, build the sidecar, run 2 of the 3 pre-registered experiments, build and validate a candidate GeoTIFF",
+  "checks": [
+   "`pytest tests/test_h81_fhj.py` 8 passed (junction vs planar step, relay tips, exact Aitchison moisture invariance, N\u22480 vs dipole exponent, forbidden label column, real-data sidecar range)",
+   "Every one of 97 columns canaried in every cell of both executed experiments (16 cells, 1,552 single-feature evaluations); all \u2264 0.90 (worst E_dist 0.8206 on the standard instrument, B_slope_grad 0.6419 on the checkerboard; H81-only max 0.5829)",
+   "Format: exact-file validator + independent rasterio audit on the staged bytes \u2014 0 NaN in 12,279,160 cells, 0 positives on the masked catalogue",
+   "Lane: pre-placement surface audit + per-raster final-dot audit",
+   "`ruff` and `compileall` clean",
+   "Final-dot lane audit stopped the build: 81.17% own-lineage overlap, 72.20% after the H81 physics gate (limit 70%) -> nothing published"
+  ]
+ },
+ "pass_2_bugs_and_edge_cases": {
+  "scope": "Hunt wrong assumptions",
+  "findings": [
+   "The calibrated pi-model under-predicts catalogue-hygienic emissions (B2: 0.0376 vs 0.2778). Detected by running the estimator on B2 before using it; the estimate band therefore uses geometry-matched owner-reported anchors and the model value is reported as a scoped diagnostic only.",
+   "The literal 70% rule is geometrically unachievable against `r13-lattice-s5` at 37,654 dots (82.70% floor). Attempting to satisfy it by stuffing dots into the uncovered footprint fringe would be lane evasion, so the boundary fringe was explicitly not used and the failure is reported.",
+   "`run_h79_experiments.py`'s 93-column union does not include H81; a 97-column union was added in the H81 runner rather than mutating the shared harness, so the H79 evidence stays reproducible."
+  ]
+ },
+ "pass_3_reread_brief": {
+  "scope": "Re-read the owner brief line by line",
+  "findings": [
+   "Executive summary with a per-site table (file / estimated score / uniqueness) \u2192 docs/h81-executive-brief.html \u00a76.",
+   "An obvious download and an obvious submit verdict \u2192 brief hero, four status tiles, \u00a71 and \u00a77.",
+   "No manual step left to a human: every gate is computed and stored as JSON; the brief is generated from it.",
+   "Every number is labelled EMPIRICAL ESTIMATE / HOLDOUT-DTI / OWNER-REPORTED; no projection is written as a score.",
+   "Negative and unresolved results are kept as deliverables (lane duplicate, G1 failure, model-scope failure, Experiment 2 not run).",
+   "The owner asked for an obvious download and verdict: with novelty failing, the brief states plainly that no new file is eligible and points at the best existing file rather than dressing up a duplicate."
+  ]
+ },
+ "residual_limitations": [
+  "No organizer receipt for any score; 0.2778 / 0.3195 / 0.4413 remain owner-reported.",
+  "The holdout withholds catalogue faults, not the hidden test faults; proxy\u2013live rank correlation +0.33 (n.s.).",
+  "Two pre-registered hypotheses (drainage-routing with the full 1-m DEM mosaic, InSAR \u00d7 3-D MT) need external hosts that this sandbox cannot reach and were not run.",
+  "Only GEMSDOE25 is changed; the eight sibling sites are not redeployed."
+ ]
+}

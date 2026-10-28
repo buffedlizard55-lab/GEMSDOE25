@@ -1,0 +1,154 @@
+[
+ {
+  "fold": 0,
+  "fold_name": "block_parity_00",
+  "draw": 142,
+  "n_columns": 97,
+  "worst_column": "B_slope_grad",
+  "worst_canary_auc": 0.597437,
+  "worst_h81_column": "H81_bimodal_junction_det",
+  "worst_h81_canary_auc": 0.557118,
+  "h81_canaries": {
+   "H81_bimodal_junction_det": 0.557118,
+   "H81_relay_tip_divergence": 0.532652,
+   "H81_cation_silica_diseq": 0.515227,
+   "H81_cospectral_theta_basin": 0.510731,
+   "H81_aitchison_clr_jump": 0.50778,
+   "H81_sluth_fault_index": 0.516833
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 0,
+  "fold_name": "block_parity_00",
+  "draw": 143,
+  "n_columns": 97,
+  "worst_column": "B_slope_grad",
+  "worst_canary_auc": 0.597437,
+  "worst_h81_column": "H81_bimodal_junction_det",
+  "worst_h81_canary_auc": 0.557118,
+  "h81_canaries": {
+   "H81_bimodal_junction_det": 0.557118,
+   "H81_relay_tip_divergence": 0.532652,
+   "H81_cation_silica_diseq": 0.515227,
+   "H81_cospectral_theta_basin": 0.510731,
+   "H81_aitchison_clr_jump": 0.50778,
+   "H81_sluth_fault_index": 0.516833
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 1,
+  "fold_name": "block_parity_01",
+  "draw": 142,
+  "n_columns": 97,
+  "worst_column": "B_slope_grad",
+  "worst_canary_auc": 0.606233,
+  "worst_h81_column": "H81_relay_tip_divergence",
+  "worst_h81_canary_auc": 0.555304,
+  "h81_canaries": {
+   "H81_bimodal_junction_det": 0.554258,
+   "H81_relay_tip_divergence": 0.555304,
+   "H81_cation_silica_diseq": 0.54298,
+   "H81_cospectral_theta_basin": 0.523057,
+   "H81_aitchison_clr_jump": 0.505817,
+   "H81_sluth_fault_index": 0.534121
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 1,
+  "fold_name": "block_parity_01",
+  "draw": 143,
+  "n_columns": 97,
+  "worst_column": "B_slope_grad",
+  "worst_canary_auc": 0.606233,
+  "worst_h81_column": "H81_relay_tip_divergence",
+  "worst_h81_canary_auc": 0.555304,
+  "h81_canaries": {
+   "H81_bimodal_junction_det": 0.554258,
+   "H81_relay_tip_divergence": 0.555304,
+   "H81_cation_silica_diseq": 0.54298,
+   "H81_cospectral_theta_basin": 0.523057,
+   "H81_aitchison_clr_jump": 0.505817,
+   "H81_sluth_fault_index": 0.534121
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 2,
+  "fold_name": "block_parity_10",
+  "draw": 142,
+  "n_columns": 97,
+  "worst_column": "B_slope_grad",
+  "worst_canary_auc": 0.641888,
+  "worst_h81_column": "H81_bimodal_junction_det",
+  "worst_h81_canary_auc": 0.548676,
+  "h81_canaries": {
+   "H81_bimodal_junction_det": 0.548676,
+   "H81_relay_tip_divergence": 0.544277,
+   "H81_cation_silica_diseq": 0.509809,
+   "H81_cospectral_theta_basin": 0.52022,
+   "H81_aitchison_clr_jump": 0.504263,
+   "H81_sluth_fault_index": 0.54138
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 2,
+  "fold_name": "block_parity_10",
+  "draw": 143,
+  "n_columns": 97,
+  "worst_column": "B_slope_grad",
+  "worst_canary_auc": 0.641888,
+  "worst_h81_column": "H81_bimodal_junction_det",
+  "worst_h81_canary_auc": 0.548676,
+  "h81_canaries": {
+   "H81_bimodal_junction_det": 0.548676,
+   "H81_relay_tip_divergence": 0.544277,
+   "H81_cation_silica_diseq": 0.509809,
+   "H81_cospectral_theta_basin": 0.52022,
+   "H81_aitchison_clr_jump": 0.504263,
+   "H81_sluth_fault_index": 0.54138
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 3,
+  "fold_name": "block_parity_11",
+  "draw": 142,
+  "n_columns": 97,
+  "worst_column": "E_dens20",
+  "worst_canary_auc": 0.618926,
+  "worst_h81_column": "H81_bimodal_junction_det",
+  "worst_h81_canary_auc": 0.539733,
+  "h81_canaries": {
+   "H81_bimodal_junction_det": 0.539733,
+   "H81_relay_tip_divergence": 0.537475,
+   "H81_cation_silica_diseq": 0.516544,
+   "H81_cospectral_theta_basin": 0.505953,
+   "H81_aitchison_clr_jump": 0.502476,
+   "H81_sluth_fault_index": 0.51714
+  },
+  "all_passed": true
+ },
+ {
+  "fold": 3,
+  "fold_name": "block_parity_11",
+  "draw": 143,
+  "n_columns": 97,
+  "worst_column": "E_dens20",
+  "worst_canary_auc": 0.619502,
+  "worst_h81_column": "H81_bimodal_junction_det",
+  "worst_h81_canary_auc": 0.539733,
+  "h81_canaries": {
+   "H81_bimodal_junction_det": 0.539733,
+   "H81_relay_tip_divergence": 0.537475,
+   "H81_cation_silica_diseq": 0.516544,
+   "H81_cospectral_theta_basin": 0.505953,
+   "H81_aitchison_clr_jump": 0.502476,
+   "H81_sluth_fault_index": 0.51714
+  },
+  "all_passed": true
+ }
+]

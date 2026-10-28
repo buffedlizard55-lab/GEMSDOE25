@@ -1,26 +1,26 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
-## H80 (28 October 2026) — junction-corridor experiment, and the honest stop
+## H81 (28 October 2026) — junction-corridor experiment, and the honest stop
 
 **No new submission file exists from this session, and that is the result, not an omission.**
 
 * **What blocked it:** the finished candidate was a lane duplicate of the repository's own H75 GeoTIFF at
-  **72.20%** 3-px dot overlap (limit 70%). A *scientific* restriction to pixels the new H80
+  **72.20%** 3-px dot overlap (limit 70%). A *scientific* restriction to pixels the new H81
   physics supports (junction invariant above its footprint median, or cation–silica disequilibrium above its 75th percentile)
   cut that to **72.20%**, still above the limit. In this footprint every well-performing
   physics surface ranks the same ridges. Filed as `IR-28-EMISSION-CONVERGENCE`.
 * **What was measured** (HOLDOUT-DTI, `gems25.metric.dti_binary`, α=0.2 β=0.8 R=300 m, virgin draws 140–143, every one of
-  97 columns canaried ≤0.90): H80 physics beats the physics-only control by +0.023628 DTI (95% CI [+0.01952, +0.02752], 4/4 folds) on the standard holdout and
+  97 columns canaried ≤0.90): H81 physics beats the physics-only control by +0.023628 DTI (95% CI [+0.01952, +0.02752], 4/4 folds) on the standard holdout and
   +0.024892 DTI (95% CI [+0.01959, +0.02890], 4/4 folds) on the 25-km full-checkerboard `BlockHoldout` — but loses to the plain blind-ABCD stack by -0.010317 DTI (95% CI [-0.01244, -0.00695], 0/4 folds),
   and never beats `CTRL_H35`. So the new physics is real but not yet better than the best blind stack.
 * **Best file to download and consider submitting:** the existing
   [`gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif`](docs/downloads/gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif)
   (format-valid, 0 NaN, unique vs every non-space-filling raster in the registry). Estimated band for any B2-geometry emission:
   **0.2250–0.2250** (EMPIRICAL from owner-reported anchors, not a score). Its own competition score is UNKNOWN.
-* **Read:** [docs/h80-executive-brief.html](docs/h80-executive-brief.html) · pre-registration
-  [knowledge/44](knowledge/44_preregistered_h80_fhj_sd_2026-10-28.md) · lane receipt
-  [evidence/h80_final_dot_lane.json](evidence/h80_final_dot_lane.json) · run card
-  [registry/run_card_h80_2026-10-28.json](registry/run_card_h80_2026-10-28.json).
+* **Read:** [docs/h81-executive-brief.html](docs/h81-executive-brief.html) · pre-registration
+  [knowledge/44](knowledge/44_preregistered_h81_fhj_sd_2026-10-28.md) · lane receipt
+  [evidence/h81_final_dot_lane.json](evidence/h81_final_dot_lane.json) · run card
+  [registry/run_card_h81_2026-10-28.json](registry/run_card_h81_2026-10-28.json).
 
 <!-- CURRENT-REVIEW-2026-10-27 -->
 ## Current decision — 2026-10-27
