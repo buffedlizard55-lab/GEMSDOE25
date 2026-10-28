@@ -11,6 +11,10 @@ import re
 
 def assess_readiness(evidence: dict) -> dict:
     """Missing, malformed, stale, or failing evidence blocks selector eligibility."""
+    if not isinstance(evidence, dict):
+        return dict(selector_eligible=False, okay_to_submit=False,
+                    failures=['evidence must be an object'], decision='DO_NOT_SUBMIT',
+                    scope='Receipt consistency only; no slot authorization.')
     failures = []
 
     def require(condition, reason):
@@ -36,7 +40,7 @@ def assess_readiness(evidence: dict) -> dict:
         require(section.get('raster_sha256') == digest and digest is not None, f'{name}: raster identity mismatch')
         if name == 'format':
             for key in ('no_nan_inside', 'values_in_range', 'crs_match', 'shape_match', 'transform_match',
-                        'single_band', 'catalogue_mask_exact'):
+                        'single_band', 'catalogue_mask_exact', 'whole_array_finite_in_0_1'):
                 require(section.get(key) is True, f'format: {key}')
         elif name in ('surface', 'dots'):
             require(section.get('registry_complete') is True, f'{name}: registry incomplete')
@@ -56,6 +60,11 @@ def assess_readiness(evidence: dict) -> dict:
                 require(section.get(key) is True, f'holdout: {key}')
             require(section.get('alpha') == .2 and section.get('beta') == .8
                     and section.get('kernel_m') == 300 and section.get('kernel') == 'triangular', 'holdout: metric mismatch')
+            absolute_ci = section.get('dti_ci95')
+            valid_absolute_ci = (isinstance(absolute_ci, list) and len(absolute_ci) == 2
+                                 and all(finite(v) for v in absolute_ci))
+            require(valid_absolute_ci and 0 <= absolute_ci[0] <= absolute_ci[1] <= 1,
+                    'holdout: missing or invalid absolute DTI 95% CI')
             ci = section.get('paired_delta_ci95')
             valid_ci = isinstance(ci, list) and len(ci) == 2 and all(finite(v) for v in ci)
             require(valid_ci and 0 < ci[0] <= ci[1] <= 1, 'holdout: improvement not established')

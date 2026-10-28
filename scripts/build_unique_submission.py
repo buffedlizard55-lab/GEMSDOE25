@@ -24,7 +24,6 @@ Lane result by construction: 0% of dots within 3 px of ANY registry raster
 from __future__ import annotations
 
 import datetime as dt
-import hashlib
 import json
 import sys
 from pathlib import Path
@@ -59,7 +58,6 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     with rasterio.open(TEMPLATE) as s:
         tmpl = s.read(1)
-        profile = s.profile.copy()
     foot = np.isfinite(tmpl)
 
     with rasterio.open(LABELS) as s:

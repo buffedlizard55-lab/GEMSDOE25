@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-27T21:13:46.622208+00:00",
+  "generated_utc": "2026-10-28T16:09:17.443267+00:00",
   "evidence_class": "COMPUTED local format and footprint identity only",
   "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
   "files": [
@@ -71,7 +71,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -177,7 +177,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -283,7 +283,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -389,7 +389,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -495,7 +495,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -599,7 +599,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -705,7 +705,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -811,7 +811,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -917,7 +917,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -1023,7 +1023,111 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
+            "hard": true
+          },
+          "nan_mask_identical_to_template": {
+            "pass_": true,
+            "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+            "hard": true
+          },
+          "nodata_tag": {
+            "pass_": true,
+            "detail": "nodata=nan",
+            "hard": false
+          },
+          "variant_nan_aware_whole_array": {
+            "pass_": true,
+            "detail": "finite range over the whole array; infinity rejected",
+            "hard": true
+          },
+          "variant_masked_read": {
+            "pass_": true,
+            "detail": "rasterio masked read; empty data rejected",
+            "hard": true
+          },
+          "variant_strict_whole_array_no_nan": {
+            "pass_": false,
+            "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+            "hard": false
+          },
+          "profile_matches_template": {
+            "pass_": true,
+            "detail": "compress=lzw (template lzw)",
+            "hard": false
+          }
+        }
+      },
+      "identical_footprint_files": []
+    },
+    {
+      "file": "gems25-gems25-unique-latticegap-geothermal-20261028-20261028-aa0104874adb-nan.tif",
+      "sha256": "79597e464fcf1d5f884f01c017597bd7facf13ca7def2b98dd5a72241bc69a82",
+      "footprint_sha256": "58763d70b35437c5ca5223905e0027292daaede09bddc490c1bd9843f95021b7",
+      "format_valid": true,
+      "okay_to_submit": false,
+      "estimated_leaderboard_score": null,
+      "novelty": "UNPROVEN: full registry surface and final-dot checks required",
+      "validator": {
+        "file": "gems25-gems25-unique-latticegap-geothermal-20261028-20261028-aa0104874adb-nan.tif",
+        "bytes": 1539050,
+        "sha256": "79597e464fcf1d5f884f01c017597bd7facf13ca7def2b98dd5a72241bc69a82",
+        "ok_to_upload": true,
+        "format_valid": true,
+        "authorization_note": "ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval",
+        "hard_failures": [],
+        "official_nan_outside": true,
+        "positive_pixels": 6430,
+        "footprint_pixels": 5167373,
+        "checks": {
+          "template_matches_expected_grid_and_footprint": {
+            "pass_": true,
+            "detail": "(3730, 3292), footprint 5,167,373 px",
+            "hard": true
+          },
+          "single_band": {
+            "pass_": true,
+            "detail": "count=1",
+            "hard": true
+          },
+          "dtype_float32": {
+            "pass_": true,
+            "detail": "dtypes=('float32',)",
+            "hard": true
+          },
+          "crs_epsg_32611": {
+            "pass_": true,
+            "detail": "32611",
+            "hard": true
+          },
+          "shape_matches_template": {
+            "pass_": true,
+            "detail": "(3730, 3292) vs (3730, 3292)",
+            "hard": true
+          },
+          "geotransform_matches_template": {
+            "pass_": true,
+            "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+            "hard": true
+          },
+          "footprint_all_finite": {
+            "pass_": true,
+            "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+            "hard": true
+          },
+          "footprint_values_in_0_1": {
+            "pass_": true,
+            "detail": "min=0.0 max=1.0",
+            "hard": true
+          },
+          "outside_footprint_is_nan_official": {
+            "pass_": true,
+            "detail": "7,111,787/7,111,787 NaN",
+            "hard": false
+          },
+          "outside_footprint_is_nan_or_zero": {
+            "pass_": true,
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -1127,7 +1231,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -1233,7 +1337,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -1339,7 +1443,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -1445,7 +1549,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -1551,7 +1655,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -1657,7 +1761,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -1763,7 +1867,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -1869,7 +1973,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -1975,7 +2079,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -2081,7 +2185,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -2187,7 +2291,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -2293,7 +2397,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -2399,7 +2503,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -2505,7 +2609,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -2611,7 +2715,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -2717,7 +2821,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -2823,7 +2927,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -2929,7 +3033,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -3035,7 +3139,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -3141,7 +3245,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -3247,7 +3351,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -3353,7 +3457,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -3459,7 +3563,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -3565,7 +3669,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -3671,7 +3775,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -3777,7 +3881,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -3883,7 +3987,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -3989,7 +4093,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -4095,7 +4199,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -4201,7 +4305,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -4307,7 +4411,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -4413,7 +4517,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -4519,7 +4623,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -4625,7 +4729,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -4731,7 +4835,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -4837,7 +4941,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -4943,7 +5047,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -5049,7 +5153,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -5155,7 +5259,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -5261,7 +5365,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -5367,7 +5471,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -5476,7 +5580,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -5582,7 +5686,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -5688,7 +5792,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -5794,7 +5898,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -5900,7 +6004,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -6006,7 +6110,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -6112,7 +6216,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {
@@ -6218,7 +6322,7 @@
           },
           "outside_footprint_is_nan_or_zero": {
             "pass_": true,
-            "detail": "NaN (official) or 0 (fallback) outside",
+            "detail": "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed",
             "hard": true
           },
           "nan_mask_identical_to_template": {

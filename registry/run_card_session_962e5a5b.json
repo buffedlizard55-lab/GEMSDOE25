@@ -1,0 +1,37 @@
+{
+  "session": "962e5a5b",
+  "hypothesis": "No assigned single-method lane; audit existing eligibility before scientific implementation",
+  "mechanism": "Restore pinned inputs and rerun shared geometric capacity audit; tighten shared readiness evidence gates",
+  "mimicking_non_fault_process": "Lithological contacts and depositional sorting can mimic the queued magnetic/radiometric signatures; not tested",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "value": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "ci95": null,
+    "status": "NOT RUN"
+  },
+  "correlation_overlap_vs_registry": {
+    "rank_correlation": null,
+    "final_dot_overlap": null,
+    "capacity_evidence": "evidence/session_962e5a5b_lane_capacity.json",
+    "minimum_overlap_at_37654_dots": 0.8270037711796887,
+    "scope": "COMPUTED GEOMETRY, not a candidate measurement or full registry clearance"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_raster": null,
+    "archives_checked": 60,
+    "local_format_passes": 60,
+    "no_nan_inside": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "note": "No new raster; archive checks do not authorize selector eligibility",
+    "evidence": "evidence/session_962e5a5b_download_audit.json"
+  },
+  "submission": {
+    "name": null,
+    "note": "Negative readiness audit; no new raster, no calibrated estimate, no assigned lane, no slot used."
+  },
+  "verdict": "negative"
+}

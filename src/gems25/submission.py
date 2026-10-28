@@ -48,7 +48,7 @@ def write_submission(pred, template_path, out_path, *, outside: str = "nan") -> 
 
     Inside the template footprint the prediction must be finite and within [0, 1] (nothing is silently
     clipped or filled). Outside it the pixels are NaN or 0.0 (``outside='zero'``, a separately-labelled
-    fallback). Both conventions can be checked locally; no organizer acceptance of either file is asserted.
+    alternative). Both conventions can be checked locally; no organizer acceptance of either file is asserted.
     """
     if outside not in ("nan", "zero"):
         raise ValueError("outside must be 'nan' or 'zero'")
@@ -119,7 +119,7 @@ def check_file(path: Path | str, template_path: Path | str) -> dict:
         rng = bool(fin.any() and np.nanmin(inside) >= 0.0 and np.nanmax(inside) <= 1.0)
         add("footprint_values_in_0_1", rng, f"min={np.nanmin(inside) if fin.any() else None} max={np.nanmax(inside) if fin.any() else None}")
         add("outside_footprint_is_nan_official", bool(np.isnan(outside).all()), f"{int(np.isnan(outside).sum()):,}/{outside.size:,} NaN", hard=False)
-        add("outside_footprint_is_nan_or_zero", bool((np.isnan(outside) | (outside == 0)).all()), "NaN (official) or 0 (fallback) outside", hard=True)
+        add("outside_footprint_is_nan_or_zero", bool((np.isnan(outside) | (outside == 0)).all()), "NaN or 0 outside owner-mirror footprint; organizer acceptance unconfirmed", hard=True)
         add("nan_mask_identical_to_template", bool((np.isnan(arr) == ~foot).all()) or bool(np.isfinite(arr).all()),
             "NaN pixels exactly equal the template's NaN pixels (or none at all)", hard=True)
     else:
