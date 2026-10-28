@@ -1,26 +1,27 @@
-<!-- SESSION-962e5a5b-REVIEW -->
-## Latest verification — 28 October 2026
-
-**DO NOT SUBMIT.** No new lane-cleared TIFF or calibrated competition score estimate was produced.
-[Three-pass review and remaining blockers](knowledge/43_session_962e5a5b_review.md).
-The executive summary was regenerated to restore no-go warnings and remove a broken ZIP link.
-Readiness now requires an absolute HOLDOUT-DTI 95% CI and a whole-array finite/[0,1] receipt.
-Current owner requirements: unique scientific output, exact-file validation, nine-site comparison, feature-alone canaries,
-paired buffered-segment holdout, full-registry surface/dot checks, three experiments/two hours maximum,
-and separate selector approval. No specific method lane is identifiable in the supplied prompt.
-The full standing owner brief remains below; this paragraph is an operational digest, not a verbatim transcript.
-
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
-## Latest audit — 2026-10-28 (read first)
+## Latest result — H80 blocked factorial screen, 28 October 2026
 
-**OK TO SUBMIT: NO. No new TIF or training experiment this session.** The requested unique high-performing submission remains unfulfilled.
-The [independently rerun pinned geometry audit](evidence/lane_feasibility_2026-10-28.json) finds only 6,514 eligible pixels outside r13's 3-pixel halo: at 37,654 dots, at least 82.70% overlap is unavoidable. The one-reference maximum not ruled out is 21,713 dots, **not** a performance recommendation. No explicit single-method lane is identifiable in the current prompt.
+**OK TO SUBMIT: NO — DO NOT SUBMIT.** No new TIFF, calibrated competition estimate or weekly slot.
+HOLDOUT-DTI **0.08744**, 95% CI [0.06204, 0.10615],
+26,367 withheld-positive occurrences vs same-run H35 0.12165;
+paired gain -0.03421 (95% CI [-0.05209, -0.01936]).
+Shared buffered 25-km tile-sampled component holdout, four quadrant clusters, draws 140–141;
+alpha .2, beta .8, 300 m triangular kernel. All 792 feature/regime canaries pass.
+This is a local catalogue-gap proxy, not an organizer score. One screen completed; experiments 2–3 withdrawn.
 
-[Executive summary and nine-site historical download table](docs/executive-summary.html) · [four planning hypotheses](knowledge/41_session_plan_2026-10-28.md) · [outcome, official links, limitations and next steps](knowledge/42_review_outcome_2026-10-28.md).
-Historical results remain OWNER-REPORTED; estimated new-file competition scores are UNKNOWN. No organizer receipt or current leaderboard was verified.
+Data placement and the shared cache were restored successfully here; GPU training is not required for this diagnostic.
+Scientific interpretation warning: mirrored `tc` is a magnetic derivative, not heatflow; `deq_n100a15` is a distance channel,
+not event rate; quantized K/Th/U code-space ratios are not physical concentrations. No causal geothermal claim is validated.
+At the frozen 37,654-dot budget, r13 forces at least **82.70%** overlap, so no packaging is allowed.
+All 117 declared hashes are available but one registry transform is wrong; integrity is not full lane clearance.
 
-New `gems25.readiness.assess_readiness` / `scripts/check_readiness.py` checks exact-file receipt consistency and fails closed; it never authorizes an upload. Reuse the existing shared holdout and writer. Only this repo is updated, not all nine sites. Latest operational digest: enforce assigned lane, buffered whole-segment visible-only holdout, per-feature leakage canaries, strict full-registry novelty before placement and on dots, range/grid checks, positive paired CI, three-experiment/two-hour budget, no weekly slot selection, and honest negative run cards. Earlier owner prompts remain preserved below; this digest is not a verbatim transcript. Maximize P(Win); Own the Outcome.
+[Executive summary and nine-site historical download table](docs/executive-summary.html) ·
+[Full result, ranked hypotheses, sources and next steps](knowledge/45_h80_outcome_2026-10-28.md) ·
+[JSON run card](registry/run_card_h80_2026-10-28.json) ·
+[Three-pass review](registry/review_passes_h80_2026-10-28.json).
+Only GEMSDOE25 is updated. Estimated competition score: **UNKNOWN / NOT ESTIMATED**.
+Earlier dated decisions below are historical, not claims that this session ran no experiment.
 
 
 <!-- CURRENT-REVIEW-2026-10-27 -->
@@ -104,6 +105,28 @@ Historical records: [H28 preregistration](knowledge/10_preregistered_h28_live_an
 ## Owner prompts and standing briefs — read each session
 
 The original brief is preserved below exactly as saved. The latest session handoff was condensed; we do not claim the condensed text is a verbatim transcript.
+
+<details><summary>Current owner brief 2026-10-28 — normalized, not verbatim</summary>
+
+````text
+# Active owner brief — normalized, not verbatim (28 October 2026)
+
+Read README and AGENTS at each session start. Goal: a genuinely unique high-performing fault-prediction GeoTIFF, automated exact-file validation, obvious download/submit status and executive submission instructions. Learn from the nine focus sites GEMSDOE24/25/27/28/30/31/32/33/36 and broader sibling results including GEMSDOE92, KANLER, WBG, EUG, GINNY, karage, Apart and SASS projects. The full earlier owner brief remains archived verbatim below this normalized update; this is not a new verbatim transcript.
+
+Highest urgency: **MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION.** Make clear if it is actually OK to submit. This request remains unfulfilled unless every mandatory scientific and strict novelty gate passes. Do not fabricate a TIFF, forecast or approval to satisfy the wording.
+
+Before implementing, rank 3–5 geological hypotheses with layers, signatures, missing-catalogue rationale, differences from existing methods, non-fault mimics, expected benefit (qualitative/unknown unless measured), cost and checked obtainable official free data. Reuse shared cached features, whole-segment buffered hide-and-recover, visible-only catalogue features, exact visible masking, pooled DTI (alpha .2, beta .8, triangular 300 m) and shared writer. Test each feature alone for inverted/value/missingness AUC; above .90 is presumptive leakage. Compare to same-run best; require positive paired CI before selector consideration.
+
+Stay in one explicit lane. Surface |rank correlation| above .90 or final-dot overlap above 70% within 3 px of ANY registry raster is a duplicate and stop. No dense-reference exception or changing the budget to evade the audit. The current message refers to an assigned method paragraph but supplies none: proposed diagnostic work is not an owner assignment. Report that uncertainty. A negative result is a deliverable.
+
+Label local metrics HOLDOUT-DTI with evaluator/version, withheld positives and 95% CI. ORGANIZER-CONFIRMED requires a submission-page receipt. Supplied 0.2778/0.3195/0.4413 and all other historical scores are OWNER-REPORTED until supported. A projection is never a score. Explain GEMSDOE32 B2's exact pixel lineage without inventing hidden-label causation. Do not promise a high leaderboard score from a proxy.
+
+Stop at three experiments or two hours. No slot selection or automated uploads; promotion is a separate selector step within the verified weekly cap. Follow the standing no-automated-DrivenData-access policy. No credentials in chat. Use pinned public mirrors when possible; byte integrity is not organizer provenance. Prevent NaN/Inf/range errors and validate single-band CRS/shape/transform, catalogue mask, unique identity, ZIP and a note at most 140 characters.
+
+Keep sources/knowledge auditable; no claim of deep official-source verification for unread or unavailable sources. Competition target is unmapped faults, not confirmed geothermal vents. Respect Maximize P(Win) and Own the Outcome: own errors and negative findings. Build clean consistent GitHub Pages with nine-site filenames, score estimates explicitly unknown when uncalibrated, novelty/readiness and a dated source feed. Work autonomously, do three cumulative review passes, create and merge a PR from the fixed session branch, report exact remaining limitations and next steps. Do not claim full completion if no gate-cleared TIFF exists.
+````
+
+</details>
 
 <details><summary>Owner brief 2026-10-27 (H75-DCHB-CG session) — saved as verbatim</summary>
 

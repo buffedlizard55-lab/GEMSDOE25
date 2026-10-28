@@ -1,0 +1,14 @@
+{
+  "selector_eligible": false,
+  "okay_to_submit": false,
+  "failures": [
+    "missing or invalid raster SHA256",
+    "missing format receipt",
+    "missing surface receipt",
+    "missing dots receipt",
+    "missing holdout receipt",
+    "missing canary receipt"
+  ],
+  "decision": "DO_NOT_SUBMIT",
+  "scope": "Receipt consistency only; caller must compute and authenticate all receipts. No slot authorization."
+}

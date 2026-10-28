@@ -96,3 +96,15 @@ def test_preregistration_explicitly_withdraws_packaging_and_sparse_waiver():
     assert 'withdrawn before fitting' in text and 'no new competition TIFF' in text
     runner = (root/'scripts/run_h80_experiments.py').read_text()
     assert 'write_submission(' not in runner
+
+
+@pytest.mark.parametrize('bad', [float('nan'), float('inf')])
+def test_fusion_nonfinite_inputs_never_silently_repair(bad):
+    with pytest.raises(ValueError, match='finite'):
+        fuse_scra_poe_scores(np.array([bad, .2]), np.ones(2), np.ones(2), np.ones(2))
+
+
+@pytest.mark.parametrize('bad', [-.1, 1.1, float('nan'), True])
+def test_fusion_rejects_invalid_parameters(bad):
+    with pytest.raises(ValueError, match='parameters'):
+        fuse_scra_poe_scores(np.ones(2), np.ones(2), np.ones(2), np.ones(2), gamma_range=bad)

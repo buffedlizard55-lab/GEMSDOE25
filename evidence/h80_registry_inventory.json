@@ -1,0 +1,137 @@
+{
+  "inventory": {
+    "declared_hashes": 117,
+    "available_files": 122,
+    "registry_manifest_sha256": "2680df0e2d8100e25428fd3ee2b258e136287c492930808cd7232b5846125917",
+    "missing_sha256": [],
+    "complete": true,
+    "scope": "declared pinned registry only; not every submission on every site"
+  },
+  "errors": [
+    {
+      "file": "data/artifacts/geom-horse-ensemble.tif",
+      "reason": "grid mismatch",
+      "transform": [
+        100.0,
+        0.0,
+        500000.0,
+        0.0,
+        -100.0,
+        4500000.0
+      ],
+      "sha256": "ccbe1de0cfd70cbe7257c04669195f390ca652fa3a76c51505f461f01a1424c6"
+    }
+  ],
+  "extended_sibling_files": [
+    {
+      "file": "ApartGEMSDOE1__apartgems1-maw-gsi-e3-20261028-87f83db9-zeros.tif",
+      "sha256": "09fa04bd481d896a4dcbb808e4ef8136f8e6d0e0d88cebe9afd957db2779d62f",
+      "bytes": 145748,
+      "grid_match": true
+    },
+    {
+      "file": "ApartGEMSDOE1__apartgems1-udth-submod-e3-20261027-50e7b334-zeros.tif",
+      "sha256": "16f7101f41dd0331ac6076d6f55c906b7c1aa9fc7180258361450e9ecf87eede",
+      "bytes": 93217,
+      "grid_match": true
+    },
+    {
+      "file": "ApartGEMSDOE2__apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif",
+      "sha256": "32716d4851e9de2df406eeb2386c8ddcf9aa970c985643c7e5484973dd023b4f",
+      "bytes": 143162,
+      "grid_match": true
+    },
+    {
+      "file": "ApartGEMSDOE3__apartgemsdoe3-h-apart3-2-cthg-dhc-37654-20261028T084500Z-5d4d0085-zeros.tif",
+      "sha256": "9d5cab2ed8b393cd509c196961481520772bee5b1791e322e0b15cdbba696112",
+      "bytes": 219267,
+      "grid_match": true
+    },
+    {
+      "file": "GEMSDOE28__gems28-s25-pcse-scarp-energy-k37654-20261028-4af5ddbb4b50-nan.tif",
+      "sha256": "c6d722971070f6624a9b2a374c2858db46137f64dcd74805f160ba13f179edef",
+      "bytes": 1580182,
+      "grid_match": true
+    },
+    {
+      "file": "GEMSDOESASS1__gemsass1-swgb-hrv2-44090dots-20261027T122104Z-f9b3f764-zeros.tif",
+      "sha256": "f98c20df5bc67a482de6debd4abef9d3d104498bda0aacf464d693e271287729",
+      "bytes": 152542,
+      "grid_match": true
+    },
+    {
+      "file": "GEMSDOESASS2__gemsdoesass2-xghf-dualhorizon-aniso-b2-37654-20261027T131341Z-e7996841-zeros.tif",
+      "sha256": "2a122a409c7a7d5977a311dce271d6f333f21a697cd9effd59b45c6c0f0e8ec7",
+      "bytes": 165398,
+      "grid_match": true
+    },
+    {
+      "file": "GEMSDOESASS3__gemsdoesass3-gsdhua3-sar-deconf-37654-20261027-74f544e862fd-zeros.tif",
+      "sha256": "250b22eaf2411c75c8587ffb8c7747f0f2f942e2c6a4a219b1371b340d4403fb",
+      "bytes": 121706,
+      "grid_match": true
+    },
+    {
+      "file": "GEMSDOEkarage1__gemsk1-gpcz-polarity-damagezone-36000dots-20261027T213002Z-636ed4c9-zeros.tif",
+      "sha256": "75ac577a9131f6837b2de28be8932c326d1083bb46fcaebc1efc28e177526dbd",
+      "bytes": 141275,
+      "grid_match": true
+    },
+    {
+      "file": "GEMSDOEkarage1__karage1-hmas-sinter-dualcover-sep29-20261027T220000Z-zeros.tif",
+      "sha256": "198076f81067353c3ee41d947c7830ef11db2e8128bc5f8c5bd20ef036736f76",
+      "bytes": 142885,
+      "grid_match": true
+    },
+    {
+      "file": "GEMSDOEkarage2__gemsdoekarage2-k2-hgbcont-b110-20261028-zeros.tif",
+      "sha256": "504be4587e3bec7b81f802b4c16b6c546c683e8a4c8b514d3a9856c6e0698dfb",
+      "bytes": 172140,
+      "grid_match": true
+    },
+    {
+      "file": "GEMSDOEkarage3__karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif",
+      "sha256": "9b2656c4a7afb9969df7ee93bbf4e9b4fa8f313465964d79fc9194718f95fafa",
+      "bytes": 196536,
+      "grid_match": true
+    },
+    {
+      "file": "KANLERGEMSDOE1__gemsdoe32-cgji-htb-exp2-oof-hgb-b2-20261027T013000Z-5214b9ec-zeros.tif",
+      "sha256": "74035c67056f7727fb16c04b61446f32a2c729fcf5d711a3b666761e56fcbffe",
+      "bytes": 209216,
+      "grid_match": true
+    },
+    {
+      "file": "KANLERGEMSDOE2__kanlergemsdoe2-unique-blind-interior-systematic-20261028T161858Z-7da04408edc9-zeros.tif",
+      "sha256": "2937cd7a5bd64889447e24e53135ec577df1d76cc90ec7b853a3401a125761f6",
+      "bytes": 774978,
+      "grid_match": true
+    },
+    {
+      "file": "KANLERGEMSDOE3__gemsdoe32-kanler3-ssp1-e1-RESEARCH-20261026T220043Z-fbab7ef5-zeros.tif",
+      "sha256": "4e88158e8859416b874cc424dc106847f8eaab474794bbb1716e273f57839a27",
+      "bytes": 201555,
+      "grid_match": true
+    },
+    {
+      "file": "WBGGEMSDOE1__wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif",
+      "sha256": "0c2516fa5e5727eab1150750b72c189a454968aba4f9afbc5e2aac84dcc8faba",
+      "bytes": 150278,
+      "grid_match": true
+    },
+    {
+      "file": "WBGGEMSDOE2__wbg2-blind-discontinuity-E3-soft88-20261027T185715Z-606d02c9c1-zeros.tif",
+      "sha256": "d75bf8ee99576a80fe26d00c0afca6cc76ad54a4caae196b96bfdb742404b05f",
+      "bytes": 217821,
+      "grid_match": true
+    },
+    {
+      "file": "WBGGEMSDOE3__wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif",
+      "sha256": "610acf58905f3b461971bd4a5c67ff7c30894cd92dca20f480f27ecc66de5bb2",
+      "bytes": 435513,
+      "grid_match": true
+    }
+  ],
+  "registry_clear": false,
+  "note": "Inventory integrity is not grid validity or novelty. No full-footprint surface or dots were emitted."
+}

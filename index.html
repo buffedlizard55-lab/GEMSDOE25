@@ -4,13 +4,40 @@
 <main class="wrap"><!-- CURRENT-REVIEW-2026-10-28 --><aside class="current-status" aria-label="Current decision">
 <strong>28 OCT 2026 · COMPETITION-READY TIF: NO · OK TO SUBMIT: NO — DO NOT SUBMIT</strong>
 <span>Independent hash-pinned geometry audit rerun: at 37,654 dots, at least 82.70% must overlap the registered
-r13 halo, exceeding the strict 70% cap. No assigned single-method lane was supplied; no new fitting experiment,
-TIFF or weekly slot was used. Historical downloads below are for research only. Competition score estimate: UNKNOWN.</span>
+r13 halo, exceeding the strict 70% cap. H80 diagnostic screen completed and failed the same-run H35 gate.
+No new TIFF or weekly slot. Historical downloads below are for research only. Competition score estimate: UNKNOWN.</span>
 <a href="docs/current-review.html#review-2026-10-28">Current audit and next steps →</a>
-<a href="docs/../knowledge/43_session_962e5a5b_review.md">Latest repair audit: executive warnings restored; stricter readiness receipts →</a></aside><section id="review-2026-10-28" class="review-decision"><h2>28 October: independent preflight, not a new submission</h2>
+<a href="knowledge/43_session_962e5a5b_review.md">Latest repair audit: executive warnings restored; stricter readiness receipts →</a></aside><section id="h80-review" class="review-decision">
+<h1>H80 tested — negative. No competition-ready TIFF.</h1>
+<p><b>OK TO SUBMIT: NO — DO NOT SUBMIT.</b> Estimated competition score: <b>UNKNOWN / NOT ESTIMATED</b>.
+One blocked factorial screen was completed; confirmation experiments were withdrawn. No new TIFF, weekly slot or upload.</p>
+<p><b>HOLDOUT-DTI 0.08744</b>, 95% CI [0.06204, 0.10615],
+26,367 withheld-positive occurrences; same-run H35 0.12165.
+Paired difference -0.03421 (95% CI [-0.05209, -0.01936]).
+These are local catalogue-gap proxy measurements, NOT leaderboard scores.</p>
+<div class="table-scroll"><table><thead><tr><th>Research arm</th><th>HOLDOUT-DTI</th><th>95% CI</th><th>Submit?</th></tr></thead>
+<tbody><tr><td>CTRL_CRUSTAL56</td><td>0.05559</td><td>[0.03629, 0.07370]</td><td>NO — research readout only</td></tr><tr><td>CTRL_H35</td><td>0.12165</td><td>[0.11235, 0.13057]</td><td>NO — research readout only</td></tr><tr><td>F0_G0</td><td>0.09771</td><td>[0.06612, 0.12196]</td><td>NO — research readout only</td></tr><tr><td>F0_G1</td><td>0.09122</td><td>[0.06494, 0.11167]</td><td>NO — research readout only</td></tr><tr><td>F1_G0</td><td>0.09449</td><td>[0.06674, 0.11558]</td><td>NO — research readout only</td></tr><tr><td>F1_G1</td><td>0.08744</td><td>[0.06204, 0.10615]</td><td>NO — research readout only</td></tr><tr><td>H80_CRUSTAL60</td><td>0.05449</td><td>[0.03232, 0.08155]</td><td>NO — research readout only</td></tr></tbody></table></div>
+<p>Evaluator: <code>gems25.metric.dti_binary</code>, alpha 0.2, beta 0.8, triangular 300 m;
+shared buffered whole-component <code>draw_block25km</code>, four quadrant clusters, draws 140–141.
+All 792 feature/regime canaries passed (maximum AUC 0.79449).
+Only four spatial clusters: uncertainty does not resolve catalogue-to-hidden-fault domain shift.</p>
+<p><b>Scientific interpretation warning:</b> mirrored <code>tc</code> is described as a magnetic derivative, not heatflow;
+<code>deq_n100a15</code> as earthquake distance, not event rate. uint8 K/Th/U ratios are code-space proxies, not physical concentrations.
+No newly verified geothermal vent or causal discovery is claimed.</p>
+<p><b>Strict novelty remains blocked:</b> at 37,654 dots, the r13 lower bound is 82.70% overlap (cap 70%).
+All 117 declared hashes were restored, but one reference has a mismatched transform. This is not full-registry clearance.
+No dense-reference exemption, lattice-gap evasion or alternate packaging was used.</p>
+<p><a href="knowledge/45_h80_outcome_2026-10-28.md">Full outcome, ranked hypotheses, limitations &amp; next steps</a> ·
+<a href="registry/run_card_h80_2026-10-28.json" download>Download JSON run card</a> ·
+<a href="evidence/h80_focus_winners_reaudit_2026-10-28.json">Fresh nine-site pixel audit</a> ·
+<a href="evidence/h80_exp1/design.json">Evaluator/code/cache pins</a> ·
+<a href="evidence/h80_exp1/canaries.jsonl">All canaries</a></p>
+<p>Data placement is complete in this sandbox via pinned owner mirrors; it is no longer the sole blocker.
+Only GEMSDOE25 is changed. The nine historical download rows below are learning references, never new submissions.</p>
+</section><h2>Historical decisions and research archives — superseded by H80 review above</h2><section id="review-2026-10-28" class="review-decision"><h2>Earlier 28 October: independent preflight, not a new submission</h2>
 <p><b>No eligible download exists. Do not spend a slot.</b> The rerun found only 6,514 eligible pixels outside the r13 three-pixel halo.
 At most 21,713 distinct dots are not ruled out by this one-reference bound; fewer dots are not automatically unique or high-scoring.
-Historical H73-BW: BLOCKED BEFORE FIT. This is computed geometry, not HOLDOUT-DTI. No holdout result or organizer-confirmed score was produced this session.</p>
+Historical H73-BW: BLOCKED BEFORE FIT. This is computed geometry, not HOLDOUT-DTI. No holdout result or organizer-confirmed score was produced in that earlier preflight session.</p>
 <p><a href="evidence/lane_feasibility_2026-10-28.json">Pinned audit and source links</a> ·
 <a href="knowledge/41_session_plan_2026-10-28.md">Four planning-only geological hypotheses</a> ·
 <a href="knowledge/42_review_outcome_2026-10-28.md">Limitations, readiness gate and next steps</a>.</p>
@@ -90,6 +117,6 @@ Only this repository is changed; the eight sibling sites remain untouched. Table
 </details>
 <p><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference code</a> · <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> · <a href="https://www.usgs.gov/3d-elevation-program/about-3dep-products-services">USGS 3DEP</a> · <a href="https://www.usgs.gov/publications/discovering-blind-geothermal-systems-great-basin-region-integrated-geologic-and">USGS-hosted Great Basin play-fairway report</a>. Source availability and public mirror hashes do not prove provenance or performance.</p></section></main>
 <footer><div class="wrap">Core values: <b>Maximize P(Win)</b> · <b>Own the Outcome</b>. Source: <a href="https://github.com/buffedlizard55-lab/GEMSDOE25">github.com/buffedlizard55-lab/GEMSDOE25</a> ·
-built 2026-10-28 16:10 UTC from <code>registry/</code> and <code>evidence/</code> by <code>scripts/build_site.py</code>.
+built 2026-10-28 16:48 UTC from <code>registry/</code> and <code>evidence/</code> by <code>scripts/build_site.py</code>.
 No score here is promised; reported scores are unverified unless an organizer receipt is supplied. This site/feed never contacts drivendata.org.</div></footer>
 <script src="docs/assets/app.js"></script></body></html>

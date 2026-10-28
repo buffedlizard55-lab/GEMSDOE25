@@ -1,3 +1,5 @@
+> **POST-SCREEN CAUTION:** Original speculative literature/units/mechanism assertions below are not verified facts. The staging plan was withdrawn before fit; the screen is negative. Read [the corrected outcome](45_h80_outcome_2026-10-28.md) first. Original preregistration remains recoverable at commit `69e6176`.
+
 # Pre-Registration — `H80-SCRA-PoE`: Sedimentary-Cover Regime-Adaptive Crustal–Morpho Fusion & Blind Hydrothermal-Suballuvial Fault Operators (`2026-10-28`)
 
 ## 0. Standing-Rule Compliance & Assigned Single Method Lane

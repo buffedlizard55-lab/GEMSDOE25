@@ -12,6 +12,7 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parents[1]
 BRIEFS = (
+    ("Current owner brief 2026-10-28 — normalized, not verbatim", "current_project_brief_2026-10-28.md"),
     ("Owner brief 2026-10-27 (H75-DCHB-CG session) — saved as verbatim", "owner_brief_2026-10-27_verbatim.txt"),
     ("Current 2026-10-27 session scope — condensed, not verbatim", "owner_prompt_2026-10-27.txt"),
     ("Current standing protocol — normalized, not verbatim", "current_project_brief_2026-10-26.md"),
@@ -36,7 +37,33 @@ def main() -> None:
             continue
         seen.add(cid)
         items.append(f"| [{entry['file']}](docs/downloads/{entry['file']}) | `{cid}` | Inspection only; no slot approval |")
-    text = ["# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize\n", readme_status()]
+    h80 = json.loads((ROOT / "registry/run_card_h80_2026-10-28.json").read_text())
+    h = h80["holdout_dti"]
+    latest = f'''## Latest result — H80 blocked factorial screen, 28 October 2026
+
+**OK TO SUBMIT: NO — DO NOT SUBMIT.** No new TIFF, calibrated competition estimate or weekly slot.
+HOLDOUT-DTI **{h['dti']:.5f}**, 95% CI [{h['ci95'][0]:.5f}, {h['ci95'][1]:.5f}],
+{h['withheld_positive_occurrences']:,} withheld-positive occurrences vs same-run H35 {h['comparator_dti']:.5f};
+paired gain {h['paired_gain']:+.5f} (95% CI [{h['paired_ci95'][0]:+.5f}, {h['paired_ci95'][1]:+.5f}]).
+Shared buffered 25-km tile-sampled component holdout, four quadrant clusters, draws 140–141;
+alpha .2, beta .8, 300 m triangular kernel. All 792 feature/regime canaries pass.
+This is a local catalogue-gap proxy, not an organizer score. One screen completed; experiments 2–3 withdrawn.
+
+Data placement and the shared cache were restored successfully here; GPU training is not required for this diagnostic.
+Scientific interpretation warning: mirrored `tc` is a magnetic derivative, not heatflow; `deq_n100a15` is a distance channel,
+not event rate; quantized K/Th/U code-space ratios are not physical concentrations. No causal geothermal claim is validated.
+At the frozen 37,654-dot budget, r13 forces at least **82.70%** overlap, so no packaging is allowed.
+All 117 declared hashes are available but one registry transform is wrong; integrity is not full lane clearance.
+
+[Executive summary and nine-site historical download table](docs/executive-summary.html) ·
+[Full result, ranked hypotheses, sources and next steps](knowledge/45_h80_outcome_2026-10-28.md) ·
+[JSON run card](registry/run_card_h80_2026-10-28.json) ·
+[Three-pass review](registry/review_passes_h80_2026-10-28.json).
+Only GEMSDOE25 is updated. Estimated competition score: **UNKNOWN / NOT ESTIMATED**.
+Earlier dated decisions below are historical, not claims that this session ran no experiment.
+
+'''
+    text = ["# GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize\n", latest, readme_status()]
     text.append("## Current review and reproducibility\n")
     text.append("[Executive summary and nine-site downloads](docs/executive-summary.html) · "
                 "[current review](docs/current-review.html) · [historical archive](docs/history.html) · "

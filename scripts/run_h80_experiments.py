@@ -181,6 +181,11 @@ def run(exp):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--exp', choices=SPECS, required=True)
+    parser.add_argument('--replay-negative-screen', action='store_true',
+                        help='Explicitly reproduce failed exp1 only; never promote')
     args = parser.parse_args()
+    if args.exp != 'exp1' or not args.replay_negative_screen:
+        parser.error('H80 screen negative and geological interpretation unresolved. exp2/exp3 withdrawn; '
+                     'only --exp exp1 --replay-negative-screen is permitted in a clean evidence directory.')
     with threadpool_limits(limits=2):
         run(args.exp)

@@ -1,4 +1,9 @@
-"""H80 (SCRA-PoE) static sub-alluvial/geothermal sidecar & Sedimentary-Cover Regime-Adaptive PoE.
+"""H80 diagnostic operators and cover-adaptive fusion; NEGATIVE, not a geothermal model.
+
+Scientific interpretation is withdrawn: mirrored tc is a magnetic derivative,
+deq_n100a15 is described as distance, not earthquake rate, and K/Th/U
+code-space ratios are not physical concentrations. Preserve the frozen numeric
+operators for replay only; see knowledge/45_h80_outcome_2026-10-28.md.
 
 Pre-registered in ``knowledge/44_preregistered_h80_scra_poe_2026-10-28.md`` (committed at ``69e6176``
 before feature computation or model fitting).
@@ -87,6 +92,14 @@ def fuse_scra_poe_scores(
     floor_m: float = 0.10,
 ) -> np.ndarray:
     """Frozen Sedimentary-Cover Regime-Adaptive Product-of-Experts score in ``(0, 1]`` (knowledge/44 §2.2)."""
+    arrays = [np.asarray(v) for v in (p_crustal, p_morpho, c_cover, w_regime)]
+    if any(a.ndim != 1 or a.shape != arrays[0].shape for a in arrays):
+        raise ValueError("fusion inputs must have identical 1-D shapes")
+    if any(not np.isfinite(a).all() for a in arrays):
+        raise ValueError("fusion inputs must be finite")
+    params = (gamma_range, gamma_basin, floor_c, floor_m)
+    if any(isinstance(v, bool) or not np.isfinite(v) or not 0 <= v <= 1 for v in params):
+        raise ValueError("fusion parameters must be finite in [0,1]")
     rc = rank01_domain(p_crustal)
     rm = rank01_domain(p_morpho)
     cc = np.clip(np.asarray(c_cover, dtype=np.float32), 0.0, 1.0)
@@ -102,7 +115,7 @@ def fuse_scra_poe_scores(
 
 
 def _load_disequilibrium_impulses(external_dir: Path, shape: tuple[int, int]) -> np.ndarray:
-    """Build Na-K-Ca vs chalcedony & reservoir-vs-spring disequilibrium impulses (never dist_known_fault_px)."""
+    """Historical supplied-channel contrasts; geothermcat interpretation is unverified. Label distance is ignored."""
     h, w = shape
     imp = np.zeros((h, w), dtype=np.float32)
     ws_csv = external_dir / "gdr_wellspring_in_footprint.csv"
@@ -223,7 +236,8 @@ def compute_h80_grids(
     del r_mag, c2_m, s2_m, coh_m, p_num, p_den, p_axial
     gc.collect()
 
-    # 2. H80_geotherm_disequilibrium_upflow: Na-K-Ca minus chalcedony disequilibrium x microseismicity x MT/tc
+    # 2. Historical operator: undocumented geothermcat channel difference x log seismic-distance proxy x cond/tc.
+    # NOT verified microseismicity, heatflow or geothermal upflow; values preserved for negative-screen replay.
     q_dis = _load_disequilibrium_impulses(external_dir, foot.shape)
     g_iso = nearest_fill(np.asarray(base["iso_grav_anom"], dtype=np.float32))
     z_base_f = nearest_fill(np.asarray(base["depth_to_base_surf"], dtype=np.float32))

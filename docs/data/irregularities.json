@@ -961,6 +961,30 @@
    "issue": "Two symmetric pre-publish staging duplicate stops bracketed blind model design: (1) Two-expert H79_POE_SGMC (82 cols: 56 crustal x 26 morpho, gamma_c=0.55) eliminated own-lineage convergence (47.21% <= 70% vs H72-CF and <=53.00% across all 27 sibling winners) but still overlapped GEMSDOE22's 309,814-px h23-a-6pct.tif DEM/LiDAR ribbon at 75.55% > 70%; (2) 55-column H79_SUBSURF (without H79_SGMC) cleared all 54 external sparse rasters (53.18% on h23-a-6pct.tif) but overlapped own-lineage H74_SUBSURF at 76.79% > 70% due to 51/55 shared static columns.",
    "evidence": "evidence/h79_poe_sgmc_stopped_lane.json; evidence/h79_poe_sgmc_stopped_extended.json; evidence/h79_subsurf_stopped_lane.json; evidence/h79_subsurf_stopped_extended.json; evidence/h79_crustal_sgmc_lane_literal.json; evidence/h79_crustal_sgmc_lane_extended.json; evidence/h79_cthm_post_merge_109_audit.json.",
    "resolution_or_action": "Pre-publish staging guards halted both runs before touching docs/downloads/. Evaluating the exact 56-column zero-topography M_crustal expert from Exp 3 (H79_SUBSURF + H79_sgmc_coulomb_react = H79_CRUSTAL_SGMC, e7ad8a4bf3ed) broke own-lineage tie-breaking (49.69% <= 70% vs H74_SUBSURF, 44.20% vs H75-DCHB-CG, 44.17% vs H75-EU3D-POE65) while keeping all 106 sparse rasters <= 58.02% (55.49% on h23-a-6pct.tif, 23.54% on GEMSDOE32 B2)."
+  },
+  {
+   "id": "IR-25-H80-LAYER-SEMANTICS-20261028",
+   "severity": "high",
+   "status": "open",
+   "issue": "H80 motivation treated tc as heatflow and deq_n100a15 as event rate, contradicted by mirrored band descriptions; code-space radiometric ratios and geothermcat attribution are also not authenticated physical measurements.",
+   "evidence": "evidence/h80_official_reference_and_band_metadata.json; knowledge/45_h80_outcome_2026-10-28.md; evidence/h80_exp1/design.json",
+   "resolution_or_action": "Withdraw geothermal mechanism claims and confirmation experiments; retain negative raw screen and frozen source commit. Require exact authoritative metadata/units before further physical-model work."
+  },
+  {
+   "id": "IR-25-H80-REGISTRY-TRANSFORM-20261028",
+   "severity": "high",
+   "status": "open",
+   "issue": "All declared SHA pins are available but geom-horse-ensemble.tif has a transform inconsistent with the template; inventory completeness alone cannot establish full registry validity.",
+   "evidence": "evidence/h80_registry_inventory.json",
+   "resolution_or_action": "Fail closed. Do not silently reproject or drop the reference. No new full-footprint placement or TIFF."
+  },
+  {
+   "id": "IR-25-PR70-LATTICEGAP-PUBLISHER-20261028",
+   "severity": "high",
+   "status": "resolved",
+   "issue": "PR70 builder asserted exclusion of every registry halo from r13 exclusion alone, packaged before valid holdout/full registry checks and used unverified geothermal semantics.",
+   "evidence": "scripts/build_unique_submission.py before this change; registry/run_card_unique_latticegap_2026-10-28.json; evidence/h80_latticegap_archive_reaudit.json",
+   "resolution_or_action": "Retire publisher with exit2 before data loading; keep existing TIFF historical only. PR71 already repaired misleading executive copy; no new score or slot approval."
   }
  ]
 }
