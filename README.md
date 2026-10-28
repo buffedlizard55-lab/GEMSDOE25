@@ -1,5 +1,7 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
+[Repository and focus-site review (2026-10-28)](docs/review-2026-10-28.md) · [Executive summary and historical download table](docs/executive-summary.html)
+
 ## Latest result — H80 blocked factorial screen, 28 October 2026
 
 **OK TO SUBMIT: NO — DO NOT SUBMIT.** No new TIFF, calibrated competition estimate or weekly slot.
