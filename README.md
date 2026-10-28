@@ -1,5 +1,7 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
+[Repository and focus-site review (2026-10-28)](docs/review-2026-10-28.md) · [Executive summary and historical download table](docs/executive-summary.html) · [H81 review and retracted score estimates](knowledge/47_repo_review_2026-10-28.md)
+
 ## Latest result — H81 failed promotion; no eligible submission (28 October 2026)
 
 **OK TO SUBMIT: NO — DO NOT SUBMIT. New-submission score: NOT ESTIMATED.** H81 did not publish a TIFF or receive slot approval. On the 25-km checkerboard holdout, `H81_JUNC_CG` scored **HOLDOUT-DTI 0.111126** vs same-run `CTRL_BLIND_ABCD` **0.121443** (paired gain **-0.010317**, 95% CI **[-0.012437, -0.006948]**, **95,188 withheld-positive occurrences**; evaluator `gems25.metric.dti_binary`, alpha 0.2, beta 0.8, 300 m triangular kernel). H81 also failed the primary H35 gate and the final-dot lane gate (72.20% within 3 px of H75; limit 70%).
