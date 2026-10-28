@@ -2,8 +2,11 @@
 """Check supplied computed receipts; never authorizes an upload or a weekly slot."""
 import argparse
 import json
+import sys
+from pathlib import Path
 
-from gems25.readiness import assess_readiness
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
+from gems25.readiness import assess_readiness  # noqa: E402
 
 
 def main():

@@ -11,13 +11,22 @@ passes feature-leakage and strict lane gates, and passes the template validator.
 from __future__ import annotations
 
 import math
+import sys
+from pathlib import Path
+
+# This legacy module can be imported directly from a checkout without installing
+# the package; use the same shared implementation as the current CLI.
+SRC = str(Path(__file__).resolve().parents[1] / "src")
+if SRC not in sys.path:
+    sys.path.insert(0, SRC)
 
 
 def promotion_receipt_valid(receipt: dict) -> bool:
     """Validate the essential promotion fields for one exact file.
 
-    This validator is retained for unit tests and future packaging code. The
-    retired D2.8 CLI does not call it or create artifacts.
+    This validator is retained for legacy receipt review. It also requires the
+    shared readiness contract; even True is selector review only, never slot or
+    upload authorization. The retired D2.8 CLI does not create artifacts.
     """
     if not isinstance(receipt, dict) or receipt.get("format_ok") is not True or receipt.get("slot_eligible") is not True:
         return False
@@ -26,6 +35,26 @@ def promotion_receipt_valid(receipt: dict) -> bool:
     lane = receipt.get("lane_check")
     canaries = receipt.get("feature_canaries")
     if not all(isinstance(value, dict) for value in (gate, checks, lane, canaries)):
+        return False
+    # The legacy contract omits the DTI CI and several identity/canary checks.
+    # Reuse the shared selector gate rather than treating this older schema as
+    # a standalone approval path. Both objects must describe the same run/file.
+    from gems25.readiness import assess_readiness
+
+    ready = receipt.get("readiness")
+    if not isinstance(ready, dict) or not assess_readiness(ready)["selector_eligible"]:
+        return False
+    if ready.get("raster_sha256") != receipt.get("sha256"):
+        return False
+    rh, rc = ready["holdout"], ready["canary"]
+    if (rh.get("run_id") != gate.get("run_id") or rc.get("run_id") != canaries.get("run_id")
+            or rh.get("evaluator_version") != gate.get("evaluator")
+            or rh.get("evaluator_sha256") != gate.get("evaluator_sha256")
+            or rh.get("withheld_positives") != gate.get("withheld_positives")
+            or rh.get("dti") != gate.get("candidate_mean_dti")
+            or rh.get("comparator_dti") != gate.get("same_run_best_dti")
+            or rh.get("paired_delta_ci95") != gate.get("paired_ci95")
+            or rc.get("feature_names") != canaries.get("features") or rc.get("cells") != canaries.get("cells")):
         return False
     # The format checker has informational checks, but these specific predicates
     # are mandatory here, including the whole-array range test for zero padding.
@@ -46,6 +75,9 @@ def promotion_receipt_valid(receipt: dict) -> bool:
         return isinstance(value, str) and len(value) == 64 and all(c in "0123456789abcdef" for c in value)
     if not (surface.get("surface_clear") is True and surface.get("registry_complete") is True
             and surface.get("flagged") == [] and valid_hash(manifest)
+            and ready["surface"].get("registry_manifest_sha256") == manifest
+            and ready["surface"].get("scores_sha256") == surface.get("scores_sha256")
+            and ready["surface"].get("template_sha256") == surface.get("template_sha256")
             and valid_hash(surface.get("scores_sha256")) and valid_hash(surface.get("template_sha256"))
             and final.get("template_sha256") == surface.get("template_sha256")
             and surface.get("rank_footprint_pixels") == final.get("rank_footprint_pixels") == 5_167_373

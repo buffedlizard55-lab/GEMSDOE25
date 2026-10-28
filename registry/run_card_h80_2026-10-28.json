@@ -1,0 +1,103 @@
+{
+  "schema": "h80-diagnostic-negative/v1",
+  "date": "2026-10-28",
+  "branch": "arena/aa5d1b5b-gemsdoe25",
+  "hypothesis": "Cover-adaptive crustal/morphometric fusion with four suballuvial proxy operators improves recovery of withheld catalogue components.",
+  "mechanism": "Factorial test of new feature family and spatially varying expert exponent. Geological heatflow/seismic-rate interpretation is withdrawn after mirrored-metadata audit.",
+  "mimicking_non_fault_process": "Buried basalt contacts, alluvial depositional sorting and compaction over paleochannels.",
+  "lane": "h80-scra-poe-suballuvial-geotherm; investigator-proposed diagnostic, not owner-assigned",
+  "preregistration_commit": "69e6176376c8ec08577e691afa8c60ed3a400989",
+  "protocol_correction_commit": "59eec13",
+  "frozen_execution_source_commit": "a31d12888f8388ea7588c745e69c85bc80cd93cf",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "dti": 0.08743552628700454,
+    "ci95": [
+      0.06204008284468035,
+      0.10614911054864744
+    ],
+    "withheld_positive_occurrences": 26367,
+    "unique_withheld_positives": null,
+    "evaluator_version": "gems25.metric.dti_binary / h74_rmps.draw_block25km; code hashes in evidence/h80_exp1/design.json",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel": "triangular",
+    "kernel_m": 300,
+    "draws": [
+      140,
+      141
+    ],
+    "spatial_clusters": 4,
+    "comparator": "same-run CTRL_H35",
+    "comparator_dti": 0.12164827808582572,
+    "comparator_ci95": [
+      0.11235459380868566,
+      0.13057119313486204
+    ],
+    "paired_gain": -0.034212751798821175,
+    "paired_ci95": [
+      -0.052090484340818144,
+      -0.01935896468494956
+    ],
+    "fold_gains": [
+      -0.016790144234803253,
+      -0.03224104294911427,
+      -0.057059527397364966,
+      -0.021250393746121476
+    ],
+    "ci_method": "quadrant cluster percentile bootstrap; 10000 draws; seed 26026; 4 clusters",
+    "scope": "Tile-sampled buffered component hide-and-recover within four quadrants, not full checkerboard/basin holdout; proxy only"
+  },
+  "leakage_canary": {
+    "feature_regime_checks": 792,
+    "maximum_auc": 0.7944907286040092,
+    "all_passed": true,
+    "evidence": "evidence/h80_exp1/canaries.jsonl"
+  },
+  "correlation_overlap_vs_registry": {
+    "preplacement_rank_correlation": null,
+    "final_dot_rank_correlation": null,
+    "final_dot_overlap": null,
+    "capacity_bound_at_37654_dots": 0.8270037711796887,
+    "overlap_cap": 0.7,
+    "declared_hashes": 117,
+    "missing_hashes": 0,
+    "aligned_reference_error_count": 1,
+    "extended_sibling_files_pinned": 18,
+    "registry_clear": false,
+    "evidence": "evidence/h80_registry_inventory.json",
+    "note": "No full-footprint surface or dots created; computed geometric lower bound is not a measured overlap or clearance."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_raster_created": false,
+    "no_nan_inside": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "okay_to_submit": false,
+    "note": "No new raster exists; no invented validation pass."
+  },
+  "submission_name": null,
+  "submission_note": "H80 negative blocked factorial screen; no TIFF or slot; metadata interpretation unresolved; do not submit.",
+  "estimated_competition_score": null,
+  "organizer_confirmed_score": null,
+  "budget": {
+    "experiments_completed": 1,
+    "factorial_readout_arms": 7,
+    "spatial_cells": 8,
+    "model_fits": 32,
+    "experiment_runtime_seconds": 550.3,
+    "experiments_2_and_3": "withdrawn after negative screen and metadata concerns",
+    "weekly_slots_used": 0
+  },
+  "verdict": "negative",
+  "okay_to_submit": false,
+  "new_raster_created": false,
+  "unfulfilled_requirement": "No gate-cleared unique competition TIFF or defensible leaderboard estimate was produced.",
+  "next_steps": [
+    "Verify raw authoritative layer metadata/units and geothermometer schema before any new physical model.",
+    "Do not waive the strict r13 rule; any new density/lane needs a fresh justified preregistration.",
+    "Resolve mismatched reference transform without silently omitting it.",
+    "Require fresh same-run paired improvement and complete exact-file readiness before separate selector review."
+  ]
+}

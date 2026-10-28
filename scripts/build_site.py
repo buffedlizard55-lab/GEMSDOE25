@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Build the GitHub Pages site (root index.html + docs/*.html) from registries and evidence.
 
-Every number on the site is read from ``registry/*.json`` or ``evidence/**/*.json``; nothing is hand-typed.
+Historical results are drawn from ``registry/*.json`` and ``evidence/**/*.json``;
+explanatory constants and current audit findings are cited in the linked records.
 Pages is configured to build from ``main:/``, so the landing page is the ROOT ``index.html``; the same pages are
 also written under ``docs/`` (the group's URL convention, e.g. .../docs/index.html).
 """
@@ -37,7 +38,7 @@ def fmt_bytes(n: int) -> str:
 def page(title: str, body: str, active: str, prefix: str) -> str:
     """``prefix`` is the path from the page to docs/ ('' inside docs, 'docs/' from the root)."""
     nav = [("index", "Start here", "index.html"), ("current", "Current review", "current-review.html"),
-           ("exec", "How to submit", "executive-summary.html"),
+           ("exec", "Executive summary", "executive-summary.html"), ("guide", "Submission guide", "submission-guide.html"),
            ("h81", "H81 brief", "h81-executive-brief.html"),
            ("research", "Research", "research.html"), ("sources", "Sources & audit", "sources.html")]
     links = []
@@ -67,29 +68,32 @@ def dl_card(s: dict, prefix: str, big: bool = True) -> str:
     nid = "note-" + s["id"]
     kind = {"scored": "ok"}.get(s["status"], "warn")
     status = s["status"] if s["status"] != "scored" else f"scored {s.get('owner_reported_score'):.4f} (owner-reported)"
-    chk = "format verified (all hard checks)" if s.get("format_ok") else "FORMAT CHECK FAILED"
-    download_label = "Download research archive (inspection only)" if not s.get("ok_to_submit_slot") else "Download selector-candidate file"
+    chk = "historical format-only check; not approval" if s.get("format_ok") else "FORMAT CHECK FAILED"
+    download_label = "Download research archive (inspection only)"
     return f"""<section class="dl"><h2>{e(s['title'])}</h2>
 <p>{e(s['summary'])}</p>
 <div class="row"><a class="btn" href="{href}" download>↓ {download_label}: {e(s['file'])}</a></div>
 <div class="row">{badge(status, kind)}{badge(chk, 'ok' if s.get('format_ok') else 'bad')}{badge('float32 · [0,1] · ' + ('zeros outside footprint' if s.get('outside') == 'zero' else 'NaN outside footprint'), 'info')}{badge(f"{s['positive_pixels']:,} px emitted", 'info')}</div>
-<p class="small">{fmt_bytes(s['bytes'])} · unique content id <code>{s['content_id']}</code> · SHA-256 <code>{s['sha256'][:16]}…</code> · <a href="{prefix}executive-summary.html">exact upload steps</a></p>
-<p style="margin:10px 0 2px"><b>{'Note to paste in DrivenData only if separately selector-approved' if s.get('ok_to_submit_slot') else 'Research note only — NOT for the competition form (DO NOT SUBMIT)'}</b> <button class="btn alt small" data-copy="{nid}">Copy {'submission note' if s.get('ok_to_submit_slot') else 'research identifier'}</button></p>
+<p class="small">{fmt_bytes(s['bytes'])} · content id <code>{s['content_id']}</code> (not proof of uniqueness) · SHA-256 <code>{s['sha256'][:16]}…</code> · <a href="{prefix}submission-guide.html">submission eligibility guide</a></p>
+<p style="margin:10px 0 2px"><b>Research note only — NOT for the competition form (DO NOT SUBMIT)</b> <button class="btn alt small" data-copy="{nid}">Copy research identifier</button></p>
 <div class="note"><code id="{nid}">{e(s['note'])}</code></div></section>"""
 
 
 def verdict_banner(p: dict, prefix: str, exec_page: bool = False) -> str:
     """Top-of-page status separates research-archive access from competition eligibility."""
     archive = "YES — RESEARCH INSPECTION ONLY" if p.get("ok_to_download", p.get("format_ok")) else "NO"
-    submit = "NO — DO NOT SUBMIT" if not p.get("ok_to_submit_slot") else "REQUIRES SEPARATE OWNER SELECTOR"
+    submit = "NO — DO NOT SUBMIT"
     title = "Executive summary &amp; submission guide" if exec_page else "Archived research artifact — no eligible competition TIF"
+    zip_name = p.get('zip')
+    zip_link = (f'<a href="{prefix}downloads/{e(zip_name)}" download>{e(zip_name)}</a>'
+                if zip_name and (DOCS / 'downloads' / zip_name).is_file() else 'No matching ZIP advertised')
     return f"""<div class="hero"><h1>{title}</h1>
 <div class="stats"><div class="stat"><b style="color:#1d4ed8">Research-archive download: {archive}</b><span>Existing file for local inspection/testing only; format validity and unique file bytes do not establish lane clearance or competition eligibility.</span></div>
 <div class="stat"><b style="color:#b91c1c">Competition-ready TIF / OK TO SUBMIT: {submit}</b><span>verdict <b>{e(p.get('verdict', 'n/a'))}</b>: {'separate owner selector review still required; this is not slot approval' if p.get('ok_to_submit_slot') else 'the current candidate failed required gates and is not slot-approved'} ({e(p.get('slot_reason') or 'see registry')}). Weekly slot: NO.</span></div>
 <div class="stat"><b>{e(p.get('expected_range') or 'n/a')}</b><span>No calibrated live-score estimate is available; HOLDOUT-DTI is a proxy result in the run card, not a competition score.</span></div></div>
 <p class="lead"><b>{e(p['title'])}.</b> The archived download card below is for local inspection only and contains a research identifier, not an authorized submission note.</p>
 <p class="small"><b>Status:</b> {e(p['status'])}. <b>Lane:</b> {e(p.get('lane_summary', 'n/a'))}. <b>Run card:</b> <code>{e(p.get('run_card', ''))}</code>.
-Research ZIP alternative: <a href="{prefix}downloads/{e(p.get('zip', ''))}" download>{e(p.get('zip', ''))}</a>. The earlier "Predicted values must be in range [0, 1]" error came from NaN pixels inside the footprint of an old file; the archived H72-3 file has none (zeros outside, no NaN anywhere).
+Research ZIP: {zip_link}. The reported "Predicted values must be in range [0, 1]" error is consistent with NaNs inside an older mirrored footprint, but its cause and the portal's outside-footprint behavior are not established.
 The frozen holdout comparator 0.152003389 does not reproduce in this environment (IR-25-COMPARATOR-DRIFT); historical gates use the best same-run control instead.</p></div>"""
 
 
@@ -125,7 +129,6 @@ def main() -> None:
     h28_ledger = opt("registry/artifact_ledger.json")
     primary = next(s for s in subs if s["role"] == "primary")
     others = [s for s in subs if s["role"] != "primary"]
-    selected = primary
     h36_spigm_card = opt("registry/run_card_h36_spigm_2026-10-25.json")
     h36_spigm_pool = opt("evidence/h36_spigm_pooled_16cells.json")
     kdc = opt("registry/run_card_kdc_2026-10-25.json")
@@ -422,37 +425,45 @@ Main effect = change in mean sparse DTI when a family is included. Lenth ME at �
 <p class="small">Evaluator: <code>{e(h36_spigm_pool['evaluator_version'])}</code>. Pre-registration (5 ranked untried hypotheses H36-1..H36-5): <a href="{kbase}/21_preregistered_h36_spigm_submodular_2026-10-25.md"><code>knowledge/21</code></a> · Full outcomes &amp; forensics: <a href="{kbase}/22_h36_outcomes_and_forensics_2026-10-25.md"><code>knowledge/22</code></a> · Run Card: <code>registry/run_card_h36_spigm_2026-10-25.json</code>.</p></div>"""
         return hero + cards + (f"<h3>Also available</h3>{alt}" if alt else "") + plan + h36_spigm_b + kdcb + stats + h31_block + whyb + h28b + h30b + facb + flagb + feed
 
+    # The old guide mixed unrelated experiments, asserted ZIP/portal behavior and
+    # described archives as unique. Keep a historical entry point, not those claims.
+    h36_archive = next(s for s in subs if s['id'] == 'h36-spigm-subsurface')
     exec_body = f"""{verdict_banner(primary, '', exec_page=True)}
-<div class="callout"><b>Current featured unique research artifact: {e(selected['file'])}.</b> <b>OK to download for local inspection/reproduction: YES.</b> Automated validation (<code>gems25.submission.check_file</code> 16/16 checks + plain-<code>rasterio</code> <code>scripts/verify_candidate_independent.py</code>) passed freshly against the SHA-256-pinned template (<code>2176d08e…</code>, owner-mirrored, not organizer-authenticated): every pixel is finite in <code>{{0.0, 1.0}} &sub; [0, 1]</code>, zero NaN anywhere, exact <code>EPSG:32611</code> / <code>3730 &times; 3292</code> grid. <b>OK to submit to a competition scoring slot: NO — DO NOT SUBMIT.</b> Three pre-registered H71 DIRECT-emission screens (HGPC-BLIND, AKF, MAG-ANISO) each beat unsupervised crest emission and each failed vs same-run H35 (0/4 folds). Density-aware lane is UNIQUE vs 21 top-scorers (15.4% vs GEMSDOE32 B2) and own HGB lineage (23.4%); literal strict lane fails only on the dense <code>r13</code> lattice (100%; <code>IR-25-LANE-DENSITY</code>). No weekly slot. Parallel-session research GeoTIFFs (including <code>gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif</code>, <code>gems25-h38-ospc-submod-20261025-680d62616417-zeros.tif</code>, <code>gems25-h36-spigm-subsurface-submod300-20261025-3937b96ce366-zeros.tif</code>, and <code>gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.tif</code>) remain available in the registry below and are likewise testing-only (<b>DO NOT SUBMIT</b>).</div>
-{dl_card(selected, '')}
-{objective_summary_card('')}
-{apfl2_summary_card('')}
-{h71_summary_card('')}
-{pol3_summary_card('')}
-{h66_summary_card('')}
-{h38_summary_card('')}
-{latest_diagnostic('')}
-<h2>Competition upload instructions — for a future gate-cleared candidate only</h2>
-<div class="callout"><b>Do not follow these steps with the current downloadable TIFF.</b> They describe the competition form, not authorization to submit. First require a fresh pre-registered holdout win, feature-alone leakage canaries, strict pre-placement and final-dot lane clearance, and exact-file format validation.</div>
-<ol class="steps">
-<li>After all gates pass and the separate selector approves a slot, download the selector-approved <code>.tif</code>; verify its SHA-256 against its own receipt.</li>
-<li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition page</a> and sign in. The competition form provides the upload control.</li>
-<li>Select a single-band GeoTIFF (<code>.tif</code>) or a ZIP containing exactly one GeoTIFF. Confirm the approved artifact matches the submission format's CRS, shape, and geotransform.</li>
-<li>Enter the copy-ready note registered for that exact artifact in the form's optional Note field (short comment).</li>
-<li>Only after authorized upload and receipt, the owner may record the organizer-confirmed result using <code>python scripts/record_live_score.py --file &lt;exact-file-or-content-id&gt; --score &lt;receipt-score&gt;</code>. Do not enter a projection or proxy value.</li></ol>
-<h2>What the tracked format receipt says about this exact file (not freshly revalidated)</h2>
-<table><thead><tr><th>Check</th><th>Recorded result</th><th>Detail</th></tr></thead><tbody>{''.join(f"<tr><td>{e(k)}</td><td>{badge('pass', 'ok') if v['pass_'] else (badge('FAIL', 'bad') if v['hard'] else badge('informational', 'info'))}</td><td class='small'>{e(v['detail'])}</td></tr>" for k, v in selected['checks'].items())}</tbody></table>
-<p class="small">Historical receipt uses <code>src/gems25/submission.py::check_file</code> against an owner-mirrored template (sha256 prefix 2176d08e…). The template and validator are not organizer-authenticated. Format-check receipt: <a href="downloads/{selected['receipt']}">{selected['receipt']}</a>.</p>
-<div class="callout"><b>If an approved future file is rejected for "Predicted values must be in range [0, 1]"</b><ol><li>Confirm you uploaded the exact selector-approved file and compare its SHA-256 with its receipt.</li>
-<li>Run the local exact-file validator against the matching official-format template; confirm all footprint values are finite and in [0,1], and CRS, shape, transform match.</li>
-<li>Do not use a fallback or another artifact unless its own receipt and exact-file checks pass. Organizer acceptance remains unknown until a receipt is issued.</li></ol></div>
-{''.join(dl_card(o, '', False) if o['role'] == 'fallback' else '' for o in others)}
-<h2>Rules that matter (read on the official pages)</h2><ul>
-<li>Up to <b>3 submissions per week</b> per entity; <b>one final submission</b> per entity must be chosen before the deadline (<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">rules §3.2, §3.4</a>).</li>
-<li>Generative-AI use is allowed but must be described in the narrative (<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">§3.2</a>); a draft is in <code>AI_DISCLOSURE.md</code>.</li>
-<li>Known USGS/INGENIOUS pixels are masked and pixel-exact; predictions on them do not matter (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4">staff</a>).</li>
-<li>Deadline wording differs between the page (11:59 p.m. UTC, 3 Dec 2026) and the rules (5:00 p.m. ET): confirm with <a href="mailto:gemsprize@nlr.gov">gemsprize@nlr.gov</a>.</li></ul>
-<div class="callout"><b>Slot discipline.</b> All current downloads are research artifacts only — none is OK to submit. The featured H71 file is format-valid and density-aware unique vs scored rasters and own HGB lineage, but three pre-registered DIRECT screens failed vs H35, so its verdict is negative and it must not be uploaded. Prior H66/H38/H36/H35 files remain testing-only. The GMCE/MSCR session's two fresh-draw experiments failed (paired -0.0012 and -0.0004) and its MSCR file is a strict-lane stop; the KDC file failed its pre-registered holdout gate; GEM-1/GEM-FUSE1 were gated against a weak control; H31-C and H31-1 were negative; session 7's two new pre-registered experiments also failed their frozen gates (H37-1 DOC paired −0.0009; H37-2 SPR +0.00094 vs the +0.001 gate), and the H37 file is a lane duplicate of its own H31/H35 detector lineage. Do not upload any of them. Lane receipts now also report each registry raster's halo coverage: the dense r13 lattice covers 99.87 % of the footprint within 3 px, so the literal 70 % test fails essentially any file against it; the density-aware symmetric statistic and every literal number are printed per file (knowledge/22 §4, knowledge/24 §4, knowledge/28 §4). A future candidate needs a fresh passing holdout, leakage canaries, lane clearance, and exact-file audit; no proxy result is a live score.</div>"""
+<section class="hero"><h1>Historical submission guide — superseded</h1>
+<p><b>NO current TIFF is approved. DO NOT SUBMIT.</b> Old instructions and receipts are archived in Git,
+not evidence of current portal behavior. See the <a href="submission-guide.html">current conditional submission guide</a>
+and <a href="executive-summary.html">executive summary</a>.</p></section>
+{dl_card(primary, '')}
+<h2>Prior parallel-lane CF-1 research TIFF</h2><p>Inspection only; no weekly slot is approved.</p>
+<p>Earlier H36 research file: <a download href="downloads/{e(h36_archive['file'])}">{e(h36_archive['file'])}</a> — DO NOT SUBMIT.</p>"""
+
+    guide_body = """<section class="hero"><h1>Submission guide</h1>
+<p class="lead"><b>NO competition-ready TIFF exists. DO NOT SUBMIT any current download.</b>
+Existing TIFFs are available only for local research; this page is a checklist for a possible future candidate.</p>
+<p><a href="executive-summary.html">Nine-site executive table</a> · <a href="current-review.html">Current review</a> ·
+<a href="data/download_audit.json">Research download inventory</a></p></section>
+<section class="review-decision"><h2>Before a selector considers a future file</h2><ol>
+<li>Obtain an explicit single-method assignment and preregister the hypothesis before fitting. Reuse shared components;
+perform per-feature canaries, buffered whole-segment hide-and-recover holdout, and a paired same-run comparison.</li>
+<li>Check absolute full-footprint rank correlation against every declared reference before dot placement and on the final file;
+stop for |&rho;| &gt; 0.90 or &gt;70% of candidate dots within 3 pixels of any reference. Missing, misaligned or unavailable
+references are unverified, not a pass. Do not waive dense references.</li>
+<li>Independently re-read the exact TIFF and verify SHA-256, one float32 band, the pinned template's CRS/shape/transform,
+finite [0,1] values inside the footprint, and the exact known-fault mask. The local promotion policy also requires all array
+values to pass strict [0,1]; this conservative check does not establish the organizer's padding requirements.</li>
+<li>Run <code>python scripts/verify_candidate_independent.py path/to/candidate.tif</code>. If proposing a ZIP, add
+<code>--require-zip</code> and verify that it contains exactly the audited TIFF bytes. Run
+<code>python scripts/check_readiness.py evidence.json --output decision.json</code> for receipt consistency; see the
+<a href="../knowledge/44_readiness_receipt_contract.md">receipt schema and evidence requirements</a>. A pass permits
+selector review only and does not authenticate the evidence or authorize a slot.</li>
+<li>A separate owner selector must choose a candidate and authorize any weekly slot. Only then follow the current
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">organizer instructions</a> manually,
+checking the file hash and retaining any receipt. This repository does not automatically access the organizer or upload.</li>
+</ol><p><b>Portal warning:</b> the reported “Predicted values must be in range [0, 1]” is consistent with NaNs inside
+an earlier owner-mirrored footprint, but the actual cause is not proven. Outside-footprint NaN and zero conventions have
+not been organizer-confirmed here; neither an all-finite file nor a ZIP proves portal acceptance.</p>
+<p><b>Note:</b> A future candidate needs a short, exact-file-specific note (at most 140 characters). Research identifiers
+on archive files are not submission notes. No note or candidate has been approved in this session.</p></section>"""
 
     # ------------------------------------------------------------------ research page
     effs = fac["effects_dti"]
@@ -770,6 +781,8 @@ Response: exact sparse-regime DTI of a fixed emission (ridge NMS → top 2.45 % 
     sources = f"""<div class="hero"><h1>Sources &amp; audit</h1><p class="lead">Every source with its verification status, every input file with its SHA-256 pin, every irregularity with evidence and action.
 "Verified" reflects the recorded repository evidence and date/method; it does not imply the page was re-fetched this turn. "Not verified here" means unverified, carried over or unreachable.</p></div>
 <h2>Official and trusted sources</h2><table><thead><tr><th>Source</th><th>Status</th><th>Used for</th><th>How verified / caveat</th></tr></thead><tbody>{st}</tbody></table>
+<section><h2>Source-health feed — timestamped snapshot</h2><p>The feed is local historical metadata, not a current leaderboard or an organizer receipt. It never automatically contacts DrivenData. See the <a href="../knowledge/43_latticegap_review_2026-10-28.md">latest source review</a> for freshly read material and caveats.</p>
+<div id="feed" data-base=""><p>Loading the local snapshot…</p></div></section>
 <h2>Input data (restore with <code>scripts/restore_data.py</code>)</h2><table><thead><tr><th>File</th><th>SHA-256</th><th class="num">Bytes</th><th>Group</th><th>Provenance</th></tr></thead><tbody>{dm}</tbody></table>
 <h2 id="irregularities">Irregularities and flags ({len(irr)})</h2><table><thead><tr><th>ID</th><th>Level</th><th>Issue · evidence · action</th></tr></thead><tbody>{ir}</tbody></table>
 <h2>Score ledger (user/owner claims; not organizer-verified)</h2><p class="small">No organizer receipt or official leaderboard page was accessed for the 0.2477 or 0.3195 claims. The local raster identity check verifies pixels, not DTI.</p><table><thead><tr><th>Project</th><th>Submission</th><th class="num">Reported score</th><th>Note / status</th></tr></thead><tbody>{sc}</tbody></table>
@@ -780,7 +793,8 @@ Response: exact sparse-regime DTI of a fixed emission (ridge NMS → top 2.45 % 
     (DOCS / "submission-history.html").write_text(page("Historical submission guide", exec_body, "history", ""))
     (DOCS / "index.html").write_text(page("Start here", render_body(), "index", ""))
     (ROOT / "index.html").write_text(page("Start here", render_body(root_page=True), "index", "docs/"))
-    (DOCS / "executive-summary.html").write_text(page("Executive summary & submission guide", render_body(), "exec", ""))
+    (DOCS / "executive-summary.html").write_text(page("Executive summary", render_body(), "exec", ""))
+    (DOCS / "submission-guide.html").write_text(page("Submission guide", guide_body, "guide", ""))
     (DOCS / "research.html").write_text(page("Research", research, "research", ""))
     (DOCS / "sources.html").write_text(page("Sources & audit", sources, "sources", ""))
     (DOCS / "current-review.html").write_text(page("Current executive review", render_body(), "current", ""))

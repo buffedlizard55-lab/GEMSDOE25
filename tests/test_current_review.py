@@ -24,8 +24,16 @@ def test_pooled_result_recomputed_from_cells_and_card_agrees():
     assert card['holdout_dti'] == computed['arms']['ROD']['pooled_dti']
     assert card['ci95'] == computed['arms']['ROD']['ci95']
     assert card['withheld_positives']['occurrences'] == computed['arms']['ROD']['withheld_positive_occurrences']
+    # Historical ROD receipts pin the evaluator as it was then; current guard
+    # fixes deliberately have new hashes and do not rewrite historical scores.
+    corrections = json.loads((ROOT/'evidence/evaluator_corrections_b0b734ae.json').read_text())['files']
     for path, digest in card['evaluator'].items():
-        assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest() == digest
+        current = hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if path in corrections:
+            assert corrections[path]['previous_sha256'] == digest
+            assert corrections[path]['current_sha256'] == current != digest
+        else:
+            assert current == digest
 
 
 def test_negative_lane_stops_writer_no_fabricated_receipt():
@@ -113,7 +121,7 @@ class Links(HTMLParser):
 
 @pytest.mark.parametrize('rel', ['index.html', 'docs/index.html', 'docs/executive-summary.html',
                                 'docs/current-review.html', 'docs/history.html', 'docs/submission-history.html',
-                                'docs/research.html', 'docs/sources.html'])
+                                'docs/submission-guide.html', 'docs/research.html', 'docs/sources.html'])
 def test_all_static_local_paths_resolve(rel):
     path = ROOT/rel
     parser = Links()

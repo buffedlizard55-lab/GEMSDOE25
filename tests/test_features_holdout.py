@@ -1,4 +1,5 @@
 import numpy as np
+import pytest
 
 from gems25.features import build_catalogue_features, dequantize, nearest_fill, ridge_strength
 from gems25.families import FAMILIES, family_columns
@@ -159,3 +160,56 @@ def test_block_holdout_rejects_degenerate_blocks_and_fold_ids():
     holdout = BlockHoldout(foot, labels, block_size_px=40)
     with np.testing.assert_raises(ValueError):
         holdout.draw(4, 0)
+
+
+def test_shared_zero_target_hides_no_components():
+    foot = np.ones((90, 90), bool)
+    labels = np.zeros_like(foot)
+    labels[10:15, 10] = True
+    labels[70:75, 70] = True
+    holdout = Holdout(foot, labels, hide_frac=0)
+    draw = holdout.draw(fold=0, seed=1)
+    assert not draw.hidden_test.any()
+    assert not draw.hidden_train.any()
+    np.testing.assert_array_equal(draw.visible, labels)
+    assert not holdout._pick(np.random.default_rng(0), np.array([1, 2]), 0).size
+
+
+@pytest.mark.parametrize('hide_frac', [-0.1, 1.1, float('nan'), True])
+def test_holdout_rejects_invalid_hide_fraction(hide_frac):
+    with pytest.raises(ValueError, match='hide_frac'):
+        Holdout(np.ones((20, 20), bool), np.zeros((20, 20), bool), hide_frac)
+
+
+def test_holdout_rejects_invalid_fold_and_grid():
+    foot = np.ones((20, 20), bool)
+    with pytest.raises(ValueError, match='aligned'):
+        Holdout(foot, np.zeros((19, 20), bool))
+    h = Holdout(foot, np.zeros_like(foot))
+    with pytest.raises(ValueError, match='fold'):
+        h.draw(4, 0)
+    with pytest.raises(ValueError, match='fold'):
+        h.draw(True, 0)
+
+
+def test_holdout_rejects_huge_hide_fraction_cleanly():
+    with pytest.raises(ValueError, match='hide_frac'):
+        Holdout(np.ones((20, 20), bool), np.zeros((20, 20), bool), 10**1000)
+
+
+def test_holdout_rejects_nonbinary_or_nonfinite_scored_masks():
+    foot = np.ones((20, 20), dtype=float)
+    labels = np.zeros_like(foot)
+    for value in (float('nan'), 2.0, -1.0):
+        bad_foot = foot.copy()
+        bad_foot[5, 5] = value
+        with pytest.raises(ValueError, match='footprint'):
+            Holdout(bad_foot, labels)
+        bad_labels = labels.copy()
+        bad_labels[5, 5] = value
+        with pytest.raises(ValueError, match='labels'):
+            Holdout(foot, bad_labels)
+    # Unscored outside-footprint label sentinels are not turned into faults.
+    foot[0, 0] = 0
+    labels[0, 0] = float('nan')
+    assert not Holdout(foot, labels).labels[0, 0]
