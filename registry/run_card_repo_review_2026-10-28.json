@@ -1,0 +1,57 @@
+{
+  "hypothesis": "No new candidate selected; proposed research hypotheses are unvalidated and no explicit method lane was assigned.",
+  "mechanism": "GEMSDOE32 B2 plausibly improves the local coverage-to-false-positive tradeoff through sparse emission and selective catalogue-adjacent pruning; hidden-label causation is unproven.",
+  "named_non_fault_mimic": "Unfaulted lithologic contact or depositional boundary can mimic a structural geophysical edge.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems25.metric.dti_binary(alpha=0.2,beta=0.8,R=3px); 100 m grid; 300 m triangular kernel",
+    "candidate": 0.111126,
+    "same_run_control": "CTRL_BLIND_ABCD",
+    "control": 0.121443,
+    "paired_gain": -0.010317,
+    "ci95_paired_gain": [
+      -0.012437,
+      -0.006948
+    ],
+    "withheld_positive_occurrences": 95188,
+    "status": "negative existing H81 result; not a new experiment and not an organizer score",
+    "candidate_ci95": [
+      0.100887,
+      0.121519
+    ],
+    "control_ci95": [
+      0.112467,
+      0.128635
+    ],
+    "evaluator_hashes": {
+      "src/gems25/metric.py": "4f6e4732029efd0238388aec74590e56bc2727df7441220ca09af7d02e9da230",
+      "src/gems25/holdout.py": "f0455eb17921e50365342ffb658504a5fcc0ddb3d2bd82f4bf0568d772be2bc1",
+      "src/gems25/block_holdout.py": "baad5b5301d4e623a8100593f7be0ab4fd791b712576eb411a5a740225a9fa6e"
+    },
+    "ci_method": "quadrant-cluster percentile bootstrap; 10,000 draws; seed 26026; four clusters"
+  },
+  "correlation_overlap_vs_registry": {
+    "h81_surface_rank_gate": "passed for comparable entries; one aligned-grid comparison is incomplete/invalid per receipts",
+    "h81_final_dots_max_overlap": 0.722,
+    "h81_flagged_reference": "GEMSDOE25 H75 DCHB-CG",
+    "r13_geometric_minimum_overlap_at_37654_dots": 0.827,
+    "interpretation": "H81 final dots fail the 0.70 cap; r13 lower bound is specific to 37,654-dot designs."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "reason": "No new candidate raster was generated or published in this review."
+  },
+  "submission_name": null,
+  "submission_note": "GEMSDOE25 review: no approved candidate; historical archives only; do not submit.",
+  "verdict": "negative",
+  "limitations": [
+    "No explicit method paragraph or lane assignment was supplied; no candidate was fitted.",
+    "This checkout contains data/.gitkeep only; competition template and cached feature stack are absent.",
+    "External official data sources are linked but not fetched because they are outside the configured outbound allowlist.",
+    "Automated DrivenData access is prohibited by project standing rules; current leaderboard and submission receipts are unknown.",
+    "Pinned public mirrors establish byte integrity only, not organizer provenance."
+  ]
+}

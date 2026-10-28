@@ -1,50 +1,23 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
-## Latest result — H80 blocked factorial screen, 28 October 2026
+## Latest result — H81 failed promotion; no eligible submission (28 October 2026)
 
-**OK TO SUBMIT: NO — DO NOT SUBMIT.** No new TIFF, calibrated competition estimate or weekly slot.
-HOLDOUT-DTI **0.08744**, 95% CI [0.06204, 0.10615],
-26,367 withheld-positive occurrences vs same-run H35 0.12165;
-paired gain -0.03421 (95% CI [-0.05209, -0.01936]).
-Shared buffered 25-km tile-sampled component holdout, four quadrant clusters, draws 140–141;
-alpha .2, beta .8, 300 m triangular kernel. All 792 feature/regime canaries pass.
-This is a local catalogue-gap proxy, not an organizer score. One screen completed; experiments 2–3 withdrawn.
+**OK TO SUBMIT: NO — DO NOT SUBMIT. New-submission score: NOT ESTIMATED.** H81 did not publish a TIFF or receive slot approval. On the 25-km checkerboard holdout, `H81_JUNC_CG` scored **HOLDOUT-DTI 0.111126** vs same-run `CTRL_BLIND_ABCD` **0.121443** (paired gain **-0.010317**, 95% CI **[-0.012437, -0.006948]**, **95,188 withheld-positive occurrences**; evaluator `gems25.metric.dti_binary`, alpha 0.2, beta 0.8, 300 m triangular kernel). H81 also failed the primary H35 gate and the final-dot lane gate (72.20% within 3 px of H75; limit 70%).
 
-Data placement and the shared cache were restored successfully here; GPU training is not required for this diagnostic.
-Scientific interpretation warning: mirrored `tc` is a magnetic derivative, not heatflow; `deq_n100a15` is a distance channel,
-not event rate; quantized K/Th/U code-space ratios are not physical concentrations. No causal geothermal claim is validated.
-At the frozen 37,654-dot budget, r13 forces at least **82.70%** overlap, so no packaging is allowed.
-All 117 declared hashes are available but one registry transform is wrong; integrity is not full lane clearance.
+The previous public H81 empirical bands (0.2250–0.2250 and a “kernel-matched optimum” band) are **retracted**: the gated audit matched zero historical rasters and those bands were not leaderboard scores. The best supplied historical result among the nine requested sites is GEMSDOE32 B2 at 0.2778 (**OWNER-REPORTED, unconfirmed**), not a new submission recommendation.
 
-[Executive summary and nine-site historical download table](docs/executive-summary.html) ·
-[Full result, ranked hypotheses, sources and next steps](knowledge/45_h80_outcome_2026-10-28.md) ·
-[JSON run card](registry/run_card_h80_2026-10-28.json) ·
-[Three-pass review](registry/review_passes_h80_2026-10-28.json).
-Only GEMSDOE25 is updated. Estimated competition score: **UNKNOWN / NOT ESTIMATED**.
-Earlier dated decisions below are historical, not claims that this session ran no experiment.
+[Executive summary and nine-site table](docs/executive-summary.html) · [Current repository review, ranked research proposals and next gates](knowledge/47_repo_review_2026-10-28.md) · [H81 evidence and gates](evidence/h81_gates.json) · [H81 run card](registry/run_card_h81_2026-10-28.json) · [This review's JSON run card](registry/run_card_repo_review_2026-10-28.json) · [Three-pass review receipt](registry/review_passes_repo_review_2026-10-28.json).
+
+Earlier experiment results below are historical records, not claims that this was the latest outcome.
 
 
-## H81 (28 October 2026) — junction-corridor experiment, and the honest stop
+## H81 outcome — negative; no eligible submission
 
-**No new submission file exists from this session, and that is the result, not an omission.**
+**OK TO SUBMIT: NO — DO NOT SUBMIT. Estimated competition score: NOT ESTIMATED.** H81 did not publish a TIFF or receive slot approval. On the 25-km checkerboard holdout, `H81_JUNC_CG` scored HOLDOUT-DTI 0.111126 vs same-run `CTRL_BLIND_ABCD` 0.121443 (paired gain -0.010317, 95% CI [-0.012437, -0.006948], 95,188 withheld-positive occurrences; evaluator `gems25.metric.dti_binary`, alpha 0.2, beta 0.8, R=300 m). It also failed the primary `CTRL_H35` gate. Final dots exceeded the strict 70% registry overlap limit (72.20% vs H75).
 
-* **What blocked it:** the finished candidate was a lane duplicate of the repository's own H75 GeoTIFF at
-  **72.20%** 3-px dot overlap (limit 70%). A *scientific* restriction to pixels the new H81
-  physics supports (junction invariant above its footprint median, or cation–silica disequilibrium above its 75th percentile)
-  cut that to **72.20%**, still above the limit. In this footprint every well-performing
-  physics surface ranks the same ridges. Filed as `IR-28-EMISSION-CONVERGENCE`.
-* **What was measured** (HOLDOUT-DTI, `gems25.metric.dti_binary`, α=0.2 β=0.8 R=300 m, virgin draws 140–143, every one of
-  97 columns canaried ≤0.90): H81 physics beats the physics-only control by +0.023628 DTI (95% CI [+0.01952, +0.02752], 4/4 folds) on the standard holdout and
-  +0.024892 DTI (95% CI [+0.01959, +0.02890], 4/4 folds) on the 25-km full-checkerboard `BlockHoldout` — but loses to the plain blind-ABCD stack by -0.010317 DTI (95% CI [-0.01244, -0.00695], 0/4 folds),
-  and never beats `CTRL_H35`. So the new physics is real but not yet better than the best blind stack.
-* **Best file to download and consider submitting:** the existing
-  [`gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif`](docs/downloads/gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif)
-  (format-valid, 0 NaN, unique vs every non-space-filling raster in the registry). Estimated band for any B2-geometry emission:
-  **0.2250–0.2250** (EMPIRICAL from owner-reported anchors, not a score). Its own competition score is UNKNOWN.
-* **Read:** [docs/h81-executive-brief.html](docs/h81-executive-brief.html) · pre-registration
-  [knowledge/44](knowledge/44_preregistered_h81_fhj_sd_2026-10-28.md) · lane receipt
-  [evidence/h81_final_dot_lane.json](evidence/h81_final_dot_lane.json) · run card
-  [registry/run_card_h81_2026-10-28.json](registry/run_card_h81_2026-10-28.json).
+The earlier public H81 empirical score band of 0.2250–0.2250 and its “kernel-matched optimum” band are **retracted**: the gated audit has zero matched historical rows, and local/model estimates are not leaderboard scores. The best supplied historical result among the nine focus sites remains GEMSDOE32 B2 at 0.2778, OWNER-REPORTED and unconfirmed; it is not a new or recommended submission. No new candidate was tested in this review.
+
+[Executive summary and nine-site audit](docs/executive-summary.html) · [Current review and next steps](knowledge/47_repo_review_2026-10-28.md) · [H81 evidence and gates](evidence/h81_gates.json) · [H81 run card](registry/run_card_h81_2026-10-28.json).
 
 <!-- CURRENT-REVIEW-2026-10-27 -->
 ## Current decision — 2026-10-27
