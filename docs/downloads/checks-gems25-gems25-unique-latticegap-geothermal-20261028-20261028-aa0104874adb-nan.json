@@ -1,0 +1,123 @@
+{
+  "file": "gems25-gems25-unique-latticegap-geothermal-20261028-20261028-aa0104874adb-nan.tif",
+  "path": "docs/downloads/gems25-gems25-unique-latticegap-geothermal-20261028-20261028-aa0104874adb-nan.tif",
+  "zip": "docs/downloads/gems25-gems25-unique-latticegap-geothermal-20261028-20261028-aa0104874adb-nan.zip",
+  "bytes": 1539050,
+  "sha256": "79597e464fcf1d5f884f01c017597bd7facf13ca7def2b98dd5a72241bc69a82",
+  "content_id": "aa0104874adb",
+  "positive_pixels": 6430,
+  "format_ok": true,
+  "checks": {
+    "template_matches_expected_grid_and_footprint": {
+      "pass_": true,
+      "detail": "(3730, 3292), footprint 5,167,373 px",
+      "hard": true
+    },
+    "single_band": {
+      "pass_": true,
+      "detail": "count=1",
+      "hard": true
+    },
+    "dtype_float32": {
+      "pass_": true,
+      "detail": "dtypes=('float32',)",
+      "hard": true
+    },
+    "crs_epsg_32611": {
+      "pass_": true,
+      "detail": "32611",
+      "hard": true
+    },
+    "shape_matches_template": {
+      "pass_": true,
+      "detail": "(3730, 3292) vs (3730, 3292)",
+      "hard": true
+    },
+    "geotransform_matches_template": {
+      "pass_": true,
+      "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+      "hard": true
+    },
+    "footprint_all_finite": {
+      "pass_": true,
+      "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+      "hard": true
+    },
+    "footprint_values_in_0_1": {
+      "pass_": true,
+      "detail": "min=0.0 max=1.0",
+      "hard": true
+    },
+    "outside_footprint_is_nan_official": {
+      "pass_": true,
+      "detail": "7,111,787/7,111,787 NaN",
+      "hard": false
+    },
+    "outside_footprint_is_nan_or_zero": {
+      "pass_": true,
+      "detail": "NaN (official) or 0 (fallback) outside",
+      "hard": true
+    },
+    "nan_mask_identical_to_template": {
+      "pass_": true,
+      "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+      "hard": true
+    },
+    "nodata_tag": {
+      "pass_": true,
+      "detail": "nodata=nan",
+      "hard": false
+    },
+    "variant_nan_aware_whole_array": {
+      "pass_": true,
+      "detail": "finite range over the whole array; infinity rejected",
+      "hard": true
+    },
+    "variant_masked_read": {
+      "pass_": true,
+      "detail": "rasterio masked read; empty data rejected",
+      "hard": true
+    },
+    "variant_strict_whole_array_no_nan": {
+      "pass_": false,
+      "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+      "hard": false
+    },
+    "profile_matches_template": {
+      "pass_": true,
+      "detail": "compress=lzw (template lzw)",
+      "hard": false
+    }
+  },
+  "hard_failures": [],
+  "note": "GEMSDOE25 unique-latticegap-geothermal | Concealed-conduit geothermal dots in r13-lattice gaps; 0% o | id aa0104874adb | not yet live-scored",
+  "hypothesis": "Concealed-conduit geothermal: dots at radiometric+scarp anomalies in r13-lattice gaps outside catalogue faults",
+  "method": "unique-latticegap-geothermal",
+  "lane": {
+    "strategy": "dots_only_in_r13_outside_halo_and_outside_known_faults",
+    "safe_pixels": 6514,
+    "dots_placed": 6430,
+    "expected_overlap_vs_every_registry_raster": 0.0,
+    "overlap_threshold": 0.7,
+    "rank_corr_threshold": 0.9
+  },
+  "build": {
+    "date": "20261028",
+    "utc": "2026-10-28T11:44:34.961880+00:00",
+    "template": "/home/user/GEMSDOE25/data/sample_submission.tif",
+    "layers": [
+      "geodawn_rad_u8",
+      "lidar_scarp_features_u8",
+      "derived_sgmc_faults_100m_u8",
+      "labels",
+      "r13_lattice"
+    ]
+  },
+  "fallback": {
+    "file": "gems25-gems25-unique-latticegap-geothermal-20261028-20261028-aa0104874adb-zeros.tif",
+    "sha256": "5987874289318dc35fc6d43d61e1defbb674e8cf230836660fcdcb1aae56a07b",
+    "bytes": 780232,
+    "format_ok": true,
+    "positive_pixels": 6430
+  }
+}
