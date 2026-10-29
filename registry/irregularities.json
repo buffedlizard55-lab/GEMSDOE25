@@ -1081,6 +1081,46 @@
       "issue": "The generators on this branch (scripts/build_readme.py, build_site.py, build_current_review.py) do not reproduce hand-edited sections on main. A full rebuild removed README sections 'Latest result — H81 failed promotion' and 'H81 outcome — negative' (which retract the 0.2250–0.2250 band) and restored an old H81 banner in docs/executive-summary.html and docs/current-review.html. The rebuild was reverted; those pages now equal origin/main, with only additive changes.",
       "evidence": "git diff origin/main -- README.md (0 removed lines after the revert); docs/*.html equal origin/main except the nav addition",
       "resolution_or_action": "Do not run build_readme.py, build_site.py or build_current_review.py on main-derived pages until the generators are reconciled with the published pages. Edit published pages additively, and check each diff against origin/main before committing."
+    },
+    {
+      "id": "IR-29-LEADERBOARD-CONFLICT",
+      "severity": "high",
+      "status": "open",
+      "issue": "Owner prompt reports current leaderboard high score 0.4413 for participant DARD; docs/data/live_scores.json leaderboard_snapshot lists DARD at 0.3195 (rank 1). Both are unconfirmed.",
+      "evidence": "docs/data/live_scores.json (best_public_dti_latest_claim 0.4413; leaderboard_snapshot.top10[0] 0.3195)",
+      "resolution_or_action": "Owner reads the DrivenData leaderboard by hand and records the value and timestamp in registry/live_scores.json. Agent does not fetch it (AGENTS.md rule 3)."
+    },
+    {
+      "id": "IR-29-NAN-DEFAULT-DOWNLOAD",
+      "severity": "medium",
+      "status": "open",
+      "issue": "Some front-page links still point to NaN-outside GeoTIFFs, which fail the portal [0,1] check. Carried from REVIEW_2026-10-28 section 3; not re-audited page by page in session 2026-10-29.",
+      "evidence": "evidence/portal_file_recheck_2026-10-29.json (NaN twins FAIL range check); REVIEW_2026-10-28.md section 3",
+      "resolution_or_action": "Page-by-page link audit; point every download link to a zeros-outside file or label the NaN twin DO NOT UPLOAD."
+    },
+    {
+      "id": "IR-29-NINE-SITE-SCORES-OWNER-ONLY",
+      "severity": "medium",
+      "status": "open",
+      "issue": "All scores for the nine focus sites are owner-reported; none is organizer-confirmed.",
+      "evidence": "docs/data/live_scores.json status fields; knowledge/48 section 5",
+      "resolution_or_action": "Record submission-page receipts by hand when available."
+    },
+    {
+      "id": "IR-29-LANE-RULE-UNSATISFIABLE-AT-BUDGET",
+      "severity": "high",
+      "status": "open",
+      "issue": "The literal 70% within-3-px r13 limit cannot be met at 37,654 dots (82.70% minimum); the cap is reachable only at or below 21,713 dots.",
+      "evidence": "evidence/lane_bound_r13_2026-10-28.json",
+      "resolution_or_action": "Owner decides the lane rule or dot budget. Do not engineer around the rule."
+    },
+    {
+      "id": "IR-29-ZEROS-NOT-ORGANIZER-CONFIRMED",
+      "severity": "high",
+      "status": "open",
+      "issue": "Zeros-outside GeoTIFFs pass the portal-style [0,1] range check locally, but the organizer's exact acceptance rule has not been read. Format pass is not submit approval.",
+      "evidence": "evidence/portal_file_recheck_2026-10-29.json; knowledge/48 section 1",
+      "resolution_or_action": "Owner confirms the accepted format from the submission-page text or an organizer reply."
     }
   ]
 }
