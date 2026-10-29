@@ -2,6 +2,16 @@
 
 [Repository and focus-site review (2026-10-28)](docs/review-2026-10-28.md) · [Executive summary and historical download table](docs/executive-summary.html) · [H81 review and retracted score estimates](knowledge/47_repo_review_2026-10-28.md)
 
+## Read first — owner prompt 2026-10-29 (normalized, not verbatim)
+
+**OK TO DOWNLOAD AND SUBMIT: NO.** No file in this repository is cleared. Estimated competition score: **NOT ESTIMATED**.
+
+* **Portal error (verified locally):** NaN-outside GeoTIFFs fail the `[0, 1]` range check. Zeros-outside twins pass. Re-read: [`evidence/portal_file_recheck_2026-10-29.json`](evidence/portal_file_recheck_2026-10-29.json). Passing the format check is **not** submit approval.
+* **Session review:** [`knowledge/48_session_review_2026-10-29.md`](knowledge/48_session_review_2026-10-29.md). Covers the 0.2778 question, the candidate hypotheses (all unvalidated), the gates, the irregularities, and the next steps.
+* **Leaderboard conflict (IR-29-LEADERBOARD-CONFLICT):** the 0.4413 claim and the 0.3195 snapshot cannot both be the current top value. The owner must read the leaderboard by hand.
+* **Standing rules carried forward:** unique, content-addressed names; no copy of a previous submission outside education; no automated DrivenData access; labels for every number (HOLDOUT-DTI, ORGANIZER-CONFIRMED, OWNER-REPORTED, or NOT ESTIMATED); comparator recomputed in the same run; lane overlap and holdout gates before any slot; three review passes.
+* The full verbatim prompt is not reproduced here because of its length. The normalized rules above, and `knowledge/48`, are the operative text. Ask for the verbatim text to be added as its own file if needed.
+
 ## Nine-site brief (28 October 2026) — what to download, and why nothing is OK to submit
 
 **OK TO DOWNLOAD AND SUBMIT: NO — no file in this repository or on the nine focus sites is cleared.**
