@@ -79,8 +79,8 @@ def main() -> None:
     # The shared audit still runs unchanged. Expected pins remain the complete set;
     # the returned surface_clear MUST remain false with an excluded reference.
     surf_audit = audit_surface(surface[foot], foot, profile, aligned, expected, excluded=True)
-    report = dict(preregistration="knowledge/49_preregistered_decoupling_offgrid_diagnostic_2026-10-29.md",
-                  preregistration_commit="7b52cf1", evaluator="gems25.metric.dti_binary(alpha=.2,beta=.8,R=3px)",
+    report = dict(preregistration="knowledge/50_preregistered_decoupling_feasible_allocation_2026-10-29.md",
+                  preregistration_commit="b48a878", evaluator="gems25.metric.dti_binary(alpha=.2,beta=.8,R=3px)",
                   canaries=canaries, offgrid_unchecked=offgrid, surface_audit=surf_audit)
     if surf_audit["flagged"] or surf_audit["errors"] or len(surf_audit["rows"]) != len(aligned):
         report["verdict"] = "SURFACE DUPLICATE OR INVALID - stop before placement"
@@ -107,8 +107,9 @@ def main() -> None:
         # Stable deterministic tie ordering by pixel index, then decreasing score.
         return indices[np.lexsort((indices, -surface.ravel()[indices]))[:n]]
     pred = np.zeros(foot.shape, np.float32)
-    pred.ravel()[select(R2, 2537)] = 1
-    pred.ravel()[select(R5, 5600)] = 1
+    pred.ravel()[select(R2, 2239)] = 1
+    pred.ravel()[select(r13hole & clear & ~R2, 211)] = 1
+    pred.ravel()[select(R5, 5687)] = 1
     cid = content_id(pred, foot, labels > 0)
     filename = make_filename("mag-rad-decoupling", "20261029", cid, outside="zero")
     dest = ROOT / "docs/downloads" / filename
@@ -136,10 +137,12 @@ def main() -> None:
     diffs = [pooled([cand["draws"][j] for j in idx]) - pooled([base["draws"][j] for j in idx])
              for idx in rng.integers(0, 8, (10000, 8))]
     delta_ci = np.percentile(diffs, [2.5, 97.5]).tolist()
-    report["holdout_dti"] = dict(evidence_class="HOLDOUT-DTI", candidate=cand, control=base,
+    report["holdout_dti"] = dict(evidence_class="HOLDOUT-DTI (INVALID DIAGNOSTIC)", candidate=cand, control=base,
                                 paired_gain=cand["pooled_dti"]-base["pooled_dti"],
-                                paired_gain_ci95=delta_ci, withheld_positive_occurrences=cand["n_truth_total"])
-    report["verdict"] = "NEGATIVE / incomplete global registry - DO NOT SUBMIT"
+                                paired_gain_ci95=delta_ci, withheld_positive_occurrences=cand["n_truth_total"],
+                                valid_for_selection=False,
+                                invalid_reason="Full labels catalogue was used to enforce >3 px clearance during final dot placement; hidden_test pixels leaked into this placement rule. Invalid hide-and-recover. Archived control not re-fitted. No selection inference.")
+    report["verdict"] = "NEGATIVE — INVALID HOLDOUT (full catalogue leakage in placement); incomplete global registry — DO NOT SUBMIT"
     OUT.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
     print(json.dumps(dict(verdict=report["verdict"], file=report["file"],
                           candidate_dti=cand["pooled_dti"], control_dti=base["pooled_dti"],
