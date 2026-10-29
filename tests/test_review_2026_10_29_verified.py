@@ -7,13 +7,13 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import sys
 from pathlib import Path
 
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "scripts"))
 sys.path.insert(0, str(ROOT / "src"))
 
 
@@ -47,17 +47,24 @@ def test_session_irregularities_are_registered_with_expected_status() -> None:
     assert issues["IR-29-LABELS-EQUALS-CATALOGUE"]["severity"] == "critical"
 
 
-def test_owner_mirror_fetch_targets_match_nine_site_evidence() -> None:
-    import fetch_owner_mirrors as fom
-
-    targets = fom.owner_targets()
+def test_nine_site_owner_files_are_pinned_in_manifest() -> None:
+    """All 8 owner-prefixed nine-site rasters are restored by scripts/restore_data.py from pinned commits."""
+    man = J("registry/data_manifest.json")["files"]
+    groups = [f for f in man if f.get("group") in ("owner_mirror", "owner_mirror_nine_site")]
+    dests = {f["dest"] for f in groups}
     rows = J("evidence/nine_site_top_files_2026-10-28.json")["rows"]
     owner_rows = [r for r in rows if "__" in r["file"]]
-    assert len(targets) == len(owner_rows) == 8
-    for name, repo, sha in targets:
-        assert repo.startswith("buffedlizard55-lab/GEMSDOE")
-        assert len(sha) == 64 and all(c in "0123456789abcdef" for c in sha)
-        assert name.split("__", 1)[0] == repo.split("/")[1]
+    assert len(owner_rows) == 8
+    assert {f"owner_mirrors/{r['file']}" for r in owner_rows} <= dests
+    by_dest = {f["dest"]: f for f in groups}
+    for r in owner_rows:
+        entry = by_dest[f"owner_mirrors/{r['file']}"]
+        assert entry["sha256"] == r["sha256"], r["file"]
+        assert re.fullmatch(r"[0-9a-f]{40}", entry["ref"]), r["file"]
+        assert entry["repo"].startswith("buffedlizard55-lab/GEMSDOE"), r["file"]
+        assert "NOT organizer-authenticated" in entry["provenance"], r["file"]
+    restore_src = (ROOT / "scripts" / "restore_data.py").read_text()
+    assert '"owner_mirror_nine_site"' in restore_src
 
 
 def test_nine_site_evidence_lineage_is_internally_consistent() -> None:
@@ -94,7 +101,7 @@ def test_front_pages_and_readme_surface_the_label_alert() -> None:
 
 
 def test_no_drivendata_host_in_new_scripts() -> None:
-    for name in ("scripts/fetch_owner_mirrors.py", "scripts/audit_label_identity.py"):
+    for name in ("scripts/audit_label_identity.py",):
         assert "drivendata.org" not in (ROOT / name).read_text(encoding="utf8").replace(
             "https://www.drivendata.org/competitions/306/competition-doe-gems/data/", ""
         ), name

@@ -1,0 +1,39 @@
+{
+  "scope": "Three-pass repository review, data-input restore, evidence audit and readiness decision; no experiment or submission created.",
+  "passes": [
+    {
+      "pass": 1,
+      "name": "Implement and verify",
+      "actions": [
+        "Read AGENTS.md and reviewed the README status, current session review, 9-site audit, score provenance, portal safety receipts, recent holdout outcomes and active code families.",
+        "Restored core, external and scored input groups with scripts/restore_data.py; SHA-256 verified all 22 local files against registry/data_manifest.json and recorded evidence/data_restore_audit_2026-10-29.json.",
+        "Installed declared dependencies in the ignored .venv and ran the full test suite: 555 passed, 7 skipped, 1 warning.",
+        "Prepared a ranked four-item hypothesis queue with mechanisms, mimics, code distinction, cost/qualitative priority, official sources and explicit availability blockers.",
+        "Updated README active-session brief and created the current review and machine-readable run card."
+      ]
+    },
+    {
+      "pass": 2,
+      "name": "Review bugs, assumptions and edge cases",
+      "actions": [
+        "Confirmed the derived shared feature cache remains absent despite restoring raw inputs; did not substitute a private feature stack or claim reproducible holdout validation.",
+        "Checked historical score labels: 0.2778, 0.3195 and 0.4413 are not organizer-confirmed in this checkout; 0.3195 and 0.4413 conflict.",
+        "Checked the nine-site exact pixel-set duplicate finding: GEMSDOE25 and GEMSDOE30 are equal; other selected masks are not exact duplicates but some have high Jaccard overlap.",
+        "Kept local format acceptance separate from scientific holdout, global novelty, portal acceptance and weekly-slot approval.",
+        "Did not run another experiment: no unambiguous active method lane is specified; the prior 29 October preregistered lane records its three-experiment budget as consumed."
+      ]
+    },
+    {
+      "pass": 3,
+      "name": "Reconcile against original owner request",
+      "actions": [
+        "The executive table has all nine requested sites and identifies historical filename, owner-reported result, exact duplicate status, unknown new-score estimate and no-submit decision.",
+        "The 0.2778 explanation is restricted to measured pixel lineage and plausible metric mechanics; it does not claim hidden-label causality or forecast a higher result.",
+        "The required new unique, high-scoring, submit-approved TIFF was not generated because no candidate can be validated against the prescribed gates from the available shared cache/lane context.",
+        "No submission slot was selected, no upload occurred, and no DrivenData page was accessed."
+      ]
+    }
+  ],
+  "test_result": {"passed": 562, "skipped": 4, "warnings": 1, "command": ".venv/bin/pytest -q"},
+  "outcome": "negative; no new competition-ready TIFF; all current files remain unapproved for submission"
+}

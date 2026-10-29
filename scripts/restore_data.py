@@ -9,6 +9,8 @@ as organizer files (see registry/irregularities.json IR-25-PROVENANCE).
     python scripts/restore_data.py --group core          # labels, template, 419 MB feature raster
     python scripts/restore_data.py --group external      # LiDAR / radiometric / GDR layers
     python scripts/restore_data.py --group scored        # scored submissions used for analysis
+    python scripts/restore_data.py --group owner_mirror  # GEMSDOE32 B2 + GEMSDOE28 h27-4 parent (lineage check)
+    python scripts/restore_data.py --group owner_mirror_nine_site  # 6 more owner focus-site rasters (nine-site audit)
     python scripts/restore_data.py --group all
 """
 
@@ -111,7 +113,7 @@ def restore(entry: dict, root: Path) -> dict:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--group", default="core", choices=["core", "external", "scored", "all"])
+    ap.add_argument("--group", default="core", choices=["core", "external", "scored", "owner_mirror", "owner_mirror_nine_site", "all"])
     ap.add_argument("--manifest", default=str(ROOT / "registry" / "data_manifest.json"))
     args = ap.parse_args()
     man = json.loads(Path(args.manifest).read_text())
