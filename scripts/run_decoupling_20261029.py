@@ -66,12 +66,24 @@ def main() -> None:
             OUT.write_text(json.dumps(dict(verdict="LEAKAGE CANARY - stop", canaries=canaries), indent=2))
             return
     # Full-footprint surface audit before any dot placement.
-    surf_audit = audit_surface(surface[foot], foot, profile, references, expected)
-    report = dict(preregistration="knowledge/48_preregistered_magnetic_radiometric_decoupling_2026-10-29.md",
-                  preregistration_commit="22f8451", evaluator="gems25.metric.dti_binary(alpha=.2,beta=.8,R=3px)",
-                  canaries=canaries, surface_audit=surf_audit)
-    if not surf_audit["surface_clear"]:
-        report["verdict"] = "SURFACE DUPLICATE / REGISTRY INCOMPLETE - stop before placement"
+    # E2: explicitly record malformed/off-grid references; diagnostic scope only.
+    aligned, offgrid = [], []
+    for p in references:
+        with rasterio.open(p) as src:
+            if src.count == 1 and (src.shape, src.crs, src.transform) == profile:
+                aligned.append(p)
+            else:
+                offgrid.append(p.name)
+    if not offgrid:
+        raise RuntimeError("expected historical off-grid anomaly absent: preregister a new audit")
+    # The shared audit still runs unchanged. Expected pins remain the complete set;
+    # the returned surface_clear MUST remain false with an excluded reference.
+    surf_audit = audit_surface(surface[foot], foot, profile, aligned, expected, excluded=True)
+    report = dict(preregistration="knowledge/49_preregistered_decoupling_offgrid_diagnostic_2026-10-29.md",
+                  preregistration_commit="7b52cf1", evaluator="gems25.metric.dti_binary(alpha=.2,beta=.8,R=3px)",
+                  canaries=canaries, offgrid_unchecked=offgrid, surface_audit=surf_audit)
+    if surf_audit["flagged"] or surf_audit["errors"] or len(surf_audit["rows"]) != len(aligned):
+        report["verdict"] = "SURFACE DUPLICATE OR INVALID - stop before placement"
         OUT.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
         return
     def locate(name):
@@ -101,12 +113,20 @@ def main() -> None:
     filename = make_filename("mag-rad-decoupling", "20261029", cid, outside="zero")
     dest = ROOT / "docs/downloads" / filename
     write_submission(pred, TEMPLATE, dest, outside="zero")
-    final_audit = audit(dest, TEMPLATE, registry_rasters(), expected)
+    final_audit = audit(dest, TEMPLATE, aligned, expected)
     fmt = check_file(dest, TEMPLATE)
     report.update(file=str(dest.relative_to(ROOT)), sha256=sha256_file(dest),
                   positive_pixels=int(pred.sum()), final_audit=final_audit, validator=fmt,
                   note=f"GEMSDOE25 mag/rad decoupling | {cid} | research only; DO NOT SUBMIT")
-    # Evaluate regardless of a final-dot duplicate: negative evidence is useful, but never promote.
+    # A duplicate is a STOP: do not evaluate/package a drifted file as a new lane.
+    if final_audit["flagged"]:
+        dest.unlink()
+        report["file"] = None
+        report["verdict"] = "FINAL DOT DUPLICATE - file removed, stop"
+        OUT.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
+        return
+    # Evaluate a research-only diagnostic; the global registry is incomplete.
+
     with rasterio.open(CONTROL) as src:
         ctrl = src.read(1)
     cand = eval_array(ho, pred, "DECPL")
@@ -119,8 +139,7 @@ def main() -> None:
     report["holdout_dti"] = dict(evidence_class="HOLDOUT-DTI", candidate=cand, control=base,
                                 paired_gain=cand["pooled_dti"]-base["pooled_dti"],
                                 paired_gain_ci95=delta_ci, withheld_positive_occurrences=cand["n_truth_total"])
-    report["verdict"] = ("SELECTOR-ELIGIBLE, not submitted" if final_audit["lane_clear"]
-                         and fmt["format_valid"] and delta_ci[0] > 0 else "NEGATIVE - DO NOT SUBMIT")
+    report["verdict"] = "NEGATIVE / incomplete global registry - DO NOT SUBMIT"
     OUT.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
     print(json.dumps(dict(verdict=report["verdict"], file=report["file"],
                           candidate_dti=cand["pooled_dti"], control_dti=base["pooled_dti"],
