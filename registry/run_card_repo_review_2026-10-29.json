@@ -1,0 +1,32 @@
+{
+  "schema": "run_card/v1",
+  "date_utc": "2026-10-29",
+  "hypothesis": "No candidate selected or tested; the current turn does not specify an unambiguous method lane, and the shared feature cache is absent.",
+  "mechanism": "The highest supplied sibling-site result, GEMSDOE32 B2, plausibly improved the prediction-mass tradeoff by pruning 6,436 catalogue-adjacent pixels from a nested D2.8-to-H27-4 mask. Hidden-label causation is unknown.",
+  "named_non_fault_process_that_could_mimic_it": "Lithologic contacts, bedrock ledges, fan incision, and pluvial shorelines can mimic a structural edge or channel-profile offset.",
+  "holdout_dti": {
+    "class": "HOLDOUT-DTI (historical INVALID diagnostic; not this review's experiment)",
+    "evaluator_version": "gems25.metric.dti_binary(alpha=0.2,beta=0.8,R=3px); 100 m pixels; 300 m triangular kernel",
+    "candidate": 0.0,
+    "ci95": [0.0, 0.0],
+    "withheld_positive_occurrences": 23923,
+    "same_run_control": "Archived H35 on same draws; not refit in the contaminated diagnostic",
+    "control": 0.01945607527633195,
+    "status": "invalid for selection: the full catalogue was used during placement; do not treat as a leaderboard score"
+  },
+  "correlation_overlap_vs_registry": {
+    "new_candidate_surface_rank_correlation": "not measured; no candidate surface",
+    "new_candidate_final_dot_overlap_within_3px": "not measured; no candidate dots",
+    "prior_geometry_constraint": "HOLDOUT-independent geometry audit reports at least 82.70% overlap with r13 at 37,654 dots; strict cap is 70%"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "reason": "No new raster was generated in this review. Existing 29 Oct diagnostic is research-only and has an invalid holdout."
+  },
+  "submission_name": null,
+  "submission_note": "No new submission; existing diagnostics are research only and not slot-approved.",
+  "verdict": "negative"
+}

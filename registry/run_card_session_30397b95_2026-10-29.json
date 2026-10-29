@@ -29,15 +29,16 @@
   },
   "literal_lane_cap": 0.7,
   "minimum_possible_overlap_at_37654_dots": 0.827004,
-  "evidence": "evidence/b2_lane_vs_r13_2026-10-29.json, evidence/lane_bound_r13_2026-10-28.json"
+  "evidence": "evidence/b2_lane_vs_r13_2026-10-29.json, evidence/lane_bound_r13_2026-10-28.json, evidence/b2_lineage_recheck_2026-10-29.json"
  },
  "raster_sha256": {
-  "gemsdoe32_b2_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
-  "gems25_d2-8_zeros_local": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
-  "gems25_d2-8_nan_local": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8"
+  "gemsdoe32_b2_zeros_owner_mirror": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "gemsdoe28_h27-4_nan_owner_mirror": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+  "gems25_d2-8_zeros_local_tracked": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+  "gems25_d2-8_nan_local_tracked": "91eae1ca42ec845e (prefix; full value in evidence/nine_site_top_files_2026-10-28.json)"
  },
  "validator_output": {
-  "command": "scripts/verify_candidate_independent.py (on 3 local zeros-outside files) and scripts/audit_b2_lineage.py",
+  "command": "scripts/verify_candidate_independent.py (3 local zeros-outside files); scripts/recheck_b2_lineage.py; scripts/audit_b2_lane_vs_r13.py",
   "result": "all hard format checks pass for local zeros files (EPSG 32611, 3730x3292, float32, single band, values in [0,1], outside all zero, no emission on catalogue); okay_to_submit false",
   "no_nan_in_footprint": true,
   "values_in_0_1": true,
@@ -54,9 +55,10 @@
  "budget": "3 experiments / 2 hours (not used beyond reproduction and audits)",
  "artifacts": [
   "knowledge/51_owner_brief_session_review_2026-10-29_30397b95.md",
-  "evidence/b2_lineage_2026-10-29.json",
+  "evidence/b2_lineage_recheck_2026-10-29.json (sibling script, extended with D2.8 parent)",
   "evidence/b2_lane_vs_r13_2026-10-29.json",
-  "scripts/audit_b2_lineage.py",
+  "scripts/audit_b2_lane_vs_r13.py",
+  "scripts/recheck_b2_lineage.py (extended)",
   "scripts/build_readme.py (guard)",
   "README.md (START HERE section)"
  ]

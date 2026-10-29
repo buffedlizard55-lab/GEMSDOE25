@@ -16,12 +16,12 @@ This note answers the three questions in the brief, lists what was verified and 
 | 1 | `gemsdoe28-h27-4-r1-solo` (0.2708 family) | 40,199 | 3,891 | ≤ 1 px (100 m) |
 | 2 | GEMSDOE32 B2 (0.2778, owner) | 37,654 | 2,545 | ≤ 2 px (200 m) |
 
-Checks (script `scripts/audit_b2_lineage.py`, receipt `evidence/b2_lineage_2026-10-29.json`):
+Checks (canonical script `scripts/recheck_b2_lineage.py`, receipt `evidence/b2_lineage_recheck_2026-10-29.json`; inputs from `scripts/restore_data.py --group owner_mirror`; the D2.8 parent is the tracked, byte-identical `docs/downloads/gems25-dotted-h19-5-d2-8-…-zeros.tif`, added to the script this session):
 
-* B2 is a strict subset of both parents (`b2_subset_of`: true for both).
-* All 6,436 dots removed from D2.8 and all 2,545 removed from h27-4 lie within 2 px of a catalogue pixel (`removed_within_200m` equals `removed`).
-* B2 has **0** dots within 200 m of the catalogue and **0** on it (`b2_dots_within_200m`, `b2_dots_on_catalogue`).
-* SHA-256 of the B2 and h27-4 bytes match the pins in `evidence/nine_site_top_files_2026-10-28.json`.
+* B2 is a strict subset of both parents (`b2_subset_of_parent` and `d2_8_parent.b2_subset_of_d2_8`: true).
+* All 6,436 dots removed from D2.8 (`d2_8_parent.removed_within_2px_catalogue`) and all 2,545 removed from h27-4 (`removed_dots_within_2px_catalogue`) lie within 2 px of a catalogue pixel.
+* B2 has **0** dots within 200 m of the catalogue and **0** on it (`b2_dots_within_2px_catalogue`, `b2_dots_on_catalogue_pixels`).
+* SHA-256 of the B2 and h27-4 bytes match the pins in `evidence/nine_site_top_files_2026-10-28.json` (`sha256` in the receipt).
 * The same rule is already a repo parameter: `CAT_BUF_BLIND = 2.0` px and `FULL_B2_BUDGET = 37_654` in `scripts/run_h74_experiments.py`. The B2 recipe is therefore a known design in this repo, not a new discovery.
 
 **Why it might score higher (INFERENCE, not proven).** Under the official metric (`gems25.metric`, alpha 0.2, beta 0.8, 300 m triangular kernel), a dot adds FP weight `1 − max k` when no truth lies within its kernel. Dots packed against the *known* faults are most likely to sit on pixels that are already catalogued (masked) or on continuous lineaments that are not hidden truth, so their expected FP cost is high. Removing them cuts FP more than it cuts TP. The step-1 and step-2 rules are consistent with this: nothing within 200 m is kept.
@@ -99,8 +99,8 @@ Already implemented, so **not** new: break-even greedy selection (`src/gems25/gr
 | Static feature cache | 64 static features built | `scripts/build_features.py` |
 | Test suite with data | **561 passed, 1 skipped** | `.venv/bin/python -m pytest -q` (111 s) |
 | Independent format validator, 3 zeros files | All hard checks pass; `okay_to_submit: false` | `scripts/verify_candidate_independent.py` |
-| B2 lineage on bytes | Consistent with pruning rule | `scripts/audit_b2_lineage.py` → `evidence/b2_lineage_2026-10-29.json` |
-| B2 lane vs r13 | 99.92% within 3 px | `evidence/b2_lane_vs_r13_2026-10-29.json` |
+| B2 lineage on bytes (incl. D2.8 parent) | Consistent with pruning rule | `scripts/recheck_b2_lineage.py` → `evidence/b2_lineage_recheck_2026-10-29.json` |
+| B2 lane vs r13 | 99.915% within 3 px | `scripts/audit_b2_lane_vs_r13.py` → `evidence/b2_lane_vs_r13_2026-10-29.json` |
 | Holdout canary | **Not rerun**: `run_h81_experiments.py` refuses to overwrite `evidence/h81_exp1`; the recorded numbers above come from that committed file | `evidence/h81_exp1/summary.json` |
 
 Restored owner-mirror inputs are integrity-pinned, not organizer-authenticated (`registry/data_manifest.json`).

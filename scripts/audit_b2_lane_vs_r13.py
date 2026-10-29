@@ -2,7 +2,7 @@
 """Share of the GEMSDOE32 B2 dots within 3 px of registry raster r13 (literal parallel-run lane rule, 70% cap).
 
 Inputs: data/scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif (scripts/restore_data.py --group scored)
-        data/mirror/gemsdoe32_b2_0.2778_zeros.tif (see scripts/audit_b2_lineage.py for the blob ID)
+        data/owner_mirrors/GEMSDOE32__...b2...zeros.tif (scripts/restore_data.py --group owner_mirror)
 Writes evidence/b2_lane_vs_r13_2026-10-29.json. COMPUTED on owner-mirror bytes; not a score.
 """
 from __future__ import annotations
@@ -21,7 +21,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from gems25.paths import data_dir  # noqa: E402
 
 R13 = data_dir() / "scored" / "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
-B2 = data_dir() / "mirror" / "gemsdoe32_b2_0.2778_zeros.tif"
+B2 = data_dir() / "owner_mirrors" / "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
 CAP = 0.70
 
 

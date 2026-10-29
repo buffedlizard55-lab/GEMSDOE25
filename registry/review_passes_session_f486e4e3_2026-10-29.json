@@ -1,0 +1,48 @@
+{
+  "session_date": "2026-10-29",
+  "branch": "arena/f486e4e3-gemsdoe25",
+  "record": "knowledge/49_session_review_2026-10-29_f486e4e3.md",
+  "passes": [
+    {
+      "pass": 1,
+      "name": "implement and verify",
+      "done": [
+        "read AGENTS.md, README top sections, knowledge/48, registry/irregularities.json, docs/data/live_scores.json",
+        "fresh venv from requirements.txt; pytest before edits: 547 passed, 15 skipped; ruff: all checks passed",
+        "restored core (4 files) and scored (11 files) groups; SHA-256 verified by restore_data.py",
+        "re-ran the portal sweep to /tmp: 62 TIFs, 32 portal-safe, 30 rejected, 0 other hard failures (matches evidence/portal_safety_sweep_2026-10-29.json)",
+        "added owner_mirror group to registry/data_manifest.json (2 pinned entries) and scripts/restore_data.py choices",
+        "restored the two owner-mirror rasters from the owners' public GitHub repos; sha256 matched the pins",
+        "wrote scripts/recheck_b2_lineage.py; evidence/b2_lineage_recheck_2026-10-29.json: B2 subset of h27-4, 2,545 removed, all within 2 px of catalogue",
+        "added tests/test_owner_mirror_manifest.py"
+      ]
+    },
+    {
+      "pass": 2,
+      "name": "bugs, assumptions, edge cases",
+      "done": [
+        "first manifest edit reformatted the whole JSON file (diff 526 lines); reverted with git checkout and redone as a minimal insertion (diff is additions only)",
+        "checked catalogue identity: existing_faults.tif and labels.tif have the same sha256 (7ba308cc...), so the catalogue choice does not change the result",
+        "checked the 2-px convention against the 100 m transform (affine a=100, e=-100)",
+        "found r13 overlap of B2 = 99.92%, which contradicts the earlier 'lane gate' framing that treated only new candidates; recorded as IR-29-B2-LANE-VIOLATION-TOP-FILE",
+        "found that the 300 m kernel is not in the official rules text; recorded as IR-29-OFFICIAL-METRIC-NOT-READ rather than treated as confirmed",
+        "the mechanism paragraph for 0.2778 is labelled INFERENCE in the record"
+      ]
+    },
+    {
+      "pass": 3,
+      "name": "re-check against the owner request, line by line",
+      "done": [
+        "new unique TIF: NOT produced. Reason: lineage is a near-duplicate (Jaccard 0.93669 vs parent); lane fails (99.92%); no candidate passed the holdout gate",
+        "OK to download and submit: NO for every file; estimated score: NOT ESTIMATED for every new file",
+        "estimate table with file, estimate, uniqueness, lane and verdict: knowledge/49 section 5",
+        "why 0.2778 scored highest: knowledge/49 section 3 (mechanism labelled INFERENCE)",
+        "can it beat 0.2778: not demonstrated; principled routes listed in knowledge/49 section 4; none run",
+        "official sources read: NLR official rules (docs.nlr.gov/docs/fy26osti/96647.pdf), reference-solution notebook (alpha 0.2, beta 0.8)",
+        "leaderboard: NOT read (AGENTS.md rule 3); 0.4413 vs 0.3195 conflict still open",
+        "README brief: normalized version only; verbatim brief not copied (knowledge/49 section 9, open)",
+        "AI disclosure requirement (official section 3.2) flagged: IR-29-AI-DISCLOSURE-REQUIRED"
+      ]
+    }
+  ]
+}
