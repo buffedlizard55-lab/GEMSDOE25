@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-29T13:15:13Z",
+ "generated_utc": "2026-10-29T22:50:09Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"2732db2180e1229766439ced88c19fc6\""
+   "detail": "HTTP 200; ETag: W/\"ddb9c985d51e4e10800f2cfae1b7aef8\""
   },
   {
    "kind": "source",
@@ -105,7 +105,7 @@
    "url": "https://www.usgs.gov/3d-elevation-program",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Thu, 29 Oct 2026 13:06:07 GMT; Content-Length: 18233; ETag: \"1793279167-gzip\""
+   "detail": "HTTP 200; Last-Modified: Thu, 29 Oct 2026 22:49:45 GMT; ETag: W/\"1793314185\""
   },
   {
    "kind": "source",
@@ -145,7 +145,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"fbb74de856d052851ef0a2eef1640911\""
+   "detail": "HTTP 200; ETag: W/\"71d230761f2238836414811e4bf3c3e9\""
   },
   {
    "kind": "source",
@@ -153,7 +153,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"aed1d32673157e663d6f1a2e97cfe1eb\""
+   "detail": "HTTP 200; ETag: W/\"190d19056e6691e3c95353cbcb4df7c3\""
   },
   {
    "kind": "source",
@@ -177,7 +177,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"dd0985c0d1d1d697f62e8ec74a103e60\""
+   "detail": "HTTP 200; ETag: W/\"c0a32fb3c6e7392dc4054aa84b0c17bf\""
   },
   {
    "kind": "source",
@@ -185,7 +185,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"9dd7f544150d0558e82efc1beed2f4b1\""
+   "detail": "HTTP 200; ETag: W/\"4f7e60a1c45fe60cddbb729c6f2938e7\""
   },
   {
    "kind": "source",
@@ -193,7 +193,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"2732db2180e1229766439ced88c19fc6\""
+   "detail": "HTTP 200; ETag: W/\"ddb9c985d51e4e10800f2cfae1b7aef8\""
   },
   {
    "kind": "source",
@@ -209,7 +209,7 @@
    "url": "https://www.usgs.gov/data/quaternary-fault-mapping-zapata-and-blanca-sections-sangre-de-cristo-fault-zone-high",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Thu, 29 Oct 2026 13:14:37 GMT; ETag: W/\"1793279677\""
+   "detail": "HTTP 200; Last-Modified: Thu, 29 Oct 2026 22:49:51 GMT; ETag: W/\"1793314191\""
   },
   {
    "kind": "source",
@@ -225,7 +225,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"7ff657e043657b6517ec98cb76ebfd5e\""
+   "detail": "HTTP 200; ETag: W/\"f6180eb149eb8170b4fe5e3eeea249fc\""
   },
   {
    "kind": "source",
@@ -233,7 +233,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE36",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"4d6c91d615d80196c7c47e2907f686e3\""
+   "detail": "HTTP 200; ETag: W/\"80f4e9004f6279d7876a406d2ab63236\""
   },
   {
    "kind": "source",
@@ -241,7 +241,7 @@
    "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Thu, 29 Oct 2026 11:38:40 GMT; Content-Length: 25563; ETag: W/\"6ae33040-1b95b\""
+   "detail": "HTTP 200; Last-Modified: Thu, 29 Oct 2026 18:23:54 GMT; Content-Length: 25627; ETag: W/\"6ae38f3a-1ba59\""
   },
   {
    "kind": "source",
@@ -249,7 +249,7 @@
    "url": "https://buffedlizard55-lab.github.io/GEMSDOE36/docs/",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Wed, 28 Oct 2026 16:44:50 GMT; Content-Length: 5189; ETag: W/\"6ae22682-37f8\""
+   "detail": "HTTP 200; Last-Modified: Thu, 29 Oct 2026 18:45:26 GMT; Content-Length: 6300; ETag: W/\"6ae39446-44ea\""
   },
   {
    "kind": "source",
@@ -257,7 +257,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"bf83635d2404d5c1e13eba9c41f03b4e\""
+   "detail": "HTTP 200; ETag: W/\"6d9d6c7be5fff8abfe351cc8b308c428\""
   },
   {
    "kind": "source",
@@ -281,7 +281,7 @@
    "url": "https://doi.org/10.1007/BFb0006528",
    "verified_in_repo": false,
    "status": "ok",
-   "detail": "HTTP 200; ETag: \"cda6c9bded9feaeb5d049aaee6bb99dd\""
+   "detail": "HTTP 200; ETag: \"88fcc875a9112fae1732067472d69fe8\""
   },
   {
    "kind": "source",
@@ -289,7 +289,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"bf83635d2404d5c1e13eba9c41f03b4e\""
+   "detail": "HTTP 200; ETag: W/\"6d9d6c7be5fff8abfe351cc8b308c428\""
   },
   {
    "kind": "source",
@@ -313,7 +313,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"7ff657e043657b6517ec98cb76ebfd5e\""
+   "detail": "HTTP 200; ETag: W/\"f6180eb149eb8170b4fe5e3eeea249fc\""
   },
   {
    "kind": "source",
@@ -321,7 +321,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/unet-mc-cv-reference-solution.ipynb",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"58aaf5238b33cea9dd07e13eef9d1461\""
+   "detail": "HTTP 200; ETag: W/\"4bdeae1dd5a021deb95ca2d535c1d02b\""
   },
   {
    "kind": "source",
@@ -337,7 +337,7 @@
    "url": "https://www.usgs.gov/publications/discovering-blind-geothermal-systems-great-basin-region-integrated-geologic-and",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Thu, 29 Oct 2026 13:14:59 GMT; ETag: W/\"1793279699\""
+   "detail": "HTTP 200; Last-Modified: Thu, 29 Oct 2026 22:49:59 GMT; ETag: W/\"1793314199\""
   },
   {
    "kind": "source",
@@ -416,7 +416,7 @@
    "title": "12GEMSDOE",
    "url": "https://github.com/buffedlizard55-lab/12GEMSDOE",
    "status": "ok",
-   "detail": "pushed_at 2026-10-29T11:30:18Z"
+   "detail": "pushed_at 2026-10-29T21:48:54Z"
   },
   {
    "kind": "sibling-repo",
@@ -535,70 +535,70 @@
    "title": "GEMSDOE23",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE23",
    "status": "ok",
-   "detail": "pushed_at 2026-10-28T17:29:41Z"
+   "detail": "pushed_at 2026-10-29T17:40:46Z"
   },
   {
    "kind": "sibling-repo",
    "title": "GEMSDOE24",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24",
    "status": "ok",
-   "detail": "pushed_at 2026-10-28T23:22:28Z"
+   "detail": "pushed_at 2026-10-29T17:52:55Z"
   },
   {
    "kind": "sibling-repo",
    "title": "GEMSDOE25",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25",
    "status": "ok",
-   "detail": "pushed_at 2026-10-29T05:58:11Z"
+   "detail": "pushed_at 2026-10-29T16:56:39Z"
   },
   {
    "kind": "sibling-repo",
    "title": "GEMSDOE27",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27",
    "status": "ok",
-   "detail": "pushed_at 2026-10-28T19:19:09Z"
+   "detail": "pushed_at 2026-10-29T16:54:16Z"
   },
   {
    "kind": "sibling-repo",
    "title": "GEMSDOE28",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE28",
    "status": "ok",
-   "detail": "pushed_at 2026-10-29T13:01:32Z"
+   "detail": "pushed_at 2026-10-29T17:22:38Z"
   },
   {
    "kind": "sibling-repo",
    "title": "GEMSDOE30",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE30",
    "status": "ok",
-   "detail": "pushed_at 2026-10-28T18:47:05Z"
+   "detail": "pushed_at 2026-10-29T17:22:39Z"
   },
   {
    "kind": "sibling-repo",
    "title": "GEMSDOE31",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE31",
    "status": "ok",
-   "detail": "pushed_at 2026-10-28T19:19:58Z"
+   "detail": "pushed_at 2026-10-29T18:43:29Z"
   },
   {
    "kind": "sibling-repo",
    "title": "GEMSDOE32",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
    "status": "ok",
-   "detail": "pushed_at 2026-10-29T11:38:17Z"
+   "detail": "pushed_at 2026-10-29T18:23:11Z"
   },
   {
    "kind": "sibling-repo",
    "title": "GEMSDOE33",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE33",
    "status": "ok",
-   "detail": "pushed_at 2026-10-28T16:45:07Z"
+   "detail": "pushed_at 2026-10-29T18:38:47Z"
   },
   {
    "kind": "sibling-repo",
    "title": "GEMSDOE36",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE36",
    "status": "ok",
-   "detail": "pushed_at 2026-10-28T16:44:04Z"
+   "detail": "pushed_at 2026-10-29T18:44:33Z"
   },
   {
    "kind": "sibling-repo",
