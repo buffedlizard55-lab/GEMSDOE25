@@ -1,0 +1,153 @@
+{
+  "preregistration": "knowledge/48_preregistered_magnetic_radiometric_decoupling_2026-10-29.md",
+  "preregistration_commit": "22f8451",
+  "evaluator": "gems25.metric.dti_binary(alpha=.2,beta=.8,R=3px)",
+  "canaries": {
+    "rtp_gradient": {
+      "auc_by_draw": [
+        0.5198560096730869,
+        0.4929152877330575,
+        0.5317188954353952,
+        0.5433431854671382,
+        0.5181888622240329,
+        0.47355803277669495,
+        0.5177721066355027,
+        0.5053505216512002
+      ],
+      "max_auc": 0.5433431854671382,
+      "mean_auc": 0.5128378626995136
+    },
+    "total_count_gradient": {
+      "auc_by_draw": [
+        0.4969420543137774,
+        0.5067742715868754,
+        0.5069762070875252,
+        0.46828784590598804,
+        0.551929397218199,
+        0.4929240672574919,
+        0.4831871535317329,
+        0.4389705536670213
+      ],
+      "max_auc": 0.551929397218199,
+      "mean_auc": 0.4932489438210764
+    }
+  },
+  "surface_audit": {
+    "rank_footprint_pixels": 5167373,
+    "rho_max": 0.9,
+    "registry_inventory": {
+      "declared_hashes": 117,
+      "available_files": 152,
+      "registry_manifest_sha256": "2680df0e2d8100e25428fd3ee2b258e136287c492930808cd7232b5846125917",
+      "missing_sha256": [],
+      "complete": true,
+      "scope": "declared pinned registry only; not every submission on every site"
+    },
+    "registry_manifest_sha256": "2680df0e2d8100e25428fd3ee2b258e136287c492930808cd7232b5846125917",
+    "registry_checked": 15,
+    "registry_complete": false,
+    "errors": [
+      {
+        "file": "GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f.tif",
+        "error": "single-band grid/CRS/transform mismatch: /home/user/GEMSDOE25/data/registry_top/GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f.tif"
+      }
+    ],
+    "flagged": [],
+    "rows": [
+      {
+        "spearman_surface": -0.00021298443571407397,
+        "flag_rank": false,
+        "reason": "clear",
+        "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
+      },
+      {
+        "spearman_surface": 0.06971095122453823,
+        "flag_rank": false,
+        "reason": "clear",
+        "file": "8GEMSDOE_Hedge-v2_submission.tif"
+      },
+      {
+        "spearman_surface": 0.035317795355404774,
+        "flag_rank": false,
+        "reason": "clear",
+        "file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif"
+      },
+      {
+        "spearman_surface": 0.022473881675250225,
+        "flag_rank": false,
+        "reason": "clear",
+        "file": "gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif"
+      },
+      {
+        "spearman_surface": 0.03411495276738071,
+        "flag_rank": false,
+        "reason": "clear",
+        "file": "gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif"
+      },
+      {
+        "spearman_surface": 0.033444766676556936,
+        "flag_rank": false,
+        "reason": "clear",
+        "file": "gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif"
+      },
+      {
+        "spearman_surface": 0.03301459054783103,
+        "flag_rank": false,
+        "reason": "clear",
+        "file": "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif"
+      },
+      {
+        "spearman_surface": 0.023056397867562355,
+        "flag_rank": false,
+        "reason": "clear",
+        "file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif"
+      },
+      {
+        "spearman_surface": 0.01968038224111339,
+        "flag_rank": false,
+        "reason": "clear",
+        "file": "gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif"
+      },
+      {
+        "spearman_surface": 0.0737247991521969,
+        "flag_rank": false,
+        "reason": "clear",
+        "file": "gemsdoe-ens12-adopted-7f00890a.tif"
+      },
+      {
+        "spearman_surface": -0.008790301439218617,
+        "flag_rank": false,
+        "reason": "clear",
+        "file": "gemsdoe9-PLACEHOLDER-2314b599.tif"
+      },
+      {
+        "spearman_surface": 0.033143765450561934,
+        "flag_rank": false,
+        "reason": "clear",
+        "file": "12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif"
+      },
+      {
+        "spearman_surface": -0.009160158791040417,
+        "flag_rank": false,
+        "reason": "clear",
+        "file": "17GEMSDOE_F-ensemble-2pct_20260930T050626Z.tif"
+      },
+      {
+        "spearman_surface": 0.12951786675002366,
+        "flag_rank": false,
+        "reason": "clear",
+        "file": "18GEMSDOE_H19-C_20260930T212401Z_c11e495e.tif"
+      },
+      {
+        "spearman_surface": 0.019885474210474346,
+        "flag_rank": false,
+        "reason": "clear",
+        "file": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif"
+      }
+    ],
+    "surface_clear": false,
+    "verdict": "UNVERIFIED - incomplete or invalid registry; stop",
+    "note": "Full-footprint ranks can have ties; constant ranks cannot prove uniqueness. This does not check final dots."
+  },
+  "verdict": "SURFACE DUPLICATE / REGISTRY INCOMPLETE - stop before placement"
+}
