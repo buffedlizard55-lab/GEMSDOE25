@@ -1,0 +1,19 @@
+{
+  "schema": "three_pass_review/v1",
+  "date": "2026-10-29",
+  "branch": "arena/65723140-gemsdoe25",
+  "pass_1_implement_and_verify": {
+    "done": ["Restored four core owner-mirrored rasters and 11 scored rasters with SHA-256 pins, prepared 19-band cache; restored 7 external layers after test discovery", "Ranked four hypotheses and committed preregistration before Experiment 1", "Ran at most three experiments within one RTP/TC decoupling lane; stopped E1 for off-grid reference, E2 for impossible clean R2 quota, emitted a distinct-content E3 research TIF", "Ran shared surface and final-dot audits on 151 grid-aligned references; exact-file independent format audit and current portal sweep", "Added one-click research-only links, run card, methodology, and nine-site navigation"],
+    "slot_used": false,
+    "score_estimate": null
+  },
+  "pass_2_find_and_fix": {
+    "found": ["Frozen E3 holdout used full catalogue during dot placement; withheld locations leaked and zero TP could be a design artifact", "Band-6 tc is labelled magnetic derivative in mirrored metadata but prior pixel comparison suggests radiometric total count; not proven", "One pinned registry raster has a different transform; no global uniqueness clearance", "New TIFF was missing from shipped download inventory and snapshot-count test was treating a dated archive as live", "Partial core-only restore triggered sidecar tests needing external layers"],
+    "action": ["Marked holdout invalid for selector in evidence, run card, README and site; did not rerun beyond budget", "Recorded disputed band semantics and withheld geological conclusion", "Recorded 151 aligned comparisons and off-grid omission without calling it cleared", "Regenerated download inventory and made dated snapshot test historical", "Restored pinned external layers and reran tests"]
+  },
+  "pass_3_original_request_recheck": {
+    "verified": ["README already contains the user brief and parallel-run protocol; new current decision placed at top", "Research TIF download is visible first on main and executive/submission guide pages and labeled DO NOT SUBMIT", "Nine-site table already names file, owner-reported historical score, uniqueness and unknown estimated competition score", "Independent checker confirms entire TIFF finite [0,1] with CRS, shape, transform and labelled-mask alignment", "No organizer access, upload or weekly slot; no fabricated leaderboard score"],
+    "limitations": ["No eligible high-scoring competition TIF after three experiments", "No valid hide-and-recover for E3 due full-catalogue placement leakage", "One off-grid registry reference prevents global lane certification", "Official USGS/DrivenData pages inaccessible under restricted host policy and ToS; owner mirrors do not authenticate the organizer data", "Portal acceptance and current leaderboard remain unconfirmed"],
+    "test_result": "554 passed, 1 skipped (owner mirror subset not restored), 1 rasterio deprecation warning; git diff --check clean"
+  }
+}

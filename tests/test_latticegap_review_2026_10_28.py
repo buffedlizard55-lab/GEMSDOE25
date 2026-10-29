@@ -58,7 +58,10 @@ def test_superseded_claims_and_builder_stay_negative(capsys):
 def test_inventory_and_public_guide_separate_research_from_submission():
     report = read('docs/data/download_audit.json')
     row = next(r for r in report['files'] if r['file'] == NAME)
-    assert row['format_valid'] and not row['strict_whole_array_valid']
+    # Whole-array [0,1] is now a hard portal-format check; old receipt's
+    # footprint-only `format_valid=True` is intentionally superseded.
+    assert not row['format_valid'] and not row['strict_whole_array_valid']
+    assert 'portal_all_cells_finite_in_0_1' in row['validator']['hard_failures']
     assert row['download_eligibility'] == 'RESEARCH ONLY' and not row['okay_to_submit']
     assert 'ok_to_upload' not in row['validator'] and 'UNVERIFIED' in row['novelty']
     for page in ('index.html', 'docs/index.html', 'docs/executive-summary.html', 'docs/current-review.html'):

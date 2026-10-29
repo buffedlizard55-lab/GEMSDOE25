@@ -1,0 +1,56 @@
+{
+  "schema": "run_card/v1",
+  "date": "2026-10-29",
+  "hypothesis": "A concealed basement contact has a steep RTP magnetic gradient under relatively uniform putative radiometric total-count cover.",
+  "mechanism": "300-m Gaussian gradient of RTP divided by (1 + normalized 300-m gradient of band 6 tc); emit 8,137 ranked catalogue-clear dots in lane-feasible regions.",
+  "named_non_fault_mimic": "Buried intrusive or volcanic-flow magnetic contact under homogeneous sediments; also flight-line artifacts.",
+  "scientific_semantics_warning": "Owner-mirror metadata calls band 6 tc a magnetic derivative; independent prior pixel comparison reports correlation 0.999866 to GeoDAWN radiometric TC. Radiometric interpretation UNCONFIRMED; geological hypothesis unverified.",
+  "holdout_dti": {
+    "class": "HOLDOUT-DTI (INVALID DIAGNOSTIC)",
+    "evaluator": "gems25.metric.dti_binary(alpha=.2,beta=.8,R=3px)",
+    "withheld_positive_occurrences": 23923,
+    "candidate": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "control_archived_h35_same_draw": 0.01945607527633195,
+    "paired_gain": -0.01945607527633195,
+    "paired_gain_ci95": [
+      -0.02235218136109299,
+      -0.016006724383573454
+    ],
+    "caveat": "INVALID hide-and-recover: candidate exclusion mask was calculated from FULL catalogue (including withheld fault pixels), not per-draw visible faults. Zero TP is partly built into placement; archived H35 is not refit within draws. Numbers are diagnostic only; no promotion or leaderboard projection.",
+    "valid_for_selection": false
+  },
+  "canary_auc_max": {
+    "rtp_gradient": 0.5433431854671382,
+    "total_count_gradient": 0.551929397218199
+  },
+  "registry": {
+    "surface_checked_aligned": 151,
+    "surface_max_abs_rho": 0.13854859346959927,
+    "final_checked_aligned": 151,
+    "max_dot_overlap_3px": 0.6989062307975913,
+    "max_abs_final_rho": 0.33169878563992367,
+    "uncompared_off_grid": [
+      "GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f.tif"
+    ],
+    "global_registry_clear": false,
+    "sha_in_registry": false
+  },
+  "file": "docs/downloads/gems25-mag-rad-decoupling-20261029-8e2e136eddc8-zero.tif",
+  "sha256": "82cda4c3e3e79b4038763526f720702a850b10fa8ae40262809d2100a177bde2",
+  "validator": {
+    "format_valid": true,
+    "portal_all_cells_finite_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "single_band": true
+  },
+  "submission_name": "gems25-mag-rad-decoupling-20261029-8e2e136eddc8-zero",
+  "note": "GEMSDOE25 mag/rad decoupling | 8e2e136eddc8 | research only; DO NOT SUBMIT",
+  "verdict": "negative; research download only; invalid holdout due to full-catalogue placement leakage; incomplete registry; DO NOT SUBMIT",
+  "evidence": "evidence/decoupling_2026-10-29.json"
+}

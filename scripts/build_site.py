@@ -817,6 +817,9 @@ Response: exact sparse-regime DTI of a fixed emission (ridge NMS → top 2.45 % 
         "run_card_h79_cthm_2026-10-27",
     ):
         (DOCS / "data" / f"{name}.json").write_text((ROOT / "registry" / f"{name}.json").read_text())
+    # The dated experiment status is derived from a hash-verified run card, not a score projection.
+    from insert_decoupling_status import apply as insert_decoupling_status
+    insert_decoupling_status()
     print("site built:", [p.name for p in DOCS.glob("*.html")] + ["../index.html"])
 
 

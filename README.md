@@ -1,5 +1,11 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
+## Current result — 29 October 2026 (read before using any download)
+
+**New unique-content research file:** [download `gems25-mag-rad-decoupling-20261029-8e2e136eddc8-zero.tif`](docs/downloads/gems25-mag-rad-decoupling-20261029-8e2e136eddc8-zero.tif). **OK to download for inspection: YES. OK to submit: NO — DO NOT SUBMIT.** Organizer score estimate: **UNKNOWN, not projected.** The file is a valid single-band float32 TIFF on the pinned owner-mirror grid, with all values finite and within [0,1]; SHA-256 `82cda4c3e3e79b4038763526f720702a850b10fa8ae40262809d2100a177bde2`. The full-surface and final-dot audits cover 151 aligned pinned references, but one pinned historical raster has an off-grid transform, so global uniqueness cannot be certified. The *invalid* holdout diagnostic is 0.00000 (95% CI [0,0]; 23,923 withheld-positive occurrences; `gems25.metric.dti_binary`, alpha .2 beta .8, 300 m triangular kernel); the full labelled catalogue was used during dot placement, leaking withheld locations. This is **not** an eligible hide-and-recover result. [Executive summary](docs/executive-summary.html) · [run card](registry/run_card_decoupling_2026-10-29.json) · [frozen design and correction](knowledge/50_preregistered_decoupling_feasible_allocation_2026-10-29.md). No competition slot used. The 0.2778 GEMSDOE32 historical result remains **OWNER-REPORTED**, not a new submission, and no evidence here supports a prediction above it.
+
+The long owner brief and the Parallel-run Protocol are already included verbatim later in this README. Maintain **Maximize P(Win)** and **Own the Outcome** without promoting negative or contaminated diagnostics.
+
 [Repository and focus-site review (2026-10-28)](docs/review-2026-10-28.md) · [Executive summary and historical download table](docs/executive-summary.html) · [H81 review and retracted score estimates](knowledge/47_repo_review_2026-10-28.md)
 
 ## Read first — owner prompt 2026-10-29 (normalized, not verbatim)
