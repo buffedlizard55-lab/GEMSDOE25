@@ -1,0 +1,21 @@
+{
+  "generated_utc": "2026-10-29T16:42:48+00:00",
+  "script": "scripts/recheck_b2_lineage.py",
+  "evidence_class": "COMPUTED lineage arithmetic on owner mirrors (no score, no holdout, no organizer receipt)",
+  "sha256": {
+    "b2": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "parent": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+    "catalogue": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+  },
+  "b2_dots": 37654,
+  "parent_dots": 40199,
+  "b2_subset_of_parent": true,
+  "dots_added_by_b2": 0,
+  "dots_removed_from_parent": 2545,
+  "jaccard": 0.93669,
+  "catalogue_pixels": 60988,
+  "removed_dots_max_catalogue_distance_px": 2.0,
+  "removed_dots_within_2px_catalogue": 2545,
+  "b2_dots_within_2px_catalogue": 0,
+  "b2_dots_on_catalogue_pixels": 0
+}
