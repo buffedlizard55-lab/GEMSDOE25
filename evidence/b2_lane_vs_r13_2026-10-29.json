@@ -1,0 +1,11 @@
+{
+ "evidence_class": "COMPUTED on owner-mirror bytes; not a score",
+ "script": "scripts/audit_b2_lane_vs_r13.py",
+ "r13_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+ "r13_dots": 206895,
+ "b2_dots": 37654,
+ "b2_within_3px_of_r13": 37622,
+ "share": 0.99915,
+ "literal_lane_cap": 0.7,
+ "passes_literal_cap": false
+}

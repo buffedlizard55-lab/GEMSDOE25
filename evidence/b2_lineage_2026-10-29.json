@@ -1,0 +1,40 @@
+{
+ "evidence_class": "COMPUTED on owner-mirror bytes; 0.2778 is OWNER-REPORTED, not organizer-confirmed",
+ "script": "scripts/audit_b2_lineage.py",
+ "catalogue_pixels": 60988,
+ "buffer_px": 2,
+ "sha256": {
+  "b2": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "d28": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+  "h27": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73"
+ },
+ "sha256_matches_pins": {
+  "b2": true,
+  "h27": true
+ },
+ "dots": {
+  "b2": 37654,
+  "d28": 44090,
+  "h27": 40199
+ },
+ "b2_subset_of": {
+  "d28_d2-8": true,
+  "h27_4": true
+ },
+ "removed": {
+  "from_d2-8": 6436,
+  "from_h27_4": 2545
+ },
+ "removed_within_200m": {
+  "from_d2-8": 6436,
+  "from_h27_4": 2545
+ },
+ "b2_dots_within_200m": 0,
+ "b2_dots_on_catalogue": 0,
+ "dots_within_200m_of_catalogue": {
+  "b2": 0,
+  "d28": 6436,
+  "h27": 2545
+ },
+ "consistent_with_pruning_rule": true
+}

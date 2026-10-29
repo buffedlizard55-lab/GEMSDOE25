@@ -1,0 +1,50 @@
+{
+ "schema": "review_passes/v1",
+ "session": "arena/30397b95-gemsdoe25",
+ "date_utc": "2026-10-29",
+ "passes": [
+  {
+   "pass": 1,
+   "name": "implement and verify",
+   "done": [
+    "Restored core, scored, external data; built feature cache (64 static features)",
+    "Test suite: 547 passed / 15 skipped before restore; 561 passed / 1 skipped after restore",
+    "Independent validator run on 3 local zeros files: all hard checks pass; okay_to_submit false",
+    "Lineage audit of B2 on owner-mirror bytes; lane audit of B2 vs r13"
+   ]
+  },
+  {
+   "pass": 2,
+   "name": "bugs, assumptions, edge cases",
+   "found": [
+    "First catalogue count was 7,172,775 because NaN cast to True; fixed with ==1 (60,988 matches manifest)",
+    "build_readme.py would delete 28/29 Oct sections (confirmed by running and reverting); guard added",
+    "knowledge/48 cited a 2,545-dot lineage only; byte audit shows both parents (3,891 + 2,545 = 6,436)",
+    "Proxy discordance: B2-style arm 0.0506 vs H35 0.1570 while live ranks B2 top; flagged, not resolved",
+    "Lane rule B2 = 99.92% (not the 82.70% bound); flagged as owner decision"
+   ],
+   "fixed": [
+    "guard in scripts/build_readme.py",
+    "catalogue threshold recomputed",
+    "README START HERE section added by hand"
+   ]
+  },
+  {
+   "pass": 3,
+   "name": "re-check against the brief",
+   "checked": [
+    "Nine sites all present with owner scores matching the brief (24 0.2477, 25 0.2600, 27 0.2449, 28 0.2710, 30 0.2600, 31 0.2708, 32 0.2778, 33 0.2632, 36 0.2750)",
+    "Every number labelled OWNER-REPORTED, COMPUTED, HOLDOUT-DTI or NOT ESTIMATED",
+    "No DrivenData access; no upload; no slot; no copy of a previous submission",
+    "Ideas checked against src/ and scripts/ before being called new"
+   ],
+   "open": [
+    "Holdout CIs for the two control arms not recomputed",
+    "No new candidate generated",
+    "Leaderboard conflict 0.4413 vs 0.3195 remains for the owner",
+    "Organizer validator rule not read"
+   ]
+  }
+ ],
+ "result": "negative for submission; all deliverables documented; no file cleared"
+}

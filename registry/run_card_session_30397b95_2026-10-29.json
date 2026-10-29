@@ -1,0 +1,63 @@
+{
+ "schema": "run_card/v1",
+ "session": "arena/30397b95-gemsdoe25",
+ "date_utc": "2026-10-29",
+ "hypothesis": "Catalogue-buffer pruning (dropping dots within 200 m of visible catalogue) explains the GEMSDOE32 B2 owner-reported 0.2778 relative to its parents. Tested as a byte-level lineage claim, not as a holdout score.",
+ "mechanism": "Under the official DTI metric, dots near known faults that do not sit on hidden truth add false-positive weight; removing them improves the TP/FP balance. Lineage verified: B2 = D2.8 minus 6,436 dots within 2 px of catalogue (via h27-4 with 3,891 + 2,545 removals).",
+ "named_non_fault_process": "Plain density thinning: the removed dots may be the densest cluster, so a density-matched random thinning control must beat or match B2 before crediting the buffer. Also mapping-density bias near mapped faults.",
+ "holdout_dti": {
+  "evidence_class": "HOLDOUT-DTI (proxy, not organizer)",
+  "evaluator": "gems25.metric.dti_binary alpha 0.2 beta 0.8 R 3 px",
+  "source": "evidence/h81_exp1/summary.json (committed, not rerun)",
+  "CTRL_H35_pooled": 0.157011,
+  "CTRL_SUBSURF_pooled": 0.050554,
+  "withheld_positive_occurrences": 22001,
+  "draws": [
+   140,
+   141
+  ],
+  "cells_per_arm": 8,
+  "ci95": "NOT RECOMPUTED in this session",
+  "new_candidate_holdout_dti": "NOT COMPUTED (no candidate generated)"
+ },
+ "correlation_overlap_vs_registry": {
+  "B2_within_3px_of_r13": 0.99915,
+  "B2_r13_counts": {
+   "b2_dots": 37654,
+   "within_3px": 37622,
+   "r13_dots": 206895
+  },
+  "literal_lane_cap": 0.7,
+  "minimum_possible_overlap_at_37654_dots": 0.827004,
+  "evidence": "evidence/b2_lane_vs_r13_2026-10-29.json, evidence/lane_bound_r13_2026-10-28.json"
+ },
+ "raster_sha256": {
+  "gemsdoe32_b2_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "gems25_d2-8_zeros_local": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+  "gems25_d2-8_nan_local": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8"
+ },
+ "validator_output": {
+  "command": "scripts/verify_candidate_independent.py (on 3 local zeros-outside files) and scripts/audit_b2_lineage.py",
+  "result": "all hard format checks pass for local zeros files (EPSG 32611, 3730x3292, float32, single band, values in [0,1], outside all zero, no emission on catalogue); okay_to_submit false",
+  "no_nan_in_footprint": true,
+  "values_in_0_1": true,
+  "crs_shape_transform_match": true,
+  "note": "No new candidate was validated; this is a check of existing files only"
+ },
+ "submission_name": "none (no candidate generated)",
+ "submission_note": "none",
+ "estimated_competition_score": "NOT ESTIMATED",
+ "ok_to_download_and_submit": false,
+ "verdict": "negative",
+ "verdict_reason": "No candidate beats the same-run comparator on the holdout; the lane gate cannot be met at 37,654 dots (B2 99.92% within 3 px of r13); the proxy disagrees with the live ranking of the B2 family. Negative results are deliverables.",
+ "experiments_used": 0,
+ "budget": "3 experiments / 2 hours (not used beyond reproduction and audits)",
+ "artifacts": [
+  "knowledge/51_owner_brief_session_review_2026-10-29_30397b95.md",
+  "evidence/b2_lineage_2026-10-29.json",
+  "evidence/b2_lane_vs_r13_2026-10-29.json",
+  "scripts/audit_b2_lineage.py",
+  "scripts/build_readme.py (guard)",
+  "README.md (START HERE section)"
+ ]
+}
