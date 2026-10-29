@@ -71,6 +71,7 @@ def load_bool(path: Path) -> np.ndarray:
 
 
 def main() -> int:
+    raise RuntimeError("Historical diagnostic builder disabled: catalogue mask and complete lane gates failed; do not generate a submission with this script.")
     with rasterio.open(TEMPLATE) as t:
         foot = np.isfinite(t.read(1)).astype(bool)
         assert int(foot.sum()) == EXPECTED["footprint_pixels"]

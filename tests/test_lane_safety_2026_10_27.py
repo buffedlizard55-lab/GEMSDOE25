@@ -74,6 +74,16 @@ def test_wrong_transform_wrong_crs_and_nonfinite_reference_never_clear(pair, tmp
     assert not result["lane_clear"] and "nonfinite" in result["errors"][0]["error"]
 
 
+def test_mixed_aligned_and_off_grid_registry_is_not_complete(pair, tmp_path):
+    template, candidate, ref = pair
+    b = np.zeros((20, 20), np.float32)
+    b[17, 17] = 1
+    shifted = write_raster(tmp_path / "shifted.tif", b, transform=Affine(100, 0, 10, 0, -100, 2000))
+    result = final.audit(candidate, template, [ref, shifted], {final.sha256(ref), final.sha256(shifted)})
+    assert len(result["rows"]) == 1 and len(result["skipped"]) == 1
+    assert not result["registry_complete"] and not result["lane_clear"]
+
+
 def test_same_stem_or_same_mask_siblings_are_not_excluded(pair, tmp_path):
     template, candidate, _ = pair
     with rasterio.open(candidate) as ds:
