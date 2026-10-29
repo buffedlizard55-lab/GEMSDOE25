@@ -1,0 +1,59 @@
+{
+  "scope": "Verified repository review on session branch arena/87a0b9a8-gemsdoe25 (2026-10-29). Not certification of any score, candidate or organizer claim. No new GeoTIFF generated, no slot used, no DrivenData access.",
+  "base_commit": "2bd14f28f32603da8dffedf3396c12231371f180",
+  "passes": [
+    {
+      "pass": 1,
+      "name": "Implement and verify",
+      "actions": [
+        "Installed pinned requirements in a venv; ruff check (CI lint step) passes.",
+        "Pytest: 547 passed / 15 skipped with no data; after restoring core, external and scored groups via scripts/restore_data.py: 558 passed / 4 skipped.",
+        "Added 6 owner-prefixed rasters to registry/data_manifest.json (group owner_mirror_nine_site), pinned to each owner repo HEAD commit and to the evidence SHA-256; restored by the shared scripts/restore_data.py (verified by deleting and re-downloading). A parallel fetch script written earlier was removed in favour of the shared path after main gained an owner_mirror group. Re-running scripts/audit_nine_site_top_files.py reproduces the checked-in evidence except generated_utc.",
+        "Recomputed the B2 lineage from bytes: B2 (37,654) subset of H27-4 (40,199) subset of D2.8 (44,090); removed dots are exactly the H27-4 dots within 2 px of labels.tif.",
+        "Portal range check over 62 docs/downloads GeoTIFFs: 32 pass, 30 fail (all NaN-outside, 7,111,787 non-finite cells each)."
+      ],
+      "findings": [
+        "IR-29-LABELS-EQUALS-CATALOGUE (critical, open)",
+        "IR-29-GEMSDOE25-FILE-LABEL",
+        "IR-29-OWNER-MIRROR-RESTORE-GAP (fixed)"
+      ]
+    },
+    {
+      "pass": 2,
+      "name": "Bugs, assumptions, edge cases",
+      "actions": [
+        "Found that scripts/build_site.py and scripts/build_readme.py, when run on this branch, delete the 29 October README sections and rewrite the front page to 28 October content. Reverted all generator output with git checkout. Consistent with the open IR-28-GENERATOR-DRIFT.",
+        "Hand-edited README.md and both front pages (index.html, docs/index.html) to add a review alert. Generators left unrun on purpose.",
+        "Corrected the README file count (62 GeoTIFFs, 32 portal-pass, 30 NaN-outside) after counting it directly.",
+        "Found that the earlier review's claims (HEAD b55a246, tests could not run) were stale; appended a correction note rather than rewriting the dated record.",
+        "Checked that a claimed GEMSDOE25 zeros-outside twin shares the D2.8 dot set and is a copy of an already-scored submission. It is not offered as new.",
+        "Checked the subset argument: any subset of a registered raster has 100% of its dots within 3 px of that raster, so further pruning of B2 is an automatic lane duplicate under the >70% rule."
+      ],
+      "findings": [
+        "IR-28-GENERATOR-DRIFT still open and now confirmed by a dry run",
+        "IR-29-FRONTPAGE-DOWNLOAD-OF-INVALID-DIAGNOSTIC"
+      ]
+    },
+    {
+      "pass": 3,
+      "name": "Reconcile with the original request",
+      "actions": [
+        "Request asked for a unique high-scoring TIF above 0.2778 or 0.3195. Not delivered: no candidate has a valid holdout on the restored inputs, and the labels/catalogue identity must be settled by a human before any holdout claim can be certified. Stated plainly in knowledge/52 section 6.",
+        "Request asked for an executive summary with a download table. The existing front page and executive-summary pages were checked, not rebuilt. The labels alert is on the front page and README.",
+        "Request asked for PR and merge to main. PR #85; merged main (PRs #83, #84 from sibling sessions) before merging here; conflicts resolved by keeping both sides.",
+        "Limitations listed: DrivenData, docs.nlr.gov and gdr.openei.org not reachable (not on the allowed-host list); leaderboard and submission page not read; 3 tests still skip."
+      ],
+      "findings": []
+    }
+  ],
+  "commands": {
+    "lint": "python -m ruff check src scripts tests",
+    "tests_no_data": "python -m pytest -q  (547 passed, 15 skipped)",
+    "tests_with_core_external_scored_restored": "python -m pytest -q  (559 passed, 3 skipped, after owner mirrors restored)",
+    "restore": "python scripts/restore_data.py --group core|external|scored",
+    "owner_mirrors": "python scripts/restore_data.py --group owner_mirror && python scripts/restore_data.py --group owner_mirror_nine_site",
+    "label_identity": "python scripts/audit_label_identity.py",
+    "nine_site": "python scripts/audit_nine_site_top_files.py"
+  },
+  "verdict": "negative for submission: nothing cleared; review and repair complete; critical input-identity question open for a human."
+}

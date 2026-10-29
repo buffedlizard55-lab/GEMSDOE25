@@ -1153,6 +1153,54 @@
       "issue": "The nine-site lineage test (tests/test_nine_site_2026_10_28.py) skipped in every checkout because the two owner-mirror rasters it needs were not in the pinned manifest, so the 0.2778 parent-subset claim had only been recorded, never recomputed from bytes.",
       "evidence": "registry/data_manifest.json (group owner_mirror, two entries with commit and sha256 pins); scripts/restore_data.py --group owner_mirror; scripts/recheck_b2_lineage.py -> evidence/b2_lineage_recheck_2026-10-29.json; tests/test_owner_mirror_manifest.py",
       "resolution_or_action": "Added pinned owner_mirror group. Restored from the owners' public GitHub repos (GEMSDOE32 and GEMSDOE28) and verified: B2 is a strict subset of h27-4, 2,545 dots removed, all within 2 px of the catalogue. Pins prove mirror consistency, not organizer authentication."
+    },
+    {
+      "id": "IR-29-LABELS-EQUALS-CATALOGUE",
+      "severity": "critical",
+      "status": "open",
+      "issue": "The restored owner-mirror labels.tif and existing_faults.tif are byte-identical (SHA-256 7ba308cc…), and sample_submission.tif has exactly the same 60,988 ones (pixel-identical to labels.tif). In a competition the known-fault catalogue and the hidden target would normally be distinct. If the organizer's inputs really coincide, the catalogue is the target and every hide-and-recover holdout and catalogue-distance result is suspect. If the owner mirror copied one file over another, the holdout may be fine. The repo cannot tell which.",
+      "evidence": "evidence/label_identity_audit_2026-10-29.json (scripts/audit_label_identity.py, COMPUTED on data/labels.tif, data/existing_faults.tif, data/sample_submission.tif); knowledge/08_data_dictionary_2026-10-02.md line 39 records the byte-identity without flagging it; registry/data_manifest.json pins both files to the same SHA-256.",
+      "resolution_or_action": "A human owner must read the organizer data page (https://www.drivendata.org/competitions/306/competition-doe-gems/data/, login-walled; NOT to be automated) and state whether labels.tif and existing_faults.tif are distinct there. Until resolved: no holdout, DTI or lane claim built on these inputs is certified. Do not generate a new candidate to chase the score on this basis."
+    },
+    {
+      "id": "IR-29-B2-LINEAGE-REPRODUCED",
+      "severity": "info",
+      "status": "verified",
+      "issue": "The GEMSDOE32 B2 0.2778 lineage claim is reproduced from bytes fetched from the owner's public repos. B2 (37,654 dots) is a strict subset of H27-4 (40,199), which is a strict subset of D2.8 (44,090). The removed dots are the 2,545 H27-4 dots within 2 px of labels.tif (3,891 D2.8 dots within 1 px were removed in the earlier step). Scores remain OWNER-REPORTED.",
+      "evidence": "evidence/nine_site_top_files_2026-10-28.json (re-run 2026-10-29 reproduces every field except generated_utc); the 8 owner-prefixed files were fetched and each SHA-256 pin verified.",
+      "resolution_or_action": "None needed for the lineage. The mechanism that raised the owner-reported score (removal of catalogue-adjacent dots) is an INFERENCE, not a demonstrated organizer effect, and depends on IR-29-LABELS-EQUALS-CATALOGUE."
+    },
+    {
+      "id": "IR-29-GEMSDOE25-FILE-LABEL",
+      "severity": "medium",
+      "status": "open",
+      "issue": "The nine-site evidence and knowledge tables label the GEMSDOE25 top file with the prefix gems24-h25-1-dotted-h19-5-d2-8-…-nan.tif. The GEMSDOE25 owner repo hosts gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif (1,603,424 bytes; SHA-256 91eae1ca…). The GEMSDOE25 repo also hosts a zeros-outside twin with the same dot set (D2.8, 44,090 dots). The GEMSDOE30 file has a different SHA-256 (5f963b8b…) but an identical dot set (Jaccard 1.0).",
+      "evidence": "evidence/nine_site_top_files_2026-10-28.json rows GEMSDOE25 and GEMSDOE30; GitHub tree listing of buffedlizard55-lab/GEMSDOE25 (docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif and -zeros.tif).",
+      "resolution_or_action": "Relabel the evidence row to the owner-repo file name in a later evidence rebuild. The zeros-outside twin passes the local [0,1] format check but is a copy of an already-scored dot set. It is NOT a new submission and must not be offered as one."
+    },
+    {
+      "id": "IR-29-FRONTPAGE-DOWNLOAD-OF-INVALID-DIAGNOSTIC",
+      "severity": "medium",
+      "status": "open",
+      "issue": "The Pages front page and README offer the 29 Oct mag/radiometric-decoupling GeoTIFF as 'DOWNLOAD FOR INSPECTION: YES', while the same entries record its holdout DTI as 0.00000 from a contaminated placement (full catalogue used, withheld pixels leaked) and state the candidate failed validation. The 'YES' label is a judgment call the owner should confirm.",
+      "evidence": "docs/index.html top banner; README.md 'Current result — 29 October 2026'; registry/run_card_decoupling_2026-10-29.json; docs/downloads/gems25-mag-rad-decoupling-20261029-8e2e136eddc8-zero.tif (SHA-256 82cda4c3…, format check passes locally).",
+      "resolution_or_action": "Owner decides whether inspection downloads of invalid diagnostics stay on the front page. Recommended: move them behind an explicit 'research only, invalid holdout' label or to the history page."
+    },
+    {
+      "id": "IR-29-REVIEW-STALE-FACTS",
+      "severity": "low",
+      "status": "fixed",
+      "issue": "REVIEW_2026-10-29.md (committed earlier today) states that HEAD and origin/main are b55a246 and that pytest could not run. In the session checkout main and the session branch were 2bd14f2, and the test suite runs (559 passed, 3 skipped with owner mirrors and core/external/scored inputs restored). The review's GEMSDOE25 row also used the gems24 file name (see IR-29-GEMSDOE25-FILE-LABEL).",
+      "evidence": "git rev-parse origin/main at session start = 2bd14f28f32603da8dffedf3396c12231371f180; pytest runs recorded in registry/review_passes_87a0b9a8_2026-10-29.json.",
+      "resolution_or_action": "Corrected by an appended note in REVIEW_2026-10-29.md and in knowledge/52_repo_review_2026-10-29_verified.md; the dated record is otherwise left unedited."
+    },
+    {
+      "id": "IR-29-OWNER-MIRROR-RESTORE-GAP",
+      "severity": "low",
+      "status": "fixed",
+      "issue": "The nine-site audit reads eight owner-prefixed rasters from data/owner_mirrors, but only the two B2-lineage files were in the restore manifest. The audit could not run from a clean checkout.",
+      "evidence": "tests/test_nine_site_2026_10_28.py (skip before this change); registry/data_manifest.json group owner_mirror_nine_site (added this session, 6 entries, pinned to the evidence SHA-256 values and to each owner repo's HEAD commit).",
+      "resolution_or_action": "Added a manifest group owner_mirror_nine_site restored by the existing scripts/restore_data.py. This session's private fetch script was removed to avoid a parallel restore path. Related to IR-29-OWNER-MIRROR-NOT-IN-MANIFEST (fixed by the owner_mirror group on main)."
     }
   ]
 }
