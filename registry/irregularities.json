@@ -1121,6 +1121,38 @@
       "issue": "Zeros-outside GeoTIFFs pass the portal-style [0,1] range check locally, but the organizer's exact acceptance rule has not been read. Format pass is not submit approval.",
       "evidence": "evidence/portal_file_recheck_2026-10-29.json; knowledge/48 section 1",
       "resolution_or_action": "Owner confirms the accepted format from the submission-page text or an organizer reply."
+    },
+    {
+      "id": "IR-29-B2-LANE-VIOLATION-TOP-FILE",
+      "severity": "high",
+      "status": "open",
+      "issue": "The owner-reported top file (GEMSDOE32 B2, 0.2778) has 99.92% of its 37,654 dots within 3 px of registry raster r13 (37,622 dots). The lane protocol's literal 70% rule would log it as a duplicate. The parent h27-4 (40,199 dots) is 99.92% as well. The rule and the goal conflict; this is an owner decision, not something to engineer around.",
+      "evidence": "COMPUTED this session: data/scored r13 raster (sha256 b4570b406efe...) vs data/owner_mirrors B2 and h27-4 (scripts/recheck_b2_lineage.py; docs in knowledge/49). Bound: evidence/lane_bound_r13_2026-10-28.json",
+      "resolution_or_action": "Owner decides whether the 70% lane rule applies to a re-submission of an already-scored lineage, or whether the rule is replaced by a stated overlap limit. No candidate may be promoted until this is decided."
+    },
+    {
+      "id": "IR-29-OFFICIAL-METRIC-NOT-READ",
+      "severity": "medium",
+      "status": "open",
+      "issue": "The 300 m triangular kernel, the 0.2/0.8 Tversky weights and the 'known pixels masked' rule are recorded in this repo from a DrivenData staff reply (knowledge/06, cited as community.drivendata.org) and from the project's own evaluator. The official rules (NLR, Sept 2026) confirm only 'a distance-weighted Tversky index, penalizing false negatives more than false positives'. The metric text sits on the login-walled competition page, which this agent may not automate. The reference repo's notebook confirms alpha=0.2 and beta=0.8 for its Tversky loss, but contains no scoring code.",
+      "evidence": "https://docs.nlr.gov/docs/fy26osti/96647.pdf (sections 3.5, 3.6.1); https://github.com/drivendataorg/gems-prize-reference-solution (unet-mc-cv-reference-solution.ipynb, cell with alpha/beta); knowledge/06 lines 34-35",
+      "resolution_or_action": "Owner reads the metric page by hand and records the kernel radius, weights and masking rule verbatim in registry/. Until then every local DTI number remains HOLDOUT-DTI under the project's evaluator, not organizer-confirmed."
+    },
+    {
+      "id": "IR-29-AI-DISCLOSURE-REQUIRED",
+      "severity": "medium",
+      "status": "open",
+      "issue": "The official rules (section 3.2) require the submission narrative to state the extent and manner of any generative-AI use in building the submission. This repo was produced with AI agents across many sessions.",
+      "evidence": "https://docs.nlr.gov/docs/fy26osti/96647.pdf section 3.2; AI_DISCLOSURE.md in this repo",
+      "resolution_or_action": "Owner reviews AI_DISCLOSURE.md against section 3.2 before any final submission narrative is written."
+    },
+    {
+      "id": "IR-29-OWNER-MIRROR-NOT-IN-MANIFEST",
+      "severity": "low",
+      "status": "fixed",
+      "issue": "The nine-site lineage test (tests/test_nine_site_2026_10_28.py) skipped in every checkout because the two owner-mirror rasters it needs were not in the pinned manifest, so the 0.2778 parent-subset claim had only been recorded, never recomputed from bytes.",
+      "evidence": "registry/data_manifest.json (group owner_mirror, two entries with commit and sha256 pins); scripts/restore_data.py --group owner_mirror; scripts/recheck_b2_lineage.py -> evidence/b2_lineage_recheck_2026-10-29.json; tests/test_owner_mirror_manifest.py",
+      "resolution_or_action": "Added pinned owner_mirror group. Restored from the owners' public GitHub repos (GEMSDOE32 and GEMSDOE28) and verified: B2 is a strict subset of h27-4, 2,545 dots removed, all within 2 px of the catalogue. Pins prove mirror consistency, not organizer authentication."
     }
   ]
 }

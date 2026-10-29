@@ -248,7 +248,29 @@
    "group": "scored",
    "sha256": "2314b59920bfeeaf6a592d4868b25eca62212825620f9945723c2f6d0a2e5b22",
    "bytes": 439456,
-   "provenance": "calibration raster copied unchanged from the owner siblings"
+    "provenance": "calibration raster copied unchanged from the owner siblings"
+  },
+  {
+   "id": "owner_gemsdoe32_h33_b2_zeros",
+   "repo": "buffedlizard55-lab/GEMSDOE32",
+   "ref": "0ffda7162e76291df34359345488ff08b4115aac",
+   "path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+   "dest": "owner_mirrors/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+   "group": "owner_mirror",
+   "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+   "bytes": 219065,
+   "provenance": "owner's public GitHub mirror of its own submission file (the 0.2778 GEMSDOE32 B2 raster). Integrity-pinned, NOT organizer-authenticated. Its own audit receipt records the same sha256."
+  },
+  {
+   "id": "owner_gemsdoe28_h27_4_nan",
+   "repo": "buffedlizard55-lab/GEMSDOE28",
+   "ref": "a1c0e18f4a4f7394ce549f1d61f2a229d5cfabfa",
+   "path": "docs/downloads/gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+   "dest": "owner_mirrors/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+   "group": "owner_mirror",
+   "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+   "bytes": 1595850,
+   "provenance": "owner's public GitHub mirror of its own submission file (the 0.2708 h27-4 parent of B2). Integrity-pinned, NOT organizer-authenticated; used only for the subset check."
   }
  ]
 }
