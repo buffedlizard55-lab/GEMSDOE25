@@ -2,6 +2,11 @@
 
 [Repository and focus-site review (2026-10-28)](docs/review-2026-10-28.md) · [Executive summary and historical download table](docs/executive-summary.html) · [H81 review and retracted score estimates](knowledge/47_repo_review_2026-10-28.md)
 
+
+## 29 October 2026 — audit correction
+
+**NO competition-ready submission. DO NOT SUBMIT.** The historical vent probe's HOLDOUT-DTI 0.01037 exceeded the spread-only control 0.00311, not the reverse; it was below H35 0.12165. Its recorded CI, evaluator and positive count are in the [correction](docs/vent-probe-correction.html). Its lane clearance was overstated: one registry raster was skipped and a pre-placement surface audit is not documented. The run card reports known-fault positives, and the historical builder is disabled. The final-dot checker now fails closed on mixed aligned and off-grid registry inputs. No new experiment or slot was used. The brief does not identify a single method lane, and this checkout lacks the cached data. [Previous ranked hypotheses](knowledge/47_repo_review_2026-10-28.md) remain unvalidated proposals; the exact new TIF requested remains undelivered.
+
 ## Nine-site brief (28 October 2026) — what to download, and why nothing is OK to submit
 
 **OK TO DOWNLOAD AND SUBMIT: NO — no file in this repository or on the nine focus sites is cleared.**

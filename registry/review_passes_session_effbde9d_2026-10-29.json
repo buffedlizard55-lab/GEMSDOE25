@@ -1,0 +1,9 @@
+{
+  "scope": "Repo review and historical vent-probe safety corrections; not certification of all repository claims.",
+  "passes": [
+    {"pass": 1, "actions": "Inspected project instructions, prior nine-site and H81 reviews, vent run card, builder, audit and public pages. Corrected false comparator and clearance statements, disabled unsafe historical builder and made final-dot registry gate fail closed on skipped references."},
+    {"pass": 2, "actions": "Added a mixed aligned/off-grid regression test and public claims regression tests. Noted exact catalogue-mask failure in run card and builder; kept format-only receipt distinct from readiness."},
+    {"pass": 3, "actions": "Rechecked requested lane, budget, evidence and submission gates: no single method paragraph is identified, data/cache absent, and no candidate or weekly slot was used. Prior hypotheses remain proposals. Full suite 539 passed, 15 skipped before additional regression tests; skips require unrestored data. No organizer receipt or live leaderboard checked."}
+  ],
+  "outcome": "negative; no approved submission"
+}
