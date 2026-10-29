@@ -1,5 +1,56 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
+## START HERE — owner brief 2026-10-29 (session `arena/30397b95-gemsdoe25`)
+
+> Read this section first every session. It is the normalized owner brief (not a verbatim transcript): the requirements below are the operative text, with the full review in [`knowledge/51`](knowledge/51_owner_brief_session_review_2026-10-29_30397b95.md). Maximize **P(Win)** and **Own the Outcome** are the decision rule.
+
+**OK TO DOWNLOAD AND SUBMIT: NO — for every file on the nine focus sites and in this repository. Estimated competition score: NOT ESTIMATED.** No new TIFF was generated this session, because no candidate passed the holdout gate and the r13 lane gate cannot be met at the competition's dot budget (§ *Why no file is cleared*). Nothing was uploaded to DrivenData (automation is forbidden; AGENTS.md rule 3).
+
+### Executive summary — the nine focus sites (owner-reported scores; organizer receipts: none)
+
+| Site | File to download (owner mirror) | Owner score | Format (portal `[0,1]` check) | Unique? | Estimated organizer score | OK to download AND submit? |
+|---|---|---|---|---|---|---|
+| GEMSDOE24 | `gems24-h25-1-dotted-h19-5-d1-5-…-nan.tif` | 0.2477 | Fails (NaN outside) | No (max Jaccard 0.979, GEMSDOE27) | NOT ESTIMATED | **NO** |
+| GEMSDOE25 | `gems24-h25-1-dotted-h19-5-d2-8-…-nan.tif` (= local `docs/downloads/gems25-dotted-h19-5-d2-8-…-nan.tif`) | 0.2600 | Fails (NaN outside) | No (exact dot-set twin of GEMSDOE30) | NOT ESTIMATED | **NO** |
+| GEMSDOE27 | `gems27-topo-gap-closure-t-v2-on-d1-5-…-nan.tif` | 0.2449 | Fails (NaN outside) | No (max Jaccard 0.979, GEMSDOE24) | NOT ESTIMATED | **NO** |
+| GEMSDOE28 | `gems28-h36-1-rung30-blind-r1-…-nan.tif` | 0.2710 | Fails (NaN outside) | Yes vs other tops; previous submission | NOT ESTIMATED | **NO** |
+| GEMSDOE30 | `gemsdoe30-d28-poisson300m-offcat-44090-…-nanoutside.tif` | 0.2600 | Fails (NaN outside) | No (exact dot-set twin of GEMSDOE25) | NOT ESTIMATED | **NO** |
+| GEMSDOE31 | `gemsdoe31-h27-4-solo-d28-…-nan.tif` | 0.2708 | Fails (NaN outside) | No (max Jaccard 0.937, GEMSDOE32) | NOT ESTIMATED | **NO** |
+| **GEMSDOE32** | `gemsdoe32-h33-h33-2-b2-…-e5eb6e7e-zeros.tif` (SHA `c55bafc4…`, verified) | **0.2778** (highest) | Passes (zeros outside) | No: **already submitted**; subset of two parents | NOT ESTIMATED | **NO** — copying a previous submission is not allowed |
+| GEMSDOE33 | `GEMSDOE33-h33d-analog-tip-stepover-r30-…-nanoutside.tif` | 0.2632 | Fails (NaN outside) | Yes vs other tops (max Jaccard 0.696); previous submission | NOT ESTIMATED | **NO** |
+| GEMSDOE36 | `gemsdoe36-anderson-geothermal-pinn-38854-…-zeros.tif` | 0.2750 | Passes (zeros outside) | No: **already submitted** (max Jaccard 0.969) | NOT ESTIMATED | **NO** |
+
+Per-file SHA-256, dot counts and receipts: [`evidence/nine_site_top_files_2026-10-28.json`](evidence/nine_site_top_files_2026-10-28.json). **No file is both the top score and eligible.** The highest portal-valid score (0.2778) is a file that was already submitted.
+
+### Why GEMSDOE32 B2 scored 0.2778 (verified on the bytes)
+
+* B2 is its parent raster with every dot within 200 m of the labelled catalogue removed, in two steps: D2.8 (44,090 dots) → h27-4 (40,199; 3,891 removed within 1 px) → B2 (37,654; 2,545 removed within 2 px). All 6,436 + 2,545 removed dots lie within 200 m of the catalogue; B2 has **0** dots there. Receipt: [`evidence/b2_lineage_recheck_2026-10-29.json`](evidence/b2_lineage_recheck_2026-10-29.json) (script `scripts/recheck_b2_lineage.py`, pinned `--group owner_mirror` inputs).
+* **Mechanism (inference, not proven):** under the metric, a dot near a known fault that does not sit on hidden truth adds false-positive weight. Removing such dots improves the balance. A density-matched thinning control has **not** been run, so the buffer is not yet separated from plain thinning.
+* **The repo's holdout proxy does not agree:** on draws 140–141, the B2-style arm scores HOLDOUT-DTI 0.050554 against 0.157011 for the H35 control (evidence in `evidence/h81_exp1/summary.json`; 95% CIs not recomputed here). The proxy cannot be used to select a file.
+
+### Can we beat 0.2778?
+
+**Not shown.** The only candidate family matching the verified mechanism is the B2 family itself, and any variant (other radii, thinning) has no holdout win. The lane gate also blocks any file of this size: B2 has **99.92%** of its dots within 3 px of registry raster r13, while the literal cap is 70% (the minimum possible at 37,654 dots is 82.70%). That rule is a parallel-session coordination rule, and whether it applies to the competition is an **owner decision**.
+
+Ranked, untested hypotheses and the pre-registration path are in [`knowledge/51`](knowledge/51_owner_brief_session_review_2026-10-29_30397b95.md#5-ranked-candidate-hypotheses-not-yet-tested).
+
+### Owner requirements (normalized) that govern every file
+
+1. **Unique file, not a copy.** Do not resubmit a previous file except for learning. Each file has a unique content-addressed name and note.
+2. **Obvious status.** Every page and file says whether it is OK to download and submit. Today: **NO** for all.
+3. **Format:** single-band float32 GeoTIFF on EPSG:32611, 3730×3292, the template transform, finite values in [0, 1]. NaN-outside files fail the portal check. The organizer's exact outside-footprint rule is not yet confirmed.
+4. **Validation without a human, through the project:** `scripts/verify_candidate_independent.py`, the holdout gate, and the lane check. A format pass is not submit approval.
+5. **Labels for every number:** HOLDOUT-DTI (with evaluator, withheld count and CI), ORGANIZER-CONFIRMED (receipt only), OWNER-REPORTED, COMPUTED, or NOT ESTIMATED. No projection is written as a score.
+6. **No DrivenData automation.** The owner reads the leaderboard and submission pages and records receipts. The agent never uploads.
+7. **Pre-register, then test.** Commit the design first. Budget: 3 experiments or 2 hours. Recompute the comparator in the same run.
+8. **Review three times** and record receipts in `registry/review_passes_*.json`. Flag irregularities; no hallucinated results.
+9. **Leaderboard conflict:** the owner prompt gives 0.4413 as the current high score, and the snapshot in `docs/data/live_scores.json` gives 0.3195 for the same participant. The owner must read the leaderboard by hand (IR-29-LEADERBOARD-CONFLICT).
+
+### Links for manual review
+
+* Competition: [data](https://www.drivendata.org/competitions/306/competition-doe-gems/data/), [problem page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/), [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
+* [Reference solution](https://github.com/drivendataorg/gems-prize-reference-solution) · [Submission format PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf) · [GeoDAWN USGS data](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) · [EPSG:32611](https://epsg.io/32611) · [Tversky index](https://en.wikipedia.org/wiki/Tversky_index)
+* Session review: [`knowledge/51`](knowledge/51_owner_brief_session_review_2026-10-29_30397b95.md) · run card: [`registry/run_card_session_30397b95_2026-10-29.json`](registry/run_card_session_30397b95_2026-10-29.json) · reviews: [`registry/review_passes_session_30397b95_2026-10-29.json`](registry/review_passes_session_30397b95_2026-10-29.json)
 ## Review alert — 29 October 2026 (read first)
 
 **OK TO DOWNLOAD AND SUBMIT: NO. Nothing in this repository is cleared. Estimated score: NOT ESTIMATED.**

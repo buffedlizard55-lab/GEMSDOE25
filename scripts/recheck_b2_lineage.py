@@ -85,6 +85,23 @@ def main() -> int:
         b2_dots_within_2px_catalogue=int((b2_d <= 2).sum()),
         b2_dots_on_catalogue_pixels=int((b2 & cat).sum()),
     )
+    # Second link of the chain (added 2026-10-29, arena/30397b95): the D2.8 parent (44,090 dots) that the
+    # h27-4 raster was itself pruned from. Read from the tracked, byte-identical docs/downloads copy.
+    d28_path = ROOT / "docs" / "downloads" / "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif"
+    if d28_path.exists():
+        d28 = load_mask(d28_path)
+        rem28 = d28 & ~b2
+        rem28_d = dist_px[rem28]
+        receipt["d2_8_parent"] = dict(
+            file="docs/downloads/" + d28_path.name,
+            sha256=sha256(d28_path),
+            dots=int(d28.sum()),
+            h27_4_subset_of_d2_8=bool(not (parent & ~d28).any()),
+            b2_subset_of_d2_8=bool(not (b2 & ~d28).any()),
+            dots_removed_from_d2_8=int(rem28.sum()),
+            removed_max_catalogue_distance_px=float(rem28_d.max()) if rem28_d.size else None,
+            removed_within_2px_catalogue=int((rem28_d <= 2).sum()),
+        )
     OUT.write_text(json.dumps(receipt, indent=2) + "\n")
     print(json.dumps(receipt, indent=2))
     return 0

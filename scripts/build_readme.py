@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 try:
@@ -27,7 +28,18 @@ BRIEFS = (
 )
 
 
+GUARD_MARKER = "## Current result — 29 October 2026"
+
+
 def main() -> None:
+    # IR-30397B95-BUILD-README-DESTRUCTIVE: this generator rebuilds an older README and would delete the
+    # hand-maintained 28/29 October sections. Refuse to overwrite them unless the owner passes --force.
+    readme = ROOT / "README.md"
+    if GUARD_MARKER in readme.read_text() and "--force" not in sys.argv[1:]:
+        print("Refusing to rebuild README.md: it contains hand-maintained 29 October sections that this "
+              "generator would delete (IR-30397B95-BUILD-README-DESTRUCTIVE). Re-run with --force only after "
+              "merging those sections into the generator.", file=sys.stderr)
+        raise SystemExit(2)
     subs = json.loads((ROOT / "registry/submissions.json").read_text())["files"]
     items = []
     seen = set()

@@ -1201,6 +1201,38 @@
       "issue": "The nine-site audit reads eight owner-prefixed rasters from data/owner_mirrors, but only the two B2-lineage files were in the restore manifest. The audit could not run from a clean checkout.",
       "evidence": "tests/test_nine_site_2026_10_28.py (skip before this change); registry/data_manifest.json group owner_mirror_nine_site (added this session, 6 entries, pinned to the evidence SHA-256 values and to each owner repo's HEAD commit).",
       "resolution_or_action": "Added a manifest group owner_mirror_nine_site restored by the existing scripts/restore_data.py. This session's private fetch script was removed to avoid a parallel restore path. Related to IR-29-OWNER-MIRROR-NOT-IN-MANIFEST (fixed by the owner_mirror group on main)."
+    },
+    {
+      "id": "IR-30397B95-PROXY-DISCORDANCE",
+      "severity": "high",
+      "status": "open",
+      "issue": "On the repo's standard holdout (draws 140-141), the B2-style arm CTRL_SUBSURF scores HOLDOUT-DTI 0.050554 (AUC 0.533) against 0.157011 for CTRL_H35, while the owner-reported live score ranks B2 (0.2778) at the top of the nine focus sites. The holdout proxy does not reproduce the live ranking of this family and must not be used to select a file.",
+      "evidence": "evidence/h81_exp1/summary.json; evidence/b2_lineage_recheck_2026-10-29.json; knowledge/51_owner_brief_session_review_2026-10-29_30397b95.md section 1",
+      "resolution_or_action": "Owner decision on how the proxy is used. Any new selection needs a density-matched control in the same run (see IR-30397B95-PROXY-DOT-BUDGET)."
+    },
+    {
+      "id": "IR-30397B95-PROXY-DOT-BUDGET",
+      "severity": "medium",
+      "status": "open",
+      "issue": "Holdout arms emit about 9,000-12,000 dots per cell, while the live files have 37,654-44,090 dots. The proxy is not evaluated at the competition budget.",
+      "evidence": "evidence/h81_exp1/summary.json (mean_emitted_dots); evidence/nine_site_top_files_2026-10-28.json (dot counts)",
+      "resolution_or_action": "Pre-register a holdout arm at the 37,654-dot budget before using the proxy for any slot decision."
+    },
+    {
+      "id": "IR-30397B95-BUILD-README-DESTRUCTIVE",
+      "severity": "high",
+      "status": "fixed",
+      "issue": "scripts/build_readme.py rebuilds an older README and would delete the hand-maintained 28 and 29 October sections. Confirmed by running it on the committed README and reverting.",
+      "evidence": "scripts/build_readme.py (GUARD_MARKER); tests/test_owner_brief_2026_10_29.py::test_build_readme_refuses_to_overwrite",
+      "resolution_or_action": "Guard added: the script exits 2 unless --force is passed. Merge the hand-edited sections into the generator before any --force rebuild."
+    },
+    {
+      "id": "IR-30397B95-DUPLICATE-TWINS",
+      "severity": "medium",
+      "status": "open",
+      "issue": "GEMSDOE25 (0.2600) and GEMSDOE30 (0.2600) are exact dot-set twins: both 44,090 dots, dot-set hash 141a24cbd356c412. The GEMSDOE25 file is also byte-identical to the scored gems24 file (SHA-256 91eae1ca42ec845e...).",
+      "evidence": "evidence/nine_site_top_files_2026-10-28.json (exact_dot_set_duplicates_among_nine_sites)",
+      "resolution_or_action": "Treat the two sites as one submission. Only one of them can claim a unique file."
     }
   ]
 }
