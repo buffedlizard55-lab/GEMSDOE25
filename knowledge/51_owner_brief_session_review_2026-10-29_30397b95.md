@@ -6,6 +6,9 @@ This note answers the three questions in the brief, lists what was verified and 
 
 ---
 
+
+> **Input caveat (IR-29-LABELS-EQUALS-CATALOGUE, critical, open):** the "catalogue" used for every distance and proximity number here is `labels.tif`, which is byte-identical to `existing_faults.tif` (`evidence/label_identity_audit_2026-10-29.json`, COMPUTED on owner-mirror bytes; organizer identity NOT verified). The HOLDOUT-DTI proxy and the B2 distance statistics therefore inherit this issue. Treat them as uncertified until a human checks the organizer data page.
+
 ## 1. Why GEMSDOE32 B2 scored 0.2778 (the highest of the nine sites)
 
 **Verified mechanism (COMPUTED on owner-mirror bytes).** The 0.2778 file is its parent raster with every dot within 200 m of the labelled USGS/INGENIOUS catalogue removed, in two steps:

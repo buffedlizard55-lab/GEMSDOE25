@@ -1,0 +1,84 @@
+{
+  "generated_utc": "2026-10-29T16:46:07+00:00",
+  "script": "scripts/audit_label_identity.py",
+  "evidence_class": "COMPUTED on restored owner-mirror bytes; organizer identity NOT verified",
+  "issue": "IR-29-LABELS-EQUALS-CATALOGUE",
+  "inputs": {
+    "labels": {
+      "file": "labels.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "dtype": "int8",
+      "shape": [
+        3730,
+        3292
+      ],
+      "crs": "EPSG:32611",
+      "nodata": -1.0,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ]
+    },
+    "existing_faults": {
+      "file": "existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "dtype": "int8",
+      "shape": [
+        3730,
+        3292
+      ],
+      "crs": "EPSG:32611",
+      "nodata": -1.0,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ]
+    },
+    "sample_submission": {
+      "file": "sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "dtype": "float32",
+      "shape": [
+        3730,
+        3292
+      ],
+      "crs": "EPSG:32611",
+      "nodata": NaN,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ]
+    }
+  },
+  "checks": {
+    "labels_bytes_identical_to_existing_faults": true,
+    "labels_array_equal_existing_faults": true,
+    "sample_ones_equal_labels_ones": true,
+    "labels_positive_count": 60988,
+    "existing_faults_positive_count": 60988,
+    "sample_ones_count": 60988,
+    "sample_nonfinite_count": 7111787,
+    "sample_finite_values": [
+      0.0,
+      1.0
+    ],
+    "labels_value_counts": {
+      "-1": 7111787,
+      "0": 5106385,
+      "1": 60988
+    }
+  },
+  "interpretation": "Three inputs that a competition would normally keep distinct (catalogue, target labels, sample submission) coincide. Either the owner mirror copied one file over others, or the organizer inputs really coincide. A human must read the organizer data page to decide. Until then, no holdout or score built on these inputs is treated as certified."
+}

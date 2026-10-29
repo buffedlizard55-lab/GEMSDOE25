@@ -61,5 +61,8 @@
   "scripts/recheck_b2_lineage.py (extended)",
   "scripts/build_readme.py (guard)",
   "README.md (START HERE section)"
+ ],
+ "known_limitations": [
+  "Catalogue = labels.tif = existing_faults.tif (IR-29-LABELS-EQUALS-CATALOGUE, open, critical); all distance and holdout numbers inherit this."
  ]
 }

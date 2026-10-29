@@ -51,6 +51,14 @@ Ranked, untested hypotheses and the pre-registration path are in [`knowledge/51`
 * Competition: [data](https://www.drivendata.org/competitions/306/competition-doe-gems/data/), [problem page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/), [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
 * [Reference solution](https://github.com/drivendataorg/gems-prize-reference-solution) · [Submission format PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf) · [GeoDAWN USGS data](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) · [EPSG:32611](https://epsg.io/32611) · [Tversky index](https://en.wikipedia.org/wiki/Tversky_index)
 * Session review: [`knowledge/51`](knowledge/51_owner_brief_session_review_2026-10-29_30397b95.md) · run card: [`registry/run_card_session_30397b95_2026-10-29.json`](registry/run_card_session_30397b95_2026-10-29.json) · reviews: [`registry/review_passes_session_30397b95_2026-10-29.json`](registry/review_passes_session_30397b95_2026-10-29.json)
+## Review alert — 29 October 2026 (read first)
+
+**OK TO DOWNLOAD AND SUBMIT: NO. Nothing in this repository is cleared. Estimated score: NOT ESTIMATED.**
+
+* **Critical, open (IR-29-LABELS-EQUALS-CATALOGUE):** the owner-mirror `labels.tif` and `existing_faults.tif` are byte-identical, and `sample_submission.tif` carries the same 60,988 fault pixels. A human must check the organizer data page. Until then, holdout results on these inputs are not certified. Evidence: [`evidence/label_identity_audit_2026-10-29.json`](evidence/label_identity_audit_2026-10-29.json).
+* **Verified from bytes (29 Oct):** the GEMSDOE32 B2 raster is an exact subset of the GEMSDOE28 H27-4 raster, which is a subset of the D2.8 raster. The removed dots are the 2,545 H27-4 dots within 2 px of the labelled catalogue. Scores remain OWNER-REPORTED. Receipt: [`evidence/nine_site_top_files_2026-10-28.json`](evidence/nine_site_top_files_2026-10-28.json) (reproduced 29 Oct).
+* **Do not run `build_site.py` or `build_readme.py` on this branch.** They rewrite hand-maintained sections and delete the 29 October content (IR-28-GENERATOR-DRIFT).
+* Session review and run card: [`knowledge/52_repo_review_2026-10-29_verified.md`](knowledge/52_repo_review_2026-10-29_verified.md) · [`registry/review_passes_87a0b9a8_2026-10-29.json`](registry/review_passes_87a0b9a8_2026-10-29.json).
 
 ## Session 2026-10-29 (branch `arena/f486e4e3-gemsdoe25`) — decision first
 
@@ -62,6 +70,7 @@ Ranked, untested hypotheses and the pre-registration path are in [`knowledge/51`
 * **Official rules (NLR, Sept 2026), read this session:** [docs.nlr.gov/docs/fy26osti/96647.pdf](https://docs.nlr.gov/docs/fy26osti/96647.pdf). One single-band GeoTIFF at 100 m; at most three submissions per week; metric is a distance-weighted Tversky index; the narrative must disclose generative-AI use. The 300 m kernel is **not** in the rules text (IR-29-OFFICIAL-METRIC-NOT-READ).
 * **Reproduce the lineage check:** `python scripts/restore_data.py --group core`, then `--group owner_mirror`, then `python scripts/recheck_b2_lineage.py`.
 * **Open items for the owner:** read the leaderboard by hand (0.4413 vs 0.3195 conflict); read the metric page; decide the lane rule; review the AI disclosure; provide the verbatim brief if it must be in the README.
+
 
 ## Current result — 29 October 2026 (read before using any download)
 
@@ -97,7 +106,7 @@ Estimated competition score: **UNKNOWN / NOT ESTIMATED** for every file (no cali
 * **Portal error explained (verified):** a NaN-outside GeoTIFF fails the portal's whole-array range check
   (`NaN` fails every `0 <= x <= 1` test). The reference solution writes finite values only
   (`unet-mc-cv-reference-solution.ipynb` at pinned commit `aebe92f`; `evidence/official_reference_2026-10-26.json`). The validator now enforces this (`portal_all_cells_finite_in_0_1`).
-  Of 60 GeoTIFFs in `docs/downloads/`, 30 are portal-safe (zeros outside) and 30 are NaN-outside.
+  Of 62 GeoTIFFs in `docs/downloads/` (counted 29 Oct 2026), 32 are portal-safe (zeros outside) and 30 are NaN-outside (7,111,787 non-finite cells each).
 * **The 0.2778 file (GEMSDOE32 B2) is a pruned copy of the 0.2708 h27-4 raster:** its 37,654 dots are a strict subset of
   the 40,199 dots in `gemsdoe28-h27-4-r1-solo` (2,545 removed; Jaccard 0.9367).
   It is portal-safe, has zero dots on the labelled catalogue, and is a previous submission, so it may not be copied.
