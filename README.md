@@ -12,6 +12,11 @@
 * **Standing rules carried forward:** unique, content-addressed names; no copy of a previous submission outside education; no automated DrivenData access; labels for every number (HOLDOUT-DTI, ORGANIZER-CONFIRMED, OWNER-REPORTED, or NOT ESTIMATED); comparator recomputed in the same run; lane overlap and holdout gates before any slot; three review passes.
 * The full verbatim prompt is not reproduced here because of its length. The normalized rules above, and `knowledge/48`, are the operative text. Ask for the verbatim text to be added as its own file if needed.
 
+
+## 29 October 2026 — audit correction
+
+**NO competition-ready submission. DO NOT SUBMIT.** The historical vent probe's HOLDOUT-DTI 0.01037 exceeded the spread-only control 0.00311, not the reverse; it was below H35 0.12165. Its recorded CI, evaluator and positive count are in the [correction](docs/vent-probe-correction.html). Its lane clearance was overstated: one registry raster was skipped and a pre-placement surface audit is not documented. The run card reports known-fault positives, and the historical builder is disabled. The final-dot checker now fails closed on mixed aligned and off-grid registry inputs. No new experiment or slot was used. The brief does not identify a single method lane, and this checkout lacks the cached data. [Previous ranked hypotheses](knowledge/47_repo_review_2026-10-28.md) remain unvalidated proposals; the exact new TIF requested remains undelivered.
+
 ## Nine-site brief (28 October 2026) — what to download, and why nothing is OK to submit
 
 **OK TO DOWNLOAD AND SUBMIT: NO — no file in this repository or on the nine focus sites is cleared.**

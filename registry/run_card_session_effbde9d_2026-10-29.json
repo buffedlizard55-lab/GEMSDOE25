@@ -1,0 +1,13 @@
+{
+  "hypothesis": "No new experiment: no single method lane was specified and the cached inputs are absent.",
+  "mechanism": "GEMSDOE32 B2 is a sparse catalogue-adjacent pruning of a historical dot mask; better balance of coverage and false positives is plausible but not established on hidden labels.",
+  "named_non_fault_mimic": "An unfaulted lithologic contact can mimic a structural magnetic or radiometric boundary.",
+  "holdout_dti": null,
+  "correlation_overlap_vs_registry": "Not measured in this session; historical vent final-dot audit skipped an off-grid reference and has no documented pre-placement surface audit.",
+  "raster_sha256": null,
+  "validator_output": {"no_nan_inside_footprint": null, "values_in_0_1": null, "crs_shape_transform_match": null, "reason": "No new raster was generated."},
+  "submission_name": null,
+  "submission_note": "No candidate approved; historical vent probe is research only. Do not submit.",
+  "experiments_used": 0,
+  "verdict": "negative"
+}

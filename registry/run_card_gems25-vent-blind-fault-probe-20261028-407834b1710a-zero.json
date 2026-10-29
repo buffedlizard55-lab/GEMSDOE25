@@ -135,41 +135,125 @@
   "positive_pixels": 8137,
   "format_audit": "gems25-vent-blind-fault-probe-20261028-407834b1710a-zero.format_audit.json",
   "holdout_dti": 0.010372949746492334,
-  "holdout_ci95": [0.007032893165805872, 0.013386159873615596],
+  "holdout_ci95": [
+    0.007032893165805872,
+    0.013386159873615596
+  ],
   "holdout_n_truth_total": 23923,
   "holdout_draws": [
-    {"fold": 0, "seed": 140, "tp": 17.482262342894465, "fp": 1072.597472387868, "fn": 1955.5177376571055, "n_truth": 1973, "dti": 0.009731745240650172, "coverage": 0.008860751314188781},
-    {"fold": 1, "seed": 140, "tp": 17.274996876638046, "fp": 1667.9264239147883, "fn": 2476.725003123362, "n_truth": 2494, "dti": 0.007407039914899659, "coverage": 0.006926622645003226},
-    {"fold": 2, "seed": 140, "tp": 61.85922035249966, "fp": 3316.638692283561, "fn": 4009.1407796475005, "n_truth": 4071, "dti": 0.015730254778863306, "coverage": 0.015195092201547447},
-    {"fold": 3, "seed": 140, "tp": 18.311420901849203, "fp": 1927.1409935248728, "fn": 3464.688579098151, "n_truth": 3483, "dti": 0.005766485838948021, "coverage": 0.005257370342190411},
-    {"fold": 0, "seed": 141, "tp": 8.537676462174707, "fp": 1077.0429967348307, "fn": 1950.4623235378253, "n_truth": 1959, "dti": 0.004784845182953878, "coverage": 0.004358180940364833},
-    {"fold": 1, "seed": 141, "tp": 18.19922988821983, "fp": 1666.3384465739548, "fn": 2484.8007701117804, "n_truth": 2503, "dti": 0.0077797508933201386, "coverage": 0.007270966795133771},
-    {"fold": 2, "seed": 141, "tp": 62.520459807824174, "fp": 3322.729384929775, "fn": 3875.479540192176, "n_truth": 3938, "dti": 0.016334755597963494, "coverage": 0.015876195989797913},
-    {"fold": 3, "seed": 141, "tp": 27.949285057272498, "fp": 1919.6360873162857, "fn": 3474.0507149427276, "n_truth": 3502, "dti": 0.008758464325849709, "coverage": 0.00798094947380711}
+    {
+      "fold": 0,
+      "seed": 140,
+      "tp": 17.482262342894465,
+      "fp": 1072.597472387868,
+      "fn": 1955.5177376571055,
+      "n_truth": 1973,
+      "dti": 0.009731745240650172,
+      "coverage": 0.008860751314188781
+    },
+    {
+      "fold": 1,
+      "seed": 140,
+      "tp": 17.274996876638046,
+      "fp": 1667.9264239147883,
+      "fn": 2476.725003123362,
+      "n_truth": 2494,
+      "dti": 0.007407039914899659,
+      "coverage": 0.006926622645003226
+    },
+    {
+      "fold": 2,
+      "seed": 140,
+      "tp": 61.85922035249966,
+      "fp": 3316.638692283561,
+      "fn": 4009.1407796475005,
+      "n_truth": 4071,
+      "dti": 0.015730254778863306,
+      "coverage": 0.015195092201547447
+    },
+    {
+      "fold": 3,
+      "seed": 140,
+      "tp": 18.311420901849203,
+      "fp": 1927.1409935248728,
+      "fn": 3464.688579098151,
+      "n_truth": 3483,
+      "dti": 0.005766485838948021,
+      "coverage": 0.005257370342190411
+    },
+    {
+      "fold": 0,
+      "seed": 141,
+      "tp": 8.537676462174707,
+      "fp": 1077.0429967348307,
+      "fn": 1950.4623235378253,
+      "n_truth": 1959,
+      "dti": 0.004784845182953878,
+      "coverage": 0.004358180940364833
+    },
+    {
+      "fold": 1,
+      "seed": 141,
+      "tp": 18.19922988821983,
+      "fp": 1666.3384465739548,
+      "fn": 2484.8007701117804,
+      "n_truth": 2503,
+      "dti": 0.0077797508933201386,
+      "coverage": 0.007270966795133771
+    },
+    {
+      "fold": 2,
+      "seed": 141,
+      "tp": 62.520459807824174,
+      "fp": 3322.729384929775,
+      "fn": 3875.479540192176,
+      "n_truth": 3938,
+      "dti": 0.016334755597963494,
+      "coverage": 0.015876195989797913
+    },
+    {
+      "fold": 3,
+      "seed": 141,
+      "tp": 27.949285057272498,
+      "fp": 1919.6360873162857,
+      "fn": 3474.0507149427276,
+      "n_truth": 3502,
+      "dti": 0.008758464325849709,
+      "coverage": 0.00798094947380711
+    }
   ],
   "registry_lane_audit": {
-    "lane_clear": true,
+    "lane_clear": false,
     "registry_declared_hashes": 117,
     "registry_files_available": 120,
     "registry_checked": 118,
-    "registry_skipped": [{"file": "GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f.tif", "reason": "grid/CRS/transform mismatch with template grid - off-grid site subset, not comparable"}],
+    "registry_skipped": [
+      {
+        "file": "GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f.tif",
+        "reason": "grid/CRS/transform mismatch with template grid - off-grid site subset, not comparable"
+      }
+    ],
     "registry_errors": [],
     "sha_in_artifact_ledger": false,
     "flagged": [],
     "max_abs_spearman": 0.0061281398290583735,
     "max_dots_within_3px": 0.6882143296055057,
     "max_overlap_reference": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
-    "audit_file": "gems25-vent-blind-fault-probe-20261028-407834b1710a-zero.lane_audit.json"
+    "audit_file": "gems25-vent-blind-fault-probe-20261028-407834b1710a-zero.lane_audit.json",
+    "historical_reported_lane_clear_retracted": true
   },
   "registry_spearman_max": 0.0061281398290583735,
   "same_run_control_spread_only": {
     "file": "/tmp/control_spread-zero.tif (not published; internal comparator)",
-    "holdout_dti": 0.0031053381130147246,
-    "holdout_ci95": [0.0014017294027603052, 0.004538904810410744],
+    "holdout_dti": 0.0031053381130147248,
+    "holdout_ci95": [
+      0.0014017294027603051,
+      0.004538904810410744
+    ],
     "note": "identical lane geometry (2,537 R2 + 5,600 R5 dots), no geothermal priority, seed 999"
   },
   "ctrl_h35_holdout_dti": 0.12165,
-  "verdict": "negative — holdout proxy 0.01037 (CI [0.00703, 0.01339]) is below same-run spread control 0.00311 and far below CTRL_H35 0.12165 (HOLDOUT-DTI). Lane-unique and format-valid, but NOT slot-eligible and NOT submission-ready. OK TO DOWNLOAD: YES (inspection/testing only). OK TO SUBMIT: NO — DO NOT SUBMIT. OK to spend a weekly slot: NO.",
+  "verdict": "negative \u2014 HOLDOUT-DTI 0.01037 exceeds spread control 0.00311 but is below H35 0.12165; incomplete registry and missing pre-placement surface audit, known-fault positives; DO NOT SUBMIT.",
   "experiments_used": 2,
   "new_tiff_generated": true,
   "okay_to_submit": false,
@@ -178,6 +262,7 @@
     "8,137 sparse dots on 5.17 Mpx footprint; expected DTI magnitude is small by design.",
     "GDR vents are 3.6-86.7 px from known faults (off-catalogue by construction); whether vents mark hidden faults here is untested by this proxy.",
     "No organizer receipt, leaderboard feed, or DrivenData access; owner submits manually.",
-    "Outside-footprint convention (zeros here) is a local variant; portal acceptance unknown."
+    "Outside-footprint convention (zeros here) is a local variant; portal acceptance unknown.",
+    "2026-10-29 correction: the previous lane-clear and below-spread-control claims were incorrect; off-grid registry raster was skipped, pre-placement surface receipt not established, and dots_on_known_fault is nonzero."
   ]
 }
