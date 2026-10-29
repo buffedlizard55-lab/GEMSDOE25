@@ -1,0 +1,113 @@
+{
+  "checked_utc_date": "2026-10-29",
+  "files": [
+    {
+      "file": "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-nan.tif",
+      "sha256": "11dcd970ee3a73377d946b7aac7273552cdfa23016c6278666840261e524bd08",
+      "epsg": 32611,
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata_tag": NaN,
+      "nan_cells": 7111787,
+      "finite_min": 0.0,
+      "finite_max": 1.0,
+      "positive_cells": 37654,
+      "all_finite_in_0_1": false,
+      "portal_range_pass": false
+    },
+    {
+      "file": "gems25-h75-dchb-cg-catfree-b2-37654-20261027-e035d75ca5d5-zeros.tif",
+      "sha256": "da94fdf9d744f06f3f18d325b7f57fe4e3b2739cd2e9e14d71dafcc87edc2a1e",
+      "epsg": 32611,
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata_tag": null,
+      "nan_cells": 0,
+      "finite_min": 0.0,
+      "finite_max": 1.0,
+      "positive_cells": 37654,
+      "all_finite_in_0_1": true,
+      "portal_range_pass": true
+    },
+    {
+      "file": "gems25-h79-cthm-crustal-sgmc-b2-37654-20261027-e7ad8a4bf3ed-nan.tif",
+      "sha256": "f9167cc515cce6131cdc4033c10ba00051a17db22d6c4bd2d2d5884188222d8a",
+      "epsg": 32611,
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata_tag": NaN,
+      "nan_cells": 7111787,
+      "finite_min": 0.0,
+      "finite_max": 1.0,
+      "positive_cells": 37654,
+      "all_finite_in_0_1": false,
+      "portal_range_pass": false
+    },
+    {
+      "file": "gems25-h79-cthm-crustal-sgmc-b2-37654-20261027-e7ad8a4bf3ed-zeros.tif",
+      "sha256": "df13471fe77d6eb6dcf24ac4f2d453a36bd0c78e9c51caa34ac032104897a5ef",
+      "epsg": 32611,
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata_tag": null,
+      "nan_cells": 0,
+      "finite_min": 0.0,
+      "finite_max": 1.0,
+      "positive_cells": 37654,
+      "all_finite_in_0_1": true,
+      "portal_range_pass": true
+    },
+    {
+      "file": "gems25-h36-spigm-subsurface-submod300-20261025-3937b96ce366-nan.tif",
+      "sha256": "c103482fb70b4eb447a4fd9ae5b4a82baa2bcf41b161e34170f86cf5fdce8778",
+      "epsg": 32611,
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata_tag": NaN,
+      "nan_cells": 7111787,
+      "finite_min": 0.0,
+      "finite_max": 1.0,
+      "positive_cells": 37654,
+      "all_finite_in_0_1": false,
+      "portal_range_pass": false
+    },
+    {
+      "file": "gems25-h36-spigm-subsurface-submod300-20261025-3937b96ce366-zeros.tif",
+      "sha256": "182f9e5f03cb66033d7106d1e7ca29cdc50280d10fe0306438138bf52e1540bc",
+      "epsg": 32611,
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata_tag": null,
+      "nan_cells": 0,
+      "finite_min": 0.0,
+      "finite_max": 1.0,
+      "positive_cells": 37654,
+      "all_finite_in_0_1": true,
+      "portal_range_pass": true
+    }
+  ]
+}

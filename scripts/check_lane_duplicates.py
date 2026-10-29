@@ -195,7 +195,7 @@ def audit(candidate: Path, template: Path, references: list[Path], expected: set
     conformant = [p for p in refs if p.name not in skipped_names]
     evaluated_all = bool(conformant) and len(rows) == len(conformant) and not errors
     complete = bool(not selected_only and inventory["complete"] and evaluated_all
-                    and all(not r["rank_undefined"] for r in rows))
+                    and not skipped and all(not r["rank_undefined"] for r in rows))
     if flags or exact_in_ledger:
         verdict = "DUPLICATE/LANE OVERLAP - stop; do not package"
     elif not complete:

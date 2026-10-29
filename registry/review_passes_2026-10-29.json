@@ -1,0 +1,38 @@
+{
+  "session_date": "2026-10-29",
+  "branch": "arena/fd0738b9-gemsdoe25",
+  "passes": [
+    {
+      "pass": 1,
+      "name": "implementation and source verification",
+      "done": [
+        "read README, AGENTS.md, knowledge/47, docs/data/live_scores.json, registry/irregularities.json",
+        "installed requirements.txt in a fresh venv; pytest: 538 passed, 15 skipped before edits",
+        "wrote scripts/check_portal_files_2026_10_29.py; re-read 6 downloaded GeoTIFFs (evidence/portal_file_recheck_2026-10-29.json)"
+      ]
+    },
+    {
+      "pass": 2,
+      "name": "bug, assumption and edge-case review",
+      "done": [
+        "checked NaN counting logic; nodata tag recorded as information only; no bug found",
+        "removed unsupported wording: the portal-error mechanism is labelled inference (organizer validator not read)",
+        "corrected an overstated claim about NAN download links to 'not re-audited this session'",
+        "added IR-29 irregularities; did not run the README/site generators (IR-28-GENERATOR-DRIFT)"
+      ]
+    },
+    {
+      "pass": 3,
+      "name": "re-check against the owner request",
+      "done": [
+        "unique, zeros-outside TIF submission: NOT produced; no candidate passed holdout and lane gates",
+        "OK-to-submit answer stated as NO in README and knowledge/48",
+        "0.2778 explained with owner-reported status and lineage limits; 0.4413 vs 0.3195 conflict flagged",
+        "candidate hypotheses listed (4, all unvalidated) with blocked sources named",
+        "full verbatim prompt NOT stored; normalized rules stored in README and knowledge/48"
+      ]
+    }
+  ],
+  "final_verdict": "negative for submission; no file cleared; no slot used",
+  "ok_to_download_and_submit": false
+}
