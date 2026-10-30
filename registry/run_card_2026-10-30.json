@@ -1,0 +1,62 @@
+[
+ {
+  "card": "H-SP1 soft catalogue prior (experiment 1 of 3)",
+  "date_utc": "2026-10-30",
+  "preregistration": "knowledge/54_preregistered_soft_catalogue_prior_2026-10-30.md (commit 5b5c31b)",
+  "hypothesis": "A soft exponential prior on distance to the visible catalogue, multiplied with a catalogue-free magnetic ridge score, beats a hard 200 m exclusion and the unweighted ridge at a fixed 21,000-dot budget.",
+  "mechanism": "Hidden fault pixels cluster near mapped faults more than random footprint pixels do (single-feature AUC of -distance 0.70-0.82, below the 0.90 leakage line).",
+  "named_non_fault_mimic": "Mapping-density bias: where geologists mapped more faults, ridges appear near mapped traces without any hidden fault.",
+  "holdout_dti_ci95": {
+    "evaluator": "scripts/run_soft_catalogue_prior.py -> gems25.holdout + gems25.metric.dti_binary (alpha 0.2, beta 0.8, 300 m)",
+    "label": "HOLDOUT-DTI (catalogue-gap proxy; not organizer-confirmed)",
+    "A1_candidate_dev": {"pooled": 0.02324, "ci95": [0.01352, 0.03076], "withheld_positives": 23923, "draws": "seeds 140-141 x folds 0-3"},
+    "A1_candidate_confirm": {"pooled": 0.02044, "ci95": [0.01444, 0.02592], "withheld_positives": 47892, "draws": "seeds 144-147 x folds 0-3"},
+    "A0_ridge_dev": 0.01253, "A2_hard_200m_dev": 0.01261, "A4_random_floor_dev": 0.03371, "A3_sign_control_dev": 0.0
+  },
+  "paired_differences": {
+    "dev_A1_minus_A0": [0.01071, 0.00515, 0.01534],
+    "dev_A1_minus_A2": [0.01063, 0.00525, 0.01502],
+    "dev_A1_minus_A4_random": [-0.01047, -0.01788, -0.00492],
+    "conf_A1_minus_A4_random": [-0.01059, -0.01639, -0.00524]
+  },
+  "correlation_overlap_vs_registry": {
+    "candidate_file": "gems25-nosubmit-hsp1-softprior-a1-k21000-20261030-63cd99077d9c-zero.tif (removed from downloads)",
+    "spearman_full_footprint_vs_r13": 0.00073,
+    "dots_within_3px_of_r13": 0.99867,
+    "source": "scripts/check_lane_duplicates.py -> evidence/checks_hsp1_candidate_2026-10-30.json"
+  },
+  "raster_sha256": {"candidate_tif": "9e1ece7396dbc7b25cb878eca1918d04d938ae5a232b7c47d3ccdc15f99af126", "candidate_zip_not_packaged": "0bac89ec54bd1ead6ae9d2c5e834249719a81bd41e61f81807458eb998ba38eb"},
+  "validator_output": {
+    "verify_candidate_independent": "all_hard_checks_pass=true; zeros outside; footprint values in [0,1]; no NaN in footprint; CRS EPSG:32611, shape 3730x3292, template transform; catalogue positives 0 (evidence/checks_hsp1_candidate_2026-10-30.json)",
+    "check_lane_duplicates": "DUPLICATE/LANE OVERLAP - stop; do not package (lane_clear=false; fails closed at first duplicate)"
+  },
+  "submission_name_and_note": {"name": "NOSUBMIT-hsp1-softprior-a1-k21000 (NOT a submission)", "note": "GEMSDOE25 NOSUBMIT h82-A1 failed G1 (random beat it) | research only, do not submit | id 63cd99077d9c | not yet live-scored", "chars": 120},
+  "verdict": "negative",
+  "verdict_reason": "G1 failed: random dots beat A1 on dev and confirm. The file is also a literal lane duplicate of r13 (99.87%)."
+ },
+ {
+  "card": "H-LF1 lane-first construction (experiment 2 of 3)",
+  "date_utc": "2026-10-30",
+  "preregistration": "knowledge/55_preregistered_lane_first_2026-10-30.md (commit 8cbe505)",
+  "hypothesis": "Restricting dots to pixels outside the r13 3-px halo and the visible catalogue keeps a soft-prior ridge signal above the random floor at 6,000 dots.",
+  "mechanism": "None demonstrated. Tested to see whether a lane-compliant construction carries any holdout signal.",
+  "named_non_fault_mimic": "Lattice-gap geometry: r13-free pixels sit in the zones r13 did not sample.",
+  "holdout_dti_ci95": {
+    "label": "HOLDOUT-DTI (catalogue-gap proxy; not organizer-confirmed)",
+    "L1_candidate_dev": {"pooled": 0.00525, "ci95": [0.00263, 0.00749], "withheld_positives": 23923},
+    "L1_candidate_confirm": {"pooled": 0.00417, "ci95": [0.00215, 0.00614], "withheld_positives": 47892},
+    "L4_random_floor_dev": 0.00556, "L0_ridge_dev": 0.00529, "L2_hard_200m_dev": 0.00551
+  },
+  "paired_differences": {
+    "dev_L1_minus_L2": [-0.00026, -0.00046, -0.00007],
+    "dev_L1_minus_L4_random": [-0.00031, -0.00058, -0.00006],
+    "conf_L1_minus_L4_random": [-0.0001, -0.00028, 0.00006]
+  },
+  "correlation_overlap_vs_registry": "Lane-compliant by construction: every dot is outside the r13 3-px halo (asserted in run_lane_first_prior.py). No file was built, so no registry comparison was run.",
+  "raster_sha256": "NOT APPLICABLE (no file built)",
+  "validator_output": "NOT RUN (no file built)",
+  "submission_name_and_note": "NONE",
+  "verdict": "negative",
+  "verdict_reason": "No gate passed. Every arm is at the random floor (about 0.004-0.006). Canaries 0.894 and 0.899 are close to the 0.90 line (IR-30-CANARY-NEAR-THRESHOLD)."
+ }
+]

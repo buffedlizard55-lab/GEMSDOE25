@@ -1,0 +1,23 @@
+{
+ "generated_utc": "2026-10-30T22:55:10+00:00",
+ "script": "scripts/build_hsp1_candidate.py",
+ "status": "INSPECTION ONLY - DO NOT SUBMIT - REMOVED FROM docs/downloads: literal lane duplicate of r13 (99.87% of dots within 3 px; verdict 'do not package'); pre-registered gate G1 also failed",
+ "file": "gems25-nosubmit-hsp1-softprior-a1-k21000-20261030-63cd99077d9c-zero.tif",
+ "zip": "gems25-nosubmit-hsp1-softprior-a1-k21000-20261030-63cd99077d9c-zero.zip",
+ "sha256": "9e1ece7396dbc7b25cb878eca1918d04d938ae5a232b7c47d3ccdc15f99af126",
+ "content_id": "63cd99077d9c",
+ "dots": 21000,
+ "note": "GEMSDOE25 NOSUBMIT h82-A1 failed G1 (random beat it) | research only, do not sub | id 63cd99077d9c | not yet live-scored",
+ "note_chars": 120,
+ "outside": "zeros",
+ "inside_values": [
+  0.0,
+  1.0
+ ],
+ "okay_to_download_and_submit": false,
+ "estimated_score": "NOT ESTIMATED",
+ "packaged": false,
+ "tif_in_repo": false,
+ "note_on_removed_files": "The TIF and ZIP named above were deleted from docs/downloads after check_lane_duplicates.py returned DUPLICATE/LANE OVERLAP. The sha256 and content_id remain as the receipt.",
+ "lane_check": "evidence/checks_hsp1_candidate_2026-10-30.json (lane_clear=false)"
+}

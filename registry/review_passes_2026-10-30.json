@@ -1,0 +1,51 @@
+{
+  "session": "arena/68c7ea9e-gemsdoe25",
+  "date_utc": "2026-10-30",
+  "scope": "GEMSDOE nine-site review, owner brief normalization, one soft-prior experiment, one lane-first experiment, format and lane checks",
+  "passes": [
+    {
+      "pass": 1,
+      "name": "Implement and verify against sources",
+      "checks": [
+        "Restored owner mirrors, nine-site rasters, scored rasters, core and external groups from SHA-256-pinned mirrors (scripts/restore_data.py). All hashes verified.",
+        "pytest -q: 579 passed, 3 skipped (optional inputs not restored). ruff clean on new scripts.",
+        "Re-ran scripts/audit_nine_site_top_files.py: scores, dot counts, exact duplicate GEMSDOE25 = GEMSDOE30 (141a24cbd356c412), max Jaccard values all reproduced.",
+        "Re-ran scripts/audit_r13_lane_bound.py: 6,514 eligible pixels; cap 21,713 dots reproduced exactly.",
+        "Ran experiment 1 (knowledge/54) and experiment 2 (knowledge/55) with pre-registration committed first (5b5c31b, 8cbe505).",
+        "Built and checked one candidate: verify_candidate_independent PASS (format), check_lane_duplicates FAIL (99.87% overlap with r13)."
+      ],
+      "errors_found": []
+    },
+    {
+      "pass": 2,
+      "name": "Bugs, missing requirements, incorrect assumptions, edge cases",
+      "findings": [
+        "BUG (fixed before run): exp(+d/lam) overflowed float32 for far pixels in arm A3, silently dropping them. Exponent now clipped at 60.",
+        "INCORRECT CLAIM (corrected): knowledge/51 said no soft prior exists. src/gems25/h31.py already has exp(-(d-3)/12) on visible-catalogue distance. Pre-registration rewritten; IR-30-SOFT-PRIOR-NOT-NEW logged.",
+        "INCORRECT CITATION (corrected): CAT_BUF_BLIND is defined in scripts/run_h74_experiments.py, not greedy.py.",
+        "INCORRECT CLAIM (corrected before commit): first grep for soft priors was incomplete; the second pass found the H31 hit and other exponential proximity terms.",
+        "SUSPECT ARTEFACT: check_lane_duplicates reports registry_checked=1 because audit() breaks at the first duplicate. This is fail-fast by design, not missing coverage; a pass would need the full loop.",
+        "NEAR-THRESHOLD: lane-first canaries 0.894 and 0.899 are below 0.90 but close; logged IR-30-CANARY-NEAR-THRESHOLD.",
+        "TIF REMOVED: the generated TIF and ZIP were deleted from docs/downloads after the lane check failed; receipts kept.",
+        "SCALE MISMATCH: proxy HOLDOUT-DTI is 0.005-0.03 while owner-reported scores are 0.25-0.28; logged IR-30-HOLDOUT-SCALE-MISMATCH.",
+        "Did NOT run scripts/build_readme.py or scripts/build_site.py (the README says they delete hand-maintained content on this branch). Hand-edited instead."
+      ]
+    },
+    {
+      "pass": 3,
+      "name": "Re-check against the original request line by line",
+      "requirements": [
+        {"req": "Executive summary for the nine sites with best submission, file, estimate, unique?", "status": "DONE (docs/owner-brief-2026-10-30.html and README top). Result: no file is both portal-valid and unique; estimates NOT ESTIMATED."},
+        {"req": "Estimate score per file", "status": "NOT ESTIMATED: proxy is off-scale (IR-30-HOLDOUT-SCALE-MISMATCH) and labels equal catalogue (IR-29-LABELS-EQUALS-CATALOGUE)."},
+        {"req": "Generate a unique TIF that is OK to download and submit", "status": "NOT MET. Generated candidate is a lane duplicate of r13 and failed its gate; lane-first file has no signal. Status is obvious: NO."},
+        {"req": "Validation gates before uniqueness (format, holdout, lane) without human intervention", "status": "Scripts run (verify_candidate_independent, check_lane_duplicates, holdout harness). Human check of organizer data still required for IR-29-LABELS-EQUALS-CATALOGUE."},
+        {"req": "Answer why 0.2778 scored highest and whether >0.2778 is possible", "status": "Answered with labelled inference in the README; not shown that >0.2778 is achievable."},
+        {"req": "Put owner brief into README and read every session", "status": "DONE as normalized brief (IR-30-PROMPT-NORMALIZED), not verbatim."},
+        {"req": "Core values as focal point", "status": "Stated in README brief; decisions use P(Win) and Own the Outcome as tie-breakers, never to bypass gates."},
+        {"req": "Create and merge PR to main", "status": "See README and final message for the PR URL and merge status."},
+        {"req": "No DrivenData automation; no uploads", "status": "No DrivenData access was attempted; no upload. Sandbox allowlist excludes drivendata.org."}
+      ],
+      "verdict": "No file cleared. Negative results recorded. Owner decisions listed in README."
+    }
+  ]
+}
