@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-30T05:58:52Z",
+ "generated_utc": "2026-10-30T13:06:59Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"0ad7c64dadcc8364b812b5d2d03cf935\""
+   "detail": "HTTP 200; ETag: W/\"4ac581bc49c09631f4ec06ac0667408c\""
   },
   {
    "kind": "source",
@@ -105,7 +105,7 @@
    "url": "https://www.usgs.gov/3d-elevation-program",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Fri, 30 Oct 2026 05:57:28 GMT; ETag: W/\"1793339848\""
+   "detail": "HTTP 200; Last-Modified: Fri, 30 Oct 2026 13:06:31 GMT; ETag: W/\"1793365591\""
   },
   {
    "kind": "source",
@@ -128,8 +128,8 @@
    "title": "Faulds & Hinz (2015) Favorable tectonic and structural settings of geothermal systems in the Great Basin",
    "url": "https://www.osti.gov/servlets/purl/1724082",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "ConnectTimeout"
+   "status": "ok",
+   "detail": "HTTP 200; Content-Length: 1719141"
   },
   {
    "kind": "source",
@@ -145,7 +145,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"460f91afd7fccde8042fb056bc61f469\""
+   "detail": "HTTP 200; ETag: W/\"332b90c16425a060f41a58f17cf00c99\""
   },
   {
    "kind": "source",
@@ -153,7 +153,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"06f7d81de0a39499df7ad302b25f1680\""
+   "detail": "HTTP 200; ETag: W/\"99fb946d87b25f3901212e76d46c7723\""
   },
   {
    "kind": "source",
@@ -177,7 +177,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"c2c5e1811d726f756ff8d9074157c5b0\""
+   "detail": "HTTP 200; ETag: W/\"4daeee6c5de1bd92a3d84a8eaf3dcfeb\""
   },
   {
    "kind": "source",
@@ -185,7 +185,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"b2a8db68f2351d2d6bf8beeae1fe51a5\""
+   "detail": "HTTP 200; ETag: W/\"377359e4efb0922de3bfdac452bd4d08\""
   },
   {
    "kind": "source",
@@ -193,15 +193,15 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"0ad7c64dadcc8364b812b5d2d03cf935\""
+   "detail": "HTTP 200; ETag: W/\"4ac581bc49c09631f4ec06ac0667408c\""
   },
   {
    "kind": "source",
    "title": "Structural Inventory of Great Basin Geothermal Systems and Definition of Favorable Structural Settings (dataset)",
    "url": "https://www.osti.gov/dataexplorer/biblio/dataset/1148722",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "ConnectTimeout"
+   "status": "ok",
+   "detail": "HTTP 200"
   },
   {
    "kind": "source",
@@ -209,7 +209,7 @@
    "url": "https://www.usgs.gov/data/quaternary-fault-mapping-zapata-and-blanca-sections-sangre-de-cristo-fault-zone-high",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Fri, 30 Oct 2026 05:58:23 GMT; ETag: W/\"1793339903\""
+   "detail": "HTTP 200; Last-Modified: Fri, 30 Oct 2026 13:06:39 GMT; ETag: W/\"1793365599\""
   },
   {
    "kind": "source",
@@ -225,7 +225,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"74e26d08711388b58bfa9d471ea0a5ab\""
+   "detail": "HTTP 200; ETag: W/\"d9a368ad0142c22462a9d476fd98fe34\""
   },
   {
    "kind": "source",
@@ -233,7 +233,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE36",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"1a6050dcf2f32d1e107d45bb614896e1\""
+   "detail": "HTTP 200; ETag: W/\"389a92d0f82462c5098191d1dfd1aae1\""
   },
   {
    "kind": "source",
@@ -241,7 +241,7 @@
    "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Thu, 29 Oct 2026 18:23:54 GMT; Content-Length: 25627; ETag: W/\"6ae38f3a-1ba59\""
+   "detail": "HTTP 200; Last-Modified: Fri, 30 Oct 2026 11:30:44 GMT; Content-Length: 25627; ETag: W/\"6ae47fe4-1ba59\""
   },
   {
    "kind": "source",
@@ -257,7 +257,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"8b1025d6377547aa294f3d812e50d8df\""
+   "detail": "HTTP 200; ETag: W/\"a22db11cb65ec480d4825ed66988ddb8\""
   },
   {
    "kind": "source",
@@ -281,7 +281,7 @@
    "url": "https://doi.org/10.1007/BFb0006528",
    "verified_in_repo": false,
    "status": "ok",
-   "detail": "HTTP 200; ETag: \"54cfd90b1376b49d5274763ba83de9d3\""
+   "detail": "HTTP 200; ETag: \"6e3d3567c1ca863f9298644ed1b7c61f\""
   },
   {
    "kind": "source",
@@ -289,7 +289,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"8b1025d6377547aa294f3d812e50d8df\""
+   "detail": "HTTP 200; ETag: W/\"a22db11cb65ec480d4825ed66988ddb8\""
   },
   {
    "kind": "source",
@@ -313,7 +313,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"74e26d08711388b58bfa9d471ea0a5ab\""
+   "detail": "HTTP 200; ETag: W/\"d9a368ad0142c22462a9d476fd98fe34\""
   },
   {
    "kind": "source",
@@ -321,7 +321,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/unet-mc-cv-reference-solution.ipynb",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"19937aef5d7213d74569ee40d40d6e56\""
+   "detail": "HTTP 200; ETag: W/\"89595c3b8a85a30997a46a142f259d20\""
   },
   {
    "kind": "source",
@@ -337,7 +337,7 @@
    "url": "https://www.usgs.gov/publications/discovering-blind-geothermal-systems-great-basin-region-integrated-geologic-and",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Fri, 30 Oct 2026 05:58:42 GMT; ETag: W/\"1793339922\""
+   "detail": "HTTP 200; Last-Modified: Fri, 30 Oct 2026 13:06:49 GMT; ETag: W/\"1793365609\""
   },
   {
    "kind": "source",
@@ -416,7 +416,7 @@
    "title": "12GEMSDOE",
    "url": "https://github.com/buffedlizard55-lab/12GEMSDOE",
    "status": "ok",
-   "detail": "pushed_at 2026-10-29T21:48:54Z"
+   "detail": "pushed_at 2026-10-30T11:23:18Z"
   },
   {
    "kind": "sibling-repo",
@@ -549,14 +549,14 @@
    "title": "GEMSDOE25",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25",
    "status": "ok",
-   "detail": "pushed_at 2026-10-29T22:50:10Z"
+   "detail": "pushed_at 2026-10-30T05:58:54Z"
   },
   {
    "kind": "sibling-repo",
    "title": "GEMSDOE27",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27",
    "status": "ok",
-   "detail": "pushed_at 2026-10-29T16:54:16Z"
+   "detail": "pushed_at 2026-10-30T12:49:42Z"
   },
   {
    "kind": "sibling-repo",
@@ -584,7 +584,7 @@
    "title": "GEMSDOE32",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
    "status": "ok",
-   "detail": "pushed_at 2026-10-29T18:23:11Z"
+   "detail": "pushed_at 2026-10-30T11:29:41Z"
   },
   {
    "kind": "sibling-repo",
