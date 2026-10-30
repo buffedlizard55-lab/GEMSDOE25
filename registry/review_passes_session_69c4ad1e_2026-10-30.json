@@ -1,0 +1,46 @@
+{
+  "session": "arena/69c4ad1e-gemsdoe25",
+  "date_utc": "2026-10-30",
+  "passes": [
+    {
+      "pass": 1,
+      "name": "implement and verify against sources",
+      "actions": [
+        "fetched origin; confirmed HEAD equals origin/main at 52ef8a4 and no branch divergence",
+        "installed requirements.txt in /home/user/.venv_gems",
+        "restored owner_mirror_nine_site, owner_mirror, core, scored groups via restore_data.py (all SHA-256 verified)",
+        "re-ran scripts/audit_nine_site_top_files.py: reproduced the committed receipt; reverted only the generated_utc timestamp change",
+        "ran scripts/verify_candidate_independent.py on GEMSDOE32 B2 zeros and GEMSDOE36 zeros: all_hard_checks_pass true, okay_to_submit false",
+        "ran python -m pytest -q: 579 passed, 3 skipped"
+      ],
+      "result": "reproduced all nine-site claims that depend on local bytes; owner scores remain OWNER-REPORTED"
+    },
+    {
+      "pass": 2,
+      "name": "bugs, assumptions, edge cases",
+      "actions": [
+        "checked labels.tif vs existing_faults.tif: byte-identical (SHA-256 7ba308cc...) and equal to the sample submission's 60,988 positive pixels",
+        "found audit script overwrites its committed receipt on every run (minor, flagged)",
+        "found GEMSDOE25 and GEMSDOE30 dot sets identical (Jaccard 1.0)",
+        "verified pairwise Jaccard partners directly: G24-G27 0.9795, G25-G30 1.0, G31-G32 0.9367, G32-G36 0.9691",
+        "confirmed holdout.py takes labels as hidden truth, so the identical-label issue propagates to all holdout numbers"
+      ],
+      "result": "IR-29-LABELS-EQUALS-CATALOGUE re-verified as critical; duplicate pair recorded; no new unresolved defect in code paths tested"
+    },
+    {
+      "pass": 3,
+      "name": "re-check against the original request",
+      "actions": [
+        "requested: executive summary per focus site with best file, estimated score, uniqueness: delivered in knowledge/53 section 2 and the README alert (estimated score NOT ESTIMATED, labelled)",
+        "requested: a unique TIF that is obviously safe to submit: NOT delivered; no candidate passed the gate, and the labels issue blocks any holdout claim",
+        "requested: hypotheses ranked by cost and expected gain: pointed to knowledge/51 section 5 (none new; none validated)",
+        "requested: no hallucinated numbers: every number in knowledge/53 is COMPUTED, OWNER-REPORTED, or INFERENCE and labelled",
+        "requested: PR and merge to main: done in this session (see README alert and the PR link reported to the owner)",
+        "not done: no new web or literature research this session; NLR submission PDF not re-read; GEMSDOE mirror pages not fetched"
+      ],
+      "result": "partial completion; the gate outcome is negative, and it is stated plainly"
+    }
+  ],
+  "verdict": "negative",
+  "irregularities_raised": ["IR-29-LABELS-EQUALS-CATALOGUE (re-verified, critical)", "GEMSDOE25 = GEMSDOE30 duplicate dot set", "audit script overwrites committed receipt"]
+}
