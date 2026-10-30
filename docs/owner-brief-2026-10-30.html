@@ -1,0 +1,69 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive summary 30 Oct 2026 · GEMSDOE25</title><link rel="stylesheet" href="assets/style.css"></head><body>
+<header class="top"><div class="wrap"><div class="brand">GEMSDOE25<small>DOE GEMS Prize · DrivenData #306 · executive summary</small></div><nav><a class="" href="../index.html">Start here</a><a class="on" href="owner-brief-2026-10-30.html">Executive summary 30 Oct</a><a class="" href="current-review.html">Current review</a><a class="" href="executive-summary.html">Earlier summary</a><a class="" href="submission-guide.html">Submission guide</a><a class="" href="sources.html">Sources &amp; audit</a></nav></div></header>
+<main class="wrap">
+
+<aside class="current-status" aria-label="Decision" style="border-color:#b91c1c">
+<strong>30 OCT 2026 · OK TO DOWNLOAD AND SUBMIT: NO — NO FILE IS CLEARED</strong>
+<span>No file on the nine focus sites is both <b>unique</b> and <b>portal-valid</b>, and no unique TIF has passed the lane rule. Estimated organizer score: <b>NOT ESTIMATED</b> for every file. Nothing was uploaded; the agent does not access or upload to DrivenData.</span>
+</aside>
+
+<h1>Which submission should I download?</h1>
+<p><b>None today.</b> The three rules that decide it are below. Each one fails for at least one file.</p>
+<ol>
+<li><b>Unique:</b> every nine-site file is already a previous submission, so it cannot be resubmitted. Among the nine files, GEMSDOE25 and GEMSDOE30 are exact dot-set twins.</li>
+<li><b>Portal range check:</b> the portal rejected NaN-outside files (&ldquo;Predicted values must be in range [0, 1]&rdquo;). Only the GEMSDOE32 and GEMSDOE36 files use zeros outside, and both are previous submissions.</li>
+<li><b>Lane rule (your protocol):</b> a unique file must have at most 70% of its dots within 3 px of registry raster r13. Under the current bound, a catalogue-free file with more than <b>21,713</b> dots fails this rule (<a href="../evidence/lane_bound_r13_2026-10-28.json">evidence</a>, reproduced 30 Oct).</li>
+</ol>
+
+<h2>Nine-site table (owner-reported scores; organizer receipts: none)</h2>
+<p>Scores are OWNER-REPORTED from your brief. &ldquo;Previous submission&rdquo; means the file is listed as submitted on its site. Format and dot checks were recomputed on the owner-mirror bytes on 30 Oct (<a href="../evidence/nine_site_top_files_2026-10-28.json">evidence</a>).</p>
+<div style="overflow-x:auto"><table>
+<thead><tr><th>Site</th><th>File (owner mirror)</th><th>Owner score</th><th>Portal format (outside footprint)</th><th>Previous submission?</th><th>Unique vs the other 8 files?</th><th>Estimated organizer score</th><th>OK to download AND submit?</th></tr></thead>
+<tbody>
+<tr><td>GEMSDOE24</td><td><code>gems24-h25-1-dotted-h19-5-d1-5-…-nan.tif</code></td><td>0.2477</td><td>Fails (NaN)</td><td>Yes</td><td>No: max Jaccard 0.979 (GEMSDOE27)</td><td>NOT ESTIMATED</td><td><b>NO</b></td></tr>
+<tr><td>GEMSDOE25</td><td><code>gems24-h25-1-dotted-h19-5-d2-8-…-nan.tif</code></td><td>0.2600</td><td>Fails (NaN)</td><td>Yes</td><td>No: exact dot-set twin of GEMSDOE30 (44,090 dots)</td><td>NOT ESTIMATED</td><td><b>NO</b></td></tr>
+<tr><td>GEMSDOE27</td><td><code>gems27-topo-gap-closure-t-v2-on-d1-5-…-nan.tif</code></td><td>0.2449</td><td>Fails (NaN)</td><td>Yes</td><td>No: max Jaccard 0.979 (GEMSDOE24)</td><td>NOT ESTIMATED</td><td><b>NO</b></td></tr>
+<tr><td>GEMSDOE28</td><td><code>gems28-h36-1-rung30-blind-r1-…-nan.tif</code></td><td>0.2710</td><td>Fails (NaN)</td><td>Yes</td><td>Yes among the nine (max Jaccard 0.557, GEMSDOE31)</td><td>NOT ESTIMATED</td><td><b>NO</b></td></tr>
+<tr><td>GEMSDOE30</td><td><code>gemsdoe30-d28-poisson300m-offcat-44090-…-nanoutside.tif</code></td><td>0.2600</td><td>Fails (NaN)</td><td>Yes</td><td>No: exact dot-set twin of GEMSDOE25</td><td>NOT ESTIMATED</td><td><b>NO</b></td></tr>
+<tr><td>GEMSDOE31</td><td><code>gemsdoe31-h27-4-solo-d28-…-nan.tif</code></td><td>0.2708</td><td>Fails (NaN)</td><td>Yes</td><td>No: max Jaccard 0.937 (GEMSDOE32)</td><td>NOT ESTIMATED</td><td><b>NO</b></td></tr>
+<tr><td><b>GEMSDOE32</b></td><td><code>gemsdoe32-h33-h33-2-b2-…-e5eb6e7e-zeros.tif</code> (SHA-256 <code>c55bafc4…</code>)</td><td><b>0.2778</b> (highest)</td><td><b>Passes</b> (zeros)</td><td><b>Yes</b></td><td>No: exact subset of the GEMSDOE31/28 H27-4 raster, which is a subset of the GEMSDOE25/30 D2.8 raster</td><td>NOT ESTIMATED</td><td><b>NO: already submitted</b></td></tr>
+<tr><td>GEMSDOE33</td><td><code>GEMSDOE33-h33d-analog-tip-stepover-r30-…-nanoutside.tif</code></td><td>0.2632</td><td>Fails (NaN)</td><td>Yes</td><td>No vs the other tops: max Jaccard 0.696 (GEMSDOE31)</td><td>NOT ESTIMATED</td><td><b>NO</b></td></tr>
+<tr><td><b>GEMSDOE36</b></td><td><code>gemsdoe36-anderson-geothermal-pinn-38854-…-zeros.tif</code> (SHA-256 <code>e1589102…</code>)</td><td><b>0.2750</b></td><td><b>Passes</b> (zeros)</td><td><b>Yes</b></td><td>No: max Jaccard 0.969 (GEMSDOE32)</td><td>NOT ESTIMATED</td><td><b>NO: already submitted</b></td></tr>
+</tbody></table></div>
+<p><small>Jaccard values are dot-set overlaps computed by <code>scripts/audit_nine_site_top_files.py</code> on 30 Oct. Owner scores of the nine files range from 0.2449 to 0.2778.</small></p>
+
+<h2>Answer: why 0.2778 scored highest, and can we beat it?</h2>
+<p><b>Why (inference, not proof):</b> the 0.2778 file (GEMSDOE32) is the GEMSDOE31 (= GEMSDOE28 H27-4) raster with 2,545 dots removed. Those dots lie within 2 px of the labelled catalogue. The chain is D2.8 (44,090 dots) → H27-4 (40,199) → B2 (37,654). Owner scores rose at each step (0.2600 → 0.2708 → 0.2778). The removed dots sat near catalogue faults, so removing them plausibly cut false-positive weight under the 0.2 alpha term. This was confirmed on the bytes (nested subsets, zero dots within 2 px of the catalogue). It was NOT shown causally: no density-matched thinning control exists yet.</p>
+<p><b>Can we beat 0.2778?</b> <b>Not shown.</b> Experiments run today:</p>
+<table>
+<thead><tr><th>Experiment (pre-registered)</th><th>Question</th><th>Result (HOLDOUT-DTI proxy, not organizer)</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td>H-SP1 (<a href="../knowledge/54_preregistered_soft_catalogue_prior_2026-10-30.md">knowledge/54</a>)</td><td>Soft catalogue prior × ridge beats hard 200 m buffer and random dots at 21,000 dots?</td><td>Soft prior beats the hard buffer (dev +0.0106, CI [0.0053, 0.0150]) but <b>random dots win</b> (dev −0.0105, CI [−0.0179, −0.0049]). Random floor 0.0337 vs prior 0.0232.</td><td><b>Negative.</b> Gate G1 failed. The file is also a 99.87% r13 lane duplicate.</td></tr>
+<tr><td>H-LF1 (<a href="../knowledge/55_preregistered_lane_first_2026-10-30.md">knowledge/55</a>)</td><td>Lane-compliant construction (dots only outside the r13 halo), 6,000 dots, still carries signal?</td><td>All arms 0.004–0.006. Point differences to the random floor are at most 0.0003, and their CIs cross or sit at zero.</td><td><b>Negative.</b> No lane-compliant signal at this budget.</td></tr>
+</tbody></table>
+<p>Experiment 3 was not run. The two experiments above used most of the budget, and no third mechanism has been pre-registered. Choosing one is an owner decision.</p>
+
+<h2>Decisions needed from the owner (cannot be automated)</h2>
+<ol>
+<li><b>Organizer data check (critical).</b> The owner-mirror <code>labels.tif</code> and <code>existing_faults.tif</code> are byte-identical (60,988 catalogue pixels). Please read the organizer data page and confirm whether the hidden target is different. Until then every holdout is suspect. <a href="../evidence/label_identity_audit_2026-10-29.json">evidence</a> · IR-29-LABELS-EQUALS-CATALOGUE.</li>
+<li><b>Does the 70% lane rule apply to the competition?</b> If yes, a competitive-size file cannot pass (bound 21,713 dots; 37,654-dot minimum overlap 82.7%). If no, the lane rule should be removed from the protocol explicitly. IR-30-LANE-BOUND-CAP.</li>
+<li><b>Which leaderboard value is correct?</b> The brief says 0.4413 in one place and 0.3195 in another. <a href="../registry/live_scores.json">registry/live_scores.json</a> holds both (earlier snapshot 0.3195; latest claim 0.4413). Please read the leaderboard by hand. IR-30-LEADERBOARD-THREE-VALUES.</li>
+<li><b>Accept that no estimate is possible yet.</b> The proxy is 0.005–0.03; owner scores are 0.25–0.28. Without organizer receipts there is no calibrated estimate. IR-30-HOLDOUT-SCALE-MISMATCH.</li>
+</ol>
+
+<h2>Limitations</h2>
+<ul>
+<li>No DrivenData access, login or upload (AGENTS.md rule 3). Scores are owner-reported.</li>
+<li>Owner mirrors are pinned by hash. A hash proves the mirror is unchanged, not that it matches the organizer&rsquo;s files.</li>
+<li>Sandbox allowlist: github.com, pypi, npm only. Dropbox, DrivenData and gdr.openei are not reachable from here.</li>
+<li>The holdout proxy measures catalogue-gap recovery, not hidden-fault truth.</li>
+</ul>
+
+<h2>Links for manual review</h2>
+<ul>
+<li>Competition: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">data</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem page</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">submission-format PDF</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution">reference solution</a></li>
+<li>Metric: <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a> (the competition metric is the distance-weighted version on the problem page)</li>
+<li>Repo: <a href="../README.md">README owner brief 30 Oct</a> · <a href="../registry/run_card_2026-10-30.json">run cards</a> · <a href="../registry/review_passes_2026-10-30.json">review passes</a> · <a href="../registry/irregularities.json">irregularities</a></li>
+</ul>
+</main></body></html>

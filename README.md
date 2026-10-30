@@ -1,5 +1,93 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
+## START HERE — owner brief 2026-10-30 (branch `arena/68c7ea9e-gemsdoe25`)
+
+> Read this section first every session. Standing rule: **Maximize P(Win)** and **Own the Outcome** decide tradeoffs, but no gate is bypassed to reach a number. Normalized brief (not a verbatim transcript; see IR-30-PROMPT-NORMALIZED). Full executive summary: [`docs/owner-brief-2026-10-30.html`](docs/owner-brief-2026-10-30.html).
+
+**OK TO DOWNLOAD AND SUBMIT: NO. No file on the nine focus sites or in this branch is cleared. Estimated organizer score: NOT ESTIMATED for every file.**
+
+### What you asked for, and what the evidence says
+
+| Requirement | Status (verified 30 Oct) |
+|---|---|
+| Unique TIF that is OK to download and submit | **Not met.** The one TIF generated today (H-SP1 arm A1, 21,000 dots) is a **99.87% literal lane duplicate of r13** and was removed from `docs/downloads`. A lane-compliant file tested today (H-LF1) has holdout signal equal to the random floor. |
+| Portal range check (`Predicted values must be in range [0, 1]`) | Explained: NaN-outside files fail. Only GEMSDOE32 and GEMSDOE36 use zeros outside, and both are previous submissions. |
+| Name and short note for each file | Format used: `gems25-<slug>-<date>-<content id>-zero.tif`, note ≤140 characters (protocol limit; the code default is 120) with the id and status (see `scripts/build_hsp1_candidate.py`). The only note written today says `NOSUBMIT`. |
+| Gates before submission (format, holdout, lane, uniqueness) | Implemented and run without a human in the loop: `scripts/verify_candidate_independent.py`, `scripts/check_lane_duplicates.py`, `scripts/run_soft_catalogue_prior.py`, `scripts/run_lane_first_prior.py`. A human check of organizer data is still required (IR-29-LABELS-EQUALS-CATALOGUE). |
+| Estimated score per file | **NOT ESTIMATED.** The holdout proxy scores 0.005–0.03; owner-reported leaderboard-family scores are 0.25–0.28. The proxy is off-scale (IR-30-HOLDOUT-SCALE-MISMATCH). |
+| Why 0.2778 was highest, and can we beat it | See below. **Not shown** that anything beats 0.2778. |
+| Highest-scoring submission to submit | **None cleared.** GEMSDOE32 (0.2778) and GEMSDOE36 (0.2750) are the top portal-valid files, but both are previous submissions. |
+
+### Executive summary: the nine focus sites
+
+Owner-reported scores; organizer receipts: none. "Previous submission" = listed as submitted on its site. Full table with partner Jaccard values: [`docs/owner-brief-2026-10-30.html`](docs/owner-brief-2026-10-30.html). Recomputed 30 Oct: [`evidence/nine_site_top_files_2026-10-28.json`](evidence/nine_site_top_files_2026-10-28.json).
+
+| Site | File to download (owner mirror) | Owner score | Portal format | Previous submission? | Unique among the nine? | Estimated score | OK to download AND submit? |
+|---|---|---|---|---|---|---|---|
+| GEMSDOE24 | `gems24-h25-1-dotted-h19-5-d1-5-…-nan.tif` | 0.2477 | Fails (NaN) | Yes | No (Jaccard 0.979, GEMSDOE27) | NOT ESTIMATED | **NO** |
+| GEMSDOE25 | `gems24-h25-1-dotted-h19-5-d2-8-…-nan.tif` | 0.2600 | Fails (NaN) | Yes | No (exact twin of GEMSDOE30) | NOT ESTIMATED | **NO** |
+| GEMSDOE27 | `gems27-topo-gap-closure-t-v2-on-d1-5-…-nan.tif` | 0.2449 | Fails (NaN) | Yes | No (Jaccard 0.979, GEMSDOE24) | NOT ESTIMATED | **NO** |
+| GEMSDOE28 | `gems28-h36-1-rung30-blind-r1-…-nan.tif` | 0.2710 | Fails (NaN) | Yes | Yes (max Jaccard 0.557) | NOT ESTIMATED | **NO** |
+| GEMSDOE30 | `gemsdoe30-d28-poisson300m-offcat-44090-…-nanoutside.tif` | 0.2600 | Fails (NaN) | Yes | No (exact twin of GEMSDOE25) | NOT ESTIMATED | **NO** |
+| GEMSDOE31 | `gemsdoe31-h27-4-solo-d28-…-nan.tif` | 0.2708 | Fails (NaN) | Yes | No (Jaccard 0.937, GEMSDOE32) | NOT ESTIMATED | **NO** |
+| GEMSDOE32 | `gemsdoe32-h33-h33-2-b2-…-e5eb6e7e-zeros.tif` (SHA-256 `c55bafc4…`) | **0.2778** | Passes (zeros) | **Yes** | No (Jaccard 0.969, GEMSDOE36) | NOT ESTIMATED | **NO: already submitted** |
+| GEMSDOE33 | `GEMSDOE33-h33d-analog-tip-stepover-r30-…-nanoutside.tif` | 0.2632 | Fails (NaN) | Yes | No vs others (Jaccard 0.696, GEMSDOE31) | NOT ESTIMATED | **NO** |
+| GEMSDOE36 | `gemsdoe36-anderson-geothermal-pinn-38854-…-zeros.tif` (SHA-256 `e1589102…`) | 0.2750 | Passes (zeros) | **Yes** | No (Jaccard 0.969, GEMSDOE32) | NOT ESTIMATED | **NO: already submitted** |
+
+### Why GEMSDOE32 scored 0.2778 (inference, with verified facts)
+
+* **Verified on the bytes:** B2 (37,654 dots) is an exact subset of the H27-4 raster (40,199 dots; GEMSDOE31 and the GEMSDOE28 `h27-4-r1` file share this dot set), which is a subset of D2.8 (44,090 dots; GEMSDOE25 and GEMSDOE30). The removed dots lie within 1–2 px of the labelled catalogue; B2 has **0** dots within 2 px of it. Owner scores rose 0.2600 → 0.2708 → 0.2778 at each step. (`scripts/audit_nine_site_top_files.py`, `scripts/recheck_b2_lineage.py`.)
+* **Mechanism (inference, not proven):** under DTI with α = 0.2 on false positives, dots next to already-mapped faults add false-positive weight on the hidden target. Removing them can help. This has **not** been separated from plain thinning: no density-matched control has been run on the nine-site family.
+
+### Can we beat 0.2778? Experiments run today (budget: 3 experiments, 2 hours; 2 used)
+
+Both experiments are pre-registered before running and use the repo's holdout evaluator (`gems25.holdout`, `gems25.metric`). Numbers are **HOLDOUT-DTI** (catalogue-gap proxy): evaluator version, withheld positives and 95% CIs are in the receipts.
+
+| Exp | Pre-registration | Question | Result | Verdict |
+|---|---|---|---|---|
+| 1 · H-SP1 | [`knowledge/54`](knowledge/54_preregistered_soft_catalogue_prior_2026-10-30.md) · [`evidence/soft_catalogue_prior_exp1_2026-10-30.json`](evidence/soft_catalogue_prior_exp1_2026-10-30.json) | Does a soft catalogue prior on a catalogue-free ridge beat a hard 200 m buffer and random dots at 21,000 dots? | Soft prior beats hard buffer: dev +0.0106 (95% CI [0.0053, 0.0150]). **Random dots beat the prior:** dev −0.0105 (CI [−0.0179, −0.0049]); confirm −0.0106 (CI [−0.0164, −0.0052]). Random floor 0.0337 vs prior 0.0232 (dev, 8 draws; 23,923 withheld positives). Canary: ridge AUC 0.47–0.55; −distance AUC 0.70–0.82 (below 0.90). | **Negative** (G1 failed) |
+| 2 · H-LF1 | [`knowledge/55`](knowledge/55_preregistered_lane_first_2026-10-30.md) · [`evidence/lane_first_exp2_2026-10-30.json`](evidence/lane_first_exp2_2026-10-30.json) | Does a lane-compliant file (dots only outside the r13 halo; 6,000 dots) carry any holdout signal? | Every arm 0.0042–0.0056 (confirm and dev); point differences to the random floor ≤ 0.0003, CIs cross or sit at zero. | **Negative** (no signal at the random floor) |
+
+The 1st experiment's file is a lane duplicate (99.87% of dots within 3 px of r13, `check_lane_duplicates.py`), so it is **not packaged**. Its arm A1 also lost to random dots. The 2nd experiment built no file.
+
+### Lane bound, which decides what a unique file can look like
+
+Reproduced 30 Oct with `scripts/audit_r13_lane_bound.py`: the r13 3-px halo leaves only **6,514** eligible footprint pixels (outside the halo and the catalogue). Any catalogue-free file with more than **21,713** dots has at least 70% of its dots within the halo and fails the literal lane rule. A competitive-size file (37,654 dots) has a minimum overlap of **82.7%**. A lane-compliant file must use fewer dots, and experiment 2 found that such a file had no signal at 6,000 dots. This is an arithmetic fact about the registry, not a policy. Whether the 70% rule applies to the competition is an owner decision (IR-30-LANE-BOUND-CAP).
+
+### Decisions only the owner can make (no manual input is assumed by the agent)
+
+1. **Organizer data check (critical):** `labels.tif` and `existing_faults.tif` are byte-identical (60,988 catalogue pixels). Read the organizer data page and record whether the hidden target differs (IR-29-LABELS-EQUALS-CATALOGUE). Until then, every holdout is suspect.
+2. **Lane rule:** does the 70% r13 overlap rule apply to the competition? If yes, competitive-size files cannot pass. If no, remove the rule from the protocol explicitly.
+3. **Leaderboard value:** the brief gives 0.4413 in one place and 0.3195 in another. [`registry/live_scores.json`](registry/live_scores.json) records both (0.3195 earlier snapshot; 0.4413 latest claim). Read the leaderboard by hand and record a receipt (IR-30-LEADERBOARD-THREE-VALUES).
+4. **Next experiment:** the third experiment needs a new, pre-registered mechanism. A density-matched thinning control (knowledge/51 rank 2) is the cheapest. Choosing it is an owner decision.
+
+### Corrections made today (do not repeat)
+
+* **Soft prior is not new.** `knowledge/51` §5 rank 1 said a soft catalogue prior was untested. `src/gems25/h31.py::build_offflank_tip_halo` already applies `exp(-(d-3)/12)`. Logged as IR-30-SOFT-PRIOR-NOT-NEW.
+* **Lane check fails closed.** `check_lane_duplicates.py` stops at the first duplicate (`break`), so `registry_checked: 1` is by design, not missing coverage.
+* **Do not run `build_site.py` or `build_readme.py` on this branch** (IR-28-GENERATOR-DRIFT). This section was added by hand.
+
+### Read-first files for next session
+
+[`docs/owner-brief-2026-10-30.html`](docs/owner-brief-2026-10-30.html) · [`registry/run_card_2026-10-30.json`](registry/run_card_2026-10-30.json) · [`registry/review_passes_2026-10-30.json`](registry/review_passes_2026-10-30.json) · [`registry/irregularities.json`](registry/irregularities.json) (IR-30-*) · [`evidence/lane_bound_r13_2026-10-28.json`](evidence/lane_bound_r13_2026-10-28.json)
+
+### Links for manual review (official sources)
+
+* Competition: [data](https://www.drivendata.org/competitions/306/competition-doe-gems/data/) · [problem page and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) · [about](https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/) · [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
+* Submission format: [NLR PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf) · reference solution: [drivendataorg/gems-prize-reference-solution](https://github.com/drivendataorg/gems-prize-reference-solution)
+* Data context: [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) · [INGENIOUS (GBCGE)](https://gbcge.org/current-projects/ingenious/) · [EPSG:32611](https://epsg.io/32611) · [Tversky index](https://en.wikipedia.org/wiki/Tversky_index)
+* Not reachable from this sandbox: drivendata.org, dropbox.com, gdr.openei.org (outbound allowlist: github.com, pypi.org, npm). No DrivenData automation (AGENTS.md rule 3).
+
+### Limitations and what is needed to succeed
+
+* **Organizer access:** a human must read the data page, leaderboard and submission receipts. No automation is authorized.
+* **Identity of inputs:** the labels problem above; scores are owner-reported, not organizer receipts.
+* **Proxy:** the holdout measures catalogue-gap recovery, not hidden-fault truth, and is off the leaderboard scale.
+* **External layers are owner-derived:** the LiDAR scarp features come from the owner's CI run on USGS 3DEP 1-m DEM tiles (706 of 716 tiles; the tile list was OCR-recovered from the competition PDF). The GeoDAWN radiometric grids (DOI 10.5066/P93LGLVQ) and GDR 1391 CSVs (DOI 10.15121/1881483) are restored by hash from owner mirrors. None was re-derived from its official host here (`registry/data_manifest.json`).
+* **Lane rule:** unresolved owner decision (above).
+
+---
+
 ## START HERE — owner brief 2026-10-29 (session `arena/30397b95-gemsdoe25`)
 
 > Read this section first every session. It is the normalized owner brief (not a verbatim transcript): the requirements below are the operative text, with the full review in [`knowledge/51`](knowledge/51_owner_brief_session_review_2026-10-29_30397b95.md). Maximize **P(Win)** and **Own the Outcome** are the decision rule.

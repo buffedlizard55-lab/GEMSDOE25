@@ -1,0 +1,66 @@
+{
+ "file": "gems25-nosubmit-hsp1-softprior-a1-k21000-20261030-63cd99077d9c-zero.tif",
+ "bytes": 791434,
+ "sha256": "9e1ece7396dbc7b25cb878eca1918d04d938ae5a232b7c47d3ccdc15f99af126",
+ "meta": {
+  "count": 1,
+  "dtypes": [
+   "float32"
+  ],
+  "crs": "EPSG:32611",
+  "epsg": 32611,
+  "shape": [
+   3730,
+   3292
+  ],
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "nodata": null
+ },
+ "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+ "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+ "footprint_px": 5167373,
+ "positive_pixels": 21000,
+ "catalogue_positive_pixels": 0,
+ "distinct_values": [
+  0.0,
+  1.0
+ ],
+ "outside_convention": "zeros",
+ "checks": {
+  "template_sha256_matches_pin": true,
+  "labels_sha256_matches_pin": true,
+  "template_crs_shape_transform_matches_expected": true,
+  "template_footprint_px_is_expected": true,
+  "labels_grid_matches_template": true,
+  "single_band": true,
+  "dtype_float32": true,
+  "crs_epsg_matches_template": true,
+  "shape_equals_template": true,
+  "transform_equals_template": true,
+  "footprint_all_finite": true,
+  "footprint_values_in_0_1": true,
+  "outside_all_zero": true,
+  "outside_all_nan": false,
+  "strict_whole_array_0_le_x_le_1": true,
+  "no_emission_on_catalogue": true
+ },
+ "all_hard_checks_pass": true,
+ "okay_to_submit": false,
+ "whole_array_policy": "strict range required locally; portal outside-footprint behavior unverified",
+ "zip": {
+  "file": "gems25-nosubmit-hsp1-softprior-a1-k21000-20261030-63cd99077d9c-zero.zip",
+  "sha256": "0bac89ec54bd1ead6ae9d2c5e834249719a81bd41e61f81807458eb998ba38eb",
+  "members": [
+   "gems25-nosubmit-hsp1-softprior-a1-k21000-20261030-63cd99077d9c-zero.tif"
+  ],
+  "contains_exactly_candidate_bytes": true
+ },
+ "scope": "local exact-file format and catalogue-mask checks only; no organizer or slot approval"
+}
