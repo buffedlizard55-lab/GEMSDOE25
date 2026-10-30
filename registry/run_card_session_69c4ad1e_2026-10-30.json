@@ -1,0 +1,28 @@
+{
+  "session": "arena/69c4ad1e-gemsdoe25",
+  "date_utc": "2026-10-30",
+  "hypothesis": "none new; repo review and gate status for the nine focus sites (no candidate experiment run)",
+  "mechanism": "not applicable (no new candidate). Prior INFERENCE for GEMSDOE32 B2 0.2778: removal of catalogue-adjacent dots reduces false-positive weight. Untested; thinning control not run.",
+  "named_non_fault_process_that_could_mimic": "random thinning of dots (count reduction alone) and mapping-density bias near catalogue",
+  "holdout_dti": {"value": "NOT COMPUTED", "evaluator": "n/a", "withheld_positives": "n/a", "ci95": "n/a", "note": "holdout labels identical to catalogue (IR-29-LABELS-EQUALS-CATALOGUE); no holdout run this session"},
+  "owner_reported_scores": {"GEMSDOE32_B2_zeros": 0.2778, "GEMSDOE36_zeros": 0.2750, "GEMSDOE28_h36_rung30_nan": 0.2710, "GEMSDOE31_h27_4_solo_nan": 0.2708, "GEMSDOE33_nanoutside": 0.2632, "GEMSDOE25_nan": 0.2600, "GEMSDOE30_nanoutside": 0.2600, "GEMSDOE24_nan": 0.2477, "GEMSDOE27_nan": 0.2449},
+  "correlation_overlap_vs_registry": {"computed": "dot-set Jaccard among the nine focus files (COMPUTED this session)", "pairs": {"GEMSDOE25-GEMSDOE30": 1.0, "GEMSDOE32-GEMSDOE36": 0.9691, "GEMSDOE24-GEMSDOE27": 0.9795, "GEMSDOE31-GEMSDOE32": 0.9367}, "lane_r13_b2": "99.92% of B2 dots within 3 px of r13 (prior receipt, not recomputed here)"},
+  "raster_sha256": {
+    "GEMSDOE32_B2_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "GEMSDOE36_zeros": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+    "template_sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "labels_tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+  },
+  "validator_output": {
+    "script": "scripts/verify_candidate_independent.py",
+    "GEMSDOE32_B2_zeros": {"all_hard_checks_pass": true, "okay_to_submit": false, "footprint_px": 5167373, "positive_pixels": 37654, "catalogue_positive_pixels": 0, "outside_convention": "zeros"},
+    "GEMSDOE36_zeros": {"all_hard_checks_pass": true, "okay_to_submit": false, "footprint_px": 5167373, "positive_pixels": 38854, "catalogue_positive_pixels": 0, "outside_convention": "zeros"},
+    "nan_outside_files": "fail portal [0,1] whole-array check (audit_nine_site_top_files.py: fmt=False for all NaN-outside files)"
+  },
+  "submission_name": "NONE (no file cleared)",
+  "submission_note": "NONE",
+  "verdict": "negative",
+  "verdict_reason": "No candidate passed the holdout gate; holdout uncertified (labels = catalogue). No file is OK to download and submit.",
+  "tests": {"command": "python -m pytest -q", "passed": 579, "skipped": 3},
+  "budget": {"experiments_run": 0, "limit": 3}
+}

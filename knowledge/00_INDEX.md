@@ -75,4 +75,5 @@
 | `40_h79_cthm_poe_outcome_2026-10-27.md` | **2026-10-27 H79-CTHM-PoE + SGMC outcomes, 9-site live audit & `0.2778` PhD proof (`e7ad8a4bf3ed`):** `3/3` experiments (`2,232/2,232` canaries `<= 0.8656`), PoE `+0.0116` vs single-HGB + SGMC `+0.0128` (`4/4` folds), unique 0-NaN crustal+SGMC GeoTIFF clearing all `106` sparse rasters (`<= 58.02%`, `23.54%` vs B2, `44.20%` vs H75-DCHB-CG; DO NOT SUBMIT) |
 | `owner_prompt_2026-10-27.txt` | standing 2026-10-27 owner prompt & Parallel-Run Protocol |
 
+| `53_repo_review_2026-10-30_69c4ad1e.md` | **2026-10-30 repository review (session 69c4ad1e):** nine-site audit reproduced from restored bytes; nothing cleared; labels = catalogue re-verified; GEMSDOE25 = GEMSDOE30 dot-set duplicate; no new TIF (no gate-passing candidate) |
 | `52_repo_review_2026-10-29_verified.md` | **2026-10-29 verified repository review (session 87a0b9a8):** nothing cleared; labels/catalogue identity flagged critical (IR-29-LABELS-EQUALS-CATALOGUE); generator drift reproduced; B2 lineage reproduced from bytes |

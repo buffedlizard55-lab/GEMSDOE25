@@ -51,7 +51,29 @@ Ranked, untested hypotheses and the pre-registration path are in [`knowledge/51`
 * Competition: [data](https://www.drivendata.org/competitions/306/competition-doe-gems/data/), [problem page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/), [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
 * [Reference solution](https://github.com/drivendataorg/gems-prize-reference-solution) · [Submission format PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf) · [GeoDAWN USGS data](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) · [EPSG:32611](https://epsg.io/32611) · [Tversky index](https://en.wikipedia.org/wiki/Tversky_index)
 * Session review: [`knowledge/51`](knowledge/51_owner_brief_session_review_2026-10-29_30397b95.md) · run card: [`registry/run_card_session_30397b95_2026-10-29.json`](registry/run_card_session_30397b95_2026-10-29.json) · reviews: [`registry/review_passes_session_30397b95_2026-10-29.json`](registry/review_passes_session_30397b95_2026-10-29.json)
-## Review alert — 29 October 2026 (read first)
+## Review alert — 30 October 2026 (session 69c4ad1e, read first)
+
+**OK TO DOWNLOAD AND SUBMIT: NO, for every file on the nine focus sites and in this repository. Estimated score: NOT ESTIMATED.** No new TIF was generated: no candidate passed the holdout gate, and the holdout is uncertified (below).
+
+| Site | Best file (owner mirror) | Owner score | Passes [0,1] portal check | Unique? | Estimated score | OK to download AND submit? |
+|---|---|---|---|---|---|---|
+| GEMSDOE24 | `gems24-h25-1-dotted-h19-5-d1-5-…-nan.tif` | 0.2477 | No (NaN outside) | No (Jaccard 0.980 vs GEMSDOE27) | NOT ESTIMATED | **NO** |
+| GEMSDOE25 | `gems24-h25-1-dotted-h19-5-d2-8-…-nan.tif` | 0.2600 | No (NaN outside) | No (identical dot set to GEMSDOE30) | NOT ESTIMATED | **NO** |
+| GEMSDOE27 | `GEMSDOE27__gems27-topo-gap-closure-t-v2-on-d1-5-…-nan.tif` | 0.2449 | No (NaN outside) | No (Jaccard 0.980 vs GEMSDOE24) | NOT ESTIMATED | **NO** |
+| GEMSDOE28 | `GEMSDOE28__gems28-h36-1-rung30-blind-r1-…-nan.tif` | 0.2710 | No (NaN outside) | Yes vs other tops (max Jaccard 0.557) | NOT ESTIMATED | **NO** |
+| GEMSDOE30 | `GEMSDOE30__gemsdoe30-d28-poisson300m-offcat-44090-…-nanoutside.tif` | 0.2600 | No (NaN outside) | No (identical dot set to GEMSDOE25) | NOT ESTIMATED | **NO** |
+| GEMSDOE31 | `GEMSDOE31__gemsdoe31-h27-4-solo-d28-…-nan.tif` | 0.2708 | No (NaN outside) | No (Jaccard 0.937 vs GEMSDOE32) | NOT ESTIMATED | **NO** |
+| GEMSDOE32 | `GEMSDOE32__gemsdoe32-h33-h33-2-b2-…-e5eb6e7e-zeros.tif` (SHA-256 `c55bafc4…`) | **0.2778** (highest) | Yes (zeros outside) | No: already submitted | NOT ESTIMATED | **NO**, a previous submission |
+| GEMSDOE33 | `GEMSDOE33__GEMSDOE33-h33d-analog-tip-stepover-r30-…-nanoutside.tif` | 0.2632 | No (NaN outside) | Yes vs other tops (max Jaccard 0.696) | NOT ESTIMATED | **NO** |
+| GEMSDOE36 | `GEMSDOE36__gemsdoe36-anderson-geothermal-pinn-38854-…-zeros.tif` | 0.2750 | Yes (zeros outside) | No: already submitted (Jaccard 0.969 vs GEMSDOE32) | NOT ESTIMATED | **NO**, a previous submission |
+
+* Every number is OWNER-REPORTED or COMPUTED. No organizer receipt exists in this repo. Nothing was uploaded to DrivenData.
+* **Critical, open (IR-29-LABELS-EQUALS-CATALOGUE, re-verified 30 Oct):** `labels.tif` and `existing_faults.tif` are byte-identical, and the sample submission's 60,988 ones equal the same pixels. The holdout uses labels as hidden truth, so its numbers are not certified. Owner: compare the organizer data-page file to SHA-256 `7ba308cc…`.
+* **Leaderboard conflict (IR-29-LEADERBOARD-CONFLICT):** the owner prompt gives 0.4413 and 0.3195 as the high score. Owner to read the leaderboard by hand.
+* Full review, reproduced audit and blockers: [`knowledge/53`](knowledge/53_repo_review_2026-10-30_69c4ad1e.md) · run card: [`registry/run_card_session_69c4ad1e_2026-10-30.json`](registry/run_card_session_69c4ad1e_2026-10-30.json) · review passes: [`registry/review_passes_session_69c4ad1e_2026-10-30.json`](registry/review_passes_session_69c4ad1e_2026-10-30.json).
+* Re-run the checks: `python scripts/restore_data.py --group scored` (and the other groups), then `python scripts/audit_nine_site_top_files.py` and `python scripts/verify_candidate_independent.py <file>`. Do not run `build_site.py` or `build_readme.py`; they rewrite hand-maintained sections (IR-28-GENERATOR-DRIFT).
+
+## Review alert — 29 October 2026
 
 **OK TO DOWNLOAD AND SUBMIT: NO. Nothing in this repository is cleared. Estimated score: NOT ESTIMATED.**
 
