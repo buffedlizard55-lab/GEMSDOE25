@@ -1,0 +1,416 @@
+{
+ "generated_utc": "2026-10-31T01:02:17+00:00",
+ "script": "scripts/run_clean_construction_exp5.py",
+ "preregistration": "knowledge/56_preregistered_bound_fill_and_repulsion_2026-10-31.md \u00a76 (added after E3/E4; disclosed)",
+ "evidence_class": "HOLDOUT-DTI (catalogue-gap proxy; not organizer-confirmed)",
+ "parameters": {
+  "K": 21700,
+  "dev_draws": [
+   [
+    0,
+    140
+   ],
+   [
+    1,
+    140
+   ],
+   [
+    2,
+    140
+   ],
+   [
+    3,
+    140
+   ],
+   [
+    0,
+    141
+   ],
+   [
+    1,
+    141
+   ],
+   [
+    2,
+    141
+   ],
+   [
+    3,
+    141
+   ]
+  ],
+  "confirm_draws": [
+   [
+    0,
+    160
+   ],
+   [
+    1,
+    160
+   ],
+   [
+    2,
+    160
+   ],
+   [
+    3,
+    160
+   ],
+   [
+    0,
+    161
+   ],
+   [
+    1,
+    161
+   ],
+   [
+    2,
+    161
+   ],
+   [
+    3,
+    161
+   ],
+   [
+    0,
+    162
+   ],
+   [
+    1,
+    162
+   ],
+   [
+    2,
+    162
+   ],
+   [
+    3,
+    162
+   ],
+   [
+    0,
+    163
+   ],
+   [
+    1,
+    163
+   ],
+   [
+    2,
+    163
+   ],
+   [
+    3,
+    163
+   ]
+  ],
+  "score_layer": "A_mag_hg_ridge (canary only)",
+  "halo_rank": "ascending count of the other registry halos"
+ },
+ "inputs": {
+  "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+ },
+ "arms": {
+  "C1": {
+   "dev": {
+    "pooled_dti": 0.0043470442563778066,
+    "ci95": [
+     0.001958262511321828,
+     0.006705833077965554
+    ],
+    "n_truth_total": 23923
+   },
+   "conf": {
+    "pooled_dti": 0.00422616162768888,
+    "ci95": [
+     0.0022846656538446056,
+     0.006065173725758886
+    ],
+    "n_truth_total": 47947
+   }
+  },
+  "C2": {
+   "dev": {
+    "pooled_dti": 0.026554790028381715,
+    "ci95": [
+     0.02314713041414466,
+     0.029537617031261506
+    ],
+    "n_truth_total": 23923
+   },
+   "conf": {
+    "pooled_dti": 0.028188651443054918,
+    "ci95": [
+     0.024929014118219735,
+     0.031164878276365025
+    ],
+    "n_truth_total": 47947
+   }
+  },
+  "C3": {
+   "dev": {
+    "pooled_dti": 0.036075703992215734,
+    "ci95": [
+     0.031070945279685683,
+     0.040282614989176506
+    ],
+    "n_truth_total": 23923
+   },
+   "conf": {
+    "pooled_dti": 0.03264837980443236,
+    "ci95": [
+     0.029867646230995908,
+     0.03546835921772444
+    ],
+    "n_truth_total": 47947
+   }
+  }
+ },
+ "paired_differences": {
+  "dev": {
+   "C1-C2": {
+    "diff": -0.02220774577200391,
+    "ci95": [
+     -0.024661341565454006,
+     -0.0203483494304159
+    ]
+   },
+   "C1-C3": {
+    "diff": -0.031728659735837925,
+    "ci95": [
+     -0.03585066409186247,
+     -0.028164157251765177
+    ]
+   }
+  },
+  "conf": {
+   "C1-C2": {
+    "diff": -0.02396248981536604,
+    "ci95": [
+     -0.02574834991250908,
+     -0.021949378250632968
+    ]
+   },
+   "C1-C3": {
+    "diff": -0.02842221817674348,
+    "ci95": [
+     -0.03148097451293795,
+     -0.02544301551940538
+    ]
+   }
+  }
+ },
+ "leakage_canary": {
+  "summary": {
+   "dev.auc_ridge": {
+    "min": 0.4668746831946252,
+    "max": 0.5218048683688504,
+    "n": 8
+   },
+   "dev.auc_neg_dist_vis": {
+    "min": 0.7208352019952747,
+    "max": 0.8169668927530858,
+    "n": 8
+   },
+   "conf.auc_ridge": {
+    "min": 0.4971974593583466,
+    "max": 0.545747549871252,
+    "n": 16
+   },
+   "conf.auc_neg_dist_vis": {
+    "min": 0.6894268751275447,
+    "max": 0.8075225260296027,
+    "n": 16
+   }
+  },
+  "per_draw": {
+   "dev": [
+    {
+     "fold": 0,
+     "seed": 140,
+     "n_pos": 1973,
+     "auc_ridge": 0.5164306125332033,
+     "auc_neg_dist_vis": 0.8169668927530858
+    },
+    {
+     "fold": 1,
+     "seed": 140,
+     "n_pos": 2494,
+     "auc_ridge": 0.4668746831946252,
+     "auc_neg_dist_vis": 0.7208352019952747
+    },
+    {
+     "fold": 2,
+     "seed": 140,
+     "n_pos": 4071,
+     "auc_ridge": 0.5094946194411056,
+     "auc_neg_dist_vis": 0.7239384327926343
+    },
+    {
+     "fold": 3,
+     "seed": 140,
+     "n_pos": 3483,
+     "auc_ridge": 0.508125833247445,
+     "auc_neg_dist_vis": 0.7348592057100382
+    },
+    {
+     "fold": 0,
+     "seed": 141,
+     "n_pos": 1959,
+     "auc_ridge": 0.5053116834790268,
+     "auc_neg_dist_vis": 0.8045312463385176
+    },
+    {
+     "fold": 1,
+     "seed": 141,
+     "n_pos": 2503,
+     "auc_ridge": 0.5031035029617691,
+     "auc_neg_dist_vis": 0.7577731554527642
+    },
+    {
+     "fold": 2,
+     "seed": 141,
+     "n_pos": 3938,
+     "auc_ridge": 0.5023465329474491,
+     "auc_neg_dist_vis": 0.7431170133308721
+    },
+    {
+     "fold": 3,
+     "seed": 141,
+     "n_pos": 3502,
+     "auc_ridge": 0.5218048683688504,
+     "auc_neg_dist_vis": 0.7347292676809848
+    }
+   ],
+   "conf": [
+    {
+     "fold": 0,
+     "seed": 160,
+     "n_pos": 1981,
+     "auc_ridge": 0.545747549871252,
+     "auc_neg_dist_vis": 0.8008995520851648
+    },
+    {
+     "fold": 1,
+     "seed": 160,
+     "n_pos": 2523,
+     "auc_ridge": 0.4971974593583466,
+     "auc_neg_dist_vis": 0.6894268751275447
+    },
+    {
+     "fold": 2,
+     "seed": 160,
+     "n_pos": 3953,
+     "auc_ridge": 0.5225779228198397,
+     "auc_neg_dist_vis": 0.7403884130630243
+    },
+    {
+     "fold": 3,
+     "seed": 160,
+     "n_pos": 3459,
+     "auc_ridge": 0.5123803116651148,
+     "auc_neg_dist_vis": 0.713176634900118
+    },
+    {
+     "fold": 0,
+     "seed": 161,
+     "n_pos": 2026,
+     "auc_ridge": 0.5353544505299501,
+     "auc_neg_dist_vis": 0.7773478155808354
+    },
+    {
+     "fold": 1,
+     "seed": 161,
+     "n_pos": 2471,
+     "auc_ridge": 0.5152704368892858,
+     "auc_neg_dist_vis": 0.7227825321982044
+    },
+    {
+     "fold": 2,
+     "seed": 161,
+     "n_pos": 4071,
+     "auc_ridge": 0.5210175787236848,
+     "auc_neg_dist_vis": 0.7510751353986123
+    },
+    {
+     "fold": 3,
+     "seed": 161,
+     "n_pos": 3505,
+     "auc_ridge": 0.529197946338932,
+     "auc_neg_dist_vis": 0.7347194285909917
+    },
+    {
+     "fold": 0,
+     "seed": 162,
+     "n_pos": 1940,
+     "auc_ridge": 0.5184951348308608,
+     "auc_neg_dist_vis": 0.7965460344410977
+    },
+    {
+     "fold": 1,
+     "seed": 162,
+     "n_pos": 2466,
+     "auc_ridge": 0.5098617447698532,
+     "auc_neg_dist_vis": 0.7326629769585359
+    },
+    {
+     "fold": 2,
+     "seed": 162,
+     "n_pos": 4024,
+     "auc_ridge": 0.5181972463881642,
+     "auc_neg_dist_vis": 0.7009355299302839
+    },
+    {
+     "fold": 3,
+     "seed": 162,
+     "n_pos": 3540,
+     "auc_ridge": 0.5362183689910457,
+     "auc_neg_dist_vis": 0.7118503402110982
+    },
+    {
+     "fold": 0,
+     "seed": 163,
+     "n_pos": 1943,
+     "auc_ridge": 0.5205965039054209,
+     "auc_neg_dist_vis": 0.8075225260296027
+    },
+    {
+     "fold": 1,
+     "seed": 163,
+     "n_pos": 2510,
+     "auc_ridge": 0.49820527009439713,
+     "auc_neg_dist_vis": 0.7356556781826803
+    },
+    {
+     "fold": 2,
+     "seed": 163,
+     "n_pos": 3927,
+     "auc_ridge": 0.5223132972085759,
+     "auc_neg_dist_vis": 0.7441976731101853
+    },
+    {
+     "fold": 3,
+     "seed": 163,
+     "n_pos": 3608,
+     "auc_ridge": 0.5154377655134265,
+     "auc_neg_dist_vis": 0.711680115839399
+    }
+   ]
+  }
+ },
+ "gates": {
+  "G0_canary": true,
+  "G1_dev": {
+   "C1_beats_C2": false,
+   "C1_beats_C3": false
+  },
+  "G2_virgin_confirm": {
+   "C1_beats_C2": false,
+   "C1_beats_C3": false
+  }
+ },
+ "verdict": "negative",
+ "note": "Holdout proxy only. Clears no file and approves no slot."
+}

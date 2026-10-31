@@ -1,0 +1,78 @@
+{
+  "run_card_version": 1,
+  "session": "arena/967c20f7-gemsdoe25",
+  "date_utc": "2026-10-31",
+  "budget": {
+    "stated": "3 experiments or 2 hours",
+    "experiments_this_session": [
+      "E3 H-BF1",
+      "E4 H-REP1",
+      "E5 H-CLEAN1"
+    ],
+    "earlier_sessions_referenced": [
+      "E1 H-SP1",
+      "E2 H-LF1"
+    ],
+    "wall_clock_hours_approx": 1.7,
+    "status": "EXCEEDED on experiment count if E1-E2 counted; owner decision"
+  },
+  "evidence_classes": [
+    "HOLDOUT-DTI",
+    "ORGANIZER-CONFIRMED",
+    "NOT ESTIMATED",
+    "OWNER-REPORTED",
+    "COMPUTED"
+  ],
+  "organizer_confirmed_scores": [],
+  "estimated_organizer_score": "NOT ESTIMATED",
+  "candidate": {
+    "file": "docs/downloads/gems25-h-clean1-protocol-clean-k21700-noslot-20261031-a5489f5c6886-zero.tif",
+    "sha256": "35fc2a783859678ceb9c4907ad41b515c7727620b6bf3d917bc6f17c6fe47f26",
+    "content_id": "a5489f5c6886",
+    "dots": 21700,
+    "okay_to_download_and_submit": false,
+    "slot": null
+  },
+  "experiments": {
+    "E3_H-BF1": {
+      "file": "evidence/bound_fill_exp3_2026-10-31.json",
+      "verdict": "negative",
+      "class": "HOLDOUT-DTI"
+    },
+    "E4_H-REP1": {
+      "file": "evidence/repulsion_exp4_2026-10-31.json",
+      "verdict": "thinning-explains-B2",
+      "class": "HOLDOUT-DTI"
+    },
+    "E5_H-CLEAN1": {
+      "file": "evidence/clean_construction_exp5_2026-10-31.json",
+      "verdict": "negative",
+      "class": "HOLDOUT-DTI"
+    }
+  },
+  "gates": {
+    "format_verifier": "ALL_HARD True",
+    "lane": "UNVERIFIED (fail-closed; geom-horse-ensemble grid)",
+    "uniqueness_vs_nine_sites": "not unique under the 70% within-3px rule (see nine-site table)",
+    "holdout": "negative; far below random floor"
+  },
+  "comparator": "recomputed in the same run (AGENTS rule 5); frozen 0.152003389 not used as baseline",
+  "leaderboard_high_score_conflict": [
+    "0.4413 (owner prompt)",
+    "0.3195 (registry/live_scores.json)",
+    "0.2778 (GEMSDOE32, highest portal-valid owner-reported)"
+  ],
+  "irregularities": "registry/irregularities.json IR-31-*",
+  "review_passes": "registry/review_passes_967c20f7_2026-10-31.json",
+  "executive_summary": "docs/executive-summary-2026-10-31.html",
+  "generated_by": [
+    "scripts/run_bound_fill_exp3.py",
+    "scripts/run_repulsion_exp4.py",
+    "scripts/run_clean_construction_exp5.py",
+    "scripts/build_clean_candidate.py",
+    "scripts/verify_candidate_independent.py",
+    "scripts/check_lane_duplicates.py",
+    "scripts/build_nine_site_summary.py",
+    "scripts/build_executive_summary_2026_10_31.py"
+  ]
+}
