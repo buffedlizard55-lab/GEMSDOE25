@@ -187,13 +187,20 @@ def pi_weights(params: np.ndarray, reps: np.ndarray, model: str) -> np.ndarray:
     elif model == "two_scale":  # background + near halo + broad halo
         a1, r1, a2, r2 = params
         w[1:] = 1.0 + max(a1, 0.0) * np.exp(-d / max(r1, 1e-3)) + max(a2, 0.0) * np.exp(-d / max(r2, 1e-3))
+    elif model == "exp_dead":  # DEAD ZONE: truth depleted near the catalogue (H-LC1, 2026-10-31)
+        a, rho = params
+        w[1:] = np.maximum(1.0 - max(a, 0.0) * np.exp(-d / max(rho, 1e-3)), 0.0)
+    elif model == "step_dead":  # HARD DEAD ZONE: density b inside r, 1 outside (H-LC1, 2026-10-31)
+        b, r = params
+        w[1:] = np.where(d <= max(r, 0.0), min(max(b, 0.0), 1.0), 1.0)
     else:  # pragma: no cover - guarded by callers
         raise ValueError(model)
     w[CATALOGUE_BIN] = 0.0
     return w
 
 
-MODEL_PARAMS = {"uniform": 0, "exp_halo": 2, "step_halo": 2, "pure_exp": 2, "two_scale": 4}
+MODEL_PARAMS = {"uniform": 0, "exp_halo": 2, "step_halo": 2, "pure_exp": 2, "two_scale": 4,
+                "exp_dead": 2, "step_dead": 2}
 
 
 DISC_COUNT_R = None  # set below, after disc_count() is defined
@@ -458,6 +465,12 @@ def pi_field(params: np.ndarray, d_cat: np.ndarray, footprint: np.ndarray, label
         a1, r1, a2, r2 = params
         dd = np.minimum(d, 200.0)
         w = 1.0 + max(a1, 0.0) * np.exp(-dd / max(r1, 1e-3)) + max(a2, 0.0) * np.exp(-dd / max(r2, 1e-3))
+    elif model == "exp_dead":
+        a, rho = params
+        w = np.maximum(1.0 - max(a, 0.0) * np.exp(-np.minimum(d, 200.0) / max(rho, 1e-3)), 0.0)
+    elif model == "step_dead":
+        b, r = params
+        w = np.where(d <= max(r, 0.0), min(max(b, 0.0), 1.0), 1.0)
     else:  # pragma: no cover
         raise ValueError(model)
     w = np.where(np.isfinite(d), w, 0.0).astype(np.float64)
