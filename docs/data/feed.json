@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-31T05:55:26Z",
+ "generated_utc": "2026-10-31T12:46:21Z",
  "generator": "scripts/check_sources.py",
  "policy": "Never requests drivendata.org (Terms of Use); HTTP redirects are followed manually and blocked if the target is that host or a subdomain. 'unreachable' means the network blocked the request from the machine that built the feed; it does not mean the source is down.",
  "items": [
@@ -81,7 +81,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"c64588586f6704b05a15b22bd4a1cb73\""
+   "detail": "HTTP 200; ETag: W/\"3219b50d801d80f8da9268f99fa6b53b\""
   },
   {
    "kind": "source",
@@ -96,8 +96,8 @@
    "title": "GeoDAWN airborne magnetic and radiometric surveys (USGS)",
    "url": "https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7",
    "verified_in_repo": true,
-   "status": "HTTP 403",
-   "detail": "HTTP 403"
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Thu, 01 Jan 1970 00:00:00 GMT"
   },
   {
    "kind": "source",
@@ -105,31 +105,31 @@
    "url": "https://www.usgs.gov/3d-elevation-program",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Sat, 31 Oct 2026 05:54:13 GMT; ETag: W/\"1793426053\""
+   "detail": "HTTP 200; Last-Modified: Sat, 31 Oct 2026 12:44:07 GMT; ETag: W/\"1793450647\""
   },
   {
    "kind": "source",
    "title": "Slip & dilation tendency, Quaternary faults, Great Basin (Siler 2022)",
    "url": "https://www.sciencebase.gov/catalog/item/6296974dd34ec53d276bb33d",
    "verified_in_repo": true,
-   "status": "HTTP 403",
-   "detail": "HTTP 403"
+   "status": "ok",
+   "detail": "HTTP 200; Last-Modified: Thu, 01 Jan 1970 00:00:00 GMT"
   },
   {
    "kind": "source",
    "title": "Heat flow maps and supporting data for the Great Basin, USA (DeAngelo et al., 2022)",
    "url": "https://www.sciencebase.gov/catalog/item/6297d2fad34ec53d276c5b28",
    "verified_in_repo": true,
-   "status": "HTTP 403",
-   "detail": "HTTP 403"
+   "status": "unreachable",
+   "detail": "ReadTimeout"
   },
   {
    "kind": "source",
    "title": "Faulds & Hinz (2015) Favorable tectonic and structural settings of geothermal systems in the Great Basin",
    "url": "https://www.osti.gov/servlets/purl/1724082",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "ConnectTimeout"
+   "status": "ok",
+   "detail": "HTTP 200; Content-Length: 1719141"
   },
   {
    "kind": "source",
@@ -145,7 +145,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"eed47c1bcdb92b7bf07c3a1d688d685d\""
+   "detail": "HTTP 200; ETag: W/\"06defe375e7afeb8f1274f030a4592e0\""
   },
   {
    "kind": "source",
@@ -153,7 +153,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"65cb289e6e9b306d64c69b98f3d80f4b\""
+   "detail": "HTTP 200; ETag: W/\"1d58e5a18154e87615b5defaf0a4e6a9\""
   },
   {
    "kind": "source",
@@ -177,7 +177,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/registry/artifact_mirrors.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"8ba596db3b3548a5eb142673daf82103\""
+   "detail": "HTTP 200; ETag: W/\"77c4707bc6c88f30031a832e8487930a\""
   },
   {
    "kind": "source",
@@ -185,7 +185,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/registry/live_scores.json",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"2050c7f76e92692d2e691aa51bcb0e9f\""
+   "detail": "HTTP 200; ETag: W/\"d0cf09ee91c80da47c9b5d27f44feafd\""
   },
   {
    "kind": "source",
@@ -193,15 +193,15 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"c64588586f6704b05a15b22bd4a1cb73\""
+   "detail": "HTTP 200; ETag: W/\"f035e59c04e06734e43513b5d3c2d84b\""
   },
   {
    "kind": "source",
    "title": "Structural Inventory of Great Basin Geothermal Systems and Definition of Favorable Structural Settings (dataset)",
    "url": "https://www.osti.gov/dataexplorer/biblio/dataset/1148722",
    "verified_in_repo": true,
-   "status": "unreachable",
-   "detail": "ConnectTimeout"
+   "status": "ok",
+   "detail": "HTTP 200"
   },
   {
    "kind": "source",
@@ -209,7 +209,7 @@
    "url": "https://www.usgs.gov/data/quaternary-fault-mapping-zapata-and-blanca-sections-sangre-de-cristo-fault-zone-high",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Sat, 31 Oct 2026 05:55:01 GMT; ETag: W/\"1793426101\""
+   "detail": "HTTP 200; Last-Modified: Sat, 31 Oct 2026 12:45:02 GMT; ETag: W/\"1793450702\""
   },
   {
    "kind": "source",
@@ -225,7 +225,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"e57a068955712df7b8dcffdc5242efe4\""
+   "detail": "HTTP 200; ETag: W/\"bdea7c6dd3d361f53fe06d14c509d190\""
   },
   {
    "kind": "source",
@@ -233,7 +233,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE36",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"d0427ceebed85284c9b908640bc31c66\""
+   "detail": "HTTP 200; ETag: W/\"6bb73742bd83867837490b04ec1685ad\""
   },
   {
    "kind": "source",
@@ -241,7 +241,7 @@
    "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Fri, 30 Oct 2026 11:30:44 GMT; Content-Length: 25627; ETag: W/\"6ae47fe4-1ba59\""
+   "detail": "HTTP 200; Last-Modified: Sat, 31 Oct 2026 11:01:38 GMT; Content-Length: 25626; ETag: W/\"6ae5ca92-1ba59\""
   },
   {
    "kind": "source",
@@ -257,7 +257,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"68aed0d65e8eac52d17969ca4b24e8bb\""
+   "detail": "HTTP 200; ETag: W/\"c6b468f7943e55ca9c356aa0045d976e\""
   },
   {
    "kind": "source",
@@ -281,7 +281,7 @@
    "url": "https://doi.org/10.1007/BFb0006528",
    "verified_in_repo": false,
    "status": "ok",
-   "detail": "HTTP 200; ETag: \"34a97d89583d867e13d9ed080ca4ce74\""
+   "detail": "HTTP 200; ETag: \"2673e6ea5d5224f16bba6d6b1a8cd960\""
   },
   {
    "kind": "source",
@@ -289,7 +289,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE70",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"68aed0d65e8eac52d17969ca4b24e8bb\""
+   "detail": "HTTP 200; ETag: W/\"c6b468f7943e55ca9c356aa0045d976e\""
   },
   {
    "kind": "source",
@@ -313,7 +313,7 @@
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"e57a068955712df7b8dcffdc5242efe4\""
+   "detail": "HTTP 200; ETag: W/\"bdea7c6dd3d361f53fe06d14c509d190\""
   },
   {
    "kind": "source",
@@ -321,7 +321,7 @@
    "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/unet-mc-cv-reference-solution.ipynb",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; ETag: W/\"deeb2a5cd58a6280e7906b5fde2e6293\""
+   "detail": "HTTP 200; ETag: W/\"810b2b58e8aae2d882038f224b2764e3\""
   },
   {
    "kind": "source",
@@ -337,7 +337,7 @@
    "url": "https://www.usgs.gov/publications/discovering-blind-geothermal-systems-great-basin-region-integrated-geologic-and",
    "verified_in_repo": true,
    "status": "ok",
-   "detail": "HTTP 200; Last-Modified: Sat, 31 Oct 2026 05:55:15 GMT; ETag: W/\"1793426115\""
+   "detail": "HTTP 200; Last-Modified: Sat, 31 Oct 2026 12:45:27 GMT; ETag: W/\"1793450727\""
   },
   {
    "kind": "source",
@@ -359,22 +359,22 @@
    "kind": "sciencebase",
    "title": "GeoDAWN release",
    "url": "https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7",
-   "status": "unreachable",
-   "detail": "RuntimeError"
+   "status": "ok",
+   "detail": "lastUpdated 2025-02-28T23:02:25Z"
   },
   {
    "kind": "sciencebase",
    "title": "Slip/dilation tendency release",
    "url": "https://www.sciencebase.gov/catalog/item/6296974dd34ec53d276bb33d",
-   "status": "unreachable",
-   "detail": "RuntimeError"
+   "status": "ok",
+   "detail": "lastUpdated 2026-04-24T15:15:49Z"
   },
   {
    "kind": "sciencebase",
    "title": "Great Basin heat-flow release",
    "url": "https://www.sciencebase.gov/catalog/item/6297d2fad34ec53d276c5b28",
-   "status": "unreachable",
-   "detail": "RuntimeError"
+   "status": "ok",
+   "detail": "lastUpdated 2022-07-20T14:07:29Z"
   },
   {
    "kind": "sibling-repo",
@@ -416,7 +416,7 @@
    "title": "12GEMSDOE",
    "url": "https://github.com/buffedlizard55-lab/12GEMSDOE",
    "status": "ok",
-   "detail": "pushed_at 2026-10-30T21:29:14Z"
+   "detail": "pushed_at 2026-10-31T10:54:38Z"
   },
   {
    "kind": "sibling-repo",
@@ -549,14 +549,14 @@
    "title": "GEMSDOE25",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE25",
    "status": "ok",
-   "detail": "pushed_at 2026-10-31T03:24:32Z"
+   "detail": "pushed_at 2026-10-31T05:55:28Z"
   },
   {
    "kind": "sibling-repo",
    "title": "GEMSDOE27",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE27",
    "status": "ok",
-   "detail": "pushed_at 2026-10-31T02:23:35Z"
+   "detail": "pushed_at 2026-10-31T12:22:30Z"
   },
   {
    "kind": "sibling-repo",
@@ -584,7 +584,7 @@
    "title": "GEMSDOE32",
    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
    "status": "ok",
-   "detail": "pushed_at 2026-10-30T11:29:41Z"
+   "detail": "pushed_at 2026-10-31T11:00:55Z"
   },
   {
    "kind": "sibling-repo",
