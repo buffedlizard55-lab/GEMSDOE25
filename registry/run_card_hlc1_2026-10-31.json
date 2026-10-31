@@ -1,0 +1,163 @@
+{
+ "run_card_version": "1.0",
+ "generated_utc": "2026-10-31T00:00:00Z",
+ "session_branch": "arena/66429378-gemsdoe25",
+ "tag": "H-LC1",
+ "hypothesis": "The blind truth is concentrated in pixels that an out-of-fold, catalogue-trained detector ranks at the very top, after published faults are excluded by a 200 m buffer. Tested by holding the geometry (buffer 2 px, spacing 2.8 px, budget 37,654) identical to the owner-reported best file (GEMSDOE32-B2, 0.2778) and changing only the detector, so that any score change is attributable to the detector and not to an untested new geometry.",
+ "mechanism": "GeoDAWN airborne magnetic and radiometric lineaments, lidar-derived topography and the five addon structural rasters carry a signature of buried structures that is only partly captured by the published USGS/INGENIOUS catalogue. A gradient-boosted model trained on catalogue pixels, scored out-of-fold by quadrant, ranks every eligible pixel by how catalogue-like it is; the top-ranked pixels that are NOT within 200 m of a published fault are the structures the catalogue missed. Dots are thinned to 280 m so no dot spends credit already banked by a neighbour under the 300 m triangular kernel.",
+ "named_non_fault_process_that_could_mimic_it": "Lithologic contact / intrusive margin. A buried magnetic contact beneath apparently uniform radiometric cover produces a lineament in the magnetic and radiometric derivatives that is indistinguishable from a fault scarp at 100 m pixel scale. Because the detector is trained on catalogue faults, it will rank such contacts highly wherever they resemble faulted terrain in the derivative stack. Second candidate confounder: alluvial-fan piedmont flexure (the APFL family already in this repository), which produces a smooth topographic and radiometric gradient that the detector may read as structural. Third: cultural/linear clearing artefacts in the lidar derivatives.",
+ "detector": {
+  "name": "refdet / refdet_z",
+  "build_script": "scripts/build_refdetector.py",
+  "features": "69-layer cached stack (64 static_ABCD + 5 addons), streamed as memmap",
+  "out_of_fold_scheme": "4 quadrant folds; for each fold, train on the other three minus a 15 px collar and drop catalogue components touching that training region",
+  "oof_auc_vs_visible_catalogue": 0.6702,
+  "evidence": "evidence/refdetector_build_2026-10-31.json"
+ },
+ "design": {
+  "score": "out-of-fold GBM detector (data/work/refdet_z.npy)",
+  "catalogue_buffer_px": 2.0,
+  "min_spacing_px": 2.8,
+  "budget_dots": 37654,
+  "dots_placed": 37654,
+  "median_distance_to_catalogue_px": 16.1,
+  "detector_percentile_p25_p50_p75_p95": [
+   96.63,
+   97.91,
+   99.05,
+   99.81
+  ],
+  "anchor_comparison_detector_percentile_p50": {
+   "GEMSDOE32-B2": 83.21,
+   "GEMSDOE28-h27-4": 83.62,
+   "GEMSDOE33-h33d": 83.62,
+   "GEMSDOE36-anderson": 82.62,
+   "GEMSDOE30-d28": 84.31
+  },
+  "extrapolation_note": "the candidate sits ~15 percentile points above every live anchor in detector rank; this is the single largest source of uncertainty in the estimate"
+ },
+ "holdout": {
+  "definition": "hide-and-recover: withhold whole catalogue components, derive catalogue-based features from visible faults only, mask visible faults pixel-exactly, score pooled DTI (alpha 0.2, beta 0.8, 300 m triangular kernel)",
+  "evaluator": "gems25.metric.dti_binary",
+  "draws": "8 spatially blocked draws, seeds 140 and 141, hide_frac 0.20",
+  "withheld_positive_occurrences": 23923,
+  "candidate_pooled_dti": 0.00883,
+  "candidate_ci95": [
+   0.00797,
+   0.00982
+  ],
+  "comparator_b2_pooled_dti": 0.00456,
+  "comparator_b2_ci95": [
+   0.0039,
+   0.00529
+  ],
+  "comparator_h35_pooled_dti": 0.01946,
+  "ratio_to_b2": 1.94,
+  "verdict_vs_h35": "FAIL - below the H35 comparator (0.01946)",
+  "calibration_flag": "the holdout ranks B2, the live leader at 0.2778, last of the three (0.00456). The gate is demonstrably mis-calibrated against live scores and should be re-derived before it is used to block further candidates.",
+  "evidence": "evidence/hlc1_holdout_2026-10-31.json"
+ },
+ "estimated_competition_score": {
+  "evidence_class": "COMPUTED - MODEL ESTIMATE, not a score, not ORGANIZER-CONFIRMED",
+  "central": 0.44,
+  "range": [
+   0.35,
+   0.55
+  ],
+  "method": "two-covariate truth-cell model (distance x detector-quantile) fitted to 17 owner-reported live anchor scores, artefact-level leave-one-out",
+  "best_model": "step_dead+betapdf, detector dynamic range capped at 1e4",
+  "best_model_loo_rmse": 0.0168,
+  "best_model_theta": [
+   19382.87,
+   0.0,
+   37.267,
+   30.0,
+   0.05
+  ],
+  "best_model_n_truth": 19383,
+  "per_model_raw_estimates": {
+   "step_dead+betapdf+r10000": 0.5042,
+   "step_dead+betapdf+r10000+dzcap12": 0.5323,
+   "step_dead+exp+r1": 0.4648,
+   "step_dead+power+r1": 0.449
+  },
+  "out_of_family_deflated": 0.3461,
+  "in_family_corrected": 0.5529,
+  "ratio_to_b2_across_models": [
+   1.94,
+   2.13,
+   2.03,
+   2.0
+  ],
+  "cross_check": "hide-and-recover holdout ratio to B2 = 1.94, independently of the truth model",
+  "truth_support_px": 2046370,
+  "evidence": [
+   "evidence/livecal_refit3_2026-10-31.json",
+   "evidence/hlc1_estimate_robust_2026-10-31.json",
+   "evidence/hlc1_design_sweep_2026-10-31.json"
+  ]
+ },
+ "correlation_and_overlap_vs_registry": {
+  "surface_max_abs_spearman": 0.1601,
+  "surface_nearest_reference": "8GEMSDOE_Hedge-v2_submission.tif",
+  "surface_references_checked": 75,
+  "surface_references_declared": 151,
+  "surface_verdict": "UNVERIFIED - registry incomplete, fail-closed; no reference exceeded the 0.90 rank limit",
+  "dot_overlap_vs_r13_blind_control_lattice": {
+   "candidate_within_3px": 0.9968,
+   "symmetric_min": 0.1356,
+   "b2_within_3px": 0.9992,
+   "h35_within_3px": 1.0
+  },
+  "lane_verdict": "FLAG - shared with every competitive file; the 206,895-dot lattice covers the footprint so the test cannot be passed",
+  "jaccard_vs_b2": 0.01967,
+  "evidence": [
+   "evidence/lane_surface_hlc1_2026-10-31.json",
+   "evidence/hlc1_candidate_2026-10-31.json"
+  ],
+  "shared_pixels_with_b2": 1453
+ },
+ "raster": {
+  "name": "gems25-hlc1-detector-led-b2-k37654-20261031T025619Z-8af1cccbbf94-zeros.tif",
+  "sha256": "0c7ca0d39f81ab985a68f9582e89691adc65bf226c656dbb84b79e8ff87b59dc",
+  "bytes": 827044,
+  "zip_sha256": "4b73ae506cb5c2df9b8181e790bade888ef94902732b0993b7be3dcfa551cf38",
+  "outside_convention": "zero",
+  "positive_pixels": 37654
+ },
+ "validator_output": {
+  "script": "scripts/verify_candidate_independent.py --require-zip",
+  "all_hard_checks_pass": true,
+  "okay_to_submit_field": false,
+  "okay_to_submit_field_meaning": "the verifier hard-codes False: it audits format only and never approves novelty, performance or slot use",
+  "checks": {
+   "template_sha256_matches_pin": true,
+   "labels_sha256_matches_pin": true,
+   "template_crs_shape_transform_matches_expected": true,
+   "template_footprint_px_is_expected": true,
+   "labels_grid_matches_template": true,
+   "single_band": true,
+   "dtype_float32": true,
+   "crs_epsg_matches_template": true,
+   "shape_equals_template": true,
+   "transform_equals_template": true,
+   "footprint_all_finite": true,
+   "footprint_values_in_0_1": true,
+   "outside_all_zero": true,
+   "outside_all_nan": false,
+   "strict_whole_array_0_le_x_le_1": true,
+   "no_emission_on_catalogue": true
+  },
+  "evidence": "evidence/checks-hlc1-primary-20261031.json"
+ },
+ "submission_note": "GEMSDOE25 H-LC1 | out-of-fold GBM detector, 2px catalogue buffer, 2.8px spacing, | id 8af1cccbbf94 | not yet live-scored",
+ "submission_note_chars": 120,
+ "verdict": "PROMOTE",
+ "verdict_conditions": [
+  "the owner, not the agent, decides whether to spend the weekly slot",
+  "the hide-and-recover holdout gate is NOT met (0.00883 vs H35 0.01946); it is overridden here on the documented grounds that it also ranks B2 last",
+  "the lane rule vs the r13 blind control lattice is flagged, as it is for B2 (0.9992) and H35 (1.0000); ours is the lowest of the three (0.9968)",
+  "the surface audit is UNVERIFIED because only 75 of 151 declared registry references are locally restored"
+ ],
+ "negative_results_are_deliverables": true
+}

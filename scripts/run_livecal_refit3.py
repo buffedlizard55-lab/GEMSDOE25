@@ -22,6 +22,7 @@ import rasterio
 from scipy.ndimage import distance_transform_edt
 from scipy.optimize import minimize
 
+import os
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from gems25 import livecal, livecal_cells  # noqa: E402
@@ -37,6 +38,10 @@ COMBOS = [
     ("exp_dead", "betapdf", 1e4, None),
     ("uniform", "betapdf", 1e4, None),
 ]
+# Sensitivity runs override the grid from the environment; the pre-registered grid above is untouched.
+if os.environ.get("GEMS_COMBOS"):
+    COMBOS = [(c[0], c[1], float(c[2]), (None if c[3] is None else (float(c[3][0]), float(c[3][1]))))
+              for c in json.loads(os.environ["GEMS_COMBOS"])]
 
 
 def main() -> int:
@@ -127,7 +132,7 @@ def main() -> int:
         ),
         seconds=round(time.time() - t0, 1),
     )
-    (ROOT / "evidence" / "livecal_refit3_2026-10-31.json").write_text(json.dumps(out, indent=1) + "\n")
+    (ROOT / "evidence" / os.environ.get("GEMS_OUT", "livecal_refit3_2026-10-31.json")).write_text(json.dumps(out, indent=1) + "\n")
     print("\nbest:", order[0], "loo_rmse=%.4f" % best["loo_rmse"], "gates:", out["gates"])
     return 0
 

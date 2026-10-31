@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-28T18:48:07+00:00",
+  "generated_utc": "2026-10-31T00:48:38+00:00",
   "script": "scripts/audit_nine_site_top_files.py",
   "evidence_class": "COMPUTED on owner-mirror bytes; scores are OWNER-REPORTED claims, not organizer receipts",
   "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",

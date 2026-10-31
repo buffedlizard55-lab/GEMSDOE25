@@ -1,0 +1,304 @@
+{
+ "generated_utc": "2026-10-31T02:50:26Z",
+ "script": "scripts/build_hlc1_candidate.py",
+ "calibration": "evidence/livecal_refit3_2026-10-31.json",
+ "model": {
+  "name": "step_dead+betapdf+r10000",
+  "theta": [
+   19382.8717537338,
+   0.0,
+   37.266875317722025,
+   30.0,
+   0.05
+  ],
+  "n_truth": 19382.8717537338,
+  "loo_rmse": 0.01683053127439357,
+  "loo_max_abs": 0.04129164479208529,
+  "ratio": 10000.0,
+  "gates": {
+   "G1_estimator_usable": true,
+   "G2_lattice_transfer": false
+  },
+  "evidence_class": "MODEL ESTIMATE (OWNER-REPORTED anchors)"
+ },
+ "design_grid": [
+  {
+   "min_dist": 2.4,
+   "budget": 5215,
+   "predicted_dti": 0.10035180529494879,
+   "dots": 5215,
+   "tp": 1679.5,
+   "fp": 4469.2,
+   "frac_d_gt_30": 0.9785,
+   "frac_z_top5": 0.2163
+  },
+  {
+   "min_dist": 2.4,
+   "budget": 10430,
+   "predicted_dti": 0.24045141048196172,
+   "dots": 10430,
+   "tp": 4346.7,
+   "fp": 8508.3,
+   "frac_d_gt_30": 0.9796,
+   "frac_z_top5": 0.2842
+  },
+  {
+   "min_dist": 2.4,
+   "budget": 15645,
+   "predicted_dti": 0.41753773432589686,
+   "dots": 15645,
+   "tp": 8185.1,
+   "fp": 12299.8,
+   "frac_d_gt_30": 0.975,
+   "frac_z_top5": 0.3422
+  },
+  {
+   "min_dist": 2.4,
+   "budget": 20000,
+   "predicted_dti": 0.547071824772147,
+   "dots": 20000,
+   "tp": 11411.2,
+   "fp": 15350.7,
+   "frac_d_gt_30": 0.9768,
+   "frac_z_top5": 0.3805
+  },
+  {
+   "min_dist": 2.4,
+   "budget": 20860,
+   "predicted_dti": 0.5701508069233032,
+   "dots": 20860,
+   "tp": 12025.5,
+   "fp": 15901.7,
+   "frac_d_gt_30": 0.9775,
+   "frac_z_top5": 0.3905
+  },
+  {
+   "min_dist": 2.8,
+   "budget": 5215,
+   "predicted_dti": 0.10035180529494879,
+   "dots": 5215,
+   "tp": 1679.5,
+   "fp": 4469.2,
+   "frac_d_gt_30": 0.9785,
+   "frac_z_top5": 0.2163
+  },
+  {
+   "min_dist": 2.8,
+   "budget": 10430,
+   "predicted_dti": 0.24045141048196172,
+   "dots": 10430,
+   "tp": 4346.7,
+   "fp": 8508.3,
+   "frac_d_gt_30": 0.9796,
+   "frac_z_top5": 0.2842
+  },
+  {
+   "min_dist": 2.8,
+   "budget": 15645,
+   "predicted_dti": 0.41753773432589686,
+   "dots": 15645,
+   "tp": 8185.1,
+   "fp": 12299.8,
+   "frac_d_gt_30": 0.975,
+   "frac_z_top5": 0.3422
+  },
+  {
+   "min_dist": 2.8,
+   "budget": 20000,
+   "predicted_dti": 0.547071824772147,
+   "dots": 20000,
+   "tp": 11411.2,
+   "fp": 15350.7,
+   "frac_d_gt_30": 0.9768,
+   "frac_z_top5": 0.3805
+  },
+  {
+   "min_dist": 2.8,
+   "budget": 20860,
+   "predicted_dti": 0.5701508069233032,
+   "dots": 20860,
+   "tp": 12025.5,
+   "fp": 15901.7,
+   "frac_d_gt_30": 0.9775,
+   "frac_z_top5": 0.3905
+  },
+  {
+   "min_dist": 3.5,
+   "budget": 4016,
+   "predicted_dti": 0.09213386057667615,
+   "dots": 4016,
+   "tp": 1521.5,
+   "fp": 3519.0,
+   "frac_d_gt_30": 0.9731,
+   "frac_z_top5": 0.1853
+  },
+  {
+   "min_dist": 3.5,
+   "budget": 8033,
+   "predicted_dti": 0.21091817664231846,
+   "dots": 8033,
+   "tp": 3714.6,
+   "fp": 6811.8,
+   "frac_d_gt_30": 0.9761,
+   "frac_z_top5": 0.234
+  },
+  {
+   "min_dist": 3.5,
+   "budget": 12050,
+   "predicted_dti": 0.3716635614868011,
+   "dots": 12050,
+   "tp": 7018.1,
+   "fp": 9865.7,
+   "frac_d_gt_30": 0.9696,
+   "frac_z_top5": 0.29
+  },
+  {
+   "min_dist": 3.5,
+   "budget": 16067,
+   "predicted_dti": 0.509782234522971,
+   "dots": 16067,
+   "tp": 10253.6,
+   "fp": 12783.1,
+   "frac_d_gt_30": 0.9726,
+   "frac_z_top5": 0.3345
+  }
+ ],
+ "chosen": {
+  "min_dist": 2.4,
+  "budget": 20860,
+  "predicted_dti": 0.5701508069233032,
+  "dots": 20860,
+  "tp": 12025.5,
+  "fp": 15901.7,
+  "frac_d_gt_30": 0.9775,
+  "frac_z_top5": 0.3905
+ },
+ "file": {
+  "name": "gems25-gems25-hlc1-liveanchored-md2-4-20261031T025024Z-ee77d0f571a9-zeros.tif.tif",
+  "sha256": "786cb9167a25cb6148d7ef956c2a29e8689ad342cd0bd881e586643eb15fa46e",
+  "bytes": 795554,
+  "zip": "gems25-gems25-hlc1-liveanchored-md2-4-20261031T025024Z-ee77d0f571a9-zeros.tif.zip",
+  "zip_sha256": "ed572190241a7578685c3e23f8a07d35472945bf40c627fbef781a2a1b9056b1",
+  "content_id": "ee77d0f571a9",
+  "note": "GEMSDOE25 GEMSDOE25 H-LC1 | live-anchored marginal-gain design, 20860 dots at 2. | id ee77d0f571a9 | not yet live-scored",
+  "note_len": 120
+ },
+ "format_check": {
+  "file": "gems25-gems25-hlc1-liveanchored-md2-4-20261031T025024Z-ee77d0f571a9-zeros.tif.tif",
+  "bytes": 795554,
+  "sha256": "786cb9167a25cb6148d7ef956c2a29e8689ad342cd0bd881e586643eb15fa46e",
+  "ok_to_upload": true,
+  "format_valid": true,
+  "strict_whole_array_valid": true,
+  "okay_to_submit": false,
+  "authorization_note": "ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval; official_nan_outside is a legacy name, not confirmed portal acceptance",
+  "hard_failures": [],
+  "official_nan_outside": false,
+  "positive_pixels": 20860,
+  "footprint_pixels": 5167373,
+  "checks": {
+   "template_matches_expected_grid_and_footprint": {
+    "pass_": true,
+    "detail": "(3730, 3292), footprint 5,167,373 px",
+    "hard": true
+   },
+   "single_band": {
+    "pass_": true,
+    "detail": "count=1",
+    "hard": true
+   },
+   "dtype_float32": {
+    "pass_": true,
+    "detail": "dtypes=('float32',)",
+    "hard": true
+   },
+   "crs_epsg_32611": {
+    "pass_": true,
+    "detail": "32611",
+    "hard": true
+   },
+   "shape_matches_template": {
+    "pass_": true,
+    "detail": "(3730, 3292) vs (3730, 3292)",
+    "hard": true
+   },
+   "geotransform_matches_template": {
+    "pass_": true,
+    "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+    "hard": true
+   },
+   "footprint_all_finite": {
+    "pass_": true,
+    "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+    "hard": true
+   },
+   "footprint_values_in_0_1": {
+    "pass_": true,
+    "detail": "min=0.0 max=1.0",
+    "hard": true
+   },
+   "outside_footprint_is_nan_official": {
+    "pass_": false,
+    "detail": "0/7,111,787 NaN; legacy name, NOT organizer acceptance",
+    "hard": false
+   },
+   "outside_footprint_is_nan_or_zero": {
+    "pass_": true,
+    "detail": "NaN or 0 outside: local variants only; portal acceptance unknown",
+    "hard": true
+   },
+   "nan_mask_identical_to_template": {
+    "pass_": true,
+    "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+    "hard": true
+   },
+   "nodata_tag": {
+    "pass_": true,
+    "detail": "nodata=None",
+    "hard": false
+   },
+   "portal_all_cells_finite_in_0_1": {
+    "pass_": true,
+    "detail": "0 NaN and 0 Inf over the whole 12,279,160-cell array; portal rejects NaN (owner-reported error)",
+    "hard": true
+   },
+   "variant_nan_aware_whole_array": {
+    "pass_": true,
+    "detail": "finite range over the whole array; infinity rejected",
+    "hard": true
+   },
+   "variant_masked_read": {
+    "pass_": true,
+    "detail": "rasterio masked read; empty data rejected",
+    "hard": true
+   },
+   "variant_strict_whole_array_no_nan": {
+    "pass_": true,
+    "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+    "hard": false
+   },
+   "profile_matches_template": {
+    "pass_": true,
+    "detail": "compress=lzw (template lzw)",
+    "hard": false
+   }
+  }
+ },
+ "array_checks": {
+  "finite_inside_footprint": true,
+  "min_inside": 0.0,
+  "max_inside": 1.0,
+  "zeros_outside": true,
+  "positives": 20860,
+  "positives_on_catalogue": 0,
+  "min_distance_to_catalogue_px": 27.784887978899608,
+  "median_distance_to_catalogue_px": 52.009614495783374
+ },
+ "uniqueness_vs_b2": {
+  "jaccard_vs_b2": 0.0104,
+  "cand_within_3px_of_b2": 0.4566,
+  "b2_within_3px_of_cand": 0.16
+ },
+ "evidence_class": "COMPUTED; the predicted DTI is a MODEL ESTIMATE, not a score, not ORGANIZER-CONFIRMED",
+ "seconds": 21.8
+}

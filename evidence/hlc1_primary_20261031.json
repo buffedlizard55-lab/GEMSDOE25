@@ -1,0 +1,32 @@
+{
+ "generated_utc": "2026-10-31T02:56:19Z",
+ "script": "scripts/build_hlc1_final.py",
+ "slug": "hlc1-detector-led-b2-k37654",
+ "primary": true,
+ "recipe": {
+  "detector": "out-of-fold GBM on the 69-feature cached stack (refdet_z.npy)",
+  "buffer_px": 2.0,
+  "min_dist_px": 2.8,
+  "budget": 37654,
+  "rationale": "identical buffer/thinning/budget to the owner-reported best file (0.2778); only the detector is new (out-of-fold GBM vs the H19-5 multi-line detector)"
+ },
+ "dots": 37654,
+ "median_d_cat_px": 16.1245154965971,
+ "model_estimate": {
+  "step_dead+betapdf+r10000": 0.5041650110775185,
+  "step_dead+betapdf+r10000+dzcap12": 0.5323051689551144
+ },
+ "loo_rmse": {
+  "step_dead+betapdf+r10000": 0.01683053127439357,
+  "step_dead+betapdf+r10000+dzcap12": 0.023167096126576938
+ },
+ "file": {
+  "name": "gems25-hlc1-detector-led-b2-k37654-20261031T025619Z-8af1cccbbf94-zeros.tif",
+  "sha256": "0c7ca0d39f81ab985a68f9582e89691adc65bf226c656dbb84b79e8ff87b59dc",
+  "bytes": 827044,
+  "zip": "gems25-hlc1-detector-led-b2-k37654-20261031T025619Z-8af1cccbbf94-zeros.zip",
+  "zip_bytes": 173708
+ },
+ "note": "GEMSDOE25 H-LC1 | out-of-fold GBM detector, 2px catalogue buffer, 2.8px spacing, | id 8af1cccbbf94 | not yet live-scored",
+ "evidence_class": "COMPUTED; the model estimate is a MODEL ESTIMATE, not a score and not ORGANIZER-CONFIRMED"
+}
