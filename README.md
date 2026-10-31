@@ -1,8 +1,10 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
-## Current checkout review — 2026-10-31
+## START HERE — current review 2026-10-31
 
-Read [`REVIEW_2026-10-31.md`](REVIEW_2026-10-31.md) before using historical claims below. This checkout is at `8cb3573d8adc747b519dd0d96ffdc4eccad6d8ec`; it has no competition data or `data/work` cache, so no new holdout, TIF, score estimate, or submission clearance was produced. **NO-GO: do not submit any historical file as new work.** Historical leaderboard scores remain owner-reported unless accompanied by an organizer receipt.
+**Current verdict: NO TIFF is cleared for download and submission; new score estimate: NOT ESTIMATED.** No lane was assigned, `data/` contains only `.gitkeep`, no experiment or submission TIFF was produced, and the organizer-side meaning of the mirrored label/catalogue identity is unresolved. Read the [31 Oct executive review](docs/review-2026-10-31.html), [full findings and ranked hypotheses](knowledge/56_repo_review_2026-10-31.md), and [negative JSON run card](registry/run_card_session_2026-10-31.json) before continuing. Related initial snapshot: [REVIEW_2026-10-31.md](REVIEW_2026-10-31.md); it records the earlier base checkout and likewise makes no submission claim.
+
+**Correction:** the GEMSDOE25 historical D2.8 filename is `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif` (not `gems24-...`); see `knowledge/52_repo_review_2026-10-29_verified.md`.
 
 ## START HERE — owner brief 2026-10-30 (branch `arena/68c7ea9e-gemsdoe25`)
 
@@ -29,7 +31,7 @@ Owner-reported scores; organizer receipts: none. "Previous submission" = listed 
 | Site | File to download (owner mirror) | Owner score | Portal format | Previous submission? | Unique among the nine? | Estimated score | OK to download AND submit? |
 |---|---|---|---|---|---|---|---|
 | GEMSDOE24 | `gems24-h25-1-dotted-h19-5-d1-5-…-nan.tif` | 0.2477 | Fails (NaN) | Yes | No (Jaccard 0.979, GEMSDOE27) | NOT ESTIMATED | **NO** |
-| GEMSDOE25 | `gems24-h25-1-dotted-h19-5-d2-8-…-nan.tif` | 0.2600 | Fails (NaN) | Yes | No (exact twin of GEMSDOE30) | NOT ESTIMATED | **NO** |
+| GEMSDOE25 | `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif` | 0.2600 | Fails (NaN) | Yes | No (exact twin of GEMSDOE30) | NOT ESTIMATED | **NO** |
 | GEMSDOE27 | `gems27-topo-gap-closure-t-v2-on-d1-5-…-nan.tif` | 0.2449 | Fails (NaN) | Yes | No (Jaccard 0.979, GEMSDOE24) | NOT ESTIMATED | **NO** |
 | GEMSDOE28 | `gems28-h36-1-rung30-blind-r1-…-nan.tif` | 0.2710 | Fails (NaN) | Yes | Yes (max Jaccard 0.557) | NOT ESTIMATED | **NO** |
 | GEMSDOE30 | `gemsdoe30-d28-poisson300m-offcat-44090-…-nanoutside.tif` | 0.2600 | Fails (NaN) | Yes | No (exact twin of GEMSDOE25) | NOT ESTIMATED | **NO** |
@@ -103,7 +105,7 @@ Reproduced 30 Oct with `scripts/audit_r13_lane_bound.py`: the r13 3-px halo leav
 | Site | File to download (owner mirror) | Owner score | Format (portal `[0,1]` check) | Unique? | Estimated organizer score | OK to download AND submit? |
 |---|---|---|---|---|---|---|
 | GEMSDOE24 | `gems24-h25-1-dotted-h19-5-d1-5-…-nan.tif` | 0.2477 | Fails (NaN outside) | No (max Jaccard 0.979, GEMSDOE27) | NOT ESTIMATED | **NO** |
-| GEMSDOE25 | `gems24-h25-1-dotted-h19-5-d2-8-…-nan.tif` (= local `docs/downloads/gems25-dotted-h19-5-d2-8-…-nan.tif`) | 0.2600 | Fails (NaN outside) | No (exact dot-set twin of GEMSDOE30) | NOT ESTIMATED | **NO** |
+| GEMSDOE25 | `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif` (= local mirror) | 0.2600 | Fails (NaN outside) | No (exact dot-set twin of GEMSDOE30) | NOT ESTIMATED | **NO** |
 | GEMSDOE27 | `gems27-topo-gap-closure-t-v2-on-d1-5-…-nan.tif` | 0.2449 | Fails (NaN outside) | No (max Jaccard 0.979, GEMSDOE24) | NOT ESTIMATED | **NO** |
 | GEMSDOE28 | `gems28-h36-1-rung30-blind-r1-…-nan.tif` | 0.2710 | Fails (NaN outside) | Yes vs other tops; previous submission | NOT ESTIMATED | **NO** |
 | GEMSDOE30 | `gemsdoe30-d28-poisson300m-offcat-44090-…-nanoutside.tif` | 0.2600 | Fails (NaN outside) | No (exact dot-set twin of GEMSDOE25) | NOT ESTIMATED | **NO** |
@@ -150,7 +152,7 @@ Ranked, untested hypotheses and the pre-registration path are in [`knowledge/51`
 | Site | Best file (owner mirror) | Owner score | Passes [0,1] portal check | Unique? | Estimated score | OK to download AND submit? |
 |---|---|---|---|---|---|---|
 | GEMSDOE24 | `gems24-h25-1-dotted-h19-5-d1-5-…-nan.tif` | 0.2477 | No (NaN outside) | No (Jaccard 0.980 vs GEMSDOE27) | NOT ESTIMATED | **NO** |
-| GEMSDOE25 | `gems24-h25-1-dotted-h19-5-d2-8-…-nan.tif` | 0.2600 | No (NaN outside) | No (identical dot set to GEMSDOE30) | NOT ESTIMATED | **NO** |
+| GEMSDOE25 | `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif` | 0.2600 | No (NaN outside) | No (identical dot set to GEMSDOE30) | NOT ESTIMATED | **NO** |
 | GEMSDOE27 | `GEMSDOE27__gems27-topo-gap-closure-t-v2-on-d1-5-…-nan.tif` | 0.2449 | No (NaN outside) | No (Jaccard 0.980 vs GEMSDOE24) | NOT ESTIMATED | **NO** |
 | GEMSDOE28 | `GEMSDOE28__gems28-h36-1-rung30-blind-r1-…-nan.tif` | 0.2710 | No (NaN outside) | Yes vs other tops (max Jaccard 0.557) | NOT ESTIMATED | **NO** |
 | GEMSDOE30 | `GEMSDOE30__gemsdoe30-d28-poisson300m-offcat-44090-…-nanoutside.tif` | 0.2600 | No (NaN outside) | No (identical dot set to GEMSDOE25) | NOT ESTIMATED | **NO** |

@@ -1,0 +1,56 @@
+{
+  "session": "arena/dafd16a0-gemsdoe25",
+  "date_utc": "2026-10-31",
+  "hypothesis": "Top planning candidate: cover-conditioned persistence of magnetic phase/zero-crossing boundaries across upward-continuation scales, using RTP/TMI/TMI vertical gradient and depth-to-base surfaces. Not fitted; no lane assignment supplied.",
+  "mechanism": "A fault juxtaposing magnetic basement may preserve a phase boundary under variable sediment cover even where amplitude edges are weak. This is a mechanistic hypothesis, not an established fault signature.",
+  "named_non_fault_process_that_could_mimic_it": "Intrusive or lithologic contacts; survey-line or levelling seams.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "pooled_value": null,
+    "withheld_positive_occurrences": null,
+    "ci95": null,
+    "status": "NOT RUN; no lane assignment, no local data/cache, base Python lacks scientific dependencies"
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_rank_correlation": null,
+    "final_dot_overlap_within_3px": null,
+    "registry_checked": 0,
+    "status": "NOT RUN; no candidate surface or final dots"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "status": "NOT RUN; no candidate raster"
+  },
+  "submission": {
+    "name": null,
+    "note": "No candidate TIFF generated; no holdout, lane, novelty, or submission clearance."
+  },
+  "verdict": "negative",
+  "why_negative": [
+    "The prompt does not identify a single method paragraph as the assigned lane.",
+    "data/ contains only .gitkeep; cached feature stack is absent.",
+    "Scientific dependencies were absent from the base interpreter; pinned requirements were installed into ignored .venv for tests. No data/cache was restored.",
+    "Owner-mirror labels.tif and existing_faults.tif are recorded as byte-identical; organizer interpretation remains unverified.",
+    "No new candidate was fit, no new TIFF was generated, and no competition slot was selected or used."
+  ],
+  "score_context": {
+    "GEMSDOE32_B2": {
+      "class": "OWNER-REPORTED",
+      "value": 0.2778,
+      "organizer_receipt": false
+    },
+    "new_candidate_score_estimate": "NOT ESTIMATED",
+    "leaderboard_claims_in_prompt": [0.3195, 0.4413],
+    "leaderboard_claims_status": "CONFLICTING OWNER-PROVIDED VALUES; not independently verified"
+  },
+  "experiment_budget": {
+    "maximum": 3,
+    "used_this_session": 0,
+    "remaining_by_session_limit": 3,
+    "note": "No test was authorized because the assigned lane is unspecified; this is not permission to bypass gates."
+  }
+}
