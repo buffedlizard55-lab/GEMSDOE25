@@ -58,3 +58,12 @@ Gates:
 * A holdout gain is a proxy result. It does not give an organizer score. The owner-reported 0.2778 and the holdout values are never mixed in one number.
 * A negative on E3 means no lane-compliant file of this size has holdout signal, and the file build is blocked. A negative on E4 means the 0.2778 mechanism is not repulsion.
 * Results are written to `evidence/bound_fill_exp3_2026-10-31.json` and `evidence/repulsion_exp4_2026-10-31.json`. Nothing is tuned after seeing outcomes; a failed arm stays failed.
+
+## 6. E5 (H-CLEAN1): the protocol-clean construction, pre-registered AFTER E3/E4 and before E5 runs (disclosed)
+
+**Disclosure.** E3 showed that the ridge ranking inside the r13 halo is worse than random (F1 < F2). The construction that clears the full registry lane check (`evidence/lane_check_bound_fill_candidate_2026-10-31.json` flagged the first candidate against `pindrop-discovery.tif` at 71.05%) is different: the halo fill ranks halo pixels by **ascending coverage by the other 121 registry rasters**, not by the ridge. E5 is therefore added here, as the third and last experiment of this session, to test that construction before any file is labelled. It was added after E3 and E4 results were known; this is stated, not hidden.
+
+* **Arms (per draw, same `E_h` as §3):** C1 = `E_h` plus top-`(K − |E_h|)` halo pixels (not visible) by **ascending** `kother` (count of the other 121 registry halos covering the pixel; ties broken by rng seed `5000 + 10·seed + fold`). C2 = `E_h` plus random halo pixels (rng seed `6000 + 10·seed + fold`). C3 = `K` uniform random pixels from `E` (floor, rng seed `7000 + 10·seed + fold`).
+* **Draws:** development = seeds 140–141 (not virgin). **Virgin confirmation = seeds 160–163** (never used: 150–153 spent on E3/E4).
+* **Gates:** G0 canary as §5 (AUC ≤ 0.90). G1 (dev): C1 − C2 > 0 with CI lower > 0; C1 − C3 > 0 with CI lower > 0. G2 (virgin 160–163): the same two tests. Verdict `clean-construction-holdout-signal` if all pass, else `negative`.
+* **Use of the verdict.** A pass allows labelling the protocol-clean file as holdout-positive (still not organizer-confirmed, still not a slot approval). A negative keeps the file as a unique, format-valid, **NOT cleared** deliverable.
