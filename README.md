@@ -1,5 +1,6 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
+
 ## START HERE — 31 OCTOBER 2026 (branch `arena/66429378-gemsdoe25`) — a unique file is ready
 
 > Read this before anything below. Earlier sections (30 Oct, 29 Oct, 28 Oct …) are history and their
@@ -8,6 +9,16 @@
 **OK TO DOWNLOAD AND SUBMIT: YES — for one file.** Estimated organizer score: **0.44** (range
 0.35–0.55). It is a **MODEL ESTIMATE**, not a score and not organizer-confirmed. Nothing has been
 uploaded; the agent never uploads. Spending a weekly slot is the owner's decision.
+
+> **IR-31-CROSS-SESSION-VERDICT-CONFLICT — read this before acting.** A parallel session on branch
+> `arena/967c20f7-gemsdoe25`, merged into `main` the same day, reached the **opposite** bottom line
+> ("no file is cleared for a slot. Do not submit any file from this session", file
+> `gems25-h-clean1-protocol-clean-k21700-noslot-20261031-a5489f5c6886-zero.tif`, 21,700 dots). The two
+> sessions disagree because they applied different gates: that session applied the
+> hide-and-recover holdout strictly, this one overrides it on the documented ground that the holdout
+> ranks `GEMSDOE32-B2` — the live leader at 0.2778 — **last** of three files. Both sections are kept
+> verbatim below; the owner must pick a gate before spending a slot. This is an unresolved
+> irregularity, not a settled answer.
 
 ### One-click download
 
@@ -85,6 +96,72 @@ the only candidate whose estimated gain is corroborated by two independent metho
   (44,090 dots, 12 px buffer; higher model estimate 0.496–0.526 but no live anchor at that geometry).
 
 
+
+---
+
+## START HERE — owner brief 2026-10-31 (branch `arena/967c20f7-gemsdoe25`, read first)
+
+**Executive summary page:** [docs/executive-summary-2026-10-31.html](docs/executive-summary-2026-10-31.html) (GitHub Pages: `/executive-summary-2026-10-31.html`). It is generated from the evidence files by `scripts/build_executive_summary_2026_10_31.py`.
+
+**Bottom line: no file is cleared for a slot. Do not submit any file from this session.**
+
+| Question | Answer | Evidence class |
+|---|---|---|
+| Unique file to download (for inspection only) | [`docs/downloads/gems25-h-clean1-protocol-clean-k21700-noslot-20261031-a5489f5c6886-zero.tif`](docs/downloads/gems25-h-clean1-protocol-clean-k21700-noslot-20261031-a5489f5c6886-zero.tif) (+ `.zip`), SHA-256 `35fc2a78…`, content_id `a5489f5c6886`, 21,700 dots, zeros outside | COMPUTED |
+| OK to download AND submit? | **NO** (`okay_to_submit: false`). Format passes locally. Holdout is far below random. Lane audit is UNVERIFIED (IR-31-GEOM-HORSE-GRID). | — |
+| Estimated organizer score | **NOT ESTIMATED** (holdout 0.0042 confirm, CI 0.0023–0.0061; random floor 0.0327; HOLDOUT-DTI) | HOLDOUT-DTI |
+| Highest owner-reported portal-valid score | GEMSDOE32, **0.2778** (zeros outside, already submitted, cannot be copied). Owner-reported, not organizer-confirmed. | OWNER-REPORTED |
+| Can a unique file beat 0.2778? | **Not shown.** Three pre-registered experiments this session were all negative (E3, E4, E5). | HOLDOUT-DTI |
+| Nine-site status | 0 of 9 OK to download and submit. Each top file is non-unique under the lane rule (98–100% of its dots within 3 px of a denser site's dots). | COMPUTED |
+
+**Nine-site table** (`evidence/nine_site_summary_2026-10-31.json`; scores are OWNER-REPORTED; estimated score NOT ESTIMATED for all):
+
+| Site | File | Owner score | Unique among nine? | OK to download & submit? |
+|---|---|---|---|---|
+| GEMSDOE24 | gems24-h25-1-dotted-h19-5-d1-5-…-nan.tif | 0.2477 | No | NO |
+| GEMSDOE25 | gems24-h25-1-dotted-h19-5-d2-8-…-nan.tif (SHA-pinned mirror name; `main` also cites `gems25-dotted-…`, see IR-31-NAME-VARIANT) | 0.2600 | No (= GEMSDOE30 dot set) | NO |
+| GEMSDOE27 | gems27-topo-gap-closure-t-v2-on-d1-5-…-nan.tif | 0.2449 | No | NO |
+| GEMSDOE28 | gems28-h36-1-rung30-blind-r1-…-nan.tif | 0.2710 | No | NO |
+| GEMSDOE30 | gemsdoe30-d28-poisson300m-offcat-44090-…-nanoutside.tif | 0.2600 | No | NO |
+| GEMSDOE31 | gemsdoe31-h27-4-solo-d28-…-nan.tif | 0.2708 | No | NO |
+| GEMSDOE32 | gemsdoe32-h33-h33-2-b2-…-zeros.tif | 0.2778 | No; already submitted | NO |
+| GEMSDOE33 | GEMSDOE33-h33d-analog-tip-stepover-r30-…-nanoutside.tif | 0.2632 | No | NO |
+| GEMSDOE36 | gemsdoe36-anderson-geothermal-pinn-38854-…-zeros.tif | 0.2750 | No; already submitted | NO |
+
+**Why the uniqueness verdict differs from the older table:** the lane rule in this brief is an asymmetric within-3 px share (a file is a duplicate if more than 70% of its dots are within 3 px of one registry raster's dots). The older table used Jaccard (GEMSDOE28 max 0.557). Under the rule GEMSDOE28 is 100% within 3 px of GEMSDOE24, because GEMSDOE24 is denser. See IR-31-UNIQUENESS-METRIC.
+
+**What was done this session:** restored data (SHA-256 pinned); registry rasters restored by git transport (29 pins); built a reproducible registry 3-px halo cache (`scripts/build_registry_halo_cache.py`); pre-registered and ran E3 (bound-fill, negative), E4 (repulsion vs thinning, `thinning-explains-B2`), and E5 (protocol-clean construction, negative: C1 0.0042 confirm vs C2 0.0282 random halo fill); removed the first lane-failing candidate (bf1, pindrop 71.05%); built and independently verified the clean candidate; ran the full lane check; generated the nine-site table and the executive page.
+
+**New hypotheses (none validated; ranked in `knowledge/57_session_review_2026-10-31.md`):** H-HF1 (USGS heat-flow residual, BLOCKED: sciencebase.gov unreachable), H-REG1 (registry coverage as a diagnostic only), H-GRAD1 (NBMG temperature-gradient map, BLOCKED), H-QF1 (USGS Quaternary Fault and Fold DB, low expected gain).
+
+**Limitations (read before any submission decision):**
+1. No organizer receipts exist. Every score in the nine-site table is owner-reported. Organizer-confirmed scores: none.
+2. The holdout proxy is off-scale (0.004–0.036 for all arms, versus 0.24–0.28 owner-reported). It cannot rank files for the leaderboard.
+3. The portal's handling of zeros outside the footprint is unverified (inferred from owner-reported zeros-outside files).
+4. The lane audit is UNVERIFIED for the clean candidate because `geom-horse-ensemble.tif` is on a different geotransform. Fail-closed, not cleared.
+5. The 70% lane rule may not apply to the competition (owner decision).
+6. Budget: this session ran E3, E4, and E5 (plus E1 and E2 from earlier sessions). The stated budget is 3 experiments or 2 hours. Time used is about 1.5 hours. Owner decision needed on whether the cap was exceeded.
+7. The leaderboard high score conflicts across sources (0.4413, 0.3195, 0.2778). Check the live DrivenData leaderboard manually.
+8. The sandbox cannot reach drivendata.org, sciencebase.gov, or geothermaldata.org. Only GitHub and package hosts are allowed. Competition pages were not re-fetched.
+
+**Next steps (for the owner):**
+1. Decide the lane-rule scope for the competition, and the uniqueness definition (IR-31-UNIQUENESS-METRIC).
+2. Resolve `geom-horse-ensemble.tif` on its grid, or confirm that a different reference is correct (IR-31-GEOM-HORSE-GRID).
+3. Supply pinned copies of the USGS heat-flow ZIP (DOI 10.5066/P9BZPVUC) or the NBMG gradient grid, or allow those hosts. Then pre-register H-HF1 or H-GRAD1 before running.
+4. Check the live leaderboard and organizer receipts for every scored file (IR-31-NAN-SCORED, IR-31-LEADERBOARD-CONFLICT).
+5. Do not spend a submission slot unless a unique file beats its paired comparator on fresh virgin seeds and passes the lane gate on all 122 rasters.
+
+Full run card: `evidence/run_card_967c20f7_2026-10-31.json`. Review passes: `registry/review_passes_967c20f7_2026-10-31.json`. Irregularities: `registry/irregularities.json` (IR-31-*).
+
+---
+
+
+## START HERE — current review 2026-10-31
+
+**Current verdict: NO TIFF is cleared for download and submission; new score estimate: NOT ESTIMATED.** No lane was assigned, `data/` contains only `.gitkeep`, no experiment or submission TIFF was produced, and the organizer-side meaning of the mirrored label/catalogue identity is unresolved. Read the [31 Oct executive review](docs/review-2026-10-31.html), [full findings and ranked hypotheses](knowledge/56_repo_review_2026-10-31.md), and [negative JSON run card](registry/run_card_session_2026-10-31.json) before continuing. Related initial snapshot: [REVIEW_2026-10-31.md](REVIEW_2026-10-31.md); it records the earlier base checkout and likewise makes no submission claim.
+
+**Correction:** the GEMSDOE25 historical D2.8 filename is `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif` (not `gems24-...`); see `knowledge/52_repo_review_2026-10-29_verified.md`.
+
 ## START HERE — owner brief 2026-10-30 (branch `arena/68c7ea9e-gemsdoe25`)
 
 > Read this section first every session. Standing rule: **Maximize P(Win)** and **Own the Outcome** decide tradeoffs, but no gate is bypassed to reach a number. Normalized brief (not a verbatim transcript; see IR-30-PROMPT-NORMALIZED). Full executive summary: [`docs/owner-brief-2026-10-30.html`](docs/owner-brief-2026-10-30.html).
@@ -110,7 +187,7 @@ Owner-reported scores; organizer receipts: none. "Previous submission" = listed 
 | Site | File to download (owner mirror) | Owner score | Portal format | Previous submission? | Unique among the nine? | Estimated score | OK to download AND submit? |
 |---|---|---|---|---|---|---|---|
 | GEMSDOE24 | `gems24-h25-1-dotted-h19-5-d1-5-…-nan.tif` | 0.2477 | Fails (NaN) | Yes | No (Jaccard 0.979, GEMSDOE27) | NOT ESTIMATED | **NO** |
-| GEMSDOE25 | `gems24-h25-1-dotted-h19-5-d2-8-…-nan.tif` | 0.2600 | Fails (NaN) | Yes | No (exact twin of GEMSDOE30) | NOT ESTIMATED | **NO** |
+| GEMSDOE25 | `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif` | 0.2600 | Fails (NaN) | Yes | No (exact twin of GEMSDOE30) | NOT ESTIMATED | **NO** |
 | GEMSDOE27 | `gems27-topo-gap-closure-t-v2-on-d1-5-…-nan.tif` | 0.2449 | Fails (NaN) | Yes | No (Jaccard 0.979, GEMSDOE24) | NOT ESTIMATED | **NO** |
 | GEMSDOE28 | `gems28-h36-1-rung30-blind-r1-…-nan.tif` | 0.2710 | Fails (NaN) | Yes | Yes (max Jaccard 0.557) | NOT ESTIMATED | **NO** |
 | GEMSDOE30 | `gemsdoe30-d28-poisson300m-offcat-44090-…-nanoutside.tif` | 0.2600 | Fails (NaN) | Yes | No (exact twin of GEMSDOE25) | NOT ESTIMATED | **NO** |
@@ -184,7 +261,7 @@ Reproduced 30 Oct with `scripts/audit_r13_lane_bound.py`: the r13 3-px halo leav
 | Site | File to download (owner mirror) | Owner score | Format (portal `[0,1]` check) | Unique? | Estimated organizer score | OK to download AND submit? |
 |---|---|---|---|---|---|---|
 | GEMSDOE24 | `gems24-h25-1-dotted-h19-5-d1-5-…-nan.tif` | 0.2477 | Fails (NaN outside) | No (max Jaccard 0.979, GEMSDOE27) | NOT ESTIMATED | **NO** |
-| GEMSDOE25 | `gems24-h25-1-dotted-h19-5-d2-8-…-nan.tif` (= local `docs/downloads/gems25-dotted-h19-5-d2-8-…-nan.tif`) | 0.2600 | Fails (NaN outside) | No (exact dot-set twin of GEMSDOE30) | NOT ESTIMATED | **NO** |
+| GEMSDOE25 | `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif` (= local mirror) | 0.2600 | Fails (NaN outside) | No (exact dot-set twin of GEMSDOE30) | NOT ESTIMATED | **NO** |
 | GEMSDOE27 | `gems27-topo-gap-closure-t-v2-on-d1-5-…-nan.tif` | 0.2449 | Fails (NaN outside) | No (max Jaccard 0.979, GEMSDOE24) | NOT ESTIMATED | **NO** |
 | GEMSDOE28 | `gems28-h36-1-rung30-blind-r1-…-nan.tif` | 0.2710 | Fails (NaN outside) | Yes vs other tops; previous submission | NOT ESTIMATED | **NO** |
 | GEMSDOE30 | `gemsdoe30-d28-poisson300m-offcat-44090-…-nanoutside.tif` | 0.2600 | Fails (NaN outside) | No (exact dot-set twin of GEMSDOE25) | NOT ESTIMATED | **NO** |
@@ -231,7 +308,7 @@ Ranked, untested hypotheses and the pre-registration path are in [`knowledge/51`
 | Site | Best file (owner mirror) | Owner score | Passes [0,1] portal check | Unique? | Estimated score | OK to download AND submit? |
 |---|---|---|---|---|---|---|
 | GEMSDOE24 | `gems24-h25-1-dotted-h19-5-d1-5-…-nan.tif` | 0.2477 | No (NaN outside) | No (Jaccard 0.980 vs GEMSDOE27) | NOT ESTIMATED | **NO** |
-| GEMSDOE25 | `gems24-h25-1-dotted-h19-5-d2-8-…-nan.tif` | 0.2600 | No (NaN outside) | No (identical dot set to GEMSDOE30) | NOT ESTIMATED | **NO** |
+| GEMSDOE25 | `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif` | 0.2600 | No (NaN outside) | No (identical dot set to GEMSDOE30) | NOT ESTIMATED | **NO** |
 | GEMSDOE27 | `GEMSDOE27__gems27-topo-gap-closure-t-v2-on-d1-5-…-nan.tif` | 0.2449 | No (NaN outside) | No (Jaccard 0.980 vs GEMSDOE24) | NOT ESTIMATED | **NO** |
 | GEMSDOE28 | `GEMSDOE28__gems28-h36-1-rung30-blind-r1-…-nan.tif` | 0.2710 | No (NaN outside) | Yes vs other tops (max Jaccard 0.557) | NOT ESTIMATED | **NO** |
 | GEMSDOE30 | `GEMSDOE30__gemsdoe30-d28-poisson300m-offcat-44090-…-nanoutside.tif` | 0.2600 | No (NaN outside) | No (identical dot set to GEMSDOE25) | NOT ESTIMATED | **NO** |

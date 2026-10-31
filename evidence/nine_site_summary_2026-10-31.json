@@ -1,0 +1,185 @@
+{
+ "generated_utc": "2026-10-31T01:13:41+00:00",
+ "script": "scripts/build_nine_site_summary.py",
+ "evidence_class": "COMPUTED dots/format/overlap; OWNER-REPORTED scores (brief); organizer receipts: none",
+ "sites": {
+  "GEMSDOE24": {
+   "file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+   "owner_score": 0.2477,
+   "previously_submitted_per_brief": true,
+   "dots": 60069,
+   "outside": "nan",
+   "portal_format_pass_hypothesis": false,
+   "within_200m_of_catalogue_pct": 14.6,
+   "max_within3px_share_of_its_dots_to_another_top_file_pct": 100.0,
+   "nearest_other_site": "GEMSDOE25",
+   "max_jaccard_to_another_top_file": 0.9795,
+   "unique_among_nine": false,
+   "estimated_organizer_score": "NOT ESTIMATED",
+   "ok_to_download_and_submit": "NO",
+   "blocking_reasons": [
+    "NaN outside footprint (portal rejected NaN per user report)",
+    "already submitted (copying a previous submission is not allowed)",
+    "overlaps GEMSDOE25 (100.0% of dots within 3 px)"
+   ]
+  },
+  "GEMSDOE25": {
+   "file": "gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "owner_score": 0.26,
+   "previously_submitted_per_brief": true,
+   "dots": 44090,
+   "outside": "nan",
+   "portal_format_pass_hypothesis": false,
+   "within_200m_of_catalogue_pct": 14.6,
+   "max_within3px_share_of_its_dots_to_another_top_file_pct": 100.0,
+   "nearest_other_site": "GEMSDOE24",
+   "max_jaccard_to_another_top_file": 1.0,
+   "unique_among_nine": false,
+   "estimated_organizer_score": "NOT ESTIMATED",
+   "ok_to_download_and_submit": "NO",
+   "blocking_reasons": [
+    "NaN outside footprint (portal rejected NaN per user report)",
+    "already submitted (copying a previous submission is not allowed)",
+    "overlaps GEMSDOE24 (100.0% of dots within 3 px)"
+   ]
+  },
+  "GEMSDOE27": {
+   "file": "GEMSDOE27__gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+   "owner_score": 0.2449,
+   "previously_submitted_per_brief": true,
+   "dots": 61328,
+   "outside": "nan",
+   "portal_format_pass_hypothesis": false,
+   "within_200m_of_catalogue_pct": 14.47,
+   "max_within3px_share_of_its_dots_to_another_top_file_pct": 98.02,
+   "nearest_other_site": "GEMSDOE24",
+   "max_jaccard_to_another_top_file": 0.9795,
+   "unique_among_nine": false,
+   "estimated_organizer_score": "NOT ESTIMATED",
+   "ok_to_download_and_submit": "NO",
+   "blocking_reasons": [
+    "NaN outside footprint (portal rejected NaN per user report)",
+    "already submitted (copying a previous submission is not allowed)",
+    "overlaps GEMSDOE24 (98.02% of dots within 3 px)"
+   ]
+  },
+  "GEMSDOE28": {
+   "file": "GEMSDOE28__gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+   "owner_score": 0.271,
+   "previously_submitted_per_brief": true,
+   "dots": 37660,
+   "outside": "nan",
+   "portal_format_pass_hypothesis": false,
+   "within_200m_of_catalogue_pct": 6.25,
+   "max_within3px_share_of_its_dots_to_another_top_file_pct": 100.0,
+   "nearest_other_site": "GEMSDOE24",
+   "max_jaccard_to_another_top_file": 0.557,
+   "unique_among_nine": false,
+   "estimated_organizer_score": "NOT ESTIMATED",
+   "ok_to_download_and_submit": "NO",
+   "blocking_reasons": [
+    "NaN outside footprint (portal rejected NaN per user report)",
+    "already submitted (copying a previous submission is not allowed)",
+    "overlaps GEMSDOE24 (100.0% of dots within 3 px)"
+   ]
+  },
+  "GEMSDOE30": {
+   "file": "GEMSDOE30__gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif",
+   "owner_score": 0.26,
+   "previously_submitted_per_brief": true,
+   "dots": 44090,
+   "outside": "nan",
+   "portal_format_pass_hypothesis": false,
+   "within_200m_of_catalogue_pct": 14.6,
+   "max_within3px_share_of_its_dots_to_another_top_file_pct": 100.0,
+   "nearest_other_site": "GEMSDOE24",
+   "max_jaccard_to_another_top_file": 1.0,
+   "unique_among_nine": false,
+   "estimated_organizer_score": "NOT ESTIMATED",
+   "ok_to_download_and_submit": "NO",
+   "blocking_reasons": [
+    "NaN outside footprint (portal rejected NaN per user report)",
+    "already submitted (copying a previous submission is not allowed)",
+    "overlaps GEMSDOE24 (100.0% of dots within 3 px)"
+   ]
+  },
+  "GEMSDOE31": {
+   "file": "GEMSDOE31__gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+   "owner_score": 0.2708,
+   "previously_submitted_per_brief": true,
+   "dots": 40199,
+   "outside": "nan",
+   "portal_format_pass_hypothesis": false,
+   "within_200m_of_catalogue_pct": 6.33,
+   "max_within3px_share_of_its_dots_to_another_top_file_pct": 100.0,
+   "nearest_other_site": "GEMSDOE24",
+   "max_jaccard_to_another_top_file": 0.9367,
+   "unique_among_nine": false,
+   "estimated_organizer_score": "NOT ESTIMATED",
+   "ok_to_download_and_submit": "NO",
+   "blocking_reasons": [
+    "NaN outside footprint (portal rejected NaN per user report)",
+    "already submitted (copying a previous submission is not allowed)",
+    "overlaps GEMSDOE24 (100.0% of dots within 3 px)"
+   ]
+  },
+  "GEMSDOE32": {
+   "file": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+   "owner_score": 0.2778,
+   "previously_submitted_per_brief": true,
+   "dots": 37654,
+   "outside": "zero",
+   "portal_format_pass_hypothesis": true,
+   "within_200m_of_catalogue_pct": 0.0,
+   "max_within3px_share_of_its_dots_to_another_top_file_pct": 100.0,
+   "nearest_other_site": "GEMSDOE24",
+   "max_jaccard_to_another_top_file": 0.9691,
+   "unique_among_nine": false,
+   "estimated_organizer_score": "NOT ESTIMATED",
+   "ok_to_download_and_submit": "NO",
+   "blocking_reasons": [
+    "already submitted (copying a previous submission is not allowed)",
+    "overlaps GEMSDOE24 (100.0% of dots within 3 px)"
+   ]
+  },
+  "GEMSDOE33": {
+   "file": "GEMSDOE33__GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
+   "owner_score": 0.2632,
+   "previously_submitted_per_brief": true,
+   "dots": 41865,
+   "outside": "nan",
+   "portal_format_pass_hypothesis": false,
+   "within_200m_of_catalogue_pct": 9.3,
+   "max_within3px_share_of_its_dots_to_another_top_file_pct": 99.71,
+   "nearest_other_site": "GEMSDOE24",
+   "max_jaccard_to_another_top_file": 0.6957,
+   "unique_among_nine": false,
+   "estimated_organizer_score": "NOT ESTIMATED",
+   "ok_to_download_and_submit": "NO",
+   "blocking_reasons": [
+    "NaN outside footprint (portal rejected NaN per user report)",
+    "already submitted (copying a previous submission is not allowed)",
+    "overlaps GEMSDOE24 (99.71% of dots within 3 px)"
+   ]
+  },
+  "GEMSDOE36": {
+   "file": "GEMSDOE36__gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+   "owner_score": 0.275,
+   "previously_submitted_per_brief": true,
+   "dots": 38854,
+   "outside": "zero",
+   "portal_format_pass_hypothesis": true,
+   "within_200m_of_catalogue_pct": 0.0,
+   "max_within3px_share_of_its_dots_to_another_top_file_pct": 97.58,
+   "nearest_other_site": "GEMSDOE27",
+   "max_jaccard_to_another_top_file": 0.9691,
+   "unique_among_nine": false,
+   "estimated_organizer_score": "NOT ESTIMATED",
+   "ok_to_download_and_submit": "NO",
+   "blocking_reasons": [
+    "already submitted (copying a previous submission is not allowed)",
+    "overlaps GEMSDOE27 (97.58% of dots within 3 px)"
+   ]
+  }
+ }
+}

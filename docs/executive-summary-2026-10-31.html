@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive summary (31 Oct 2026): can we submit a file?</title>
+<style>
+body{font-family:system-ui,Segoe UI,Roboto,sans-serif;max-width:1180px;margin:24px auto;padding:0 16px;color:#1b1f24;line-height:1.5}
+h1{font-size:1.7rem} h2{margin-top:2rem;border-bottom:1px solid #d0d7de;padding-bottom:.3rem}
+.banner{border:3px solid #b42318;background:#fef3f2;padding:14px 18px;border-radius:8px;font-size:1.05rem}
+.ok{border-color:#067647;background:#ecfdf3}
+table{border-collapse:collapse;width:100%;font-size:.9rem;margin:10px 0}
+th,td{border:1px solid #d0d7de;padding:6px 8px;vertical-align:top;text-align:left}
+th{background:#f6f8fa} td.no{color:#b42318;font-weight:700}
+code{font-size:.82rem;word-break:break-all} small{color:#57606a}
+.tag{display:inline-block;padding:1px 6px;border-radius:4px;background:#eaeef2;font-size:.78rem;margin-right:4px}
+</style></head><body>
+<p><a href="index.html">&larr; site home</a> · <a href="../README.md">README (owner brief)</a></p>
+<h1>Executive summary: can we download and submit a file? (31 Oct 2026)</h1>
+
+<div class="banner"><strong>Answer: NO file is cleared for a leaderboard slot.</strong>
+<br>A unique, format-valid TIF is provided for download so you can inspect the file, but its holdout result is <strong>far below random</strong>, so it is <strong>not a submission candidate</strong>.
+<br>The highest owner-reported score that passes the portal's range rule (<strong>GEMSDOE32, 0.2778</strong>) is a file that was <strong>already submitted</strong>. Copying it is not allowed, and no unique file has evidence of beating it.</div>
+
+<h2>1. Download and submit status (one table)</h2>
+<table>
+<tr><th>Item</th><th>File to download</th><th>Score</th><th>Estimated score</th><th>Unique?</th><th>OK to download AND submit?</th><th>Why</th></tr>
+<tr><td><strong>NEW unique TIF</strong> (this session)</td>
+<td><a href="downloads/gems25-h-clean1-protocol-clean-k21700-noslot-20261031-a5489f5c6886-zero.tif"><code>gems25-h-clean1-protocol-clean-k21700-noslot-20261031-a5489f5c6886-zero.tif</code></a><br><small>(also a .zip with the same bytes)</small></td>
+<td>none yet</td><td>NOT ESTIMATED<br><small>holdout DTI 0.0042 (E5, 95% CI 0.0023–0.0061) vs random floor 0.0327</small></td>
+<td>Yes vs all 120 readable registry rasters (max 69.98% of dots within 3 px, limit 70%; max |rho| 0.54). <strong>Lane audit UNVERIFIED</strong> (one registry raster on a different grid, see §6).</td>
+<td class="no">Download: as a unique test file only.<br>Submit: NO</td>
+<td><small>Format PASS (independent verifier; see §4). Holdout far below random. Not cleared (AGENTS rule 5).</small></td></tr>
+<tr><td><strong>GEMSDOE24</strong></td><td><code>gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</code></td><td>0.2477<br><small>OWNER-REPORTED</small></td><td>NOT ESTIMATED</td><td>No (max 100.0% of dots within 3 px of GEMSDOE25)</td><td class='no'>NO</td><td><small>NaN outside footprint (portal rejected NaN per user report); already submitted (copying a previous submission is not allowed); overlaps GEMSDOE25 (100.0% of dots within 3 px)</small></td></tr><tr><td><strong>GEMSDOE25</strong></td><td><code>gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</code></td><td>0.2600<br><small>OWNER-REPORTED</small></td><td>NOT ESTIMATED</td><td>No (max 100.0% of dots within 3 px of GEMSDOE24)</td><td class='no'>NO</td><td><small>NaN outside footprint (portal rejected NaN per user report); already submitted (copying a previous submission is not allowed); overlaps GEMSDOE24 (100.0% of dots within 3 px)</small></td></tr><tr><td><strong>GEMSDOE27</strong></td><td><code>GEMSDOE27__gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</code></td><td>0.2449<br><small>OWNER-REPORTED</small></td><td>NOT ESTIMATED</td><td>No (max 98.0% of dots within 3 px of GEMSDOE24)</td><td class='no'>NO</td><td><small>NaN outside footprint (portal rejected NaN per user report); already submitted (copying a previous submission is not allowed); overlaps GEMSDOE24 (98.02% of dots within 3 px)</small></td></tr><tr><td><strong>GEMSDOE28</strong></td><td><code>GEMSDOE28__gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif</code></td><td>0.2710<br><small>OWNER-REPORTED</small></td><td>NOT ESTIMATED</td><td>No (max 100.0% of dots within 3 px of GEMSDOE24)</td><td class='no'>NO</td><td><small>NaN outside footprint (portal rejected NaN per user report); already submitted (copying a previous submission is not allowed); overlaps GEMSDOE24 (100.0% of dots within 3 px)</small></td></tr><tr><td><strong>GEMSDOE30</strong></td><td><code>GEMSDOE30__gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif</code></td><td>0.2600<br><small>OWNER-REPORTED</small></td><td>NOT ESTIMATED</td><td>No (max 100.0% of dots within 3 px of GEMSDOE24)</td><td class='no'>NO</td><td><small>NaN outside footprint (portal rejected NaN per user report); already submitted (copying a previous submission is not allowed); overlaps GEMSDOE24 (100.0% of dots within 3 px)</small></td></tr><tr><td><strong>GEMSDOE31</strong></td><td><code>GEMSDOE31__gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif</code></td><td>0.2708<br><small>OWNER-REPORTED</small></td><td>NOT ESTIMATED</td><td>No (max 100.0% of dots within 3 px of GEMSDOE24)</td><td class='no'>NO</td><td><small>NaN outside footprint (portal rejected NaN per user report); already submitted (copying a previous submission is not allowed); overlaps GEMSDOE24 (100.0% of dots within 3 px)</small></td></tr><tr><td><strong>GEMSDOE32</strong></td><td><code>GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code></td><td>0.2778<br><small>OWNER-REPORTED</small></td><td>NOT ESTIMATED</td><td>No (max 100.0% of dots within 3 px of GEMSDOE24)</td><td class='no'>NO</td><td><small>already submitted (copying a previous submission is not allowed); overlaps GEMSDOE24 (100.0% of dots within 3 px)</small></td></tr><tr><td><strong>GEMSDOE33</strong></td><td><code>GEMSDOE33__GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif</code></td><td>0.2632<br><small>OWNER-REPORTED</small></td><td>NOT ESTIMATED</td><td>No (max 99.7% of dots within 3 px of GEMSDOE24)</td><td class='no'>NO</td><td><small>NaN outside footprint (portal rejected NaN per user report); already submitted (copying a previous submission is not allowed); overlaps GEMSDOE24 (99.71% of dots within 3 px)</small></td></tr><tr><td><strong>GEMSDOE36</strong></td><td><code>GEMSDOE36__gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</code></td><td>0.2750<br><small>OWNER-REPORTED</small></td><td>NOT ESTIMATED</td><td>No (max 97.6% of dots within 3 px of GEMSDOE27)</td><td class='no'>NO</td><td><small>already submitted (copying a previous submission is not allowed); overlaps GEMSDOE27 (97.58% of dots within 3 px)</small></td></tr>
+</table>
+<p><small>Nine-site rows: the files live on the owner mirrors (links in the README brief). OK-to-submit count: <strong>0 of 9</strong>. Scores are OWNER-REPORTED (no organizer receipt exists). Source: <code>evidence/nine_site_summary_2026-10-31.json</code>.</small></p>
+
+<h2>2. Why GEMSDOE32 (0.2778) scored highest</h2>
+<p><span class="tag">COMPUTED</span> The file is the end of a subset chain. Each step removes dots near the labelled catalogue:</p>
+<ul>
+<li>D2.8 (GEMSDOE30 / GEMSDOE25, 44,090 dots): 14.6% of dots within 200 m of the catalogue, owner-reported 0.2600.</li>
+<li>h27-4 (GEMSDOE31, 40,199 dots): 6.33%, owner-reported 0.2708.</li>
+<li>B2 (GEMSDOE32, 37,654 dots): <strong>0.0%</strong> within 200 m, owner-reported 0.2778. It is also <strong>zeros outside the footprint</strong>, the form the portal accepts.</li>
+</ul>
+<p><span class="tag">INFERENCE</span> DTI (src/gems25/metric.py) weights false positives at alpha = 0.2 and false negatives at beta = 0.8, so a wrong dot costs less than a missed fault. Removing dots that sit near the catalogue can therefore raise DTI when they are false positives. <strong>Not proven:</strong> the removal could be a density effect (fewer dots), and the 0.0070 gain over the parent is within what one leaderboard round can move. Our holdout (E4) cannot separate the two: repulsion minus density-matched thinning = -0.00009 (dev) and -0.00010 (confirm), both CIs spanning zero.</p>
+
+<h2>3. Can we beat 0.2778? Not shown.</h2>
+<p>Three pre-registered experiments ran this session (budget: 3). All three are negative on the holdout proxy. Labels: <span class="tag">HOLDOUT-DTI</span> (evaluator <code>gems25.metric.dti_binary</code>, pooled over draws; 95% CI from the shared bootstrap helper <code>boot</code>, 10,000 resamples; withheld positives shown).</p>
+<h3>E3 (knowledge/56 §3): lane-compliant bound-fill</h3>
+<table><tr><th>Arm</th><th>Construction</th><th>Dev DTI [95% CI]</th><th>Withheld (dev)</th><th>Virgin confirm DTI [95% CI]</th><th>Withheld (conf)</th></tr>
+<tr><td>F1</td><td>Lane bound-fill, ridge-ranked halo (pre-registered candidate)</td><td>0.01402 [0.00823, 0.01909]</td><td>23,923</td><td>0.01345 [0.01013, 0.01655]</td><td>48,281</td></tr>
+<tr><td>F2</td><td>Lane bound-fill, random halo (control)</td><td>0.02736 [0.02263, 0.03162]</td><td>23,923</td><td>0.03035 [0.02731, 0.03315]</td><td>48,281</td></tr>
+<tr><td>F3</td><td>Top-K ridge, not lane-compliant (reference)</td><td>0.01282 [0.00795, 0.01677]</td><td>23,923</td><td>0.01250 [0.00972, 0.01519]</td><td>48,281</td></tr>
+<tr><td>F4</td><td>Random K over footprint (floor)</td><td>0.03185 [0.02734, 0.03761]</td><td>23,923</td><td>0.03229 [0.02941, 0.03520]</td><td>48,281</td></tr>
+</table>
+<p><strong>Verdict: negative.</strong> The ridge ranking inside the r13 halo is worse than random (F1 − F2 = -0.01335, CI excludes zero). Canary: ridge AUC 0.49–0.53, so the ridge carries no measured holdout skill. Gate G0 passed.</p>
+<h3>E4 (knowledge/56 §4): B2 mechanism control (repulsion vs thinning)</h3>
+<table><tr><th>Arm</th><th>Construction</th><th>Dev DTI [95% CI]</th><th>Withheld (dev)</th><th>Virgin confirm DTI [95% CI]</th><th>Withheld (conf)</th></tr>
+<tr><td>P0</td><td>Base top-37,654 ridge</td><td>0.01770 [0.01171, 0.02229]</td><td>23,923</td><td>0.01796 [0.01414, 0.02137]</td><td>48,281</td></tr>
+<tr><td>P1</td><td>Base minus dots within 200 m of visible catalogue (B2-style)</td><td>0.01763 [0.01163, 0.02223]</td><td>23,923</td><td>0.01779 [0.01406, 0.02108]</td><td>48,281</td></tr>
+<tr><td>P2</td><td>Density-matched random thinning</td><td>0.01772 [0.01172, 0.02233]</td><td>23,923</td><td>0.01789 [0.01416, 0.02121]</td><td>48,281</td></tr>
+<tr><td>P3</td><td>Repulsion with count refill</td><td>0.01791 [0.01203, 0.02245]</td><td>23,923</td><td>0.01791 [0.01417, 0.02119]</td><td>48,281</td></tr>
+</table>
+<p><strong>Verdict: thinning-explains-B2 (no repulsion beyond density).</strong> Note: E4 reused confirmation seeds 150–153, which E3 had already used in this session (disclosed in the review).</p>
+<h3>E5 (knowledge/56 §6): the protocol-clean construction (the shipped file)</h3>
+<table><tr><th>Arm</th><th>Construction</th><th>Dev DTI [95% CI]</th><th>Withheld (dev)</th><th>Virgin confirm DTI [95% CI]</th><th>Withheld (conf)</th></tr>
+<tr><td>C1</td><td>Protocol-clean halo fill (lowest registry coverage) = shipped file construction</td><td>0.00435 [0.00196, 0.00671]</td><td>23,923</td><td>0.00423 [0.00228, 0.00607]</td><td>47,947</td></tr>
+<tr><td>C2</td><td>Random halo fill (control)</td><td>0.02655 [0.02315, 0.02954]</td><td>23,923</td><td>0.02819 [0.02493, 0.03116]</td><td>47,947</td></tr>
+<tr><td>C3</td><td>Random K over footprint (floor)</td><td>0.03608 [0.03107, 0.04028]</td><td>23,923</td><td>0.03265 [0.02987, 0.03547]</td><td>47,947</td></tr>
+</table>
+<p><strong>Verdict: negative.</strong> Choosing halo pixels that <em>other</em> registry submissions avoid removes holdout signal: on confirm, C1 is 0.0042 against 0.0282 for random halo fill (C2) and 0.0326 for the random floor (C3). Possible causes (not separated here): the registry rasters encode catalogue-proximity, or the hidden faults sit where submitters already put dots. Flagged for review (IR-31-REGISTRY-COVERAGE).</p>
+
+<h2>4. The new TIF: what was checked, on the bytes</h2>
+<table>
+<tr><th>Check</th><th>Result</th><th>Receipt</th></tr>
+<tr><td>Independent format verifier (grid, CRS, transform, single-band float32, finite values in [0,1] over the whole array, zeros outside, no dots on catalogue, ZIP holds the exact bytes)</td><td>PASS (positive pixels 21,700; catalogue positives 0)</td><td><code>evidence/verify_clean_candidate_2026-10-31.json</code></td></tr>
+<tr><td>Dots</td><td>21,700 = 6,514 lane-free + 15,186 r13-halo</td><td><code>evidence/clean_candidate_2026-10-31.json</code></td></tr>
+<tr><td>Lane audit against the registry (duplicate test: |Spearman| &gt; 0.90 or &gt; 70% of dots within 3 px)</td><td>120 readable references: <strong>no duplicate flagged</strong>; max dot share 69.98%; max |rho| 0.54. Verdict <strong>UNVERIFIED - incomplete or invalid registry; stop</strong> because one declared reference is on a different geotransform (IR-31-GEOM-HORSE-GRID; diagnostic geographic overlap 0.6%, not clearance).</td><td><code>evidence/lane_check_clean_candidate_2026-10-31.json</code></td></tr>
+<tr><td>Name and note</td><td>File <code>gems25-h-clean1-protocol-clean-k21700-noslot-20261031-a5489f5c6886-zero.tif</code>; note: <em>GEMSDOE25 h-clean1 E5 NEG | unique, lane-clean, holdout neg: NO SLOT | id a5489f5c6886 | not yet live-scored</em> (108 characters, within the 140-character protocol limit)</td><td>—</td></tr>
+<tr><td>Estimated organizer score</td><td>NOT ESTIMATED. No holdout signal, and no organizer receipt exists.</td><td>—</td></tr>
+</table>
+
+<h2>5. Hypotheses (new, ranked by expected DTI gain and cost; none validated)</h2>
+<ol>
+<li><strong>H-HF1, USGS Great Basin heat-flow residual × structure (BLOCKED).</strong> Layer: USGS heat-flow map and supporting data, DOI 10.5066/P9BZPVUC (<a href="https://catalog.data.gov/dataset/heat-flow-maps-and-supporting-data-for-the-great-basin-usa">catalog.data.gov record</a>). Signature: conductive-heat-flow residual above the regional background, where upflow is focused along permeable faults. Why it could catch a missing fault: it is an independent physical channel not in the USGS/INGENIOUS catalogue. Mimic: regional heat-flow variation from radiogenic plutons or sediment blankets. Repo difference: pre-registered in knowledge/09 (H27-4) and knowledge/10 (H29-4), but never run. <strong>Cost:</strong> medium (124 MB ZIP). <strong>Blocker:</strong> sciencebase.gov is not reachable from this sandbox. Owner action: supply a pinned copy or allow the host.</li>
+<li><strong>H-REG1, registry-coverage as a diagnostic (not a candidate).</strong> Test whether "pixels few submitters cover" predicts holdout truth (E5 suggests it is anti-predictive). Cost: nil (already computed). Risk: crowd-submission information may be a leakage path, so it must not be used to choose dots without owner review.</li>
+<li><strong>H-GRAD1, shallow temperature-gradient map (BLOCKED).</strong> Layer: NBMG/SMU Temperature Gradient Map of the Great Basin (0–1 km gradient, wells in known geothermal areas excluded to keep the prediction blind), available via <a href="https://data.wu.ac.at/schema/geothermaldata_org/MTEzMzRlOGYtOGJlNy00OTUwLWFlOWEtM2QyYzYyYjkzOTky">geothermaldata.org metadata</a>. Signature: gradient excess not explained by the catalogue. Cost: low once fetched. Blocker: the grid is not in the repo or on the allowed hosts.</li>
+<li><strong>H-QF1, USGS Quaternary Fault and Fold Database as an independent fault prior (partly tested).</strong> Source: <a href="https://www.usgs.gov/programs/earthquake-hazards/faults">USGS Faults program page</a>, DOI 10.5066/P9BCVRCK. The repo already uses GDR QFaults-derived layers (knowledge/27 lists <code>gdr_qfaults</code>). Only a fully independent fetch of the USGS file would be new. Expected gain: low.</li>
+</ol>
+
+<h2>6. Irregularities for review</h2>
+<ul>
+<li><strong>IR-31-GEOM-HORSE-GRID:</strong> registry raster <code>geom-horse-ensemble.tif</code> (GEMSDOE14) has the template's shape but a different geotransform (origin 500,000 E / 4,500,000 N vs 243,350 E / 4,508,550 N). Only 6,482 of its 116,225 horse dots fall in the template footprint. The file cannot be checked on the template grid, which blocks a clean lane audit.</li>
+<li><strong>IR-31-NAN-SCORED:</strong> the README records NaN-outside files as failing the portal range check ("Fails (NaN)"), yet the same files carry owner-reported scores (e.g. 0.2600). Both cannot be right without organizer receipts.</li>
+<li><strong>IR-31-UNIQUENESS-METRIC:</strong> the README uniqueness column uses Jaccard (GEMSDOE28 max 0.557). The brief's lane rule is an asymmetric within-3 px share. Under that rule GEMSDOE28 is 100% within 3 px of GEMSDOE24, because GEMSDOE24 is denser. The rule therefore marks all nine top files as non-unique, which the table above uses.</li>
+<li><strong>IR-31-SAMPLE-NAN:</strong> the organizer's sample file (owner mirror, pinned) is NaN outside the footprint, which the portal rejects. The writer therefore uses zeros outside.</li>
+<li><strong>IR-31-PINDROP-LANE:</strong> the first lane-compliant build (21,700 dots, bound-fill) overlapped <code>pindrop-discovery.tif</code> at 71.05%. It was removed from <code>docs/downloads</code> and is not packaged (evidence kept).</li>
+<li><strong>IR-31-E3E4-SEEDS:</strong> E3 and E4 share virgin seeds 150–153; E5 was added after E3/E4 (disclosed in knowledge/56 §6).</li>
+<li><strong>IR-31-LEADERBOARD:</strong> the brief gives 0.4413 as the high score in one place and 0.3195 in another (unresolved; see README). A human reading of the leaderboard is still needed.</li>
+</ul>
+
+<h2>7. Limitations and next steps</h2>
+<ol>
+<li>Organizer receipts are the only score evidence. Nothing here is an organizer score.</li>
+<li>The portal's handling of zeros outside the footprint is <strong>unverified</strong> (verifier: "portal outside-footprint behavior unverified"). The zeros convention is inferred from owner-reported scored files (GEMSDOE32, GEMSDOE36).</li>
+<li>The holdout proxy is off-scale (it puts the live best files at 0.02–0.03, against 0.25–0.28 owner-reported). The random-floor arms score 0.032–0.036 on it, above every structured arm, so the proxy cannot rank files.</li>
+<li>Next session: unblock H-HF1 or H-GRAD1 (owner supplies a pinned copy). Pre-register it before any run. Do not spend a slot unless the candidate beats the paired comparator on virgin seeds.</li>
+<li>Owner decision: does the 70% lane rule apply to the competition? The brief sets it as a rule for this work; its scope for the competition is not stated. Every file this session was built under it.</li>
+</ol>
+<p><small>Generated by <code>scripts/build_executive_summary_2026_10_31.py</code> from the evidence files listed above. Re-run to refresh.</small></p>
+</body></html>
