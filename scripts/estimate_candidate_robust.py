@@ -25,7 +25,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 from gems25 import livecal, livecal_cells  # noqa: E402
-from gems25.paths import data_dir, work_dir  # noqa: E402
+from gems25.paths import work_dir  # noqa: E402
 from build_hlc1_final import rows_from_mask  # noqa: E402
 
 N_ZB = 200
@@ -50,7 +50,7 @@ for f in ("evidence/hlc1_primary_20261031.json", "evidence/hlc1_maximin_20261031
 
 def main() -> int:
     t0 = time.time()
-    d, w = data_dir(), work_dir()
+    w = work_dir()
     foot = np.load(w / "bands" / "_footprint.npy")
     lab = np.load(w / "bands" / "_labels.npy")
     z = np.load(w / "refdet_z.npy")

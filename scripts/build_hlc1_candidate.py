@@ -37,7 +37,6 @@ from gems25.metric import ALPHA, BETA  # noqa: E402
 from gems25.paths import data_dir, work_dir  # noqa: E402
 from gems25.submission import (check_file, content_id, make_filename, make_note,  # noqa: E402
                                sha256_file, write_submission, zip_single)
-from run_livecal_refit2 import ANCHORS  # noqa: E402
 
 N_ZB = 200
 SLUG = "gems25-hlc1-liveanchored"
@@ -77,7 +76,6 @@ def marginal_greedy(pi: np.ndarray, nu: np.ndarray, psi_nu: np.ndarray, pool_fla
     wts = livecal.KERNEL_WEIGHTS
     m = np.zeros(H * W, dtype=np.float64)
     pi_flat = pi.ravel()
-    nu_flat = nu.ravel()
     psi_flat = psi_nu.ravel()
     ody, odx = offsets(min_dist)
     blocked = np.zeros(H * W, dtype=bool)

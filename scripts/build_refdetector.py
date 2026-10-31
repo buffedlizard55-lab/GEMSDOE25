@@ -30,7 +30,7 @@ from sklearn.metrics import roc_auc_score
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from gems25.holdout import quadrant_ids  # noqa: E402
-from gems25.paths import data_dir, work_dir  # noqa: E402
+from gems25.paths import work_dir  # noqa: E402
 
 COLLAR_PX = 15
 SEED = 20261031

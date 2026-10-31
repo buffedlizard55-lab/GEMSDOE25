@@ -18,7 +18,6 @@ import time
 from pathlib import Path
 
 import numpy as np
-import rasterio
 from scipy.ndimage import distance_transform_edt
 from scipy.optimize import minimize
 
