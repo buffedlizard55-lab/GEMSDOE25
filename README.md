@@ -2,7 +2,7 @@
 
 ## START HERE — current review 2026-10-31
 
-**Current verdict: NO TIFF is cleared for download and submission; new score estimate: NOT ESTIMATED.** This session has no lane assignment, raster inputs or feature cache; no experiment or submission TIFF was produced. Read the [31 Oct executive review](docs/review-2026-10-31.html), [full findings and ranked hypotheses](knowledge/56_repo_review_2026-10-31.md), and [negative JSON run card](registry/run_card_session_2026-10-31.json) before continuing.
+**Current verdict: NO TIFF is cleared for download and submission; new score estimate: NOT ESTIMATED.** No lane was assigned, `data/` contains only `.gitkeep`, no experiment or submission TIFF was produced, and the organizer-side meaning of the mirrored label/catalogue identity is unresolved. Read the [31 Oct executive review](docs/review-2026-10-31.html), [full findings and ranked hypotheses](knowledge/56_repo_review_2026-10-31.md), and [negative JSON run card](registry/run_card_session_2026-10-31.json) before continuing. Related initial snapshot: [REVIEW_2026-10-31.md](REVIEW_2026-10-31.md); it records the earlier base checkout and likewise makes no submission claim.
 
 **Correction:** the GEMSDOE25 historical D2.8 filename is `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif` (not `gems24-...`); see `knowledge/52_repo_review_2026-10-29_verified.md`.
 
