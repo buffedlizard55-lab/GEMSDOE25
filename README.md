@@ -1,5 +1,9 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
+## Current checkout review — 2026-10-31
+
+Read [`REVIEW_2026-10-31.md`](REVIEW_2026-10-31.md) before using historical claims below. This checkout is at `8cb3573d8adc747b519dd0d96ffdc4eccad6d8ec`; it has no competition data or `data/work` cache, so no new holdout, TIF, score estimate, or submission clearance was produced. **NO-GO: do not submit any historical file as new work.** Historical leaderboard scores remain owner-reported unless accompanied by an organizer receipt.
+
 ## START HERE — owner brief 2026-10-30 (branch `arena/68c7ea9e-gemsdoe25`)
 
 > Read this section first every session. Standing rule: **Maximize P(Win)** and **Own the Outcome** decide tradeoffs, but no gate is bypassed to reach a number. Normalized brief (not a verbatim transcript; see IR-30-PROMPT-NORMALIZED). Full executive summary: [`docs/owner-brief-2026-10-30.html`](docs/owner-brief-2026-10-30.html).
