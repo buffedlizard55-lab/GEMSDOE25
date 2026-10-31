@@ -1,0 +1,49 @@
+{
+  "session": "arena/132bcd0d-gemsdoe25",
+  "date_utc": "2026-10-31",
+  "passes": [
+    {
+      "pass": 1,
+      "name": "Implement and verify",
+      "work": [
+        "Read AGENTS.md and the complete README.md before changes; confirmed that the required single method paragraph is not assigned unambiguously.",
+        "Fetched origin and reviewed the active branch / open PR state; the fixed session branch was not yet present on origin. Did not modify sibling branches or PRs.",
+        "Restored all 30 entries from registry/data_manifest.json through scripts/restore_data.py --group all. Every restored entry matched its pinned SHA-256; pins establish owner-mirror integrity only.",
+        "Installed requirements.txt in ignored .venv; ran scripts/prepare_data.py, scripts/build_features.py and scripts/build_addons.py. The cache files match every pin in evidence/work_cache_hashes.json byte-for-byte.",
+        "Reran scripts/audit_nine_site_top_files.py and scripts/audit_label_identity.py; reproduced the nine-site top-file statistics, GEMSDOE25/GEMSDOE30 exact dot-set duplicate, B2 lineage, and labels/catalogue byte equality.",
+        "Ran .venv/bin/pytest -q: 586 passed, one non-failing Rasterio PendingDeprecationWarning. Ran .venv/bin/ruff check src scripts tests: all checks passed.",
+        "Ran scripts/check_sources.py (which blocks DrivenData hosts and redirects); feed updated to 81 entries, 33 reachable. This is an HTTP health snapshot, not content or score verification.",
+        "Created the dated executive-summary page, repository review, and a JSON run card. No candidate raster was built, no experiment was run, no slot was used, and no upload occurred."
+      ]
+    },
+    {
+      "pass": 2,
+      "name": "Review for bugs, assumptions and edge cases",
+      "findings": [
+        "Owner-mirror labels.tif and existing_faults.tif remain byte-identical. This makes the local hidden-fault target uncertified; cache restoration does not fix provenance.",
+        "The prompt references one method paragraph but supplies no unambiguous assignment. The session therefore did not spend the remaining one-of-three prior experiment budget on a guessed method.",
+        "The two most recent registered experiments (H-SP1, H-LF1) were negative. H-SP1 also failed lane overlap; H-LF1 was at the random floor. Neither supports a candidate or a score projection.",
+        "Scores 0.2778, 0.3195 and 0.4413 remain owner-reported / conflicting, not organizer-confirmed. The review labels them accordingly.",
+        "The official feed is refreshed but network reachability is not source-content validation. No DrivenData host was requested, including redirected URLs.",
+        "The exact surface and final-dot lane gates cannot be evaluated for a candidate that was not built; the run card correctly says NOT RUN rather than treating format validation of old files as lane clearance.",
+        "Corrected the new summary's relative feed link during implementation; no new download link is presented as submit-approved."
+      ]
+    },
+    {
+      "pass": 3,
+      "name": "Reconcile against the full original request",
+      "requirements": [
+        {"requirement": "Review nine requested sites and show filenames, score estimate, uniqueness, and submission decision", "status": "DONE: dated executive summary and full nine-row table; historical scores are OWNER-REPORTED, estimates NOT ESTIMATED, and all rows say NO to new submission."},
+        {"requirement": "Explain GEMSDOE32 0.2778 at research level without hallucinating causality", "status": "DONE WITH LIMITATIONS: byte lineage is COMPUTED; pruning explanation is labelled INFERENCE; generic thinning, label identity, score provenance and lane violations are explicit."},
+        {"requirement": "Generate a new unique TIF and make it obvious whether it is okay to submit", "status": "NOT MET, intentionally fail-closed: no candidate passed required holdout/lane gates; page and README state NO and offer no misleading candidate download."},
+        {"requirement": "Rank three to five hypotheses before implementation, with layers, signal, rationale, novelty and mimics", "status": "PARTIAL / NOVELTY CRITERION UNMET: four unrun ideas are ranked with layers, signals, history, uncertainty, costs and mimics. The history shows prior proposals for all and a sibling implementation of broad magnetic phase congruency; no global-new candidate could be certified. Off-stack official data coverage/licence/obtainability is unverified. No idea was represented as viable."},
+        {"requirement": "Validate top candidate with blocked holdout before a slot", "status": "NOT RUN: active lane is undefined and mirror labels equal catalogue. No slot was selected or used; run card records null/not run fields."},
+        {"requirement": "Reuse shared cache and report repository readiness", "status": "DONE: cache restored and hash-pinned files match; full test suite and lint passed. The cache remains ignored from Git."},
+        {"requirement": "Refresh source feed without DrivenData automation", "status": "DONE: scripts/check_sources.py refreshed 81 items; project policy excludes DrivenData requests and redirects."},
+        {"requirement": "Use three cumulative passes and leave a run card", "status": "DONE: this receipt and registry/run_card_session_132bcd0d_2026-10-31.json."},
+        {"requirement": "Create and merge a PR from the fixed branch", "status": "PENDING PR / checks / explicit merge; final status will be reported only if verified."}
+      ],
+      "verdict": "Negative. No submission-cleared raster and no score projection. Next action is resolving authenticated labels and the lane assignment, not spending a slot."
+    }
+  ]
+}

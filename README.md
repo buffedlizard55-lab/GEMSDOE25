@@ -1,5 +1,13 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
+## CURRENT REVIEW — 31 October 2026 (branch `arena/132bcd0d-gemsdoe25`)
+
+**OK TO DOWNLOAD AND SUBMIT: NO. No new TIF was cleared; estimated organizer score: NOT ESTIMATED.** Do not submit any historical raster. The supplied GEMSDOE32 value 0.2778 remains OWNER-REPORTED. This review restored 30 hash-pinned owner-mirror inputs, rebuilt the shared cache with all pinned cache hashes matching, passed **586 tests** and Ruff, and refreshed the source feed (81 entries / 33 reachable). These checks do not authenticate owner mirrors as organizer data. Critical open issue: mirrored `labels.tif` and `existing_faults.tif` are byte-identical. The prompt also assigns no unambiguous method lane, so no new experiment or raster was produced and no weekly slot was used. The history scan could not certify 3–5 genuinely novel ideas: four carried-forward unrun concepts are disclosed with prior overlaps and blocked data checks in the dated review; novelty remains an unmet gate.
+
+- [31 Oct executive summary and nine-site table](docs/owner-brief-2026-10-31.html) · [full review and ranked hypotheses](knowledge/56_repo_review_2026-10-31.md) · [JSON run card](registry/run_card_session_132bcd0d_2026-10-31.json) · [three review passes](registry/review_passes_session_132bcd0d_2026-10-31.json) · [updated source-health feed](docs/data/feed.json).
+- The previous 30 Oct run used two of three experiments; H-SP1 and H-LF1 were negative. The remaining experiment was not used because the lane was not assigned and the local holdout labels are uncertified.
+- No score estimate is inferred from local HOLDOUT-DTI. No DrivenData page was accessed or submission uploaded.
+
 ## START HERE — owner brief 2026-10-30 (branch `arena/68c7ea9e-gemsdoe25`)
 
 > Read this section first every session. Standing rule: **Maximize P(Win)** and **Own the Outcome** decide tradeoffs, but no gate is bypassed to reach a number. Normalized brief (not a verbatim transcript; see IR-30-PROMPT-NORMALIZED). Full executive summary: [`docs/owner-brief-2026-10-30.html`](docs/owner-brief-2026-10-30.html).

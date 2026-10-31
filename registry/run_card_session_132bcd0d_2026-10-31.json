@@ -1,0 +1,70 @@
+{
+  "schema": "parallel_run_card/v1",
+  "session": "arena/132bcd0d-gemsdoe25",
+  "date_utc": "2026-10-31",
+  "hypothesis": "No candidate hypothesis assigned to a method lane in the active prompt; this was a repository review and validation-readiness pass, not a candidate experiment.",
+  "mechanism": "No new mechanism tested. INFERENCE for the historical GEMSDOE32 B2 result: removing a low-credit catalogue-adjacent prediction shell may improve an asymmetric coverage-versus-false-positive tradeoff; generic thinning and other confounds remain plausible.",
+  "named_non_fault_process_that_could_mimic_it": "Generic random thinning and mapping-density bias can mimic an apparent benefit from catalogue-adjacent pruning; for proposed geophysical edges, lithologic contacts and alluvial-fan boundaries are additional mimics.",
+  "holdout_dti": {
+    "evidence_class": "NOT RUN in this review; no candidate selected",
+    "candidate_dti": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positive_occurrences": null,
+    "reason": "No explicit method lane was provided; the mirror labels are byte-identical to the mirrored existing-fault catalogue (IR-29-LABELS-EQUALS-CATALOGUE). The latest preregistered H-SP1 and H-LF1 results remain prior-session negative HOLDOUT-DTI evidence in their original receipts, not results of this review."
+  },
+  "owner_reported_historical_scores": {
+    "GEMSDOE24": 0.2477,
+    "GEMSDOE25": 0.26,
+    "GEMSDOE27": 0.2449,
+    "GEMSDOE28": 0.271,
+    "GEMSDOE30": 0.26,
+    "GEMSDOE31": 0.2708,
+    "GEMSDOE32": 0.2778,
+    "GEMSDOE33": 0.2632,
+    "GEMSDOE36": 0.275
+  },
+  "overall_leaderboard_claims": {
+    "0.3195": "OWNER-REPORTED; conflicts with another supplied value",
+    "0.4413": "OWNER-REPORTED; conflicts with another supplied value",
+    "organizer_confirmed": false
+  },
+  "correlation_overlap_vs_registry": {
+    "new_candidate_surface_audit": "NOT RUN; no new candidate surface was produced",
+    "new_candidate_final_dot_audit": "NOT RUN; no new candidate dots were produced",
+    "historical_B2_within_3px_of_r13": {
+      "numerator": 37622,
+      "denominator": 37654,
+      "fraction": 0.99915,
+      "source": "evidence/b2_lane_vs_r13_2026-10-29.json; COMPUTED prior audit"
+    },
+    "literal_overlap_limit": 0.7,
+    "new_candidate_lane_clear": false
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_candidate": "NOT APPLICABLE; no candidate raster created",
+    "template_and_cache": "Restored owner-mirror inputs match manifest pins; shared static/add-on cache matches evidence/work_cache_hashes.json",
+    "nine_site_format_review": "7 NaN-outside top files fail whole-array [0,1]; GEMSDOE32 and GEMSDOE36 zero-outside files pass local format check but are historical submissions",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "note": "No candidate exists to validate. No file is authorized for download and submission."
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "verdict": "negative",
+  "verdict_reason": "No experiment or new raster was produced. An undefined lane and uncertified holdout labels prevent a valid test; prior experiment 1 and 2 were negative. No submission slot selected or used.",
+  "review_passes": "registry/review_passes_session_132bcd0d_2026-10-31.json",
+  "source_links": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "https://github.com/drivendataorg/gems-prize-reference-solution",
+    "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+    "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "https://gdr.openei.org/submissions/1391",
+    "https://www.usgs.gov/3d-elevation-program",
+    "https://aria.jpl.nasa.gov/"
+  ]
+}
