@@ -1,5 +1,62 @@
 # GEMSDOE25 — designed-factorial fault discovery for the DOE GEMS Prize
 
+## START HERE — owner brief 2026-10-31 (branch `arena/967c20f7-gemsdoe25`, read first)
+
+**Executive summary page:** [docs/executive-summary-2026-10-31.html](docs/executive-summary-2026-10-31.html) (GitHub Pages: `/executive-summary-2026-10-31.html`). It is generated from the evidence files by `scripts/build_executive_summary_2026_10_31.py`.
+
+**Bottom line: no file is cleared for a slot. Do not submit any file from this session.**
+
+| Question | Answer | Evidence class |
+|---|---|---|
+| Unique file to download (for inspection only) | [`docs/downloads/gems25-h-clean1-protocol-clean-k21700-noslot-20261031-a5489f5c6886-zero.tif`](docs/downloads/gems25-h-clean1-protocol-clean-k21700-noslot-20261031-a5489f5c6886-zero.tif) (+ `.zip`), SHA-256 `35fc2a78…`, content_id `a5489f5c6886`, 21,700 dots, zeros outside | COMPUTED |
+| OK to download AND submit? | **NO** (`okay_to_submit: false`). Format passes locally. Holdout is far below random. Lane audit is UNVERIFIED (IR-31-GEOM-HORSE-GRID). | — |
+| Estimated organizer score | **NOT ESTIMATED** (holdout 0.0042 confirm, CI 0.0023–0.0061; random floor 0.0327; HOLDOUT-DTI) | HOLDOUT-DTI |
+| Highest owner-reported portal-valid score | GEMSDOE32, **0.2778** (zeros outside, already submitted, cannot be copied). Owner-reported, not organizer-confirmed. | OWNER-REPORTED |
+| Can a unique file beat 0.2778? | **Not shown.** Three pre-registered experiments this session were all negative (E3, E4, E5). | HOLDOUT-DTI |
+| Nine-site status | 0 of 9 OK to download and submit. Each top file is non-unique under the lane rule (98–100% of its dots within 3 px of a denser site's dots). | COMPUTED |
+
+**Nine-site table** (`evidence/nine_site_summary_2026-10-31.json`; scores are OWNER-REPORTED; estimated score NOT ESTIMATED for all):
+
+| Site | File | Owner score | Unique among nine? | OK to download & submit? |
+|---|---|---|---|---|
+| GEMSDOE24 | gems24-h25-1-dotted-h19-5-d1-5-…-nan.tif | 0.2477 | No | NO |
+| GEMSDOE25 | gems24-h25-1-dotted-h19-5-d2-8-…-nan.tif | 0.2600 | No (= GEMSDOE30 dot set) | NO |
+| GEMSDOE27 | gems27-topo-gap-closure-t-v2-on-d1-5-…-nan.tif | 0.2449 | No | NO |
+| GEMSDOE28 | gems28-h36-1-rung30-blind-r1-…-nan.tif | 0.2710 | No | NO |
+| GEMSDOE30 | gemsdoe30-d28-poisson300m-offcat-44090-…-nanoutside.tif | 0.2600 | No | NO |
+| GEMSDOE31 | gemsdoe31-h27-4-solo-d28-…-nan.tif | 0.2708 | No | NO |
+| GEMSDOE32 | gemsdoe32-h33-h33-2-b2-…-zeros.tif | 0.2778 | No; already submitted | NO |
+| GEMSDOE33 | GEMSDOE33-h33d-analog-tip-stepover-r30-…-nanoutside.tif | 0.2632 | No | NO |
+| GEMSDOE36 | gemsdoe36-anderson-geothermal-pinn-38854-…-zeros.tif | 0.2750 | No; already submitted | NO |
+
+**Why the uniqueness verdict differs from the older table:** the lane rule in this brief is an asymmetric within-3 px share (a file is a duplicate if more than 70% of its dots are within 3 px of one registry raster's dots). The older table used Jaccard (GEMSDOE28 max 0.557). Under the rule GEMSDOE28 is 100% within 3 px of GEMSDOE24, because GEMSDOE24 is denser. See IR-31-UNIQUENESS-METRIC.
+
+**What was done this session:** restored data (SHA-256 pinned); registry rasters restored by git transport (29 pins); built a reproducible registry 3-px halo cache (`scripts/build_registry_halo_cache.py`); pre-registered and ran E3 (bound-fill, negative), E4 (repulsion vs thinning, `thinning-explains-B2`), and E5 (protocol-clean construction, negative: C1 0.0042 confirm vs C2 0.0282 random halo fill); removed the first lane-failing candidate (bf1, pindrop 71.05%); built and independently verified the clean candidate; ran the full lane check; generated the nine-site table and the executive page.
+
+**New hypotheses (none validated; ranked in `knowledge/57_session_review_2026-10-31.md`):** H-HF1 (USGS heat-flow residual, BLOCKED: sciencebase.gov unreachable), H-REG1 (registry coverage as a diagnostic only), H-GRAD1 (NBMG temperature-gradient map, BLOCKED), H-QF1 (USGS Quaternary Fault and Fold DB, low expected gain).
+
+**Limitations (read before any submission decision):**
+1. No organizer receipts exist. Every score in the nine-site table is owner-reported. Organizer-confirmed scores: none.
+2. The holdout proxy is off-scale (0.004–0.036 for all arms, versus 0.24–0.28 owner-reported). It cannot rank files for the leaderboard.
+3. The portal's handling of zeros outside the footprint is unverified (inferred from owner-reported zeros-outside files).
+4. The lane audit is UNVERIFIED for the clean candidate because `geom-horse-ensemble.tif` is on a different geotransform. Fail-closed, not cleared.
+5. The 70% lane rule may not apply to the competition (owner decision).
+6. Budget: this session ran E3, E4, and E5 (plus E1 and E2 from earlier sessions). The stated budget is 3 experiments or 2 hours. Time used is about 1.5 hours. Owner decision needed on whether the cap was exceeded.
+7. The leaderboard high score conflicts across sources (0.4413, 0.3195, 0.2778). Check the live DrivenData leaderboard manually.
+8. The sandbox cannot reach drivendata.org, sciencebase.gov, or geothermaldata.org. Only GitHub and package hosts are allowed. Competition pages were not re-fetched.
+
+**Next steps (for the owner):**
+1. Decide the lane-rule scope for the competition, and the uniqueness definition (IR-31-UNIQUENESS-METRIC).
+2. Resolve `geom-horse-ensemble.tif` on its grid, or confirm that a different reference is correct (IR-31-GEOM-HORSE-GRID).
+3. Supply pinned copies of the USGS heat-flow ZIP (DOI 10.5066/P9BZPVUC) or the NBMG gradient grid, or allow those hosts. Then pre-register H-HF1 or H-GRAD1 before running.
+4. Check the live leaderboard and organizer receipts for every scored file (IR-31-NAN-SCORED, IR-31-LEADERBOARD-CONFLICT).
+5. Do not spend a submission slot unless a unique file beats its paired comparator on fresh virgin seeds and passes the lane gate on all 122 rasters.
+
+Full run card: `evidence/run_card_967c20f7_2026-10-31.json`. Review passes: `registry/review_passes_2026-10-31.json`. Irregularities: `registry/irregularities.json` (IR-31-*).
+
+---
+
+
 ## START HERE — owner brief 2026-10-30 (branch `arena/68c7ea9e-gemsdoe25`)
 
 > Read this section first every session. Standing rule: **Maximize P(Win)** and **Own the Outcome** decide tradeoffs, but no gate is bypassed to reach a number. Normalized brief (not a verbatim transcript; see IR-30-PROMPT-NORMALIZED). Full executive summary: [`docs/owner-brief-2026-10-30.html`](docs/owner-brief-2026-10-30.html).

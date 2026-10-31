@@ -1,0 +1,24 @@
+{
+ "generated_utc": "2026-10-31T01:05:42+00:00",
+ "script": "scripts/build_clean_candidate.py",
+ "preregistration": "knowledge/56_preregistered_bound_fill_and_repulsion_2026-10-31.md \u00a76",
+ "status": "UNIQUE + FORMAT-VALID + PROTOCOL-CLEAN (cache); E5 HOLDOUT NEGATIVE; NOT cleared for a leaderboard slot",
+ "file": "gems25-h-clean1-protocol-clean-k21700-noslot-20261031-a5489f5c6886-zero.tif",
+ "zip": "gems25-h-clean1-protocol-clean-k21700-noslot-20261031-a5489f5c6886-zero.zip",
+ "sha256": "35fc2a783859678ceb9c4907ad41b515c7727620b6bf3d917bc6f17c6fe47f26",
+ "content_id": "a5489f5c6886",
+ "dots": 21700,
+ "lane_free_dots": 6514,
+ "halo_dots": 15186,
+ "max_registry_dot_share_cache": 0.69982,
+ "worst_registry_raster": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+ "outside": "zeros",
+ "inside_values": [
+  0.0,
+  1.0
+ ],
+ "note": "GEMSDOE25 h-clean1 E5 NEG | unique, lane-clean, holdout neg: NO SLOT | id a5489f5c6886 | not yet live-scored",
+ "note_chars": 108,
+ "okay_to_download_and_submit": "Download: only as a unique, format-valid file. Submit: NO (not cleared; E5 holdout far below random)",
+ "estimated_score": "NOT ESTIMATED (holdout DTI 0.004 vs random floor 0.033; organizer score unknown)"
+}
