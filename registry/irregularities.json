@@ -1385,6 +1385,14 @@
       "issue": "During cleanup the build record evidence/bound_fill_candidate_2026-10-31.json was deleted from the working tree. It was an untracked file that was never committed, so it cannot be restored from git. The bf1 verify and lane-check JSONs remain, and the bf1 TIF was removed from docs/downloads.",
       "evidence": "evidence/verify_bound_fill_candidate_2026-10-31.json; evidence/lane_check_bound_fill_candidate_2026-10-31.json; scripts/build_bound_fill_candidate.py",
       "resolution_or_action": "Re-run scripts/build_bound_fill_candidate.py to regenerate the build record if needed. Do not ship bf1 (lane FAIL)."
+    },
+    {
+      "id": "IR-31-NAME-VARIANT",
+      "severity": "medium",
+      "status": "open",
+      "issue": "The GEMSDOE25 D2.8 owner-mirror file is cited under two names in the repo: gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif (SHA-pinned data/ file and registry/data_manifest.json) and gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif (docs/data/submissions.json, download_audit.json; main's 2026-10-31 correction). The bytes used here are the pinned file.",
+      "evidence": "data/ (restored file); registry/data_manifest.json; docs/data/submissions.json; main commit 74382d3 (README correction)",
+      "resolution_or_action": "Owner: confirm the canonical name and correct the other references. The nine-site table uses the SHA-pinned name."
     }
   ]
 }

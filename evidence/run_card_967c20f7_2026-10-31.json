@@ -63,7 +63,7 @@
     "0.2778 (GEMSDOE32, highest portal-valid owner-reported)"
   ],
   "irregularities": "registry/irregularities.json IR-31-*",
-  "review_passes": "registry/review_passes_2026-10-31.json",
+  "review_passes": "registry/review_passes_967c20f7_2026-10-31.json",
   "executive_summary": "docs/executive-summary-2026-10-31.html",
   "generated_by": [
     "scripts/run_bound_fill_exp3.py",

@@ -1,43 +1,43 @@
 {
-  "session": "arena/967c20f7-gemsdoe25",
+  "session": "arena/dafd16a0-gemsdoe25",
   "date_utc": "2026-10-31",
-  "scope": "GEMSDOE nine-site executive summary; E3-E5 pre-registered experiments; protocol-clean candidate (NO SLOT); audit repair; irregularities",
   "passes": [
     {
       "pass": 1,
-      "name": "Implement and verify against sources",
-      "checks": [
-        "scripts/audit_downloads.py regenerated docs/data/download_audit.json: 63 files, 33 format-valid, okay_to_submit false. The failing test now passes; tests/test_download_audit.py 8 passed.",
-        "scripts/verify_candidate_independent.py (--require-zip) on the clean TIF: ALL_HARD True, 21,700 positives, 0 catalogue positives, outside convention zeros.",
-        "scripts/check_lane_duplicates.py on the clean candidate: 120 of 122 readable, 0 flagged, max dot share 0.6998, max |rho| 0.5435, verdict UNVERIFIED (fail-closed, geotransform mismatch on geom-horse-ensemble.tif).",
-        "scripts/build_nine_site_summary.py (COMPUTED dots, format, catalogue proximity, pairwise overlap). scripts/build_executive_summary_2026_10_31.py generated docs/executive-summary-2026-10-31.html from the evidence JSONs.",
-        "Holdout numbers in the summary are read from the E3/E4/E5 evidence JSON (no hand-typed values). Withheld counts and bootstrap CIs are shown."
+      "name": "Implement / inspect against the repository brief",
+      "result": "Added a dated current executive review and machine-readable negative run card. Corrected the GEMSDOE25 D2.8 owner-mirror filename in the current README and 30 Oct summary table.",
+      "evidence": [
+        "knowledge/56_repo_review_2026-10-31.md",
+        "docs/review-2026-10-31.html",
+        "registry/run_card_session_2026-10-31.json",
+        "evidence/nine_site_top_files_2026-10-28.json",
+        "knowledge/52_repo_review_2026-10-29_verified.md"
       ]
     },
     {
       "pass": 2,
-      "name": "Review for bugs",
+      "name": "Review bugs, assumptions, and edge cases",
+      "result": "Confirmed that no candidate, TIFF, or score estimate can be asserted. Kept owner-reported submissions distinct from organizer receipts; scoped mask uniqueness to the nine audited files; called out the unspecified lane, absent data/cache, missing base dependencies, and prior label/catalogue identity irregularity.",
       "checks": [
-        "BUG (fixed): README uniqueness used Jaccard (GEMSDOE28 0.557). The brief's lane rule is an asymmetric within-3 px share, under which GEMSDOE28 is 100% within 3 px of denser GEMSDOE24. Corrected in the README and the executive page; logged IR-31-UNIQUENESS-METRIC.",
-        "BUG (fixed): knowledge/56 said the lane check lives in scripts/inventory_submissions.py. Corrected to scripts/check_lane_duplicates.py.",
-        "BUG (fixed): ruff F401 unused import in scripts/run_clean_construction_exp5.py. ruff clean on all session scripts.",
-        "BUG (fixed): several sentences in the first draft were not supported by the repo (an invented knowledge/03 reference, an invented 'parallel-run protocol', an invented IR id, an unverified portal-geotransform claim). All removed or qualified.",
-        "BUG (noted): E4 and E3 share confirmation seeds 150-153 (logged IR-31-E3E4-SEEDS). The E4 first run crashed on a wrong assertion; the assertion was corrected, and the rerun is the reported result.",
-        "BUG (noted, not fixed): the bf1 build record evidence/bound_fill_candidate_2026-10-31.json was deleted in cleanup (IR-31-BF1-BUILD-RECORD-DELETED). It was never committed.",
-        "Ground-truth check: the 'bf1 note truncation' item is moot: the bf1 TIF was removed from docs/downloads, so its note is no longer shipped. The clean note is 140-char-bounded (note_chars recorded in evidence/clean_candidate_2026-10-31.json)."
+        "No output TIFF was generated or added.",
+        "No values were labelled ORGANIZER-CONFIRMED without a receipt.",
+        "No numerical competition score projection was made.",
+        "External-source reachability was not claimed where the sandbox could not fetch the source.",
+        "Installed pinned requirements into ignored .venv; pytest: 573 passed, 16 data-gated skipped, 1 warning.",
+        "ruff check src scripts tests: passed; compileall: passed; git diff --check: passed.",
+        "Parsed changed HTML with Python's HTMLParser and verified all relative links on the new review page resolve; node --check docs/assets/app.js: passed."
       ]
     },
     {
       "pass": 3,
-      "name": "Re-check against the request",
-      "checks": [
-        "Executive summary per nine focus site with file, estimated score (NOT ESTIMATED), uniqueness, and OK-to-download-and-submit (NO for all 9): PASS (docs/executive-summary-2026-10-31.html, README table).",
-        "Unique portal-valid GeoTIFF with an obvious download link: PASS for uniqueness and format; NOT cleared for submission. Not a slot. Link in README and executive page.",
-        "Validation gates (format, holdout, lane, uniqueness) run without a human in the loop: PASS for format and the scripted lane gate. The lane gate is UNVERIFIED on one reference (fail-closed, owner decision).",
-        "Pre-registered experiments with labelled numbers and a JSON run card: PASS (knowledge/56, evidence/*_2026-10-31.json, run card below). Budget conflict flagged, not hidden.",
-        "Owner prompt in README read at session start: PASS (section 'START HERE - owner brief 2026-10-31').",
-        "Target above 0.2778: NOT MET. No file has evidence of beating it. The holdout proxy is off-scale and negative on every structured arm.",
-        "Pages subpage: PASS (static HTML under docs/). Create PR and merge to main: pending (see final message)."
+      "name": "Re-check against the prompt",
+      "result": "Executive summary includes all nine sites, file names, score class, format status, within-set duplicate status, score estimate status, and explicit submit verdict. Four ranked hypotheses include layers, signatures, missing-catalogue rationale, mimic, code distinction, expected relative leverage/cost, and data/source feasibility. The unresolved assigned lane blocks fitting; therefore the deliverable is negative and no TIFF is cleared.",
+      "verdict": "negative",
+      "limitations": [
+        "A unique high-scoring downloadable submission TIFF was not produced because required scientific and novelty gates cannot be established from this checkout.",
+        "No holdout metric or CI was computed this session.",
+        "No DrivenData page was contacted; no submission or selector slot was used.",
+        "Current leaderboard values remain conflicting, user-provided claims."
       ]
     }
   ]
