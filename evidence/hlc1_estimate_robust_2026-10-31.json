@@ -1,0 +1,67 @@
+{
+ "generated_utc": "2026-10-31T03:02:39Z",
+ "script": "scripts/estimate_candidate_robust.py",
+ "models": [
+  {
+   "key": "step_dead+betapdf+r10000",
+   "note": "betapdf tail, best fit",
+   "n_truth": 19382.8717537338,
+   "loo": 0.01683053127439357,
+   "b2_loo": 0.2532824384051907,
+   "lat_loo": 0.13169164479208528,
+   "g1": true,
+   "oof_factor": 0.6864520535279477
+  },
+  {
+   "key": "step_dead+betapdf+r10000+dzcap12",
+   "note": "betapdf, 1.2 km dead zone",
+   "n_truth": 20924.871287055546,
+   "loo": 0.023167096126576938,
+   "b2_loo": 0.24378470426687684,
+   "lat_loo": 0.13662203252673158,
+   "g1": true,
+   "oof_factor": 0.6616795133853118
+  },
+  {
+   "key": "step_dead+exp+r1",
+   "note": "smooth exp link (fails G1)",
+   "n_truth": 35017.773201351796,
+   "loo": 0.041969844822974306,
+   "b2_loo": 0.22241961908656258,
+   "lat_loo": 0.19886578931961849,
+   "g1": false,
+   "oof_factor": 0.4545779357489612
+  },
+  {
+   "key": "step_dead+power+r1",
+   "note": "smooth power link (fails G1)",
+   "n_truth": 37765.799837046434,
+   "loo": 0.04799641357246458,
+   "b2_loo": 0.21752977121563105,
+   "lat_loo": 0.2100881043200306,
+   "g1": false,
+   "oof_factor": 0.4302956623488411
+  }
+ ],
+ "estimates": {
+  "GEMSDOE32-B2 (owner-reported 0.2778)": {
+   "step_dead+betapdf+r10000": 0.25983995005185373,
+   "step_dead+betapdf+r10000+dzcap12": 0.25012247869839516,
+   "step_dead+exp+r1": 0.22948357227304894,
+   "step_dead+power+r1": 0.22468068134236932
+  },
+  "hlc1-detector-led-b2-k37654 (37,654 dots)": {
+   "step_dead+betapdf+r10000": 0.5041650110775185,
+   "step_dead+betapdf+r10000+dzcap12": 0.5323051689551144,
+   "step_dead+exp+r1": 0.4647711887209491,
+   "step_dead+power+r1": 0.4490410837758705
+  },
+  "hlc1-maximin-b12-k44090 (44,090 dots)": {
+   "step_dead+betapdf+r10000": 0.4961120124177646,
+   "step_dead+betapdf+r10000+dzcap12": 0.5257065826692727,
+   "step_dead+exp+r1": 0.5274654685392317,
+   "step_dead+power+r1": 0.5248162940400961
+  }
+ },
+ "seconds": 4.0
+}

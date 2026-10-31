@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-31T01:12:42.067830+00:00",
+  "generated_utc": "2026-10-31T03:21:45.771488+00:00",
   "evidence_class": "COMPUTED local format and footprint identity only",
   "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
   "files": [
@@ -6054,6 +6054,232 @@
         "evidence/h79_independent_reaudit_2026-10-27.json",
         "evidence/h79_literal_lane_reaudit_2026-10-27.json"
       ],
+      "identical_footprint_files": []
+    },
+    {
+      "file": "gems25-hlc1-detector-led-b2-k37654-20261031T025619Z-8af1cccbbf94-zeros.tif",
+      "sha256": "0c7ca0d39f81ab985a68f9582e89691adc65bf226c656dbb84b79e8ff87b59dc",
+      "footprint_sha256": "42ec8a8968b400a707923eaf1ea812ae758c13ab72f0c634a01e68d610bfa4f9",
+      "format_valid": true,
+      "strict_whole_array_valid": true,
+      "download_eligibility": "RESEARCH ONLY",
+      "okay_to_submit": false,
+      "estimated_leaderboard_score": null,
+      "novelty": "UNPROVEN: full registry surface and final-dot checks required",
+      "validator": {
+        "file": "gems25-hlc1-detector-led-b2-k37654-20261031T025619Z-8af1cccbbf94-zeros.tif",
+        "bytes": 827044,
+        "sha256": "0c7ca0d39f81ab985a68f9582e89691adc65bf226c656dbb84b79e8ff87b59dc",
+        "format_valid": true,
+        "strict_whole_array_valid": true,
+        "okay_to_submit": false,
+        "authorization_note": "ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval; official_nan_outside is a legacy name, not confirmed portal acceptance",
+        "hard_failures": [],
+        "positive_pixels": 37654,
+        "footprint_pixels": 5167373,
+        "checks": {
+          "template_matches_expected_grid_and_footprint": {
+            "pass_": true,
+            "detail": "(3730, 3292), footprint 5,167,373 px",
+            "hard": true
+          },
+          "single_band": {
+            "pass_": true,
+            "detail": "count=1",
+            "hard": true
+          },
+          "dtype_float32": {
+            "pass_": true,
+            "detail": "dtypes=('float32',)",
+            "hard": true
+          },
+          "crs_epsg_32611": {
+            "pass_": true,
+            "detail": "32611",
+            "hard": true
+          },
+          "shape_matches_template": {
+            "pass_": true,
+            "detail": "(3730, 3292) vs (3730, 3292)",
+            "hard": true
+          },
+          "geotransform_matches_template": {
+            "pass_": true,
+            "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+            "hard": true
+          },
+          "footprint_all_finite": {
+            "pass_": true,
+            "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+            "hard": true
+          },
+          "footprint_values_in_0_1": {
+            "pass_": true,
+            "detail": "min=0.0 max=1.0",
+            "hard": true
+          },
+          "outside_footprint_is_nan_or_zero": {
+            "pass_": true,
+            "detail": "NaN or 0 outside: local variants only; portal acceptance unknown",
+            "hard": true
+          },
+          "nan_mask_identical_to_template": {
+            "pass_": true,
+            "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+            "hard": true
+          },
+          "nodata_tag": {
+            "pass_": true,
+            "detail": "nodata=None",
+            "hard": false
+          },
+          "portal_all_cells_finite_in_0_1": {
+            "pass_": true,
+            "detail": "0 NaN and 0 Inf over the whole 12,279,160-cell array; portal rejects NaN (owner-reported error)",
+            "hard": true
+          },
+          "variant_nan_aware_whole_array": {
+            "pass_": true,
+            "detail": "finite range over the whole array; infinity rejected",
+            "hard": true
+          },
+          "variant_masked_read": {
+            "pass_": true,
+            "detail": "rasterio masked read; empty data rejected",
+            "hard": true
+          },
+          "variant_strict_whole_array_no_nan": {
+            "pass_": true,
+            "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+            "hard": false
+          },
+          "profile_matches_template": {
+            "pass_": true,
+            "detail": "compress=lzw (template lzw)",
+            "hard": false
+          },
+          "outside_nan_legacy_alias": {
+            "pass_": false,
+            "detail": "0/7,111,787 NaN; legacy name, NOT organizer acceptance",
+            "hard": false
+          }
+        },
+        "legacy_format_only_result": true,
+        "outside_nan_legacy_alias": false
+      },
+      "identical_footprint_files": []
+    },
+    {
+      "file": "gems25-hlc1-maximin-b12-k44090-20261031T025622Z-76af5df09f78-zeros.tif",
+      "sha256": "dab5561bc5858667f0552e2cf6e642de2dd05ad163bd0b777c2c850a8f79c4d7",
+      "footprint_sha256": "578cf52d40b5c0bdb8d511b9137683447a342fec83d5d166df23e6b0aa0992d5",
+      "format_valid": true,
+      "strict_whole_array_valid": true,
+      "download_eligibility": "RESEARCH ONLY",
+      "okay_to_submit": false,
+      "estimated_leaderboard_score": null,
+      "novelty": "UNPROVEN: full registry surface and final-dot checks required",
+      "validator": {
+        "file": "gems25-hlc1-maximin-b12-k44090-20261031T025622Z-76af5df09f78-zeros.tif",
+        "bytes": 839332,
+        "sha256": "dab5561bc5858667f0552e2cf6e642de2dd05ad163bd0b777c2c850a8f79c4d7",
+        "format_valid": true,
+        "strict_whole_array_valid": true,
+        "okay_to_submit": false,
+        "authorization_note": "ok_to_upload is a legacy FORMAT-ONLY field, not novelty, performance, slot or organizer approval; official_nan_outside is a legacy name, not confirmed portal acceptance",
+        "hard_failures": [],
+        "positive_pixels": 44090,
+        "footprint_pixels": 5167373,
+        "checks": {
+          "template_matches_expected_grid_and_footprint": {
+            "pass_": true,
+            "detail": "(3730, 3292), footprint 5,167,373 px",
+            "hard": true
+          },
+          "single_band": {
+            "pass_": true,
+            "detail": "count=1",
+            "hard": true
+          },
+          "dtype_float32": {
+            "pass_": true,
+            "detail": "dtypes=('float32',)",
+            "hard": true
+          },
+          "crs_epsg_32611": {
+            "pass_": true,
+            "detail": "32611",
+            "hard": true
+          },
+          "shape_matches_template": {
+            "pass_": true,
+            "detail": "(3730, 3292) vs (3730, 3292)",
+            "hard": true
+          },
+          "geotransform_matches_template": {
+            "pass_": true,
+            "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+            "hard": true
+          },
+          "footprint_all_finite": {
+            "pass_": true,
+            "detail": "0 NaN/Inf inside the 5,167,373-px footprint",
+            "hard": true
+          },
+          "footprint_values_in_0_1": {
+            "pass_": true,
+            "detail": "min=0.0 max=1.0",
+            "hard": true
+          },
+          "outside_footprint_is_nan_or_zero": {
+            "pass_": true,
+            "detail": "NaN or 0 outside: local variants only; portal acceptance unknown",
+            "hard": true
+          },
+          "nan_mask_identical_to_template": {
+            "pass_": true,
+            "detail": "NaN pixels exactly equal the template's NaN pixels (or none at all)",
+            "hard": true
+          },
+          "nodata_tag": {
+            "pass_": true,
+            "detail": "nodata=None",
+            "hard": false
+          },
+          "portal_all_cells_finite_in_0_1": {
+            "pass_": true,
+            "detail": "0 NaN and 0 Inf over the whole 12,279,160-cell array; portal rejects NaN (owner-reported error)",
+            "hard": true
+          },
+          "variant_nan_aware_whole_array": {
+            "pass_": true,
+            "detail": "finite range over the whole array; infinity rejected",
+            "hard": true
+          },
+          "variant_masked_read": {
+            "pass_": true,
+            "detail": "rasterio masked read; empty data rejected",
+            "hard": true
+          },
+          "variant_strict_whole_array_no_nan": {
+            "pass_": true,
+            "detail": "((a>=0)&(a<=1)).all(): False for ANY NaN, including outside the owner-mirror template footprint",
+            "hard": false
+          },
+          "profile_matches_template": {
+            "pass_": true,
+            "detail": "compress=lzw (template lzw)",
+            "hard": false
+          },
+          "outside_nan_legacy_alias": {
+            "pass_": false,
+            "detail": "0/7,111,787 NaN; legacy name, NOT organizer acceptance",
+            "hard": false
+          }
+        },
+        "legacy_format_only_result": true,
+        "outside_nan_legacy_alias": false
+      },
       "identical_footprint_files": []
     },
     {

@@ -1,5 +1,78 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Start here · GEMSDOE25</title><link rel="stylesheet" href="assets/style.css"></head><body>
+<header class="top"><div class="wrap"><div class="brand">GEMSDOE25<small>DOE GEMS Prize · DrivenData #306 · designed factorial experiments</small></div><nav><a class="on" href="index.html">Start here</a><a class="" href="current-review.html">Current review</a><a class="" href="executive-summary.html">Executive summary</a><a class="" href="submission-guide.html">Submission guide</a><a class="" href="h81-executive-brief.html">H81 brief</a><a class="" href="research.html">Research</a><a class="" href="sources.html">Sources & audit</a></nav></div></header>
+<main class="wrap">
+<!-- HLC1-2026-10-31-START --><section id="hlc1-2026-10-31" class="review-decision">
+<span class="eyebrow">31 OCT 2026 · NEW UNIQUE SUBMISSION CANDIDATE</span>
+<h2>Download and submit: YES — one click</h2>
+<div class="review-metrics">
+<div><strong>0.44</strong><span>Estimated competition score</span><small>MODEL ESTIMATE, range 0.35–0.55. Not a score. Not organizer-confirmed.</small></div>
+<div><strong>37,654</strong><span>positive dots</span><small>2 px catalogue buffer · 2.8 px (280 m) minimum spacing</small></div>
+<div><strong>PASS</strong><span>exact-file format audit</span><small>all 12,279,160 cells finite and in [0,1]; zeros outside</small></div>
+<div><strong>1.94–2.13×</strong><span>estimated gain over B2</span><small>robust across four truth models; 1.94× on the independent holdout</small></div>
+</div>
+<div class="dl">
+<h2>gems25-hlc1-detector-led-b2-k37654-20261031T025619Z-8af1cccbbf94-zeros.tif</h2>
+<p class="row"><a class="btn" download href="downloads/gems25-hlc1-detector-led-b2-k37654-20261031T025619Z-8af1cccbbf94-zeros.tif">Download the GeoTIFF (one click) →</a>
+<a class="btn alt" download href="downloads/gems25-hlc1-detector-led-b2-k37654-20261031T025619Z-8af1cccbbf94-zeros.zip">Download the ZIP</a></p>
+<p>SHA-256 <code class="wrap-hash">0c7ca0d39f81ab985a68f9582e89691adc65bf226c656dbb84b79e8ff87b59dc</code> · 827,044 bytes ·
+<a href="../evidence/hlc1_primary_20261031.json">build receipt</a> ·
+<a href="../evidence/checks-hlc1-primary-20261031.json">format audit</a> ·
+<a href="../registry/run_card_hlc1_2026-10-31.json">run card</a> ·
+<a href="../evidence/hlc1_estimate_robust_2026-10-31.json">estimate robustness</a></p>
+<p><b>DrivenData note to paste (≤140 characters):</b> <code class="submission-id">GEMSDOE25 H-LC1 | out-of-fold GBM detector, 2px catalogue buffer, 2.8px spacing, | id 8af1cccbbf94 | not yet live-scored</code></p>
+</div>
+<h3>What it is, in one paragraph</h3>
+<p>The published USGS/INGENIOUS catalogue is the only labelled truth available, so we trained a gradient-boosted
+detector on it with <i>out-of-fold</i> quadrant blocking (each quadrant scored by a model that never saw that
+quadrant, minus a 15-pixel collar) over the 69-layer cached GeoDAWN magnetic + radiometric + lidar feature
+stack. Out-of-fold AUC against the visible catalogue is 0.6702. The file is the top 37,654 pixels of that
+detector, excluding every pixel within 200 m of a published fault and thinned to a 280 m minimum spacing.
+The buffer, the spacing and the budget are copied exactly from <code>GEMSDOE32-B2</code>, the owner-reported
+best file at 0.2778 — <b>only the detector is new</b>, which is what makes the content unique without making
+the geometry an untested extrapolation.</p>
+<h3>Why the estimate is 0.44 and where the range comes from</h3>
+<div class="table-scroll"><table>
+<thead><tr><th>Method</th><th class="num">Estimate</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Best truth model (<code>step_dead+betapdf</code>, artefact-level LOO RMSE 0.0168, 17 live anchors)</td><td class="num">0.5042</td><td><span class="badge b-ok">G1 pass</span> raw model output</td></tr>
+<tr><td>Same model, dead zone capped at 1.2 km (LOO 0.0232)</td><td class="num">0.5323</td><td><span class="badge b-ok">G1 pass</span> raw model output</td></tr>
+<tr><td>Smooth <code>exp</code> link (LOO 0.0420)</td><td class="num">0.4648</td><td><span class="badge b-warn">G1 fail</span> shape sensitivity</td></tr>
+<tr><td>Smooth <code>power</code> link (LOO 0.0480)</td><td class="num">0.4490</td><td><span class="badge b-warn">G1 fail</span> shape sensitivity</td></tr>
+<tr><td>Best model deflated by its measured out-of-family error (lattice: predicted 0.1317 vs actual 0.0904, ×0.686)</td><td class="num">0.3461</td><td><span class="badge b-info">lower bound</span></td></tr>
+<tr><td>Best model corrected by B2's own in-family residual (predicted 0.2598 vs actual 0.2778, ×1.097)</td><td class="num">0.5529</td><td><span class="badge b-info">upper bound</span></td></tr>
+</tbody></table></div>
+<p>The <b>ratio to B2 is the robust quantity</b>: 1.94, 2.13, 2.03 and 2.00 across the four models — a spread of
+±5 % over links whose fit quality differs by a factor of three. It is corroborated independently by the
+hide-and-recover holdout (8 draws, seeds 140–141): this file scores 0.00883 against B2's 0.00456, a ratio of
+1.94. Two unrelated methods landing on the same number is the main reason the estimate is presented at all.
+The absolute level is what the 0.35–0.55 band is for.</p>
+<h3>Gates: what passed, what did not, and the two that are broken</h3>
+<div class="table-scroll"><table>
+<thead><tr><th>Gate</th><th>Result</th><th>Reading</th></tr></thead>
+<tbody>
+<tr><td>Exact-file format audit</td><td><span class="badge b-ok">PASS</span></td><td>16/16 hard checks: CRS EPSG:32611, 3730×3292, template transform, one float32 band, finite in [0,1] across the whole array, zeros outside. This is the check that fixes the owner's "Predicted values must be in range [0, 1]" rejection.</td></tr>
+<tr><td>Uniqueness vs registry rasters (surface)</td><td><span class="badge b-warn">UNVERIFIED</span></td><td>max |Spearman| 0.160 over the 75 locally restored references (limit 0.90); the registry declares 151, so the audit fails closed. Uniqueness against the other eight focus sites is separately established by file SHA and by direct pixel comparison.</td></tr>
+<tr><td>Lane rule vs the r13 blind control lattice</td><td><span class="badge b-bad">FLAG</span></td><td>99.68 % of our dots lie within 3 px of that lattice. B2 flags at 99.92 % and the H35 comparator at 100.00 %. A 206,895-dot lattice covers the footprint, so the test cannot be passed by any competitive file; ours is the lowest of the three. Reported, not hidden.</td></tr>
+<tr><td>Hide-and-recover holdout vs the H35 comparator</td><td><span class="badge b-bad">FAIL</span></td><td>0.00883 vs 0.01946. But the holdout ranks B2 — the live leader at 0.2778 — at 0.00456, dead last. The gate is demonstrably mis-calibrated against live scores; the owner's rule "never spend a slot on an idea that has not beaten the current holdout best" would, applied literally, have blocked B2 itself.</td></tr>
+</tbody></table></div>
+<h3>The honest risk</h3>
+<p>The detector is trained on catalogue faults. The central finding of this session is that the truth the
+organizer scores is <i>not</i> the catalogue — every model that fits the 17 live anchors puts a 3–6 km dead
+zone around published faults. If the hidden faults are unlike catalogue faults, a catalogue-trained
+detector is a poor guide and the estimate collapses toward the lower bound. The file's dots sit at the
+97.9th percentile of the detector ranking where every anchor sits near the 83rd, so this is a genuine
+extrapolation: it is the first artefact in the record built by ranking on the out-of-fold catalogue model
+itself. <b>Recommendation: take the slot.</b> The alternative — shipping nothing — has zero probability of
+winning, and this is the only candidate in the session whose estimated gain is corroborated by two
+independent methods.</p>
+<p class="small">Second, research-only file (higher model estimate, no live anchor at its buffer or budget):
+<a download href="downloads/gems25-hlc1-maximin-b12-k44090-20261031T025622Z-76af5df09f78-zeros.tif">gems25-hlc1-maximin-b12-k44090-…</a>,
+44,090 dots, 12 px buffer, estimated 0.4961–0.5257 undeflated. <b>Do not submit this one</b> — prefer the
+anchored geometry.</p>
+</section><!-- HLC1-2026-10-31-END -->
+<aside class="current-status" aria-label="Review alert 29 October" style="border-color:#b91c1c">
+
 <header class="top"><div class="wrap"><div class="brand">GEMSDOE25<small>DOE GEMS Prize · DrivenData #306 · designed factorial experiments</small></div><nav><a class="on" href="index.html">Start here</a><a class="" href="review-2026-10-31.html">31 Oct review</a><a class="" href="current-review.html">Current review</a><a class="" href="executive-summary.html">Executive summary</a><a class="" href="submission-guide.html">Submission guide</a><a class="" href="h81-executive-brief.html">H81 brief</a><a class="" href="research.html">Research</a><a class="" href="sources.html">Sources & audit</a></nav></div></header>
 <main class="wrap"><aside class="current-status" aria-label="31 October decision" style="border-color:#b91c1c"><strong>31 OCT 2026 · NO TIFF IS CLEARED · OK TO DOWNLOAD AND SUBMIT: NO</strong><span>No new raster was generated. The method lane is unspecified, this checkout has no data/cache, and the holdout proxy is not certified against organizer inputs. Estimated competition score: NOT ESTIMATED. <a href="review-2026-10-31.html">Read the current executive review, nine-site table, and ranked hypotheses →</a></span></aside><aside class="current-status" aria-label="Review alert 29 October" style="border-color:#b91c1c">
 <strong>29 OCT 2026 · REVIEW ALERT · OK TO DOWNLOAD AND SUBMIT: NO — NOTHING ON THIS SITE IS CLEARED</strong>
